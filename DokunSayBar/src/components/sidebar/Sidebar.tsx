@@ -74,36 +74,16 @@ export default function Sidebar(props: SidebarProps) {
         transition: "width .2s",
       }}
     >
-      {/* Header */}
+      {/* Header — DokunSay logo/başlık ve dil seçici AppShell üst çubuğunda. */}
       <div style={{
         padding: collapsed ? "8px 4px" : "8px 10px",
         borderBottom: `1px solid ${palette.brd}`,
         display: "flex", alignItems: "center",
-        justifyContent: collapsed ? "center" : "space-between", gap: 3,
+        justifyContent: collapsed ? "center" : "flex-end", gap: 3,
       }}>
-        {!collapsed && (
-          <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-            <LogoSvg lang={lang} />
-            <span style={{ fontWeight: 900, fontSize: 14, color: isDark ? "#fff" : "#3d3520" }}>DokunSay</span>
-          </div>
-        )}
-        <div style={{ display: "flex", gap: 2 }}>
-          {!collapsed && (
-            <button
-              onClick={props.onSetLang}
-              style={bs(lang !== "tr", palette, {
-                fontSize: 7, padding: "2px 5px",
-                background: lang !== "tr" ? "#16a34a" : palette.bg,
-                color: lang !== "tr" ? "#fff" : palette.tx,
-              })}
-            >
-              {getNextLanguage(lang).toUpperCase()}
-            </button>
-          )}
-          <button onClick={props.onToggleCollapse} style={bs(false, palette, { fontSize: 10, padding: "2px 6px" })}>
-            {collapsed ? "»" : "«"}
-          </button>
-        </div>
+        <button onClick={props.onToggleCollapse} style={bs(false, palette, { fontSize: 10, padding: "2px 6px" })}>
+          {collapsed ? "»" : "«"}
+        </button>
       </div>
 
       {/* User menu */}
@@ -187,7 +167,6 @@ export default function Sidebar(props: SidebarProps) {
         <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", gap: 4, padding: "8px 0" }}>
           <button onClick={() => { props.onToggleCollapse(); props.onSetSideTab("mat"); }} style={bs(false, palette, { fontSize: 14, padding: "4px 8px" })}>📦</button>
           <button onClick={() => { props.onToggleCollapse(); props.onSetSideTab("act"); }} style={bs(false, palette, { fontSize: 14, padding: "4px 8px" })}>📋</button>
-          <button onClick={props.onSetLang} style={bs(false, palette, { fontSize: 8, padding: "4px 6px" })}>{getNextLanguage(lang).toUpperCase()}</button>
           <div style={{ flex: 1 }} />
           <button onClick={props.onUndo} style={bs(false, palette, { fontSize: 12, padding: "4px 8px", opacity: props.canUndo ? 1 : 0.4 })}>↩</button>
           <button onClick={props.onRedo} style={bs(false, palette, { fontSize: 12, padding: "4px 8px", opacity: props.canRedo ? 1 : 0.4 })}>↪</button>

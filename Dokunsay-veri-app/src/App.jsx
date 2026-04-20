@@ -7,6 +7,7 @@ import { loadTestResult, saveTestResult } from "./data/diagnostic.js";
 import { ErrorBoundary } from "./components/common.jsx";
 import { OnboardingTour, StudentProfileSetup, DiagnosticTest } from "./components/dialogs.jsx";
 import { ModulePlaceholder } from "./modules/educational.jsx";
+import { LangSwitcher } from "@shared/LangSwitcher.jsx";
 
 export default function App() {
   // ─── STATE ─────────────────────────────────────────────────────────
@@ -341,7 +342,7 @@ export default function App() {
       overflow: "hidden",
     }}>
 
-      {/* ════════ HEADER ════════ */}
+      {/* ════════ HEADER — Curcio seviye şeridi. DokunSay logo/başlık AppShell'de. ════════ */}
       <header style={{
         height: 50, minHeight: 50,
         background: P.header,
@@ -350,54 +351,7 @@ export default function App() {
         boxShadow: "0 2px 16px rgba(15,23,42,.35)",
         zIndex: 20,
       }}>
-        {/* Logo */}
-        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <div aria-hidden style={{
-            width: 28, height: 28, borderRadius: 7,
-            background: `linear-gradient(135deg,${P.accent},${P.accentD})`,
-            display: "flex", alignItems: "center", justifyContent: "center",
-            boxShadow: "0 2px 8px rgba(59,130,246,.4)",
-          }}>
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="4" y1="20" x2="4" y2="4"/>
-              <line x1="4" y1="20" x2="20" y2="20"/>
-              <rect x="7" y="12" width="3" height="8" fill="#fff"/>
-              <rect x="12" y="8" width="3" height="12" fill="#fff"/>
-              <rect x="17" y="14" width="3" height="6" fill="#fff"/>
-            </svg>
-          </div>
-          <div>
-            <div style={{ fontSize: fs(15), fontWeight: 900, color: "#e2e8f0", letterSpacing: -.3, lineHeight: 1 }}>
-              DokunSay Veri
-            </div>
-            <div style={{ fontSize: fs(9), color: "rgba(148,163,184,.75)", fontWeight: 600, marginTop: 1 }}>
-              {t("appTitle")}
-            </div>
-          </div>
-        </div>
-
-        {/* Dil seçici */}
-        <div style={{
-          display: "flex", gap: 2,
-          background: "rgba(255,255,255,.07)", borderRadius: 8, padding: 3,
-        }}>
-          {Object.values(LANGS).map(lng => (
-            <button
-              key={lng.code}
-              onClick={() => setLang(lng.code)}
-              aria-pressed={lang === lng.code}
-              aria-label={lng.name}
-              style={{
-                padding: "3px 9px", borderRadius: 6, border: "none",
-                cursor: "pointer", fontFamily: "inherit",
-                background: lang === lng.code ? "rgba(255,255,255,.15)" : "transparent",
-                color: lang === lng.code ? "#fff" : "rgba(255,255,255,.5)",
-                fontSize: fs(10), fontWeight: lang === lng.code ? 800 : 600,
-              }}>
-              {lng.code.toUpperCase()}
-            </button>
-          ))}
-        </div>
+        <LangSwitcher lang={lang} setLang={setLang} langs={Object.keys(LANGS)} />
 
         <div style={{ flex: 1 }}/>
 

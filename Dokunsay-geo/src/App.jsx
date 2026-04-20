@@ -31,6 +31,7 @@ import { PhaseSequenceCard } from './components/Activities/PhaseSequenceCard.jsx
 import { VHBadge } from './components/Common/VHBadge.jsx';
 import { SpeakButton } from './components/Common/SpeakButton.jsx';
 import { Toggle } from './components/Common/Toggle.jsx';
+import { LangSwitcher } from '@shared/LangSwitcher.jsx';
 
 export default function App(){
   const [state,dispatch]=useReducer(canvasReducer,{items:[],strokes:[],history:[],future:[],selectedId:null});
@@ -669,23 +670,10 @@ export default function App(){
       <div ref={ariaRef} aria-live="polite" aria-atomic="true"
         style={{position:"absolute",width:1,height:1,overflow:"hidden",clip:"rect(0,0,0,0)",whiteSpace:"nowrap"}}/>
 
-      {/* HEADER */}
+      {/* HEADER — Van Hiele seviye şeridi. DokunSay logo/başlık AppShell üstünde. */}
       <header style={{height:46,minHeight:46,background:P.header,display:"flex",alignItems:"center",
         padding:"0 14px",gap:10,boxShadow:"0 2px 16px rgba(30,27,75,.3)",zIndex:10}}>
-        <span aria-hidden style={{fontSize:20}}>📐</span>
-        <span style={{fontSize:15,fontWeight:900,color:"#a5b4fc",letterSpacing:-.5}}>DokunSay Geo</span>
-        <span style={{fontSize:10,color:"rgba(165,180,252,.4)",marginLeft:2}}>{t("appTitle")}</span>
-        <div style={{display:"flex",gap:2,background:"rgba(255,255,255,.07)",borderRadius:8,padding:3,marginLeft:6}}>
-          {Object.values(LANGS).map(lng=>(
-            <button key={lng.code} onClick={()=>setLang(lng.code)} aria-pressed={lang===lng.code}
-              aria-label={lng.name}
-              style={{padding:"2px 7px",borderRadius:6,border:"none",cursor:"pointer",fontFamily:"inherit",
-                background:lang===lng.code?"rgba(255,255,255,.2)":"transparent",
-                color:lang===lng.code?"#fff":"rgba(255,255,255,.35)",fontSize:11,fontWeight:lang===lng.code?800:600}}>
-              {lng.flag} {lng.name}
-            </button>
-          ))}
-        </div>
+        <LangSwitcher lang={lang} setLang={setLang} langs={Object.keys(LANGS)} />
         <div style={{flex:1}}/>
         <div style={{display:"flex",gap:3}}>
           {[0,1,2].map(lv=>{
