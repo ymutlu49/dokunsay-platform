@@ -250,19 +250,18 @@ export default function App(){
   return(
     <div style={{display:"flex",flexDirection:"column",height:"100vh",overflow:"hidden",fontFamily:"'Nunito','Segoe UI',system-ui,sans-serif"}}>
       <style>{"@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&display=swap');*{box-sizing:border-box}@keyframes popIn{0%{transform:scale(.8);opacity:0}60%{transform:scale(1.04)}100%{transform:scale(1);opacity:1}}@keyframes fadeIn{0%{opacity:0;transform:translateY(-8px)}100%{opacity:1;transform:translateY(0)}}@keyframes pulse{0%,100%{opacity:.6;transform:scale(1)}50%{opacity:1;transform:scale(1.15)}}@keyframes snapIn{0%{transform:scale(1.3);opacity:0}100%{transform:scale(1);opacity:1}}@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}button{font-family:'Nunito',system-ui,sans-serif;transition:transform .1s}button:active{transform:scale(.96)}"}</style>
-      {/* HEADER */}
-      <div style={{height:52,minHeight:52,background:"linear-gradient(135deg,#1a1a1a,#2d2520)",display:"flex",alignItems:"center",padding:"0 20px",gap:12,boxShadow:"0 4px 20px rgba(0,0,0,.2)"}}>
-        <div style={{animation:"float 3s ease-in-out infinite"}}><Logo size={34}/></div>
-        <span style={{fontSize:20,fontWeight:900,color:P.accent}}>{"DokunSay"}</span><span style={{fontSize:14,fontWeight:700,color:"rgba(255,255,255,.4)"}}>{"Saat"}</span>
+      {/* HEADER — DokunSay logo/başlık AppShell üst çubuğunda; burada yalnızca
+          uygulamaya özgü göstergeler (dijital saat + zoom) kalır. */}
+      <div style={{height:42,minHeight:42,background:"linear-gradient(135deg,#1a1a1a,#2d2520)",display:"flex",alignItems:"center",padding:"0 16px",gap:10,boxShadow:"0 4px 20px rgba(0,0,0,.2)"}}>
         <div style={{flex:1}}/>
-        <div style={{padding:"4px 14px",background:"rgba(255,255,255,.06)",borderRadius:10}}><span style={{fontSize:20,fontWeight:900,color:"#e2b93b",fontFamily:"monospace"}}>{timeDig(hour,min)}</span></div>
+        <div style={{padding:"4px 14px",background:"rgba(255,255,255,.06)",borderRadius:10}}><span style={{fontSize:18,fontWeight:900,color:"#e2b93b",fontFamily:"monospace"}}>{timeDig(hour,min)}</span></div>
         <div style={{display:"flex",gap:3,alignItems:"center",background:"rgba(255,255,255,.06)",borderRadius:8,padding:"4px 8px"}}><button onClick={function(){setZoom(function(z){return Math.max(0.5,+(z-0.1).toFixed(1));});}} style={{background:"none",border:"none",color:"rgba(255,255,255,.5)",cursor:"pointer",fontSize:14,fontWeight:900}}>{"−"}</button><span style={{fontSize:10,color:"rgba(255,255,255,.35)",minWidth:36,textAlign:"center"}}>{Math.round(zoom*100)+"%"}</span><button onClick={function(){setZoom(function(z){return Math.min(2,+(z+0.1).toFixed(1));});}} style={{background:"none",border:"none",color:"rgba(255,255,255,.5)",cursor:"pointer",fontSize:14,fontWeight:900}}>{"+"}</button></div>
       </div>
       <div style={{display:"flex",flex:1,overflow:"hidden"}}>
         {/* SIDEBAR */}
         <div style={{width:col?52:260,minWidth:col?52:260,background:"linear-gradient(180deg,"+P.side+",#f3ede0)",borderRight:"1px solid "+P.sideB,display:"flex",flexDirection:"column",transition:"width .25s",overflow:"hidden"}}>
           {!col?(<div style={{display:"flex",flexDirection:"column",flex:1,overflow:"hidden"}}>
-            <div style={{padding:"12px 16px 8px",display:"flex",alignItems:"center",gap:10,borderBottom:"1px solid rgba(0,0,0,.05)"}}><Logo size={32}/><div style={{flex:1}}><div style={{fontSize:15,fontWeight:900,color:"#3d3520"}}>{"DokunSay Saat"}</div><div style={{fontSize:9,color:"#bbb",fontWeight:700}}>{"Saat Öğretim Materyali"}</div></div><button onClick={function(){setCol(true);}} style={{background:"rgba(0,0,0,.04)",border:"none",cursor:"pointer",fontSize:14,color:"#bbb",width:28,height:28,borderRadius:8,display:"flex",alignItems:"center",justifyContent:"center"}}>{"◀"}</button></div>
+            <div style={{padding:"8px 12px",display:"flex",alignItems:"center",justifyContent:"flex-end",gap:10,borderBottom:"1px solid rgba(0,0,0,.05)"}}><button onClick={function(){setCol(true);}} style={{background:"rgba(0,0,0,.04)",border:"none",cursor:"pointer",fontSize:14,color:"#bbb",width:28,height:28,borderRadius:8,display:"flex",alignItems:"center",justifyContent:"center"}}>{"◀"}</button></div>
             <div style={{display:"flex",padding:"6px 12px",gap:3,background:"rgba(0,0,0,.02)"}}>
               {[["📦","mat"],["📋","act"],["🎮","game"],["⚙️","feat"]].map(function(t){return <button key={t[1]} onClick={function(){setSTab(t[1]);}} style={{flex:1,padding:"7px 0",border:"none",borderRadius:8,background:sTab===t[1]?"#fff":"transparent",cursor:"pointer",fontSize:13,fontWeight:800,color:sTab===t[1]?"#3d3520":"#aaa",fontFamily:"inherit",boxShadow:sTab===t[1]?"0 1px 4px rgba(0,0,0,.06)":"none"}}>{t[0]}</button>;})}
             </div>

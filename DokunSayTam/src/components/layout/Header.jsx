@@ -1,18 +1,14 @@
-import Logo from '../common/Logo';
 import { THEME } from '../../constants/theme';
 
+// DokunSay logo/başlık AppShell üst çubuğunda; burada yalnızca uygulamaya
+// özgü göstergeler (pul sayacı + net değer + zoom) kalır.
 const Header = ({ posCount, negCount, netValue, zoom, setZoom }) => (
   <div style={{
-    height: 52, minHeight: 52,
+    height: 42, minHeight: 42,
     background: 'linear-gradient(135deg,#1a1a1a,#2d2520)',
-    display: 'flex', alignItems: 'center', padding: '0 20px', gap: 12,
+    display: 'flex', alignItems: 'center', padding: '0 16px', gap: 10,
     boxShadow: '0 4px 20px rgba(0,0,0,.2)',
   }}>
-    <div style={{ animation: 'float 3s ease-in-out infinite' }}>
-      <Logo size={34} />
-    </div>
-    <span style={{ fontSize: 20, fontWeight: 900, color: THEME.accent }}>DokunSay</span>
-    <span style={{ fontSize: 14, fontWeight: 700, color: 'rgba(255,255,255,.4)' }}>Tam Sayılar</span>
     <div style={{ flex: 1 }} />
 
     {/* Pul sayacı */}
