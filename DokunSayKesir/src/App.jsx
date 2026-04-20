@@ -759,9 +759,9 @@ export default function App() {
       <div style={{display:"flex",flex:1,overflow:"hidden"}}>
         {/* SIDEBAR */}
         <div style={{width:collapsed?52:220,minWidth:collapsed?52:220,background:PB,borderRight:"2px solid "+PBD,display:"flex",flexDirection:"column"}}>
-          <div style={{padding:collapsed?"10px 6px":"10px 12px",borderBottom:"1px solid "+PBD,display:"flex",alignItems:"center",justifyContent:collapsed?"center":"space-between"}}>
-            {!collapsed?(<div style={{display:"flex",alignItems:"center",gap:8}}><Logo size={32}/><span style={{fontWeight:900,fontSize:14,color:"#3d3520",lineHeight:1.2}}>{t("app.title")}<br/><span style={{fontSize:11,fontWeight:700,color:"#92400e"}}>{t("app.subtitle")}</span></span></div>):(<Logo size={36}/>)}
-            <button onClick={function(){setCollapsed(!collapsed);}} style={bs(false,{fontSize:12,padding:"4px 8px"})}>{collapsed?"»":"«"}</button>
+          <div style={{padding:"8px 10px",borderBottom:"1px solid "+PBD,display:"flex",alignItems:"center",justifyContent:collapsed?"center":"flex-end"}}>
+            {/* Sidebar üst şeridi — sade kalır: app kimliği zaten AppShell'de */}
+            <button onClick={function(){setCollapsed(!collapsed);}} aria-label={collapsed?"Panel aç":"Panel gizle"} style={bs(false,{fontSize:14,padding:"4px 10px",fontWeight:800})}>{collapsed?"»":"«"}</button>
           </div>
           {!collapsed?(
             <div style={{display:"flex",flex:1,flexDirection:"column",overflow:"hidden"}}>
@@ -1226,14 +1226,7 @@ export default function App() {
         </div>
       </div>):null}
 
-      {/* LANGUAGE SELECTOR */}
-      <div style={{position:"fixed",top:8,right:8,zIndex:9998,display:"flex",gap:2}}>
-        {LANGS.map(function(l){return(
-          <button key={l} onClick={function(){setLang(l);}} style={{padding:"5px 12px",borderRadius:8,border:lang===l?"2px solid #f59e0b":"1px solid rgba(0,0,0,.15)",background:lang===l?"linear-gradient(135deg,#fef3c7,#fde68a)":"rgba(255,255,255,.85)",cursor:"pointer",fontSize:12,fontWeight:lang===l?900:600,color:lang===l?"#78350f":"#666",fontFamily:"inherit",backdropFilter:"blur(8px)",boxShadow:"0 2px 8px rgba(0,0,0,.1)",transition:"all .2s"}}>
-            {LANG_FLAGS[l]+" "+LANG_LABELS[l]}
-          </button>
-        );})}
-      </div>
+      {/* Dil seçici artık AppShell tools slot'unda (main.jsx) */}
     </div>
   );
 }
