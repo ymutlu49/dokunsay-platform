@@ -21,7 +21,7 @@ export const TOOLS = [
     },
     description: {
       tr: 'Manipülatif çubuk ve renkli pullarla sayma, değer ve dört işlem.',
-      ku: 'Bi çovik û pulên rengîn hejmartin, nirx û çar kirarî.',
+      ku: 'Hejmartin, nirx û çar kirarî — bi çovik û pulên rengîn.',
       en: 'Counting, value and four operations with manipulative rods and colored chips.',
     },
     icon: '🧮',
@@ -29,7 +29,7 @@ export const TOOLS = [
     ageRange: '5-10',
     topics: {
       tr: ['Sayma', 'Toplama', 'Çıkarma', 'Parça-Bütün'],
-      ku: ['Hejmartin', 'Zêdekirin', 'Kemkirin', 'Par-Gişt'],
+      ku: ['Hejmartin', 'Zêdekirin', 'Kemkirin', 'Par û Gişt'],
       en: ['Counting', 'Addition', 'Subtraction', 'Part-Whole'],
     },
     framework: 'CRA + Bruner',
@@ -52,7 +52,7 @@ export const TOOLS = [
     },
     description: {
       tr: 'Birlik-onluk-yüzlük-binlik bloklarıyla ondalık sayı sistemi öğretimi.',
-      ku: 'Fêrkirina pergala hejmaran a dehî bi blokên yek-deh-sed-hezar.',
+      ku: 'Pergala dehane — bi blokên yek, deh, sed û hezaran.',
       en: 'Teaching the decimal system with ones/tens/hundreds/thousands blocks.',
     },
     icon: '🔢',
@@ -60,7 +60,7 @@ export const TOOLS = [
     ageRange: '6-10',
     topics: {
       tr: ['Basamak Değeri', 'Gruplama', 'Bölme', 'Yer Değeri'],
-      ku: ['Nirxê Pêşekê', 'Kombûn', 'Veqetandin', 'Cih û Nirx'],
+      ku: ['Nirxê Pêşekê', 'Komkirin', 'Veqetandin', 'Cih û Nirx'],
       en: ['Place Value', 'Grouping', 'Decomposition', 'Positional System'],
     },
     framework: 'Bloom L1-L5 + Dienes',
@@ -83,7 +83,7 @@ export const TOOLS = [
     },
     description: {
       tr: 'Analog ve dijital saatle zaman okuma, kavram inşası.',
-      ku: 'Xwendina demê bi saeta analog û dîjîtal, avakirina têgehê.',
+      ku: 'Xwendina demê û avakirina têgeha demê — bi saeta analog û dîjîtal.',
       en: 'Time reading and concept building with analog & digital clocks.',
     },
     icon: '🕐',
@@ -114,7 +114,7 @@ export const TOOLS = [
     },
     description: {
       tr: 'Bar modeli, pasta grafik ve sayı doğrusuyla kesir öğretimi.',
-      ku: 'Fêrkirina parjimaran bi modela çovik, nexşeya gilover û jimarxêzê.',
+      ku: 'Parjimar — bi modela çovik, bi nexşeya gilover û bi jimarxêzê.',
       en: 'Fractions via bar model, pie chart and number line.',
     },
     icon: '🍕',
@@ -122,7 +122,7 @@ export const TOOLS = [
     ageRange: '6-10',
     topics: {
       tr: ['Bütün-Parça', 'Birim Kesir', 'Denklik', 'Dört İşlem'],
-      ku: ['Gişt-Par', 'Parjimara Yekane', 'Hevkêşî', 'Çar Kirarî'],
+      ku: ['Gişt û Par', 'Parjimara Yekane', 'Hevkêşî', 'Çar Kirarî'],
       en: ['Whole-Part', 'Unit Fraction', 'Equivalence', 'Four Operations'],
     },
     framework: 'CRA + MEB Müfredatı',
@@ -145,7 +145,7 @@ export const TOOLS = [
     },
     description: {
       tr: 'Pozitif/negatif pullar, sıfır çifti ve senaryolarla tam sayı işlemleri.',
-      ku: 'Kirarîyên hejmarên tam bi pulên erênî/neyînî, cotê sifir û senaryoyan.',
+      ku: 'Kirarîyên hejmarên tam — bi pulên erênî û neyînî, bi cotên sifirê û bi senaryoyan.',
       en: 'Integer operations with positive/negative chips, zero pairs and scenarios.',
     },
     icon: '➕➖',
@@ -176,7 +176,7 @@ export const TOOLS = [
     },
     description: {
       tr: 'Van Hiele 5-faz modeliyle 2B/3B şekiller, ölçüm ve ispat.',
-      ku: 'Bi modela Van Hiele 5-qonax teşeyên 2B/3B, pîvandin û delîlkirin.',
+      ku: 'Bi modela Van Hiele ya pênc-qonax — teşeyên 2B û 3B, pîvandin û îspat.',
       en: '2D/3D shapes, measurement and proof via Van Hiele 5-phase model.',
     },
     icon: '🔺',
@@ -207,7 +207,7 @@ export const TOOLS = [
     },
     description: {
       tr: 'Curcio seviyeleri ve GAISE ile grafik okuma, istatistiksel okuryazarlık.',
-      ku: 'Bi astên Curcio û GAISE xwendina nexşeyan û xwendewariya amarî.',
+      ku: 'Xwendina nexşeyan û xwendewariya amarî — bi astên Curcio û çarçoveya GAISE.',
       en: 'Graph reading and statistical literacy with Curcio levels and GAISE.',
     },
     icon: '📊',

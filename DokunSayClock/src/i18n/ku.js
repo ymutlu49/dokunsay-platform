@@ -8,7 +8,7 @@ export default {
   app_subtitle: 'Saet û Dem',
 
   menu_activities: 'Çalakî',
-  menu_games: 'Lîst',
+  menu_games: 'Lîstik',
   menu_lessons: 'Ders',
   menu_materials: 'Materyal',
   menu_settings: 'Sazkirin',
@@ -23,7 +23,7 @@ export default {
   tool_verbal: 'Xwendina bi Deng',
 
   game_set_clock: 'Saetê Saz Bike',
-  game_match: 'Pevgirêdan',
+  game_match: 'Lihevkirin',
   game_elapsed: 'Dema Derbasbûyî',
   game_routine: 'Rotîna Rojane',
 
@@ -35,30 +35,31 @@ export default {
   lesson_1: 'Em Saetê Nas Bikin',
   lesson_2: 'Nîv û Çarek',
   lesson_3: 'Bi Pêncan Deqe',
-  lesson_4: 'Dîjîtal-Analog Pevgirêdan',
+  lesson_4: 'Lihevkirina Dîjîtal û Analog',
   lesson_5: 'Têgehên Şaş',
 
   time_format_oclock: 'Saet {h}',
   time_format_half: 'Saet {h} û nîv',
   time_format_quarter_past: 'Saet {h} û çarek',
-  time_format_quarter_to: 'Ji saet {h}\u0027an re çarek mawe',
+  time_format_quarter_to: 'Ji bo saet {h} çarek maye',
   time_format_minutes_past: 'Saet {h} û {m} deqe',
 
-  feedback_correct: 'Çeleng! Bersiva rast.',
+  feedback_correct: 'Rast e! Aferîn.',
   feedback_wrong: 'Em careke din biceribînin.',
   feedback_hint: 'Nîşan',
 
-  btn_start: 'Destpêk',
+  btn_start: 'Dest pê Bike',
   btn_next: 'Pêş',
   btn_previous: 'Paş',
-  btn_check: 'Kontrol',
-  btn_reset: 'Ji Nû Ve',
+  btn_check: 'Kontrol Bike',
+  btn_reset: 'Sifir Bike',
   btn_close: 'Bigire',
 
-  a11y_dyscalculia: 'Moda Diskalkulî',
+  a11y_dyscalculia: 'Moda Diskalkuliyê',
+  a11y_dyslexia: 'Moda Disleksiyê',
   a11y_high_contrast: 'Kontrasta Bilind',
   a11y_tts: 'Xwendina bi Deng',
-  a11y_sfx: 'Dengên Bandor',
+  a11y_sfx: 'Dengên Bandorê',
 
   // FerMat ölçme terimleri
   term_time: 'dem',

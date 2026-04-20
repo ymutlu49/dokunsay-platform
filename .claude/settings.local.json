@@ -27,7 +27,8 @@
       "Bash(SITE_BASE=/ node _platform/scripts/build-site.js)",
       "Bash(gh repo *)",
       "Bash(gh api *)",
-      "Bash(gh run *)"
+      "Bash(gh run *)",
+      "Bash(grep -n \"ku:\\\\s*{\\\\|ku:$\" _platform/launcher/src/i18n.js)"
     ]
   }
 }
