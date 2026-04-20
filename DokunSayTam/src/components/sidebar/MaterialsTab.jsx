@@ -13,7 +13,7 @@ const MaterialsTab = ({
     {/* Pozitif Pullar */}
     <div style={{ background: '#fff', borderRadius: 12, padding: '8px 10px', marginBottom: 6, border: '1px solid rgba(0,0,0,.05)' }}>
       <div style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', letterSpacing: 1, color: THEME.posB, marginBottom: 5 }}>
-        {'\⊕ Pozitif Pullar'}
+        {'⊕ Pozitif Pullar'}
       </div>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 3 }}>
         {[1, 2, 3].map((n) => (
@@ -37,7 +37,7 @@ const MaterialsTab = ({
     {/* Negatif Pullar */}
     <div style={{ background: '#fff', borderRadius: 12, padding: '8px 10px', marginBottom: 6, border: '1px solid rgba(0,0,0,.05)' }}>
       <div style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', letterSpacing: 1, color: THEME.negB, marginBottom: 5 }}>
-        {'\⊖ Negatif Pullar'}
+        {'⊖ Negatif Pullar'}
       </div>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 3 }}>
         {[1, 2, 3].map((n) => (
@@ -62,13 +62,13 @@ const MaterialsTab = ({
     <div style={{ background: '#fff', borderRadius: 12, padding: '8px 10px', marginBottom: 6, border: '1px solid rgba(0,0,0,.05)' }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <div style={{ fontSize: 9, fontWeight: 800, textTransform: 'uppercase', letterSpacing: 1, color: '#6d28d9' }}>{'🟣 Sıfır Çifti'}</div>
-        <span style={{ fontSize: 8, color: '#aaa' }}>{'(+1)+(\−1)=0'}</span>
+        <span style={{ fontSize: 8, color: '#aaa' }}>{'(+1)+(−1)=0'}</span>
       </div>
       <button onClick={addZeroPair} style={{
         width: '100%', marginTop: 4, padding: '5px 0', borderRadius: 6,
         border: '1.5px solid rgba(139,92,246,.2)', background: 'rgba(139,92,246,.04)',
         cursor: 'pointer', fontSize: 10, fontWeight: 700, color: '#6d28d9', fontFamily: 'inherit',
-      }}>{'\⊕\⊖ Ekle'}</button>
+      }}>{'⊕⊖ Ekle'}</button>
     </div>
 
     {/* Araçlar */}
@@ -158,8 +158,8 @@ const MaterialsTab = ({
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 2 }}>
           <button onClick={() => animateNumberLine(0, 4)} style={{ padding: '3px 0', borderRadius: 4, border: '1px solid rgba(34,197,94,.15)', background: 'rgba(34,197,94,.03)', cursor: 'pointer', fontSize: 7, fontWeight: 700, color: THEME.posB, fontFamily: 'inherit' }}>{'0\→+4'}</button>
-          <button onClick={() => animateNumberLine(0, -3)} style={{ padding: '3px 0', borderRadius: 4, border: '1px solid rgba(239,68,68,.15)', background: 'rgba(239,68,68,.03)', cursor: 'pointer', fontSize: 7, fontWeight: 700, color: THEME.negB, fontFamily: 'inherit' }}>{'0\→\−3'}</button>
-          <button onClick={() => animateNumberLine(3, -7)} style={{ padding: '3px 0', borderRadius: 4, border: '1px solid rgba(139,92,246,.15)', background: 'rgba(139,92,246,.03)', cursor: 'pointer', fontSize: 7, fontWeight: 700, color: '#6d28d9', fontFamily: 'inherit' }}>{'(+3)+(\−7)'}</button>
+          <button onClick={() => animateNumberLine(0, -3)} style={{ padding: '3px 0', borderRadius: 4, border: '1px solid rgba(239,68,68,.15)', background: 'rgba(239,68,68,.03)', cursor: 'pointer', fontSize: 7, fontWeight: 700, color: THEME.negB, fontFamily: 'inherit' }}>{'0\→−3'}</button>
+          <button onClick={() => animateNumberLine(3, -7)} style={{ padding: '3px 0', borderRadius: 4, border: '1px solid rgba(139,92,246,.15)', background: 'rgba(139,92,246,.03)', cursor: 'pointer', fontSize: 7, fontWeight: 700, color: '#6d28d9', fontFamily: 'inherit' }}>{'(+3)+(−7)'}</button>
           <button onClick={() => resetNumberLine()} style={{ padding: '3px 0', borderRadius: 4, border: '1px solid ' + THEME.sideB, background: '#fff', cursor: 'pointer', fontSize: 7, fontWeight: 700, color: '#999', fontFamily: 'inherit' }}>{'🗑 Temizle'}</button>
         </div>
       </div>
@@ -171,7 +171,7 @@ const MaterialsTab = ({
         {'İşaret & Sayı Kartları'}
       </div>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 2, marginBottom: 4 }}>
-        {['+', '\−', '\×', '\÷', '=', '<', '>'].map((op) => (
+        {['+', '−', '×', '÷', '=', '<', '>'].map((op) => (
           <div key={op} style={{
             width: 26, height: 26, borderRadius: 6, background: '#fff',
             border: '1.5px solid ' + THEME.sideB, display: 'flex', alignItems: 'center', justifyContent: 'center',

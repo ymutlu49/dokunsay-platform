@@ -16,9 +16,9 @@ const Header = ({ posCount, negCount, netValue, zoom, setZoom }) => (
       display: 'flex', gap: 6, alignItems: 'center',
       padding: '4px 14px', background: 'rgba(255,255,255,.06)', borderRadius: 10,
     }}>
-      <span style={{ fontSize: 12, fontWeight: 800, color: '#4ade80' }}>{'\⊕' + posCount}</span>
-      <span style={{ fontSize: 12, fontWeight: 800, color: '#f87171' }}>{'\⊖' + negCount}</span>
-      <span style={{ fontSize: 10, color: 'rgba(255,255,255,.3)' }}>{'\│'}</span>
+      <span style={{ fontSize: 12, fontWeight: 800, color: '#4ade80' }}>{'⊕' + posCount}</span>
+      <span style={{ fontSize: 12, fontWeight: 800, color: '#f87171' }}>{'⊖' + negCount}</span>
+      <span style={{ fontSize: 10, color: 'rgba(255,255,255,.3)' }}>{'│'}</span>
       <span style={{
         fontSize: 14, fontWeight: 900,
         color: netValue > 0 ? '#4ade80' : netValue < 0 ? '#f87171' : THEME.accent,
@@ -35,7 +35,7 @@ const Header = ({ posCount, negCount, netValue, zoom, setZoom }) => (
       <button
         onClick={() => setZoom((z) => Math.max(0.5, +(z - 0.1).toFixed(1)))}
         style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,.5)', cursor: 'pointer', fontSize: 14, fontWeight: 900 }}
-      >\−</button>
+      >−</button>
       <span style={{ fontSize: 10, color: 'rgba(255,255,255,.35)', minWidth: 36, textAlign: 'center' }}>
         {Math.round(zoom * 100) + '%'}
       </span>

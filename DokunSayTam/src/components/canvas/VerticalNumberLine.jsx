@@ -23,7 +23,7 @@ const VerticalNumberLine = () => (
       })}
       <line x1={35} y1={16} x2={35} y2={424} stroke={THEME.border} strokeWidth={2} />
       <text x={30} y={12} textAnchor="middle" fontSize={8} fontWeight={700} fill={THEME.posB}>+</text>
-      <text x={30} y={434} textAnchor="middle" fontSize={8} fontWeight={700} fill={THEME.negB}>{'\−'}</text>
+      <text x={30} y={434} textAnchor="middle" fontSize={8} fontWeight={700} fill={THEME.negB}>{'−'}</text>
     </svg>
   </div>
 );

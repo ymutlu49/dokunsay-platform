@@ -25,12 +25,12 @@ const TrayChips = ({ chips, onAdd, onRemove, label }) => {
           flex: 1, padding: '4px 0', borderRadius: 6, border: '1.5px solid rgba(34,197,94,.4)',
           background: 'rgba(34,197,94,.15)', cursor: 'pointer', fontSize: 9, fontWeight: 800,
           color: '#4ade80', fontFamily: 'inherit',
-        }}>{'\⊕'}</button>
+        }}>{'⊕'}</button>
         <button onClick={() => onAdd('neg')} style={{
           flex: 1, padding: '4px 0', borderRadius: 6, border: '1.5px solid rgba(239,68,68,.4)',
           background: 'rgba(239,68,68,.15)', cursor: 'pointer', fontSize: 9, fontWeight: 800,
           color: '#f87171', fontFamily: 'inherit',
-        }}>{'\⊖'}</button>
+        }}>{'⊖'}</button>
       </div>
       <div style={{ textAlign: 'center', marginTop: 4, fontSize: 16, fontWeight: 900, color: '#fff' }}>
         {val >= 0 ? '+' + val : val}
@@ -63,7 +63,7 @@ const OperationTray = ({
       <TrayChips chips={trayA} onAdd={(t) => setTrayA((p) => [...p, t])} onRemove={(i) => setTrayA((p) => p.filter((_, j) => j !== i))} label="Sol Tepsi" />
 
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
-        {['+', '\−', '\×', '\÷'].map((op) => (
+        {['+', '−', '×', '÷'].map((op) => (
           <button key={op} onClick={() => setOperator(op)} style={{
             width: 36, height: 36, borderRadius: 10,
             border: operator === op ? '2.5px solid ' + THEME.accent : '2px solid #ddd',

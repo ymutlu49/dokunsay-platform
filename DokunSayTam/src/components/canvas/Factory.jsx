@@ -52,7 +52,7 @@ const Factory = ({
           <div style={{ display: 'flex', gap: 6 }}>
             {/* Pozitif hazne */}
             <div style={{ flex: 1, background: 'rgba(34,197,94,.08)', borderRadius: 12, padding: '8px', border: '1.5px solid rgba(34,197,94,.2)' }}>
-              <div style={{ fontSize: 8, fontWeight: 800, color: '#4ade80', textAlign: 'center', marginBottom: 4 }}>{'\⊕ POZİTİF'}</div>
+              <div style={{ fontSize: 8, fontWeight: 800, color: '#4ade80', textAlign: 'center', marginBottom: 4 }}>{'⊕ POZİTİF'}</div>
               <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 3, minHeight: 32 }}>
                 {Array.from({ length: posCount }, (_, i) => (
                   <div key={i} style={{ animation: 'popIn .2s', animationDelay: i * 0.05 + 's', animationFillMode: 'both' }}>
@@ -61,14 +61,14 @@ const Factory = ({
                 ))}
               </div>
               <div style={{ display: 'flex', gap: 3, marginTop: 6 }}>
-                <button onClick={() => setPosCount((p) => Math.max(0, p - 1))} style={{ flex: 1, padding: '4px 0', borderRadius: 5, border: 'none', background: 'rgba(255,255,255,.06)', cursor: 'pointer', fontSize: 12, fontWeight: 900, color: 'rgba(255,255,255,.3)' }}>{'\−'}</button>
+                <button onClick={() => setPosCount((p) => Math.max(0, p - 1))} style={{ flex: 1, padding: '4px 0', borderRadius: 5, border: 'none', background: 'rgba(255,255,255,.06)', cursor: 'pointer', fontSize: 12, fontWeight: 900, color: 'rgba(255,255,255,.3)' }}>{'−'}</button>
                 <div style={{ padding: '4px 10px', borderRadius: 5, background: 'rgba(34,197,94,.15)', fontSize: 14, fontWeight: 900, color: '#4ade80', textAlign: 'center', minWidth: 30 }}>{posCount}</div>
                 <button onClick={() => setPosCount((p) => Math.min(10, p + 1))} style={{ flex: 1, padding: '4px 0', borderRadius: 5, border: 'none', background: 'rgba(34,197,94,.15)', cursor: 'pointer', fontSize: 12, fontWeight: 900, color: '#4ade80' }}>+</button>
               </div>
             </div>
             {/* Negatif hazne */}
             <div style={{ flex: 1, background: 'rgba(239,68,68,.08)', borderRadius: 12, padding: '8px', border: '1.5px solid rgba(239,68,68,.2)' }}>
-              <div style={{ fontSize: 8, fontWeight: 800, color: '#f87171', textAlign: 'center', marginBottom: 4 }}>{'\⊖ NEGATİF'}</div>
+              <div style={{ fontSize: 8, fontWeight: 800, color: '#f87171', textAlign: 'center', marginBottom: 4 }}>{'⊖ NEGATİF'}</div>
               <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 3, minHeight: 32 }}>
                 {Array.from({ length: negCount }, (_, i) => (
                   <div key={i} style={{ animation: 'popIn .2s', animationDelay: i * 0.05 + 's', animationFillMode: 'both' }}>
@@ -77,7 +77,7 @@ const Factory = ({
                 ))}
               </div>
               <div style={{ display: 'flex', gap: 3, marginTop: 6 }}>
-                <button onClick={() => setNegCount((p) => Math.max(0, p - 1))} style={{ flex: 1, padding: '4px 0', borderRadius: 5, border: 'none', background: 'rgba(255,255,255,.06)', cursor: 'pointer', fontSize: 12, fontWeight: 900, color: 'rgba(255,255,255,.3)' }}>{'\−'}</button>
+                <button onClick={() => setNegCount((p) => Math.max(0, p - 1))} style={{ flex: 1, padding: '4px 0', borderRadius: 5, border: 'none', background: 'rgba(255,255,255,.06)', cursor: 'pointer', fontSize: 12, fontWeight: 900, color: 'rgba(255,255,255,.3)' }}>{'−'}</button>
                 <div style={{ padding: '4px 10px', borderRadius: 5, background: 'rgba(239,68,68,.15)', fontSize: 14, fontWeight: 900, color: '#f87171', textAlign: 'center', minWidth: 30 }}>{negCount}</div>
                 <button onClick={() => setNegCount((p) => Math.min(10, p + 1))} style={{ flex: 1, padding: '4px 0', borderRadius: 5, border: 'none', background: 'rgba(239,68,68,.15)', cursor: 'pointer', fontSize: 12, fontWeight: 900, color: '#f87171' }}>+</button>
               </div>
@@ -85,7 +85,7 @@ const Factory = ({
           </div>
           <div style={{ marginTop: 8, padding: '5px 10px', borderRadius: 8, background: 'rgba(255,255,255,.06)', textAlign: 'center' }}>
             <span style={{ fontSize: 14, fontWeight: 900, color: '#fff', fontFamily: "'Courier New',monospace" }}>
-              {'(+' + posCount + ') + (\−' + negCount + ') = ?'}
+              {'(+' + posCount + ') + (−' + negCount + ') = ?'}
             </span>
           </div>
           <button onClick={mix} disabled={posCount === 0 && negCount === 0} style={{
@@ -146,7 +146,7 @@ const Factory = ({
               {result > 0 ? '+' + result : result === 0 ? '0' : '' + result}
             </div>
             <div style={{ fontSize: 12, fontWeight: 900, color: 'rgba(255,255,255,.7)', fontFamily: "'Courier New',monospace", marginTop: 4 }}>
-              {'(+' + posCount + ') + (\−' + negCount + ') = ' + (result >= 0 ? '+' : '') + result}
+              {'(+' + posCount + ') + (−' + negCount + ') = ' + (result >= 0 ? '+' : '') + result}
             </div>
           </div>
           <div style={{ display: 'flex', gap: 4 }}>

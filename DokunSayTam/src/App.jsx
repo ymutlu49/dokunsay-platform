@@ -91,7 +91,7 @@ const App = () => {
   if (posCount > 0 || negCount > 0) {
     const parts = [];
     if (posCount > 0) parts.push('(+' + posCount + ')');
-    if (negCount > 0) parts.push('(\−' + negCount + ')');
+    if (negCount > 0) parts.push('(−' + negCount + ')');
     symExpr = parts.join(' + ') + ' = ' + (netValue >= 0 ? '+' : '') + netValue;
   }
 
@@ -340,7 +340,7 @@ const App = () => {
             {/* Empty state */}
             {items.length === 0 && !showTray && !showFactory && !showNumberLine && !showThermometer && strokes.length === 0 && (
               <div style={{ position: 'absolute', top: '35%', left: '50%', transform: 'translate(-50%,-50%)', textAlign: 'center', pointerEvents: 'none', animation: 'fadeIn .6s' }}>
-                <div style={{ fontSize: 44, marginBottom: 8, animation: 'float 4s ease-in-out infinite' }}>{'\⊕ \⊖'}</div>
+                <div style={{ fontSize: 44, marginBottom: 8, animation: 'float 4s ease-in-out infinite' }}>{'⊕ ⊖'}</div>
                 <div style={{ fontSize: 16, fontWeight: 800, color: 'rgba(60,50,30,.12)' }}>Pulları sürükleyerek tam sayıları keşfet!</div>
               </div>
             )}
