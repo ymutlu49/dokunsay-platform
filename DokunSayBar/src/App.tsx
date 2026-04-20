@@ -4,7 +4,7 @@ import { useAuth } from "./state/AuthContext";
 import { useAR } from "./state/ARContext";
 import { getTheme, isDarkMode } from "./constants/colors";
 import { getNextLanguage, getTemplateName, getTemplateDesc, isRTL } from "./services/i18nService";
-import { CELL_SIZE, ROD_HEIGHT, CHIP_SIZE, SNAP_DISTANCE, TRASH_ZONE_HEIGHT } from "./constants/dimensions";
+import { CELL_SIZE, ROD_HEIGHT, CHIP_SIZE, SNAP_DISTANCE, TRASH_ZONE_HEIGHT, FRAME_CELL_SIZE, FRAME_PADDING } from "./constants/dimensions";
 import { translate } from "./services/i18nService";
 import { sfx } from "./services/audioService";
 import { speak, speakNumber, startVoiceRecognition, stopVoiceRecognition } from "./services/speechService";
@@ -130,6 +130,11 @@ export default function App() {
     updateWithHistory((p) => p
       .map((i) => {
         if (i.id === id && i.type === "rod") return { ...i, rot: i.rot === 0 ? 90 : 0 } as RodItem;
+        if (i.id === id && i.type === "frame") {
+          // Kareyi (beşlik/onluk) döndür: sütun ↔ satır yer değiştirir
+          const f = i as any;
+          return { ...f, rows: f.cols, cols: f.rows };
+        }
         if (i.type === "chip" && (i as any).parentId === id) return { ...i, parentId: undefined, holeIndex: undefined };
         return i;
       }));
@@ -681,20 +686,34 @@ export default function App() {
               {/* Lock indicator */}
               {it.locked && <div style={{ position: "absolute", top: -6, left: -6, width: 16, height: 16, borderRadius: "50%", background: "rgba(0,0,0,.6)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 8, pointerEvents: "none" }}>🔒</div>}
 
-              {/* Rod action buttons */}
+              {/* Rod action buttons — ÇUBUĞUN YANLARINDA (üstte değil), çocuk pul yerleştirirken çakışmasın */}
               {it.type === "rod" && selectedId === it.id && tool === "select" && !dragRef.current && (
                 <>
-                  <ActionBtn pos={{ top: -10, left: "50%", marginLeft: -10 }} bg={it.flipped ? "#333" : "#fff"} onClick={() => flipItem(it.id)}>🔄</ActionBtn>
-                  <ActionBtn pos={{ top: -10, right: -10 }} onClick={() => rotateItem(it.id)}>↻</ActionBtn>
-                  <ActionBtn pos={{ bottom: -10, left: "50%", marginLeft: -10 }} bg={it.locked ? "#ef4444" : "#fff"} onClick={() => lockItem(it.id)}>{it.locked ? "🔓" : "🔒"}</ActionBtn>
+                  {/* Flip — sol yan, dikey ortalı */}
+                  <ActionBtn
+                    pos={{ left: -28, top: ROD_HEIGHT / 2 - 10 }}
+                    bg={it.flipped ? "#333" : "#fff"}
+                    onClick={() => flipItem(it.id)}
+                  >🔄</ActionBtn>
+                  {/* Rotate — sağ yan, dikey ortalı */}
+                  <ActionBtn
+                    pos={{ right: -28, top: ROD_HEIGHT / 2 - 10 }}
+                    onClick={() => rotateItem(it.id)}
+                  >↻</ActionBtn>
+                  {/* Lock — alt-orta */}
+                  <ActionBtn
+                    pos={{ bottom: -10, left: "50%", marginLeft: -10 }}
+                    bg={it.locked ? "#ef4444" : "#fff"}
+                    onClick={() => lockItem(it.id)}
+                  >{it.locked ? "🔓" : "🔒"}</ActionBtn>
 
-                  {/* Single split button — click to reveal split points */}
+                  {/* Split button — sağ-alt köşe */}
                   {it.value > 1 && !it.flipped && (it.rot || 0) === 0 && (
                     <div
                       onPointerDown={(e) => { e.stopPropagation(); e.preventDefault(); }}
                       onClick={() => setSplitMode(splitMode === it.id ? null : it.id)}
                       style={{
-                        position: "absolute", left: -10, top: ROD_HEIGHT + 2,
+                        position: "absolute", right: -10, bottom: -10,
                         width: 20, height: 20, borderRadius: "50%",
                         background: splitMode === it.id ? "#ef4444" : "rgba(239,68,68,.75)",
                         border: "2px solid #fff",
@@ -728,6 +747,70 @@ export default function App() {
                     ))}
                 </>
               )}
+
+              {/* Frame (beşlik/onluk) action buttons — aynı desen, üstte değil yanlarda */}
+              {it.type === "frame" && selectedId === it.id && tool === "select" && !dragRef.current && (() => {
+                const frameHeight = ((it as any).rows || 2) * FRAME_CELL_SIZE + FRAME_PADDING * 2;
+                return (
+                  <>
+                    <ActionBtn
+                      pos={{ right: -28, top: frameHeight / 2 - 10 }}
+                      onClick={() => rotateItem(it.id)}
+                    >↻</ActionBtn>
+                    <ActionBtn
+                      pos={{ bottom: -10, left: "50%", marginLeft: -10 }}
+                      bg={it.locked ? "#ef4444" : "#fff"}
+                      onClick={() => lockItem(it.id)}
+                    >{it.locked ? "🔓" : "🔒"}</ActionBtn>
+                  </>
+                );
+              })()}
+
+              {/* Frame — tap-to-toggle pul ekle/kaldır (aynı çubuk mantığı) */}
+              {it.type === "frame" && tool === "select" && selectedId === it.id && !dragRef.current && (() => {
+                const rows = (it as any).rows || 2;
+                const cols = (it as any).cols || 5;
+                return Array.from({ length: rows }, (_, r) =>
+                  Array.from({ length: cols }, (_, c) => {
+                    const hi = r * cols + c;
+                    const existingChip = items.find(
+                      (ch) => ch.type === "chip" && (ch as any).parentId === it.id && (ch as any).holeIndex === hi
+                    );
+                    return (
+                      <div
+                        key={`fhole-${hi}`}
+                        onPointerDown={(e) => {
+                          e.stopPropagation();
+                          e.preventDefault();
+                          if (existingChip) {
+                            updateWithHistory((p) => p.filter((i2) => i2.id !== existingChip.id));
+                            sfx.remove();
+                          } else {
+                            const holeX = it.x + FRAME_PADDING + c * FRAME_CELL_SIZE + FRAME_CELL_SIZE / 2 - CHIP_SIZE / 2;
+                            const holeY = it.y + FRAME_PADDING + r * FRAME_CELL_SIZE + FRAME_CELL_SIZE / 2 - CHIP_SIZE / 2;
+                            updateWithHistory((p) => [...p, {
+                              id: generateId(), type: "chip" as const,
+                              x: holeX, y: holeY,
+                              color: getHoleColor(hi), label: null,
+                              parentId: it.id, holeIndex: hi, locked: false,
+                            } as any]);
+                            sfx.snap();
+                          }
+                        }}
+                        style={{
+                          position: "absolute",
+                          left: FRAME_PADDING + c * FRAME_CELL_SIZE + (FRAME_CELL_SIZE - CHIP_SIZE) / 2,
+                          top: FRAME_PADDING + r * FRAME_CELL_SIZE + (FRAME_CELL_SIZE - CHIP_SIZE) / 2,
+                          width: CHIP_SIZE, height: CHIP_SIZE,
+                          borderRadius: "50%",
+                          cursor: "pointer",
+                          zIndex: 8,
+                        }}
+                      />
+                    );
+                  })
+                );
+              })()}
             </div>
           ))}
 
