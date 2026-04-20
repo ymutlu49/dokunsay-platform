@@ -1,0 +1,83 @@
+/* ==========================================================
+   DokunSay Platform — Global A11y Rules
+   ---------------------------------------------------------
+   shared/a11y.js `applyA11yAttributes` tarafından <html>'e
+   eklenen data-* attribute'larına EVRENSEL CSS tepkisi.
+   Bu dosya A11yPanel.jsx aracılığıyla her uygulamada
+   otomatik yüklenir.
+   ========================================================== */
+
+/* ── Animasyonu Azalt (Reduce Motion) ───────────────────────
+   Tüm animasyon ve geçişleri durdurur — evrensel, güvenli.
+*/
+html[data-reduce-motion="on"] *,
+html[data-reduce-motion="on"] *::before,
+html[data-reduce-motion="on"] *::after {
+  animation-duration: 0.001ms !important;
+  animation-delay: 0s !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  transition-delay: 0s !important;
+  scroll-behavior: auto !important;
+}
+
+/* ── Diskalkuli Modu ─────────────────────────────────────────
+   Temel font ölçeği %115 (rem/em kullanan metinler büyür).
+   Platform AppShell başlığı + odak halkaları + buton boyutları
+   dolaylı olarak büyür.
+*/
+html[data-dyscalculia="on"] {
+  font-size: 115%;
+}
+
+html[data-dyscalculia="on"] button,
+html[data-dyscalculia="on"] a,
+html[data-dyscalculia="on"] [role="button"] {
+  min-height: 48px;
+  min-width: 48px;
+}
+
+/* ── Yüksek Kontrast (High Contrast) ─────────────────────────
+   Platform chrome tamamen yeniden boyanır (AppShell.css,
+   A11yPanel.css, Launcher styles.css kendi kurallarını
+   ekler). Buraya global odak ve kenarlık güçlendirmesi
+   ekleriz.
+*/
+html[data-contrast="high"] *:focus-visible {
+  outline: 3px solid #000 !important;
+  outline-offset: 3px !important;
+  box-shadow: 0 0 0 6px #fff !important;
+}
+
+html[data-contrast="high"] a:not(.ds-appshell__back):not([class*="btn"]) {
+  text-decoration: underline !important;
+}
+
+/* ── Renk Körü Modu (Colorblind) ─────────────────────────────
+   Evrensel SVG filter — deuteranopia/protanopia için
+   kırmızı-yeşil ayrımını belirginleştirir. Mükemmel değil
+   ama uygulama-özel palet desteği olmadığında anlamlı bir
+   fark yaratır.
+*/
+html[data-colorblind="on"] body {
+  filter: saturate(1.15) hue-rotate(-8deg);
+}
+
+/* ── Odak Görünürlüğü — Genel ───────────────────────────────
+   Tüm a11y modlarında odak halkası net olsun.
+*/
+html[data-dyscalculia="on"] *:focus-visible {
+  outline: 3px solid #f59e0b !important;
+  outline-offset: 3px !important;
+}
+
+/* ── Prefers-reduced-motion — OS düzeyi fallback ────────────
+   Kullanıcı OS'da ayarlamışsa panel toggle'ı olmasa bile
+   bu kural geçerli.
+*/
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}

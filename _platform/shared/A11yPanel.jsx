@@ -13,6 +13,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import './A11yPanel.css';
+import './a11y-global.css';
 
 const I18N = {
   tr: {
