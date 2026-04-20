@@ -117,11 +117,13 @@ export default function App() {
   const [introDismissTick, setIntroDismissTick] = useState(0);
 
   // Öğrenci profili (v0.13)
-  const [currentStudent, setCurrentStudent] = useState(() => loadCurrentStudent());
-  // Profil modal — ilk açılışta (hiç profil seçilmemişse) göster
-  const [showProfileSetup, setShowProfileSetup] = useState(() => {
-    return !loadCurrentStudent();
-  });
+  // Uygulama açılışında profil modalı göstermiyoruz; varsayılan olarak
+  // Ziyaretçi oturumu başlatılır. Kullanıcı istediği an "Profili değiştir"
+  // butonuyla (öğretmen/ayar sekmesinden) profil kaydı açabilir.
+  const [currentStudent, setCurrentStudent] = useState(() => (
+    loadCurrentStudent() || { id: "guest", name: "Ziyaretçi", isGuest: true }
+  ));
+  const [showProfileSetup, setShowProfileSetup] = useState(false);
   function openProfileSetup() {
     setShowProfileSetup(true);
   }
