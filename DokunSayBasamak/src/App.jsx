@@ -25,6 +25,7 @@ import BlockSVG from "./components/blocks/BlockSVG";
 import NumberLine from "./components/widgets/NumberLine";
 import Toggle from "./components/ui/Toggle";
 import ModalBackdrop from "./components/modals/ModalBackdrop";
+import { LangSwitcher } from "@shared/LangSwitcher.jsx";
 
 const U = BLOCK_UNIT_PX;
 const W = HUNDRED_SIDE_PX;
@@ -613,18 +614,14 @@ export default function App() {
       {/* ARIA */}
       <div aria-live="polite" aria-atomic="true" style={{ position: "absolute", width: 1, height: 1, overflow: "hidden", clip: "rect(0,0,0,0)", whiteSpace: "nowrap" }}>{ariaMsg}</div>
 
-      {/* ══ HEADER ══ */}
-      <header role="banner" style={{ height: 44, minHeight: 44, background: "linear-gradient(135deg,#3d2e1a,#2a2018)", display: "flex", alignItems: "center", padding: "0 14px", gap: 10, boxShadow: "0 2px 12px rgba(60,50,30,.2)" }}>
-        <span aria-hidden style={{ fontSize: 22 }}>📐</span>
-        <div>
-          <span style={{ fontSize: 15, fontWeight: 900, color: PALETTE.accent, letterSpacing: -.5 }}>DokunSay</span>
-          <span style={{ fontSize: 10, fontWeight: 600, color: "rgba(255,255,255,.3)", marginLeft: 6 }}>{t("appTitle")}</span>
-        </div>
-        <div role="group" aria-label="Dil seçimi" style={{ display: "flex", gap: 2, background: "rgba(255,255,255,.06)", borderRadius: 8, padding: 3, marginLeft: 4 }}>
-          {Object.values(LANGS).map(lng => (
-            <button key={lng.code} onClick={() => setLangCode(lng.code)} aria-pressed={langCode === lng.code} style={{ padding: "2px 7px", borderRadius: 6, border: "none", cursor: "pointer", background: langCode === lng.code ? "rgba(255,255,255,.18)" : "transparent", color: langCode === lng.code ? "#fff" : "rgba(255,255,255,.35)", fontSize: 11, fontWeight: langCode === lng.code ? 800 : 600, fontFamily: "inherit", whiteSpace: "nowrap" }}>{lng.flag} {lng.name}</button>
-          ))}
-        </div>
+      {/* ══ HEADER ══ (app kimliği AppShell'de — burada sadece işlevsel unsurlar) */}
+      <header role="banner" style={{ height: 40, minHeight: 40, background: "linear-gradient(135deg,#3d2e1a,#2a2018)", display: "flex", alignItems: "center", padding: "0 14px", gap: 10, boxShadow: "0 2px 12px rgba(60,50,30,.2)" }}>
+        <LangSwitcher
+          lang={langCode}
+          setLang={setLangCode}
+          langs={Object.values(LANGS).map(l => l.code)}
+          labels={Object.fromEntries(Object.values(LANGS).map(l => [l.code, l.code.toUpperCase()]))}
+        />
         <div style={{ flex: 1 }} />
         <div aria-live="polite" style={{ background: "rgba(255,255,255,.07)", borderRadius: 8, padding: "3px 10px", display: "flex", alignItems: "center", gap: 6, minWidth: 80 }}>
           <span style={{ fontSize: 10, color: "rgba(255,255,255,.35)" }}>∑</span>
