@@ -1,0 +1,71 @@
+export default {
+  app_title: 'DokunSay Clock',
+  app_subtitle: 'الساعة والزمن',
+
+  menu_activities: 'الأنشطة',
+  menu_games: 'الألعاب',
+  menu_lessons: 'الدروس',
+  menu_materials: 'المواد',
+  menu_settings: 'الإعدادات',
+  menu_help: 'مساعدة',
+  menu_about: 'حول',
+
+  tool_hand_hour: 'عقرب الساعات',
+  tool_hand_minute: 'عقرب الدقائق',
+  tool_number: 'عدد',
+  tool_quadrant: 'قطاع من الميناء',
+  tool_digital: 'عرض رقمي',
+  tool_verbal: 'قراءة لفظية',
+
+  game_set_clock: 'اضبط الساعة',
+  game_match: 'مطابقة',
+  game_elapsed: 'الزمن المنقضي',
+  game_routine: 'الروتين اليومي',
+
+  diff_whole: 'ساعة كاملة',
+  diff_half: 'نصف ساعة',
+  diff_quarter: 'ربع ساعة',
+  diff_fives: 'كلّ خمس دقائق',
+
+  lesson_1: 'لنتعرّف على الساعة',
+  lesson_2: 'النصف والربع',
+  lesson_3: 'كلّ خمس دقائق',
+  lesson_4: 'مطابقة الرقمي والتماثلي',
+  lesson_5: 'المفاهيم الخاطئة',
+
+  time_format_oclock: 'الساعة {h}',
+  time_format_half: 'الساعة {h} والنصف',
+  time_format_quarter_past: 'الساعة {h} وربع',
+  time_format_quarter_to: 'الساعة {h} إلا ربعاً',
+  time_format_minutes_past: 'الساعة {h} و{m} دقيقة',
+
+  feedback_correct: 'أحسنت! إجابة صحيحة.',
+  feedback_wrong: 'لنحاول مجدداً.',
+  feedback_hint: 'تلميح',
+
+  btn_start: 'ابدأ',
+  btn_next: 'التالي',
+  btn_previous: 'السابق',
+  btn_check: 'تحقّق',
+  btn_reset: 'إعادة',
+  btn_close: 'إغلاق',
+
+  a11y_dyscalculia: 'وضع عُسر الحساب',
+  a11y_dyslexia: 'وضع عُسر القراءة',
+  a11y_high_contrast: 'تباين عالٍ',
+  a11y_tts: 'القراءة الصوتية',
+  a11y_sfx: 'المؤثرات الصوتية',
+
+  term_time: 'زمن',
+  term_hour: 'ساعة',
+  term_minute: 'دقيقة',
+  term_second: 'ثانية',
+  term_day: 'يوم',
+  term_week: 'أسبوع',
+  term_month: 'شهر',
+  term_year: 'سنة',
+  term_hour_hand: 'عقرب الساعات',
+  term_minute_hand: 'عقرب الدقائق',
+
+  author: 'أ.د. يلماز موتلو',
+};

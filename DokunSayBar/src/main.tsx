@@ -16,7 +16,7 @@ function BarLangTools() {
     <LangSwitcher
       lang={state.language}
       setLang={(l: string) => dispatch({ type: "SET_LANGUAGE", language: l as Language })}
-      langs={["tr", "ku", "en"]}
+      langs={["tr", "ku", "en", "ar", "fa"]}
     />
   );
 }

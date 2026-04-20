@@ -2,10 +2,12 @@ import { createContext, useContext, useState, useCallback } from "react";
 import tr from "./tr.js";
 import ku from "./ku.js";
 import en from "./en.js";
+import ar from "./ar.js";
+import fa from "./fa.js";
 
-var LANGS = { tr, ku, en };
-var LANG_LABELS = { tr: "Türkçe", ku: "Kurdî", en: "English" };
-var LANG_FLAGS = { tr: "🇹🇷", ku: "☀️", en: "🇬🇧" };
+var LANGS = { tr, ku, en, ar, fa };
+var LANG_LABELS = { tr: "Türkçe", ku: "Kurmancî", en: "English", ar: "العربية", fa: "فارسی" };
+var LANG_FLAGS = { tr: "🇹🇷", ku: "☀️", en: "🇬🇧", ar: "🇸🇦", fa: "🇮🇷" };
 
 var I18nCtx = createContext();
 

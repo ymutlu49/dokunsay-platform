@@ -1,15 +1,19 @@
-export const LANGS = ['tr', 'ku', 'en'];
+export const LANGS = ['tr', 'ku', 'en', 'ar', 'fa'];
 
 export const LANG_LABELS = {
   tr: 'Türkçe',
   ku: 'Kurmancî',
   en: 'English',
+  ar: 'العربية',
+  fa: 'فارسی',
 };
 
 export const LANG_FLAGS = {
   tr: '🇹🇷',
   ku: '☀️',
   en: '🇬🇧',
+  ar: '🇸🇦',
+  fa: '🇮🇷',
 };
 
 export const STRINGS = {
@@ -17,7 +21,7 @@ export const STRINGS = {
     platform_title: 'DokunSay',
     platform_subtitle: 'Matematik Öğretim Araçları Platformu',
     platform_tagline:
-      'Her yaştaki öğrenci için somut, görsel, sezgisel matematik — dokunmatik manipülatiflerle 7 uygulama, 3 dilde.',
+      'Her yaştaki öğrenci için somut, görsel, sezgisel matematik — dokunmatik manipülatiflerle 7 uygulama, 5 dilde.',
     platform_hero_cta: 'Araçları Keşfet',
     open_tool: 'Aç',
     all_tools: 'Tüm Araçlar',
@@ -43,7 +47,7 @@ export const STRINGS = {
       'Van Hiele, Curcio, Bloom, Piaget, Bruner gibi saygın pedagojik çerçevelere dayalı.',
     feature_multilingual_title: 'Çok Dilli',
     feature_multilingual_body:
-      'Türkçe, Kurmancî ve İngilizce. FerMat matematik terminolojisiyle hizalı.',
+      'Türkçe, Kurmancî, İngilizce, Arapça ve Farsça. FerMat matematik terminolojisiyle hizalı.',
     feature_inclusive_title: 'Herkese Açık',
     feature_inclusive_body:
       'Diskalkuli, disleksi ve renk körü için özel modlar. WCAG AA uyumlu.',
@@ -74,7 +78,7 @@ export const STRINGS = {
     platform_title: 'DokunSay',
     platform_subtitle: 'Amûrên Fêrkirina Matematîkê',
     platform_tagline:
-      'Matematîka bi destan, dîtbar û zindî — ji bo her xwendekarî, li her astê. Heft amûr, bi sê zimanan.',
+      'Matematîka bi destan, dîtbar û zindî — ji bo her xwendekarî, li her astê. Heft amûr, bi pênc zimanan.',
     platform_hero_cta: 'Amûran Bibîne',
     open_tool: 'Veke',
     all_tools: 'Hemû Amûr',
@@ -100,7 +104,7 @@ export const STRINGS = {
       'Li ser çarçoveyên pedagojîk ên nas — Van Hiele, Curcio, Bloom, Piaget, Bruner — hatiye avakirin.',
     feature_multilingual_title: 'Pirzimanî',
     feature_multilingual_body:
-      'Bi Tirkî, Kurmancî û Îngilîzî. Bi ferhenga matematîkê ya FerMat hevaheng e.',
+      'Bi Tirkî, Kurmancî, Îngilîzî, Erebî û Farsî. Bi ferhenga matematîkê ya FerMat hevaheng e.',
     feature_inclusive_title: 'Ji Bo Her Kesî',
     feature_inclusive_body:
       'Modên taybet ji bo diskalkulî, disleksî û koririya rengan. Bi standardên WCAG AA lihevhatî.',
@@ -131,7 +135,7 @@ export const STRINGS = {
     platform_title: 'DokunSay',
     platform_subtitle: 'Math Teaching Tools Platform',
     platform_tagline:
-      'Hands-on, visual, intuitive math for every student — 7 apps with touch-first manipulatives, in 3 languages.',
+      'Hands-on, visual, intuitive math for every student — 7 apps with touch-first manipulatives, in 5 languages.',
     platform_hero_cta: 'Explore the Tools',
     open_tool: 'Open',
     all_tools: 'All Tools',
@@ -157,7 +161,7 @@ export const STRINGS = {
       'Built on respected pedagogical frameworks — Van Hiele, Curcio, Bloom, Piaget, Bruner.',
     feature_multilingual_title: 'Multilingual',
     feature_multilingual_body:
-      'Turkish, Kurmancî and English. Aligned with FerMat mathematics terminology.',
+      'Turkish, Kurmancî, English, Arabic and Persian. Aligned with FerMat mathematics terminology.',
     feature_inclusive_title: 'Inclusive',
     feature_inclusive_body:
       'Dedicated modes for dyscalculia, dyslexia and colorblindness. WCAG AA compliant.',
@@ -183,6 +187,120 @@ export const STRINGS = {
     retry: 'Retry',
     fullscreen: 'Fullscreen',
     exit_fullscreen: 'Exit Fullscreen',
+  },
+  ar: {
+    platform_title: 'دكن‑ساي',
+    platform_subtitle: 'منصّة أدوات تعليم الرياضيات',
+    platform_tagline:
+      'رياضيات ملموسة ومرئية وحدسية لكلّ طالب — سبع أدوات باللمس الأول، بخمس لغات.',
+    platform_hero_cta: 'استكشف الأدوات',
+    open_tool: 'افتح',
+    all_tools: 'كلّ الأدوات',
+    by_category: 'فئات الموضوعات',
+    by_age: 'الفئة العمرية',
+    age_all: 'كلّ الأعمار',
+    age_early: 'المبكرة (٥-٧)',
+    age_primary: 'الابتدائية (٨-١١)',
+    age_middle: 'المتوسطة (١٢-١٥)',
+    age: 'العمر',
+    framework: 'المنهج',
+    topics: 'المواضيع',
+    search_placeholder: 'ابحث عن أداة أو موضوع...',
+    no_results: 'لا توجد نتائج.',
+    author: 'أ.د. يلماز موتلو',
+    about: 'حول دكن‑ساي',
+    about_body:
+      'دكن‑ساي عائلة شاملة من المواد التعليمية الرياضية، مصمّمة للطلاب من سن ٥ إلى ١٥ على جميع المراحل. سبع أدوات تغطّي نواة منهاج الرياضيات: العدد والعمليات، الكسور، الأعداد الصحيحة، الوقت، الهندسة، والقراءة البيانية. تدعم كلّ أداة التدرّج من المحسوس إلى شبه المحسوس إلى المجرّد (CRA)، وتستند إلى أُطر تربوية معتمدة (Van Hiele, Curcio, Bloom, Piaget). خصائص دعم خاصّة لطلاب عُسر الحساب (هدف لمسي كبير، لوحة ألوان لعمى الألوان، قراءة صوتية، تباين عالٍ) متوفّرة في كلّ الأدوات.',
+    why_title: 'لماذا دكن‑ساي؟',
+    why_subtitle: 'مصمَّمة لكلّ طفل، جاهزة لكلّ معلّم.',
+    feature_research_title: 'قائمة على البحث',
+    feature_research_body:
+      'مبنيّة على أُطر تربوية معروفة — Van Hiele, Curcio, Bloom, Piaget, Bruner.',
+    feature_multilingual_title: 'متعدّدة اللغات',
+    feature_multilingual_body:
+      'التركية والكُرمانجية والإنجليزية والعربية والفارسية. متوائمة مع مصطلحات FerMat الرياضية.',
+    feature_inclusive_title: 'شاملة للجميع',
+    feature_inclusive_body:
+      'أوضاع خاصّة لعُسر الحساب وعُسر القراءة وعمى الألوان. متوافقة مع WCAG AA.',
+    feature_manipulative_title: 'مقاربة المجسّمات',
+    feature_manipulative_body:
+      'التفاعل مع الأدوات المحسوسة قبل الرموز المجرّدة. تعلُّم باللمس والبصر والتفكير.',
+    stats_tools: 'أدوات تعليمية',
+    stats_languages: 'لغات',
+    stats_activities: 'أنشطة',
+    stats_frameworks: 'أُطر تربوية',
+    lang_btn: 'اللغة',
+    accessibility: 'إمكانية الوصول',
+    high_contrast: 'تباين عالٍ',
+    dyscalculia_mode: 'وضع عُسر الحساب',
+    standards_link: 'معايير المنصّة',
+    back_to_menu: 'العودة إلى القائمة',
+    open_in_new_tab: 'فتح في علامة تبويب جديدة',
+    loading_tool: 'جارٍ تحميل الأداة',
+    tool_not_running_title: 'الأداة غير مشغّلة',
+    tool_not_running_body:
+      'يبدو أنّ هذه الأداة لا تعمل حالياً. في بيئة التطوير عليك تشغيل كلّ أداة في محطة طرفية منفصلة:',
+    tool_not_running_hint: 'بعد تشغيل الأداة اضغط "إعادة المحاولة".',
+    retry: 'إعادة المحاولة',
+    fullscreen: 'ملء الشاشة',
+    exit_fullscreen: 'الخروج من ملء الشاشة',
+  },
+  fa: {
+    platform_title: 'دکن‑سای',
+    platform_subtitle: 'پلتفرم ابزارهای آموزش ریاضی',
+    platform_tagline:
+      'ریاضی عینی، دیداری و شهودی برای هر دانش‌آموز — هفت برنامۀ لمس‌محور، به پنج زبان.',
+    platform_hero_cta: 'ابزارها را کاوش کن',
+    open_tool: 'باز کن',
+    all_tools: 'همۀ ابزارها',
+    by_category: 'دسته‌بندی موضوعی',
+    by_age: 'گروه سنی',
+    age_all: 'همۀ سنین',
+    age_early: 'پیش‌دبستانی (۵-۷)',
+    age_primary: 'دبستان (۸-۱۱)',
+    age_middle: 'متوسطه (۱۲-۱۵)',
+    age: 'سن',
+    framework: 'رویکرد',
+    topics: 'موضوعات',
+    search_placeholder: 'جست‌وجوی ابزار یا موضوع...',
+    no_results: 'نتیجه‌ای یافت نشد.',
+    author: 'پروفسور ییلماز موتلو',
+    about: 'دربارۀ دکن‑سای',
+    about_body:
+      'دکن‑سای خانوادۀ جامعی از ابزارهای آموزشی ریاضی است که برای دانش‌آموزان ۵ تا ۱۵ ساله در همۀ سطوح طراحی شده. هفت برنامه هستۀ برنامۀ درسی ریاضی را پوشش می‌دهند: عدد و عملیات، کسرها، اعداد صحیح، زمان، هندسه و سواد داده. هر ابزار از گذار عینی ← نیمه‌عینی ← انتزاعی (CRA) پشتیبانی می‌کند و بر چارچوب‌های آموزشی پژوهش‌بنیان (Van Hiele, Curcio, Bloom, Piaget) استوار است. امکانات ویژه برای دانش‌آموزان دیسکالکولی (هدف لمسی بزرگ، پالت کوررنگی، خواندن صوتی، تضاد بالا) در همۀ ابزارها موجود است.',
+    why_title: 'چرا دکن‑سای؟',
+    why_subtitle: 'برای هر کودک طراحی شده، برای هر معلم آماده.',
+    feature_research_title: 'پژوهش‌بنیان',
+    feature_research_body:
+      'بر چارچوب‌های آموزشی شناخته‌شده — Van Hiele, Curcio, Bloom, Piaget, Bruner — بنا شده.',
+    feature_multilingual_title: 'چندزبانه',
+    feature_multilingual_body:
+      'ترکی، کرمانجی، انگلیسی، عربی و فارسی. هم‌راستا با واژگان ریاضی FerMat.',
+    feature_inclusive_title: 'فراگیر',
+    feature_inclusive_body:
+      'حالت‌های اختصاصی برای دیسکالکولی، نارساخوانی و کوررنگی. هم‌سو با WCAG AA.',
+    feature_manipulative_title: 'ابزارمحور',
+    feature_manipulative_body:
+      'تعامل با اشیای عینی پیش از نمادهای انتزاعی. یادگیری با لمس و دید و اندیشه.',
+    stats_tools: 'ابزار آموزشی',
+    stats_languages: 'زبان',
+    stats_activities: 'فعالیت',
+    stats_frameworks: 'چارچوب آموزشی',
+    lang_btn: 'زبان',
+    accessibility: 'دسترسی‌پذیری',
+    high_contrast: 'تضاد بالا',
+    dyscalculia_mode: 'حالت دیسکالکولی',
+    standards_link: 'استانداردهای پلتفرم',
+    back_to_menu: 'بازگشت به منو',
+    open_in_new_tab: 'باز کردن در تب جدید',
+    loading_tool: 'در حال بارگذاری ابزار',
+    tool_not_running_title: 'ابزار اجرا نشده',
+    tool_not_running_body:
+      'به‌نظر می‌رسد این ابزار در حال اجرا نیست. در محیط توسعه باید هر ابزار را در ترمینال جداگانه‌ای راه‌اندازی کنی:',
+    tool_not_running_hint: 'پس از راه‌اندازی ابزار روی "تلاش دوباره" کلیک کن.',
+    retry: 'تلاش دوباره',
+    fullscreen: 'تمام‌صفحه',
+    exit_fullscreen: 'خروج از تمام‌صفحه',
   },
 };
 

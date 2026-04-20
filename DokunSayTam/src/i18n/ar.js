@@ -1,0 +1,66 @@
+export default {
+  app_title: 'DokunSay Tam',
+  app_subtitle: 'الأعداد الصحيحة',
+
+  menu_activities: 'الأنشطة',
+  menu_games: 'الألعاب',
+  menu_features: 'الخصائص',
+  menu_materials: 'المواد',
+  menu_settings: 'الإعدادات',
+  menu_teacher: 'المعلّم',
+  menu_help: 'مساعدة',
+  menu_about: 'حول',
+
+  chip_positive: 'رقاقة موجبة',
+  chip_negative: 'رقاقة سالبة',
+  chip_add: 'أضف رقاقة',
+  chip_remove: 'احذف رقاقة',
+  chip_zero_pair: 'زوج الصفر',
+
+  scenario_elevator: 'المصعد',
+  scenario_thermometer: 'ميزان الحرارة',
+  scenario_debt: 'دَين / قَبض',
+  scenario_sea: 'مستوى البحر',
+  scenario_walking: 'شخص يمشي',
+
+  op_add: 'اجمع',
+  op_subtract: 'اطرح',
+  op_multiply: 'اضرب',
+  op_divide: 'اقسم',
+  op_equals: 'يساوي',
+
+  cat_exploration: 'استكشاف',
+  cat_concept: 'المفهوم',
+  cat_operation: 'العملية',
+  cat_comparison: 'المقارنة',
+  cat_scenario: 'السيناريو',
+  cat_misconception: 'المفهوم الخاطئ',
+
+  misconception_1: 'اعتقاد أن سالب × سالب = سالب',
+  misconception_2: 'خطأ تقدير حجم العدد',
+  misconception_3: 'الخلط بين إشارة الطرح والسالب',
+  misconception_4: 'التفريق بين الإشارة والعملية',
+  misconception_5: 'مفاهيم خاطئة حول القيمة المطلقة',
+  misconception_6: 'ناتج سالب في الطرح',
+  misconception_7: 'دور الصفر',
+  misconception_8: 'ضرب الدَين والكسب',
+
+  feedback_correct: 'رائع!',
+  feedback_wrong: 'حاول مجدداً',
+  feedback_hint: 'تلميح',
+  feedback_zero_annihilate: 'زوج صفر! ألغيا بعضهما.',
+
+  btn_start: 'ابدأ',
+  btn_next: 'التالي',
+  btn_back: 'السابق',
+  btn_check: 'تحقّق',
+  btn_reset: 'إعادة',
+  btn_close: 'إغلاق',
+
+  a11y_dyscalculia: 'وضع عُسر الحساب',
+  a11y_high_contrast: 'تباين عالٍ',
+  a11y_tts: 'القراءة الصوتية',
+  a11y_sfx: 'المؤثرات الصوتية',
+
+  author: 'أ.د. يلماز موتلو',
+};

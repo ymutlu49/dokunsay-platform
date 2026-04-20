@@ -1,0 +1,71 @@
+export default {
+  app_title: 'DokunSay Clock',
+  app_subtitle: 'ساعت و زمان',
+
+  menu_activities: 'فعالیت‌ها',
+  menu_games: 'بازی‌ها',
+  menu_lessons: 'درس‌ها',
+  menu_materials: 'مواد',
+  menu_settings: 'تنظیمات',
+  menu_help: 'راهنما',
+  menu_about: 'درباره',
+
+  tool_hand_hour: 'عقربۀ ساعت‌شمار',
+  tool_hand_minute: 'عقربۀ دقیقه‌شمار',
+  tool_number: 'عدد',
+  tool_quadrant: 'قطاع صفحه',
+  tool_digital: 'نمایش دیجیتال',
+  tool_verbal: 'خواندن کلامی',
+
+  game_set_clock: 'ساعت را تنظیم کن',
+  game_match: 'تطابق',
+  game_elapsed: 'زمان سپری‌شده',
+  game_routine: 'روال روزانه',
+
+  diff_whole: 'ساعت کامل',
+  diff_half: 'نیم‌ساعت',
+  diff_quarter: 'ربع ساعت',
+  diff_fives: 'هر پنج دقیقه',
+
+  lesson_1: 'ساعت را بشناسیم',
+  lesson_2: 'نیم و ربع',
+  lesson_3: 'هر پنج دقیقه',
+  lesson_4: 'تطابق دیجیتال و عقربه‌ای',
+  lesson_5: 'کج‌فهمی‌ها',
+
+  time_format_oclock: 'ساعت {h}',
+  time_format_half: 'ساعت {h} و نیم',
+  time_format_quarter_past: 'ساعت {h} و ربع',
+  time_format_quarter_to: 'یک ربع به ساعت {h}',
+  time_format_minutes_past: 'ساعت {h} و {m} دقیقه',
+
+  feedback_correct: 'آفرین! پاسخ درست.',
+  feedback_wrong: 'دوباره تلاش کنیم.',
+  feedback_hint: 'نشانه',
+
+  btn_start: 'شروع',
+  btn_next: 'بعدی',
+  btn_previous: 'قبلی',
+  btn_check: 'بررسی',
+  btn_reset: 'بازنشانی',
+  btn_close: 'بستن',
+
+  a11y_dyscalculia: 'حالت دیسکالکولی',
+  a11y_dyslexia: 'حالت نارساخوانی',
+  a11y_high_contrast: 'تضاد بالا',
+  a11y_tts: 'خواندن صوتی',
+  a11y_sfx: 'جلوه‌های صوتی',
+
+  term_time: 'زمان',
+  term_hour: 'ساعت',
+  term_minute: 'دقیقه',
+  term_second: 'ثانیه',
+  term_day: 'روز',
+  term_week: 'هفته',
+  term_month: 'ماه',
+  term_year: 'سال',
+  term_hour_hand: 'عقربۀ ساعت‌شمار',
+  term_minute_hand: 'عقربۀ دقیقه‌شمار',
+
+  author: 'پروفسور ییلماز موتلو',
+};

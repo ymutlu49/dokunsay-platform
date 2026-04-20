@@ -1,0 +1,66 @@
+export default {
+  app_title: 'DokunSay Tam',
+  app_subtitle: 'اعداد صحیح',
+
+  menu_activities: 'فعالیت‌ها',
+  menu_games: 'بازی‌ها',
+  menu_features: 'ویژگی‌ها',
+  menu_materials: 'مواد',
+  menu_settings: 'تنظیمات',
+  menu_teacher: 'معلم',
+  menu_help: 'راهنما',
+  menu_about: 'درباره',
+
+  chip_positive: 'ژتون مثبت',
+  chip_negative: 'ژتون منفی',
+  chip_add: 'افزودن ژتون',
+  chip_remove: 'حذف ژتون',
+  chip_zero_pair: 'جفت صفر',
+
+  scenario_elevator: 'آسانسور',
+  scenario_thermometer: 'دماسنج',
+  scenario_debt: 'بدهی / طلب',
+  scenario_sea: 'سطح دریا',
+  scenario_walking: 'شخص پیاده',
+
+  op_add: 'جمع',
+  op_subtract: 'تفریق',
+  op_multiply: 'ضرب',
+  op_divide: 'تقسیم',
+  op_equals: 'مساوی',
+
+  cat_exploration: 'کاوش',
+  cat_concept: 'مفهوم',
+  cat_operation: 'عملیات',
+  cat_comparison: 'مقایسه',
+  cat_scenario: 'سناریو',
+  cat_misconception: 'کج‌فهمی',
+
+  misconception_1: 'تصور منفی × منفی = منفی',
+  misconception_2: 'کج‌فهمی اندازۀ عدد',
+  misconception_3: 'اشتباه علامت تفریق و منفی',
+  misconception_4: 'تمایز علامت و عملیات',
+  misconception_5: 'کج‌فهمی قدر مطلق',
+  misconception_6: 'نتیجۀ منفی در تفریق',
+  misconception_7: 'نقش صفر',
+  misconception_8: 'ضرب بدهی و درآمد',
+
+  feedback_correct: 'عالی!',
+  feedback_wrong: 'دوباره تلاش کنیم',
+  feedback_hint: 'نشانه',
+  feedback_zero_annihilate: 'جفت صفر! یکدیگر را خنثی کردند.',
+
+  btn_start: 'شروع',
+  btn_next: 'بعدی',
+  btn_back: 'قبلی',
+  btn_check: 'بررسی',
+  btn_reset: 'بازنشانی',
+  btn_close: 'بستن',
+
+  a11y_dyscalculia: 'حالت دیسکالکولی',
+  a11y_high_contrast: 'تضاد بالا',
+  a11y_tts: 'خواندن صوتی',
+  a11y_sfx: 'جلوه‌های صوتی',
+
+  author: 'پروفسور ییلماز موتلو',
+};
