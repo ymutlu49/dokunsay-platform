@@ -1,0 +1,37 @@
+{
+  "name": "dokunsay-bar",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "DokunSay Bar — Manipülatif çubuk ve pullarla sayma/işlem öğretimi",
+  "author": "Prof. Dr. Yılmaz Mutlu",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@capacitor/android": "^8.3.0",
+    "@capacitor/camera": "^8.0.2",
+    "@capacitor/cli": "^8.3.0",
+    "@capacitor/core": "^8.3.0",
+    "@capacitor/splash-screen": "^8.0.1",
+    "@capacitor/status-bar": "^8.0.2",
+    "@react-three/drei": "^9.120.4",
+    "@react-three/fiber": "^8.17.14",
+    "@types/three": "^0.183.1",
+    "firebase": "^12.11.0",
+    "html-to-image": "^1.11.11",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "three": "^0.170.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "typescript": "~5.6.2",
+    "vite": "^6.0.0"
+  }
+}

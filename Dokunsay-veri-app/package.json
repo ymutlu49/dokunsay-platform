@@ -1,0 +1,22 @@
+{
+  "name": "dokunsay-veri",
+  "private": true,
+  "version": "0.16.0",
+  "type": "module",
+  "description": "DokunSay Veri — İstatistik Okuryazarlığı Öğretim Uygulaması (TR/KU/EN, diskalkuli erişilebilirlik)",
+  "author": "Prof. Dr. Yılmaz Mutlu",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^6.0.0"
+  }
+}

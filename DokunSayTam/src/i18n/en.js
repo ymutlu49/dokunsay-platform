@@ -1,0 +1,66 @@
+export default {
+  app_title: 'DokunSay Integer',
+  app_subtitle: 'Integers',
+
+  menu_activities: 'Activities',
+  menu_games: 'Games',
+  menu_features: 'Features',
+  menu_materials: 'Materials',
+  menu_settings: 'Settings',
+  menu_teacher: 'Teacher',
+  menu_help: 'Help',
+  menu_about: 'About',
+
+  chip_positive: 'Positive Chip',
+  chip_negative: 'Negative Chip',
+  chip_add: 'Add Chip',
+  chip_remove: 'Remove Chip',
+  chip_zero_pair: 'Zero Pair',
+
+  scenario_elevator: 'Elevator',
+  scenario_thermometer: 'Thermometer',
+  scenario_debt: 'Debt / Credit',
+  scenario_sea: 'Sea Level',
+  scenario_walking: 'Walking Person',
+
+  op_add: 'Add',
+  op_subtract: 'Subtract',
+  op_multiply: 'Multiply',
+  op_divide: 'Divide',
+  op_equals: 'Equals',
+
+  cat_exploration: 'Exploration',
+  cat_concept: 'Concept',
+  cat_operation: 'Operation',
+  cat_comparison: 'Comparison',
+  cat_scenario: 'Scenario',
+  cat_misconception: 'Misconception',
+
+  misconception_1: 'Negative × negative = negative (wrong)',
+  misconception_2: 'Magnitude misconception',
+  misconception_3: 'Subtraction sign confusion',
+  misconception_4: 'Sign vs operation',
+  misconception_5: 'Absolute value misconceptions',
+  misconception_6: 'Negative result in subtraction',
+  misconception_7: 'Role of zero',
+  misconception_8: 'Debt-profit multiplication',
+
+  feedback_correct: 'Great!',
+  feedback_wrong: "Let's try again",
+  feedback_hint: 'Hint',
+  feedback_zero_annihilate: 'Zero pair! They cancelled each other.',
+
+  btn_start: 'Start',
+  btn_next: 'Next',
+  btn_back: 'Back',
+  btn_check: 'Check',
+  btn_reset: 'Reset',
+  btn_close: 'Close',
+
+  a11y_dyscalculia: 'Dyscalculia Mode',
+  a11y_high_contrast: 'High Contrast',
+  a11y_tts: 'Text-to-Speech',
+  a11y_sfx: 'Sound Effects',
+
+  author: 'Prof. Yılmaz Mutlu, PhD',
+};

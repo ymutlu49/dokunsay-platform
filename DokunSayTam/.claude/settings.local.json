@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm create:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run:*)",
+      "Bash(gh repo:*)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(gh api:*)",
+      "Bash(gh run:*)",
+      "Bash(node -e ':*)",
+      "Bash(python -c ':*)",
+      "Bash(python fix_emoji.py)",
+      "Bash(python fix_emoji2.py)",
+      "Bash(node fix-chars.mjs)",
+      "Bash(grep -c \"u0131\" dist/assets/index-*.js)",
+      "Bash(grep -o \"Tam Say[^ ]*\" dist/assets/index-*.js)"
+    ]
+  }
+}

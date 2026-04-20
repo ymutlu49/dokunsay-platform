@@ -1,0 +1,66 @@
+export default {
+  app_title: 'DokunSay Tam',
+  app_subtitle: 'Tam Sayılar',
+
+  menu_activities: 'Etkinlikler',
+  menu_games: 'Oyunlar',
+  menu_features: 'Özellikler',
+  menu_materials: 'Materyaller',
+  menu_settings: 'Ayarlar',
+  menu_teacher: 'Öğretmen',
+  menu_help: 'Yardım',
+  menu_about: 'Hakkında',
+
+  chip_positive: 'Pozitif Pul',
+  chip_negative: 'Negatif Pul',
+  chip_add: 'Pul Ekle',
+  chip_remove: 'Pul Sil',
+  chip_zero_pair: 'Sıfır Çifti',
+
+  scenario_elevator: 'Asansör',
+  scenario_thermometer: 'Termometre',
+  scenario_debt: 'Borç / Alacak',
+  scenario_sea: 'Deniz Seviyesi',
+  scenario_walking: 'Yürüyen Kişi',
+
+  op_add: 'Topla',
+  op_subtract: 'Çıkar',
+  op_multiply: 'Çarp',
+  op_divide: 'Böl',
+  op_equals: 'Eşittir',
+
+  cat_exploration: 'Keşif',
+  cat_concept: 'Kavram',
+  cat_operation: 'İşlem',
+  cat_comparison: 'Karşılaştırma',
+  cat_scenario: 'Senaryo',
+  cat_misconception: 'Kavram Yanılgısı',
+
+  misconception_1: 'Eksi × eksi = eksi sanma',
+  misconception_2: 'Sayı büyüklüğü yanılgısı',
+  misconception_3: 'Çıkarma işareti karışması',
+  misconception_4: 'İşaret ve işlem ayrımı',
+  misconception_5: 'Mutlak değer yanılgıları',
+  misconception_6: 'Çıkarmada negatif sonuç',
+  misconception_7: 'Sıfırın rolü',
+  misconception_8: 'Borç-kazanç çarpma',
+
+  feedback_correct: 'Harika!',
+  feedback_wrong: 'Tekrar deneyelim',
+  feedback_hint: 'İpucu',
+  feedback_zero_annihilate: 'Sıfır çifti! Birbirini götürdüler.',
+
+  btn_start: 'Başla',
+  btn_next: 'İleri',
+  btn_back: 'Geri',
+  btn_check: 'Kontrol Et',
+  btn_reset: 'Sıfırla',
+  btn_close: 'Kapat',
+
+  a11y_dyscalculia: 'Diskalkuli Modu',
+  a11y_high_contrast: 'Yüksek Kontrast',
+  a11y_tts: 'Sesli Okuma',
+  a11y_sfx: 'Ses Efektleri',
+
+  author: 'Prof. Dr. Yılmaz Mutlu',
+};

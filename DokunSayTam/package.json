@@ -1,0 +1,22 @@
+{
+  "name": "dokunsay-tam",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "DokunSay Tam — Pozitif/negatif pul ve sıfır çiftiyle tam sayı öğretimi",
+  "author": "Prof. Dr. Yılmaz Mutlu",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^6.0.0"
+  }
+}

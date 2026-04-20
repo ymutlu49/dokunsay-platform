@@ -1,0 +1,25 @@
+{
+  "name": "dokunsay-platform",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "DokunSay Matematik Öğretim Araçları Platformu — Tüm öğretim araçlarını tek çatıda birleştiren ana menü",
+  "author": "Prof. Dr. Yılmaz Mutlu",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^6.0.0",
+    "vitest": "^2.1.8"
+  }
+}

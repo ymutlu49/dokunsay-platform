@@ -1,0 +1,27 @@
+{
+  "name": "dokunsay-platform-root",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "DokunSay Matematik Öğretim Araçları Platformu — Kök yönetim paketi (tüm araçlar için helper scriptleri)",
+  "author": "Prof. Dr. Yılmaz Mutlu",
+  "license": "MIT",
+  "scripts": {
+    "install:all": "node ./_platform/scripts/run-all.js install",
+    "dev:all": "node ./_platform/scripts/dev-all.js",
+    "dev:launcher": "cd _platform/launcher && npm run dev",
+    "dev:bar": "cd DokunSayBar && npm run dev",
+    "dev:basamak": "cd DokunSayBasamak && npm run dev",
+    "dev:clock": "cd DokunSayClock && npm run dev",
+    "dev:kesir": "cd DokunSayKesir && npm run dev",
+    "dev:tam": "cd DokunSayTam && npm run dev",
+    "dev:geo": "cd Dokunsay-geo && npm run dev",
+    "dev:veri": "cd Dokunsay-veri-app && npm run dev",
+    "build:all": "node ./_platform/scripts/run-all.js build",
+    "build:site": "node ./_platform/scripts/build-site.js",
+    "preview:site": "npx serve dist-site -l 8080",
+    "verify": "node ./_platform/scripts/verify.js",
+    "verify:schema": "node ./_platform/scripts/verify-schema.js"
+  },
+  "workspaces:comment": "Her araç kendi npm projesi olarak kalır — workspace kullanmıyoruz (git history ve sürüm bağımsızlığı için). Bu package.json sadece platform-çapı helper scriptlerini barındırır."
+}

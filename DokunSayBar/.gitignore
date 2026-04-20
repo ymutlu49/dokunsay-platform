@@ -1,0 +1,10 @@
+node_modules
+dist
+.vite
+*.local
+.env
+.env.*
+android
+ios
+.claude/plans
+.claude/settings.local.json

@@ -1,0 +1,52 @@
+/**
+ * DokunSay Platform — Ortak Tipografi
+ *
+ * Nunito font ailesi (disleksi dostu, yuvarlak hatlar).
+ * Her uygulama index.html'de bu stili yükleyebilir veya
+ * style'ı global CSS'e gömebilir.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&display=swap');
+
+:root {
+  --dokunsay-font-primary: 'Nunito', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --dokunsay-font-dyslexic: 'OpenDyslexic', 'Nunito', sans-serif;
+
+  --dokunsay-fs-xs: 12px;
+  --dokunsay-fs-sm: 14px;
+  --dokunsay-fs-md: 16px;
+  --dokunsay-fs-lg: 18px;
+  --dokunsay-fs-xl: 22px;
+  --dokunsay-fs-xxl: 28px;
+  --dokunsay-fs-title: 36px;
+  --dokunsay-fs-display: 48px;
+
+  --dokunsay-fw-normal: 600;
+  --dokunsay-fw-bold: 700;
+  --dokunsay-fw-heavy: 800;
+  --dokunsay-fw-display: 900;
+
+  --dokunsay-lh-tight: 1.15;
+  --dokunsay-lh-normal: 1.4;
+  --dokunsay-lh-loose: 1.6;
+}
+
+html, body {
+  font-family: var(--dokunsay-font-primary);
+  font-weight: var(--dokunsay-fw-normal);
+  font-size: var(--dokunsay-fs-md);
+  line-height: var(--dokunsay-lh-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+[data-dyslexia="on"] {
+  font-family: var(--dokunsay-font-dyslexic);
+  letter-spacing: 0.02em;
+  word-spacing: 0.1em;
+}
+
+[data-dyscalculia="on"] {
+  font-size: calc(var(--dokunsay-fs-md) * 1.35);
+}

@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -E \"\\\\.\\(jsx|js|css\\)$\")",
+      "Bash(grep -E \"\\\\.tsx$\")",
+      "Bash([ -f \"C:/Users/yilma/Desktop/Jimaro/Diskalkuli_Platform/DokunSay/$app/tsconfig.json\" ])",
+      "Bash([ -f \"C:/Users/yilma/Desktop/Jimaro/Diskalkuli_Platform/DokunSay/$app/src/App.tsx\" ])",
+      "Bash([ -d \"C:/Users/yilma/Desktop/Jimaro/Diskalkuli_Platform/DokunSay/$app/src/i18n\" ])",
+      "Bash(grep -E \"^-.*\\\\\\\\..*$\")",
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(node _platform/scripts/verify.js)",
+      "Bash(npm test *)",
+      "Bash(node _platform/scripts/dev-all.js)",
+      "Bash(curl -s -o /dev/null -w 'Port __TRACKED_VAR__: %{http_code}\\\\n' http://localhost:__TRACKED_VAR__/ --max-time 2)",
+      "Bash(netstat -ano)",
+      "Bash(findstr :3001)",
+      "Bash(tasklist /FI \"PID eq 13612\")",
+      "Bash(taskkill /PID 13612 /F)",
+      "Bash(cmd //c \"tasklist /FI \\\\\"PID eq 13612\\\\\"\")",
+      "Bash(cmd //c \"tasklist\")",
+      "Bash(powershell -Command \"Stop-Process -Id 13612 -Force\")",
+      "Bash(curl -s -o /dev/null -w '%{http_code}' --max-time 2 http://localhost:__TRACKED_VAR__/)",
+      "Bash(node _platform/scripts/run-all.js build)",
+      "Bash(findstr :3005)",
+      "Bash(powershell -Command \"Stop-Process -Id 21956 -Force\")",
+      "Bash(SITE_BASE=/ node _platform/scripts/build-site.js)",
+      "Bash(gh repo *)"
+    ]
+  }
+}

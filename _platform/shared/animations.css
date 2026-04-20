@@ -1,0 +1,85 @@
+/**
+ * DokunSay Platform — Ortak Animasyonlar
+ *
+ * Pedagojik yönelimli keyframe'ler: her animasyon bir öğrenme
+ * olayına hizmet eder (öge belirme, doğru cevap, vurgu).
+ */
+
+@keyframes dokunsay-popIn {
+  0% { opacity: 0; transform: scale(0.8); }
+  60% { opacity: 1; transform: scale(1.05); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes dokunsay-fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes dokunsay-fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes dokunsay-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.9; }
+}
+
+@keyframes dokunsay-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes dokunsay-jumpArc {
+  0%   { transform: translate(0, 0); }
+  50%  { transform: translate(var(--jump-x, 30px), -40px); }
+  100% { transform: translate(var(--jump-x, 60px), 0); }
+}
+
+@keyframes dokunsay-zeroPoof {
+  0%   { opacity: 1; transform: scale(1); }
+  50%  { opacity: 1; transform: scale(1.6); filter: brightness(1.5); }
+  100% { opacity: 0; transform: scale(0); }
+}
+
+@keyframes dokunsay-snapIn {
+  0%   { transform: scale(1.1); }
+  50%  { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+@keyframes dokunsay-countPulse {
+  0%, 100% { transform: scale(1); background-color: var(--count-color, #22c55e); }
+  50%      { transform: scale(1.15); background-color: var(--count-color-bright, #4ade80); }
+}
+
+@keyframes dokunsay-shake {
+  0%, 100%   { transform: translateX(0); }
+  20%, 60%   { transform: translateX(-4px); }
+  40%, 80%   { transform: translateX(4px); }
+}
+
+@keyframes dokunsay-correctFlash {
+  0%   { background-color: transparent; }
+  30%  { background-color: rgba(34, 197, 94, 0.25); }
+  100% { background-color: transparent; }
+}
+
+.dokunsay-anim-pop      { animation: dokunsay-popIn 400ms ease-out; }
+.dokunsay-anim-fade     { animation: dokunsay-fadeIn 200ms ease-out; }
+.dokunsay-anim-pulse    { animation: dokunsay-pulse 1000ms ease-in-out infinite; }
+.dokunsay-anim-float    { animation: dokunsay-float 3000ms ease-in-out infinite; }
+.dokunsay-anim-snap     { animation: dokunsay-snapIn 150ms ease-out; }
+.dokunsay-anim-shake    { animation: dokunsay-shake 400ms ease-in-out; }
+.dokunsay-anim-correct  { animation: dokunsay-correctFlash 700ms ease-out; }
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

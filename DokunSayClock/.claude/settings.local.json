@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find C:UsersyilmaDesktopJimaroDiskalkuli_PlatformDokunSayClock -type f -name package.json -o -name tsconfig.json -o -name Dockerfile -o -name docker-compose.yml -o -name .env*)",
+      "Bash(npm install:*)",
+      "Bash(npm run:*)",
+      "Bash(gh auth:*)",
+      "Bash(gh repo:*)",
+      "Bash(gh run:*)",
+      "Bash(gh api:*)",
+      "Bash(find /c/Users/yilma/Desktop/Jimaro/Diskalkuli_Platform/DokunSayClock/src -type f \\\\\\(-name *.html -o -name *.jsx -o -name *.js -o -name *.css -o -name *.tsx -o -name *.ts \\\\\\))",
+      "Bash(find /c/Users/yilma/Desktop/Jimaro/Diskalkuli_Platform/DokunSayClock -type f -name *.jsx -o -name *.js -o -name *.css -o -name *.html)",
+      "Bash(find /c/Users/yilma/Desktop/Jimaro/Diskalkuli_Platform/DokunSayClock -name *.css -o -name *.scss)",
+      "Bash(npx vite:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
+    ]
+  }
+}

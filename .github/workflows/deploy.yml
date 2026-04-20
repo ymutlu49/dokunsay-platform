@@ -1,0 +1,70 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies (all 8 projects)
+        run: |
+          for dir in _platform/launcher DokunSayBar DokunSayBasamak DokunSayClock DokunSayKesir DokunSayTam Dokunsay-geo Dokunsay-veri-app; do
+            echo "📦 Installing $dir"
+            cd "$dir" && npm ci --no-audit --no-fund && cd -
+          done
+
+      - name: Compute SITE_BASE
+        id: base
+        run: |
+          # GitHub Pages URL: https://<owner>.github.io/<repo>/
+          # Repo adı yol olur; user/org site ise (username.github.io) tabanda değil.
+          REPO_NAME="${GITHUB_REPOSITORY#*/}"
+          if [[ "$REPO_NAME" == "${GITHUB_REPOSITORY_OWNER}.github.io" ]]; then
+            echo "site_base=/" >> $GITHUB_OUTPUT
+          else
+            echo "site_base=/$REPO_NAME/" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Build unified site
+        env:
+          SITE_BASE: ${{ steps.base.outputs.site_base }}
+        run: node _platform/scripts/build-site.js
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist-site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

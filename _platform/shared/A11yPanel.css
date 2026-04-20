@@ -1,0 +1,286 @@
+/* ==========================================================
+   DokunSay Platform — Ortak A11y Paneli (stil)
+   Her uygulamada aynı yerde, aynı görünüm. App'in paletinden
+   bağımsız — sabit (koyu) tema kullanır.
+   ========================================================== */
+
+.ds-a11y-panel {
+  position: fixed;
+  z-index: 9999;
+  font-family: 'Nunito', system-ui, -apple-system, sans-serif;
+}
+
+.ds-a11y-panel--bottom-right { bottom: 16px; right: 16px; }
+.ds-a11y-panel--bottom-left  { bottom: 16px; left: 16px; }
+.ds-a11y-panel--top-right    { top: 16px;    right: 16px; }
+.ds-a11y-panel--top-left     { top: 16px;    left: 16px; }
+
+/* Tetikleyici buton */
+.ds-a11y-panel__trigger {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.20);
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2418 100%);
+  color: #fff;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25), 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: transform 0.15s, box-shadow 0.2s, background 0.2s;
+  display: grid;
+  place-items: center;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ds-a11y-panel__trigger:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.30), 0 4px 10px rgba(0, 0, 0, 0.18);
+}
+
+.ds-a11y-panel__trigger:active {
+  transform: translateY(0);
+}
+
+.ds-a11y-panel__trigger--open {
+  background: linear-gradient(135deg, #f59e0b 0%, #c97d16 100%);
+}
+
+.ds-a11y-panel__trigger--active {
+  border-color: #f59e0b;
+  box-shadow:
+    0 0 0 3px rgba(245, 158, 11, 0.35),
+    0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+.ds-a11y-panel__trigger:focus-visible {
+  outline: 3px solid rgba(245, 158, 11, 0.6);
+  outline-offset: 3px;
+}
+
+/* Panel gövdesi */
+.ds-a11y-panel__body {
+  position: absolute;
+  bottom: 64px;
+  right: 0;
+  width: 300px;
+  max-width: calc(100vw - 32px);
+  background: #fffdf7;
+  color: #2d2418;
+  border: 1px solid #e7dcc0;
+  border-radius: 18px;
+  padding: 14px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18), 0 8px 20px rgba(0, 0, 0, 0.10);
+  animation: ds-a11y-fade 180ms ease-out;
+}
+
+.ds-a11y-panel--top-right  .ds-a11y-panel__body,
+.ds-a11y-panel--top-left   .ds-a11y-panel__body {
+  top: 64px;
+  bottom: auto;
+}
+
+.ds-a11y-panel--bottom-left .ds-a11y-panel__body,
+.ds-a11y-panel--top-left    .ds-a11y-panel__body {
+  left: 0;
+  right: auto;
+}
+
+@keyframes ds-a11y-fade {
+  from { opacity: 0; transform: translateY(8px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Panel başlığı */
+.ds-a11y-panel__head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 4px 12px;
+  border-bottom: 1px dashed #efe8d0;
+  margin-bottom: 10px;
+  font-size: 15px;
+  font-weight: 900;
+  color: #2d2418;
+}
+
+.ds-a11y-panel__head > span[aria-hidden] {
+  font-size: 20px;
+  line-height: 1;
+}
+
+.ds-a11y-panel__head strong {
+  flex: 1;
+  font-weight: 900;
+  letter-spacing: 0.2px;
+}
+
+.ds-a11y-panel__close {
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 8px;
+  background: #faf6ed;
+  color: #574a33;
+  font-size: 16px;
+  font-weight: 800;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: background 0.15s;
+}
+
+.ds-a11y-panel__close:hover { background: #efe8d0; }
+
+/* Toggle listesi */
+.ds-a11y-panel__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ds-a11y-panel__list li { margin: 0; padding: 0; }
+
+.ds-a11y-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1.5px solid #efe8d0;
+  background: #faf6ed;
+  color: #2d2418;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, transform 0.08s;
+  min-height: 44px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ds-a11y-toggle:hover {
+  background: #fffdf7;
+  border-color: var(--toggle-accent, #f59e0b);
+}
+
+.ds-a11y-toggle:active { transform: scale(0.98); }
+
+.ds-a11y-toggle:focus-visible {
+  outline: 3px solid rgba(245, 158, 11, 0.5);
+  outline-offset: 2px;
+}
+
+.ds-a11y-toggle--on {
+  background: var(--toggle-accent, #f59e0b);
+  border-color: var(--toggle-accent, #f59e0b);
+  color: #fff;
+}
+
+.ds-a11y-toggle--on:hover {
+  filter: brightness(1.05);
+  background: var(--toggle-accent, #f59e0b);
+}
+
+.ds-a11y-toggle__icon {
+  font-size: 18px;
+  line-height: 1;
+  width: 24px;
+  text-align: center;
+  flex: 0 0 auto;
+}
+
+.ds-a11y-toggle__label {
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ds-a11y-toggle__state {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  opacity: 0.7;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.06);
+  flex: 0 0 auto;
+}
+
+.ds-a11y-toggle--on .ds-a11y-toggle__state {
+  background: rgba(255, 255, 255, 0.22);
+  opacity: 1;
+}
+
+/* Sıfırla */
+.ds-a11y-panel__reset {
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px;
+  border: 1.5px dashed #d4c9a8;
+  border-radius: 10px;
+  background: transparent;
+  color: #8a7c60;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  min-height: 40px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ds-a11y-panel__reset:hover {
+  background: #faf6ed;
+  color: #2d2418;
+  border-color: #c4b587;
+}
+
+/* Yüksek kontrast modunda */
+[data-contrast="high"] .ds-a11y-panel__body {
+  background: #fff;
+  color: #000;
+  border-color: #000;
+  border-width: 2px;
+}
+
+[data-contrast="high"] .ds-a11y-toggle {
+  border-width: 2px;
+  border-color: #000;
+  background: #fff;
+  color: #000;
+}
+
+[data-contrast="high"] .ds-a11y-toggle--on {
+  background: #000;
+  color: #fff;
+}
+
+/* Mobil */
+@media (max-width: 520px) {
+  .ds-a11y-panel__trigger {
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+  }
+  .ds-a11y-panel__body {
+    width: calc(100vw - 32px);
+    max-width: 340px;
+  }
+}
+
+/* prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .ds-a11y-panel__body { animation: none; }
+  .ds-a11y-panel__trigger,
+  .ds-a11y-toggle { transition: none; }
+}
