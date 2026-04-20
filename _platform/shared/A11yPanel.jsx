@@ -22,11 +22,19 @@ const I18N = {
     close: 'Kapat',
     reset: 'Sıfırla',
     dyscalculia: 'Diskalkuli Modu',
+    dyscalculia_desc: 'Yavaş animasyon, büyük butonlar, belirgin odak',
+    dyslexia: 'Disleksi Modu',
+    dyslexia_desc: 'Geniş satır/harf aralığı, disleksi-dostu font',
     highContrast: 'Yüksek Kontrast',
+    highContrast_desc: 'Güçlü renk zıtlığı',
     colorblind: 'Renk Körü Modu',
+    colorblind_desc: 'Desen ve filtre ile renk ayrımı',
     tts: 'Sesli Okuma',
+    tts_desc: 'Metinler sesli okunsun',
     sfx: 'Ses Efektleri',
+    sfx_desc: 'Tıklama/işlem sesleri',
     reduceMotion: 'Animasyonu Azalt',
+    reduceMotion_desc: 'Hareketleri durdur',
     on: 'Açık',
     off: 'Kapalı',
   },
@@ -36,11 +44,19 @@ const I18N = {
     close: 'Bigire',
     reset: 'Ji Nû Ve',
     dyscalculia: 'Moda Diskalkulî',
+    dyscalculia_desc: 'Animasyon hêdî, bişkojk mezin, balkêşîya aşkere',
+    dyslexia: 'Moda Disleksî',
+    dyslexia_desc: 'Navbera tîpan/rêzan fireh, fonta disleksî-dostî',
     highContrast: 'Kontrasta Bilind',
+    highContrast_desc: 'Ciyawaziya rengan a bihêz',
     colorblind: 'Moda Koririya Rengan',
+    colorblind_desc: 'Bi dûzin û fîlter ciyawaziya rengan',
     tts: 'Xwendina bi Deng',
+    tts_desc: 'Nivîsên bi deng bên xwendin',
     sfx: 'Dengên Bandor',
+    sfx_desc: 'Dengên klîk/kiran',
     reduceMotion: 'Kêmkirina Animasyonê',
+    reduceMotion_desc: 'Tevger bên rawestandin',
     on: 'Vekirî',
     off: 'Girtî',
   },
@@ -50,18 +66,27 @@ const I18N = {
     close: 'Close',
     reset: 'Reset',
     dyscalculia: 'Dyscalculia Mode',
+    dyscalculia_desc: 'Slow animations, large buttons, strong focus',
+    dyslexia: 'Dyslexia Mode',
+    dyslexia_desc: 'Wide line/letter spacing, dyslexia-friendly font',
     highContrast: 'High Contrast',
+    highContrast_desc: 'Strong color contrast',
     colorblind: 'Colorblind Mode',
+    colorblind_desc: 'Color differentiation with patterns and filters',
     tts: 'Text-to-Speech',
+    tts_desc: 'Read texts aloud',
     sfx: 'Sound Effects',
+    sfx_desc: 'Click/action sounds',
     reduceMotion: 'Reduce Motion',
+    reduceMotion_desc: 'Stop animations',
     on: 'On',
     off: 'Off',
   },
 };
 
 const TOGGLES = [
-  { key: 'dyscalculia',  icon: '🧠', color: '#f59e0b' },
+  { key: 'dyscalculia',  icon: '🔢', color: '#f59e0b' },
+  { key: 'dyslexia',     icon: '📖', color: '#0ea5e9' },
   { key: 'highContrast', icon: '🌓', color: '#1e293b' },
   { key: 'colorblind',   icon: '🎨', color: '#ec4899' },
   { key: 'tts',          icon: '🔊', color: '#3b82f6' },
@@ -142,10 +167,20 @@ export function A11yPanel({ useA11y, lang = 'tr', position = 'bottom-right' }) {
                   className={`ds-a11y-toggle ${prefs[item.key] ? 'ds-a11y-toggle--on' : ''}`}
                   onClick={() => handleToggle(item.key)}
                   aria-pressed={Boolean(prefs[item.key])}
+                  aria-describedby={`ds-a11y-desc-${item.key}`}
+                  title={t[`${item.key}_desc`]}
                   style={{ '--toggle-accent': item.color }}
                 >
                   <span className="ds-a11y-toggle__icon" aria-hidden="true">{item.icon}</span>
-                  <span className="ds-a11y-toggle__label">{t[item.key]}</span>
+                  <span className="ds-a11y-toggle__label">
+                    {t[item.key]}
+                    <span
+                      id={`ds-a11y-desc-${item.key}`}
+                      className="ds-a11y-toggle__desc"
+                    >
+                      {t[`${item.key}_desc`]}
+                    </span>
+                  </span>
                   <span className="ds-a11y-toggle__state" aria-hidden="true">
                     {prefs[item.key] ? t.on : t.off}
                   </span>
