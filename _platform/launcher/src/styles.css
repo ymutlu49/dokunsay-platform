@@ -163,54 +163,30 @@ a { color: inherit; text-decoration: none; }
   flex-wrap: wrap;
 }
 
-.a11y-toggle {
-  padding: 8px 14px;
-  border-radius: var(--radius-md);
-  background: rgba(255, 255, 255, 0.10);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  font-size: 13px;
-  font-weight: 700;
-  color: #fff;
-  min-height: 40px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  transition: background 0.15s, border-color 0.15s, transform 0.1s;
-}
-
-.a11y-toggle:hover {
-  background: rgba(255, 255, 255, 0.18);
-  border-color: rgba(255, 255, 255, 0.24);
-}
-
-.a11y-toggle:active { transform: scale(0.97); }
-
-.a11y-toggle.on {
-  background: var(--accent-bright);
-  color: #1a1a1a;
-  border-color: var(--accent-bright);
-}
-
+/* Dil seçici — kompakt, profesyonel (3-harf kodu) */
 .lang-switcher {
-  display: flex;
-  gap: 2px;
+  display: inline-flex;
+  gap: 1px;
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.10);
-  border-radius: var(--radius-md);
-  padding: 3px;
+  border-radius: 8px;
+  padding: 2px;
 }
 
 .lang-btn {
-  padding: 6px 12px;
-  border-radius: var(--radius-sm);
-  font-size: 13px;
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.65);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  color: rgba(255, 255, 255, 0.60);
   transition: all 0.15s;
-  min-height: 34px;
+  min-height: 28px;
+  min-width: 34px;
   display: flex;
   align-items: center;
-  gap: 6px;
+  justify-content: center;
+  font-family: inherit;
 }
 
 .lang-btn.active {
@@ -221,10 +197,6 @@ a { color: inherit; text-decoration: none; }
 .lang-btn:hover:not(.active) {
   background: rgba(255, 255, 255, 0.12);
   color: #fff;
-}
-
-.lang-btn-label {
-  font-size: 12px;
 }
 
 /* =============== HERO =============== */

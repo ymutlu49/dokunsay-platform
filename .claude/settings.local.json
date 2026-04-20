@@ -25,7 +25,9 @@
       "Bash(findstr :3005)",
       "Bash(powershell -Command \"Stop-Process -Id 21956 -Force\")",
       "Bash(SITE_BASE=/ node _platform/scripts/build-site.js)",
-      "Bash(gh repo *)"
+      "Bash(gh repo *)",
+      "Bash(gh api *)",
+      "Bash(gh run *)"
     ]
   }
 }

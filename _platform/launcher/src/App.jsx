@@ -95,23 +95,12 @@ export default function App() {
   const [query, setQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState('all');
   const [activeAge, setActiveAge] = useState('all');
-  const [dyscalculia, setDyscalculia] = useState(Boolean(initial.dyscalculia));
-  const [highContrast, setHighContrast] = useState(Boolean(initial.highContrast));
-
   const t = useT(lang);
 
   useEffect(() => {
-    savePrefs({ lang, dyscalculia, highContrast });
-    document.documentElement.setAttribute(
-      'data-dyscalculia',
-      dyscalculia ? 'on' : 'off'
-    );
-    document.documentElement.setAttribute(
-      'data-contrast',
-      highContrast ? 'high' : 'normal'
-    );
+    savePrefs({ lang });
     document.documentElement.setAttribute('lang', lang);
-  }, [lang, dyscalculia, highContrast]);
+  }, [lang]);
 
   const categories = TOOL_CATEGORIES[lang] || TOOL_CATEGORIES.tr;
 
@@ -171,24 +160,6 @@ export default function App() {
           </div>
 
           <div className="header-controls">
-            <button
-              className={`a11y-toggle ${dyscalculia ? 'on' : ''}`}
-              onClick={() => setDyscalculia((v) => !v)}
-              aria-pressed={dyscalculia}
-              title={t('dyscalculia_mode')}
-            >
-              <span aria-hidden="true">🧠</span>
-              <span className="a11y-label">{t('dyscalculia_mode')}</span>
-            </button>
-            <button
-              className={`a11y-toggle ${highContrast ? 'on' : ''}`}
-              onClick={() => setHighContrast((v) => !v)}
-              aria-pressed={highContrast}
-              title={t('high_contrast')}
-            >
-              <span aria-hidden="true">🌓</span>
-              <span className="a11y-label">{t('high_contrast')}</span>
-            </button>
             <div className="lang-switcher" role="group" aria-label={t('lang_btn')}>
               {LANGS.map((l) => (
                 <button
@@ -197,9 +168,9 @@ export default function App() {
                   onClick={() => setLang(l)}
                   aria-pressed={lang === l}
                   title={LANG_LABELS[l]}
+                  aria-label={LANG_LABELS[l]}
                 >
-                  <span>{LANG_FLAGS[l]}</span>
-                  <span className="lang-btn-label">{LANG_LABELS[l]}</span>
+                  {l.toUpperCase()}
                 </button>
               ))}
             </div>
