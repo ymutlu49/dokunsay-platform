@@ -73,8 +73,19 @@ export function A11yPanel({ useA11y, lang = 'tr', position = 'bottom-right' }) {
   const [open, setOpen] = useState(false);
   const panelRef = useRef(null);
   const triggerRef = useRef(null);
-  const { prefs, toggle, reset } = useA11y();
+  const { prefs, toggle, reset, announce } = useA11y();
   const t = I18N[lang] || I18N.tr;
+
+  const handleToggle = (key) => {
+    toggle(key);
+    const newState = !prefs[key] ? t.on : t.off;
+    if (announce) announce(`${t[key]} ${newState}`, 'polite');
+  };
+
+  const handleReset = () => {
+    reset();
+    if (announce) announce(`${t.title}: ${t.reset}`, 'polite');
+  };
 
   useEffect(() => {
     if (!open) return undefined;
@@ -129,7 +140,7 @@ export function A11yPanel({ useA11y, lang = 'tr', position = 'bottom-right' }) {
                 <button
                   type="button"
                   className={`ds-a11y-toggle ${prefs[item.key] ? 'ds-a11y-toggle--on' : ''}`}
-                  onClick={() => toggle(item.key)}
+                  onClick={() => handleToggle(item.key)}
                   aria-pressed={Boolean(prefs[item.key])}
                   style={{ '--toggle-accent': item.color }}
                 >
@@ -145,7 +156,7 @@ export function A11yPanel({ useA11y, lang = 'tr', position = 'bottom-right' }) {
 
           <button
             className="ds-a11y-panel__reset"
-            onClick={reset}
+            onClick={handleReset}
             type="button"
           >
             ↻ {t.reset}

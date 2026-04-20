@@ -1,5 +1,12 @@
+/**
+ * DokunSay Basamak — Sesli Okuma
+ * Platform TTS flag'ine bağlı (shared/tts.js).
+ */
+
+import { isTTSEnabled } from '@shared/tts.js';
+
 export function speakInLang(text, langCode) {
-  if (!window.speechSynthesis) return;
+  if (!window.speechSynthesis || !isTTSEnabled()) return;
   window.speechSynthesis.cancel();
   const utt = new SpeechSynthesisUtterance(text);
   utt.lang = langCode === "ku" ? "ku" : langCode === "en" ? "en-US" : "tr-TR";
