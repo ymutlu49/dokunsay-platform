@@ -38,8 +38,10 @@ function computeBackHref() {
 
 const BACK_LABEL = {
   tr: 'Menüye Dön',
-  ku: 'Vegere Menuyê',
+  ku: 'Vegere Menûyê',
   en: 'Back to Menu',
+  ar: 'العودة إلى القائمة',
+  fa: 'بازگشت به منو',
 };
 
 export function AppShell({

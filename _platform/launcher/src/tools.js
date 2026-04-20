@@ -65,7 +65,7 @@ export const TOOLS = [
     },
     description: {
       tr: 'Birlik-onluk-yüzlük-binlik bloklarıyla ondalık sayı sistemi öğretimi.',
-      ku: 'Pergala dehane — bi blokên yek, deh, sed û hezaran.',
+      ku: 'Pergala dehane — bi blokên yekan, dehan, sedan û hezaran.',
       en: 'Teaching the decimal system with ones/tens/hundreds/thousands blocks.',
       ar: 'تعليم النظام العشري بقطع الآحاد والعشرات والمئات والآلاف.',
       fa: 'آموزش دستگاه دهدهی با بلوک‌های یکان، دهگان، صدگان و هزارگان.',
@@ -104,7 +104,7 @@ export const TOOLS = [
     },
     description: {
       tr: 'Analog ve dijital saatle zaman okuma, kavram inşası.',
-      ku: 'Xwendina demê û avakirina têgeha demê — bi saeta analog û dîjîtal.',
+      ku: 'Xwendina demê û avakirina têgeha demê — bi saetên analog û dîjîtal.',
       en: 'Time reading and concept building with analog & digital clocks.',
       ar: 'قراءة الوقت وبناء المفهوم بالساعة التماثلية والرقمية.',
       fa: 'خواندن زمان و ساخت مفهوم با ساعت عقربه‌ای و دیجیتال.',
@@ -221,7 +221,7 @@ export const TOOLS = [
     },
     description: {
       tr: 'Van Hiele 5-faz modeliyle 2B/3B şekiller, ölçüm ve ispat.',
-      ku: 'Bi modela Van Hiele ya pênc-qonax — teşeyên 2B û 3B, pîvandin û îspat.',
+      ku: 'Bi modela Van Hiele ya pênc qonax — teşeyên 2D û 3D, pîvandin û îspat.',
       en: '2D/3D shapes, measurement and proof via Van Hiele 5-phase model.',
       ar: 'أشكال ثنائية وثلاثية الأبعاد، قياس وبرهان عبر نموذج Van Hiele الخماسي.',
       fa: 'شکل‌های ۲بعدی و ۳بعدی، اندازه‌گیری و اثبات با مدل پنج‌مرحله‌ای Van Hiele.',

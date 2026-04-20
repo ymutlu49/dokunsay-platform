@@ -96,27 +96,27 @@ export const STRINGS = {
     author: 'Prof. Dr. Yılmaz Mutlu',
     about: 'Derbarê DokunSay',
     about_body:
-      'DokunSay malbata amûrên dîjîtal ên fêrkirina matematîkê ye, ji bo xwendekarên di navbera 5 û 15 salî de. Heft amûr naveroka bingehîn a matematîkê digirin nav xwe: hejmar û kirarî, parjimar, hejmara tam, saet, cîyometrî û xwendewariya daneyan. Her amûr li ser nêzîkatiya Konkret → Nîv-Soyut → Soyut (CRA) hatiye avakirin û ji çarçoveyên pedagojîk ên lêkolînî (Van Hiele, Curcio, Bloom, Piaget) sûd werdigire. Taybetmendiyên piştgirîya diskalkuliyê — hedefên mezin ji bo destan, paleta ji bo koririya rengan, xwendina bi deng, kontrasta bilind — di her amûrê de cî digirin.',
+      'DokunSay malbateke amûrên dîjîtal ên fêrkirina matematîkê ye, ji bo xwendekarên di temenê 5 heta 15 salî de. Heft amûr naveroka bingehîn a matematîkê vedihewînin: hejmar û kirarî, parjimar, hejmarên tam, saet, cîyometrî û xwendewariya daneyan. Her amûr li ser rêbaza Konkret → Nîv-konkret → Abstrakt (CRA) hatiye avakirin û ji çarçoveyên pedagojîk ên lêkolînî (Van Hiele, Curcio, Bloom, Piaget) sûd werdigire. Taybetmendiyên piştgirî yên ji bo xwendekarên bi diskalkuliyê — hedefên mezin ên destlêdanê, paleta ji bo koriya rengan, xwendina bi dengî, kontrasta bilind — di her amûrê de cih digirin.',
     why_title: 'Çima DokunSay?',
     why_subtitle: 'Ji bo her zarokî hatiye amadekirin, ji bo her mamosteyî amade ye.',
     feature_research_title: 'Lêkolînî',
     feature_research_body:
-      'Li ser çarçoveyên pedagojîk ên nas — Van Hiele, Curcio, Bloom, Piaget, Bruner — hatiye avakirin.',
+      'Li ser çarçoveyên pedagojîk ên nasyar — Van Hiele, Curcio, Bloom, Piaget, Bruner — hatiye avakirin.',
     feature_multilingual_title: 'Pirzimanî',
     feature_multilingual_body:
-      'Bi Tirkî, Kurmancî, Îngilîzî, Erebî û Farsî. Bi ferhenga matematîkê ya FerMat hevaheng e.',
+      'Bi Tirkî, Kurmancî, Îngilîzî, Erebî û Farsî. Bi ferhenga matematîkê ya FerMat re hevaheng e.',
     feature_inclusive_title: 'Ji Bo Her Kesî',
     feature_inclusive_body:
-      'Modên taybet ji bo diskalkulî, disleksî û koririya rengan. Bi standardên WCAG AA lihevhatî.',
+      'Modên taybet ji bo diskalkuliyê, disleksiyê û koriya rengan. Bi standardên WCAG AA re lihevhatî.',
     feature_manipulative_title: 'Bi Destan Fêrbûn',
     feature_manipulative_body:
-      'Berî derbasbûna sembolên soyut, bi nesneyên konkret danûstandin — bi destan, bi çavan, bi ramanê.',
+      'Berî derbasbûna sembolên abstrakt, bi nesneyên konkret danûstandin — bi destan, bi çavan, bi ramanê.',
     stats_tools: 'Amûrên Fêrkirinê',
     stats_languages: 'Ziman',
     stats_activities: 'Çalakî',
     stats_frameworks: 'Çarçoveyên Pedagojîk',
     lang_btn: 'Ziman',
-    accessibility: 'Gihîştin',
+    accessibility: 'Gihîştîbûn',
     high_contrast: 'Kontrasta Bilind',
     dyscalculia_mode: 'Moda Diskalkuliyê',
     standards_link: 'Standardên Platformê',

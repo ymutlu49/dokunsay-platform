@@ -13,7 +13,7 @@ export interface AppShellProps {
   topBar?: boolean;
   showBack?: boolean;
   backHref?: string;
-  backLang?: "tr" | "ku" | "en";
+  backLang?: "tr" | "ku" | "en" | "ar" | "fa";
   tools?: ReactNode;
   footer?: ReactNode;
   background?: string;
