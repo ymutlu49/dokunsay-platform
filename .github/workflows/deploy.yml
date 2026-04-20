@@ -30,7 +30,10 @@ jobs:
         run: |
           for dir in _platform/launcher DokunSayBar DokunSayBasamak DokunSayClock DokunSayKesir DokunSayTam Dokunsay-geo Dokunsay-veri-app; do
             echo "📦 Installing $dir"
-            cd "$dir" && npm ci --no-audit --no-fund && cd -
+            cd "$dir"
+            # Lock yoksa veya uyumsuzsa fallback: npm install
+            npm ci --no-audit --no-fund || npm install --no-audit --no-fund
+            cd -
           done
 
       - name: Compute SITE_BASE
