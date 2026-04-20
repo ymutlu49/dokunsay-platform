@@ -2,8 +2,8 @@ import { describe, it, expect } from 'vitest';
 import { LANGS, LANG_LABELS, LANG_FLAGS, STRINGS, useT } from './i18n.js';
 
 describe('i18n yapılandırması', () => {
-  it('3 dil destekler', () => {
-    expect(LANGS).toEqual(['tr', 'ku', 'en']);
+  it('5 dil destekler', () => {
+    expect(LANGS).toEqual(['tr', 'ku', 'en', 'ar', 'fa']);
   });
 
   it('her dilin etiketi ve bayrağı vardır', () => {
@@ -15,10 +15,10 @@ describe('i18n yapılandırması', () => {
 
   it('her dilde tüm anahtarlar vardır', () => {
     const trKeys = Object.keys(STRINGS.tr).sort();
-    const kuKeys = Object.keys(STRINGS.ku).sort();
-    const enKeys = Object.keys(STRINGS.en).sort();
-    expect(kuKeys).toEqual(trKeys);
-    expect(enKeys).toEqual(trKeys);
+    for (const lang of LANGS) {
+      const keys = Object.keys(STRINGS[lang]).sort();
+      expect(keys, `${lang} anahtarları`).toEqual(trKeys);
+    }
   });
 
   it('her çeviri boş olmayan string\u0027dir', () => {

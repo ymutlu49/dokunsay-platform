@@ -72,7 +72,7 @@ function resolveToolUrl(tool) {
 
 const STATS = [
   { key: 'tools',      icon: '🎯', value: 7 },
-  { key: 'languages',  icon: '🌐', value: 3 },
+  { key: 'languages',  icon: '🌐', value: 5 },
   { key: 'activities', icon: '✨', value: '200+' },
   { key: 'frameworks', icon: '📚', value: 5 },
 ];

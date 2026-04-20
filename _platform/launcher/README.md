@@ -9,7 +9,7 @@
 - **7 aracı tek ekranda** listeler — ikon, açıklama, hedef yaş, pedagojik yaklaşım
 - **Kategori filtresi** — Sayı & İşlem / Ölçme / Geometri / Veri
 - **Arama** — araç adı, konu veya açıklamaya göre
-- **3 dil desteği** (TR, KU, EN)
+- **5 dil desteği** (TR, KU, EN, AR, FA — AR/FA RTL desteğiyle)
 - **Diskalkuli modu** — font büyütme
 - **Yüksek kontrast modu** — WCAG AA
 - **Yerel tercih kaydı** — localStorage (`dokunsay:platform:prefs`)

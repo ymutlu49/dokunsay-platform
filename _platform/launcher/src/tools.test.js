@@ -11,15 +11,16 @@ describe('TOOLS kataloğu', () => {
     expect(ids).toEqual(['bar', 'basamak', 'clock', 'geo', 'kesir', 'tam', 'veri']);
   });
 
-  it('her araç 3 dili sağlar (tr, ku, en)', () => {
+  it('her araç 5 dili sağlar (tr, ku, en, ar, fa)', () => {
+    const LANGS = ['tr', 'ku', 'en', 'ar', 'fa'];
     for (const tool of TOOLS) {
-      expect(tool.name.tr).toBeTruthy();
-      expect(tool.name.ku).toBeTruthy();
-      expect(tool.name.en).toBeTruthy();
-      expect(tool.subtitle.tr).toBeTruthy();
-      expect(tool.description.tr).toBeTruthy();
-      expect(tool.topics.tr).toBeInstanceOf(Array);
-      expect(tool.topics.tr.length).toBeGreaterThan(0);
+      for (const l of LANGS) {
+        expect(tool.name[l], `${tool.id}.name.${l}`).toBeTruthy();
+        expect(tool.subtitle[l], `${tool.id}.subtitle.${l}`).toBeTruthy();
+        expect(tool.description[l], `${tool.id}.description.${l}`).toBeTruthy();
+        expect(tool.topics[l], `${tool.id}.topics.${l}`).toBeInstanceOf(Array);
+        expect(tool.topics[l].length).toBeGreaterThan(0);
+      }
     }
   });
 
@@ -56,10 +57,10 @@ describe('TOOLS kataloğu', () => {
 describe('TOOL_CATEGORIES', () => {
   it('her dilde aynı kategori yapısı vardır', () => {
     const trIds = TOOL_CATEGORIES.tr.map((c) => c.id).sort();
-    const kuIds = TOOL_CATEGORIES.ku.map((c) => c.id).sort();
-    const enIds = TOOL_CATEGORIES.en.map((c) => c.id).sort();
-    expect(trIds).toEqual(kuIds);
-    expect(trIds).toEqual(enIds);
+    for (const lang of ['ku', 'en', 'ar', 'fa']) {
+      const ids = TOOL_CATEGORIES[lang].map((c) => c.id).sort();
+      expect(ids, `${lang} kategori id'leri`).toEqual(trIds);
+    }
   });
 
   it('her kategoride en az 1 araç vardır', () => {

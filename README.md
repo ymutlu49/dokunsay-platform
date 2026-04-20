@@ -72,7 +72,7 @@ npm run dev
 
 **Pedagojik:** Somut → Yarı Soyut → Soyut (CRA) · Araştırma-temelli çerçeveler · Kavram yanılgılarını ayrı ayrı adresleme · Aşamalı zorluk
 
-**Erişilebilirlik:** Diskalkuli modu (font ölçekleme) · Renk körü paleti (Okabe-Ito) · Yüksek kontrast · TTS (tr-TR) · Klavye kısayolları · 3 dil (tr/ku/en)
+**Erişilebilirlik:** Diskalkuli modu (font ölçekleme) · Renk körü paleti (Okabe-Ito) · Yüksek kontrast · TTS (5 dil) · Klavye kısayolları · 5 dil (tr/ku/en/ar/fa, RTL destekli)
 
 **Teknik:** React 18 · Vite 6 · Zero-runtime-dep · Inline styles · Nunito font · localStorage
 
