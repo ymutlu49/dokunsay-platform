@@ -695,9 +695,9 @@ export default function App() {
         setBarDrag(null);setDropTarget(null);return;
       }
       if(dist<8&&barDrag.src==="standalone"){
-        /* Standalone bar tıklandı — geri koy */
+        /* Standalone bar tıklandı — orijinal scale/bw ile geri koy */
         var el2=cvRef.current;var r2=el2?el2.getBoundingClientRect():{left:0,top:0};
-        hPush();setItems(irRef.current.concat([{type:"bar",n:barDrag.parts,id:nid(),x:e.clientX-r2.left-40,y:e.clientY-r2.top-16}]));
+        hPush();setItems(irRef.current.concat([{type:"bar",n:barDrag.parts,id:nid(),x:e.clientX-r2.left-40,y:e.clientY-r2.top-16,scale:barDrag.scale||1,bw:barDrag.bw}]));
         setBarDrag(null);setDropTarget(null);return;
       }
       var tid=findTrackAt(e.clientX,e.clientY);
@@ -708,21 +708,22 @@ export default function App() {
           if(ct+1/barDrag.parts<=(tk.wholes||1)+0.001){
             hPush();setItems(irRef.current.map(function(it){return it.id===tid?Object.assign({},it,{pieces:it.pieces.concat([{n:barDrag.parts}])}):it;}));
           } else if(barDrag.src==="standalone"){
-            /* Sığmadı — standalone olarak geri koy */
+            /* Sığmadı — orijinal scale/bw ile standalone geri koy */
             var el4=cvRef.current;var r4=el4?el4.getBoundingClientRect():{left:0,top:0};
-            hPush();setItems(irRef.current.concat([{type:"bar",n:barDrag.parts,id:nid(),x:e.clientX-r4.left-40,y:e.clientY-r4.top-16}]));
+            hPush();setItems(irRef.current.concat([{type:"bar",n:barDrag.parts,id:nid(),x:e.clientX-r4.left-40,y:e.clientY-r4.top-16,scale:barDrag.scale||1,bw:barDrag.bw}]));
           } else if(barDrag.src){
             /* Sığmadı — kaynağa geri koy */
             hPush();setItems(irRef.current.map(function(it){return it.id===barDrag.src?Object.assign({},it,{pieces:it.pieces.concat([{n:barDrag.parts}])}):it;}));
           }
         }
       } else if(barDrag.src==="standalone"){
-        /* Standalone boşa bırakıldı — snap ile yeni konuma taşı */
+        /* Standalone boşa bırakıldı — snap ile yeni konuma taşı (scale korur) */
         var el5=cvRef.current;var r5=el5?el5.getBoundingClientRect():{left:0,top:0};
-        var bw5=Math.round(240/barDrag.parts);
+        var scale5=barDrag.scale||1;
+        var bw5=Math.round((barDrag.bw||Math.round(240/barDrag.parts))*scale5);
         var rawX5=e.clientX-r5.left-bw5/2,rawY5=e.clientY-r5.top-16;
-        var sn5=snapPos(rawX5,rawY5,bw5,32,null);
-        hPush();setItems(irRef.current.concat([{type:"bar",n:barDrag.parts,id:nid(),x:sn5.x,y:sn5.y}]));
+        var sn5=snapPos(rawX5,rawY5,bw5,Math.round(32*scale5),null);
+        hPush();setItems(irRef.current.concat([{type:"bar",n:barDrag.parts,id:nid(),x:sn5.x,y:sn5.y,scale:scale5,bw:barDrag.bw}]));
       } else if(!barDrag.src){
         /* Sidebar'dan boşa sürüklendi — bağımsız çubuk oluştur (snap ile) */
         var el6=cvRef.current;var r6=el6?el6.getBoundingClientRect():{left:0,top:0};
@@ -1522,7 +1523,7 @@ export default function App() {
                   e.preventDefault();e.stopPropagation();
                   hPush();
                   setItems(irRef.current.filter(function(x){return x.id!==it.id;}));
-                  setBarDrag({parts:it.n,ci:ci,src:"standalone",sx:e.clientX,sy:e.clientY});
+                  setBarDrag({parts:it.n,ci:ci,src:"standalone",sx:e.clientX,sy:e.clientY,scale:it.scale,bw:it.bw});
                   setBarDragPos({x:e.clientX,y:e.clientY});
                 }}>
                 <div style={{width:bw,height:bh,borderRadius:6,background:"linear-gradient(180deg,"+FC[ci%FC.length]+","+FB[ci%FB.length]+")",border:"2.5px solid "+FB[ci%FB.length],display:"flex",alignItems:"center",justifyContent:"center",boxShadow:"0 2px 8px rgba(0,0,0,.25)",cursor:"grab",opacity:transpMode?.55:1}}>
