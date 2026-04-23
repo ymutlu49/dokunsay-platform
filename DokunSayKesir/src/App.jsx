@@ -459,6 +459,8 @@ export default function App() {
   var _studentName=useState(""),studentName=_studentName[0],setStudentName=_studentName[1];
   /* Parçalama menüsü: hangi nesneye kaç parçalı seçim açık */
   var _splitMenu=useState(null),splitMenu=_splitMenu[0],setSplitMenu=_splitMenu[1]; /* {id:itemId, type:"bar"|"pie"} */
+  /* Sayı doğrusu hover göstergesi */
+  var _nlHover=useState(null),nlHover=_nlHover[0],setNlHover=_nlHover[1]; /* {id, val} */
 
   var cvRef=useRef(null),idRef=useRef(100);
   var irRef=useRef(items);irRef.current=items;
@@ -1236,8 +1238,10 @@ export default function App() {
             var posX=isDragging?trkDP.x:(it.x||0);
             var posY=isDragging?trkDP.y:(it.y||0);
             var nlScale=it.scale||1;
-            var NW=Math.round((barWidth||320)*nlScale),NH=Math.round(60*nlScale),range=it.range||1,div=it.divisions||4;
+            var NW=Math.round((barWidth||320)*nlScale),NH=Math.round(85*nlScale),range=it.range||1,div=it.divisions||4;
             var W1=NW/range;
+            var NL_CENTER=30; /* ana çizginin y koordinatı */
+            var NL_PAD=15; /* sol/sağ iç padding */
             return(
               <div key={it.id} style={{position:"absolute",left:posX,top:posY,zIndex:isDragging?100:3,touchAction:"none"}}>
                 {/* Sürükleme tutamacı */}
@@ -1263,45 +1267,96 @@ export default function App() {
                     <button onClick={function(){hPush();setItems(irRef.current.map(function(x){return x.id===it.id?Object.assign({},x,{scale:Math.min(2.5,Math.round(((x.scale||1)+0.15)*100)/100)}):x;}));}} title={t("obj.visualEnlarge")} style={{width:16,height:16,borderRadius:"50%",border:"1px solid #d97706",background:"#fff",cursor:"pointer",fontSize:9,fontWeight:900,color:"#92400e",display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"inherit"}}>{"△"}</button>
                   </div>
                 </div>
-                <svg width={NW+20} height={NH} style={{overflow:"visible",filter:"drop-shadow(0 1px 4px rgba(0,0,0,.1))"}}>
-                  {/* Arka plan çubuğu */}
-                  <rect x={10} y={18} width={NW} height={6} rx={3} fill="#fde68a" stroke="#c99a06" strokeWidth={1}/>
-                  {/* Ana çizgi */}
-                  <line x1={10} y1={21} x2={NW+10} y2={21} stroke="#333" strokeWidth={2.5}/>
-                  {/* Tam sayı çizgileri */}
+                <svg width={NW+NL_PAD*2} height={NH} style={{overflow:"visible"}}>
+                  {/* Soft renkli aralık bantları (0-1, 1-2, ...) — her tam aralığı farklı ton */}
+                  {Array.from({length:range},function(_,i){
+                    var bandColors=["rgba(254,243,199,.5)","rgba(219,234,254,.5)","rgba(243,232,255,.5)","rgba(220,252,231,.5)","rgba(254,226,226,.5)"];
+                    return <rect key={"bg"+i} x={NL_PAD+i*W1} y={NL_CENTER-6} width={W1} height={12} rx={1} fill={bandColors[i%bandColors.length]}/>;
+                  })}
+                  {/* Ana çizgi (kalın, belirgin) + sağ uç oku */}
+                  <line x1={NL_PAD} y1={NL_CENTER} x2={NL_PAD+NW} y2={NL_CENTER} stroke="#1e293b" strokeWidth={2.8} strokeLinecap="round"/>
+                  <polygon points={(NL_PAD+NW+6)+","+NL_CENTER+" "+(NL_PAD+NW-2)+","+(NL_CENTER-4)+" "+(NL_PAD+NW-2)+","+(NL_CENTER+4)} fill="#1e293b"/>
+                  {/* Tüm alt bölüm çizgileri ve kesir etiketleri — hiyerarşik (Siegler et al 2011) */}
+                  {Array.from({length:range*div+1},function(_,i){
+                    var x=NL_PAD+(i/div)*W1;
+                    var isWhole=i%div===0;
+                    if(isWhole)return null; /* whole'ları ayrı bloğa bırak */
+                    /* Benchmark tespit: 1/2, 1/4, 3/4 */
+                    var val=i/div;
+                    var relVal=val-Math.floor(val);
+                    var isBench=Math.abs(relVal-0.5)<0.001||Math.abs(relVal-0.25)<0.001||Math.abs(relVal-0.75)<0.001;
+                    /* Etiket boyutu hiyerarşisi */
+                    var tickH=isBench?14:9;
+                    var labelFs=isBench?11:Math.max(8,Math.min(10,NW/range/(div+2)));
+                    var labelColor=isBench?"#1e293b":"#64748b";
+                    var tickColor=isBench?"#334155":"#94a3b8";
+                    var tickW=isBench?1.8:1;
+                    /* div büyükse minor etiketleri gizle */
+                    var showLabel=isBench||div<=6;
+                    return(<g key={"t"+i}>
+                      <line x1={x} y1={NL_CENTER-tickH} x2={x} y2={NL_CENTER+tickH} stroke={tickColor} strokeWidth={tickW}/>
+                      {showLabel?<text x={x} y={NL_CENTER+tickH+12} textAnchor="middle" fontSize={labelFs} fontWeight={isBench?800:600} fill={labelColor}>{fracLabel(val)}</text>:null}
+                    </g>);
+                  })}
+                  {/* Tam sayı tikler — en belirgin */}
                   {Array.from({length:range+1},function(_,w){
-                    var wx=10+Math.round(w*W1);
-                    return(<g key={"w"+w}><line x1={wx} y1={10} x2={wx} y2={32} stroke="#222" strokeWidth={2.5}/><text x={wx} y={46} textAnchor="middle" fontSize={13} fontWeight={900} fill="#222">{w}</text></g>);
+                    var x=NL_PAD+w*W1;
+                    return(<g key={"w"+w}>
+                      <line x1={x} y1={NL_CENTER-18} x2={x} y2={NL_CENTER+18} stroke="#0f172a" strokeWidth={2.8} strokeLinecap="round"/>
+                      <circle cx={x} cy={NL_CENTER} r={3.5} fill="#0f172a"/>
+                      <text x={x} y={NL_CENTER+34} textAnchor="middle" fontSize={15} fontWeight={900} fill="#0f172a">{w}</text>
+                    </g>);
                   })}
-                  {/* Bölüm çizgileri */}
-                  {Array.from({length:range*div-1},function(_,di){
-                    var dx=10+Math.round((di+1)*W1/div);
-                    var isMajor=(di+1)%div===0;
-                    if(isMajor)return null;
-                    return(<line key={"d"+di} x1={dx} y1={15} x2={dx} y2={27} stroke="#888" strokeWidth={1}/>);
-                  })}
-                  {/* İşaretler (marks) */}
+                  {/* Hover önizlemesi — mouse hangi konumda olsa yakın snap'i göster */}
+                  {nlHover&&nlHover.id===it.id?(function(){
+                    var hx=NL_PAD+nlHover.val*W1;
+                    return(<g opacity={0.6}>
+                      <line x1={hx} y1={NL_CENTER-22} x2={hx} y2={NL_CENTER+22} stroke="#f59e0b" strokeWidth={1.5} strokeDasharray="3,2"/>
+                      <rect x={hx-16} y={NL_CENTER-38} width={32} height={14} rx={3} fill="#f59e0b"/>
+                      <text x={hx} y={NL_CENTER-28} textAnchor="middle" fontSize={10} fontWeight={900} fill="#fff">{fracLabel(nlHover.val)}</text>
+                    </g>);
+                  })():null}
+                  {/* İşaretler (marks) — büyük, belirgin, etiketli */}
                   {(it.marks||[]).map(function(m,mi){
-                    var mx=10+Math.round(m.val*W1);
-                    return(<g key={"m"+mi}><polygon points={(mx-5)+",8 "+(mx+5)+",8 "+mx+",14"} fill="#dc2626"/><text x={mx} y={4} textAnchor="middle" fontSize={9} fontWeight={800} fill="#dc2626">{fracLabel(m.val)}</text></g>);
+                    var mx=NL_PAD+m.val*W1;
+                    return(<g key={"m"+mi}>
+                      {/* glow */}
+                      <circle cx={mx} cy={NL_CENTER} r={7} fill="#fecaca" opacity={0.7}/>
+                      {/* dikey işaretçi çizgisi */}
+                      <line x1={mx} y1={NL_CENTER-14} x2={mx} y2={NL_CENTER+14} stroke="#dc2626" strokeWidth={2.2}/>
+                      {/* aşağı bakan ok */}
+                      <polygon points={(mx-7)+","+(NL_CENTER-20)+" "+(mx+7)+","+(NL_CENTER-20)+" "+mx+","+(NL_CENTER-12)} fill="#dc2626" stroke="#7f1d1d" strokeWidth={0.8}/>
+                      {/* etiket kutusu */}
+                      <rect x={mx-18} y={NL_CENTER-38} width={36} height={15} rx={4} fill="#dc2626" stroke="#7f1d1d" strokeWidth={1}/>
+                      <text x={mx} y={NL_CENTER-27} textAnchor="middle" fontSize={10} fontWeight={900} fill="#fff">{fracLabel(m.val)}</text>
+                    </g>);
                   })}
                 </svg>
-                {/* Sayı doğrusuna tıklayarak işaret ekle */}
-                <div onClick={function(e2){
-                  var rect=e2.currentTarget.getBoundingClientRect();
-                  var cx=(e2.clientX-rect.left-10)/NW*range;
-                  /* En yakın bölüm çizgisine snap */
-                  var step=1/div;
-                  var snapped=Math.round(cx/step)*step;
-                  snapped=Math.max(0,Math.min(range,snapped));
-                  /* Toggle: zaten varsa kaldır */
-                  var existing=(it.marks||[]).filter(function(m){return Math.abs(m.val-snapped)>0.001;});
-                  if(existing.length<(it.marks||[]).length){
-                    hPush();setItems(irRef.current.map(function(x){return x.id===it.id?Object.assign({},x,{marks:existing}):x;}));
-                  } else {
-                    hPush();setItems(irRef.current.map(function(x){return x.id===it.id?Object.assign({},x,{marks:(it.marks||[]).concat([{val:snapped}])}):x;}));
-                  }
-                }} style={{position:"absolute",left:10,top:8,width:NW,height:30,cursor:"crosshair"}}/>
+                {/* Sayı doğrusuna tıklayarak işaret ekle + hover preview */}
+                <div
+                  onMouseMove={function(e2){
+                    var rect=e2.currentTarget.getBoundingClientRect();
+                    var cx=(e2.clientX-rect.left)/NW*range;
+                    var step=1/div;
+                    var snapped=Math.round(cx/step)*step;
+                    snapped=Math.max(0,Math.min(range,snapped));
+                    setNlHover({id:it.id,val:snapped});
+                  }}
+                  onMouseLeave={function(){setNlHover(null);}}
+                  onClick={function(e2){
+                    var rect=e2.currentTarget.getBoundingClientRect();
+                    var cx=(e2.clientX-rect.left)/NW*range;
+                    var step=1/div;
+                    var snapped=Math.round(cx/step)*step;
+                    snapped=Math.max(0,Math.min(range,snapped));
+                    /* Toggle: zaten varsa kaldır */
+                    var existing=(it.marks||[]).filter(function(m){return Math.abs(m.val-snapped)>0.001;});
+                    if(existing.length<(it.marks||[]).length){
+                      hPush();setItems(irRef.current.map(function(x){return x.id===it.id?Object.assign({},x,{marks:existing}):x;}));
+                    } else {
+                      hPush();setItems(irRef.current.map(function(x){return x.id===it.id?Object.assign({},x,{marks:(it.marks||[]).concat([{val:snapped}])}):x;}));
+                    }
+                  }} style={{position:"absolute",left:NL_PAD,top:NL_CENTER-20,width:NW,height:40,cursor:"crosshair"}}/>
               </div>
             );
           })}
@@ -1501,8 +1556,8 @@ export default function App() {
             <span style={{fontSize:13,fontWeight:800,color:trashHover?"#dc2626":"rgba(0,0,0,.25)",transition:"color .2s"}}>{trashHover?t("tool.clear"):""}
             </span>
           </div>):null}
-          {/* Zoom kontrol: + − % */}
-          <div style={{position:"absolute",bottom:trkDrag!=null?TRASH_H+8:12,right:12,display:"flex",flexDirection:"column",gap:3,background:"rgba(255,255,255,.92)",borderRadius:10,padding:4,boxShadow:"0 3px 12px rgba(0,0,0,.18)",border:"1px solid rgba(0,0,0,.08)",zIndex:20,transition:"bottom .2s"}}>
+          {/* Zoom kontrol: + − % — sol altta (A11y sağ altta) */}
+          <div style={{position:"absolute",bottom:trkDrag!=null?TRASH_H+8:12,left:12,display:"flex",flexDirection:"column",gap:3,background:"rgba(255,255,255,.92)",borderRadius:10,padding:4,boxShadow:"0 3px 12px rgba(0,0,0,.18)",border:"1px solid rgba(0,0,0,.08)",zIndex:20,transition:"bottom .2s"}}>
             <button onClick={function(){setZoom(function(z){return Math.min(3,Math.round((z+0.15)*100)/100);});}} title={t("tool.zoomIn")||"Büyüt"} style={{width:34,height:30,borderRadius:7,border:"none",background:"#fff",cursor:"pointer",fontSize:17,fontWeight:900,color:"#555",fontFamily:"inherit",boxShadow:"0 1px 3px rgba(0,0,0,.1)"}}>{"+"}</button>
             <button onClick={function(){setZoom(1);setPan({x:0,y:0});}} title={t("tool.zoomReset")||"Sıfırla"} style={{width:34,height:26,borderRadius:7,border:"none",background:zoom===1?"#f5f5f5":"#fef3c7",cursor:"pointer",fontSize:10,fontWeight:800,color:"#555",fontFamily:"inherit"}}>{Math.round(zoom*100)+"%"}</button>
             <button onClick={function(){setZoom(function(z){return Math.max(0.3,Math.round((z-0.15)*100)/100);});}} title={t("tool.zoomOut")||"Küçült"} style={{width:34,height:30,borderRadius:7,border:"none",background:"#fff",cursor:"pointer",fontSize:17,fontWeight:900,color:"#555",fontFamily:"inherit",boxShadow:"0 1px 3px rgba(0,0,0,.1)"}}>{"−"}</button>
