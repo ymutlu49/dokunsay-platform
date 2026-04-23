@@ -743,7 +743,7 @@ export default function App() {
       window.removeEventListener("blur",onCancel);
     };
   });
-  var TRASH_H=60;
+  var TRASH_W=80; /* Trash sağ kenarda dikey şerit — toolbar ile çakışmıyor, zoomdan bağımsız sabit. */
   var _trashHover=useState(false),trashHover=_trashHover[0],setTrashHover=_trashHover[1];
   useEffect(function(){if(trkDrag==null){setTrashHover(false);return;}
     function onMove(e){
@@ -751,7 +751,7 @@ export default function App() {
       if(!cvRef.current)return;var r=cvRef.current.getBoundingClientRect();
       var ny=e.clientY-r.top-trkOff.y;
       setTrkDP({x:e.clientX-r.left-trkOff.x,y:ny});
-      setTrashHover(e.clientY>r.bottom-TRASH_H);
+      setTrashHover(e.clientX>r.right-TRASH_W);
     }
     function onUp(){
       if(trashHover){hPush();setItems(irRef.current.filter(function(it){return it.id!==trkDrag;}));setTrkDrag(null);setTrashHover(false);return;}
@@ -1112,8 +1112,8 @@ export default function App() {
           onDoubleClick={function(e){if(tool!=="pen"&&!txtIn){var r=cvRef.current.getBoundingClientRect();setTxtIn({x:(e.clientX-r.left)/zoom,y:(e.clientY-r.top)/zoom});setTxtVal("");}}}
           onWheel={function(e){if(e.ctrlKey||e.metaKey){e.preventDefault();setZoom(function(z){return Math.max(0.3,Math.min(3,z+(e.deltaY>0?-0.1:0.1)));});}}}
         >
-          {/* FLOATING TOOLBAR — bottom center (drag sırasında gizlenir) */}
-          <div style={{position:"absolute",bottom:trkDrag!=null?-80:12,left:"50%",transform:"translateX(-50%)",zIndex:40,display:"flex",alignItems:"center",gap:6,padding:"6px 14px",background:"rgba(255,255,255,.95)",backdropFilter:"blur(14px)",borderRadius:14,border:"1px solid rgba(0,0,0,.1)",boxShadow:"0 -3px 16px rgba(0,0,0,.12)",opacity:trkDrag!=null?0:1,pointerEvents:trkDrag!=null?"none":"auto",transition:"opacity .2s, bottom .2s"}}>
+          {/* FLOATING TOOLBAR — bottom center, her zaman görünür (trash zone sağ kenarda) */}
+          <div style={{position:"absolute",bottom:12,left:"50%",transform:"translateX(-50%)",zIndex:40,display:"flex",alignItems:"center",gap:6,padding:"6px 14px",background:"rgba(255,255,255,.95)",backdropFilter:"blur(14px)",borderRadius:14,border:"1px solid rgba(0,0,0,.1)",boxShadow:"0 -3px 16px rgba(0,0,0,.12)"}}>
             {/* Sayfa sekmeleri */}
             {pages.map(function(pg){return(
               <div key={pg.id} onClick={function(){if(pg.id!==pageId)switchPage(pg.id);}} style={{display:"flex",alignItems:"center",gap:3,padding:"5px 10px",borderRadius:8,background:pg.id===pageId?"#f59e0b":"transparent",cursor:"pointer",fontSize:11,fontWeight:pg.id===pageId?800:600,color:pg.id===pageId?"#fff":"#888",transition:"all .2s"}}>
@@ -1550,14 +1550,14 @@ export default function App() {
           {items.filter(function(it){return it.type==="text";}).map(function(it){return <div key={it.id} style={{position:"absolute",left:it.x,top:it.y,zIndex:4,fontSize:18,fontWeight:800,color:it.color||"#1a1a1a"}}>{it.label}</div>;})}
           <div style={{position:"absolute",bottom:6,right:10,fontSize:9,fontWeight:700,color:"rgba(60,60,40,.12)",pointerEvents:"none"}}>{"Prof. Dr. Yılmaz Mutlu • Edanur Güven"}</div>
           </div>{/* zoom wrapper close */}
-          {/* Trash zone */}
-          {trkDrag!=null?(<div style={{position:"absolute",bottom:0,left:0,right:0,height:TRASH_H,display:"flex",alignItems:"center",justifyContent:"center",gap:8,background:trashHover?"rgba(239,68,68,.25)":"rgba(0,0,0,.06)",borderTop:trashHover?"3px solid #ef4444":"2px dashed rgba(0,0,0,.15)",transition:"all .2s",zIndex:30,pointerEvents:"none"}}>
-            <span style={{fontSize:trashHover?28:22,transition:"font-size .2s"}}>{"🗑"}</span>
-            <span style={{fontSize:13,fontWeight:800,color:trashHover?"#dc2626":"rgba(0,0,0,.25)",transition:"color .2s"}}>{trashHover?t("tool.clear"):""}
+          {/* Trash zone — sağ kenarda dikey şerit, toolbar ile çakışmaz, zoom'dan bağımsız sabit */}
+          {trkDrag!=null?(<div style={{position:"absolute",top:56,right:0,bottom:90,width:TRASH_W,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:10,background:trashHover?"rgba(239,68,68,.25)":"rgba(0,0,0,.06)",borderLeft:trashHover?"3px solid #ef4444":"2px dashed rgba(0,0,0,.15)",borderTopLeftRadius:12,borderBottomLeftRadius:12,transition:"all .2s",zIndex:30,pointerEvents:"none"}}>
+            <span style={{fontSize:trashHover?34:26,transition:"font-size .2s"}}>{"🗑"}</span>
+            <span style={{fontSize:11,fontWeight:800,color:trashHover?"#dc2626":"rgba(0,0,0,.35)",transition:"color .2s",textAlign:"center",padding:"0 6px",lineHeight:1.25}}>{trashHover?t("tool.clear"):"→"}
             </span>
           </div>):null}
-          {/* Zoom kontrol: + − % — sol altta (A11y sağ altta) */}
-          <div style={{position:"absolute",bottom:trkDrag!=null?TRASH_H+8:12,left:12,display:"flex",flexDirection:"column",gap:3,background:"rgba(255,255,255,.92)",borderRadius:10,padding:4,boxShadow:"0 3px 12px rgba(0,0,0,.18)",border:"1px solid rgba(0,0,0,.08)",zIndex:20,transition:"bottom .2s"}}>
+          {/* Zoom kontrol: + − % — sol altta sabit (trash sağda, A11y sağda-alt) */}
+          <div style={{position:"absolute",bottom:12,left:12,display:"flex",flexDirection:"column",gap:3,background:"rgba(255,255,255,.92)",borderRadius:10,padding:4,boxShadow:"0 3px 12px rgba(0,0,0,.18)",border:"1px solid rgba(0,0,0,.08)",zIndex:20}}>
             <button onClick={function(){setZoom(function(z){return Math.min(3,Math.round((z+0.15)*100)/100);});}} title={t("tool.zoomIn")||"Büyüt"} style={{width:34,height:30,borderRadius:7,border:"none",background:"#fff",cursor:"pointer",fontSize:17,fontWeight:900,color:"#555",fontFamily:"inherit",boxShadow:"0 1px 3px rgba(0,0,0,.1)"}}>{"+"}</button>
             <button onClick={function(){setZoom(1);setPan({x:0,y:0});}} title={t("tool.zoomReset")||"Sıfırla"} style={{width:34,height:26,borderRadius:7,border:"none",background:zoom===1?"#f5f5f5":"#fef3c7",cursor:"pointer",fontSize:10,fontWeight:800,color:"#555",fontFamily:"inherit"}}>{Math.round(zoom*100)+"%"}</button>
             <button onClick={function(){setZoom(function(z){return Math.max(0.3,Math.round((z-0.15)*100)/100);});}} title={t("tool.zoomOut")||"Küçült"} style={{width:34,height:30,borderRadius:7,border:"none",background:"#fff",cursor:"pointer",fontSize:17,fontWeight:900,color:"#555",fontFamily:"inherit",boxShadow:"0 1px 3px rgba(0,0,0,.1)"}}>{"−"}</button>
