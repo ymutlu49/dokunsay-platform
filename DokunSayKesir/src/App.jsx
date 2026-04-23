@@ -283,19 +283,13 @@ function WholeBarTrack(props) {
           <span onClick={function(e){e.stopPropagation();speak(fracSpeech(totalVal,pieces),t("speech.lang"));}} style={{cursor:"pointer",fontSize:12,opacity:.5,transition:"opacity .2s"}} onMouseEnter={function(e){e.currentTarget.style.opacity="1";}} onMouseLeave={function(e){e.currentTarget.style.opacity=".5";}}>{"🔊"}</span>
         </div>):null}
         {totalVal>0&&fracDen>1?(
-          props.labelMode==="dec"?(
-            <span style={{fontSize:Math.min(38,W*0.1),fontWeight:900,color:isEquiv?"#16a34a":"#2563eb",lineHeight:1}}>{totalVal===Math.round(totalVal)?totalVal.toString():totalVal.toFixed(totalVal*100%1<0.01?2:3)}</span>
-          ):props.labelMode==="pct"?(
-            <span style={{fontSize:Math.min(36,W*0.09),fontWeight:900,color:isEquiv?"#16a34a":"#9333ea",lineHeight:1}}>{"% "+Math.round(totalVal*100)}</span>
-          ):(
-            <div style={{display:"flex",flexDirection:"column",alignItems:"center"}}>
-              <span style={{fontSize:Math.min(42,W*0.11),fontWeight:900,color:isEquiv?"#16a34a":"#dc2626",lineHeight:1}}>{fracNum}</span>
-              <div style={{width:Math.min(46,W*0.12),height:3.5,background:isEquiv?"#16a34a":"#dc2626",borderRadius:1,margin:"3px 0"}}/>
-              <span style={{fontSize:Math.min(42,W*0.11),fontWeight:900,color:isEquiv?"#16a34a":"#dc2626",lineHeight:1}}>{fracDen}</span>
-            </div>
-          )
+          <div style={{display:"flex",flexDirection:"column",alignItems:"center"}}>
+            <span style={{fontSize:Math.min(42,W*0.11),fontWeight:900,color:isEquiv?"#16a34a":"#dc2626",lineHeight:1}}>{fracNum}</span>
+            <div style={{width:Math.min(46,W*0.12),height:3.5,background:isEquiv?"#16a34a":"#dc2626",borderRadius:1,margin:"3px 0"}}/>
+            <span style={{fontSize:Math.min(42,W*0.11),fontWeight:900,color:isEquiv?"#16a34a":"#dc2626",lineHeight:1}}>{fracDen}</span>
+          </div>
         ):totalVal>0&&fracDen===1?(
-          <span style={{fontSize:Math.min(42,W*0.11),fontWeight:900,color:isEquiv?"#16a34a":"#dc2626",lineHeight:1}}>{props.labelMode==="pct"?"% 100":props.labelMode==="dec"?"1.0":"1"}</span>
+          <span style={{fontSize:Math.min(42,W*0.11),fontWeight:900,color:isEquiv?"#16a34a":"#dc2626",lineHeight:1}}>{"1"}</span>
         ):(
           <span style={{fontSize:32,fontWeight:900,color:"#ddd",lineHeight:1}}>{"?"}</span>
         )}
@@ -333,7 +327,7 @@ export default function App() {
   var _panning=useState(false),panning=_panning[0],setPanning=_panning[1];
   var _panStart=useState({x:0,y:0}),panStart=_panStart[0],setPanStart=_panStart[1]; /* {pageId: {items,lines,ops}} */
   var _showLabels=useState(true),showLabels=_showLabels[0],setLabels=_showLabels[1];
-  var _labelMode=useState("frac"),labelMode=_labelMode[0],setLabelMode=_labelMode[1];
+  /* labelMode kaldırıldı: her zaman kesir (üçlü kod ilkesi — sözel ile sembol tutarlı) */
   var _transp=useState(false),transpMode=_transp[0],setTransp=_transp[1];
   var _sideTab=useState("mat"),sideTab=_sideTab[0],setSideTab=_sideTab[1];
   var _collapsed=useState(false),collapsed=_collapsed[0],setCollapsed=_collapsed[1];
@@ -970,7 +964,6 @@ export default function App() {
                 <button onClick={doRedo} style={bs(false,{opacity:futRef.current.length?1:.4,fontSize:12,padding:"5px 8px"})}>{"↪"}</button>
                 <div style={{width:1,height:16,background:PBD}}/>
                 <button onClick={function(){setLabels(!showLabels);}} style={bs(showLabels,{fontSize:10,padding:"5px 8px"})}>{"Aa"}</button>
-                <button onClick={function(){setLabelMode(function(m){return m==="frac"?"dec":m==="dec"?"pct":"frac";});}} style={bs(labelMode!=="frac",{fontSize:10,minWidth:30,padding:"5px 8px"})}>{labelMode==="frac"?"½":labelMode==="dec"?"0.5":"%"}</button>
                 <button onClick={function(){setTransp(!transpMode);}} style={bs(transpMode,{fontSize:10,padding:"5px 8px"})} title={t("tool.transparency")}>{"👁"}</button>
                 <div style={{width:1,height:16,background:PBD}}/>
                 <button onClick={function(){setItems(autoLayout(irRef.current));}} style={bs(false,{fontSize:10,padding:"5px 8px"})}>{"⊞"}</button>
@@ -1000,8 +993,8 @@ export default function App() {
           onDoubleClick={function(e){if(tool!=="pen"&&!txtIn){var r=cvRef.current.getBoundingClientRect();setTxtIn({x:(e.clientX-r.left)/zoom,y:(e.clientY-r.top)/zoom});setTxtVal("");}}}
           onWheel={function(e){if(e.ctrlKey||e.metaKey){e.preventDefault();setZoom(function(z){return Math.max(0.3,Math.min(3,z+(e.deltaY>0?-0.1:0.1)));});}}}
         >
-          {/* FLOATING TOOLBAR — top center */}
-          <div style={{position:"absolute",top:10,left:"50%",transform:"translateX(-50%)",zIndex:40,display:"flex",alignItems:"center",gap:6,padding:"6px 14px",background:"rgba(255,255,255,.92)",backdropFilter:"blur(14px)",borderRadius:14,border:"1px solid rgba(0,0,0,.1)",boxShadow:"0 3px 16px rgba(0,0,0,.12)"}}>
+          {/* FLOATING TOOLBAR — bottom center (drag sırasında gizlenir) */}
+          <div style={{position:"absolute",bottom:trkDrag!=null?-80:12,left:"50%",transform:"translateX(-50%)",zIndex:40,display:"flex",alignItems:"center",gap:6,padding:"6px 14px",background:"rgba(255,255,255,.95)",backdropFilter:"blur(14px)",borderRadius:14,border:"1px solid rgba(0,0,0,.1)",boxShadow:"0 -3px 16px rgba(0,0,0,.12)",opacity:trkDrag!=null?0:1,pointerEvents:trkDrag!=null?"none":"auto",transition:"opacity .2s, bottom .2s"}}>
             {/* Sayfa sekmeleri */}
             {pages.map(function(pg){return(
               <div key={pg.id} onClick={function(){if(pg.id!==pageId)switchPage(pg.id);}} style={{display:"flex",alignItems:"center",gap:3,padding:"5px 10px",borderRadius:8,background:pg.id===pageId?"#f59e0b":"transparent",cursor:"pointer",fontSize:11,fontWeight:pg.id===pageId?800:600,color:pg.id===pageId?"#fff":"#888",transition:"all .2s"}}>
@@ -1105,7 +1098,7 @@ export default function App() {
                       })}
                     </div>);
                   })():null}
-                  <WholeBarTrack trackId={tk.id} wholes={tk.wholes||1} pieces={tk.pieces||[]} showLabel={showLabels} labelMode={labelMode} showPie={trackCount<=1} barWidth={scaledBarWidth} isEquiv={!!equivIds[tk.id]} isDropTarget={dropTarget===tk.id} compact={trackCount>=2} isScissors={tool==="scissors"} onPieceClick={function(idx){handlePieceClick(tk.id,idx);}} onPieceDrag={function(idx,pn,pci,e){startPieceDrag(tk.id,idx,pn,pci,e);}} onSetWholes={function(w){setWholes(tk.id,w);}}/>
+                  <WholeBarTrack trackId={tk.id} wholes={tk.wholes||1} pieces={tk.pieces||[]} showLabel={showLabels} showPie={trackCount<=1} barWidth={scaledBarWidth} isEquiv={!!equivIds[tk.id]} isDropTarget={dropTarget===tk.id} compact={trackCount>=2} isScissors={tool==="scissors"} onPieceClick={function(idx){handlePieceClick(tk.id,idx);}} onPieceDrag={function(idx,pn,pci,e){startPieceDrag(tk.id,idx,pn,pci,e);}} onSetWholes={function(w){setWholes(tk.id,w);}}/>
                 </div>
 
                 {/* İŞLEM İŞARETİ — kesir sayısıyla tam hizalı */}
@@ -1173,7 +1166,7 @@ export default function App() {
                   {/* İşaretler (marks) */}
                   {(it.marks||[]).map(function(m,mi){
                     var mx=10+Math.round(m.val*W1);
-                    return(<g key={"m"+mi}><polygon points={(mx-5)+",8 "+(mx+5)+",8 "+mx+",14"} fill="#dc2626"/><text x={mx} y={4} textAnchor="middle" fontSize={9} fontWeight={800} fill="#dc2626">{labelMode==="dec"?m.val.toFixed(2):labelMode==="pct"?Math.round(m.val*100)+"%":fracLabel(m.val)}</text></g>);
+                    return(<g key={"m"+mi}><polygon points={(mx-5)+",8 "+(mx+5)+",8 "+mx+",14"} fill="#dc2626"/><text x={mx} y={4} textAnchor="middle" fontSize={9} fontWeight={800} fill="#dc2626">{fracLabel(m.val)}</text></g>);
                   })}
                 </svg>
                 {/* Sayı doğrusuna tıklayarak işaret ekle */}
@@ -1329,7 +1322,7 @@ export default function App() {
                   setBarDragPos({x:e.clientX,y:e.clientY});
                 }}>
                 <div style={{width:bw,height:bh,borderRadius:6,background:"linear-gradient(180deg,"+FC[ci%FC.length]+","+FB[ci%FB.length]+")",border:"2.5px solid "+FB[ci%FB.length],display:"flex",alignItems:"center",justifyContent:"center",boxShadow:"0 2px 8px rgba(0,0,0,.25)",cursor:"grab",opacity:transpMode?.55:1}}>
-                    <span style={{fontSize:bw<30?7:bw<50?9:bw<80?12:Math.min(16,bh*0.5),fontWeight:900,color:"#fff"}}>{showLabels?(labelMode==="dec"?(1/it.n).toFixed(it.n<=4?1:2):labelMode==="pct"?Math.round(100/it.n)+"%":label):""}</span>
+                    <span style={{fontSize:bw<30?7:bw<50?9:bw<80?12:Math.min(16,bh*0.5),fontWeight:900,color:"#fff"}}>{showLabels?label:""}</span>
                   </div>
                   {/* Payda değiştirme (kesir değeri) */}
                   <div onPointerDown={function(e){e.stopPropagation();}} style={{position:"absolute",top:-7,right:-4,display:"flex",gap:1,zIndex:5}}>
