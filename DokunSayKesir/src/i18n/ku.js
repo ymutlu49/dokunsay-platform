@@ -100,6 +100,7 @@ export default {
   "tool.zoomOut": "Piçûktir bike",
   "tool.zoomReset": "Mezinkirinê sifir bike",
   "tool.eraser": "Jêbir (li xetê bitikîne → jê bibe)",
+  "tool.pan": "Kaydar (bi kişandinê wêneyê bibe; Space an Alt+çep)",
 
   /* ===== KONTROLÊN NESNEYÎ (çovik û gilok) ===== */
   "obj.enlarge": "Mezintir bike (bin biçûktir dibe)",

@@ -100,6 +100,7 @@ export default {
   "tool.zoomOut": "Zoom out",
   "tool.zoomReset": "Reset zoom",
   "tool.eraser": "Eraser (tap a stroke to delete)",
+  "tool.pan": "Pan (drag to move view; Space or Alt+click)",
 
   /* ===== OBJECT CONTROLS (bar & pie) ===== */
   "obj.enlarge": "Enlarge (denominator decreases)",

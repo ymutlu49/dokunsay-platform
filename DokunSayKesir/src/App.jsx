@@ -461,6 +461,8 @@ export default function App() {
   var _splitMenu=useState(null),splitMenu=_splitMenu[0],setSplitMenu=_splitMenu[1]; /* {id:itemId, type:"bar"|"pie"} */
   /* Sayı doğrusu hover göstergesi */
   var _nlHover=useState(null),nlHover=_nlHover[0],setNlHover=_nlHover[1]; /* {id, val} */
+  /* Space tuşu basılı mı (pan için) */
+  var _space=useState(false),spacePressed=_space[0],setSpacePressed=_space[1];
 
   var cvRef=useRef(null),idRef=useRef(100);
   var irRef=useRef(items);irRef.current=items;
@@ -775,9 +777,10 @@ export default function App() {
       e.preventDefault();
       var r=cvRef.current.getBoundingClientRect();
       var z=zoomRef.current||1;
+      var px=panRef.current.x,py=panRef.current.y;
       /* Coalesced events ile yüksek DPI cihazlarda daha pürüzsüz çizgi */
       var evs=(e.getCoalescedEvents&&e.getCoalescedEvents().length)?e.getCoalescedEvents():[e];
-      var newPts=evs.map(function(ev){return {x:(ev.clientX-r.left)/z,y:(ev.clientY-r.top)/z};});
+      var newPts=evs.map(function(ev){return {x:(ev.clientX-r.left-px)/z,y:(ev.clientY-r.top-py)/z};});
       setCurLine(function(prev){
         if(!prev)return prev;
         /* Çok yakın noktaları atla — performans + smoothing */
@@ -810,7 +813,29 @@ export default function App() {
       window.removeEventListener("blur",onCancel);
     };
   });
-  useEffect(function(){function onKey(e){if(txtIn)return;if((e.ctrlKey||e.metaKey)&&e.key==="z"){e.preventDefault();doUndo();}if((e.ctrlKey||e.metaKey)&&e.key==="y"){e.preventDefault();doRedo();}if((e.key==="Delete"||e.key==="Backspace")&&selTrack!=null){e.preventDefault();removeTrack(selTrack);setSelTrack(null);}if(e.key==="n"||e.key==="N")placeTrack();if(e.key==="l"||e.key==="L")setLabels(function(v){return !v;});if(e.key==="Escape")setSelTrack(null);if(e.key==="?")setHelp(function(v){return !v;});}window.addEventListener("keydown",onKey);return function(){window.removeEventListener("keydown",onKey);};});
+  useEffect(function(){
+    function onKey(e){
+      if(txtIn)return;
+      if((e.ctrlKey||e.metaKey)&&e.key==="z"){e.preventDefault();doUndo();}
+      if((e.ctrlKey||e.metaKey)&&e.key==="y"){e.preventDefault();doRedo();}
+      if((e.key==="Delete"||e.key==="Backspace")&&selTrack!=null){e.preventDefault();removeTrack(selTrack);setSelTrack(null);}
+      if(e.key==="n"||e.key==="N")placeTrack();
+      if(e.key==="l"||e.key==="L")setLabels(function(v){return !v;});
+      if(e.key==="Escape")setSelTrack(null);
+      if(e.key==="?")setHelp(function(v){return !v;});
+      /* Space = pan modu (basılı tutuldukça) */
+      if(e.key===" "&&!e.repeat){e.preventDefault();setSpacePressed(true);}
+    }
+    function onKeyUp(e){
+      if(e.key===" "){setSpacePressed(false);}
+    }
+    window.addEventListener("keydown",onKey);
+    window.addEventListener("keyup",onKeyUp);
+    return function(){
+      window.removeEventListener("keydown",onKey);
+      window.removeEventListener("keyup",onKeyUp);
+    };
+  });
   useEffect(function(){if(window.innerWidth<768)setCollapsed(true);},[]);
 
   /* Ekran → kanvas koordinat dönüşümü */
@@ -833,16 +858,25 @@ export default function App() {
     return function(){el.removeEventListener("wheel",onWheel);};
   });
 
-  /* Pan: middle mouse veya space+drag */
+  /* Pan: Alt+drag, orta tık, Space+drag veya el aracı seçili iken drag */
   useEffect(function(){
     if(!panning)return;
+    var lastX=panStart.x,lastY=panStart.y;
     function onMove(e){
-      setPan({x:pan.x+(e.clientX-panStart.x),y:pan.y+(e.clientY-panStart.y)});
-      setPanStart({x:e.clientX,y:e.clientY});
+      var dx=e.clientX-lastX,dy=e.clientY-lastY;
+      lastX=e.clientX;lastY=e.clientY;
+      setPan(function(p){return{x:p.x+dx,y:p.y+dy};});
     }
     function onUp(){setPanning(false);}
-    window.addEventListener("pointermove",onMove);window.addEventListener("pointerup",onUp);
-    return function(){window.removeEventListener("pointermove",onMove);window.removeEventListener("pointerup",onUp);};
+    function onCancel(){setPanning(false);}
+    window.addEventListener("pointermove",onMove);
+    window.addEventListener("pointerup",onUp);
+    window.addEventListener("pointercancel",onCancel);
+    return function(){
+      window.removeEventListener("pointermove",onMove);
+      window.removeEventListener("pointerup",onUp);
+      window.removeEventListener("pointercancel",onCancel);
+    };
   });
 
   /* Denk kesir - placeholder, exprCorrect sonrası doldurulur */
@@ -1104,12 +1138,14 @@ export default function App() {
         </div>
 
         {/* CANVAS */}
-        <div ref={cvRef} tabIndex={0} style={Object.assign({flex:1,position:"relative",overflow:"hidden",cursor:panning?"grabbing":tool==="pen"?"crosshair":tool==="eraser"?"not-allowed":tool==="text"?"text":tool==="scissors"?"crosshair":"default",outline:"none"},canvasBg)}
+        <div ref={cvRef} tabIndex={0} style={Object.assign({flex:1,position:"relative",overflow:"hidden",cursor:panning?"grabbing":(tool==="pan"||spacePressed)?"grab":tool==="pen"?"crosshair":tool==="eraser"?"not-allowed":tool==="text"?"text":tool==="scissors"?"crosshair":"default",outline:"none"},canvasBg)}
           onPointerDown={function(e){if(!cvRef.current)return;
-            if(e.button===1||(e.altKey&&e.button===0)){e.preventDefault();setPanning(true);setPanStart({x:e.clientX,y:e.clientY});return;}
-            var r=cvRef.current.getBoundingClientRect();var x=(e.clientX-r.left)/zoom,y=(e.clientY-r.top)/zoom;
+            /* Pan başlat: orta tık, Alt+sol, Space+sol, veya el aracı (tool==="pan") */
+            if(e.button===1||(e.altKey&&e.button===0)||(spacePressed&&e.button===0)||(tool==="pan"&&e.button===0)){e.preventDefault();setPanning(true);setPanStart({x:e.clientX,y:e.clientY});return;}
+            var r=cvRef.current.getBoundingClientRect();
+            var x=(e.clientX-r.left-pan.x)/zoom,y=(e.clientY-r.top-pan.y)/zoom;
             setSelTrack(null);if(tool==="pen")setCurLine({pts:[{x:x,y:y}],color:penClr,w:penW});else if(tool==="text"){setTxtIn({x:x,y:y});setTxtVal("");}}}
-          onDoubleClick={function(e){if(tool!=="pen"&&!txtIn){var r=cvRef.current.getBoundingClientRect();setTxtIn({x:(e.clientX-r.left)/zoom,y:(e.clientY-r.top)/zoom});setTxtVal("");}}}
+          onDoubleClick={function(e){if(tool!=="pen"&&!txtIn){var r=cvRef.current.getBoundingClientRect();setTxtIn({x:(e.clientX-r.left-pan.x)/zoom,y:(e.clientY-r.top-pan.y)/zoom});setTxtVal("");}}}
           onWheel={function(e){if(e.ctrlKey||e.metaKey){e.preventDefault();setZoom(function(z){return Math.max(0.3,Math.min(3,z+(e.deltaY>0?-0.1:0.1)));});}}}
         >
           {/* FLOATING TOOLBAR — bottom center, her zaman görünür (trash zone sağ kenarda) */}
@@ -1125,6 +1161,7 @@ export default function App() {
             <div style={{width:1,height:22,background:"rgba(0,0,0,.12)",margin:"0 3px"}}/>
             {/* Araçlar */}
             <button onClick={function(){setTool("select");}} title={t("tool.select")} style={{width:32,height:32,borderRadius:8,border:tool==="select"?"2px solid #f59e0b":"1.5px solid transparent",background:tool==="select"?"#fef3c7":"transparent",cursor:"pointer",fontSize:16,display:"flex",alignItems:"center",justifyContent:"center",transition:"all .15s"}}>{"👆"}</button>
+            <button onClick={function(){setTool("pan");}} title={t("tool.pan")} style={{width:32,height:32,borderRadius:8,border:tool==="pan"?"2px solid #f59e0b":"1.5px solid transparent",background:tool==="pan"?"#fef3c7":"transparent",cursor:"pointer",fontSize:16,display:"flex",alignItems:"center",justifyContent:"center",transition:"all .15s"}}>{"✋"}</button>
             <button onClick={function(){setTool("pen");}} title={t("tool.pen")} style={{width:32,height:32,borderRadius:8,border:tool==="pen"?"2px solid #f59e0b":"1.5px solid transparent",background:tool==="pen"?"#fef3c7":"transparent",cursor:"pointer",fontSize:16,display:"flex",alignItems:"center",justifyContent:"center",transition:"all .15s"}}>{"✏️"}</button>
             <button onClick={function(){setTool("eraser");}} title={t("tool.eraser")} style={{width:32,height:32,borderRadius:8,border:tool==="eraser"?"2px solid #f59e0b":"1.5px solid transparent",background:tool==="eraser"?"#fef3c7":"transparent",cursor:"pointer",fontSize:14,fontWeight:900,display:"flex",alignItems:"center",justifyContent:"center",transition:"all .15s",color:"#666"}}>{"⌫"}</button>
             <button onClick={function(){setTool("scissors");}} title={t("tool.scissors")} style={{width:32,height:32,borderRadius:8,border:tool==="scissors"?"2px solid #f59e0b":"1.5px solid transparent",background:tool==="scissors"?"#fef3c7":"transparent",cursor:"pointer",fontSize:16,display:"flex",alignItems:"center",justifyContent:"center",transition:"all .15s"}}>{"✂️"}</button>
@@ -1139,7 +1176,7 @@ export default function App() {
               {[2,3,5,8,12].map(function(w){return <div key={w} onClick={function(){setPenW(w);}} title={"Kalınlık "+w} style={{width:w+10,height:w+10,borderRadius:"50%",background:penW===w?"#333":"#bbb",cursor:"pointer",border:penW===w?"2px solid #222":"2px solid transparent"}}/>;})}
             </>):null}
           </div>
-          <div style={{transformOrigin:"0 0",transform:"scale("+zoom+")",width:"100%",height:"100%"}}>
+          <div style={{transformOrigin:"0 0",transform:"translate("+pan.x+"px,"+pan.y+"px) scale("+zoom+")",width:"100%",height:"100%"}}>
           <svg style={{position:"absolute",inset:0,width:"100%",height:"100%",pointerEvents:tool==="eraser"?"auto":"none",zIndex:3}}>
             {drawLines.map(function(l,li){return <path key={"l"+li} d={penPath(l.pts)} fill="none" stroke={l.color} strokeWidth={l.w} strokeLinecap="round" strokeLinejoin="round" style={{cursor:tool==="eraser"?"pointer":"default",pointerEvents:tool==="eraser"?"stroke":"none"}} onClick={tool==="eraser"?(function(idx){return function(e){e.stopPropagation();hPush();setDrawLines(function(dl){var n=dl.slice();n.splice(idx,1);return n;});};})(li):undefined}/>;})}
             {curLine?<path d={penPath(curLine.pts)} fill="none" stroke={curLine.color} strokeWidth={curLine.w} strokeLinecap="round" strokeLinejoin="round" opacity={0.95}/>:null}

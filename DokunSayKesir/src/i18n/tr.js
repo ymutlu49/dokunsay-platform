@@ -100,6 +100,7 @@ export default {
   "tool.zoomOut": "Küçült",
   "tool.zoomReset": "Yakınlaştırmayı sıfırla",
   "tool.eraser": "Silgi (çizgiye tıkla → sil)",
+  "tool.pan": "Kaydır (sürükle ile görüntüyü taşı; Space veya Alt+sol tık)",
 
   /* ===== OBJECT CONTROLS (bar & pie) ===== */
   "obj.enlarge": "Büyüt (payda küçülür)",
