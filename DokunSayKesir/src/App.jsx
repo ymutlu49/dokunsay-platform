@@ -69,53 +69,170 @@ var ACT=[
     s:{m:[{w:1,p:[{n:6},{n:6},{n:6}]},{w:1,p:[{n:2}]}],o:{0:"="}}},
 
   /* Kavram Yanılgıları */
-  {n:"Y1: Bütün aynı mı?",i:"🔍",cat:"yanılgı",diff:2,d:"YANILGI: '1/2 (ya da 1/3, 1/4) her zaman aynı miktardır.' DOĞRU: Kesir, REFERANS bütüne göre değer kazanır. Sol: 1 bütünün parçası. Sağ: 2 tam kabul edildiğinde aynı kesrin oluşturduğu miktar. Sayı doğrularına bak — aynı etiket farklı miktarları gösterebilir! (Behr, Lesh, Post & Silver, 1983)",k:"KY",
+  {n:"Y1: Bütün aynı mı?",i:"🔍",cat:"yanılgı",diff:2,d:"YANILGI: 'Aynı etiketli kesir (ör. 1/2, 1/3) her zaman aynı miktardır.' DOĞRU: Kesir, REFERANS bütüne göre değer kazanır. Her tıklamada farklı bir kesir, 1 bütün ve 2 bütün (iki farklı referans) üzerinde görünür. Sayı doğrularına bak — aynı etiket farklı miktarları gösterebilir! (Behr, Lesh, Post & Silver, 1983; Mack, 1990)",k:"KY",
     variants:[
       {m:[{w:1,p:[{n:2}]},{w:2,p:[{n:2}]}],o:{}},
       {m:[{w:1,p:[{n:3}]},{w:2,p:[{n:3}]}],o:{}},
       {m:[{w:1,p:[{n:4}]},{w:2,p:[{n:4}]}],o:{}},
       {m:[{w:1,p:[{n:3},{n:3}]},{w:2,p:[{n:3},{n:3}]}],o:{}},
       {m:[{w:1,p:[{n:4},{n:4},{n:4}]},{w:2,p:[{n:4},{n:4},{n:4}]}],o:{}},
+      {m:[{w:1,p:[{n:5},{n:5},{n:5}]},{w:2,p:[{n:5},{n:5},{n:5}]}],o:{}},
+      {m:[{w:1,p:[{n:6},{n:6},{n:6},{n:6},{n:6}]},{w:2,p:[{n:6},{n:6},{n:6},{n:6},{n:6}]}],o:{}},
+      {m:[{w:1,p:[{n:8}]},{w:3,p:[{n:8}]}],o:{}},
+      {m:[{w:1,p:[{n:4},{n:4},{n:4}]},{w:3,p:[{n:4},{n:4},{n:4}]}],o:{}},
     ],
     s:{m:[{w:1,p:[{n:2}]},{w:2,p:[{n:2}]}],o:{}}},
-  {n:"Y2: Payda büyük = büyük mü?",i:"🔍",cat:"yanılgı",diff:2,d:"YANILGI: '6, 4'ten büyük olduğu için 1/6 > 1/4.' DOĞRU: Payda ne kadar büyükse parça o kadar KÜÇÜK olur (bütün daha çok parçaya bölünür). Sol: 1/6, sağ: 1/4. İki çubuğu karşılaştır — hangisi daha uzun? İki kesir arasındaki daireye tıkla; =, <, > sembolleri arasında döner. Doğru karşılaştırmayı seç! (Stafylidou & Vosniadou, 2004)",k:"KY",expr:"1/6 ? 1/4",
+  {n:"Y2: Payda büyük = büyük mü?",i:"🔍",cat:"yanılgı",diff:2,d:"YANILGI: '6, 4'ten büyük olduğu için 1/6 > 1/4.' DOĞRU: Payda ne kadar büyükse parça o kadar KÜÇÜK olur (bütün daha çok parçaya bölünür). Her tıklamada farklı birim kesir çifti gelir; iki çubuğu karşılaştır. İki kesir arasındaki daireye tıkla → =, <, > arasında döner. Doğru karşılaştırmayı seç! (Stafylidou & Vosniadou, 2004; Hansen, 2014)",k:"KY",expr:"1/a ? 1/b",
+    variants:[
+      {m:[{w:1,p:[{n:6}]},{w:1,p:[{n:4}]}],o:{0:"<"}},
+      {m:[{w:1,p:[{n:5}]},{w:1,p:[{n:3}]}],o:{0:"<"}},
+      {m:[{w:1,p:[{n:8}]},{w:1,p:[{n:4}]}],o:{0:"<"}},
+      {m:[{w:1,p:[{n:10}]},{w:1,p:[{n:6}]}],o:{0:"<"}},
+      {m:[{w:1,p:[{n:12}]},{w:1,p:[{n:8}]}],o:{0:"<"}},
+      {m:[{w:1,p:[{n:3}]},{w:1,p:[{n:2}]}],o:{0:"<"}},
+      {m:[{w:1,p:[{n:4}]},{w:1,p:[{n:2}]}],o:{0:"<"}},
+    ],
     s:{m:[{w:1,p:[{n:6}]},{w:1,p:[{n:4}]}],o:{0:"<"}}},
-  {n:"Y3: Eş parçalar şartı",i:"🔍",cat:"yanılgı",diff:2,d:"YANILGI: 'Bütün kaç parçaya bölünürse bölünsün, her parça bir kesirdir.' DOĞRU: Bütün EŞİT parçalara bölünmedikçe kesir oluşmaz. Sol modelde 3 eş parça (3 × 1/3) var → her biri 1/3. Sağ modele farklı paydalı çubuklar (örn. 1/2 + 1/4 + 1/4) koy — bütünü doldursa da her parça ayrı değer taşır, üçte bir DEĞİLDİR! (Kamii & Clark, 1995)",k:"KY",
+  {n:"Y3: Eş parçalar şartı",i:"🔍",cat:"yanılgı",diff:2,d:"YANILGI: 'Bütün kaç parçaya bölünürse bölünsün, her parça bir kesirdir.' DOĞRU: Bütün EŞİT parçalara bölünmedikçe kesir oluşmaz. Sol modelde eş paydalı parçalar var (her biri aynı büyüklükte). Sağ modele farklı paydalı çubuklar koy — bütünü doldursa da her parça AYRI değer taşır, aynı kesir DEĞİLDİR! (Kamii & Clark, 1995; Hansen, 2014)",k:"KY",
+    variants:[
+      {m:[{w:1,p:[{n:3},{n:3},{n:3}]},{w:1,p:[]}],o:{}},
+      {m:[{w:1,p:[{n:4},{n:4},{n:4},{n:4}]},{w:1,p:[]}],o:{}},
+      {m:[{w:1,p:[{n:5},{n:5},{n:5},{n:5},{n:5}]},{w:1,p:[]}],o:{}},
+      {m:[{w:1,p:[{n:6},{n:6},{n:6},{n:6},{n:6},{n:6}]},{w:1,p:[]}],o:{}},
+      {m:[{w:1,p:[{n:8},{n:8},{n:8},{n:8},{n:8},{n:8},{n:8},{n:8}]},{w:1,p:[]}],o:{}},
+    ],
     s:{m:[{w:1,p:[{n:3},{n:3},{n:3}]},{w:1,p:[]}],o:{}}},
-  {n:"Y4: Sayı doğrusunda konum",i:"🔍",cat:"yanılgı",diff:3,d:"YANILGI: 'Kesir bir sayı değil, iki sayının bir arada yazılmasıdır.' DOĞRU: Her kesir sayı doğrusunda TEK bir NOKTADIR. Model 0-2 aralığında: sol 5/4, sağ 4/3. Kırmızı okların yerlerini karşılaştır — hangisi daha sağda? <, >, = sembollerinden doğru olanı seç! (Bright, Behr, Post & Wachsmuth, 1988)",k:"KY",expr:"5/4 ? 4/3",
+  {n:"Y4: Sayı doğrusunda konum",i:"🔍",cat:"yanılgı",diff:3,d:"YANILGI: 'Kesir bir sayı değil, iki sayının bir arada yazılmasıdır.' DOĞRU: Her kesir sayı doğrusunda TEK bir NOKTADIR. Her tıklamada farklı bir kesir çifti gelir (0-2 aralığında). Kırmızı okların yerlerini karşılaştır, <, >, = sembollerinden doğru olanı seç! (Bright, Behr, Post & Wachsmuth, 1988; Siegler et al., 2011)",k:"KY",expr:"a/b ? c/d",
+    variants:[
+      {m:[{w:2,p:[{n:4},{n:4},{n:4},{n:4},{n:4}]},{w:2,p:[{n:3},{n:3},{n:3},{n:3}]}],o:{0:"<"}},
+      {m:[{w:2,p:[{n:4},{n:4},{n:4},{n:4},{n:4},{n:4},{n:4}]},{w:2,p:[{n:3},{n:3},{n:3},{n:3},{n:3}]}],o:{0:"<"}},
+      {m:[{w:1,p:[{n:4},{n:4},{n:4}]},{w:1,p:[{n:3},{n:3}]}],o:{0:">"}},
+      {m:[{w:1,p:[{n:8},{n:8},{n:8},{n:8},{n:8}]},{w:1,p:[{n:6},{n:6},{n:6},{n:6}]}],o:{0:"<"}},
+      {m:[{w:2,p:[{n:2},{n:2},{n:2}]},{w:2,p:[{n:3},{n:3},{n:3},{n:3},{n:3}]}],o:{0:"<"}},
+      {m:[{w:2,p:[{n:5},{n:5},{n:5},{n:5},{n:5},{n:5},{n:5}]},{w:2,p:[{n:4},{n:4},{n:4},{n:4},{n:4}]}],o:{0:">"}},
+    ],
     s:{m:[{w:2,p:[{n:4},{n:4},{n:4},{n:4},{n:4}]},{w:2,p:[{n:3},{n:3},{n:3},{n:3}]}],o:{0:"<"}}},
-  {n:"Y5: Payda toplanır mı?",i:"🔍",cat:"yanılgı",diff:3,d:"YANILGI: '1/4 + 1/4 = 2/8.' DOĞRU: Aynı paydalı kesirlerde sadece PAYLAR toplanır, payda AYNI kalır: 1/4 + 1/4 = 2/4. Sol: 1/4, orta: 1/4. + ve = hazır. Sağ modele toplamı koy. 2/8 mi 2/4 mü? (Soylu & Soylu, 2005)",k:"KY",expr:"1/4 + 1/4 = ?",
+  {n:"Y5: Payda toplanır mı?",i:"🔍",cat:"yanılgı",diff:3,d:"YANILGI: '1/4 + 1/4 = 2/8.' DOĞRU: Aynı paydalı kesirlerde sadece PAYLAR toplanır, payda AYNI kalır. Her tıklamada farklı paydalı toplama gelir. Sağ modele toplamı koy — paydayı toplama tuzağına düşme! (Soylu & Soylu, 2005; Newton, 2008)",k:"KY",expr:"a/n + b/n = ?",
+    variants:[
+      {m:[{w:1,p:[{n:4}]},{w:1,p:[{n:4}]},{w:1,p:[]}],o:{0:"+",1:"="}},
+      {m:[{w:1,p:[{n:3}]},{w:1,p:[{n:3}]},{w:1,p:[]}],o:{0:"+",1:"="}},
+      {m:[{w:1,p:[{n:5},{n:5}]},{w:1,p:[{n:5}]},{w:1,p:[]}],o:{0:"+",1:"="}},
+      {m:[{w:1,p:[{n:6},{n:6}]},{w:1,p:[{n:6},{n:6},{n:6}]},{w:1,p:[]}],o:{0:"+",1:"="}},
+      {m:[{w:1,p:[{n:8}]},{w:1,p:[{n:8},{n:8},{n:8}]},{w:1,p:[]}],o:{0:"+",1:"="}},
+      {m:[{w:1,p:[{n:10},{n:10},{n:10}]},{w:1,p:[{n:10},{n:10}]},{w:1,p:[]}],o:{0:"+",1:"="}},
+    ],
     s:{m:[{w:1,p:[{n:4}]},{w:1,p:[{n:4}]},{w:1,p:[]}],o:{0:"+",1:"="}}},
-  {n:"Y6: Çarpma büyütür mü?",i:"🔍",cat:"yanılgı",diff:3,d:"YANILGI: 'Çarpma her zaman büyütür.' DOĞRU: 0 ile 1 arası kesirlerle çarparken sonuç KÜÇÜLÜR. 1/2 × 1/2: yarının yarısı = 1/4. Sol: 1/2, orta: 1/2, × ve = hazır. Sağ modele sonucu (bir 1/4) koy ve ilk modelden küçük olduğunu gör! (Graeber & Tanenhaus, 1993)",k:"KY",expr:"1/2 × 1/2 = ?",
+  {n:"Y6: Çarpma büyütür mü?",i:"🔍",cat:"yanılgı",diff:3,d:"YANILGI: 'Çarpma her zaman büyütür.' DOĞRU: 0 ile 1 arası kesirlerle çarparken sonuç KÜÇÜLÜR. Her tıklamada farklı kesir çarpımı gelir. Sağ modele sonucu koy — sonucun çarpanlardan küçük olduğunu gör! (Graeber & Tanenhaus, 1993; Fischbein et al., 1985)",k:"KY",expr:"a × b = ?",
+    variants:[
+      {m:[{w:1,p:[{n:2}]},{w:1,p:[{n:2}]},{w:1,p:[]}],o:{0:"×",1:"="}},
+      {m:[{w:1,p:[{n:3}]},{w:1,p:[{n:2}]},{w:1,p:[]}],o:{0:"×",1:"="}},
+      {m:[{w:1,p:[{n:4}]},{w:1,p:[{n:2}]},{w:1,p:[]}],o:{0:"×",1:"="}},
+      {m:[{w:1,p:[{n:3},{n:3}]},{w:1,p:[{n:2}]},{w:1,p:[]}],o:{0:"×",1:"="}},
+      {m:[{w:1,p:[{n:4},{n:4},{n:4}]},{w:1,p:[{n:3}]},{w:1,p:[]}],o:{0:"×",1:"="}},
+      {m:[{w:1,p:[{n:5},{n:5}]},{w:1,p:[{n:2}]},{w:1,p:[]}],o:{0:"×",1:"="}},
+    ],
     s:{m:[{w:1,p:[{n:2}]},{w:1,p:[{n:2}]},{w:1,p:[]}],o:{0:"×",1:"="}}},
-  {n:"Y7: Bölme küçültür mü?",i:"🔍",cat:"yanılgı",diff:3,d:"YANILGI: 'Bölme her zaman küçültür.' DOĞRU: 1'den küçük bir kesire bölünce sonuç BÜYÜR. 1 ÷ 1/2 = bir bütünde kaç yarım var? → 2. Sol: 1 tam (iki 1/2), orta: 1/2 (bölen), sağ (2 tam genişletilmiş) modele iki bütün değerinde çubuk koy. ÷ ve = hazır! (Fischbein, Deri, Nello & Marino, 1985)",k:"KY",expr:"1 ÷ 1/2 = ?",
+  {n:"Y7: Bölme küçültür mü?",i:"🔍",cat:"yanılgı",diff:3,d:"YANILGI: 'Bölme her zaman küçültür.' DOĞRU: 1'den küçük bir kesire bölünce sonuç BÜYÜR. Her tıklamada farklı bölme gelir. Sağ modele sonucu koy — sonucun bölünenden BÜYÜK olduğunu gör! (Fischbein, Deri, Nello & Marino, 1985; Tirosh, 2000)",k:"KY",expr:"a ÷ b = ?",
+    variants:[
+      {m:[{w:1,p:[{n:2},{n:2}]},{w:1,p:[{n:2}]},{w:2,p:[]}],o:{0:"÷",1:"="}},
+      {m:[{w:1,p:[{n:3},{n:3},{n:3}]},{w:1,p:[{n:3}]},{w:3,p:[]}],o:{0:"÷",1:"="}},
+      {m:[{w:1,p:[{n:4},{n:4},{n:4},{n:4}]},{w:1,p:[{n:4}]},{w:4,p:[]}],o:{0:"÷",1:"="}},
+      {m:[{w:1,p:[{n:2}]},{w:1,p:[{n:4}]},{w:1,p:[]}],o:{0:"÷",1:"="}},
+      {m:[{w:1,p:[{n:3},{n:3}]},{w:1,p:[{n:6}]},{w:1,p:[]}],o:{0:"÷",1:"="}},
+      {m:[{w:1,p:[{n:2},{n:2}]},{w:1,p:[{n:4}]},{w:4,p:[]}],o:{0:"÷",1:"="}},
+    ],
     s:{m:[{w:1,p:[{n:2},{n:2}]},{w:1,p:[{n:2}]},{w:2,p:[]}],o:{0:"÷",1:"="}}},
 
   /* Yeni Kavram Yanılgıları — Literatür Taramasından */
-  {n:"Y8: Kesir iki ayrı sayı mı?",i:"🔬",cat:"yanılgı",diff:2,d:"YANILGI: '3/4' iki ayrı sayıdır (3 ve 4). DOĞRU: 3/4 TEK BİR DEĞERDİR. 1/4'ten üç kat uzaklıktaki bir nokta! Sol modele üç 1/4 koyulmuş → pay=3, payda=4 ama değer TEK. Sayı doğrusunda tek ok var, 3 ile 4 arası DEĞİL. (Stafylidou & Vosniadou, 2004; Hwang & Riccomini, 2021)",k:"KY",
+  {n:"Y8: Kesir iki ayrı sayı mı?",i:"🔬",cat:"yanılgı",diff:2,d:"YANILGI: 'a/b iki ayrı sayıdır.' DOĞRU: Her kesir TEK BİR DEĞERDİR, sayı doğrusunda tek bir NOKTA. Birim kesirden pay kadar uzakta tek bir yer gösterir. Her tıklamada farklı kesir gelir — pay ve payda ayrı ayrı düşünülmemeli! (Stafylidou & Vosniadou, 2004; Hwang & Riccomini, 2021)",k:"KY",
+    variants:[
+      {m:[{w:1,p:[{n:4},{n:4},{n:4}]}],o:{}},
+      {m:[{w:1,p:[{n:3},{n:3}]}],o:{}},
+      {m:[{w:1,p:[{n:5},{n:5},{n:5},{n:5}]}],o:{}},
+      {m:[{w:1,p:[{n:6},{n:6},{n:6},{n:6},{n:6}]}],o:{}},
+      {m:[{w:1,p:[{n:8},{n:8},{n:8},{n:8},{n:8},{n:8},{n:8}]}],o:{}},
+    ],
     s:{m:[{w:1,p:[{n:4},{n:4},{n:4}]}],o:{}}},
-  {n:"Y9: 0 ile 1 arası boş mu?",i:"🔬",cat:"yanılgı",diff:2,d:"YANILGI: '0 ile 1 arası sadece doğal sayılarla doludur; aralarında başka sayı yok.' DOĞRU: 0-1 arasında SONSUZ kesir vardır. Üç modele 1/2, 1/3, 1/4 yerleştirildi. Sayı doğrularındaki kırmızı okların farklı konumlarını karşılaştır — hepsi 0-1 arasında ama birbirinden farklı! (Ni & Zhou, 2005)",k:"KY",
+  {n:"Y9: 0 ile 1 arası boş mu?",i:"🔬",cat:"yanılgı",diff:2,d:"YANILGI: '0 ile 1 arası sadece doğal sayılarla doludur; aralarında başka sayı yok.' DOĞRU: 0-1 arasında SONSUZ kesir vardır. Her tıklamada farklı üç kesir 0-1 aralığında gösterilir. Sayı doğrularındaki kırmızı okların farklı konumlarını karşılaştır — hepsi 0-1 arasında ama birbirinden farklı! (Ni & Zhou, 2005)",k:"KY",
+    variants:[
+      {m:[{w:1,p:[{n:2}]},{w:1,p:[{n:3}]},{w:1,p:[{n:4}]}],o:{}},
+      {m:[{w:1,p:[{n:4}]},{w:1,p:[{n:6}]},{w:1,p:[{n:8}]}],o:{}},
+      {m:[{w:1,p:[{n:5},{n:5}]},{w:1,p:[{n:3}]},{w:1,p:[{n:8},{n:8},{n:8}]}],o:{}},
+      {m:[{w:1,p:[{n:3}]},{w:1,p:[{n:5},{n:5}]},{w:1,p:[{n:8},{n:8},{n:8}]}],o:{}},
+      {m:[{w:1,p:[{n:6}]},{w:1,p:[{n:4}]},{w:1,p:[{n:3}]}],o:{}},
+    ],
     s:{m:[{w:1,p:[{n:2}]},{w:1,p:[{n:3}]},{w:1,p:[{n:4}]}],o:{}}},
-  {n:"Y9b: İki kesir arası boş mu?",i:"🔬",cat:"yanılgı",diff:3,d:"YANILGI: 'İki komşu kesir arasında başka kesir yoktur; kesirler de tam sayılar gibi ardışıktır.' DOĞRU: Herhangi iki farklı kesir arasında SONSUZ kesir vardır. Sol: 1/3, orta: 1/2. Bu ikisinin arasına bir kesir koyabilir misin? Örneğin 2/5 veya 3/8. Sağ modele 1/3 ile 1/2 arasında bir kesir oluştur! (Vamvakoussi & Vosniadou, 2004)",k:"KY",expr:"1/3 < ? < 1/2",
+  {n:"Y9b: İki kesir arası boş mu?",i:"🔬",cat:"yanılgı",diff:3,d:"YANILGI: 'İki komşu kesir arasında başka kesir yoktur; kesirler de tam sayılar gibi ardışıktır.' DOĞRU: Herhangi iki farklı kesir arasında SONSUZ kesir vardır. Her tıklamada farklı kesir çifti gelir. Orta modele iki kesrin tam ortasında değer oluştur! (Vamvakoussi & Vosniadou, 2004; Stafylidou & Vosniadou, 2004)",k:"KY",expr:"a < ? < b",
+    variants:[
+      {m:[{w:1,p:[{n:3}]},{w:1,p:[]},{w:1,p:[{n:2}]}],o:{0:"<",1:"<"}},
+      {m:[{w:1,p:[{n:4}]},{w:1,p:[]},{w:1,p:[{n:3}]}],o:{0:"<",1:"<"}},
+      {m:[{w:1,p:[{n:5},{n:5}]},{w:1,p:[]},{w:1,p:[{n:5},{n:5},{n:5}]}],o:{0:"<",1:"<"}},
+      {m:[{w:1,p:[{n:2}]},{w:1,p:[]},{w:1,p:[{n:3},{n:3}]}],o:{0:"<",1:"<"}},
+      {m:[{w:1,p:[{n:4}]},{w:1,p:[]},{w:1,p:[{n:2}]}],o:{0:"<",1:"<"}},
+      {m:[{w:1,p:[{n:3}]},{w:1,p:[]},{w:1,p:[{n:3},{n:3}]}],o:{0:"<",1:"<"}},
+    ],
     s:{m:[{w:1,p:[{n:3}]},{w:1,p:[]},{w:1,p:[{n:2}]}],o:{0:"<",1:"<"}}},
-  {n:"Y10: Pay arttıkça ne olur?",i:"🔬",cat:"yanılgı",diff:2,d:"YANILGI: 'Payla paydanın büyük/küçük olmasının kesre etkisi aynıdır.' DOĞRU: Payda SABİTKEN pay arttıkça kesir BÜYÜR. Üç modelde 1/6 → 3/6 → 5/6. Aynı paydaya (aynı boy parçalar) sahip — kesirlerin SADELEŞTİRİLMEMİŞ halini görüyorsun. Payların artmasıyla kırmızı okun 0'dan 1'e doğru ilerleyişini gör! (Aksoy & Yazlık, 2017)",k:"KY",
+  {n:"Y10: Pay arttıkça ne olur?",i:"🔬",cat:"yanılgı",diff:2,d:"YANILGI: 'Payla paydanın büyük/küçük olmasının kesre etkisi aynıdır.' DOĞRU: Payda SABİTKEN pay arttıkça kesir BÜYÜR. Her tıklamada farklı payda için üç kesir gösterilir. Aynı paydaya (aynı boy parçalar) sahip — kesirlerin SADELEŞTİRİLMEMİŞ halini görürsün. Kırmızı okların ilerleyişini karşılaştır! (Aksoy & Yazlık, 2017; Behr & Post, 1992)",k:"KY",
+    variants:[
+      {m:[{w:1,p:[{n:6}]},{w:1,p:[{n:6},{n:6},{n:6}]},{w:1,p:[{n:6},{n:6},{n:6},{n:6},{n:6}]}],o:{}},
+      {m:[{w:1,p:[{n:5}]},{w:1,p:[{n:5},{n:5},{n:5}]},{w:1,p:[{n:5},{n:5},{n:5},{n:5}]}],o:{}},
+      {m:[{w:1,p:[{n:8}]},{w:1,p:[{n:8},{n:8},{n:8}]},{w:1,p:[{n:8},{n:8},{n:8},{n:8},{n:8},{n:8},{n:8}]}],o:{}},
+      {m:[{w:1,p:[{n:4}]},{w:1,p:[{n:4},{n:4}]},{w:1,p:[{n:4},{n:4},{n:4}]}],o:{}},
+      {m:[{w:1,p:[{n:10}]},{w:1,p:[{n:10},{n:10},{n:10},{n:10}]},{w:1,p:[{n:10},{n:10},{n:10},{n:10},{n:10},{n:10},{n:10},{n:10},{n:10}]}],o:{}},
+      {m:[{w:1,p:[{n:12}]},{w:1,p:[{n:12},{n:12},{n:12},{n:12},{n:12}]},{w:1,p:[{n:12},{n:12},{n:12},{n:12},{n:12},{n:12},{n:12},{n:12},{n:12},{n:12},{n:12}]}],o:{}},
+    ],
     s:{m:[{w:1,p:[{n:6}]},{w:1,p:[{n:6},{n:6},{n:6}]},{w:1,p:[{n:6},{n:6},{n:6},{n:6},{n:6}]}],o:{}}},
-  {n:"Y11: 5/4 = 1 tam 1/4 mü?",i:"🔬",cat:"yanılgı",diff:3,d:"YANILGI: '5/4 yazılamaz/yanlıştır çünkü pay paydadan büyük.' DOĞRU: Pay paydadan büyükse kesir BİLEŞİKTİR ve 1'den büyük bir sayıyı gösterir: 5/4 = 1 bütün + 1/4 = 1¼. Sol (2 tama genişletilmiş) modelde beş 1/4 var → 5/4. Sağ modele DÖRT 1/4 + bir 1/4 (yani 1 tam + 1/4) koy ve = ile kontrol et! (Pesen, 2007)",k:"KY",expr:"5/4 = ? tam ?/4",
+  {n:"Y11: 5/4 = 1 tam 1/4 mü?",i:"🔬",cat:"yanılgı",diff:3,d:"YANILGI: 'Pay paydadan büyükse kesir yanlıştır.' DOĞRU: Pay paydadan büyükse kesir BİLEŞİKTİR ve 1'den büyük bir sayıyı gösterir. Her tıklamada farklı bileşik kesir gelir. Sağ modele aynı değeri 'tam + basit kesir' olarak yeniden kur ve = ile kontrol et! (Pesen, 2007; Tzur, 1999)",k:"KY",expr:"a/b = ? tam ?/b",
+    variants:[
+      {m:[{w:2,p:[{n:4},{n:4},{n:4},{n:4},{n:4}]},{w:2,p:[]}],o:{0:"="}},
+      {m:[{w:3,p:[{n:3},{n:3},{n:3},{n:3},{n:3},{n:3},{n:3}]},{w:3,p:[]}],o:{0:"="}},
+      {m:[{w:2,p:[{n:5},{n:5},{n:5},{n:5},{n:5},{n:5},{n:5},{n:5},{n:5}]},{w:2,p:[]}],o:{0:"="}},
+      {m:[{w:3,p:[{n:4},{n:4},{n:4},{n:4},{n:4},{n:4},{n:4},{n:4},{n:4}]},{w:3,p:[]}],o:{0:"="}},
+      {m:[{w:2,p:[{n:3},{n:3},{n:3},{n:3}]},{w:2,p:[]}],o:{0:"="}},
+      {m:[{w:2,p:[{n:6},{n:6},{n:6},{n:6},{n:6},{n:6},{n:6}]},{w:2,p:[]}],o:{0:"="}},
+    ],
     s:{m:[{w:2,p:[{n:4},{n:4},{n:4},{n:4},{n:4}]},{w:2,p:[]}],o:{0:"="}}},
-  {n:"Y12: Çıkarmada terslik",i:"🔬",cat:"yanılgı",diff:3,d:"YANILGI: 3/5 − 1/5 = 2/4 (büyükten küçüğü ayrı ayrı çıkarma: 5-3=2 ve 5-1=4). DOĞRU: Aynı paydalı çıkarma için payları çıkar, payda aynı kalır: 3/5 − 1/5 = 2/5. Sol: 3/5, orta: 1/5, − ve = hazır. Sağ modele iki 1/5 koy — 2/4 DEĞİL 2/5! (Biber, Tuna & Aktaş, 2013)",k:"KY",expr:"3/5 − 1/5 = ?",
+  {n:"Y12: Çıkarmada terslik",i:"🔬",cat:"yanılgı",diff:3,d:"YANILGI: Payları ve paydaları AYRI AYRI çıkarma: 3/5 − 1/5 = 2/4. DOĞRU: Aynı paydalı çıkarmada sadece paylar çıkarılır, payda AYNI kalır. Her tıklamada farklı paydalarda çıkarma gelir — tuzak paydayı değiştirme! (Biber, Tuna & Aktaş, 2013; Newton, 2008)",k:"KY",expr:"a/n − b/n = ?",
+    variants:[
+      {m:[{w:1,p:[{n:5},{n:5},{n:5}]},{w:1,p:[{n:5}]},{w:1,p:[]}],o:{0:"−",1:"="}},
+      {m:[{w:1,p:[{n:6},{n:6},{n:6},{n:6},{n:6}]},{w:1,p:[{n:6},{n:6}]},{w:1,p:[]}],o:{0:"−",1:"="}},
+      {m:[{w:1,p:[{n:8},{n:8},{n:8},{n:8},{n:8},{n:8},{n:8}]},{w:1,p:[{n:8},{n:8},{n:8}]},{w:1,p:[]}],o:{0:"−",1:"="}},
+      {m:[{w:1,p:[{n:4},{n:4},{n:4}]},{w:1,p:[{n:4}]},{w:1,p:[]}],o:{0:"−",1:"="}},
+      {m:[{w:1,p:[{n:10},{n:10},{n:10},{n:10},{n:10},{n:10},{n:10},{n:10},{n:10}]},{w:1,p:[{n:10},{n:10},{n:10},{n:10}]},{w:1,p:[]}],o:{0:"−",1:"="}},
+      {m:[{w:1,p:[{n:3},{n:3}]},{w:1,p:[{n:3}]},{w:1,p:[]}],o:{0:"−",1:"="}},
+    ],
     s:{m:[{w:1,p:[{n:5},{n:5},{n:5}]},{w:1,p:[{n:5}]},{w:1,p:[]}],o:{0:"−",1:"="}}},
-  {n:"Y13: Toplama mı çarpma mı?",i:"🔬",cat:"yanılgı",diff:3,d:"YANILGI: Çarpma kuralını (pay×pay, payda×payda) toplamaya uygulamak: 1/3 + 1/3 = 1/9. DOĞRU: Aynı paydada TOPLAMA → paylar toplanır, payda aynı kalır: 1/3 + 1/3 = 2/3. Modellere bak: iki 1/3 yan yana bir 2/3'tür. Sağ modele iki 1/3 koy ve = ile kontrol et! (Soylu & Soylu, 2005; Alkhateeb, 2019)",k:"KY",expr:"1/3 + 1/3 = ?",
+  {n:"Y13: Toplama mı çarpma mı?",i:"🔬",cat:"yanılgı",diff:3,d:"YANILGI: Çarpma kuralını (pay×pay, payda×payda) toplamaya uygulamak: 1/3 + 1/3 = 1/9. DOĞRU: Aynı paydada TOPLAMA → paylar toplanır, payda aynı kalır. Her tıklamada farklı paydada toplama gelir. Model görselinde iki parça yan yana birleşir — çarpma kuralı geçerli değil! (Soylu & Soylu, 2005; Alkhateeb, 2019)",k:"KY",expr:"a/n + b/n = ?",
+    variants:[
+      {m:[{w:1,p:[{n:3}]},{w:1,p:[{n:3}]},{w:1,p:[]}],o:{0:"+",1:"="}},
+      {m:[{w:1,p:[{n:5},{n:5}]},{w:1,p:[{n:5}]},{w:1,p:[]}],o:{0:"+",1:"="}},
+      {m:[{w:1,p:[{n:6}]},{w:1,p:[{n:6},{n:6}]},{w:1,p:[]}],o:{0:"+",1:"="}},
+      {m:[{w:1,p:[{n:8},{n:8},{n:8}]},{w:1,p:[{n:8},{n:8}]},{w:1,p:[]}],o:{0:"+",1:"="}},
+      {m:[{w:1,p:[{n:4}]},{w:1,p:[{n:4},{n:4}]},{w:1,p:[]}],o:{0:"+",1:"="}},
+      {m:[{w:1,p:[{n:10},{n:10},{n:10}]},{w:1,p:[{n:10},{n:10},{n:10},{n:10}]},{w:1,p:[]}],o:{0:"+",1:"="}},
+    ],
     s:{m:[{w:1,p:[{n:3}]},{w:1,p:[{n:3}]},{w:1,p:[]}],o:{0:"+",1:"="}}},
-  {n:"Y14: Denk kesir nasıl bulunur?",i:"🔬",cat:"yanılgı",diff:2,d:"YANILGI: 'Farklı paydalı kesirler denk olamaz.' veya 'Herhangi iki farklı paydalı kesir birbirine denktir.' DOĞRU: 1/2 = 2/4 = 3/6 denk; ama 6/8 ≠ 9/12 (birinci 3/4, ikinci 3/4 — hm bu denk, kontrol!). Pay VE paydayı aynı sayıyla çarp/böl. = ile doğrula, sayı doğrularındaki konumlara bak! (Pesen, 2008)",k:"KY",
+  {n:"Y14: Denk kesir nasıl bulunur?",i:"🔬",cat:"yanılgı",diff:2,d:"YANILGI: 'Farklı paydalı kesirler denk olamaz.' ya da 'Farklı paydalı her iki kesir birbirine denktir.' DOĞRU: Pay VE paydayı aynı sayıyla çarp/böl. Her tıklamada farklı örnek gelir — bazıları denk, bazıları değil! = sembolüne tıkla → =, <, > arasında döner. Doğru sembolü seç, sayı doğrularındaki konumları karşılaştır! (Pesen, 2008; Post, Behr & Lesh, 1986)",k:"KY",
     variants:[
       {m:[{w:1,p:[{n:4},{n:4}]},{w:1,p:[{n:2}]}],o:{0:"="}},
       {m:[{w:1,p:[{n:6},{n:6},{n:6}]},{w:1,p:[{n:2}]}],o:{0:"="}},
       {m:[{w:1,p:[{n:6},{n:6},{n:6},{n:6}]},{w:1,p:[{n:3},{n:3}]}],o:{0:"="}},
       {m:[{w:1,p:[{n:8},{n:8},{n:8},{n:8},{n:8},{n:8}]},{w:1,p:[{n:12},{n:12},{n:12},{n:12},{n:12},{n:12},{n:12},{n:12},{n:12}]}],o:{0:"="}},
-      {m:[{w:1,p:[{n:8},{n:8},{n:8},{n:8}]},{w:1,p:[{n:10},{n:10},{n:10},{n:10},{n:10}]}],o:{0:"="}},
+      {m:[{w:1,p:[{n:8},{n:8},{n:8},{n:8}]},{w:1,p:[{n:10},{n:10},{n:10},{n:10},{n:10}]}],o:{0:"<"}},
+      {m:[{w:1,p:[{n:8},{n:8},{n:8}]},{w:1,p:[{n:12},{n:12},{n:12},{n:12},{n:12}]}],o:{0:">"}},
+      {m:[{w:1,p:[{n:10},{n:10},{n:10},{n:10},{n:10}]},{w:1,p:[{n:2}]}],o:{0:"="}},
+      {m:[{w:1,p:[{n:12},{n:12},{n:12},{n:12}]},{w:1,p:[{n:3}]}],o:{0:"="}},
     ],
     s:{m:[{w:1,p:[{n:4},{n:4}]},{w:1,p:[{n:2}]}],o:{0:"="}}},
-  {n:"Y15: Yarısı = 2'ye mi 1/2'ye mi böl?",i:"🔬",cat:"yanılgı",diff:3,d:"YANILGI: 'Bir kesrin YARISINI bulmak için 1/2'ye bölmek gerekir.' DOĞRU: Yarısı = 2'ye BÖLMEK = 1/2 ile ÇARPMAK. 1/2'ye bölmek sonucu İKİ KAT eder (büyütür), yarıya indirmez! 1/2 × 1/2 = 1/4 (yarının yarısı, doğru). 1/2 ÷ 1/2 = 1 (yanılgı). Sol: 1/2, orta: 1/2, × ve = hazır. Sağ modele 1/4 koy — yarısının yarısını gör! (Fischbein, Deri, Nello & Marino, 1985; Tirosh, 2000)",k:"KY",expr:"1/2'nin yarısı = 1/2 × 1/2 = ?",
+  {n:"Y15: Yarısı = 2'ye mi 1/2'ye mi böl?",i:"🔬",cat:"yanılgı",diff:3,d:"YANILGI: 'Bir kesrin YARISINI bulmak için 1/2'ye bölmek gerekir.' DOĞRU: Yarısı = 2'ye BÖLMEK = 1/2 ile ÇARPMAK. 1/2'ye bölmek sonucu İKİ KAT eder (büyütür), yarıya indirmez! Her tıklamada farklı kesrin yarısı sorulur. Sağ modele yarıya karşılık gelen kesri koy! (Fischbein, Deri, Nello & Marino, 1985; Tirosh, 2000)",k:"KY",expr:"a'nın yarısı = a × 1/2",
+    variants:[
+      {m:[{w:1,p:[{n:2}]},{w:1,p:[{n:2}]},{w:1,p:[]}],o:{0:"×",1:"="}},
+      {m:[{w:1,p:[{n:3}]},{w:1,p:[{n:2}]},{w:1,p:[]}],o:{0:"×",1:"="}},
+      {m:[{w:1,p:[{n:4}]},{w:1,p:[{n:2}]},{w:1,p:[]}],o:{0:"×",1:"="}},
+      {m:[{w:1,p:[{n:3},{n:3}]},{w:1,p:[{n:2}]},{w:1,p:[]}],o:{0:"×",1:"="}},
+      {m:[{w:1,p:[{n:4},{n:4},{n:4}]},{w:1,p:[{n:2}]},{w:1,p:[]}],o:{0:"×",1:"="}},
+      {m:[{w:1,p:[{n:5},{n:5}]},{w:1,p:[{n:2}]},{w:1,p:[]}],o:{0:"×",1:"="}},
+    ],
     s:{m:[{w:1,p:[{n:2}]},{w:1,p:[{n:2}]},{w:1,p:[]}],o:{0:"×",1:"="}}},
 ];
 
@@ -1225,15 +1342,10 @@ export default function App() {
                 </svg>
                 {/* Döndürme butonu */}
                 <div onPointerDown={function(e){e.stopPropagation();}} onClick={function(e){e.stopPropagation();hPush();setItems(irRef.current.map(function(x){return x.id===it.id?Object.assign({},x,{rot:(x.rot||0)+45}):x;}));}} title={t("obj.rotate")} style={{position:"absolute",top:-6,right:-6,width:18,height:18,borderRadius:"50%",background:"#fff",border:"1.5px solid #aaa",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:9,zIndex:5}}>{"↻"}</div>
-                {/* Payda değiştirme (kesir değeri) */}
+                {/* Görsel boyut (scale) — sol üst köşe */}
                 <div onPointerDown={function(e){e.stopPropagation();}} style={{position:"absolute",top:-6,left:-6,display:"flex",flexDirection:"column",gap:2,zIndex:5}}>
-                  <div onClick={function(e){e.stopPropagation();var idx=BAR_PARTS.indexOf(it.n);if(idx>0){hPush();setItems(irRef.current.map(function(x){return x.id===it.id?Object.assign({},x,{n:BAR_PARTS[idx-1]}):x;}));}}} title={t("obj.enlarge")} style={{width:16,height:16,borderRadius:"50%",background:"#fff",border:"1px solid #bbb",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:9,fontWeight:900,color:"#666"}}>{"−"}</div>
-                  <div onClick={function(e){e.stopPropagation();var idx=BAR_PARTS.indexOf(it.n);if(idx<BAR_PARTS.length-1){hPush();setItems(irRef.current.map(function(x){return x.id===it.id?Object.assign({},x,{n:BAR_PARTS[idx+1]}):x;}));}}} title={t("obj.shrink")} style={{width:16,height:16,borderRadius:"50%",background:"#fff",border:"1px solid #bbb",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:9,fontWeight:900,color:"#666"}}>{"+"}</div>
-                </div>
-                {/* Görsel boyut (scale) — sağ üst */}
-                <div onPointerDown={function(e){e.stopPropagation();}} style={{position:"absolute",top:-6,right:14,display:"flex",flexDirection:"column",gap:2,zIndex:5}}>
-                  <div onClick={function(e){e.stopPropagation();hPush();setItems(irRef.current.map(function(x){return x.id===it.id?Object.assign({},x,{scale:Math.min(4,Math.round(((x.scale||1)+0.2)*10)/10)}):x;}));}} title={t("obj.visualEnlarge")} style={{width:16,height:16,borderRadius:"50%",background:"#fef3c7",border:"1.5px solid #d97706",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:9,fontWeight:900,color:"#92400e"}}>{"△"}</div>
-                  <div onClick={function(e){e.stopPropagation();hPush();setItems(irRef.current.map(function(x){return x.id===it.id?Object.assign({},x,{scale:Math.max(0.4,Math.round(((x.scale||1)-0.2)*10)/10)}):x;}));}} title={t("obj.visualShrink")} style={{width:16,height:16,borderRadius:"50%",background:"#fef3c7",border:"1.5px solid #d97706",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:9,fontWeight:900,color:"#92400e"}}>{"▽"}</div>
+                  <div onClick={function(e){e.stopPropagation();hPush();setItems(irRef.current.map(function(x){return x.id===it.id?Object.assign({},x,{scale:Math.min(4,Math.round(((x.scale||1)+0.2)*10)/10)}):x;}));}} title={t("obj.visualEnlarge")} style={{width:18,height:18,borderRadius:"50%",background:"#fef3c7",border:"1.5px solid #d97706",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:11,fontWeight:900,color:"#92400e",boxShadow:"0 1px 3px rgba(0,0,0,.15)"}}>{"+"}</div>
+                  <div onClick={function(e){e.stopPropagation();hPush();setItems(irRef.current.map(function(x){return x.id===it.id?Object.assign({},x,{scale:Math.max(0.4,Math.round(((x.scale||1)-0.2)*10)/10)}):x;}));}} title={t("obj.visualShrink")} style={{width:18,height:18,borderRadius:"50%",background:"#fef3c7",border:"1.5px solid #d97706",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:11,fontWeight:900,color:"#92400e",boxShadow:"0 1px 3px rgba(0,0,0,.15)"}}>{"−"}</div>
                 </div>
                 {/* Parçala ve Birleştir */}
                 <div onPointerDown={function(e){e.stopPropagation();}} style={{position:"absolute",bottom:-6,left:"50%",transform:"translateX(-50%)",display:"flex",gap:3,zIndex:5}}>
@@ -1324,15 +1436,10 @@ export default function App() {
                 <div style={{width:bw,height:bh,borderRadius:6,background:"linear-gradient(180deg,"+FC[ci%FC.length]+","+FB[ci%FB.length]+")",border:"2.5px solid "+FB[ci%FB.length],display:"flex",alignItems:"center",justifyContent:"center",boxShadow:"0 2px 8px rgba(0,0,0,.25)",cursor:"grab",opacity:transpMode?.55:1}}>
                     <span style={{fontSize:bw<30?7:bw<50?9:bw<80?12:Math.min(16,bh*0.5),fontWeight:900,color:"#fff"}}>{showLabels?label:""}</span>
                   </div>
-                  {/* Payda değiştirme (kesir değeri) */}
-                  <div onPointerDown={function(e){e.stopPropagation();}} style={{position:"absolute",top:-7,right:-4,display:"flex",gap:1,zIndex:5}}>
-                    <div onClick={function(e){e.stopPropagation();var idx=BAR_PARTS.indexOf(it.n);if(idx>0){hPush();setItems(irRef.current.map(function(x){return x.id===it.id?Object.assign({},x,{n:BAR_PARTS[idx-1],bw:Math.round(240/BAR_PARTS[idx-1])}):x;}));}}} title={t("obj.enlarge")} style={{width:14,height:14,borderRadius:"50%",background:"#fff",border:"1px solid #bbb",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:9,fontWeight:900,color:"#666"}}>{"−"}</div>
-                    <div onClick={function(e){e.stopPropagation();var idx=BAR_PARTS.indexOf(it.n);if(idx<BAR_PARTS.length-1){hPush();setItems(irRef.current.map(function(x){return x.id===it.id?Object.assign({},x,{n:BAR_PARTS[idx+1],bw:Math.round(240/BAR_PARTS[idx+1])}):x;}));}}} title={t("obj.shrink")} style={{width:14,height:14,borderRadius:"50%",background:"#fff",border:"1px solid #bbb",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:9,fontWeight:900,color:"#666"}}>{"+"}</div>
-                  </div>
-                  {/* Görsel boyut (scale) — sol kenarda */}
-                  <div onPointerDown={function(e){e.stopPropagation();}} style={{position:"absolute",top:-7,left:-4,display:"flex",gap:1,zIndex:5}}>
-                    <div onClick={function(e){e.stopPropagation();hPush();setItems(irRef.current.map(function(x){return x.id===it.id?Object.assign({},x,{scale:Math.max(0.4,Math.round(((x.scale||1)-0.2)*10)/10)}):x;}));}} title={t("obj.visualShrink")} style={{width:14,height:14,borderRadius:"50%",background:"#fef3c7",border:"1px solid #d97706",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:8,fontWeight:900,color:"#92400e"}}>{"▽"}</div>
-                    <div onClick={function(e){e.stopPropagation();hPush();setItems(irRef.current.map(function(x){return x.id===it.id?Object.assign({},x,{scale:Math.min(4,Math.round(((x.scale||1)+0.2)*10)/10)}):x;}));}} title={t("obj.visualEnlarge")} style={{width:14,height:14,borderRadius:"50%",background:"#fef3c7",border:"1px solid #d97706",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:8,fontWeight:900,color:"#92400e"}}>{"△"}</div>
+                  {/* Görsel boyut (scale) — sağ üst kenar */}
+                  <div onPointerDown={function(e){e.stopPropagation();}} style={{position:"absolute",top:-8,right:-6,display:"flex",gap:2,zIndex:5}}>
+                    <div onClick={function(e){e.stopPropagation();hPush();setItems(irRef.current.map(function(x){return x.id===it.id?Object.assign({},x,{scale:Math.max(0.4,Math.round(((x.scale||1)-0.2)*10)/10)}):x;}));}} title={t("obj.visualShrink")} style={{width:18,height:18,borderRadius:"50%",background:"#fef3c7",border:"1.5px solid #d97706",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:11,fontWeight:900,color:"#92400e",boxShadow:"0 1px 3px rgba(0,0,0,.15)"}}>{"−"}</div>
+                    <div onClick={function(e){e.stopPropagation();hPush();setItems(irRef.current.map(function(x){return x.id===it.id?Object.assign({},x,{scale:Math.min(4,Math.round(((x.scale||1)+0.2)*10)/10)}):x;}));}} title={t("obj.visualEnlarge")} style={{width:18,height:18,borderRadius:"50%",background:"#fef3c7",border:"1.5px solid #d97706",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:11,fontWeight:900,color:"#92400e",boxShadow:"0 1px 3px rgba(0,0,0,.15)"}}>{"+"}</div>
                   </div>
                   {/* Parçala ve Birleştir */}
                   <div onPointerDown={function(e){e.stopPropagation();}} style={{position:"absolute",bottom:-8,left:-4,display:"flex",gap:2,zIndex:5}}>
