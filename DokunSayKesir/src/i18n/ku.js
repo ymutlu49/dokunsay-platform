@@ -99,10 +99,14 @@ export default {
   "tool.zoomIn": "Mezintir bike",
   "tool.zoomOut": "Piçûktir bike",
   "tool.zoomReset": "Mezinkirinê sifir bike",
+  "tool.eraser": "Jêbir (li xetê bitikîne → jê bibe)",
 
   /* ===== KONTROLÊN NESNEYÎ (çubik û gilok) ===== */
   "obj.enlarge": "Mezintir bike (bin biçûktir dibe)",
   "obj.shrink": "Biçûktir bike (bin mezintir dibe)",
+  "obj.visualEnlarge": "Dîtinî mezintir bike (tenê mezinahî, parjimar naguhere)",
+  "obj.visualShrink": "Dîtinî biçûktir bike (tenê mezinahî, parjimar naguhere)",
+  "obj.remove": "Rake",
   "obj.split": "Parçe bike — bijare çend perçeyan",
   "obj.splitInto": "Çend parçeyên wekhev?",
   "obj.cancel": "Betal bike",

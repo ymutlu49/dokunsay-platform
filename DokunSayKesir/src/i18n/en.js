@@ -99,10 +99,14 @@ export default {
   "tool.zoomIn": "Zoom in",
   "tool.zoomOut": "Zoom out",
   "tool.zoomReset": "Reset zoom",
+  "tool.eraser": "Eraser (tap a stroke to delete)",
 
   /* ===== OBJECT CONTROLS (bar & pie) ===== */
   "obj.enlarge": "Enlarge (denominator decreases)",
   "obj.shrink": "Shrink (denominator increases)",
+  "obj.visualEnlarge": "Visual enlarge (size up, fraction unchanged)",
+  "obj.visualShrink": "Visual shrink (size down, fraction unchanged)",
+  "obj.remove": "Remove",
   "obj.split": "Split — choose how many parts",
   "obj.splitInto": "Into how many equal parts?",
   "obj.cancel": "Cancel",

@@ -119,6 +119,20 @@ var ACT=[
     s:{m:[{w:1,p:[{n:2}]},{w:1,p:[{n:2}]},{w:1,p:[]}],o:{0:"×",1:"="}}},
 ];
 
+/* Pen path: quadratic Bezier ile pürüzsüz çizgi. 1-2 nokta için düz L. */
+function penPath(pts){
+  if(!pts||!pts.length)return "";
+  if(pts.length===1)return "M"+pts[0].x+","+pts[0].y+" L"+pts[0].x+","+pts[0].y;
+  if(pts.length===2)return "M"+pts[0].x+","+pts[0].y+" L"+pts[1].x+","+pts[1].y;
+  var d="M"+pts[0].x+","+pts[0].y;
+  for(var i=1;i<pts.length-1;i++){
+    var mx=(pts[i].x+pts[i+1].x)/2,my=(pts[i].y+pts[i+1].y)/2;
+    d+=" Q"+pts[i].x.toFixed(1)+","+pts[i].y.toFixed(1)+" "+mx.toFixed(1)+","+my.toFixed(1);
+  }
+  d+=" L"+pts[pts.length-1].x+","+pts[pts.length-1].y;
+  return d;
+}
+
 function fracLabel(val){
   if(val===0)return "0";
   if(Math.abs(val-Math.round(val))<0.001)return String(Math.round(val));
@@ -643,9 +657,45 @@ export default function App() {
     return function(){window.removeEventListener("pointermove",onMove);window.removeEventListener("pointerup",onUp);window.removeEventListener("pointercancel",onCancel);window.removeEventListener("blur",onCancel);};
   });
   useEffect(function(){if(!curLine)return;
-    function onMove(e){if(!cvRef.current)return;var r=cvRef.current.getBoundingClientRect();setCurLine(Object.assign({},curLine,{pts:curLine.pts.concat([{x:e.clientX-r.left,y:e.clientY-r.top}])}));}
-    function onUp(){setDrawLines(drawLines.concat([curLine]));setCurLine(null);}
-    window.addEventListener("pointermove",onMove);window.addEventListener("pointerup",onUp);return function(){window.removeEventListener("pointermove",onMove);window.removeEventListener("pointerup",onUp);};
+    function onMove(e){
+      if(!cvRef.current)return;
+      e.preventDefault();
+      var r=cvRef.current.getBoundingClientRect();
+      var z=zoomRef.current||1;
+      /* Coalesced events ile yüksek DPI cihazlarda daha pürüzsüz çizgi */
+      var evs=(e.getCoalescedEvents&&e.getCoalescedEvents().length)?e.getCoalescedEvents():[e];
+      var newPts=evs.map(function(ev){return {x:(ev.clientX-r.left)/z,y:(ev.clientY-r.top)/z};});
+      setCurLine(function(prev){
+        if(!prev)return prev;
+        /* Çok yakın noktaları atla — performans + smoothing */
+        var last=prev.pts[prev.pts.length-1];
+        var filtered=[];
+        for(var i=0;i<newPts.length;i++){
+          var p=newPts[i];
+          var dx=p.x-last.x,dy=p.y-last.y;
+          if(dx*dx+dy*dy>=0.5){filtered.push(p);last=p;}
+        }
+        if(!filtered.length)return prev;
+        return Object.assign({},prev,{pts:prev.pts.concat(filtered)});
+      });
+    }
+    function onUp(){
+      setCurLine(function(prev){
+        if(prev&&prev.pts.length>=1)setDrawLines(function(dl){return dl.concat([prev]);});
+        return null;
+      });
+    }
+    function onCancel(){setCurLine(null);}
+    window.addEventListener("pointermove",onMove,{passive:false});
+    window.addEventListener("pointerup",onUp);
+    window.addEventListener("pointercancel",onCancel);
+    window.addEventListener("blur",onCancel);
+    return function(){
+      window.removeEventListener("pointermove",onMove);
+      window.removeEventListener("pointerup",onUp);
+      window.removeEventListener("pointercancel",onCancel);
+      window.removeEventListener("blur",onCancel);
+    };
   });
   useEffect(function(){function onKey(e){if(txtIn)return;if((e.ctrlKey||e.metaKey)&&e.key==="z"){e.preventDefault();doUndo();}if((e.ctrlKey||e.metaKey)&&e.key==="y"){e.preventDefault();doRedo();}if((e.key==="Delete"||e.key==="Backspace")&&selTrack!=null){e.preventDefault();removeTrack(selTrack);setSelTrack(null);}if(e.key==="n"||e.key==="N")placeTrack();if(e.key==="l"||e.key==="L")setLabels(function(v){return !v;});if(e.key==="Escape")setSelTrack(null);if(e.key==="?")setHelp(function(v){return !v;});}window.addEventListener("keydown",onKey);return function(){window.removeEventListener("keydown",onKey);};});
   useEffect(function(){if(window.innerWidth<768)setCollapsed(true);},[]);
@@ -942,7 +992,7 @@ export default function App() {
         </div>
 
         {/* CANVAS */}
-        <div ref={cvRef} tabIndex={0} style={Object.assign({flex:1,position:"relative",overflow:"hidden",cursor:panning?"grabbing":tool==="pen"?"crosshair":tool==="text"?"text":tool==="scissors"?"crosshair":"default",outline:"none"},canvasBg)}
+        <div ref={cvRef} tabIndex={0} style={Object.assign({flex:1,position:"relative",overflow:"hidden",cursor:panning?"grabbing":tool==="pen"?"crosshair":tool==="eraser"?"not-allowed":tool==="text"?"text":tool==="scissors"?"crosshair":"default",outline:"none"},canvasBg)}
           onPointerDown={function(e){if(!cvRef.current)return;
             if(e.button===1||(e.altKey&&e.button===0)){e.preventDefault();setPanning(true);setPanStart({x:e.clientX,y:e.clientY});return;}
             var r=cvRef.current.getBoundingClientRect();var x=(e.clientX-r.left)/zoom,y=(e.clientY-r.top)/zoom;
@@ -964,6 +1014,7 @@ export default function App() {
             {/* Araçlar */}
             <button onClick={function(){setTool("select");}} title={t("tool.select")} style={{width:32,height:32,borderRadius:8,border:tool==="select"?"2px solid #f59e0b":"1.5px solid transparent",background:tool==="select"?"#fef3c7":"transparent",cursor:"pointer",fontSize:16,display:"flex",alignItems:"center",justifyContent:"center",transition:"all .15s"}}>{"👆"}</button>
             <button onClick={function(){setTool("pen");}} title={t("tool.pen")} style={{width:32,height:32,borderRadius:8,border:tool==="pen"?"2px solid #f59e0b":"1.5px solid transparent",background:tool==="pen"?"#fef3c7":"transparent",cursor:"pointer",fontSize:16,display:"flex",alignItems:"center",justifyContent:"center",transition:"all .15s"}}>{"✏️"}</button>
+            <button onClick={function(){setTool("eraser");}} title={t("tool.eraser")} style={{width:32,height:32,borderRadius:8,border:tool==="eraser"?"2px solid #f59e0b":"1.5px solid transparent",background:tool==="eraser"?"#fef3c7":"transparent",cursor:"pointer",fontSize:14,fontWeight:900,display:"flex",alignItems:"center",justifyContent:"center",transition:"all .15s",color:"#666"}}>{"⌫"}</button>
             <button onClick={function(){setTool("scissors");}} title={t("tool.scissors")} style={{width:32,height:32,borderRadius:8,border:tool==="scissors"?"2px solid #f59e0b":"1.5px solid transparent",background:tool==="scissors"?"#fef3c7":"transparent",cursor:"pointer",fontSize:16,display:"flex",alignItems:"center",justifyContent:"center",transition:"all .15s"}}>{"✂️"}</button>
             <button onClick={function(){setTool("text");}} title={t("tool.text")} style={{width:32,height:32,borderRadius:8,border:tool==="text"?"2px solid #f59e0b":"1.5px solid transparent",background:tool==="text"?"#fef3c7":"transparent",cursor:"pointer",fontSize:16,display:"flex",alignItems:"center",justifyContent:"center",transition:"all .15s"}}>{"T"}</button>
             <button onClick={function(){hPush();setDrawLines([]);}} title={t("tool.clear")} style={{width:32,height:32,borderRadius:8,border:"1.5px solid transparent",background:"transparent",cursor:"pointer",fontSize:16,display:"flex",alignItems:"center",justifyContent:"center",opacity:drawLines.length>0?1:.35,transition:"all .15s"}}>{"🧹"}</button>
@@ -973,11 +1024,14 @@ export default function App() {
             </>):null}
             {tool==="pen"?(<>
               <div style={{width:1,height:22,background:"rgba(0,0,0,.12)",margin:"0 2px"}}/>
-              {[2,4,8].map(function(w){return <div key={w} onClick={function(){setPenW(w);}} style={{width:w+10,height:w+10,borderRadius:"50%",background:penW===w?"#333":"#bbb",cursor:"pointer",border:penW===w?"2px solid #222":"2px solid transparent"}}/>;})}
+              {[2,3,5,8,12].map(function(w){return <div key={w} onClick={function(){setPenW(w);}} title={"Kalınlık "+w} style={{width:w+10,height:w+10,borderRadius:"50%",background:penW===w?"#333":"#bbb",cursor:"pointer",border:penW===w?"2px solid #222":"2px solid transparent"}}/>;})}
             </>):null}
           </div>
           <div style={{transformOrigin:"0 0",transform:"scale("+zoom+")",width:"100%",height:"100%"}}>
-          <svg style={{position:"absolute",inset:0,width:"100%",height:"100%",pointerEvents:"none",zIndex:3}}>{drawLines.map(function(l,li){return <path key={li} d={l.pts.map(function(p,pi){return(pi===0?"M":"L")+p.x+","+p.y;}).join("")} fill="none" stroke={l.color} strokeWidth={l.w} strokeLinecap="round" strokeLinejoin="round"/>;})}</svg>
+          <svg style={{position:"absolute",inset:0,width:"100%",height:"100%",pointerEvents:tool==="eraser"?"auto":"none",zIndex:3}}>
+            {drawLines.map(function(l,li){return <path key={"l"+li} d={penPath(l.pts)} fill="none" stroke={l.color} strokeWidth={l.w} strokeLinecap="round" strokeLinejoin="round" style={{cursor:tool==="eraser"?"pointer":"default",pointerEvents:tool==="eraser"?"stroke":"none"}} onClick={tool==="eraser"?(function(idx){return function(e){e.stopPropagation();hPush();setDrawLines(function(dl){var n=dl.slice();n.splice(idx,1);return n;});};})(li):undefined}/>;})}
+            {curLine?<path d={penPath(curLine.pts)} fill="none" stroke={curLine.color} strokeWidth={curLine.w} strokeLinecap="round" strokeLinejoin="round" opacity={0.95}/>:null}
+          </svg>
           {txtIn?(<div style={{position:"absolute",left:txtIn.x,top:txtIn.y,zIndex:20}}><input autoFocus value={txtVal} onChange={function(e){setTxtVal(e.target.value);}} onKeyDown={function(e){e.stopPropagation();if(e.key==="Enter")commitTxt();if(e.key==="Escape"){setTxtIn(null);setTxtVal("");}}} onBlur={commitTxt} style={{fontSize:18,fontWeight:800,color:penClr,background:"rgba(255,255,255,.9)",border:"2px solid #a0aa94",borderRadius:6,padding:"4px 8px",outline:"none",fontFamily:"inherit",minWidth:100}} placeholder="Yazın..."/></div>):null}
           {instrState?(<div onClick={function(){setInstrState(null);}} style={{position:"absolute",inset:0,zIndex:50,background:"rgba(0,0,0,.35)",display:"flex",alignItems:"center",justifyContent:"center",animation:"fadeIn .3s ease-out"}}><div onClick={function(e){e.stopPropagation();}} style={{background:"#fffdf7",borderRadius:16,padding:"24px 28px",maxWidth:460,boxShadow:"0 12px 40px rgba(0,0,0,.3)",textAlign:"center",animation:"popIn .4s ease-out"}}><div style={{fontSize:40,marginBottom:8}}>{instrState.i}</div><div style={{fontSize:18,fontWeight:900,marginBottom:6}}>{(function(){var ai=ACT.indexOf(instrState);return ai>=0?t("act."+ai+".n"):instrState.n;})()}</div><div style={{fontSize:13,marginBottom:16,lineHeight:1.6,color:"#444"}}>{(function(){var ai=ACT.indexOf(instrState);return ai>=0?t("act."+ai+".d"):instrState.d;})()}</div><button onClick={function(){setInstrState(null);}} style={{padding:"8px 28px",borderRadius:10,border:"none",background:"linear-gradient(135deg,#f59e0b,#78350f)",color:"#fff",fontSize:14,fontWeight:800,cursor:"pointer",animation:"pulse 2s infinite"}}>{t("canvas.start")}</button></div></div>):null}
           {tracks.length===0&&items.filter(function(it){return it.type==="bar"||it.type==="pie"||it.type==="numline";}).length===0&&!activeTpl?(<div style={{position:"absolute",top:"34%",left:"50%",transform:"translate(-50%,-50%)",textAlign:"center",pointerEvents:"none"}}><Logo size={80}/><div style={{fontSize:15,fontWeight:800,color:"rgba(60,50,30,.3)",marginTop:8}}>{t("canvas.empty")}</div></div>):null}
@@ -1011,9 +1065,11 @@ export default function App() {
             /* fracDiv artık sabit 110px — merkezi: top + 55 */
             /* fracDiv top: 10+18+4+(BH+10)+4+44+4 = 94+BH */
             /* fracCenter: 94+BH+55 = 149+BH */
-            var bh2=Math.max(34,Math.min(48,barWidth*0.12));
+            var trackScale=tk.scale||1;
+            var scaledBarWidth=Math.round(barWidth*trackScale);
+            var bh2=Math.max(34,Math.min(48,scaledBarWidth*0.12));
             var hasPie=trackCount<=1;
-            var pr2=Math.min(44,barWidth*0.11);
+            var pr2=Math.min(44,scaledBarWidth*0.11);
             var fracCenterY=posY+149+bh2+(hasPie?(pr2*2+8):0);
 
             /* = işareti aktif operasyonun rengini alsın */
@@ -1027,7 +1083,11 @@ export default function App() {
                 <div style={{position:"absolute",left:posX,top:posY,zIndex:isDragging?100:2,opacity:isDragging?.8:1,touchAction:"none"}}
                   onClick={function(e){e.stopPropagation();setSelTrack(tk.id);}}>
                   <div onPointerDown={function(e){startTrkDrag(e,tk.id);}} style={{position:"absolute",top:-6,left:0,right:0,height:16,cursor:"grab",zIndex:10,display:"flex",alignItems:"center",justifyContent:"center"}}><div style={{width:36,height:4,borderRadius:2,background:"rgba(0,0,0,.15)"}}/></div>
-                  {selTrack===tk.id?(<div onClick={function(e){e.stopPropagation();removeTrack(tk.id);setSelTrack(null);}} style={{position:"absolute",top:-8,right:-8,width:22,height:22,borderRadius:"50%",background:"#ef4444",border:"2px solid #fff",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:10,color:"#fff",fontWeight:900,zIndex:12}}>{"✕"}</div>):null}
+                  {selTrack===tk.id?(<div style={{position:"absolute",top:-8,right:-8,display:"flex",gap:4,zIndex:12}}>
+                    <div onClick={function(e){e.stopPropagation();hPush();setItems(irRef.current.map(function(x){return x.id===tk.id?Object.assign({},x,{scale:Math.max(0.5,Math.round(((x.scale||1)-0.15)*100)/100)}):x;}));}} title={t("obj.visualShrink")} style={{width:22,height:22,borderRadius:"50%",background:"#fef3c7",border:"2px solid #d97706",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:11,color:"#92400e",fontWeight:900}}>{"▽"}</div>
+                    <div onClick={function(e){e.stopPropagation();hPush();setItems(irRef.current.map(function(x){return x.id===tk.id?Object.assign({},x,{scale:Math.min(2.5,Math.round(((x.scale||1)+0.15)*100)/100)}):x;}));}} title={t("obj.visualEnlarge")} style={{width:22,height:22,borderRadius:"50%",background:"#fef3c7",border:"2px solid #d97706",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:11,color:"#92400e",fontWeight:900}}>{"△"}</div>
+                    <div onClick={function(e){e.stopPropagation();removeTrack(tk.id);setSelTrack(null);}} title={t("obj.remove")||"Kaldır"} style={{width:22,height:22,borderRadius:"50%",background:"#ef4444",border:"2px solid #fff",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:10,color:"#fff",fontWeight:900}}>{"✕"}</div>
+                  </div>):null}
                   {selTrack===tk.id&&trackVal(tk)>0&&trackVal(tk)<1?(function(){
                     var tv=trackVal(tk);var eqs=[];
                     var denoms=[2,3,4,5,6,8,10,12];
@@ -1045,12 +1105,12 @@ export default function App() {
                       })}
                     </div>);
                   })():null}
-                  <WholeBarTrack trackId={tk.id} wholes={tk.wholes||1} pieces={tk.pieces||[]} showLabel={showLabels} labelMode={labelMode} showPie={trackCount<=1} barWidth={barWidth} isEquiv={!!equivIds[tk.id]} isDropTarget={dropTarget===tk.id} compact={trackCount>=2} isScissors={tool==="scissors"} onPieceClick={function(idx){handlePieceClick(tk.id,idx);}} onPieceDrag={function(idx,pn,pci,e){startPieceDrag(tk.id,idx,pn,pci,e);}} onSetWholes={function(w){setWholes(tk.id,w);}}/>
+                  <WholeBarTrack trackId={tk.id} wholes={tk.wholes||1} pieces={tk.pieces||[]} showLabel={showLabels} labelMode={labelMode} showPie={trackCount<=1} barWidth={scaledBarWidth} isEquiv={!!equivIds[tk.id]} isDropTarget={dropTarget===tk.id} compact={trackCount>=2} isScissors={tool==="scissors"} onPieceClick={function(idx){handlePieceClick(tk.id,idx);}} onPieceDrag={function(idx,pn,pci,e){startPieceDrag(tk.id,idx,pn,pci,e);}} onSetWholes={function(w){setWholes(tk.id,w);}}/>
                 </div>
 
                 {/* İŞLEM İŞARETİ — kesir sayısıyla tam hizalı */}
                 {idx<sortedTracks.length-1?(
-                  <div onClick={function(){cycleOp(tk.id);}} style={{position:"absolute",left:(tk.x||0)+barWidth+30,top:fracCenterY-24,zIndex:8,cursor:"pointer"}}>
+                  <div onClick={function(){cycleOp(tk.id);}} style={{position:"absolute",left:(tk.x||0)+scaledBarWidth+30,top:fracCenterY-24,zIndex:8,cursor:"pointer"}}>
                     <div style={{width:48,height:48,borderRadius:"50%",background:isCmpOp?eqColor:opLabel?opColors[opLabel]||"#888":"rgba(0,0,0,.06)",border:isEqCorrect?"3px solid #16a34a":isEqWrong?"3px solid #ef4444":opLabel?"2.5px solid rgba(255,255,255,.3)":"2px dashed rgba(0,0,0,.15)",display:"flex",alignItems:"center",justifyContent:"center",boxShadow:isEqCorrect?"0 0 20px rgba(34,197,94,.5)":isEqWrong?"0 0 12px rgba(239,68,68,.3)":opLabel?"0 3px 10px rgba(0,0,0,.25)":"none",transition:"all .3s"}}>
                       <span style={{fontSize:isEqCorrect?26:opLabel?26:18,fontWeight:900,color:opLabel?"#fff":"rgba(0,0,0,.2)"}}>{isEqCorrect?"✓":opLabel||"?"}</span>
                     </div>
@@ -1065,7 +1125,8 @@ export default function App() {
             var isDragging=trkDrag===it.id;
             var posX=isDragging?trkDP.x:(it.x||0);
             var posY=isDragging?trkDP.y:(it.y||0);
-            var NW=barWidth||320,NH=60,range=it.range||1,div=it.divisions||4;
+            var nlScale=it.scale||1;
+            var NW=Math.round((barWidth||320)*nlScale),NH=Math.round(60*nlScale),range=it.range||1,div=it.divisions||4;
             var W1=NW/range;
             return(
               <div key={it.id} style={{position:"absolute",left:posX,top:posY,zIndex:isDragging?100:3,touchAction:"none"}}>
@@ -1084,6 +1145,12 @@ export default function App() {
                     <button onClick={function(){if(div>2){hPush();setItems(irRef.current.map(function(x){return x.id===it.id?Object.assign({},x,{divisions:div-1}):x;}));}}} style={{width:16,height:16,borderRadius:"50%",border:"1px solid #bbb",background:div>2?"#fff":"#eee",cursor:div>2?"pointer":"default",fontSize:10,fontWeight:900,color:"#777",display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"inherit",opacity:div>2?1:.3}}>{"−"}</button>
                     <span style={{fontSize:8,fontWeight:800,color:"#3b82f6",lineHeight:"16px",minWidth:10,textAlign:"center"}}>{"1/"+div}</span>
                     <button onClick={function(){if(div<12){hPush();setItems(irRef.current.map(function(x){return x.id===it.id?Object.assign({},x,{divisions:div+1}):x;}));}}} style={{width:16,height:16,borderRadius:"50%",border:"1px solid #bbb",background:"#fff",cursor:"pointer",fontSize:10,fontWeight:900,color:"#777",display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"inherit"}}>{"+"}</button>
+                  </div>
+                  {/* Görsel boyut (scale) */}
+                  <div style={{display:"flex",gap:2,alignItems:"center",background:"#fef3c7",borderRadius:8,padding:"2px 4px",border:"1px solid #d97706"}}>
+                    <button onClick={function(){hPush();setItems(irRef.current.map(function(x){return x.id===it.id?Object.assign({},x,{scale:Math.max(0.5,Math.round(((x.scale||1)-0.15)*100)/100)}):x;}));}} title={t("obj.visualShrink")} style={{width:16,height:16,borderRadius:"50%",border:"1px solid #d97706",background:"#fff",cursor:"pointer",fontSize:9,fontWeight:900,color:"#92400e",display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"inherit"}}>{"▽"}</button>
+                    <span style={{fontSize:8,fontWeight:800,color:"#92400e",lineHeight:"16px",minWidth:24,textAlign:"center"}}>{Math.round(nlScale*100)+"%"}</span>
+                    <button onClick={function(){hPush();setItems(irRef.current.map(function(x){return x.id===it.id?Object.assign({},x,{scale:Math.min(2.5,Math.round(((x.scale||1)+0.15)*100)/100)}):x;}));}} title={t("obj.visualEnlarge")} style={{width:16,height:16,borderRadius:"50%",border:"1px solid #d97706",background:"#fff",cursor:"pointer",fontSize:9,fontWeight:900,color:"#92400e",display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"inherit"}}>{"△"}</button>
                   </div>
                 </div>
                 <svg width={NW+20} height={NH} style={{overflow:"visible",filter:"drop-shadow(0 1px 4px rgba(0,0,0,.1))"}}>
@@ -1135,7 +1202,8 @@ export default function App() {
             var posX=isDragging?trkDP.x:(it.x||0);
             var posY=isDragging?trkDP.y:(it.y||0);
             var ci=BAR_PARTS.indexOf(it.n);if(ci<0)ci=0;
-            var R=48,S=R*2+8,cx2=S/2,cy2=S/2;
+            var pieScale=it.scale||1;
+            var R=Math.round(48*pieScale),S=R*2+8,cx2=S/2,cy2=S/2;
             var rot=it.rot||0;
             var a=2*Math.PI/it.n;
             var ex=cx2+R*Math.cos(a-Math.PI/2),ey=cy2+R*Math.sin(a-Math.PI/2);
@@ -1164,10 +1232,15 @@ export default function App() {
                 </svg>
                 {/* Döndürme butonu */}
                 <div onPointerDown={function(e){e.stopPropagation();}} onClick={function(e){e.stopPropagation();hPush();setItems(irRef.current.map(function(x){return x.id===it.id?Object.assign({},x,{rot:(x.rot||0)+45}):x;}));}} title={t("obj.rotate")} style={{position:"absolute",top:-6,right:-6,width:18,height:18,borderRadius:"50%",background:"#fff",border:"1.5px solid #aaa",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:9,zIndex:5}}>{"↻"}</div>
-                {/* Boyut değiştirme (büyüt / küçült) */}
+                {/* Payda değiştirme (kesir değeri) */}
                 <div onPointerDown={function(e){e.stopPropagation();}} style={{position:"absolute",top:-6,left:-6,display:"flex",flexDirection:"column",gap:2,zIndex:5}}>
                   <div onClick={function(e){e.stopPropagation();var idx=BAR_PARTS.indexOf(it.n);if(idx>0){hPush();setItems(irRef.current.map(function(x){return x.id===it.id?Object.assign({},x,{n:BAR_PARTS[idx-1]}):x;}));}}} title={t("obj.enlarge")} style={{width:16,height:16,borderRadius:"50%",background:"#fff",border:"1px solid #bbb",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:9,fontWeight:900,color:"#666"}}>{"−"}</div>
                   <div onClick={function(e){e.stopPropagation();var idx=BAR_PARTS.indexOf(it.n);if(idx<BAR_PARTS.length-1){hPush();setItems(irRef.current.map(function(x){return x.id===it.id?Object.assign({},x,{n:BAR_PARTS[idx+1]}):x;}));}}} title={t("obj.shrink")} style={{width:16,height:16,borderRadius:"50%",background:"#fff",border:"1px solid #bbb",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:9,fontWeight:900,color:"#666"}}>{"+"}</div>
+                </div>
+                {/* Görsel boyut (scale) — sağ üst */}
+                <div onPointerDown={function(e){e.stopPropagation();}} style={{position:"absolute",top:-6,right:14,display:"flex",flexDirection:"column",gap:2,zIndex:5}}>
+                  <div onClick={function(e){e.stopPropagation();hPush();setItems(irRef.current.map(function(x){return x.id===it.id?Object.assign({},x,{scale:Math.min(4,Math.round(((x.scale||1)+0.2)*10)/10)}):x;}));}} title={t("obj.visualEnlarge")} style={{width:16,height:16,borderRadius:"50%",background:"#fef3c7",border:"1.5px solid #d97706",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:9,fontWeight:900,color:"#92400e"}}>{"△"}</div>
+                  <div onClick={function(e){e.stopPropagation();hPush();setItems(irRef.current.map(function(x){return x.id===it.id?Object.assign({},x,{scale:Math.max(0.4,Math.round(((x.scale||1)-0.2)*10)/10)}):x;}));}} title={t("obj.visualShrink")} style={{width:16,height:16,borderRadius:"50%",background:"#fef3c7",border:"1.5px solid #d97706",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:9,fontWeight:900,color:"#92400e"}}>{"▽"}</div>
                 </div>
                 {/* Parçala ve Birleştir */}
                 <div onPointerDown={function(e){e.stopPropagation();}} style={{position:"absolute",bottom:-6,left:"50%",transform:"translateX(-50%)",display:"flex",gap:3,zIndex:5}}>
@@ -1225,7 +1298,9 @@ export default function App() {
             var posX=isDragging?trkDP.x:(it.x||0);
             var posY=isDragging?trkDP.y:(it.y||0);
             var ci=BAR_PARTS.indexOf(it.n);if(ci<0)ci=0;
-            var bw=it.bw||Math.round(240/it.n);
+            var scale=it.scale||1;
+            var bw=Math.round((it.bw||Math.round(240/it.n))*scale);
+            var bh=Math.round(32*scale);
             var label=it.n===1?"1":"1/"+it.n;
             /* Parçala: 1/n çubuğu k eş parçaya böler — hedef payda BAR_PARTS içinde olmalı */
             var splitOpts=[2,3,4,5,6,8,10,12].filter(function(k){return BAR_PARTS.indexOf(it.n*k)>=0;});
@@ -1253,13 +1328,18 @@ export default function App() {
                   setBarDrag({parts:it.n,ci:ci,src:"standalone",sx:e.clientX,sy:e.clientY});
                   setBarDragPos({x:e.clientX,y:e.clientY});
                 }}>
-                <div style={{width:bw,height:32,borderRadius:6,background:"linear-gradient(180deg,"+FC[ci%FC.length]+","+FB[ci%FB.length]+")",border:"2.5px solid "+FB[ci%FB.length],display:"flex",alignItems:"center",justifyContent:"center",boxShadow:"0 2px 8px rgba(0,0,0,.25)",cursor:"grab",opacity:transpMode?.55:1}}>
-                    <span style={{fontSize:bw<30?7:bw<50?9:bw<80?12:14,fontWeight:900,color:"#fff"}}>{showLabels?(labelMode==="dec"?(1/it.n).toFixed(it.n<=4?1:2):labelMode==="pct"?Math.round(100/it.n)+"%":label):""}</span>
+                <div style={{width:bw,height:bh,borderRadius:6,background:"linear-gradient(180deg,"+FC[ci%FC.length]+","+FB[ci%FB.length]+")",border:"2.5px solid "+FB[ci%FB.length],display:"flex",alignItems:"center",justifyContent:"center",boxShadow:"0 2px 8px rgba(0,0,0,.25)",cursor:"grab",opacity:transpMode?.55:1}}>
+                    <span style={{fontSize:bw<30?7:bw<50?9:bw<80?12:Math.min(16,bh*0.5),fontWeight:900,color:"#fff"}}>{showLabels?(labelMode==="dec"?(1/it.n).toFixed(it.n<=4?1:2):labelMode==="pct"?Math.round(100/it.n)+"%":label):""}</span>
                   </div>
-                  {/* Boyut değiştirme tutamacı (büyüt/küçült) */}
+                  {/* Payda değiştirme (kesir değeri) */}
                   <div onPointerDown={function(e){e.stopPropagation();}} style={{position:"absolute",top:-7,right:-4,display:"flex",gap:1,zIndex:5}}>
                     <div onClick={function(e){e.stopPropagation();var idx=BAR_PARTS.indexOf(it.n);if(idx>0){hPush();setItems(irRef.current.map(function(x){return x.id===it.id?Object.assign({},x,{n:BAR_PARTS[idx-1],bw:Math.round(240/BAR_PARTS[idx-1])}):x;}));}}} title={t("obj.enlarge")} style={{width:14,height:14,borderRadius:"50%",background:"#fff",border:"1px solid #bbb",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:9,fontWeight:900,color:"#666"}}>{"−"}</div>
                     <div onClick={function(e){e.stopPropagation();var idx=BAR_PARTS.indexOf(it.n);if(idx<BAR_PARTS.length-1){hPush();setItems(irRef.current.map(function(x){return x.id===it.id?Object.assign({},x,{n:BAR_PARTS[idx+1],bw:Math.round(240/BAR_PARTS[idx+1])}):x;}));}}} title={t("obj.shrink")} style={{width:14,height:14,borderRadius:"50%",background:"#fff",border:"1px solid #bbb",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:9,fontWeight:900,color:"#666"}}>{"+"}</div>
+                  </div>
+                  {/* Görsel boyut (scale) — sol kenarda */}
+                  <div onPointerDown={function(e){e.stopPropagation();}} style={{position:"absolute",top:-7,left:-4,display:"flex",gap:1,zIndex:5}}>
+                    <div onClick={function(e){e.stopPropagation();hPush();setItems(irRef.current.map(function(x){return x.id===it.id?Object.assign({},x,{scale:Math.max(0.4,Math.round(((x.scale||1)-0.2)*10)/10)}):x;}));}} title={t("obj.visualShrink")} style={{width:14,height:14,borderRadius:"50%",background:"#fef3c7",border:"1px solid #d97706",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:8,fontWeight:900,color:"#92400e"}}>{"▽"}</div>
+                    <div onClick={function(e){e.stopPropagation();hPush();setItems(irRef.current.map(function(x){return x.id===it.id?Object.assign({},x,{scale:Math.min(4,Math.round(((x.scale||1)+0.2)*10)/10)}):x;}));}} title={t("obj.visualEnlarge")} style={{width:14,height:14,borderRadius:"50%",background:"#fef3c7",border:"1px solid #d97706",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:8,fontWeight:900,color:"#92400e"}}>{"△"}</div>
                   </div>
                   {/* Parçala ve Birleştir */}
                   <div onPointerDown={function(e){e.stopPropagation();}} style={{position:"absolute",bottom:-8,left:-4,display:"flex",gap:2,zIndex:5}}>

@@ -99,10 +99,14 @@ export default {
   "tool.zoomIn": "Büyüt",
   "tool.zoomOut": "Küçült",
   "tool.zoomReset": "Yakınlaştırmayı sıfırla",
+  "tool.eraser": "Silgi (çizgiye tıkla → sil)",
 
   /* ===== OBJECT CONTROLS (bar & pie) ===== */
   "obj.enlarge": "Büyüt (payda küçülür)",
   "obj.shrink": "Küçült (payda büyür)",
+  "obj.visualEnlarge": "Görsel büyüt (boyut artar, kesir değişmez)",
+  "obj.visualShrink": "Görsel küçült (boyut azalır, kesir değişmez)",
+  "obj.remove": "Kaldır",
   "obj.split": "Parçala — kaç parçaya bölmek istediğini seç",
   "obj.splitInto": "Kaç eş parçaya?",
   "obj.cancel": "Vazgeç",
