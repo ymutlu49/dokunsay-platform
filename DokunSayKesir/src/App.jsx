@@ -43,62 +43,80 @@ var ACT=[
     s:{m:[{w:1,p:[{n:4}]},{w:1,p:[{n:4},{n:4},{n:4}]}],o:{}}},
 
   /* İşlemler */
-  {n:"Kesir Toplama",i:"➕",cat:"işlem",diff:3,d:"Sol model: 1/3. Orta model: 2/3. + ve = işaretleri hazır. Sağ modele toplamı oluştur! 1/3 + 2/3 = ?",k:"M.4.1.7.1",
+  {n:"Kesir Toplama",i:"➕",cat:"işlem",diff:3,d:"Sol model: 1/3. Orta model: 2/3. + ve = işaretleri hazır. Sağ modele toplamı oluştur! 1/3 + 2/3 = ?",k:"M.4.1.7.1",expr:"1/3 + 2/3 = ?",
     s:{m:[{w:1,p:[{n:3}]},{w:1,p:[{n:3},{n:3}]},{w:1,p:[]}],o:{0:"+",1:"="}}},
-  {n:"Kesir Çıkarma",i:"➖",cat:"işlem",diff:3,d:"Sol model: 5/6. Orta model: 2/6. − ve = işaretleri hazır. Sağ modele farkı oluştur! 5/6 − 2/6 = ?",k:"M.4.1.7.1",
+  {n:"Kesir Çıkarma",i:"➖",cat:"işlem",diff:3,d:"Sol model: 5/6. Orta model: 2/6. − ve = işaretleri hazır. Sağ modele farkı oluştur! 5/6 − 2/6 = ?",k:"M.4.1.7.1",expr:"5/6 − 2/6 = ?",
     s:{m:[{w:1,p:[{n:6},{n:6},{n:6},{n:6},{n:6}]},{w:1,p:[{n:6},{n:6}]},{w:1,p:[]}],o:{0:"−",1:"="}}},
-  {n:"Günlük Hayat Problemi",i:"🛒",cat:"işlem",diff:3,d:"Kader parasının 2/8'ini ekmeğe, 3/8'ini süte harcadı. Toplamda kaçta kaçını harcadı? + ve = hazır, cevabı sağ modele koy!",k:"M.4.1.7.2",
+  {n:"Günlük Hayat Problemi",i:"🛒",cat:"işlem",diff:3,d:"Kader parasının 2/8'ini ekmeğe, 3/8'ini süte harcadı. Toplamda kaçta kaçını harcadı? + ve = hazır, cevabı sağ modele koy!",k:"M.4.1.7.2",expr:"2/8 + 3/8 = ?",
     s:{m:[{w:1,p:[{n:8},{n:8}]},{w:1,p:[{n:8},{n:8},{n:8}]},{w:1,p:[]}],o:{0:"+",1:"="}}},
 
   /* Çarpma İşlemleri */
-  {n:"Kesrin Yarısı",i:"✖️",cat:"işlem",diff:2,d:"1/2 × 1/2 = ? İlk modele 1/2 koy. Yarısının yarısı ne kadar? Sağ modelde 1/4 oluştur! Çarpma her zaman büyütmez.",k:"M.4.1.7.1",
+  {n:"Kesrin Yarısı",i:"✖️",cat:"işlem",diff:2,d:"1/2 × 1/2 = ? İlk modele 1/2 koy. Yarısının yarısı ne kadar? Sağ modelde 1/4 oluştur! Çarpma her zaman büyütmez.",k:"M.4.1.7.1",expr:"1/2 × 1/2 = ?",
     s:{m:[{w:1,p:[{n:2}]},{w:1,p:[{n:2}]},{w:1,p:[]}],o:{0:"×",1:"="}}},
-  {n:"Kesir × Kesir",i:"✖️",cat:"işlem",diff:3,d:"1/3 × 1/2 = ? Bir bütünün üçte birinin yarısı ne kadar? Cevap 1/6! Sağ modele bir 1/6 koy ve doğrula.",k:"M.4.1.7.1",
+  {n:"Kesir × Kesir",i:"✖️",cat:"işlem",diff:3,d:"1/3 × 1/2 = ? Bir bütünün üçte birinin yarısı ne kadar? Cevap 1/6! Sağ modele bir 1/6 koy ve doğrula.",k:"M.4.1.7.1",expr:"1/3 × 1/2 = ?",
     s:{m:[{w:1,p:[{n:3}]},{w:1,p:[{n:2}]},{w:1,p:[]}],o:{0:"×",1:"="}}},
-  {n:"Tam Sayı × Kesir",i:"✖️",cat:"işlem",diff:3,d:"3 × 1/4 = ? Üç tane çeyrek ne eder? Sol model 3/4 ile dolu (3 tane 1/4). Sağ modelde aynısını oluştur!",k:"M.4.1.7.1",
+  {n:"Tam Sayı × Kesir",i:"✖️",cat:"işlem",diff:3,d:"3 × 1/4 = ? Üç tane çeyrek ne eder? Sol model 3/4 ile dolu (3 tane 1/4). Sağ modelde aynısını oluştur!",k:"M.4.1.7.1",expr:"3 × 1/4 = ?",
     s:{m:[{w:1,p:[{n:4},{n:4},{n:4}]},{w:1,p:[]}],o:{0:"="}}},
 
   /* Bölme İşlemleri */
-  {n:"Bütünde Kaç Yarım?",i:"➗",cat:"işlem",diff:2,d:"1 ÷ 1/2 = ? Bir bütünün içinde kaç tane yarım var? Modeli 1/2 çubuklarıyla doldur. Cevap 2! Bölme küçültmeyebilir.",k:"M.4.1.7.1",
+  {n:"Bütünde Kaç Yarım?",i:"➗",cat:"işlem",diff:2,d:"1 ÷ 1/2 = ? Bir bütünün içinde kaç tane yarım var? Modeli 1/2 çubuklarıyla doldur. Cevap 2! Bölme küçültmeyebilir.",k:"M.4.1.7.1",expr:"1 ÷ 1/2 = ?",
     s:{m:[{w:1,p:[]}],o:{}}},
-  {n:"Yarımda Kaç Çeyrek?",i:"➗",cat:"işlem",diff:2,d:"1/2 ÷ 1/4 = ? Sol model 1/2 dolu. 1/2'nin içinde kaç tane 1/4 var? ✂️ makasla 1/2'yi kes ve say!",k:"M.4.1.7.1",
+  {n:"Yarımda Kaç Çeyrek?",i:"➗",cat:"işlem",diff:2,d:"1/2 ÷ 1/4 = ? Sol model 1/2 dolu. 1/2'nin içinde kaç tane 1/4 var? ✂️ makasla 1/2'yi kes ve say!",k:"M.4.1.7.1",expr:"1/2 ÷ 1/4 = ?",
     s:{m:[{w:1,p:[{n:2}]},{w:1,p:[{n:4}]},{w:1,p:[]}],o:{0:"÷",1:"="}}},
-  {n:"Kesir ÷ Kesir",i:"➗",cat:"işlem",diff:3,d:"3/4 ÷ 1/4 = ? Sol model: 3/4 (üç tane 1/4). Bir 1/4'ün içinde kaç 1/4 var? → 3! Modeli 2 tama genişlet ve cevabı oluştur.",k:"M.4.1.7.1",
+  {n:"Kesir ÷ Kesir",i:"➗",cat:"işlem",diff:3,d:"3/4 ÷ 1/4 = ? Sol model: 3/4 (üç tane 1/4). Bir 1/4'ün içinde kaç 1/4 var? → 3! Modeli 2 tama genişlet ve cevabı oluştur.",k:"M.4.1.7.1",expr:"3/4 ÷ 1/4 = ?",
     s:{m:[{w:1,p:[{n:4},{n:4},{n:4}]},{w:1,p:[{n:4}]},{w:2,p:[]}],o:{0:"÷",1:"="}}},
-  {n:"Bölme Problemi",i:"🍕",cat:"işlem",diff:3,d:"3 dilim pizza var, her biri 1/6. Toplam ne kadar pizza yenmiş? 3 × 1/6 = 3/6 = 1/2. İki yoldan da doğrula!",k:"M.4.1.7.2",
+  {n:"Bölme Problemi",i:"🍕",cat:"işlem",diff:3,d:"3 dilim pizza var, her biri 1/6. Toplam ne kadar pizza yenmiş? 3 × 1/6 = 3/6 = 1/2. İki yoldan da doğrula!",k:"M.4.1.7.2",expr:"3 × 1/6 = ?",
     s:{m:[{w:1,p:[{n:6},{n:6},{n:6}]},{w:1,p:[{n:2}]}],o:{0:"="}}},
 
   /* Kavram Yanılgıları */
-  {n:"Y1: Bütün aynı mı?",i:"🔍",cat:"yanılgı",diff:2,d:"Kesirlerde miktar referans alınan bütüne bağlıdır. İki modeldeki 1/2'lere bak — bütünler aynı olduğunda yarımlar da eşittir.",k:"KY",
-    s:{m:[{w:1,p:[{n:2}]},{w:1,p:[{n:2}]}],o:{0:"="}}},
-  {n:"Y2: Payda büyük = büyük mü?",i:"🔍",cat:"yanılgı",diff:2,d:"1/6 mı 1/4 mü büyük? Modellerdeki çubuk uzunluklarını karşılaştır. Payda büyükse parça KÜÇÜK olur!",k:"KY",
-    s:{m:[{w:1,p:[{n:6}]},{w:1,p:[{n:4}]}],o:{}}},
-  {n:"Y3: Eş parçalar şartı",i:"🔍",cat:"yanılgı",diff:2,d:"Kesirde bütün EŞİT parçalara bölünür. Modele farklı boyutlu çubuklar koy — her parça paydadaki sayı kadar çoğaltıldığında aynı bütünü vermeli!",k:"KY",
-    s:{m:[{w:1,p:[]}],o:{}}},
-  {n:"Y4: Sayı doğrusunda konum",i:"🔍",cat:"yanılgı",diff:3,d:"Kesirler sayı doğrusunda birer konumdur. İki modele farklı kesirler koy. Sayı doğrusundaki okların yerini karşılaştır!",k:"KY",
-    s:{m:[{w:1,p:[{n:4},{n:4},{n:4}]},{w:1,p:[{n:3},{n:3}]}],o:{}}},
-  {n:"Y5: Payda toplanır mı?",i:"🔍",cat:"yanılgı",diff:3,d:"1/4 + 1/4 = 2/8 mi? HAYIR! Sol modelde 2/4 var, sağ modele 2/8 koy. = işareti ile kontrol et — aynı yer mi?",k:"KY",
-    s:{m:[{w:1,p:[{n:4},{n:4}]},{w:1,p:[{n:8},{n:8}]}],o:{0:"="}}},
-  {n:"Y6: Çarpma büyütür mü?",i:"🔍",cat:"yanılgı",diff:3,d:"Tam sayılarda çarpma büyütür ama kesirlerde her zaman değil! 1/2 ve 1/4'ü karşılaştır. 1/2 × 1/2 = 1/4 → sonuç küçüldü!",k:"KY",
-    s:{m:[{w:1,p:[{n:2}]},{w:1,p:[{n:4}]}],o:{}}},
-  {n:"Y7: Bölme küçültür mü?",i:"🔍",cat:"yanılgı",diff:3,d:"1 ÷ 1/2 = 2! Model 2 tama genişletilmiş. 1/2 çubuklarıyla 2'ye kadar doldur — 1'in içinde kaç yarım var?",k:"KY",
-    s:{m:[{w:2,p:[]}],o:{}}},
+  {n:"Y1: Bütün aynı mı?",i:"🔍",cat:"yanılgı",diff:2,d:"YANILGI: '1/2 (ya da 1/3, 1/4) her zaman aynı miktardır.' DOĞRU: Kesir, REFERANS bütüne göre değer kazanır. Sol: 1 bütünün parçası. Sağ: 2 tam kabul edildiğinde aynı kesrin oluşturduğu miktar. Sayı doğrularına bak — aynı etiket farklı miktarları gösterebilir! (Behr, Lesh, Post & Silver, 1983)",k:"KY",
+    variants:[
+      {m:[{w:1,p:[{n:2}]},{w:2,p:[{n:2}]}],o:{}},
+      {m:[{w:1,p:[{n:3}]},{w:2,p:[{n:3}]}],o:{}},
+      {m:[{w:1,p:[{n:4}]},{w:2,p:[{n:4}]}],o:{}},
+      {m:[{w:1,p:[{n:3},{n:3}]},{w:2,p:[{n:3},{n:3}]}],o:{}},
+      {m:[{w:1,p:[{n:4},{n:4},{n:4}]},{w:2,p:[{n:4},{n:4},{n:4}]}],o:{}},
+    ],
+    s:{m:[{w:1,p:[{n:2}]},{w:2,p:[{n:2}]}],o:{}}},
+  {n:"Y2: Payda büyük = büyük mü?",i:"🔍",cat:"yanılgı",diff:2,d:"YANILGI: '6, 4'ten büyük olduğu için 1/6 > 1/4.' DOĞRU: Payda ne kadar büyükse parça o kadar KÜÇÜK olur (bütün daha çok parçaya bölünür). Sol: 1/6, sağ: 1/4. İki çubuğu karşılaştır — hangisi daha uzun? İki kesir arasındaki daireye tıkla; =, <, > sembolleri arasında döner. Doğru karşılaştırmayı seç! (Stafylidou & Vosniadou, 2004)",k:"KY",expr:"1/6 ? 1/4",
+    s:{m:[{w:1,p:[{n:6}]},{w:1,p:[{n:4}]}],o:{0:"<"}}},
+  {n:"Y3: Eş parçalar şartı",i:"🔍",cat:"yanılgı",diff:2,d:"YANILGI: 'Bütün kaç parçaya bölünürse bölünsün, her parça bir kesirdir.' DOĞRU: Bütün EŞİT parçalara bölünmedikçe kesir oluşmaz. Sol modelde 3 eş parça (3 × 1/3) var → her biri 1/3. Sağ modele farklı paydalı çubuklar (örn. 1/2 + 1/4 + 1/4) koy — bütünü doldursa da her parça ayrı değer taşır, üçte bir DEĞİLDİR! (Kamii & Clark, 1995)",k:"KY",
+    s:{m:[{w:1,p:[{n:3},{n:3},{n:3}]},{w:1,p:[]}],o:{}}},
+  {n:"Y4: Sayı doğrusunda konum",i:"🔍",cat:"yanılgı",diff:3,d:"YANILGI: 'Kesir bir sayı değil, iki sayının bir arada yazılmasıdır.' DOĞRU: Her kesir sayı doğrusunda TEK bir NOKTADIR. Model 0-2 aralığında: sol 5/4, sağ 4/3. Kırmızı okların yerlerini karşılaştır — hangisi daha sağda? <, >, = sembollerinden doğru olanı seç! (Bright, Behr, Post & Wachsmuth, 1988)",k:"KY",expr:"5/4 ? 4/3",
+    s:{m:[{w:2,p:[{n:4},{n:4},{n:4},{n:4},{n:4}]},{w:2,p:[{n:3},{n:3},{n:3},{n:3}]}],o:{0:"<"}}},
+  {n:"Y5: Payda toplanır mı?",i:"🔍",cat:"yanılgı",diff:3,d:"YANILGI: '1/4 + 1/4 = 2/8.' DOĞRU: Aynı paydalı kesirlerde sadece PAYLAR toplanır, payda AYNI kalır: 1/4 + 1/4 = 2/4. Sol: 1/4, orta: 1/4. + ve = hazır. Sağ modele toplamı koy. 2/8 mi 2/4 mü? (Soylu & Soylu, 2005)",k:"KY",expr:"1/4 + 1/4 = ?",
+    s:{m:[{w:1,p:[{n:4}]},{w:1,p:[{n:4}]},{w:1,p:[]}],o:{0:"+",1:"="}}},
+  {n:"Y6: Çarpma büyütür mü?",i:"🔍",cat:"yanılgı",diff:3,d:"YANILGI: 'Çarpma her zaman büyütür.' DOĞRU: 0 ile 1 arası kesirlerle çarparken sonuç KÜÇÜLÜR. 1/2 × 1/2: yarının yarısı = 1/4. Sol: 1/2, orta: 1/2, × ve = hazır. Sağ modele sonucu (bir 1/4) koy ve ilk modelden küçük olduğunu gör! (Graeber & Tanenhaus, 1993)",k:"KY",expr:"1/2 × 1/2 = ?",
+    s:{m:[{w:1,p:[{n:2}]},{w:1,p:[{n:2}]},{w:1,p:[]}],o:{0:"×",1:"="}}},
+  {n:"Y7: Bölme küçültür mü?",i:"🔍",cat:"yanılgı",diff:3,d:"YANILGI: 'Bölme her zaman küçültür.' DOĞRU: 1'den küçük bir kesire bölünce sonuç BÜYÜR. 1 ÷ 1/2 = bir bütünde kaç yarım var? → 2. Sol: 1 tam (iki 1/2), orta: 1/2 (bölen), sağ (2 tam genişletilmiş) modele iki bütün değerinde çubuk koy. ÷ ve = hazır! (Fischbein, Deri, Nello & Marino, 1985)",k:"KY",expr:"1 ÷ 1/2 = ?",
+    s:{m:[{w:1,p:[{n:2},{n:2}]},{w:1,p:[{n:2}]},{w:2,p:[]}],o:{0:"÷",1:"="}}},
 
   /* Yeni Kavram Yanılgıları — Literatür Taramasından */
-  {n:"Y8: Kesir iki ayrı sayı mı?",i:"🔬",cat:"yanılgı",diff:2,d:"3/4 iki ayrı sayı (3 ve 4) değil, TEK bir değerdir! Modele üç tane 1/4 koy. Sayı doğrusunda 3/4'ün TEK bir noktada olduğunu gör. (Stafylidou & Vosniadou, 2004; Hwang & Riccomini, 2021)",k:"KY",
+  {n:"Y8: Kesir iki ayrı sayı mı?",i:"🔬",cat:"yanılgı",diff:2,d:"YANILGI: '3/4' iki ayrı sayıdır (3 ve 4). DOĞRU: 3/4 TEK BİR DEĞERDİR. 1/4'ten üç kat uzaklıktaki bir nokta! Sol modele üç 1/4 koyulmuş → pay=3, payda=4 ama değer TEK. Sayı doğrusunda tek ok var, 3 ile 4 arası DEĞİL. (Stafylidou & Vosniadou, 2004; Hwang & Riccomini, 2021)",k:"KY",
     s:{m:[{w:1,p:[{n:4},{n:4},{n:4}]}],o:{}}},
-  {n:"Y9: 0 ile 1 arası boş mu?",i:"🔬",cat:"yanılgı",diff:2,d:"0 ile 1 arasında sonsuz kesir vardır! İlk modele 1/2, ikinciye 1/3, üçüncüye 1/4 koy. Sayı doğrularında hepsinin 0-1 arasında ama farklı yerlerde olduğunu gör. (Ni & Zhou, 2005)",k:"KY",
+  {n:"Y9: 0 ile 1 arası boş mu?",i:"🔬",cat:"yanılgı",diff:2,d:"YANILGI: '0 ile 1 arası sadece doğal sayılarla doludur; aralarında başka sayı yok.' DOĞRU: 0-1 arasında SONSUZ kesir vardır. Üç modele 1/2, 1/3, 1/4 yerleştirildi. Sayı doğrularındaki kırmızı okların farklı konumlarını karşılaştır — hepsi 0-1 arasında ama birbirinden farklı! (Ni & Zhou, 2005)",k:"KY",
     s:{m:[{w:1,p:[{n:2}]},{w:1,p:[{n:3}]},{w:1,p:[{n:4}]}],o:{}}},
-  {n:"Y10: Pay arttıkça ne olur?",i:"🔬",cat:"yanılgı",diff:2,d:"Payda sabitken pay arttıkça kesir BÜYÜR. İlk modele 1/6, ikinciye 3/6, üçüncüye 5/6 koy. Sayı doğrusunda kırmızı okların nasıl ilerlediğini karşılaştır! (Aksoy & Yazlık, 2017)",k:"KY",
+  {n:"Y9b: İki kesir arası boş mu?",i:"🔬",cat:"yanılgı",diff:3,d:"YANILGI: 'İki komşu kesir arasında başka kesir yoktur; kesirler de tam sayılar gibi ardışıktır.' DOĞRU: Herhangi iki farklı kesir arasında SONSUZ kesir vardır. Sol: 1/3, orta: 1/2. Bu ikisinin arasına bir kesir koyabilir misin? Örneğin 2/5 veya 3/8. Sağ modele 1/3 ile 1/2 arasında bir kesir oluştur! (Vamvakoussi & Vosniadou, 2004)",k:"KY",expr:"1/3 < ? < 1/2",
+    s:{m:[{w:1,p:[{n:3}]},{w:1,p:[]},{w:1,p:[{n:2}]}],o:{0:"<",1:"<"}}},
+  {n:"Y10: Pay arttıkça ne olur?",i:"🔬",cat:"yanılgı",diff:2,d:"YANILGI: 'Payla paydanın büyük/küçük olmasının kesre etkisi aynıdır.' DOĞRU: Payda SABİTKEN pay arttıkça kesir BÜYÜR. Üç modelde 1/6 → 3/6 → 5/6. Aynı paydaya (aynı boy parçalar) sahip — kesirlerin SADELEŞTİRİLMEMİŞ halini görüyorsun. Payların artmasıyla kırmızı okun 0'dan 1'e doğru ilerleyişini gör! (Aksoy & Yazlık, 2017)",k:"KY",
     s:{m:[{w:1,p:[{n:6}]},{w:1,p:[{n:6},{n:6},{n:6}]},{w:1,p:[{n:6},{n:6},{n:6},{n:6},{n:6}]}],o:{}}},
-  {n:"Y11: 5/4 = 1 tam 1/4 mü?",i:"🔬",cat:"yanılgı",diff:3,d:"Bileşik kesir ↔ tam sayılı kesir dönüşümü. Sol model 2 tama genişletilmiş, beş 1/4 koy → 5/4. Sağ modele 1 tam + bir 1/4 koy. Aynı mı? = ile kontrol! (Pesen, 2007)",k:"KY",
+  {n:"Y11: 5/4 = 1 tam 1/4 mü?",i:"🔬",cat:"yanılgı",diff:3,d:"YANILGI: '5/4 yazılamaz/yanlıştır çünkü pay paydadan büyük.' DOĞRU: Pay paydadan büyükse kesir BİLEŞİKTİR ve 1'den büyük bir sayıyı gösterir: 5/4 = 1 bütün + 1/4 = 1¼. Sol (2 tama genişletilmiş) modelde beş 1/4 var → 5/4. Sağ modele DÖRT 1/4 + bir 1/4 (yani 1 tam + 1/4) koy ve = ile kontrol et! (Pesen, 2007)",k:"KY",expr:"5/4 = ? tam ?/4",
     s:{m:[{w:2,p:[{n:4},{n:4},{n:4},{n:4},{n:4}]},{w:2,p:[]}],o:{0:"="}}},
-  {n:"Y12: Çıkarmada terslik",i:"🔬",cat:"yanılgı",diff:3,d:"3/5 − 1/5 hesaplarken bazı öğrenciler büyükten küçüğü (5−3=2, 5−1=4 → 2/4) çıkarır. Modelle göster: 3/5'ten bir 1/5 çıkar, kalan 2/5! (Biber, Tuna & Aktaş, 2013)",k:"KY",
+  {n:"Y12: Çıkarmada terslik",i:"🔬",cat:"yanılgı",diff:3,d:"YANILGI: 3/5 − 1/5 = 2/4 (büyükten küçüğü ayrı ayrı çıkarma: 5-3=2 ve 5-1=4). DOĞRU: Aynı paydalı çıkarma için payları çıkar, payda aynı kalır: 3/5 − 1/5 = 2/5. Sol: 3/5, orta: 1/5, − ve = hazır. Sağ modele iki 1/5 koy — 2/4 DEĞİL 2/5! (Biber, Tuna & Aktaş, 2013)",k:"KY",expr:"3/5 − 1/5 = ?",
     s:{m:[{w:1,p:[{n:5},{n:5},{n:5}]},{w:1,p:[{n:5}]},{w:1,p:[]}],o:{0:"−",1:"="}}},
-  {n:"Y13: Toplama mı çarpma mı?",i:"🔬",cat:"yanılgı",diff:3,d:"Kesir çarpma kuralını (pay×pay, payda×payda) toplama/çıkarmaya uygulama hatası! 1/3+1/3 = 1/9 DEĞİL, 2/3'tür. Modelle doğrula! (Soylu & Soylu, 2005; Alkhateeb, 2019)",k:"KY",
+  {n:"Y13: Toplama mı çarpma mı?",i:"🔬",cat:"yanılgı",diff:3,d:"YANILGI: Çarpma kuralını (pay×pay, payda×payda) toplamaya uygulamak: 1/3 + 1/3 = 1/9. DOĞRU: Aynı paydada TOPLAMA → paylar toplanır, payda aynı kalır: 1/3 + 1/3 = 2/3. Modellere bak: iki 1/3 yan yana bir 2/3'tür. Sağ modele iki 1/3 koy ve = ile kontrol et! (Soylu & Soylu, 2005; Alkhateeb, 2019)",k:"KY",expr:"1/3 + 1/3 = ?",
     s:{m:[{w:1,p:[{n:3}]},{w:1,p:[{n:3}]},{w:1,p:[]}],o:{0:"+",1:"="}}},
-  {n:"Y14: Denk kesir nasıl bulunur?",i:"🔬",cat:"yanılgı",diff:2,d:"1/2 = 2/4 = 3/6. Denk kesir bulmak için pay VE payda aynı sayıyla çarpılır/bölünür. Sol modele iki 1/4, sağ modele bir 1/2 koy. = ile denk olduğunu gör! ✂️ ile 1/2'yi iki 1/4'e bölebilirsin! (Pesen, 2008)",k:"KY",
+  {n:"Y14: Denk kesir nasıl bulunur?",i:"🔬",cat:"yanılgı",diff:2,d:"YANILGI: 'Farklı paydalı kesirler denk olamaz.' veya 'Herhangi iki farklı paydalı kesir birbirine denktir.' DOĞRU: 1/2 = 2/4 = 3/6 denk; ama 6/8 ≠ 9/12 (birinci 3/4, ikinci 3/4 — hm bu denk, kontrol!). Pay VE paydayı aynı sayıyla çarp/böl. = ile doğrula, sayı doğrularındaki konumlara bak! (Pesen, 2008)",k:"KY",
+    variants:[
+      {m:[{w:1,p:[{n:4},{n:4}]},{w:1,p:[{n:2}]}],o:{0:"="}},
+      {m:[{w:1,p:[{n:6},{n:6},{n:6}]},{w:1,p:[{n:2}]}],o:{0:"="}},
+      {m:[{w:1,p:[{n:6},{n:6},{n:6},{n:6}]},{w:1,p:[{n:3},{n:3}]}],o:{0:"="}},
+      {m:[{w:1,p:[{n:8},{n:8},{n:8},{n:8},{n:8},{n:8}]},{w:1,p:[{n:12},{n:12},{n:12},{n:12},{n:12},{n:12},{n:12},{n:12},{n:12}]}],o:{0:"="}},
+      {m:[{w:1,p:[{n:8},{n:8},{n:8},{n:8}]},{w:1,p:[{n:10},{n:10},{n:10},{n:10},{n:10}]}],o:{0:"="}},
+    ],
     s:{m:[{w:1,p:[{n:4},{n:4}]},{w:1,p:[{n:2}]}],o:{0:"="}}},
+  {n:"Y15: Yarısı = 2'ye mi 1/2'ye mi böl?",i:"🔬",cat:"yanılgı",diff:3,d:"YANILGI: 'Bir kesrin YARISINI bulmak için 1/2'ye bölmek gerekir.' DOĞRU: Yarısı = 2'ye BÖLMEK = 1/2 ile ÇARPMAK. 1/2'ye bölmek sonucu İKİ KAT eder (büyütür), yarıya indirmez! 1/2 × 1/2 = 1/4 (yarının yarısı, doğru). 1/2 ÷ 1/2 = 1 (yanılgı). Sol: 1/2, orta: 1/2, × ve = hazır. Sağ modele 1/4 koy — yarısının yarısını gör! (Fischbein, Deri, Nello & Marino, 1985; Tirosh, 2000)",k:"KY",expr:"1/2'nin yarısı = 1/2 × 1/2 = ?",
+    s:{m:[{w:1,p:[{n:2}]},{w:1,p:[{n:2}]},{w:1,p:[]}],o:{0:"×",1:"="}}},
 ];
 
 function fracLabel(val){
@@ -201,12 +219,27 @@ function WholeBarTrack(props) {
   var brd=isDropTarget?"3px solid #3b82f6":isEquiv?"3px solid #22c55e":props.compact?"none":"1px solid rgba(0,0,0,.08)";
   var bg=isDropTarget?"rgba(59,130,246,.08)":isEquiv?"rgba(34,197,94,.06)":props.compact?"transparent":"rgba(255,255,255,.15)";
 
-  /* Kesir pay/payda hesapla */
+  /* Kesir pay/payda hesapla
+     Y10 düzeltmesi: Aynı paydalı parçalar için SADELEŞTİRME YAPMA — öğrenci gerçek pay/paydayı görmeli. */
   var fracNum=0,fracDen=1;
   if(totalVal>0){
-    var ds2=[2,3,4,5,6,8,10,12,15,16,20,24];
-    for(var fi=0;fi<ds2.length;fi++){var fn=Math.round(totalVal*ds2[fi]);if(Math.abs(totalVal-fn/ds2[fi])<0.001){fracNum=fn;fracDen=ds2[fi];break;}}
-    if(fracNum===0){fracNum=Math.round(totalVal*100);fracDen=100;}
+    /* Önce parçalardan gerçek pay/payda okumayı dene */
+    if(pieces.length>0){
+      var firstN=pieces[0].n;
+      var allSame=true;
+      for(var psi=0;psi<pieces.length;psi++){if(pieces[psi].n!==firstN){allSame=false;break;}}
+      if(allSame&&firstN>1){
+        fracNum=pieces.length;
+        fracDen=firstN;
+      }
+    }
+    /* Aynı paydalı değilse veya tam bütün değeri ise — otomatik yaklaşık bul */
+    if(fracDen===1){
+      var ds2=[2,3,4,5,6,8,10,12,15,16,20,24];
+      for(var fi=0;fi<ds2.length;fi++){var fn=Math.round(totalVal*ds2[fi]);if(Math.abs(totalVal-fn/ds2[fi])<0.001){fracNum=fn;fracDen=ds2[fi];break;}}
+      if(fracNum===0){fracNum=Math.round(totalVal*100);fracDen=100;}
+    }
+    /* Sadece tam sayı için "1" göster (pay === payda durumu) */
     if(fracNum===fracDen){fracNum=1;fracDen=1;}
   }
   var verbalTxt="";
@@ -218,7 +251,12 @@ function WholeBarTrack(props) {
 
   return (
     <div data-trackid={props.trackId} style={{display:"flex",flexDirection:"column",alignItems:"center",gap:4,userSelect:"none",padding:"10px 12px 8px",background:bg,borderRadius:12,border:brd,width:W+24}}>
-      {wholes>1?<span style={{fontSize:9,fontWeight:800,color:"#777"}}>{wholes+t("canvas.whole")}</span>:null}
+      {/* Tam sayısı kontrolü (modeli uzat/kısalt) */}
+      {onSetWholes?(<div onPointerDown={function(e){e.stopPropagation();}} style={{display:"flex",alignItems:"center",gap:4,fontSize:10,fontWeight:800,color:"#777"}}>
+        <button onClick={function(e){e.stopPropagation();if(wholes>1)onSetWholes(wholes-1);}} disabled={wholes<=1} title={t("track.shorten")} style={{width:18,height:18,borderRadius:"50%",border:"1px solid #bbb",background:wholes>1?"#fff":"#f0f0f0",cursor:wholes>1?"pointer":"default",fontSize:11,fontWeight:900,color:"#555",fontFamily:"inherit",lineHeight:1,opacity:wholes>1?1:.4}}>{"−"}</button>
+        <span style={{minWidth:50,textAlign:"center"}}>{wholes+" "+t("canvas.whole").trim()}</span>
+        <button onClick={function(e){e.stopPropagation();if(wholes<5)onSetWholes(wholes+1);}} disabled={wholes>=5} title={t("track.extend")} style={{width:18,height:18,borderRadius:"50%",border:"1px solid #bbb",background:wholes<5?"#fff":"#f0f0f0",cursor:wholes<5?"pointer":"default",fontSize:11,fontWeight:900,color:"#555",fontFamily:"inherit",lineHeight:1,opacity:wholes<5?1:.4}}>{"+"}</button>
+      </div>):(wholes>1?<span style={{fontSize:9,fontWeight:800,color:"#777"}}>{wholes+t("canvas.whole")}</span>:null)}
       {showPie?(<svg width={pd} height={pd}><circle cx={pcx} cy={pcy} r={PR} fill="#facc15" stroke="#222" strokeWidth={2}/>{totalVal>0&&totalVal<wholes?(<path d={piePath} fill="#dc2626" stroke="#222" strokeWidth={1.5}/>):null}{totalVal>=wholes?(<circle cx={pcx} cy={pcy} r={PR} fill="#dc2626" stroke="#222" strokeWidth={2}/>):null}</svg>):null}
       <div style={{background:"#3a3a3a",borderRadius:8,padding:"5px 7px",boxShadow:"0 3px 10px rgba(0,0,0,.3)"}}>
         <div style={{position:"relative",width:W,height:BH,background:"#facc15",borderRadius:5,border:"2px solid #a16207",overflow:"hidden"}}>{wholes>1&&Array.from({length:wholes-1},function(_,wi){return <div key={"wd"+wi} style={{position:"absolute",left:Math.round((wi+1)*W1)-1,top:0,width:2,height:BH,background:"#a16207",zIndex:5}}/>;})}{barEls}</div>
@@ -294,6 +332,8 @@ export default function App() {
   var _completed=useState({}),completed=_completed[0],setCompleted=_completed[1]; /* {actName:true} */
   var _teacherNotes=useState(""),teacherNotes=_teacherNotes[0],setTeacherNotes=_teacherNotes[1];
   var _studentName=useState(""),studentName=_studentName[0],setStudentName=_studentName[1];
+  /* Parçalama menüsü: hangi nesneye kaç parçalı seçim açık */
+  var _splitMenu=useState(null),splitMenu=_splitMenu[0],setSplitMenu=_splitMenu[1]; /* {id:itemId, type:"bar"|"pie"} */
 
   var cvRef=useRef(null),idRef=useRef(100);
   var irRef=useRef(items);irRef.current=items;
@@ -430,17 +470,22 @@ export default function App() {
 
   function loadActivity(tp){
     hPush();setDrawLines([]);setActiveTpl(tp);setInstrState(tp);
-    if(!tp.s){setItems([]);setOps({});return;}
+    /* Varyantlardan rastgele seç — her tıklamada farklı örnek */
+    var scenario=tp.s;
+    if(tp.variants&&tp.variants.length>0){
+      scenario=tp.variants[Math.floor(Math.random()*tp.variants.length)];
+    }
+    if(!scenario){setItems([]);setOps({});return;}
     var newItems=[];var newOps={};
-    tp.s.m.forEach(function(m){
+    scenario.m.forEach(function(m){
       var trackId=nid();
       newItems.push({type:"track",wholes:m.w||1,pieces:m.p||[],id:trackId,x:0,y:0});
     });
     /* Map index-based ops to track id-based ops */
     var trackIds=newItems.map(function(it){return it.id;});
-    Object.keys(tp.s.o).forEach(function(k){
+    Object.keys(scenario.o||{}).forEach(function(k){
       var idx=parseInt(k);
-      if(idx<trackIds.length)newOps[trackIds[idx]]=tp.s.o[k];
+      if(idx<trackIds.length)newOps[trackIds[idx]]=scenario.o[k];
     });
     setOps(newOps);
     setItems(autoLayout(newItems));
@@ -448,7 +493,7 @@ export default function App() {
 
   function cycleOp(trackId){
     var cur=ops[trackId]||"";
-    var cycle=["","+","−","×","÷","="];
+    var cycle=["","+","−","×","÷","=","<",">"];
     var idx=(cycle.indexOf(cur)+1)%cycle.length;
     var newOps=Object.assign({},ops);
     if(cycle[idx]==="")delete newOps[trackId];else newOps[trackId]=cycle[idx];
@@ -644,9 +689,10 @@ export default function App() {
   var sortedTracks=tracks.slice().sort(function(a,b){return (a.x||0)-(b.x||0);});
   var exprCorrect=null; /* null | true | false */
   var exprHint="";
+  var cmpOp="="; /* =, <, > */
   if(sortedTracks.length>=2){
     var eqIdx2=-1;
-    for(var ei=0;ei<sortedTracks.length-1;ei++){if(ops[sortedTracks[ei].id]==="="){eqIdx2=ei;break;}}
+    for(var ei=0;ei<sortedTracks.length-1;ei++){var opx=ops[sortedTracks[ei].id];if(opx==="="||opx==="<"||opx===">"){eqIdx2=ei;cmpOp=opx;break;}}
     if(eqIdx2>=0){
       var leftVal2=0;
       for(var li=0;li<=eqIdx2;li++){
@@ -671,7 +717,11 @@ export default function App() {
         }
       }
       var hasPcs=sortedTracks.every(function(t){return t.pieces&&t.pieces.length>0;});
-      if(hasPcs)exprCorrect=Math.abs(leftVal2-rightVal2)<0.001;
+      if(hasPcs){
+        if(cmpOp==="<")exprCorrect=leftVal2<rightVal2-0.0001;
+        else if(cmpOp===">")exprCorrect=leftVal2>rightVal2+0.0001;
+        else exprCorrect=Math.abs(leftVal2-rightVal2)<0.001;
+      }
 
       /* Akıllı geri bildirim: kavram yanılgısı tespiti */
       if(exprCorrect===false&&hasPcs){
@@ -679,23 +729,45 @@ export default function App() {
         var rightTracks=sortedTracks.slice(eqIdx2+1);
         var activeOp="";
         for(var oi=0;oi<leftTracks.length-1;oi++){var o3=ops[leftTracks[oi].id];if(o3&&o3!=="=")activeOp=o3;}
+        var actN=activeTpl?activeTpl.n:"";
+
+        /* Ortak veri: her tarafın pay/payda listesi */
+        var allLeftPieces=[];leftTracks.forEach(function(t){t.pieces.forEach(function(p){allLeftPieces.push(p.n);});});
+        var allRightPieces=[];rightTracks.forEach(function(t){t.pieces.forEach(function(p){allRightPieces.push(p.n);});});
 
         /* Y5: Payda toplama yanılgısı — örn: 1/4+1/4 sonucu 2/8 girilmiş mi? */
         if(activeOp==="+"&&leftTracks.length>=2){
-          var leftPieces=[];leftTracks.forEach(function(t){t.pieces.forEach(function(p){leftPieces.push(p.n);});});
-          var rightPieces=[];rightTracks.forEach(function(t){t.pieces.forEach(function(p){rightPieces.push(p.n);});});
-          var leftDens={};leftPieces.forEach(function(n){leftDens[n]=true;});
-          var rightDens={};rightPieces.forEach(function(n){rightDens[n]=true;});
+          var leftDens={};allLeftPieces.forEach(function(n){leftDens[n]=true;});
+          var rightDens={};allRightPieces.forEach(function(n){rightDens[n]=true;});
           var lkeys=Object.keys(leftDens),rkeys=Object.keys(rightDens);
           if(lkeys.length===1&&rkeys.length===1){
             var ld=parseInt(lkeys[0]),rd=parseInt(rkeys[0]);
             /* Y5: Payda toplama: a/n + b/n → (a+b)/(2n) */
             if(rd===ld*leftTracks.length){
-              exprHint="💡 Payda toplama yanılgısı! Kesir toplarken paydalar toplanmaz. Paydalar aynıysa sadece paylar toplanır: "+leftPieces.length+"/"+ld+" olmalı.";
+              exprHint="💡 Y5 — Payda toplama yanılgısı: Kesir toplarken paydalar TOPLANMAZ. Paydalar aynıysa sadece paylar toplanır. Doğrusu: "+allLeftPieces.length+"/"+ld+" (payda AYNI kalır).";
             }
             /* Y13: Çarpma kuralını toplama: a/n + b/n → (a×b)/(n×n) */
             if(!exprHint&&rd===ld*ld){
-              exprHint="💡 Çarpma kuralını toplamaya uyguladın! Toplama/çıkarmada pay×pay ve payda×payda yapılmaz. Paylar toplanır, payda aynı kalır.";
+              exprHint="💡 Y13 — Çarpma kuralını toplamaya uyguladın. Toplama/çıkarmada pay×pay ve payda×payda yapılmaz. Aynı paydada paylar toplanır: "+allLeftPieces.length+"/"+ld+".";
+            }
+          }
+        }
+
+        /* Y12: Çıkarmada terslik — 3/5 − 1/5 için 2/4 (paydayı da çıkarma) */
+        if(!exprHint&&activeOp==="−"&&leftTracks.length===2&&rightTracks.length===1){
+          var lP=allLeftPieces,rP=allRightPieces;
+          if(lP.length>=2&&rP.length>=1){
+            var llDens={};lP.forEach(function(n){llDens[n]=true;});
+            var rrDens={};rP.forEach(function(n){rrDens[n]=true;});
+            var llk=Object.keys(llDens),rrk=Object.keys(rrDens);
+            if(llk.length===1&&rrk.length===1){
+              var lld=parseInt(llk[0]),rrd=parseInt(rrk[0]);
+              var t0pcs=leftTracks[0].pieces.length,t1pcs=leftTracks[1].pieces.length;
+              var expectedNum=Math.abs(t0pcs-t1pcs);
+              /* Payda da çıkarılmış mı? (rrd !== lld) */
+              if(rrd!==lld&&rP.length===expectedNum){
+                exprHint="💡 Y12 — Çıkarmada terslik: Paylar ve paydalar AYRI AYRI çıkarılmaz. Aynı paydada çıkarma: payları çıkar, paydayı AYNI bırak. Doğrusu: "+expectedNum+"/"+lld+".";
+              }
             }
           }
         }
@@ -705,26 +777,46 @@ export default function App() {
           var lp=leftTracks[0].pieces,rp=rightTracks[0].pieces;
           if(lp.length===1&&rp.length===1&&lp[0].n!==rp[0].n){
             if(lp[0].n>rp[0].n&&leftVal2<rightVal2){
-              exprHint="💡 Payda büyüdükçe dilim küçülür! 1/"+lp[0].n+" < 1/"+rp[0].n+" çünkü "+lp[0].n+" parçaya bölünen her dilim daha küçüktür.";
+              exprHint="💡 Y2 — Payda büyüdükçe dilim KÜÇÜLÜR: 1/"+lp[0].n+" < 1/"+rp[0].n+". Bütün "+lp[0].n+" parçaya bölündüğünde her parça daha küçüktür. Eşit değillerdir!";
             } else if(!activeOp||activeOp==="="){
-              exprHint="💡 Bu iki kesir denk değil. Sayı doğrusundaki konumlarını karşılaştır!";
+              exprHint="💡 Y4 — Bu iki kesir denk DEĞİL: "+fracLabel(leftVal2)+" ≠ "+fracLabel(rightVal2)+". Sayı doğrusundaki okların yerlerini karşılaştır.";
+            }
+          }
+        }
+
+        /* Y14: Denk kesir kontrolü — farklı paydalı ama == fark eden durum */
+        if(!exprHint&&activeOp===""&&leftTracks.length===1&&rightTracks.length===1){
+          var lpx=leftTracks[0].pieces,rpx=rightTracks[0].pieces;
+          if(lpx.length>=1&&rpx.length>=1){
+            var ldens2={};lpx.forEach(function(p){ldens2[p.n]=true;});
+            var rdens2={};rpx.forEach(function(p){rdens2[p.n]=true;});
+            if(Object.keys(ldens2).length===1&&Object.keys(rdens2).length===1){
+              var ldn=parseInt(Object.keys(ldens2)[0]),rdn=parseInt(Object.keys(rdens2)[0]);
+              if(ldn!==rdn){
+                exprHint="💡 Y14 — Denk kesir: Farklı paydalı kesirler aynı değeri gösterebilir. Pay VE paydayı aynı sayıyla çarp/böl. Sol: "+fracLabel(leftVal2)+", sağ: "+fracLabel(rightVal2)+". Denk DEĞİLLER.";
+              }
             }
           }
         }
 
         /* Y6: Çarpma her zaman büyütmez */
         if(!exprHint&&activeOp==="×"){
-          exprHint="💡 Kesirlerde çarpma sonucu her zaman çarpanlardan büyük değildir. Çarpım: "+fracLabel(leftVal2)+", beklenen: "+fracLabel(rightVal2);
+          exprHint="💡 Y6 — Kesirlerde çarpma KÜÇÜLTEBİLİR: 0-1 arası kesirlerle çarpma sonucu çarpanlardan küçük olur. Doğru çarpım: "+fracLabel(leftVal2)+", sen girdin: "+fracLabel(rightVal2)+".";
         }
 
         /* Y7: Bölme her zaman küçültmez */
         if(!exprHint&&activeOp==="÷"){
-          exprHint="💡 Kesirlerde bölme sonucu her zaman bölünenden küçük değildir. Sonuç: "+fracLabel(leftVal2)+", girilen: "+fracLabel(rightVal2);
+          exprHint="💡 Y7 — Kesirlerde bölme BÜYÜTEBİLİR: 1'den küçük kesire bölünce sonuç büyür. Doğru bölüm: "+fracLabel(leftVal2)+", sen girdin: "+fracLabel(rightVal2)+".";
+        }
+
+        /* Y11: Bileşik ↔ tam sayılı */
+        if(!exprHint&&activeOp===""&&leftVal2>=1&&rightVal2>=1&&Math.abs(leftVal2-rightVal2)>0.001){
+          exprHint="💡 Y11 — Bileşik kesir ↔ tam sayılı: Pay paydadan büyükse kesir 1'den büyüktür. Bütünleri say, kalan payı kontrol et. Sol: "+fracLabel(leftVal2)+", sağ: "+fracLabel(rightVal2)+".";
         }
 
         /* Genel ipucu */
         if(!exprHint){
-          exprHint="💡 Sol taraf: "+fracLabel(leftVal2)+" ≠ Sağ taraf: "+fracLabel(rightVal2)+". Sayı doğrularını karşılaştır!";
+          exprHint="💡 Sol: "+fracLabel(leftVal2)+" ≠ Sağ: "+fracLabel(rightVal2)+". Sayı doğrularını karşılaştır, kesirleri birebir eşit yap!";
         }
       }
     }
@@ -890,6 +982,7 @@ export default function App() {
           {instrState?(<div onClick={function(){setInstrState(null);}} style={{position:"absolute",inset:0,zIndex:50,background:"rgba(0,0,0,.35)",display:"flex",alignItems:"center",justifyContent:"center",animation:"fadeIn .3s ease-out"}}><div onClick={function(e){e.stopPropagation();}} style={{background:"#fffdf7",borderRadius:16,padding:"24px 28px",maxWidth:460,boxShadow:"0 12px 40px rgba(0,0,0,.3)",textAlign:"center",animation:"popIn .4s ease-out"}}><div style={{fontSize:40,marginBottom:8}}>{instrState.i}</div><div style={{fontSize:18,fontWeight:900,marginBottom:6}}>{(function(){var ai=ACT.indexOf(instrState);return ai>=0?t("act."+ai+".n"):instrState.n;})()}</div><div style={{fontSize:13,marginBottom:16,lineHeight:1.6,color:"#444"}}>{(function(){var ai=ACT.indexOf(instrState);return ai>=0?t("act."+ai+".d"):instrState.d;})()}</div><button onClick={function(){setInstrState(null);}} style={{padding:"8px 28px",borderRadius:10,border:"none",background:"linear-gradient(135deg,#f59e0b,#78350f)",color:"#fff",fontSize:14,fontWeight:800,cursor:"pointer",animation:"pulse 2s infinite"}}>{t("canvas.start")}</button></div></div>):null}
           {tracks.length===0&&items.filter(function(it){return it.type==="bar"||it.type==="pie"||it.type==="numline";}).length===0&&!activeTpl?(<div style={{position:"absolute",top:"34%",left:"50%",transform:"translate(-50%,-50%)",textAlign:"center",pointerEvents:"none"}}><Logo size={80}/><div style={{fontSize:15,fontWeight:800,color:"rgba(60,50,30,.3)",marginTop:8}}>{t("canvas.empty")}</div></div>):null}
           {activeTpl&&!instrState?(<div style={{position:"absolute",top:8,left:8,zIndex:8,padding:"4px 12px",borderRadius:10,background:"rgba(255,255,255,.75)",border:"1px solid rgba(0,0,0,.1)",pointerEvents:"none"}}><span style={{fontSize:11,fontWeight:800,color:"#3d3520"}}>{activeTpl.i+" "+t("act."+ACT.indexOf(activeTpl)+".n")}</span></div>):null}
+          {activeTpl&&activeTpl.expr&&!instrState?(<div style={{position:"absolute",top:58,left:"50%",transform:"translateX(-50%)",zIndex:7,padding:"10px 24px",borderRadius:14,background:"linear-gradient(135deg,rgba(254,243,199,.97),rgba(254,215,170,.97))",border:"2.5px solid #d97706",boxShadow:"0 4px 16px rgba(245,158,11,.25)",pointerEvents:"none",animation:"fadeIn .4s ease-out"}}><span style={{fontSize:22,fontWeight:900,color:"#78350f",letterSpacing:.5}}>{activeTpl.expr}</span></div>):null}
 
           {/* İfade doğruysa/yanlışsa geri bildirim */}
           {exprCorrect===true?(<>
@@ -910,9 +1003,10 @@ export default function App() {
             var posX=isDragging?trkDP.x:(tk.x||0);
             var posY=isDragging?trkDP.y:(tk.y||0);
             var opLabel=ops[tk.id]||"";
-            var opColors={"+":"#22c55e","−":"#ef4444","×":"#8b5cf6","÷":"#f97316","=":"#3b82f6"};
-            var isEqCorrect=opLabel==="="&&exprCorrect===true;
-            var isEqWrong=opLabel==="="&&exprCorrect===false;
+            var opColors={"+":"#22c55e","−":"#ef4444","×":"#8b5cf6","÷":"#f97316","=":"#3b82f6","<":"#0891b2",">":"#0891b2"};
+            var isCmpOp=opLabel==="="||opLabel==="<"||opLabel===">";
+            var isEqCorrect=isCmpOp&&exprCorrect===true;
+            var isEqWrong=isCmpOp&&exprCorrect===false;
 
             /* fracDiv artık sabit 110px — merkezi: top + 55 */
             /* fracDiv top: 10+18+4+(BH+10)+4+44+4 = 94+BH */
@@ -957,7 +1051,7 @@ export default function App() {
                 {/* İŞLEM İŞARETİ — kesir sayısıyla tam hizalı */}
                 {idx<sortedTracks.length-1?(
                   <div onClick={function(){cycleOp(tk.id);}} style={{position:"absolute",left:(tk.x||0)+barWidth+30,top:fracCenterY-24,zIndex:8,cursor:"pointer"}}>
-                    <div style={{width:48,height:48,borderRadius:"50%",background:opLabel==="="?eqColor:opLabel?opColors[opLabel]||"#888":"rgba(0,0,0,.06)",border:isEqCorrect?"3px solid #16a34a":isEqWrong?"3px solid #ef4444":opLabel?"2.5px solid rgba(255,255,255,.3)":"2px dashed rgba(0,0,0,.15)",display:"flex",alignItems:"center",justifyContent:"center",boxShadow:isEqCorrect?"0 0 20px rgba(34,197,94,.5)":isEqWrong?"0 0 12px rgba(239,68,68,.3)":opLabel?"0 3px 10px rgba(0,0,0,.25)":"none",transition:"all .3s"}}>
+                    <div style={{width:48,height:48,borderRadius:"50%",background:isCmpOp?eqColor:opLabel?opColors[opLabel]||"#888":"rgba(0,0,0,.06)",border:isEqCorrect?"3px solid #16a34a":isEqWrong?"3px solid #ef4444":opLabel?"2.5px solid rgba(255,255,255,.3)":"2px dashed rgba(0,0,0,.15)",display:"flex",alignItems:"center",justifyContent:"center",boxShadow:isEqCorrect?"0 0 20px rgba(34,197,94,.5)":isEqWrong?"0 0 12px rgba(239,68,68,.3)":opLabel?"0 3px 10px rgba(0,0,0,.25)":"none",transition:"all .3s"}}>
                       <span style={{fontSize:isEqCorrect?26:opLabel?26:18,fontWeight:900,color:opLabel?"#fff":"rgba(0,0,0,.2)"}}>{isEqCorrect?"✓":opLabel||"?"}</span>
                     </div>
                   </div>
@@ -1047,6 +1141,19 @@ export default function App() {
             var ex=cx2+R*Math.cos(a-Math.PI/2),ey=cy2+R*Math.sin(a-Math.PI/2);
             var path="M"+cx2+","+cy2+" L"+cx2+","+(cy2-R)+" A"+R+","+R+" 0 "+(a>Math.PI?1:0)+" 1 "+ex.toFixed(1)+","+ey.toFixed(1)+" Z";
             var label=it.n===1?"1":"1/"+it.n;
+            /* Parçala / Birleştir uygunluk — k eş parçaya böl (hedef payda BAR_PARTS içinde olmalı) */
+            var pieSplitOpts=[2,3,4,5,6,8,10,12].filter(function(k){return BAR_PARTS.indexOf(it.n*k)>=0;});
+            var pieCanSplit=pieSplitOpts.length>0;
+            var pieCanMergeSize=it.n%2===0&&BAR_PARTS.indexOf(it.n/2)>=0;
+            var pieMergeTarget=null;
+            if(pieCanMergeSize){
+              for(var pmi=0;pmi<items.length;pmi++){
+                var poth=items[pmi];
+                if(poth.id===it.id||poth.type!=="pie"||poth.n!==it.n)continue;
+                var pdx=Math.abs((poth.x||0)-(it.x||0)),pdy=Math.abs((poth.y||0)-(it.y||0));
+                if(pdx<S*1.4&&pdy<S*1.2){pieMergeTarget=poth;break;}
+              }
+            }
             return(
               <div key={it.id} style={{position:"absolute",left:posX,top:posY,zIndex:isDragging?100:3,touchAction:"none"}}
                 onPointerDown={function(e){e.preventDefault();e.stopPropagation();startTrkDrag(e,it.id);}}>
@@ -1056,7 +1163,58 @@ export default function App() {
                   <text x={cx2} y={cy2+5} textAnchor="middle" fontSize={16} fontWeight={900} fill="#fff" style={{textShadow:"0 1px 3px rgba(0,0,0,.5)"}}>{label}</text>
                 </svg>
                 {/* Döndürme butonu */}
-                <div onClick={function(e){e.stopPropagation();hPush();setItems(irRef.current.map(function(x){return x.id===it.id?Object.assign({},x,{rot:(x.rot||0)+45}):x;}));}} style={{position:"absolute",top:-6,right:-6,width:18,height:18,borderRadius:"50%",background:"#fff",border:"1.5px solid #aaa",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:9,zIndex:5}}>{"↻"}</div>
+                <div onPointerDown={function(e){e.stopPropagation();}} onClick={function(e){e.stopPropagation();hPush();setItems(irRef.current.map(function(x){return x.id===it.id?Object.assign({},x,{rot:(x.rot||0)+45}):x;}));}} title={t("obj.rotate")} style={{position:"absolute",top:-6,right:-6,width:18,height:18,borderRadius:"50%",background:"#fff",border:"1.5px solid #aaa",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:9,zIndex:5}}>{"↻"}</div>
+                {/* Boyut değiştirme (büyüt / küçült) */}
+                <div onPointerDown={function(e){e.stopPropagation();}} style={{position:"absolute",top:-6,left:-6,display:"flex",flexDirection:"column",gap:2,zIndex:5}}>
+                  <div onClick={function(e){e.stopPropagation();var idx=BAR_PARTS.indexOf(it.n);if(idx>0){hPush();setItems(irRef.current.map(function(x){return x.id===it.id?Object.assign({},x,{n:BAR_PARTS[idx-1]}):x;}));}}} title={t("obj.enlarge")} style={{width:16,height:16,borderRadius:"50%",background:"#fff",border:"1px solid #bbb",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:9,fontWeight:900,color:"#666"}}>{"−"}</div>
+                  <div onClick={function(e){e.stopPropagation();var idx=BAR_PARTS.indexOf(it.n);if(idx<BAR_PARTS.length-1){hPush();setItems(irRef.current.map(function(x){return x.id===it.id?Object.assign({},x,{n:BAR_PARTS[idx+1]}):x;}));}}} title={t("obj.shrink")} style={{width:16,height:16,borderRadius:"50%",background:"#fff",border:"1px solid #bbb",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:9,fontWeight:900,color:"#666"}}>{"+"}</div>
+                </div>
+                {/* Parçala ve Birleştir */}
+                <div onPointerDown={function(e){e.stopPropagation();}} style={{position:"absolute",bottom:-6,left:"50%",transform:"translateX(-50%)",display:"flex",gap:3,zIndex:5}}>
+                  {pieCanSplit?(
+                    <div onClick={function(e){
+                      e.stopPropagation();
+                      setSplitMenu({id:it.id,type:"pie"});
+                    }} title={t("obj.split")} style={{width:18,height:18,borderRadius:"50%",background:"#fff",border:"1.5px solid #ef4444",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:10,color:"#ef4444"}}>{"✂"}</div>
+                  ):null}
+                  {pieMergeTarget?(
+                    <div onClick={function(e){
+                      e.stopPropagation();
+                      hPush();
+                      var newN=it.n/2;
+                      var mtId=pieMergeTarget.id;
+                      var newX=Math.min((it.x||0),(pieMergeTarget.x||0));
+                      setItems(irRef.current.filter(function(x){return x.id!==mtId;}).map(function(x){
+                        return x.id===it.id?Object.assign({},x,{n:newN,x:newX}):x;
+                      }));
+                    }} title={t("obj.merge")} style={{width:18,height:18,borderRadius:"50%",background:"#fff",border:"1.5px solid #22c55e",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:11}}>{"⇔"}</div>
+                  ):null}
+                </div>
+                {/* Parçalama menüsü (daire) */}
+                {splitMenu&&splitMenu.id===it.id&&splitMenu.type==="pie"?(
+                  <div onPointerDown={function(e){e.stopPropagation();}} onClick={function(e){e.stopPropagation();}} style={{position:"absolute",top:S+4,left:0,zIndex:20,background:"#fff",borderRadius:10,border:"1.5px solid #ef4444",padding:"6px 8px",boxShadow:"0 4px 14px rgba(0,0,0,.2)",display:"flex",flexDirection:"column",gap:4,minWidth:140}}>
+                    <div style={{fontSize:10,fontWeight:800,color:"#ef4444",textAlign:"center"}}>{t("obj.splitInto")}</div>
+                    <div style={{display:"flex",flexWrap:"wrap",gap:3,justifyContent:"center"}}>
+                      {pieSplitOpts.map(function(k){
+                        var resultN=it.n*k;
+                        return(<button key={k} onClick={function(ev){
+                          ev.stopPropagation();
+                          hPush();
+                          var out=[];
+                          var baseX=(it.x||0),baseY=(it.y||0);
+                          var cols=Math.ceil(Math.sqrt(k));
+                          for(var j=0;j<k;j++){
+                            var row=Math.floor(j/cols),col=j%cols;
+                            out.push({type:"pie",n:resultN,id:nid(),x:baseX+col*(S+6),y:baseY+row*(S+6)});
+                          }
+                          setItems(irRef.current.filter(function(x){return x.id!==it.id;}).concat(out));
+                          setSplitMenu(null);
+                        }} style={{padding:"4px 8px",borderRadius:6,border:"1px solid #ddd",background:"#fff",cursor:"pointer",fontFamily:"inherit",fontSize:10,fontWeight:800,color:"#444",minWidth:30}}>{k}<br/><span style={{fontSize:8,fontWeight:600,color:"#888"}}>{"1/"+resultN}</span></button>);
+                      })}
+                    </div>
+                    <button onClick={function(ev){ev.stopPropagation();setSplitMenu(null);}} style={{padding:"2px 6px",borderRadius:4,border:"1px solid #ddd",background:"#fafafa",cursor:"pointer",fontFamily:"inherit",fontSize:9,color:"#999"}}>{t("obj.cancel")}</button>
+                  </div>
+                ):null}
               </div>
             );
           })}
@@ -1069,7 +1227,23 @@ export default function App() {
             var ci=BAR_PARTS.indexOf(it.n);if(ci<0)ci=0;
             var bw=it.bw||Math.round(240/it.n);
             var label=it.n===1?"1":"1/"+it.n;
-            var verbal=VERBAL[it.n]||"";
+            /* Parçala: 1/n çubuğu k eş parçaya böler — hedef payda BAR_PARTS içinde olmalı */
+            var splitOpts=[2,3,4,5,6,8,10,12].filter(function(k){return BAR_PARTS.indexOf(it.n*k)>=0;});
+            var canSplit=splitOpts.length>0;
+            /* Birleştir: n çift ve n/2 BAR_PARTS'ta + yakında aynı paydalı çubuk olmalı */
+            var canMergeSize=it.n%2===0&&BAR_PARTS.indexOf(it.n/2)>=0;
+            var mergeTarget=null;
+            if(canMergeSize){
+              for(var mi=0;mi<items.length;mi++){
+                var oth=items[mi];
+                if(oth.id===it.id||oth.type!=="bar"||oth.n!==it.n)continue;
+                var othBw=oth.bw||Math.round(240/oth.n);
+                var cx1=(it.x||0)+bw/2,cy1=(it.y||0)+16;
+                var cx2=(oth.x||0)+othBw/2,cy2=(oth.y||0)+16;
+                var dx=Math.abs(cx2-cx1),dy=Math.abs(cy2-cy1);
+                if(dx<bw*1.5+24&&dy<44){mergeTarget=oth;break;}
+              }
+            }
             return(
               <div key={it.id} style={{position:"absolute",left:posX,top:posY,zIndex:isDragging?100:3,touchAction:"none"}}
                 onPointerDown={function(e){
@@ -1082,11 +1256,58 @@ export default function App() {
                 <div style={{width:bw,height:32,borderRadius:6,background:"linear-gradient(180deg,"+FC[ci%FC.length]+","+FB[ci%FB.length]+")",border:"2.5px solid "+FB[ci%FB.length],display:"flex",alignItems:"center",justifyContent:"center",boxShadow:"0 2px 8px rgba(0,0,0,.25)",cursor:"grab",opacity:transpMode?.55:1}}>
                     <span style={{fontSize:bw<30?7:bw<50?9:bw<80?12:14,fontWeight:900,color:"#fff"}}>{showLabels?(labelMode==="dec"?(1/it.n).toFixed(it.n<=4?1:2):labelMode==="pct"?Math.round(100/it.n)+"%":label):""}</span>
                   </div>
-                  {/* Payda değiştirme tutamacı */}
-                  <div style={{position:"absolute",top:-7,right:-4,display:"flex",gap:1,zIndex:5}}>
-                    <div onClick={function(e){e.stopPropagation();var idx=BAR_PARTS.indexOf(it.n);if(idx>0){hPush();setItems(irRef.current.map(function(x){return x.id===it.id?Object.assign({},x,{n:BAR_PARTS[idx-1]}):x;}));}}} style={{width:14,height:14,borderRadius:"50%",background:"#fff",border:"1px solid #bbb",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:9,fontWeight:900,color:"#666"}}>{"−"}</div>
-                    <div onClick={function(e){e.stopPropagation();var idx=BAR_PARTS.indexOf(it.n);if(idx<BAR_PARTS.length-1){hPush();setItems(irRef.current.map(function(x){return x.id===it.id?Object.assign({},x,{n:BAR_PARTS[idx+1]}):x;}));}}} style={{width:14,height:14,borderRadius:"50%",background:"#fff",border:"1px solid #bbb",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:9,fontWeight:900,color:"#666"}}>{"+"}</div>
+                  {/* Boyut değiştirme tutamacı (büyüt/küçült) */}
+                  <div onPointerDown={function(e){e.stopPropagation();}} style={{position:"absolute",top:-7,right:-4,display:"flex",gap:1,zIndex:5}}>
+                    <div onClick={function(e){e.stopPropagation();var idx=BAR_PARTS.indexOf(it.n);if(idx>0){hPush();setItems(irRef.current.map(function(x){return x.id===it.id?Object.assign({},x,{n:BAR_PARTS[idx-1],bw:Math.round(240/BAR_PARTS[idx-1])}):x;}));}}} title={t("obj.enlarge")} style={{width:14,height:14,borderRadius:"50%",background:"#fff",border:"1px solid #bbb",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:9,fontWeight:900,color:"#666"}}>{"−"}</div>
+                    <div onClick={function(e){e.stopPropagation();var idx=BAR_PARTS.indexOf(it.n);if(idx<BAR_PARTS.length-1){hPush();setItems(irRef.current.map(function(x){return x.id===it.id?Object.assign({},x,{n:BAR_PARTS[idx+1],bw:Math.round(240/BAR_PARTS[idx+1])}):x;}));}}} title={t("obj.shrink")} style={{width:14,height:14,borderRadius:"50%",background:"#fff",border:"1px solid #bbb",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:9,fontWeight:900,color:"#666"}}>{"+"}</div>
                   </div>
+                  {/* Parçala ve Birleştir */}
+                  <div onPointerDown={function(e){e.stopPropagation();}} style={{position:"absolute",bottom:-8,left:-4,display:"flex",gap:2,zIndex:5}}>
+                    {canSplit?(
+                      <div onClick={function(e){
+                        e.stopPropagation();
+                        setSplitMenu({id:it.id,type:"bar"});
+                      }} title={t("obj.split")} style={{width:16,height:16,borderRadius:"50%",background:"#fff",border:"1.5px solid #ef4444",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:9,color:"#ef4444"}}>{"✂"}</div>
+                    ):null}
+                    {mergeTarget?(
+                      <div onClick={function(e){
+                        e.stopPropagation();
+                        hPush();
+                        var newN=it.n/2;
+                        var newBw=Math.round(240/newN);
+                        var mtId=mergeTarget.id;
+                        var newX=Math.min((it.x||0),(mergeTarget.x||0));
+                        setItems(irRef.current.filter(function(x){return x.id!==mtId;}).map(function(x){
+                          return x.id===it.id?Object.assign({},x,{n:newN,bw:newBw,x:newX}):x;
+                        }));
+                      }} title={t("obj.merge")} style={{width:16,height:16,borderRadius:"50%",background:"#fff",border:"1.5px solid #22c55e",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontSize:10}}>{"⇔"}</div>
+                    ):null}
+                  </div>
+                  {/* Parçalama menüsü */}
+                  {splitMenu&&splitMenu.id===it.id&&splitMenu.type==="bar"?(
+                    <div onPointerDown={function(e){e.stopPropagation();}} onClick={function(e){e.stopPropagation();}} style={{position:"absolute",top:36,left:0,zIndex:20,background:"#fff",borderRadius:10,border:"1.5px solid #ef4444",padding:"6px 8px",boxShadow:"0 4px 14px rgba(0,0,0,.2)",display:"flex",flexDirection:"column",gap:4,minWidth:130}}>
+                      <div style={{fontSize:10,fontWeight:800,color:"#ef4444",textAlign:"center"}}>{t("obj.splitInto")}</div>
+                      <div style={{display:"flex",flexWrap:"wrap",gap:3,justifyContent:"center"}}>
+                        {splitOpts.map(function(k){
+                          var resultN=it.n*k;
+                          return(<button key={k} onClick={function(ev){
+                            ev.stopPropagation();
+                            hPush();
+                            var newBw=Math.round(240/resultN);
+                            var out=[];
+                            var baseX=(it.x||0);
+                            for(var j=0;j<k;j++){
+                              out.push({type:"bar",n:resultN,id:nid(),x:baseX+j*(newBw+4),y:(it.y||0)});
+                            }
+                            /* Orijinali kaldır + yeni k çubuk ekle */
+                            setItems(irRef.current.filter(function(x){return x.id!==it.id;}).concat(out));
+                            setSplitMenu(null);
+                          }} style={{padding:"4px 8px",borderRadius:6,border:"1px solid #ddd",background:"#fff",cursor:"pointer",fontFamily:"inherit",fontSize:10,fontWeight:800,color:"#444",minWidth:28}}>{k}<br/><span style={{fontSize:8,fontWeight:600,color:"#888"}}>{"1/"+resultN}</span></button>);
+                        })}
+                      </div>
+                      <button onClick={function(ev){ev.stopPropagation();setSplitMenu(null);}} style={{padding:"2px 6px",borderRadius:4,border:"1px solid #ddd",background:"#fafafa",cursor:"pointer",fontFamily:"inherit",fontSize:9,color:"#999"}}>{t("obj.cancel")}</button>
+                    </div>
+                  ):null}
               </div>
             );
           })}
@@ -1100,8 +1321,12 @@ export default function App() {
             <span style={{fontSize:13,fontWeight:800,color:trashHover?"#dc2626":"rgba(0,0,0,.25)",transition:"color .2s"}}>{trashHover?t("tool.clear"):""}
             </span>
           </div>):null}
-          {/* Zoom indicator */}
-          {zoom!==1?(<div style={{position:"absolute",bottom:trkDrag!=null?TRASH_H+8:8,left:8,padding:"3px 8px",borderRadius:6,background:"rgba(0,0,0,.5)",color:"#fff",fontSize:10,fontWeight:700,pointerEvents:"none",zIndex:20,transition:"bottom .2s"}}>{Math.round(zoom*100)+"%"}</div>):null}
+          {/* Zoom kontrol: + − % */}
+          <div style={{position:"absolute",bottom:trkDrag!=null?TRASH_H+8:12,right:12,display:"flex",flexDirection:"column",gap:3,background:"rgba(255,255,255,.92)",borderRadius:10,padding:4,boxShadow:"0 3px 12px rgba(0,0,0,.18)",border:"1px solid rgba(0,0,0,.08)",zIndex:20,transition:"bottom .2s"}}>
+            <button onClick={function(){setZoom(function(z){return Math.min(3,Math.round((z+0.15)*100)/100);});}} title={t("tool.zoomIn")||"Büyüt"} style={{width:34,height:30,borderRadius:7,border:"none",background:"#fff",cursor:"pointer",fontSize:17,fontWeight:900,color:"#555",fontFamily:"inherit",boxShadow:"0 1px 3px rgba(0,0,0,.1)"}}>{"+"}</button>
+            <button onClick={function(){setZoom(1);setPan({x:0,y:0});}} title={t("tool.zoomReset")||"Sıfırla"} style={{width:34,height:26,borderRadius:7,border:"none",background:zoom===1?"#f5f5f5":"#fef3c7",cursor:"pointer",fontSize:10,fontWeight:800,color:"#555",fontFamily:"inherit"}}>{Math.round(zoom*100)+"%"}</button>
+            <button onClick={function(){setZoom(function(z){return Math.max(0.3,Math.round((z-0.15)*100)/100);});}} title={t("tool.zoomOut")||"Küçült"} style={{width:34,height:30,borderRadius:7,border:"none",background:"#fff",cursor:"pointer",fontSize:17,fontWeight:900,color:"#555",fontFamily:"inherit",boxShadow:"0 1px 3px rgba(0,0,0,.1)"}}>{"−"}</button>
+          </div>
         </div>
       </div>
 
@@ -1197,7 +1422,7 @@ export default function App() {
               {n:t("lesson.4"),acts:["Kesrin Yarısı","Kesir × Kesir","Bütünde Kaç Yarım?","Kesir ÷ Kesir"]},
               {n:t("lesson.5"),acts:["Y1: Bütün aynı mı?","Y2: Payda büyük = büyük mü?","Y3: Eş parçalar şartı","Y5: Payda toplanır mı?"]},
               {n:t("lesson.6"),acts:["Y6: Çarpma büyütür mü?","Y7: Bölme küçültür mü?","Y11: 5/4 = 1 tam 1/4 mü?","Y13: Toplama mı çarpma mı?"]},
-              {n:t("lesson.7"),acts:["Y8: Kesir iki ayrı sayı mı?","Y9: 0 ile 1 arası boş mu?","Y10: Pay arttıkça ne olur?","Y14: Denk kesir nasıl bulunur?"]},
+              {n:t("lesson.7"),acts:["Y8: Kesir iki ayrı sayı mı?","Y9: 0 ile 1 arası boş mu?","Y9b: İki kesir arası boş mu?","Y10: Pay arttıkça ne olur?","Y14: Denk kesir nasıl bulunur?","Y15: Yarısı = 2'ye mi 1/2'ye mi böl?"]},
             ].map(function(plan,pi){
               var planDone=plan.acts.filter(function(a){return completed[a];}).length;
               return(<button key={pi} onClick={function(){
