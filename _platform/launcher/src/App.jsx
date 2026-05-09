@@ -1,6 +1,7 @@
 import { useState, useMemo, useEffect } from 'react';
 import { TOOLS, TOOL_CATEGORIES } from './tools.js';
 import { LANGS, LANG_LABELS, LANG_FLAGS, useT } from './i18n.js';
+import { AuthGate } from '@shared/AuthGate.jsx';
 
 const STORAGE_KEY = 'dokunsay:platform:prefs';
 
@@ -186,6 +187,7 @@ export default function App() {
                 </button>
               ))}
             </div>
+            <AuthGate mode="optional" />
           </div>
         </div>
       </header>
