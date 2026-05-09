@@ -71,8 +71,15 @@ for (const app of APPS) {
   }
 
   try {
-    const env = { ...process.env, BASE_PATH: basePath };
-    execSync('npm run build', {
+    // BASE_PATH'i vite'a `--base=...` flag'iyle doğrudan geçiriyoruz.
+    // Önceki `execSync({env: {BASE_PATH}})` yaklaşımı Windows + Git Bash
+    // ortamında alt-process env iletiminde BASE_PATH'i kaybediyor.
+    // Ek olarak: Git Bash MSYS layer'ı `/dokunsay/` gibi path-benzeri
+    // değerleri otomatik `C:/Program Files/Git/dokunsay/`'a çeviriyor;
+    // MSYS_NO_PATHCONV=1 ile bunu kapatıyoruz.
+    const env = { ...process.env, MSYS_NO_PATHCONV: '1', BASE_PATH: basePath };
+    const cmd = `npm run build -- --base=${JSON.stringify(basePath)}`;
+    execSync(cmd, {
       cwd: fullDir,
       stdio: 'inherit',
       env,
