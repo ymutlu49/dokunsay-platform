@@ -23,13 +23,13 @@ const MaterialsTab = ({
           </div>
         ))}
       </div>
-      <div style={{ display: 'flex', gap: 2, marginTop: 5 }}>
+      <div style={{ display: 'flex', gap: 2, marginTop: 5 }} role="group" aria-label="Pozitif pul ekle">
         {[1, 3, 5, 10].map((n) => (
-          <button key={n} onClick={() => addChips('pos', n)} style={{
+          <button key={n} onClick={() => addChips('pos', n)} aria-label={`${n} pozitif pul ekle`} title={`${n} pozitif pul ekle`} style={{
             flex: 1, padding: '3px 0', borderRadius: 5,
             border: '1px solid rgba(34,197,94,.2)', background: 'rgba(34,197,94,.04)',
             cursor: 'pointer', fontSize: 8, fontWeight: 700, color: THEME.posB, fontFamily: 'inherit',
-          }}>{'+' + n}</button>
+          }} data-numeric="true">{'+' + n}</button>
         ))}
       </div>
     </div>
@@ -47,13 +47,13 @@ const MaterialsTab = ({
           </div>
         ))}
       </div>
-      <div style={{ display: 'flex', gap: 2, marginTop: 5 }}>
+      <div style={{ display: 'flex', gap: 2, marginTop: 5 }} role="group" aria-label="Negatif pul ekle">
         {[1, 3, 5, 10].map((n) => (
-          <button key={n} onClick={() => addChips('neg', n)} style={{
+          <button key={n} onClick={() => addChips('neg', n)} aria-label={`${n} negatif pul ekle`} title={`${n} negatif pul ekle`} style={{
             flex: 1, padding: '3px 0', borderRadius: 5,
             border: '1px solid rgba(239,68,68,.2)', background: 'rgba(239,68,68,.04)',
             cursor: 'pointer', fontSize: 8, fontWeight: 700, color: THEME.negB, fontFamily: 'inherit',
-          }}>{'-' + n}</button>
+          }} data-numeric="true">{'-' + n}</button>
         ))}
       </div>
     </div>
@@ -152,15 +152,15 @@ const MaterialsTab = ({
     {showNumberLine && (
       <div style={{ background: '#fff', borderRadius: 12, padding: '8px 10px', marginBottom: 6, border: '1px solid rgba(59,130,246,.1)' }}>
         <div style={{ display: 'flex', gap: 2, marginBottom: 3 }}>
-          <button onClick={() => walkStep('left')} style={{ flex: 1, padding: '4px 0', borderRadius: 5, border: '1px solid rgba(239,68,68,.2)', background: 'rgba(239,68,68,.04)', cursor: 'pointer', fontSize: 8, fontWeight: 800, color: THEME.negB, fontFamily: 'inherit' }}>{'\◀ Sola'}</button>
-          <button onClick={() => { resetNumberLine(); }} style={{ flex: 1, padding: '4px 0', borderRadius: 5, border: '1px solid rgba(139,92,246,.2)', background: 'rgba(139,92,246,.04)', cursor: 'pointer', fontSize: 8, fontWeight: 800, color: '#6d28d9', fontFamily: 'inherit' }}>{'\⊙'}</button>
-          <button onClick={() => walkStep('right')} style={{ flex: 1, padding: '4px 0', borderRadius: 5, border: '1px solid rgba(34,197,94,.2)', background: 'rgba(34,197,94,.04)', cursor: 'pointer', fontSize: 8, fontWeight: 800, color: THEME.posB, fontFamily: 'inherit' }}>{'Sağa \▶'}</button>
+          <button onClick={() => walkStep('left')} aria-label="Sola bir adım" title="Sola bir adım" style={{ flex: 1, padding: '4px 0', borderRadius: 5, border: '1px solid rgba(239,68,68,.2)', background: 'rgba(239,68,68,.04)', cursor: 'pointer', fontSize: 8, fontWeight: 800, color: THEME.negB, fontFamily: 'inherit' }}>{'\◀ Sola'}</button>
+          <button onClick={() => { resetNumberLine(); }} aria-label="Konumu sıfırla" title="Konumu sıfırla" style={{ flex: 1, padding: '4px 0', borderRadius: 5, border: '1px solid rgba(139,92,246,.2)', background: 'rgba(139,92,246,.04)', cursor: 'pointer', fontSize: 8, fontWeight: 800, color: '#6d28d9', fontFamily: 'inherit' }}><span aria-hidden="true">{'\⊙'}</span></button>
+          <button onClick={() => walkStep('right')} aria-label="Sağa bir adım" title="Sağa bir adım" style={{ flex: 1, padding: '4px 0', borderRadius: 5, border: '1px solid rgba(34,197,94,.2)', background: 'rgba(34,197,94,.04)', cursor: 'pointer', fontSize: 8, fontWeight: 800, color: THEME.posB, fontFamily: 'inherit' }}>{'Sağa \▶'}</button>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 2 }}>
-          <button onClick={() => animateNumberLine(0, 4)} style={{ padding: '3px 0', borderRadius: 4, border: '1px solid rgba(34,197,94,.15)', background: 'rgba(34,197,94,.03)', cursor: 'pointer', fontSize: 7, fontWeight: 700, color: THEME.posB, fontFamily: 'inherit' }}>{'0\→+4'}</button>
-          <button onClick={() => animateNumberLine(0, -3)} style={{ padding: '3px 0', borderRadius: 4, border: '1px solid rgba(239,68,68,.15)', background: 'rgba(239,68,68,.03)', cursor: 'pointer', fontSize: 7, fontWeight: 700, color: THEME.negB, fontFamily: 'inherit' }}>{'0\→−3'}</button>
-          <button onClick={() => animateNumberLine(3, -7)} style={{ padding: '3px 0', borderRadius: 4, border: '1px solid rgba(139,92,246,.15)', background: 'rgba(139,92,246,.03)', cursor: 'pointer', fontSize: 7, fontWeight: 700, color: '#6d28d9', fontFamily: 'inherit' }}>{'(+3)+(−7)'}</button>
-          <button onClick={() => resetNumberLine()} style={{ padding: '3px 0', borderRadius: 4, border: '1px solid ' + THEME.sideB, background: '#fff', cursor: 'pointer', fontSize: 7, fontWeight: 700, color: '#999', fontFamily: 'inherit' }}>{'🗑 Temizle'}</button>
+          <button onClick={() => animateNumberLine(0, 4)} aria-label="Sıfırdan artı dörde animasyon" title="0'dan +4'e" style={{ padding: '3px 0', borderRadius: 4, border: '1px solid rgba(34,197,94,.15)', background: 'rgba(34,197,94,.03)', cursor: 'pointer', fontSize: 7, fontWeight: 700, color: THEME.posB, fontFamily: 'inherit' }}>{'0\→+4'}</button>
+          <button onClick={() => animateNumberLine(0, -3)} aria-label="Sıfırdan eksi üçe animasyon" title="0'dan -3'e" style={{ padding: '3px 0', borderRadius: 4, border: '1px solid rgba(239,68,68,.15)', background: 'rgba(239,68,68,.03)', cursor: 'pointer', fontSize: 7, fontWeight: 700, color: THEME.negB, fontFamily: 'inherit' }}>{'0\→−3'}</button>
+          <button onClick={() => animateNumberLine(3, -7)} aria-label="Artı üç eksi yedi toplama animasyonu" title="(+3)+(-7)" style={{ padding: '3px 0', borderRadius: 4, border: '1px solid rgba(139,92,246,.15)', background: 'rgba(139,92,246,.03)', cursor: 'pointer', fontSize: 7, fontWeight: 700, color: '#6d28d9', fontFamily: 'inherit' }}>{'(+3)+(−7)'}</button>
+          <button onClick={() => resetNumberLine()} aria-label="Sayı doğrusunu temizle" title="Sayı doğrusunu temizle" style={{ padding: '3px 0', borderRadius: 4, border: '1px solid ' + THEME.sideB, background: '#fff', cursor: 'pointer', fontSize: 7, fontWeight: 700, color: '#999', fontFamily: 'inherit' }}>{'🗑 Temizle'}</button>
         </div>
       </div>
     )}

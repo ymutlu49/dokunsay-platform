@@ -29,13 +29,13 @@ const Toolbar = ({
         setTool(id);
         if (id === 'highlighter') { setPenAlpha(0.35); setPenWidth(12); }
         else if (id === 'pen') { setPenAlpha(1); setPenWidth(3); }
-      }} title={title} style={{
+      }} title={title} aria-label={title} aria-pressed={tool === id} style={{
         width: 34, height: 34, borderRadius: 8,
         border: tool === id ? '2px solid ' + THEME.accent : '2px solid transparent',
         background: tool === id ? THEME.accentL : 'transparent',
         cursor: 'pointer', fontSize: 14,
         display: 'flex', alignItems: 'center', justifyContent: 'center',
-      }}>{icon}</button>
+      }}><span aria-hidden="true">{icon}</span></button>
     ))}
 
     <div style={{ width: 1, height: 22, background: 'rgba(0,0,0,.08)', margin: '0 2px' }} />
@@ -81,10 +81,10 @@ const Toolbar = ({
       </div>
     )}
 
-    <div style={{ width: 1, height: 22, background: 'rgba(0,0,0,.08)', margin: '0 2px' }} />
-    <button onClick={undo} title="Geri al" style={{ width: 30, height: 30, borderRadius: 7, border: 'none', background: 'transparent', cursor: 'pointer', fontSize: 14, color: strokes.length ? '#666' : '#ddd' }}>{'\↩'}</button>
-    <button onClick={redo} title="Yinele" style={{ width: 30, height: 30, borderRadius: 7, border: 'none', background: 'transparent', cursor: 'pointer', fontSize: 14, color: undone.length ? '#666' : '#ddd' }}>{'\↪'}</button>
-    <button onClick={clearDrawings} title="Çizimleri sil" style={{ width: 30, height: 30, borderRadius: 7, border: 'none', background: 'transparent', cursor: 'pointer', fontSize: 13, color: '#bbb' }}>{'🗑'}</button>
+    <div style={{ width: 1, height: 22, background: 'rgba(0,0,0,.08)', margin: '0 2px' }} aria-hidden="true" />
+    <button onClick={undo} disabled={!strokes.length} title="Geri al" aria-label="Geri al" style={{ width: 30, height: 30, borderRadius: 7, border: 'none', background: 'transparent', cursor: 'pointer', fontSize: 14, color: strokes.length ? '#666' : '#ddd' }}><span aria-hidden="true">{'\↩'}</span></button>
+    <button onClick={redo} disabled={!undone.length} title="Yinele" aria-label="Yinele" style={{ width: 30, height: 30, borderRadius: 7, border: 'none', background: 'transparent', cursor: 'pointer', fontSize: 14, color: undone.length ? '#666' : '#ddd' }}><span aria-hidden="true">{'\↪'}</span></button>
+    <button onClick={clearDrawings} title="Çizimleri sil" aria-label="Çizimleri sil" style={{ width: 30, height: 30, borderRadius: 7, border: 'none', background: 'transparent', cursor: 'pointer', fontSize: 13, color: '#bbb' }}><span aria-hidden="true">{'🗑'}</span></button>
   </div>
 );
 
