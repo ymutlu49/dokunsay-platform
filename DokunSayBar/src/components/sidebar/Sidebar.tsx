@@ -81,7 +81,13 @@ export default function Sidebar(props: SidebarProps) {
         display: "flex", alignItems: "center",
         justifyContent: collapsed ? "center" : "flex-end", gap: 3,
       }}>
-        <button onClick={props.onToggleCollapse} style={bs(false, palette, { fontSize: 10, padding: "2px 6px" })}>
+        <button
+          onClick={props.onToggleCollapse}
+          style={bs(false, palette, { fontSize: 10, padding: "2px 6px" })}
+          aria-label={collapsed ? "Paneli aç" : "Paneli daralt"}
+          aria-expanded={!collapsed}
+          title={collapsed ? "Paneli aç" : "Paneli daralt"}
+        >
           {collapsed ? "»" : "«"}
         </button>
       </div>
@@ -94,11 +100,13 @@ export default function Sidebar(props: SidebarProps) {
       {!collapsed && (
         <>
           {/* Tabs */}
-          <div style={{ display: "flex", borderBottom: `1px solid ${palette.brd}` }}>
+          <div style={{ display: "flex", borderBottom: `1px solid ${palette.brd}` }} role="tablist" aria-label={translate("material", lang) + " / " + translate("activity", lang)}>
             {(["mat", "act"] as const).map((tab) => (
               <button
                 key={tab}
                 onClick={() => props.onSetSideTab(tab)}
+                role="tab"
+                aria-selected={sideTab === tab}
                 style={{
                   flex: 1, padding: "6px 0", border: "none",
                   borderBottom: sideTab === tab ? "3px solid #f59e0b" : "3px solid transparent",

@@ -72,10 +72,14 @@ html[data-dyscalculia="on"] *::after {
    yukarıdaki 0.001ms kuralları kazanır (sonra tanımlanmış). */
 
 /* Büyük dokunmatik hedefler — motor planlama desteği.
-   Panel kontrolleri (ds-a11y-*) hariç. */
+   Tüm tıklanabilir öğelere (button, link, role=button, tabindex=0) uygulanır;
+   panel kontrolleri (ds-a11y-*) ve AppShell back link hariç. */
 html[data-dyscalculia="on"] button:not([class*="ds-a11y"]):not([class*="ds-appshell__back"]),
 html[data-dyscalculia="on"] a:not([class*="ds-appshell__back"]),
 html[data-dyscalculia="on"] [role="button"]:not([class*="ds-a11y"]),
+html[data-dyscalculia="on"] [role="option"],
+html[data-dyscalculia="on"] [role="tab"],
+html[data-dyscalculia="on"] [tabindex="0"]:not([class*="ds-a11y"]):not([class*="ds-appshell"]),
 html[data-dyscalculia="on"] input[type="button"],
 html[data-dyscalculia="on"] input[type="submit"],
 html[data-dyscalculia="on"] input[type="checkbox"],
@@ -169,6 +173,28 @@ html[data-contrast="high"] a:not(.ds-appshell__back):not([class*="btn"]):not([cl
 /* App ana içerik alanı: kontrast filtresi metin + sınırları belirginleştirir. */
 html[data-contrast="high"] .ds-appshell__main {
   filter: contrast(1.15);
+}
+
+/* Yüksek kontrast: tüm uygulamalarda body siyah-beyaz kontrastı zorla */
+html[data-contrast="high"] body {
+  background: #fff !important;
+  color: #000 !important;
+}
+
+/* Yüksek kontrast: tıklanabilir öğelerde net sınır */
+html[data-contrast="high"] button:not([class*="ds-a11y"]):not([class*="ds-appshell__back"]):not([class*="ds-lang-switcher"]),
+html[data-contrast="high"] [role="button"]:not([class*="ds-a11y"]),
+html[data-contrast="high"] [role="option"],
+html[data-contrast="high"] [tabindex="0"]:not([class*="ds-a11y"]):not([class*="ds-appshell"]):not([class*="ds-lang-switcher"]):not(input):not(textarea):not(select) {
+  border: 2px solid #000 !important;
+}
+
+html[data-contrast="high"] input,
+html[data-contrast="high"] textarea,
+html[data-contrast="high"] select {
+  border: 2px solid #000 !important;
+  background: #fff !important;
+  color: #000 !important;
 }
 
 

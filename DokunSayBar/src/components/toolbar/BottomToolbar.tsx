@@ -81,15 +81,15 @@ export default function BottomToolbar(props: BottomToolbarProps) {
       }}
     >
       {/* ═══ TOOLS GROUP ═══ */}
-      <div style={{ display: "flex", gap: 2, padding: 3, borderRadius: 10, background: groupBg, border: `1px solid ${groupBorder}` }}>
+      <div style={{ display: "flex", gap: 2, padding: 3, borderRadius: 10, background: groupBg, border: `1px solid ${groupBorder}` }} role="toolbar" aria-label={t("sel") + " / " + t("draw") + " / " + t("write") + " / " + t("erase")}>
         {([
           { t: "select" as const, icon: "👆", label: "sel" },
           { t: "pen" as const, icon: "✏️", label: "draw" },
           { t: "text" as const, icon: "𝐓", label: "write" },
           { t: "eraser" as const, icon: "⌫", label: "erase" },
         ]).map(({ t: tt, icon, label }) => (
-          <button key={tt} title={t(label)} onClick={() => props.onSetTool(tt)} style={toolBtn(tool === tt)}>
-            <span style={{ fontSize: 13 }}>{icon}</span>
+          <button key={tt} title={t(label)} aria-label={t(label)} aria-pressed={tool === tt} onClick={() => props.onSetTool(tt)} style={toolBtn(tool === tt)}>
+            <span style={{ fontSize: 13 }} aria-hidden="true">{icon}</span>
             <span style={{ fontSize: 8, fontWeight: 800, letterSpacing: 0.3 }}>{t(label)}</span>
           </button>
         ))}
@@ -187,26 +187,32 @@ export default function BottomToolbar(props: BottomToolbarProps) {
       )}
 
       {/* ═══ CHIPS GROUP ═══ */}
-      <div style={{ display: "flex", gap: 3, alignItems: "center", padding: "3px 8px", borderRadius: 10, background: groupBg, border: `1px solid ${groupBorder}` }}>
-        <div onClick={() => props.onPlaceChip("blue", null)} style={{ cursor: "pointer", transition: "transform .1s" }} title="Blue">
+      <div style={{ display: "flex", gap: 3, alignItems: "center", padding: "3px 8px", borderRadius: 10, background: groupBg, border: `1px solid ${groupBorder}` }} role="toolbar" aria-label="Pul ve operatörler">
+        <button onClick={() => props.onPlaceChip("blue", null)} style={{ cursor: "pointer", transition: "transform .1s", background: "transparent", border: "none", padding: 0 }} aria-label="Mavi pul yerleştir">
           <Chip color="blue" size={CHIP_PALETTE_SIZE} />
-        </div>
-        <div onClick={() => props.onPlaceChip("red", null)} style={{ cursor: "pointer" }} title="Red">
+        </button>
+        <button onClick={() => props.onPlaceChip("red", null)} style={{ cursor: "pointer", background: "transparent", border: "none", padding: 0 }} aria-label="Kırmızı pul yerleştir">
           <Chip color="red" size={CHIP_PALETTE_SIZE} />
-        </div>
+        </button>
 
         {/* Green number picker */}
         <div style={{ position: "relative" }}>
-          <div onClick={props.onToggleNumPicker}
+          <button
+            onClick={props.onToggleNumPicker}
+            aria-label="Sayı pulu seç (0–20)"
+            aria-expanded={numPickerOpen}
+            aria-haspopup="true"
             style={{
               display: "flex", alignItems: "center", gap: 4,
               padding: "3px 8px", borderRadius: 10, cursor: "pointer",
               background: numPickerOpen ? "#22c55e" : "transparent",
+              border: "none",
               transition: "all .15s",
+              fontFamily: "inherit",
             }}>
             <Chip color="green" label="n" size={16} />
             <span style={{ fontSize: 9, fontWeight: 800, color: numPickerOpen ? "#fff" : palette.tx }}>0–20</span>
-          </div>
+          </button>
           {numPickerOpen && (
             <div style={{
               position: "absolute", bottom: "100%", left: "50%",
@@ -216,25 +222,26 @@ export default function BottomToolbar(props: BottomToolbarProps) {
               border: `1px solid ${groupBorder}`,
               boxShadow: "0 12px 36px rgba(0,0,0,.2)",
               display: "grid", gridTemplateColumns: "repeat(7,1fr)", gap: 5, zIndex: 1000,
-            }}>
+            }} role="dialog" aria-label="Sayı pulu seç">
               {Array.from({ length: 21 }, (_, n) => (
-                <div key={n} onClick={() => { props.onPlaceChip("green", String(n)); props.onToggleNumPicker(); }}
-                  style={{ cursor: "pointer", transition: "transform .1s" }}>
+                <button key={n} onClick={() => { props.onPlaceChip("green", String(n)); props.onToggleNumPicker(); }}
+                  aria-label={`Sayı pulu ${n} yerleştir`}
+                  style={{ cursor: "pointer", transition: "transform .1s", background: "transparent", border: "none", padding: 0 }}>
                   <Chip color="green" label={String(n)} size={30} />
-                </div>
+                </button>
               ))}
             </div>
           )}
         </div>
 
         {/* Separator */}
-        <div style={{ width: 1, height: 20, background: groupBorder }} />
+        <div style={{ width: 1, height: 20, background: groupBorder }} aria-hidden="true" />
 
         {/* Operators */}
         {OPERATORS.map((op) => (
-          <div key={op} onClick={() => props.onPlaceChip("yellow", op)} style={{ cursor: "pointer" }} title={op}>
+          <button key={op} onClick={() => props.onPlaceChip("yellow", op)} style={{ cursor: "pointer", background: "transparent", border: "none", padding: 0 }} aria-label={`İşlem pulu ${op} yerleştir`}>
             <Chip color="yellow" label={op} size={CHIP_PALETTE_SIZE} />
-          </div>
+          </button>
         ))}
       </div>
 
@@ -242,54 +249,60 @@ export default function BottomToolbar(props: BottomToolbarProps) {
       <div style={{ flex: 1 }} />
 
       {/* ═══ VIEW GROUP ═══ */}
-      <div style={{ display: "flex", gap: 2, padding: 3, borderRadius: 10, background: groupBg, border: `1px solid ${groupBorder}` }}>
+      <div style={{ display: "flex", gap: 2, padding: 3, borderRadius: 10, background: groupBg, border: `1px solid ${groupBorder}` }} role="toolbar" aria-label="Izgara ve arka plan">
         {(["none", "square", "dot", "line"] as GridType[]).map((g) => {
           const icons: Record<GridType, string> = { none: "⊘", square: "⊞", dot: "⁙", line: "≡" };
+          const labels: Record<GridType, string> = { none: "Izgara yok", square: "Kare ızgara", dot: "Nokta ızgara", line: "Çizgi ızgara" };
           return (
-            <button key={g} title={g} onClick={() => props.onSetGridType(g)} style={iconBtn(gridType === g, { width: 28, height: 28, fontSize: 13 })}>
-              {icons[g]}
+            <button key={g} title={labels[g]} aria-label={labels[g]} aria-pressed={gridType === g} onClick={() => props.onSetGridType(g)} style={iconBtn(gridType === g, { width: 28, height: 28, fontSize: 13 })}>
+              <span aria-hidden="true">{icons[g]}</span>
             </button>
           );
         })}
 
-        <div style={{ width: 1, height: 20, background: groupBorder, margin: "0 2px" }} />
+        <div style={{ width: 1, height: 20, background: groupBorder, margin: "0 2px" }} aria-hidden="true" />
 
         {BG_PRESETS.map((c) => (
-          <div key={c} onClick={() => props.onSetBgColor(c)}
+          <button key={c} onClick={() => props.onSetBgColor(c)}
+            aria-label={`Arka plan rengi ${c}`}
+            aria-pressed={bgColor === c}
             style={{
               width: 20, height: 20, borderRadius: 6, background: c, cursor: "pointer",
               border: bgColor === c ? "2.5px solid #f59e0b" : `1.5px solid ${c === "#ffffff" ? "#ccc" : dk ? "rgba(255,255,255,.15)" : "rgba(0,0,0,.1)"}`,
               boxShadow: bgColor === c ? "0 0 0 2px rgba(245,158,11,.3)" : "none",
               transition: "all .15s",
+              padding: 0,
             }}
           />
         ))}
       </div>
 
       {/* ═══ AR GROUP ═══ */}
-      <div style={{ display: "flex", gap: 2, padding: 3, borderRadius: 10, background: groupBg, border: `1px solid ${groupBorder}` }}>
-        <button title={t("ar3D")} onClick={props.onAR3D}
+      <div style={{ display: "flex", gap: 2, padding: 3, borderRadius: 10, background: groupBg, border: `1px solid ${groupBorder}` }} role="group" aria-label={t("ar3D") + " / " + t("arCamera")}>
+        <button title={t("ar3D")} aria-label={t("ar3D")} onClick={props.onAR3D}
           style={toolBtn(false, { padding: "5px 8px", background: "linear-gradient(135deg, rgba(99,102,241,.15), rgba(168,85,247,.15))", borderRadius: 8 })}>
-          <span style={{ fontSize: 12 }}>🧊</span>
+          <span style={{ fontSize: 12 }} aria-hidden="true">🧊</span>
           <span style={{ fontSize: 8, fontWeight: 900 }}>3D</span>
         </button>
-        <button title={t("arCamera")} onClick={props.onARCamera}
+        <button title={t("arCamera")} aria-label={t("arCamera")} onClick={props.onARCamera}
           style={toolBtn(false, { padding: "5px 8px", background: "linear-gradient(135deg, rgba(34,197,94,.15), rgba(16,185,129,.15))", borderRadius: 8 })}>
-          <span style={{ fontSize: 12 }}>📸</span>
+          <span style={{ fontSize: 12 }} aria-hidden="true">📸</span>
           <span style={{ fontSize: 8, fontWeight: 900 }}>AR</span>
         </button>
       </div>
 
       {/* ═══ UTILITY GROUP ═══ */}
-      <div style={{ display: "flex", gap: 1, padding: 3, borderRadius: 10, background: groupBg, border: `1px solid ${groupBorder}` }}>
-        <button title="Tam ekran" onClick={() => {
+      <div style={{ display: "flex", gap: 1, padding: 3, borderRadius: 10, background: groupBg, border: `1px solid ${groupBorder}` }} role="group">
+        <button title="Tam ekran" aria-label="Tam ekran" onClick={() => {
           if (document.fullscreenElement) document.exitFullscreen();
           else document.documentElement.requestFullscreen();
         }} style={iconBtn(false, { width: 28, height: 28 })}>
-          ⛶
+          <span aria-hidden="true">⛶</span>
         </button>
         <button
           title={voiceOn ? t("voiceOff") : t("voiceOn")}
+          aria-label={voiceOn ? t("voiceOff") : t("voiceOn")}
+          aria-pressed={voiceOn}
           onClick={props.onToggleVoice}
           style={iconBtn(voiceOn, {
             width: 28, height: 28,
@@ -298,10 +311,10 @@ export default function BottomToolbar(props: BottomToolbarProps) {
             animation: voiceOn ? "dsPulse 1.5s ease infinite" : "none",
           })}
         >
-          🎤
+          <span aria-hidden="true">🎤</span>
         </button>
-        <button title={t("help")} onClick={props.onToggleHelp} style={iconBtn(helpOpen, { width: 28, height: 28, fontSize: 12, fontWeight: 900 })}>
-          ?
+        <button title={t("hint")} aria-label={t("hint")} aria-pressed={helpOpen} onClick={props.onToggleHelp} style={iconBtn(helpOpen, { width: 28, height: 28, fontSize: 12, fontWeight: 900 })}>
+          <span aria-hidden="true">?</span>
         </button>
       </div>
     </div>

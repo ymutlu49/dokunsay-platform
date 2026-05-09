@@ -153,13 +153,20 @@
 [data-dyscalculia="on"] .ds-appshell__topbar { min-height: 64px; padding: 12px 20px; }
 
 /* Yüksek kontrast */
+[data-contrast="high"] .ds-appshell {
+  background: #fff !important;
+  color: #000 !important;
+}
 [data-contrast="high"] .ds-appshell__topbar {
-  background: #000;
-  color: #fff;
+  background: #000 !important;
+  color: #fff !important;
 }
 [data-contrast="high"] .ds-appshell__icon {
-  background: #fff;
-  color: #000;
+  background: #fff !important;
+  color: #000 !important;
+}
+[data-contrast="high"] .ds-appshell__main {
+  background: #fff !important;
 }
 
 /* Mobil */
