@@ -1114,26 +1114,26 @@ export default function App() {
                 </div>
               )}
               <div style={{padding:"8px 10px",borderTop:"1px solid "+PBD,display:"flex",gap:4,flexWrap:"wrap",alignItems:"center"}}>
-                <button onClick={doUndo} style={bs(false,{opacity:pastRef.current.length?1:.4,fontSize:12,padding:"5px 8px"})}>{"↩"}</button>
-                <button onClick={doRedo} style={bs(false,{opacity:futRef.current.length?1:.4,fontSize:12,padding:"5px 8px"})}>{"↪"}</button>
-                <div style={{width:1,height:16,background:PBD}}/>
-                <button onClick={function(){setLabels(!showLabels);}} style={bs(showLabels,{fontSize:10,padding:"5px 8px"})}>{"Aa"}</button>
-                <button onClick={function(){setTransp(!transpMode);}} style={bs(transpMode,{fontSize:10,padding:"5px 8px"})} title={t("tool.transparency")}>{"👁"}</button>
-                <div style={{width:1,height:16,background:PBD}}/>
-                <button onClick={function(){setItems(autoLayout(irRef.current));}} style={bs(false,{fontSize:10,padding:"5px 8px"})}>{"⊞"}</button>
-                <button onClick={function(){hPush();setItems([]);setDrawLines([]);setOps({});setActiveTpl(null);}} style={bs(false,{fontSize:10,padding:"5px 8px"})}>{"🗑"}</button>
-                <button onClick={function(){setHelp(!helpOpen);}} style={bs(helpOpen,{fontSize:10,padding:"5px 8px"})}>{"?"}</button>
-                <button onClick={function(){setAbout(true);}} style={bs(false,{fontSize:10,padding:"5px 8px"})}>{"ℹ"}</button>
-                <div style={{width:1,height:16,background:PBD}}/>
-                <button onClick={exportCanvas} style={bs(false,{fontSize:10,padding:"5px 8px"})} title={t("tool.screenshot")}>{"📷"}</button>
-                <button onClick={shareCanvas} style={bs(false,{fontSize:10,padding:"5px 8px"})} title={t("tool.share")}>{"🔗"}</button>
-                <button onClick={function(){setTeacherOpen(true);}} style={bs(false,{fontSize:10,padding:"5px 8px"})} title={t("tool.teacher")}>{"👨‍🏫"}</button>
+                <button onClick={doUndo} aria-label="Geri al" title="Geri al" disabled={!pastRef.current.length} style={bs(false,{opacity:pastRef.current.length?1:.4,fontSize:12,padding:"5px 8px"})}><span aria-hidden="true">{"↩"}</span></button>
+                <button onClick={doRedo} aria-label="İleri al" title="İleri al" disabled={!futRef.current.length} style={bs(false,{opacity:futRef.current.length?1:.4,fontSize:12,padding:"5px 8px"})}><span aria-hidden="true">{"↪"}</span></button>
+                <div style={{width:1,height:16,background:PBD}} aria-hidden="true"/>
+                <button onClick={function(){setLabels(!showLabels);}} aria-label="Etiketleri göster/gizle" aria-pressed={showLabels} title="Etiketleri göster/gizle" style={bs(showLabels,{fontSize:10,padding:"5px 8px"})}><span aria-hidden="true">{"Aa"}</span></button>
+                <button onClick={function(){setTransp(!transpMode);}} aria-label={t("tool.transparency")} aria-pressed={transpMode} title={t("tool.transparency")} style={bs(transpMode,{fontSize:10,padding:"5px 8px"})}><span aria-hidden="true">{"👁"}</span></button>
+                <div style={{width:1,height:16,background:PBD}} aria-hidden="true"/>
+                <button onClick={function(){setItems(autoLayout(irRef.current));}} aria-label="Otomatik düzen" title="Otomatik düzen" style={bs(false,{fontSize:10,padding:"5px 8px"})}><span aria-hidden="true">{"⊞"}</span></button>
+                <button onClick={function(){hPush();setItems([]);setDrawLines([]);setOps({});setActiveTpl(null);}} aria-label="Tümünü temizle" title="Tümünü temizle" style={bs(false,{fontSize:10,padding:"5px 8px"})}><span aria-hidden="true">{"🗑"}</span></button>
+                <button onClick={function(){setHelp(!helpOpen);}} aria-label="Yardım" aria-pressed={helpOpen} title="Yardım" style={bs(helpOpen,{fontSize:10,padding:"5px 8px"})}><span aria-hidden="true">{"?"}</span></button>
+                <button onClick={function(){setAbout(true);}} aria-label="Hakkında" title="Hakkında" style={bs(false,{fontSize:10,padding:"5px 8px"})}><span aria-hidden="true">{"ℹ"}</span></button>
+                <div style={{width:1,height:16,background:PBD}} aria-hidden="true"/>
+                <button onClick={exportCanvas} aria-label={t("tool.screenshot")} title={t("tool.screenshot")} style={bs(false,{fontSize:10,padding:"5px 8px"})}><span aria-hidden="true">{"📷"}</span></button>
+                <button onClick={shareCanvas} aria-label={t("tool.share")} title={t("tool.share")} style={bs(false,{fontSize:10,padding:"5px 8px"})}><span aria-hidden="true">{"🔗"}</span></button>
+                <button onClick={function(){setTeacherOpen(true);}} aria-label={t("tool.teacher")} title={t("tool.teacher")} style={bs(false,{fontSize:10,padding:"5px 8px"})}><span aria-hidden="true">{"👨‍🏫"}</span></button>
               </div>
             </div>
           ):(
             <div style={{flex:1,display:"flex",flexDirection:"column",alignItems:"center",gap:6,padding:"10px 0"}}>
-              <button onClick={function(){setCollapsed(false);setSideTab("mat");}} style={bs(false,{fontSize:16,padding:"6px 10px"})}>{"📦"}</button>
-              <button onClick={function(){setCollapsed(false);setSideTab("act");}} style={bs(false,{fontSize:16,padding:"6px 10px"})}>{"📋"}</button>
+              <button onClick={function(){setCollapsed(false);setSideTab("mat");}} aria-label="Materyal menüsü" title="Materyal menüsü" style={bs(false,{fontSize:16,padding:"6px 10px"})}><span aria-hidden="true">{"📦"}</span></button>
+              <button onClick={function(){setCollapsed(false);setSideTab("act");}} aria-label="Etkinlik menüsü" title="Etkinlik menüsü" style={bs(false,{fontSize:16,padding:"6px 10px"})}><span aria-hidden="true">{"📋"}</span></button>
             </div>
           )}
         </div>
