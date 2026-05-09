@@ -60,6 +60,103 @@ export function applyA11yAttributes(prefs) {
 }
 
 /**
+ * Etiketsiz (label/title/role) SVG'lere otomatik aria-hidden="true" verir.
+ * Hedef: ekran okuyucu çoğu UI ikonu üzerinde "graphic" duyurusu yapmasın.
+ * Anlamlı SVG'lere title eklemek developer sorumluluğu; bu helper sadece
+ * dekoratif olanları gizler.
+ *
+ * Triggers:
+ *  - <svg> (veya child element'leri) aria-label/aria-labelledby/role yok
+ *  - <title> child elementi yok
+ *  → aria-hidden="true" eklenir.
+ *
+ * MutationObserver ile dinamik içerik için de çalışır.
+ */
+export function installDecorativeSvgGuard() {
+  if (typeof document === 'undefined') return () => {};
+
+  function isLabeled(svg) {
+    if (svg.hasAttribute('aria-label')) return true;
+    if (svg.hasAttribute('aria-labelledby')) return true;
+    if (svg.getAttribute('role') === 'img') return true;
+    if (svg.querySelector(':scope > title')) return true;
+    return false;
+  }
+
+  function process(svg) {
+    if (svg.hasAttribute('aria-hidden')) return;
+    if (!isLabeled(svg)) {
+      svg.setAttribute('aria-hidden', 'true');
+      svg.setAttribute('focusable', 'false');
+    }
+  }
+
+  function processAll(root) {
+    if (root.tagName === 'SVG' || root.nodeName === 'svg') process(root);
+    if (root.querySelectorAll) {
+      root.querySelectorAll('svg').forEach(process);
+    }
+  }
+
+  processAll(document.body);
+
+  const observer = new MutationObserver((mutations) => {
+    for (const m of mutations) {
+      m.addedNodes.forEach((n) => {
+        if (n.nodeType === 1) processAll(n);
+      });
+    }
+  });
+  observer.observe(document.body, { childList: true, subtree: true });
+  return () => observer.disconnect();
+}
+
+const RTL_LANGS = new Set(['ar', 'fa', 'he', 'ur']);
+
+/**
+ * `<html dir>` attribute'unu lang'e göre günceller (AR/FA → rtl).
+ * Shared LangSwitcher zaten bunu yapar; bu fonksiyon launcher gibi
+ * custom dil seçici kullanan uygulamalar için yedek MutationObserver
+ * sağlar — `<html lang>` her güncellendiğinde dir doğru ayarlanır.
+ *
+ * `installAutoDir()` A11yProvider'ın mount sırasında bir kez çağrılır,
+ * cleanup fonksiyonu döner. Eğer dir zaten doğruysa attribute set
+ * etmez (gereksiz mutation event'i tetiklemez).
+ */
+export function installAutoDir() {
+  if (typeof document === 'undefined') return () => {};
+  const root = document.documentElement;
+
+  function updateDir() {
+    const lang = (root.getAttribute('lang') || 'tr').toLowerCase().slice(0, 2);
+    const expected = RTL_LANGS.has(lang) ? 'rtl' : 'ltr';
+    if (root.getAttribute('dir') !== expected) {
+      root.setAttribute('dir', expected);
+    }
+  }
+
+  updateDir();
+  const observer = new MutationObserver((mutations) => {
+    if (mutations.some((m) => m.attributeName === 'lang')) updateDir();
+  });
+  observer.observe(root, { attributes: true, attributeFilter: ['lang'] });
+  return () => observer.disconnect();
+}
+
+/**
+ * Tüm platform a11y koruyucularını tek seferde kurar:
+ *  - installAutoDir: <html dir>'i lang'e göre otomatik tutar
+ *  - installDecorativeSvgGuard: etiketsiz SVG'lere aria-hidden ekler
+ *
+ * A11yProvider'lar bu helper'ı mount sırasında çağırarak boilerplate'i
+ * azaltır. Tek bir cleanup fonksiyonu döner.
+ */
+export function installA11yGuards() {
+  const cleanups = [installAutoDir(), installDecorativeSvgGuard()];
+  return () => cleanups.forEach((c) => { try { c(); } catch (_) {} });
+}
+
+/**
  * Klavye kısayolu dinleyici kurucusu.
  * Platform-çapı ortak kısayollar: Ctrl+Z, Ctrl+Y, Del, S (speak), ?/F1 (help).
  */

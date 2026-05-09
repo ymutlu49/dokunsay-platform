@@ -4,6 +4,14 @@ import { LANGS, LANG_LABELS, LANG_FLAGS, useT } from './i18n.js';
 
 const STORAGE_KEY = 'dokunsay:platform:prefs';
 
+const SKIP_LABEL = {
+  tr: 'Ana içeriğe atla',
+  ku: 'Biçe nav naverokê',
+  en: 'Skip to main content',
+  ar: 'تخطّ إلى المحتوى الرئيسي',
+  fa: 'پرش به محتوای اصلی',
+};
+
 const AGE_RANGES = {
   all: [0, 99],
   early: [5, 7],
@@ -142,11 +150,15 @@ export default function App() {
 
   return (
     <div className="app">
+      <a href="#ds-main-content" className="ds-skip-link">
+        {SKIP_LABEL[lang] || SKIP_LABEL.tr}
+      </a>
       <header className="header">
         <div className="header-row">
           <div className="brand">
-            <div className="brand-logo" aria-hidden="true">
-              <svg viewBox="0 0 32 32" fill="none" width="32" height="32">
+            <div className="brand-logo">
+              <svg viewBox="0 0 32 32" fill="none" width="32" height="32" role="img" aria-label={t('platform_title')}>
+                <title>{t('platform_title')}</title>
                 <rect x="4" y="4" width="10" height="10" rx="2.5" fill="currentColor" opacity="0.95" />
                 <rect x="18" y="4" width="10" height="10" rx="2.5" fill="currentColor" opacity="0.7" />
                 <rect x="4" y="18" width="10" height="10" rx="2.5" fill="currentColor" opacity="0.55" />
@@ -178,6 +190,7 @@ export default function App() {
         </div>
       </header>
 
+      <main id="ds-main-content" tabIndex={-1}>
       <section className="hero">
         <div className="hero-decoration" aria-hidden="true">
           <div className="hero-orb hero-orb-1" />
@@ -245,6 +258,7 @@ export default function App() {
                   key={age}
                   className={`filter-pill ${activeAge === age ? 'active' : ''}`}
                   onClick={() => setActiveAge(age)}
+                  aria-pressed={activeAge === age}
                 >
                   {t(`age_${age}`)}
                 </button>
@@ -258,6 +272,7 @@ export default function App() {
               <button
                 className={`filter-pill ${activeCategory === 'all' ? 'active' : ''}`}
                 onClick={() => setActiveCategory('all')}
+                aria-pressed={activeCategory === 'all'}
               >
                 {t('all_tools')}
               </button>
@@ -266,6 +281,7 @@ export default function App() {
                   key={cat.id}
                   className={`filter-pill ${activeCategory === cat.id ? 'active' : ''}`}
                   onClick={() => setActiveCategory(cat.id)}
+                  aria-pressed={activeCategory === cat.id}
                 >
                   {cat.label}
                 </button>
@@ -356,6 +372,7 @@ export default function App() {
         </div>
       </section>
 
+      </main>
       <footer className="footer">
         <div className="footer-inner">
           <div className="footer-brand">

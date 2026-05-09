@@ -30,3 +30,22 @@ export interface KeyboardHandlers {
 
 export function installKeyboardShortcuts(handlers?: KeyboardHandlers): () => void;
 export function announce(message: string, priority?: "polite" | "assertive"): void;
+
+/**
+ * <html lang> değişikliklerini izleyip <html dir> attribute'unu otomatik
+ * günceller (ar/fa → rtl, diğerleri → ltr). Cleanup fonksiyonu döner.
+ */
+export function installAutoDir(): () => void;
+
+/**
+ * Etiketsiz SVG'lere (aria-label/title/role olmayan) otomatik
+ * aria-hidden="true" + focusable="false" ekler. MutationObserver
+ * ile dinamik içerik de dahil. Cleanup fonksiyonu döner.
+ */
+export function installDecorativeSvgGuard(): () => void;
+
+/**
+ * Tüm platform a11y koruyucularını tek seferde kurar (auto-dir + svg-guard).
+ * A11yProvider'lar mount sırasında çağırır. Tek cleanup fonksiyonu döner.
+ */
+export function installA11yGuards(): () => void;
