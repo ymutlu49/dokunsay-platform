@@ -20,6 +20,7 @@
  */
 
 import { APP_ACCENTS } from './palette.js';
+import { AuthGate } from './AuthGate.jsx';
 import './AppShell.css';
 
 function computeBackHref() {
@@ -62,6 +63,13 @@ export function AppShell({
   backHref,
   backLang = 'tr',
   tools,
+  /**
+   * Diskalkuli Derneği SSO katmanı.
+   *  - false: hiç gösterme (örn. Bar — kendi Firebase auth'u var)
+   *  - "optional" (default): topbar tools alanında küçük "Giriş" butonu
+   *  - "required": login zorunlu, modal otomatik açılır
+   */
+  auth = 'optional',
   footer,
   background,
   children,
@@ -108,7 +116,12 @@ export function AppShell({
               {subtitle && <p className="ds-appshell__subtitle">{subtitle}</p>}
             </div>
           </div>
-          {tools && <div className="ds-appshell__tools">{tools}</div>}
+          {(tools || auth) && (
+            <div className="ds-appshell__tools">
+              {tools}
+              {auth && <AuthGate mode={auth === 'required' ? 'required' : 'optional'} />}
+            </div>
+          )}
         </header>
       )}
 

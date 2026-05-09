@@ -1,0 +1,263 @@
+/* ==========================================================
+   DokunSay Platform — AuthGate (SSO UI) stilleri
+   AppShell tools slot'una veya bağımsız köşeye yerleştirilir.
+   ========================================================== */
+
+/* ─── Trigger button ─── */
+.ds-auth-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 10px;
+  border: 1.5px solid rgba(255, 255, 255, 0.20);
+  background: rgba(255, 255, 255, 0.10);
+  color: #fff;
+  font-family: 'Nunito', system-ui, -apple-system, sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, transform 0.08s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ds-auth-trigger:hover {
+  background: rgba(255, 255, 255, 0.20);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.ds-auth-trigger:active { transform: scale(0.97); }
+
+.ds-auth-trigger:focus-visible {
+  outline: 3px solid rgba(245, 158, 11, 0.6);
+  outline-offset: 2px;
+}
+
+/* ─── User pill (logged in state) ─── */
+.ds-auth-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 4px 4px 10px;
+  border-radius: 999px;
+  background: rgba(34, 197, 94, 0.18);
+  border: 1.5px solid rgba(34, 197, 94, 0.35);
+  color: #fff;
+  font-family: 'Nunito', system-ui, -apple-system, sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.ds-auth-pill__greet { font-size: 14px; }
+
+.ds-auth-pill__name {
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ds-auth-pill__logout {
+  width: 22px;
+  height: 22px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.25);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 900;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: background 0.15s;
+}
+
+.ds-auth-pill__logout:hover { background: rgba(239, 68, 68, 0.7); }
+
+.ds-auth-pill__logout:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+/* ─── Modal ─── */
+.ds-auth-modal__overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: grid;
+  place-items: center;
+  z-index: 10000;
+  padding: 16px;
+  animation: ds-auth-fade 200ms ease-out;
+}
+
+@keyframes ds-auth-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.ds-auth-modal__body {
+  background: #fffdf7;
+  color: #2d2418;
+  border-radius: 18px;
+  padding: 22px 24px;
+  width: 100%;
+  max-width: 380px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.30);
+  border: 1.5px solid #e7dcc0;
+  font-family: 'Nunito', system-ui, -apple-system, sans-serif;
+  animation: ds-auth-slide 220ms ease-out;
+}
+
+@keyframes ds-auth-slide {
+  from { transform: translateY(20px) scale(0.96); opacity: 0; }
+  to   { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.ds-auth-modal__title {
+  margin: 0 0 8px;
+  font-size: 18px;
+  font-weight: 900;
+  color: #2d2418;
+}
+
+.ds-auth-modal__info {
+  margin: 0 0 16px;
+  font-size: 12px;
+  color: #574a33;
+  line-height: 1.5;
+}
+
+/* ─── Form ─── */
+.ds-auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ds-auth-form__label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 800;
+  color: #2d2418;
+}
+
+.ds-auth-form__label input {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1.5px solid #e7dcc0;
+  background: #fff;
+  font-family: inherit;
+  font-size: 14px;
+  color: #2d2418;
+  min-height: 44px;
+  transition: border-color 0.15s;
+}
+
+.ds-auth-form__label input:focus {
+  outline: 3px solid rgba(245, 158, 11, 0.4);
+  outline-offset: 1px;
+  border-color: #f59e0b;
+}
+
+.ds-auth-form__label input:disabled {
+  background: #faf6ed;
+  color: #8a7c60;
+}
+
+.ds-auth-form__error {
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: rgba(239, 68, 68, 0.10);
+  border: 1.5px solid rgba(239, 68, 68, 0.30);
+  color: #b91c1c;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.ds-auth-form__actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.ds-auth-form__cancel,
+.ds-auth-form__submit {
+  flex: 1;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  border: 0;
+  min-height: 44px;
+  transition: background 0.15s, transform 0.08s, opacity 0.15s;
+}
+
+.ds-auth-form__cancel {
+  background: #faf6ed;
+  color: #574a33;
+  border: 1.5px solid #e7dcc0;
+}
+
+.ds-auth-form__cancel:hover { background: #efe8d0; }
+
+.ds-auth-form__submit {
+  background: linear-gradient(135deg, #f59e0b 0%, #c97d16 100%);
+  color: #fff;
+}
+
+.ds-auth-form__submit:hover { filter: brightness(1.05); }
+
+.ds-auth-form__submit:disabled,
+.ds-auth-form__cancel:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.ds-auth-form__cancel:focus-visible,
+.ds-auth-form__submit:focus-visible {
+  outline: 3px solid rgba(245, 158, 11, 0.6);
+  outline-offset: 2px;
+}
+
+/* ─── Mobil ─── */
+@media (max-width: 520px) {
+  .ds-auth-trigger__label,
+  .ds-auth-pill__name { display: none; }
+  .ds-auth-trigger { padding: 6px 10px; }
+  .ds-auth-modal__body { padding: 18px 18px; }
+}
+
+/* ─── Yüksek kontrast ─── */
+[data-contrast="high"] .ds-auth-modal__body {
+  background: #fff !important;
+  color: #000 !important;
+  border: 2px solid #000 !important;
+}
+
+[data-contrast="high"] .ds-auth-form__label input {
+  border: 2px solid #000 !important;
+}
+
+[data-contrast="high"] .ds-auth-form__submit {
+  background: #000 !important;
+  color: #fff !important;
+}
+
+[data-contrast="high"] .ds-auth-form__cancel {
+  border: 2px solid #000 !important;
+  background: #fff !important;
+  color: #000 !important;
+}
+
+/* ─── Reduced motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  .ds-auth-modal__overlay,
+  .ds-auth-modal__body { animation: none; }
+}
