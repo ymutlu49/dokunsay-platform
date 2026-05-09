@@ -3108,7 +3108,8 @@ export default function App(){
                   <text x={(rulerPts[0].x+rulerPts[1].x)/2} y={(rulerPts[0].y+rulerPts[1].y)/2-10/zoom}
                     textAnchor="middle" paintOrder="stroke"
                     style={{fontSize:12/zoom,fontWeight:800,fill:"#ef4444",fontFamily:"system-ui"}}
-                    stroke="#fff" strokeWidth={3/zoom}>
+                    stroke="#fff" strokeWidth={3/zoom}
+                    data-numeric="true">
                     {rdist} {t("unit")}
                   </text>
                 </>
@@ -3207,7 +3208,8 @@ export default function App(){
                       <rect x={-18/zoom} y={-10/zoom} width={36/zoom} height={20/zoom}
                         rx={4/zoom} fill="#fff" stroke="#059669" strokeWidth={sw}/>
                       <text x={0} y={0} textAnchor="middle" dominantBaseline="central"
-                        style={{fontSize:12/zoom,fontWeight:800,fill:"#065f46",fontFamily:"system-ui"}}>
+                        style={{fontSize:12/zoom,fontWeight:800,fill:"#065f46",fontFamily:"system-ui"}}
+                        data-numeric="true">
                         {deg}°
                       </text>
                     </g>

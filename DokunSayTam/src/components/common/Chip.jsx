@@ -5,7 +5,16 @@ const Chip = ({ type, size = 20, anim }) => {
   const gradientId = `cg_${type}_${size}`;
 
   return (
-    <svg width={size * 2} height={size * 2} style={anim ? { animation: anim } : {}}>
+    <svg
+      width={size * 2}
+      height={size * 2}
+      style={anim ? { animation: anim } : {}}
+      role="img"
+      aria-label={isPositive ? '+1' : '-1'}
+      data-semantic={isPositive ? 'positive' : 'negative'}
+      data-numeric="true"
+    >
+      <title>{isPositive ? '+1' : '-1'}</title>
       <defs>
         <radialGradient id={gradientId}>
           <stop offset="0%" stopColor={isPositive ? '#4ade80' : '#f87171'} />

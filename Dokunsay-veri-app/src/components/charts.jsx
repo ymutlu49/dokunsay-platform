@@ -46,7 +46,8 @@ export function BarChart({ data, highlight, truncated, colorblindMode }) {
             <line x1={padL - 3} y1={y} x2={padL + plotW} y2={y}
               stroke={i === 0 ? P.textSoft : "rgba(30,41,59,.08)"} strokeWidth={i === 0 ? 1.2 : 1}/>
             <text x={padL - 6} y={y + 3} textAnchor="end"
-              style={{ fontSize: fs(9), fill: P.textSoft, fontFamily: "system-ui" }}>
+              style={{ fontSize: fs(9), fill: P.textSoft, fontFamily: "system-ui" }}
+              data-numeric="true">
               {Math.round(v * 10) / 10}
             </text>
           </g>
@@ -163,7 +164,8 @@ export function Pictograph({ data, colorblindMode }) {
             ))}
             {/* Sağda toplam */}
             <text x={W - 10} y={y + 15} textAnchor="end"
-              style={{ fontSize: fs(11), fontWeight: 800, fill: color, fontFamily: "system-ui" }}>
+              style={{ fontSize: fs(11), fontWeight: 800, fill: color, fontFamily: "system-ui" }}
+              data-numeric="true">
               {count}
             </text>
           </g>
@@ -270,7 +272,8 @@ export function LineChart({ data, colorblindMode }) {
             <line x1={padL - 3} y1={y} x2={padL + plotW} y2={y}
               stroke={i === 0 ? P.textSoft : "rgba(30,41,59,.08)"} strokeWidth={i === 0 ? 1.2 : 1}/>
             <text x={padL - 6} y={y + 3} textAnchor="end"
-              style={{ fontSize: fs(9), fill: P.textSoft, fontFamily: "system-ui" }}>
+              style={{ fontSize: fs(9), fill: P.textSoft, fontFamily: "system-ui" }}
+              data-numeric="true">
               {Math.round(v * 10) / 10}
             </text>
           </g>
@@ -443,7 +446,8 @@ export function ScatterPlot({ data, showTrend, showCorrelation, highlightIdx, co
             <line x1={padL} y1={y} x2={padL + plotW} y2={y}
               stroke="rgba(30,41,59,.06)" strokeWidth={1}/>
             <text x={padL - 6} y={y + 3} textAnchor="end"
-              style={{ fontSize: fs(9), fill: P.textSoft, fontFamily: "system-ui" }}>
+              style={{ fontSize: fs(9), fill: P.textSoft, fontFamily: "system-ui" }}
+              data-numeric="true">
               {Math.round(v * 10) / 10}
             </text>
           </g>

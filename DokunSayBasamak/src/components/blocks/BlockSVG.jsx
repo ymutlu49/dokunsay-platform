@@ -19,7 +19,7 @@ export default function BlockSVG({ type, size, showVal, colorBlind }) {
           </linearGradient>
         </defs>
         <rect x={.5} y={.5} width={U-1} height={U-1} rx={2} fill={fill} stroke={PALETTE.onesB} strokeWidth={1}/>
-        {showVal && <text x={U/2} y={U/2+1} textAnchor="middle" dominantBaseline="middle" fontSize={7} fontWeight={900} fill="#7a3d00">1</text>}
+        {showVal && <text x={U/2} y={U/2+1} textAnchor="middle" dominantBaseline="middle" fontSize={7} fontWeight={900} fill="#7a3d00" data-numeric="true">1</text>}
       </svg>
     );
   }
@@ -38,7 +38,7 @@ export default function BlockSVG({ type, size, showVal, colorBlind }) {
         {Array.from({length:9},(_,i)=>(
           <line key={i} x1={1} y1={U*(i+1)} x2={U-1} y2={U*(i+1)} stroke="rgba(255,255,255,.35)" strokeWidth={.7}/>
         ))}
-        {showVal && <text x={U/2} y={W/2} textAnchor="middle" dominantBaseline="middle" fontSize={9} fontWeight={900} fill="#fff" transform={`rotate(-90,${U/2},${W/2})`}>10</text>}
+        {showVal && <text x={U/2} y={W/2} textAnchor="middle" dominantBaseline="middle" fontSize={9} fontWeight={900} fill="#fff" transform={`rotate(-90,${U/2},${W/2})`} data-numeric="true">10</text>}
       </svg>
     );
   }
@@ -60,7 +60,7 @@ export default function BlockSVG({ type, size, showVal, colorBlind }) {
             <line x1={U*(i+1)} y1={1} x2={U*(i+1)} y2={W-1} stroke="rgba(255,255,255,.2)" strokeWidth={.5}/>
           </g>
         ))}
-        {showVal && <text x={W/2} y={W/2} textAnchor="middle" dominantBaseline="middle" fontSize={16} fontWeight={900} fill="rgba(255,255,255,.6)">100</text>}
+        {showVal && <text x={W/2} y={W/2} textAnchor="middle" dominantBaseline="middle" fontSize={16} fontWeight={900} fill="rgba(255,255,255,.6)" data-numeric="true">100</text>}
       </svg>
     );
   }
@@ -79,7 +79,7 @@ export default function BlockSVG({ type, size, showVal, colorBlind }) {
             <line x1={U*(i+1)} y1={D+1} x2={U*(i+1)} y2={D+W-1} stroke="rgba(255,255,255,.12)" strokeWidth={.3}/>
           </g>
         ))}
-        {showVal && <text x={W/2} y={D+W/2} textAnchor="middle" dominantBaseline="middle" fontSize={16} fontWeight={900} fill="rgba(255,255,255,.5)">1000</text>}
+        {showVal && <text x={W/2} y={D+W/2} textAnchor="middle" dominantBaseline="middle" fontSize={16} fontWeight={900} fill="rgba(255,255,255,.5)" data-numeric="true">1000</text>}
       </svg>
     );
   }

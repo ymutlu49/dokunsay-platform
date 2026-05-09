@@ -49,7 +49,14 @@ const NumberLine = ({ position, jumps, walkDirection, animateNumberLine, panelPo
             <g key={v} style={{ cursor: 'pointer' }} onClick={() => animateNumberLine(position === null ? 0 : position, v - (position === null ? 0 : position))}>
               <rect x={x - 18} y={68} width={36} height={70} fill="transparent" />
               <line x1={x} y1={isZero ? 72 : 78} x2={x} y2={isZero ? 108 : 102} stroke={isZero ? THEME.accent : THEME.border} strokeWidth={isZero ? 4 : v % 5 === 0 ? 2.5 : 1.5} />
-              <text x={x} y={122} textAnchor="middle" fontSize={isZero ? 16 : v % 5 === 0 ? 14 : 11} fontWeight={isZero ? 900 : 700} fill={v > 0 ? THEME.posB : v < 0 ? THEME.negB : THEME.accent}>
+              <text
+                x={x} y={122} textAnchor="middle"
+                fontSize={isZero ? 16 : v % 5 === 0 ? 14 : 11}
+                fontWeight={isZero ? 900 : 700}
+                fill={v > 0 ? THEME.posB : v < 0 ? THEME.negB : THEME.accent}
+                data-numeric="true"
+                data-semantic={v > 0 ? 'positive' : v < 0 ? 'negative' : undefined}
+              >
                 {v > 0 ? '+' + v : '' + v}
               </text>
               {isZero && <text x={x} y={136} textAnchor="middle" fontSize={8} fontWeight={700} fill={THEME.accent}>SIFIR</text>}
@@ -81,8 +88,8 @@ const NumberLine = ({ position, jumps, walkDirection, animateNumberLine, panelPo
           const x = 20 + ((position + 10) / 20) * 800;
           return (
             <g>
-              <rect x={x - 24} y={10} width={48} height={24} rx={12} fill={position > 0 ? THEME.pos : position < 0 ? THEME.neg : THEME.accent} />
-              <text x={x} y={26} textAnchor="middle" fontSize={14} fontWeight={900} fill="#fff">{position >= 0 ? '+' + position : '' + position}</text>
+              <rect x={x - 24} y={10} width={48} height={24} rx={12} fill={position > 0 ? THEME.pos : position < 0 ? THEME.neg : THEME.accent} data-semantic={position > 0 ? 'positive' : position < 0 ? 'negative' : undefined} />
+              <text x={x} y={26} textAnchor="middle" fontSize={14} fontWeight={900} fill="#fff" data-numeric="true">{position >= 0 ? '+' + position : '' + position}</text>
             </g>
           );
         })()}
@@ -95,10 +102,10 @@ const NumberLine = ({ position, jumps, walkDirection, animateNumberLine, panelPo
           const d = j.to > j.from ? 1 : -1;
           return (
             <g key={ji} style={{ animation: 'fadeIn .3s', animationDelay: ji * 0.3 + 's', animationFillMode: 'both' }}>
-              <path d={`M${x1},86 Q${mx},48 ${x2},86`} fill="none" stroke={d > 0 ? THEME.pos : THEME.neg} strokeWidth={2.5} strokeDasharray="6,3" />
+              <path d={`M${x1},86 Q${mx},48 ${x2},86`} fill="none" stroke={d > 0 ? THEME.pos : THEME.neg} strokeWidth={2.5} strokeDasharray="6,3" data-semantic={d > 0 ? 'positive' : 'negative'} />
               <polygon points={`${x2 - 5 * d},80 ${x2},86 ${x2 - 5 * d},92`} fill={d > 0 ? THEME.pos : THEME.neg} />
-              <circle cx={mx} cy={52} r={12} fill={d > 0 ? THEME.pos : THEME.neg} stroke="#fff" strokeWidth={1.5} />
-              <text x={mx} y={56} textAnchor="middle" fontSize={11} fontWeight={900} fill="#fff">{j.step}</text>
+              <circle cx={mx} cy={52} r={12} fill={d > 0 ? THEME.pos : THEME.neg} stroke="#fff" strokeWidth={1.5} data-semantic={d > 0 ? 'positive' : 'negative'} />
+              <text x={mx} y={56} textAnchor="middle" fontSize={11} fontWeight={900} fill="#fff" data-numeric="true">{j.step}</text>
             </g>
           );
         })}

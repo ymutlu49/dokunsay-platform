@@ -400,13 +400,13 @@ function WholeBarTrack(props) {
           <span onClick={function(e){e.stopPropagation();speak(fracSpeech(totalVal,pieces),t("speech.lang"));}} style={{cursor:"pointer",fontSize:12,opacity:.5,transition:"opacity .2s"}} onMouseEnter={function(e){e.currentTarget.style.opacity="1";}} onMouseLeave={function(e){e.currentTarget.style.opacity=".5";}}>{"🔊"}</span>
         </div>):null}
         {totalVal>0&&fracDen>1?(
-          <div style={{display:"flex",flexDirection:"column",alignItems:"center"}}>
-            <span style={{fontSize:Math.min(42,W*0.11),fontWeight:900,color:isEquiv?"#16a34a":"#dc2626",lineHeight:1}}>{fracNum}</span>
+          <div style={{display:"flex",flexDirection:"column",alignItems:"center"}} role="group" aria-label={fracNum+" bölü "+fracDen}>
+            <span data-numeric="true" data-semantic={isEquiv?"positive":"negative"} style={{fontSize:Math.min(42,W*0.11),fontWeight:900,color:isEquiv?"#16a34a":"#dc2626",lineHeight:1}}>{fracNum}</span>
             <div style={{width:Math.min(46,W*0.12),height:3.5,background:isEquiv?"#16a34a":"#dc2626",borderRadius:1,margin:"3px 0"}}/>
-            <span style={{fontSize:Math.min(42,W*0.11),fontWeight:900,color:isEquiv?"#16a34a":"#dc2626",lineHeight:1}}>{fracDen}</span>
+            <span data-numeric="true" data-semantic={isEquiv?"positive":"negative"} style={{fontSize:Math.min(42,W*0.11),fontWeight:900,color:isEquiv?"#16a34a":"#dc2626",lineHeight:1}}>{fracDen}</span>
           </div>
         ):totalVal>0&&fracDen===1?(
-          <span style={{fontSize:Math.min(42,W*0.11),fontWeight:900,color:isEquiv?"#16a34a":"#dc2626",lineHeight:1}}>{"1"}</span>
+          <span data-numeric="true" data-semantic={isEquiv?"positive":"negative"} style={{fontSize:Math.min(42,W*0.11),fontWeight:900,color:isEquiv?"#16a34a":"#dc2626",lineHeight:1}}>{"1"}</span>
         ):(
           <span style={{fontSize:32,fontWeight:900,color:"#ddd",lineHeight:1}}>{"?"}</span>
         )}

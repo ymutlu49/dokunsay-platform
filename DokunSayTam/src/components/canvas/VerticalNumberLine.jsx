@@ -9,7 +9,14 @@ const VerticalNumberLine = () => (
         return (
           <g key={v}>
             <line x1={20} y1={y} x2={50} y2={y} stroke={THEME.border} strokeWidth={v === 0 ? 2.5 : 1} />
-            <text x={14} y={y + 4} textAnchor="end" fontSize={v === 0 ? 13 : 10} fontWeight={v === 0 ? 900 : 700} fill={v > 0 ? THEME.posB : v < 0 ? THEME.negB : THEME.accent}>
+            <text
+              x={14} y={y + 4} textAnchor="end"
+              fontSize={v === 0 ? 13 : 10}
+              fontWeight={v === 0 ? 900 : 700}
+              fill={v > 0 ? THEME.posB : v < 0 ? THEME.negB : THEME.accent}
+              data-numeric="true"
+              data-semantic={v > 0 ? 'positive' : v < 0 ? 'negative' : undefined}
+            >
               {v > 0 ? '+' + v : v}
             </text>
             {v === 0 && (
