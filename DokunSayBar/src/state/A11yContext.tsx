@@ -86,7 +86,7 @@ export function A11yProvider({ children }: { children: ReactNode }) {
   return (
     <A11yCtx.Provider value={value}>
       {children}
-      <A11yPanel useA11y={useA11y} lang="tr" position="bottom-right" />
+      <A11yPanel useA11y={useA11y} position="bottom-right" />
     </A11yCtx.Provider>
   );
 }

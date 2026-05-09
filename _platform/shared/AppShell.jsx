@@ -44,6 +44,14 @@ const BACK_LABEL = {
   fa: 'بازگشت به منو',
 };
 
+const SKIP_LABEL = {
+  tr: 'Ana içeriğe atla',
+  ku: 'Biçe nav naverokê',
+  en: 'Skip to main content',
+  ar: 'تخطّ إلى المحتوى الرئيسي',
+  fa: 'پرش به محتوای اصلی',
+};
+
 export function AppShell({
   appId = 'bar',
   title,
@@ -61,6 +69,7 @@ export function AppShell({
   const accent = APP_ACCENTS[appId] || APP_ACCENTS.bar;
   const resolvedBack = backHref || computeBackHref();
   const backText = BACK_LABEL[backLang] || BACK_LABEL.tr;
+  const skipText = SKIP_LABEL[backLang] || SKIP_LABEL.tr;
 
   const cssVars = {
     '--appshell-accent': accent.color,
@@ -72,6 +81,9 @@ export function AppShell({
 
   return (
     <div className="ds-appshell" style={cssVars} data-app={appId}>
+      <a href="#ds-main-content" className="ds-skip-link">
+        {skipText}
+      </a>
       {topBar && (
         <header className="ds-appshell__topbar" role="banner">
           <div className="ds-appshell__brand">
@@ -100,7 +112,7 @@ export function AppShell({
         </header>
       )}
 
-      <main className="ds-appshell__main">
+      <main id="ds-main-content" className="ds-appshell__main" tabIndex={-1}>
         {children}
       </main>
 
