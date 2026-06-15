@@ -1,10 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <defs>
-    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#f59e0b" />
-      <stop offset="100%" stop-color="#92400e" />
-    </linearGradient>
-  </defs>
-  <rect x="4" y="4" width="56" height="56" rx="14" fill="url(#g)" />
-  <text x="32" y="44" font-family="system-ui,sans-serif" font-size="36" font-weight="900" text-anchor="middle" fill="#fff">🎯</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="Her Çocuk Matematik Öğrenebilir — Üçlü Kod işareti">
+  <title>Her Çocuk Matematik Öğrenebilir — Üçlü Kod</title>
+  <!-- Bağlantı üçgeni -->
+  <line x1="28" y1="27" x2="72" y2="27" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/>
+  <line x1="28" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/>
+  <line x1="72" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/>
+  <!-- Somut — noktalar (yeşil) -->
+  <circle cx="28" cy="27" r="21" fill="#2E7D32"/>
+  <circle cx="20.5" cy="26" r="3.2" fill="#ffffff" opacity="0.95"/>
+  <circle cx="28" cy="26" r="3.2" fill="#ffffff" opacity="0.95"/>
+  <circle cx="35.5" cy="26" r="3.2" fill="#ffffff" opacity="0.95"/>
+  <!-- Sözel — sayı adı (teal) -->
+  <circle cx="72" cy="27" r="21" fill="#0d9488"/>
+  <text x="72" y="32" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="14" fill="#ffffff">üç</text>
+  <!-- Sembolik — rakam (koyu yeşil) -->
+  <circle cx="50" cy="73" r="21" fill="#1B5E20"/>
+  <text x="50" y="82" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="27" fill="#ffffff">3</text>
 </svg>
