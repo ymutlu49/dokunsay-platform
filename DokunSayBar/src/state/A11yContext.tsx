@@ -23,6 +23,7 @@ import {
   saveA11yPrefs,
   applyA11yAttributes,
   installKeyboardShortcuts,
+  installA11yGuards,
   announce as liveAnnounce,
   type A11yPrefs,
   type KeyboardHandlers,
@@ -51,6 +52,8 @@ export function A11yProvider({ children }: { children: ReactNode }) {
     setAudioEnabled(prefs.sfx);
     setTTSEnabled(prefs.tts);
   }, [prefs]);
+
+  useEffect(() => installA11yGuards(), []);
 
   const toggle = useCallback((key: keyof A11yPrefs) => {
     setPrefs((p) => ({ ...p, [key]: !p[key] }));
@@ -86,7 +89,7 @@ export function A11yProvider({ children }: { children: ReactNode }) {
   return (
     <A11yCtx.Provider value={value}>
       {children}
-      <A11yPanel useA11y={useA11y} lang="tr" position="bottom-right" />
+      <A11yPanel useA11y={useA11y} position="bottom-right" />
     </A11yCtx.Provider>
   );
 }

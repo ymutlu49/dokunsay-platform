@@ -12,37 +12,50 @@ const Header = ({ posCount, negCount, netValue, zoom, setZoom }) => (
     <div style={{ flex: 1 }} />
 
     {/* Pul sayacı */}
-    <div style={{
-      display: 'flex', gap: 6, alignItems: 'center',
-      padding: '4px 14px', background: 'rgba(255,255,255,.06)', borderRadius: 10,
-    }}>
-      <span style={{ fontSize: 12, fontWeight: 800, color: '#4ade80' }}>{'⊕' + posCount}</span>
-      <span style={{ fontSize: 12, fontWeight: 800, color: '#f87171' }}>{'⊖' + negCount}</span>
-      <span style={{ fontSize: 10, color: 'rgba(255,255,255,.3)' }}>{'│'}</span>
-      <span style={{
-        fontSize: 14, fontWeight: 900,
-        color: netValue > 0 ? '#4ade80' : netValue < 0 ? '#f87171' : THEME.accent,
-      }}>
+    <div
+      role="status"
+      aria-live="polite"
+      aria-label={`Pozitif ${posCount}, negatif ${negCount}, sonuç ${netValue}`}
+      style={{
+        display: 'flex', gap: 6, alignItems: 'center',
+        padding: '4px 14px', background: 'rgba(255,255,255,.06)', borderRadius: 10,
+      }}
+    >
+      <span style={{ fontSize: 12, fontWeight: 800, color: '#4ade80' }} data-numeric="true" data-semantic="positive">{'⊕' + posCount}</span>
+      <span style={{ fontSize: 12, fontWeight: 800, color: '#f87171' }} data-numeric="true" data-semantic="negative">{'⊖' + negCount}</span>
+      <span style={{ fontSize: 10, color: 'rgba(255,255,255,.3)' }} aria-hidden="true">{'│'}</span>
+      <span
+        data-numeric="true"
+        data-semantic={netValue > 0 ? 'positive' : netValue < 0 ? 'negative' : undefined}
+        style={{
+          fontSize: 14, fontWeight: 900,
+          color: netValue > 0 ? '#4ade80' : netValue < 0 ? '#f87171' : THEME.accent,
+        }}
+      >
         {netValue > 0 ? '+' + netValue : netValue === 0 ? '0' : '' + netValue}
       </span>
     </div>
 
     {/* Zoom kontrolleri */}
-    <div style={{
+    <div role="group" aria-label="Yakınlaştır / Uzaklaştır" style={{
       display: 'flex', gap: 3, alignItems: 'center',
       background: 'rgba(255,255,255,.06)', borderRadius: 8, padding: '4px 8px',
     }}>
       <button
         onClick={() => setZoom((z) => Math.max(0.5, +(z - 0.1).toFixed(1)))}
+        aria-label="Uzaklaştır"
+        title="Uzaklaştır"
         style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,.5)', cursor: 'pointer', fontSize: 14, fontWeight: 900 }}
-      >−</button>
-      <span style={{ fontSize: 10, color: 'rgba(255,255,255,.35)', minWidth: 36, textAlign: 'center' }}>
+      ><span aria-hidden="true">−</span></button>
+      <span style={{ fontSize: 10, color: 'rgba(255,255,255,.35)', minWidth: 36, textAlign: 'center' }} aria-live="polite" data-numeric="true">
         {Math.round(zoom * 100) + '%'}
       </span>
       <button
         onClick={() => setZoom((z) => Math.min(2, +(z + 0.1).toFixed(1)))}
+        aria-label="Yakınlaştır"
+        title="Yakınlaştır"
         style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,.5)', cursor: 'pointer', fontSize: 14, fontWeight: 900 }}
-      >+</button>
+      ><span aria-hidden="true">+</span></button>
     </div>
   </div>
 );

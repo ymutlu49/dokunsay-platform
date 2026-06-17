@@ -16,7 +16,10 @@ export default function Rod({ count, flipped, label }: RodProps) {
       height={ROD_HEIGHT}
       viewBox={`0 0 ${width} ${ROD_HEIGHT}`}
       style={{ display: "block" }}
+      role="img"
+      aria-label={count + " birimlik çubuk"}
     >
+      <title>{count + " birimlik çubuk"}</title>
       <defs><SvgGradientDefs /></defs>
 
       {flipped ? (
@@ -52,6 +55,7 @@ export default function Rod({ count, flipped, label }: RodProps) {
           textAnchor="middle"
           fontSize={10} fontWeight={800}
           fill="rgba(120,53,15,.6)"
+          data-numeric="true"
         >
           {count}
         </text>

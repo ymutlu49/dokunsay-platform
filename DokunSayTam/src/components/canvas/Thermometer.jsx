@@ -34,15 +34,19 @@ const Thermometer = ({ temp, changeTemp, setTemp, panelPos, startPanelDrag, rese
           }} />
         </div>
         <div style={{ flex: 1 }}>
-          <div style={{
-            fontSize: 22, fontWeight: 900, textAlign: 'center', marginBottom: 4,
-            color: temp > 0 ? THEME.negB : temp < 0 ? THEME.blue : THEME.accent,
-          }}>{(temp > 0 ? '+' : '') + temp + '\°C'}</div>
+          <div
+            style={{
+              fontSize: 22, fontWeight: 900, textAlign: 'center', marginBottom: 4,
+              color: temp > 0 ? THEME.negB : temp < 0 ? THEME.blue : THEME.accent,
+            }}
+            data-numeric="true"
+            data-semantic={temp > 0 ? 'positive' : temp < 0 ? 'negative' : undefined}
+          >{(temp > 0 ? '+' : '') + temp + '\°C'}</div>
           <div style={{ display: 'flex', gap: 3, marginBottom: 3 }}>
-            <button onClick={() => changeTemp(1)} style={{ flex: 1, padding: '4px 0', borderRadius: 5, border: '1px solid rgba(239,68,68,.2)', background: 'rgba(239,68,68,.04)', cursor: 'pointer', fontSize: 9, fontWeight: 800, color: THEME.negB, fontFamily: 'inherit' }}>{'🔥'}</button>
-            <button onClick={() => changeTemp(-1)} style={{ flex: 1, padding: '4px 0', borderRadius: 5, border: '1px solid rgba(59,130,246,.2)', background: 'rgba(59,130,246,.04)', cursor: 'pointer', fontSize: 9, fontWeight: 800, color: THEME.blue, fontFamily: 'inherit' }}>{'\❄\️'}</button>
+            <button onClick={() => changeTemp(1)} aria-label="Sıcaklığı 1 derece artır" style={{ flex: 1, padding: '4px 0', borderRadius: 5, border: '1px solid rgba(239,68,68,.2)', background: 'rgba(239,68,68,.04)', cursor: 'pointer', fontSize: 9, fontWeight: 800, color: THEME.negB, fontFamily: 'inherit' }}>{'🔥'}</button>
+            <button onClick={() => changeTemp(-1)} aria-label="Sıcaklığı 1 derece azalt" style={{ flex: 1, padding: '4px 0', borderRadius: 5, border: '1px solid rgba(59,130,246,.2)', background: 'rgba(59,130,246,.04)', cursor: 'pointer', fontSize: 9, fontWeight: 800, color: THEME.blue, fontFamily: 'inherit' }}>{'\❄\️'}</button>
           </div>
-          <button onClick={() => setTemp(0)} style={{
+          <button onClick={() => setTemp(0)} aria-label="Sıcaklığı sıfıra getir" style={{
             width: '100%', padding: '3px 0', borderRadius: 4, border: '1px solid ' + THEME.sideB,
             background: '#fff', cursor: 'pointer', fontSize: 7, fontWeight: 700, color: '#999', fontFamily: 'inherit',
           }}>{'\↺ 0\°C'}</button>

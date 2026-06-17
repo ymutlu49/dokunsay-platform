@@ -7,7 +7,7 @@ import {
 } from 'react';
 import {
   A11Y_DEFAULTS, loadA11yPrefs, saveA11yPrefs, applyA11yAttributes,
-  installKeyboardShortcuts, announce as liveAnnounce,
+  installKeyboardShortcuts, installA11yGuards, announce as liveAnnounce,
 } from '@shared/a11y.js';
 import { setAudioEnabled } from '@shared/audio.js';
 import { setTTSEnabled } from '@shared/tts.js';
@@ -25,6 +25,8 @@ export function A11yProvider({ children }) {
     setTTSEnabled(prefs.tts);
   }, [prefs]);
 
+  useEffect(() => installA11yGuards(), []);
+
   const toggle = useCallback((key) => setPrefs((p) => ({ ...p, [key]: !p[key] })), []);
   const setPref = useCallback((key, value) => setPrefs((p) => ({ ...p, [key]: value })), []);
   const reset = useCallback(() => setPrefs({ ...A11Y_DEFAULTS }), []);
@@ -39,7 +41,7 @@ export function A11yProvider({ children }) {
   return (
     <A11yCtx.Provider value={value}>
       {children}
-      <A11yPanel useA11y={useA11y} lang="tr" position="bottom-right" />
+      <A11yPanel useA11y={useA11y} position="bottom-right" />
     </A11yCtx.Provider>
   );
 }

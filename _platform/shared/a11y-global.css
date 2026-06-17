@@ -15,6 +15,29 @@
    ========================================================== */
 
 
+/* ── Disleksi-dostu fontlar (Google Fonts üzerinden CDN) ───────────
+   Atkinson Hyperlegible (Braille Institute) — disleksi için
+   bilimsel olarak tasarlanmış, harf ayrımı yüksek font.
+   OpenDyslexic — daha bilinen alternatif (manuel yükleme gerekir).
+   Tarayıcı yüklemediğinde sistem fontu kullanılır.
+*/
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+
+/* ── Erişilebilirlik için global font ölçeği ───────────────
+   A11yPanel slider'ı --a11y-font-scale CSS variable'ını
+   günceller. Buradaki kural :root font-size'ı ölçekler.
+   rem-tabanlı tüm metinler birlikte büyür/küçülür.
+*/
+:root {
+  --a11y-font-scale: 1;
+}
+
+html {
+  font-size: calc(16px * var(--a11y-font-scale, 1));
+}
+
+
 /* ── Animasyonu Azalt (Reduce Motion) ───────────────────────
    Tüm animasyon ve geçişleri durdurur — evrensel, güvenli.
 */
@@ -48,10 +71,15 @@ html[data-dyscalculia="on"] *::after {
 /* Reduce-motion ile çakışma: reduce-motion daha önceliklidir,
    yukarıdaki 0.001ms kuralları kazanır (sonra tanımlanmış). */
 
-/* Büyük dokunmatik hedefler — motor planlama desteği */
-html[data-dyscalculia="on"] button,
-html[data-dyscalculia="on"] a,
-html[data-dyscalculia="on"] [role="button"],
+/* Büyük dokunmatik hedefler — motor planlama desteği.
+   Tüm tıklanabilir öğelere (button, link, role=button, tabindex=0) uygulanır;
+   panel kontrolleri (ds-a11y-*) ve AppShell back link hariç. */
+html[data-dyscalculia="on"] button:not([class*="ds-a11y"]):not([class*="ds-appshell__back"]),
+html[data-dyscalculia="on"] a:not([class*="ds-appshell__back"]),
+html[data-dyscalculia="on"] [role="button"]:not([class*="ds-a11y"]),
+html[data-dyscalculia="on"] [role="option"],
+html[data-dyscalculia="on"] [role="tab"],
+html[data-dyscalculia="on"] [tabindex="0"]:not([class*="ds-a11y"]):not([class*="ds-appshell"]),
 html[data-dyscalculia="on"] input[type="button"],
 html[data-dyscalculia="on"] input[type="submit"],
 html[data-dyscalculia="on"] input[type="checkbox"],
@@ -87,13 +115,13 @@ html[data-dyscalculia="on"] [data-numeric="true"] {
    DİSLEKSİ MODU — Okuma-yazma güçlüğü için
    ----------------------------------------------------------
    Hedef: Harf ve kelime tanımayı kolaylaştırmak.
+   Atkinson Hyperlegible varsayılan (CDN'den yüklü), yoksa
+   sistem fontuna geri döner.
    ========================================================== */
 
 html[data-dyslexia="on"] body {
-  /* OpenDyslexic ya da Atkinson Hyperlegible varsa kullan,
-     yoksa sistem fontuna geniş-karakterli alternatif. */
-  font-family: 'OpenDyslexic', 'Atkinson Hyperlegible', 'Nunito',
-               system-ui, -apple-system, sans-serif;
+  font-family: 'OpenDyslexic', 'Atkinson Hyperlegible', 'Lexend',
+               'Nunito', system-ui, -apple-system, sans-serif;
   font-size: 1.08em;
   letter-spacing: 0.03em;
   word-spacing: 0.12em;
@@ -114,6 +142,13 @@ html[data-dyslexia="on"] i,
 html[data-dyslexia="on"] em {
   font-style: normal !important;
   font-weight: 700 !important;
+}
+
+/* Disleksi için BÜYÜK harf bloklarını küçük harfe yakınlaştır
+   (büyük harf disleksi okumayı zorlaştırır). */
+html[data-dyslexia="on"] [style*="text-transform: uppercase"],
+html[data-dyslexia="on"] .uppercase {
+  text-transform: none !important;
 }
 
 
@@ -138,6 +173,28 @@ html[data-contrast="high"] a:not(.ds-appshell__back):not([class*="btn"]):not([cl
 /* App ana içerik alanı: kontrast filtresi metin + sınırları belirginleştirir. */
 html[data-contrast="high"] .ds-appshell__main {
   filter: contrast(1.15);
+}
+
+/* Yüksek kontrast: tüm uygulamalarda body siyah-beyaz kontrastı zorla */
+html[data-contrast="high"] body {
+  background: #fff !important;
+  color: #000 !important;
+}
+
+/* Yüksek kontrast: tıklanabilir öğelerde net sınır */
+html[data-contrast="high"] button:not([class*="ds-a11y"]):not([class*="ds-appshell__back"]):not([class*="ds-lang-switcher"]),
+html[data-contrast="high"] [role="button"]:not([class*="ds-a11y"]),
+html[data-contrast="high"] [role="option"],
+html[data-contrast="high"] [tabindex="0"]:not([class*="ds-a11y"]):not([class*="ds-appshell"]):not([class*="ds-lang-switcher"]):not(input):not(textarea):not(select) {
+  border: 2px solid #000 !important;
+}
+
+html[data-contrast="high"] input,
+html[data-contrast="high"] textarea,
+html[data-contrast="high"] select {
+  border: 2px solid #000 !important;
+  background: #fff !important;
+  color: #000 !important;
 }
 
 
@@ -169,6 +226,44 @@ html[data-colorblind="on"] [data-semantic="negative"] {
     transparent 0 4px,
     rgba(0, 0, 0, 0.25) 4px 6px
   );
+}
+
+
+/* ==========================================================
+   SKIP-TO-CONTENT — WCAG 2.4.1 Bypass Blocks
+   ----------------------------------------------------------
+   AppShell'de sayfanın en başındaki gizli link, Tab ile
+   görünür hale gelir ve klavye kullanıcılarının topbar'ı
+   atlayıp doğrudan ana içeriğe gitmesini sağlar.
+   ========================================================== */
+.ds-skip-link {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  z-index: 10001;
+  padding: 12px 18px;
+  background: #2d2418;
+  color: #fffdf7;
+  font-family: 'Nunito', system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  text-decoration: none;
+  border-radius: 0 0 12px 0;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+  transition: top 0.15s ease-out;
+}
+
+.ds-skip-link:focus,
+.ds-skip-link:focus-visible {
+  top: 0;
+  outline: 3px solid #f59e0b;
+  outline-offset: 2px;
+}
+
+[dir="rtl"] .ds-skip-link {
+  left: auto;
+  right: 0;
+  border-radius: 0 0 0 12px;
 }
 
 

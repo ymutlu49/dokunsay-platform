@@ -4,6 +4,7 @@ export default function Toggle({ on, onToggle, icon, label, sub, highContrast })
   return (
     <div
       role="switch" aria-checked={on} tabIndex={0}
+      aria-label={label + (sub ? ` — ${sub}` : "")}
       onClick={onToggle}
       onKeyDown={e => { if (e.key === " " || e.key === "Enter") { e.preventDefault(); onToggle(); } }}
       style={{

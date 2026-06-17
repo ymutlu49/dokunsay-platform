@@ -33,6 +33,7 @@ createRoot(document.getElementById("root")!).render(
               subtitle="Çubuklar ve Pullar"
               icon="🧮"
               tools={<BarLangTools />}
+              auth={false}
             >
               <AppShell />
             </PlatformShell>

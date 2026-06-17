@@ -2,6 +2,8 @@
    DokunSay Platform — Ortak A11y Paneli (stil)
    Her uygulamada aynı yerde, aynı görünüm. App'in paletinden
    bağımsız — sabit (koyu) tema kullanır.
+
+   RTL: AR/FA için panel sol-alt'a otomatik kayar.
    ========================================================== */
 
 .ds-a11y-panel {
@@ -14,6 +16,12 @@
 .ds-a11y-panel--bottom-left  { bottom: 16px; left: 16px; }
 .ds-a11y-panel--top-right    { top: 16px;    right: 16px; }
 .ds-a11y-panel--top-left     { top: 16px;    left: 16px; }
+
+/* RTL: sağ-alt → sol-alt, sağ-üst → sol-üst */
+.ds-a11y-panel--rtl.ds-a11y-panel--bottom-right { right: auto; left: 16px; }
+.ds-a11y-panel--rtl.ds-a11y-panel--top-right    { right: auto; left: 16px; }
+.ds-a11y-panel--rtl.ds-a11y-panel--bottom-left  { left: auto;  right: 16px; }
+.ds-a11y-panel--rtl.ds-a11y-panel--top-left     { left: auto;  right: 16px; }
 
 /* Tetikleyici buton */
 .ds-a11y-panel__trigger {
@@ -63,8 +71,10 @@
   position: absolute;
   bottom: 64px;
   right: 0;
-  width: 300px;
+  width: 320px;
   max-width: calc(100vw - 32px);
+  max-height: calc(100vh - 96px);
+  overflow-y: auto;
   background: #fffdf7;
   color: #2d2418;
   border: 1px solid #e7dcc0;
@@ -84,6 +94,13 @@
 .ds-a11y-panel--top-left    .ds-a11y-panel__body {
   left: 0;
   right: auto;
+}
+
+/* RTL'de body de hizalansın (panel zaten sol tarafta) */
+.ds-a11y-panel--rtl.ds-a11y-panel--bottom-right .ds-a11y-panel__body,
+.ds-a11y-panel--rtl.ds-a11y-panel--top-right    .ds-a11y-panel__body {
+  right: auto;
+  left: 0;
 }
 
 @keyframes ds-a11y-fade {
@@ -115,7 +132,8 @@
   letter-spacing: 0.2px;
 }
 
-.ds-a11y-panel__close {
+.ds-a11y-panel__close,
+.ds-a11y-panel__help {
   width: 32px;
   height: 32px;
   border: 0;
@@ -130,7 +148,140 @@
   transition: background 0.15s;
 }
 
-.ds-a11y-panel__close:hover { background: #efe8d0; }
+.ds-a11y-panel__close:hover,
+.ds-a11y-panel__help:hover { background: #efe8d0; }
+
+.ds-a11y-panel__help {
+  background: #fef3c7;
+  color: #92400e;
+  font-size: 17px;
+}
+
+.ds-a11y-panel__help:hover { background: #fde68a; }
+
+/* ─── Font Size Slider ─────────────────────────────────── */
+.ds-a11y-fontsize {
+  margin-bottom: 12px;
+  padding: 10px 12px;
+  background: linear-gradient(180deg, #fffaf0 0%, #faf6ed 100%);
+  border: 1.5px solid #efe8d0;
+  border-radius: 12px;
+}
+
+.ds-a11y-fontsize__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 800;
+  color: #2d2418;
+}
+
+.ds-a11y-fontsize__label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ds-a11y-fontsize__icon {
+  font-weight: 900;
+  font-size: 16px;
+  background: #f59e0b;
+  color: #fff;
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  border-radius: 6px;
+  letter-spacing: -1px;
+}
+
+.ds-a11y-fontsize__value {
+  font-variant-numeric: tabular-nums;
+  font-size: 12px;
+  font-weight: 900;
+  color: #92400e;
+  background: #fef3c7;
+  padding: 2px 8px;
+  border-radius: 999px;
+  min-width: 44px;
+  text-align: center;
+}
+
+.ds-a11y-fontsize__controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ds-a11y-fontsize__btn {
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid #d4c9a8;
+  border-radius: 8px;
+  background: #fff;
+  color: #2d2418;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 900;
+  cursor: pointer;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  transition: background 0.15s, border-color 0.15s, transform 0.08s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ds-a11y-fontsize__btn:hover:not(:disabled) {
+  background: #fef3c7;
+  border-color: #f59e0b;
+}
+
+.ds-a11y-fontsize__btn:active:not(:disabled) { transform: scale(0.95); }
+
+.ds-a11y-fontsize__btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.ds-a11y-fontsize__btn:focus-visible {
+  outline: 3px solid rgba(245, 158, 11, 0.5);
+  outline-offset: 2px;
+}
+
+.ds-a11y-fontsize__track {
+  flex: 1;
+  height: 8px;
+  background: #efe8d0;
+  border-radius: 999px;
+  position: relative;
+  overflow: hidden;
+}
+
+.ds-a11y-fontsize__fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: linear-gradient(90deg, #f59e0b 0%, #c97d16 100%);
+  border-radius: 999px;
+  transition: width 0.2s ease-out;
+}
+
+[dir="rtl"] .ds-a11y-fontsize__fill {
+  left: auto;
+  right: 0;
+}
+
+.ds-a11y-fontsize__desc {
+  margin: 8px 0 0;
+  font-size: 11px;
+  font-weight: 600;
+  color: #8a7c60;
+  line-height: 1.3;
+}
 
 /* Toggle listesi */
 .ds-a11y-panel__list {
@@ -163,6 +314,8 @@
   min-height: 48px;
   -webkit-tap-highlight-color: transparent;
 }
+
+[dir="rtl"] .ds-a11y-toggle { text-align: right; }
 
 .ds-a11y-toggle:hover {
   background: #fffdf7;
@@ -259,8 +412,114 @@
   border-color: #c4b587;
 }
 
+/* ─── Help / Yardım modal ─────────────────────────────────── */
+.ds-a11y-help__overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: grid;
+  place-items: center;
+  z-index: 10000;
+  padding: 16px;
+  animation: ds-a11y-fade 180ms ease-out;
+}
+
+.ds-a11y-help__body {
+  background: #fffdf7;
+  color: #2d2418;
+  border-radius: 18px;
+  padding: 18px 20px 20px;
+  width: 100%;
+  max-width: 460px;
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.30);
+  border: 1.5px solid #e7dcc0;
+}
+
+.ds-a11y-help__head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 900;
+  color: #2d2418;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed #efe8d0;
+  margin-bottom: 14px;
+}
+
+.ds-a11y-help__head > span[aria-hidden] {
+  font-size: 22px;
+}
+
+.ds-a11y-help__head strong { flex: 1; }
+
+.ds-a11y-help__section-title {
+  margin: 16px 0 8px;
+  font-size: 13px;
+  font-weight: 900;
+  color: #92400e;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+
+.ds-a11y-help__section-title:first-of-type { margin-top: 0; }
+
+.ds-a11y-help__shortcuts {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.ds-a11y-help__shortcuts td {
+  padding: 6px 8px;
+  border-bottom: 1px solid #f5edd9;
+}
+
+.ds-a11y-help__shortcuts tr:last-child td {
+  border-bottom: 0;
+}
+
+.ds-a11y-help__shortcuts td:first-child {
+  width: 110px;
+  vertical-align: top;
+}
+
+[dir="rtl"] .ds-a11y-help__shortcuts td:first-child { text-align: right; }
+
+.ds-a11y-help__shortcuts kbd {
+  display: inline-block;
+  padding: 2px 8px;
+  background: #2d2418;
+  color: #fffdf7;
+  border-radius: 6px;
+  font-family: 'Courier New', 'Consolas', monospace;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.18);
+}
+
+.ds-a11y-help__features {
+  margin: 0;
+  padding-left: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #574a33;
+  line-height: 1.55;
+}
+
+[dir="rtl"] .ds-a11y-help__features {
+  padding-left: 0;
+  padding-right: 20px;
+}
+
+.ds-a11y-help__features li { margin-bottom: 6px; }
+
 /* Yüksek kontrast modunda */
-[data-contrast="high"] .ds-a11y-panel__body {
+[data-contrast="high"] .ds-a11y-panel__body,
+[data-contrast="high"] .ds-a11y-help__body {
   background: #fff;
   color: #000;
   border-color: #000;
@@ -279,6 +538,23 @@
   color: #fff;
 }
 
+[data-contrast="high"] .ds-a11y-fontsize {
+  background: #fff;
+  border: 2px solid #000;
+}
+
+[data-contrast="high"] .ds-a11y-fontsize__btn {
+  border: 2px solid #000;
+  background: #fff;
+  color: #000;
+}
+
+[data-contrast="high"] .ds-a11y-help__shortcuts kbd {
+  background: #000;
+  color: #fff;
+  border: 1px solid #000;
+}
+
 /* Mobil */
 @media (max-width: 520px) {
   .ds-a11y-panel__trigger {
@@ -288,13 +564,19 @@
   }
   .ds-a11y-panel__body {
     width: calc(100vw - 32px);
-    max-width: 340px;
+    max-width: 360px;
+  }
+  .ds-a11y-help__body {
+    padding: 14px;
   }
 }
 
 /* prefers-reduced-motion */
 @media (prefers-reduced-motion: reduce) {
-  .ds-a11y-panel__body { animation: none; }
+  .ds-a11y-panel__body,
+  .ds-a11y-help__overlay { animation: none; }
   .ds-a11y-panel__trigger,
-  .ds-a11y-toggle { transition: none; }
+  .ds-a11y-toggle,
+  .ds-a11y-fontsize__btn,
+  .ds-a11y-fontsize__fill { transition: none; }
 }

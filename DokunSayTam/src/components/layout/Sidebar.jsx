@@ -6,10 +6,10 @@ import FeaturesTab from '../sidebar/FeaturesTab';
 import { THEME } from '../../constants/theme';
 
 const TAB_ICONS = [
-  ['📦', 'mat'],
-  ['📋', 'act'],
-  ['🎮', 'game'],
-  ['\⚙\️', 'feat'],
+  ['📦', 'mat', 'Materyaller'],
+  ['📋', 'act', 'Etkinlikler'],
+  ['🎮', 'game', 'Oyunlar'],
+  ['\⚙\️', 'feat', 'Ayarlar'],
 ];
 
 const Sidebar = ({
@@ -31,24 +31,24 @@ const Sidebar = ({
           <div style={{ flex: 1 }}>
             <div style={{ fontSize: 14, fontWeight: 900, color: THEME.text }}>DokunSay Tam Sayılar</div>
           </div>
-          <button onClick={() => setCollapsed(true)} style={{
+          <button onClick={() => setCollapsed(true)} aria-label="Paneli daralt" title="Paneli daralt" aria-expanded="true" style={{
             background: 'rgba(0,0,0,.04)', border: 'none', cursor: 'pointer',
             fontSize: 14, color: '#bbb', width: 28, height: 28, borderRadius: 8,
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-          }}>{'\◀'}</button>
+          }}><span aria-hidden="true">{'\◀'}</span></button>
         </div>
 
         {/* Tab butonları */}
-        <div style={{ display: 'flex', padding: '6px 10px', gap: 3, background: 'rgba(0,0,0,.02)' }}>
-          {TAB_ICONS.map(([icon, tab]) => (
-            <button key={tab} onClick={() => setActiveTab(tab)} style={{
+        <div role="tablist" aria-label="Materyaller / Etkinlikler / Oyunlar / Ayarlar" style={{ display: 'flex', padding: '6px 10px', gap: 3, background: 'rgba(0,0,0,.02)' }}>
+          {TAB_ICONS.map(([icon, tab, label]) => (
+            <button key={tab} onClick={() => setActiveTab(tab)} role="tab" aria-selected={activeTab === tab} aria-label={label} title={label} style={{
               flex: 1, padding: '7px 0', border: 'none', borderRadius: 8,
               background: activeTab === tab ? '#fff' : 'transparent',
               cursor: 'pointer', fontSize: 13, fontWeight: 800,
               color: activeTab === tab ? THEME.text : '#aaa',
               fontFamily: 'inherit',
               boxShadow: activeTab === tab ? '0 1px 4px rgba(0,0,0,.06)' : 'none',
-            }}>{icon}</button>
+            }}><span aria-hidden="true">{icon}</span></button>
           ))}
         </div>
 
@@ -60,11 +60,11 @@ const Sidebar = ({
       </div>
     ) : (
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, padding: '12px 0' }}>
-        {TAB_ICONS.map(([icon, tab], i) => (
-          <button key={i} onClick={() => { setCollapsed(false); setActiveTab(tab); }} style={{
+        {TAB_ICONS.map(([icon, tab, label], i) => (
+          <button key={i} onClick={() => { setCollapsed(false); setActiveTab(tab); }} aria-label={`${label} menüsü`} title={`${label} menüsü`} style={{
             padding: '8px 12px', borderRadius: 8, border: '1px solid ' + THEME.sideB,
             background: '#fff', cursor: 'pointer', fontSize: 18,
-          }}>{icon}</button>
+          }}><span aria-hidden="true">{icon}</span></button>
         ))}
       </div>
     )}

@@ -19,20 +19,37 @@ export default function PageNavigator({
 }: PageNavigatorProps) {
   const t = (k: string) => translate(k, lang);
 
+  const PAGE_LABEL: Record<Language, string> = { tr: "Sayfa", ku: "Rûpel", en: "Page", ar: "صفحة", fa: "صفحه" };
+  const PREV_LABEL: Record<Language, string> = { tr: "Önceki sayfa", ku: "Rûpela berê", en: "Previous page", ar: "الصفحة السابقة", fa: "صفحه قبلی" };
+  const NEXT_LABEL: Record<Language, string> = { tr: "Sonraki sayfa", ku: "Rûpela paşê", en: "Next page", ar: "الصفحة التالية", fa: "صفحه بعدی" };
+  const ADD_LABEL: Record<Language, string> = { tr: "Yeni sayfa ekle", ku: "Rûpela nû lê zêde bike", en: "Add new page", ar: "إضافة صفحة جديدة", fa: "افزودن صفحه جدید" };
+  const DEL_LABEL: Record<Language, string> = { tr: "Sayfayı sil", ku: "Rûpelê jê bibe", en: "Delete page", ar: "حذف الصفحة", fa: "حذف صفحه" };
+  const GOTO_LABEL: Record<Language, (n: number) => string> = {
+    tr: (n) => `Sayfa ${n}'e git`,
+    ku: (n) => `Biçe rûpela ${n}`,
+    en: (n) => `Go to page ${n}`,
+    ar: (n) => `اذهب إلى الصفحة ${n}`,
+    fa: (n) => `برو به صفحه ${n}`,
+  };
+
   return (
-    <div style={{
-      position: "absolute", bottom: 10, left: "50%", transform: "translateX(-50%)", zIndex: 9,
-      display: "flex", alignItems: "center", gap: 4,
-      background: isDark ? "rgba(0,0,0,.6)" : "rgba(255,255,255,.88)",
-      backdropFilter: "blur(10px)",
-      borderRadius: 12, padding: "5px 12px",
-      boxShadow: "0 4px 16px rgba(0,0,0,.12)",
-      border: `1px solid ${isDark ? "rgba(255,255,255,.12)" : "rgba(0,0,0,.08)"}`,
-    }}>
+    <nav
+      aria-label={PAGE_LABEL[lang] || PAGE_LABEL.tr}
+      style={{
+        position: "absolute", bottom: 10, left: "50%", transform: "translateX(-50%)", zIndex: 9,
+        display: "flex", alignItems: "center", gap: 4,
+        background: isDark ? "rgba(0,0,0,.6)" : "rgba(255,255,255,.88)",
+        backdropFilter: "blur(10px)",
+        borderRadius: 12, padding: "5px 12px",
+        boxShadow: "0 4px 16px rgba(0,0,0,.12)",
+        border: `1px solid ${isDark ? "rgba(255,255,255,.12)" : "rgba(0,0,0,.08)"}`,
+      }}>
       {/* Previous */}
       <button
         onClick={() => { if (currentPage > 0) onGotoPage(currentPage - 1); }}
         disabled={currentPage === 0}
+        aria-label={PREV_LABEL[lang] || PREV_LABEL.tr}
+        title={PREV_LABEL[lang] || PREV_LABEL.tr}
         style={{
           width: 28, height: 28, borderRadius: 7, border: "none", cursor: currentPage === 0 ? "default" : "pointer",
           background: currentPage > 0 ? (isDark ? "rgba(255,255,255,.1)" : "rgba(0,0,0,.06)") : "transparent",
@@ -56,6 +73,8 @@ export default function PageNavigator({
               key={i}
               onClick={() => onGotoPage(i)}
               title={pg.label || `${i + 1}`}
+              aria-label={GOTO_LABEL[lang](i + 1) + (active ? ` (${(PAGE_LABEL[lang] || PAGE_LABEL.tr).toLowerCase()} ${i + 1}/${pages.length})` : "")}
+              aria-current={active ? "page" : undefined}
               style={{
                 minWidth: active ? 28 : 20, height: 20,
                 borderRadius: active ? 6 : 10,
@@ -75,15 +94,21 @@ export default function PageNavigator({
       </div>
 
       {/* Page info */}
-      <span style={{ fontSize: 11, fontWeight: 800, color: palette.tx, margin: "0 4px", whiteSpace: "nowrap" }}>
-        <span style={{ color: "#f59e0b" }}>{currentPage + 1}</span>
-        <span style={{ opacity: 0.4 }}> / {pages.length}</span>
+      <span
+        style={{ fontSize: 11, fontWeight: 800, color: palette.tx, margin: "0 4px", whiteSpace: "nowrap" }}
+        aria-live="polite"
+        aria-atomic="true"
+      >
+        <span style={{ color: "#f59e0b" }} data-numeric="true">{currentPage + 1}</span>
+        <span style={{ opacity: 0.4 }} data-numeric="true"> / {pages.length}</span>
       </span>
 
       {/* Next */}
       <button
         onClick={() => { if (currentPage < pages.length - 1) onGotoPage(currentPage + 1); }}
         disabled={currentPage === pages.length - 1}
+        aria-label={NEXT_LABEL[lang] || NEXT_LABEL.tr}
+        title={NEXT_LABEL[lang] || NEXT_LABEL.tr}
         style={{
           width: 28, height: 28, borderRadius: 7, border: "none",
           cursor: currentPage === pages.length - 1 ? "default" : "pointer",
@@ -104,7 +129,8 @@ export default function PageNavigator({
       {/* Add page */}
       <button
         onClick={onAddPage}
-        title={lang === "tr" ? "Yeni sayfa" : lang === "ku" ? "Rûpela nû" : "New page"}
+        aria-label={ADD_LABEL[lang] || ADD_LABEL.tr}
+        title={ADD_LABEL[lang] || ADD_LABEL.tr}
         style={{
           width: 28, height: 28, borderRadius: 7, border: "none", cursor: "pointer",
           background: "rgba(34,197,94,.2)", color: "#16a34a",
@@ -120,7 +146,8 @@ export default function PageNavigator({
       {pages.length > 1 && (
         <button
           onClick={() => onDeletePage(currentPage)}
-          title={lang === "tr" ? "Sayfayı sil" : lang === "ku" ? "Rûpelê jê bibe" : "Delete page"}
+          aria-label={DEL_LABEL[lang] || DEL_LABEL.tr}
+          title={DEL_LABEL[lang] || DEL_LABEL.tr}
           style={{
             width: 28, height: 28, borderRadius: 7, border: "none", cursor: "pointer",
             background: "rgba(239,68,68,.12)", color: "#dc2626",
@@ -132,6 +159,6 @@ export default function PageNavigator({
           ×
         </button>
       )}
-    </div>
+    </nav>
   );
 }
