@@ -228,11 +228,20 @@ export const tr = {
   // --- erişim
   kilitBaslik: 'Kitaptaki kodu girin',
   kilitAciklama:
-    'Bu uygulama Zihinden Aritmetik kitabının uygulama cildidir. Kitabınızın ön kapak içindeki kodu girerek açabilirsiniz.',
+    'Bu uygulama Zihinden Aritmetik kitabının uygulama cildidir. Kitabınızdaki erişim kodunu bir kez girmeniz yeterli; bu cihazda kayıtlı kalır.',
   kilitKod: 'Erişim kodu',
   kilitAc: 'Aç',
-  kilitHata: 'Kod tanınmadı. Kitabın ön kapak içine bakın.',
-  kilitYardim: 'Kodum yok',
+  kilitDeneniyor: 'Denetleniyor…',
+  kilitBekle: '{sayi} saniye bekleyin',
+  kilitHata: 'Bu kod tanınmadı. Harfleri kontrol edip yeniden deneyin.',
+  kilitNerede: 'Kod kitabın ön kapağının iç yüzünde, kazınabilir alanın altındadır.',
+  kilitDurum: 'Kitap kodu',
+  kilitAcikDurum: 'Bu cihazda açık',
+  kilitKaldir: 'Bu cihazdaki kodu kaldır',
+  kilitKaldirOnay: 'Kod bu cihazdan kaldırılsın mı?',
+  kilitKaldirOnayNot:
+    'Kayıtlarınız silinmez; yalnızca uygulama yeniden açıldığında kod istenir. Kitabınızdaki kodu yeniden girerek açabilirsiniz.',
+  kilitKaldirEvet: 'Evet, kaldır',
 
   // --- Ek D formlari
   gezForm: 'Formlar',

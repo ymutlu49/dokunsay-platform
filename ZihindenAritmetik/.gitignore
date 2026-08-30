@@ -2,3 +2,4 @@ node_modules
 dist
 scripts/__pycache__/
 *.pyc
+_kodlar/

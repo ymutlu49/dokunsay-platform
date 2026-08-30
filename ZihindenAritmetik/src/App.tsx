@@ -2,6 +2,7 @@ import { useState, type ReactNode } from 'react';
 import { HashRouter, NavLink, Navigate, Route, Routes } from 'react-router-dom';
 import { DilBaglami, useT, type DilKodu, type Sozluk } from './i18n';
 import { rolOku, rolYaz, type Rol } from './lib/rol';
+import { kilitAcikMi } from './lib/kilit';
 import { useKimlikYuvasi } from './lib/kimlikYuvasi';
 import Bugun from './routes/Bugun';
 import Diziler from './routes/Diziler';
@@ -19,6 +20,7 @@ import AracDetay from './routes/AracDetay';
 import Yedek from './routes/Yedek';
 import Ayarlar from './routes/Ayarlar';
 import RolSecimi from './routes/RolSecimi';
+import Kilit from './routes/Kilit';
 import Giris from './routes/Giris';
 import Evde from './routes/ebeveyn/Evde';
 import EvdeEtkinlikler from './routes/ebeveyn/EvdeEtkinlikler';
@@ -81,10 +83,11 @@ export default function App({ dil }: { dil: DilKodu }) {
   useKimlikYuvasi();
 
   const [rol, setRol] = useState<Rol | null>(rolOku);
-  // Giriş sayfası ilk açılışta bir kez görünür; sonra rol seçimine geçilir.
+  // Giriş sayfası ilk açılışta bir kez görünür; sonra kilit ve rol gelir.
   const [girisGoruldu, setGirisGoruldu] = useState(
     () => localStorage.getItem(GIRIS_ANAHTARI) === '1',
   );
+  const [kilitAcik, setKilitAcik] = useState(kilitAcikMi);
 
   function rolSec(r: Rol) {
     rolYaz(r);
@@ -100,6 +103,15 @@ export default function App({ dil }: { dil: DilKodu }) {
             setGirisGoruldu(true);
           }}
         />
+      </DilBaglami.Provider>
+    );
+  }
+
+  // Tanıtım sayfası herkese açıktır; kod yalnızca uygulamayı korur.
+  if (!kilitAcik) {
+    return (
+      <DilBaglami.Provider value={dil}>
+        <Kilit onAcildi={() => setKilitAcik(true)} />
       </DilBaglami.Provider>
     );
   }
@@ -159,7 +171,7 @@ export default function App({ dil }: { dil: DilKodu }) {
               <Route path="/yedek" element={<Yedek />} />
               <Route
                 path="/ayarlar"
-                element={<Ayarlar rol={rol} onRol={rolSec} />}
+                element={<Ayarlar rol={rol} onRol={rolSec} onKilitKaldir={() => setKilitAcik(false)} />}
               />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>

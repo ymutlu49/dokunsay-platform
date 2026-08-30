@@ -270,22 +270,79 @@ sayesinde ileride eklenen veri türleri yedek kodu değişmeden kapsanır.
 
 ## Dağıtım ve erişim
 
-Kitabı alanlara erişim, kitaba basılan tek kullanımlık kodla verilecektir.
-Kodun **web sitesinde** bozdurulması, uygulamanın yalnızca giriş yapması
-planlanmıştır. Bunun nedeni App Store yönergesi **3.1.1**'dir:
+Kitabı alanlar uygulamayı kitaba basılan **erişim kodu** ile açar. Tanıtım
+sayfası (`/giris`) herkese açıktır; kod yalnızca uygulamanın kendisini korur.
+
+### Nasıl çalışır
+
+Kodlar bir baskı partisi için önceden üretilir. Uygulamaya yalnızca kodların
+**PBKDF2 özetleri** gömülür; düz kodlar hiçbir zaman depoya girmez. Doğrulama
+tamamen tarayıcıda yapılır — sunucu yoktur, kod bir kez girildikten sonra
+cihazda saklanır ve uygulama çevrimdışı da açılır.
+
+```bash
+node scripts/kod_uret.mjs --adet 2000 --parti "2026-1"
+```
+
+İki çıktı verir:
+
+| Dosya | İçerik | Depoya girer mi |
+| --- | --- | --- |
+| `src/content/kodlar.json` | PBKDF2 özetleri (~33 KB) | **evet** |
+| `_kodlar/kodlar-<parti>.csv` | basılacak düz kodlar | **hayır** (`.gitignore`) |
+
+> **CSV'yi ayrıca yedekleyin.** Kodlar yalnızca üretim anında var olur;
+> uygulama yalnızca özetleri bilir, düz kodlar CSV'den kaybolursa geri
+> getirilemez.
+
+### İkinci baskı
+
+`--ekle` olmadan çalıştırmak yeni bir tuz üretir ve önceki partinin özetlerini
+siler; **eldeki kitapların kodları artık açmaz.** Üreteç bu durumda uyarır.
+İkinci baskıda neredeyse her zaman `--ekle` istenir:
+
+```bash
+node scripts/kod_uret.mjs --adet 1000 --parti "2026-2" --ekle
+```
+
+Aynı tuz korunur, yeni özetler eskilerin üstüne eklenir, ilk baskının sahipleri
+açmaya devam eder.
+
+### Bu ne kadar korur
+
+Açık olmak gerekir: bu bir kopya koruması değil, "kitabı aldınız mı?"
+kapısıdır. Özetler paketten çıkarılabildiği için kaba kuvvet çevrimdışı
+denenebilir. Denemeyi pratikte imkânsız kılan asıl şey kod uzayının
+büyüklüğüdür — 31^12 ≈ 7,9 × 10^17; bir baskıda 2000 geçerli kod olsa bile
+beklenen deneme sayısı ≈ 4 × 10^14. PBKDF2'nin yavaşlığı (600.000 yineleme)
+bunun üstüne binen ikinci maliyettir; tarayıcıda ~50 ms sürer, kullanıcı fark
+etmez. Ekranda ayrıca üç yanlış denemeden sonra artan bir bekleme vardır.
+
+Buna karşılık **sızan bir kod iptal edilemez**; iptal gerekiyorsa doğrulamanın
+sunucuya taşınması gerekir.
+
+Kod kaydı `za.` önekli olduğu için **yedeğe girer**: yedekten geri yükleyen
+öğretmen yeni cihazda kodu yeniden girmek zorunda kalmaz. Ayarlar'dan
+"Bu cihazdaki kodu kaldır" ile silinebilir (kayıtlar silinmez, yalnızca kod
+yeniden istenir) — ödünç verilen ya da devredilen tabletler için.
+
+### Mağaza yönergeleri
+
+Bu akış PWA olduğu için mağaza yönergesi devreye girmez. Uygulama ileride
+mağazaya taşınırsa App Store **3.1.1** engeli doğar:
 
 > "Apps may not use their own mechanisms to unlock content or functionality,
 > such as license keys, augmented reality markers, QR codes…"
 
-Yani kodun uygulama içinde girildiği bir akış iOS'ta reddedilir. Kod web'de
-bozdurulup uygulama ücretsiz bir "reader" istemcisi olarak giriş yaptığında
-(3.1.3a) bu sorun doğmaz. PWA olarak yayımlandığında ise mağaza yönergesi
-hiç devreye girmez.
+Yani kodun uygulama içinde girildiği bir akış iOS'ta reddedilir. O durumda kod
+web'de bozdurulup uygulama ücretsiz bir "reader" istemcisi olarak giriş
+yapmalıdır (3.1.3a).
 
 ## Yapı
 
 ```
-scripts/          .docx → JSON içerik boru hattı, simge üretimi
+scripts/          .docx → JSON içerik boru hattı, simge üretimi, kod üretimi
+_kodlar/          basılacak düz kodlar — depoya GİRMEZ, ayrıca yedekleyin
 src/
   content/        üretilen JSON + tipli erişim katmanı
   i18n/           üç dilli arayüz metinleri
@@ -293,7 +350,9 @@ src/
   routes/         ekranlar
   routes/formlar/ Ek D'nin dört formu
   routes/ebeveyn/ ebeveyn modu ekranları
-  routes/Ayarlar.tsx  rol, dil, yedekleme, künye
+  routes/Ayarlar.tsx  rol, dil, yedekleme, kitap kodu, künye
+  routes/Kilit.tsx    kitap kodu ekranı
+  lib/kilit.ts        kod doğrulama (PBKDF2, tarayıcıda)
   tools/          sekiz manipülatif
   ui/             ortak bileşenler ve simgeler
   styles.css      tasarım sistemi (palet kitabın SVG'lerinden alınmıştır)

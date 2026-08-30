@@ -709,6 +709,64 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
 
 .giris-kunye p { color: var(--metin); }
 
+/* ------------------------------------------------------------------ kilit */
+
+.kilit {
+  min-height: 100%;
+  display: grid;
+  place-items: center;
+  padding: 32px 20px calc(32px + var(--sa-b));
+}
+
+.kilit-kart {
+  width: 100%;
+  max-width: 440px;
+  padding: 28px 26px;
+  text-align: center;
+}
+
+.kilit-simge {
+  width: 54px;
+  height: 54px;
+  margin: 0 auto 14px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  background: var(--vurgu);
+  color: #fff;
+}
+
+.kilit-kart h1 { font-size: 1.3rem; margin-bottom: 8px; }
+
+.kilit-alan {
+  display: block;
+  text-align: left;
+  margin: 20px 0 10px;
+}
+
+.kilit-alan > span { display: block; margin-bottom: 5px; font-weight: 650; }
+
+/* Kod okunaklı olsun: geniş harf aralığı, ortalanmış, tek boşluklu yazı tipi. */
+.kilit-girdi {
+  font-family: ui-monospace, 'Cascadia Mono', 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--lacivert);
+}
+
+.kilit-hata {
+  margin: 0 0 10px;
+  color: var(--r5-koyu);
+  font-weight: 650;
+  font-size: 0.88rem;
+}
+
+.kilit-dugme { width: 100%; }
+.kilit-not { margin: 14px 0 0; }
+
 /* --------------------------------------------------------------- rol seçimi */
 
 .rol-secimi {
