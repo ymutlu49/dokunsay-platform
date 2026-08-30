@@ -109,6 +109,8 @@ export const APP_ACCENTS = {
   tam:     { color: '#8b5cf6', dark: '#6d28d9', soft: '#ede9fe', softer: '#f5f3ff', name: 'Mor' },
   geo:     { color: '#14b8a6', dark: '#0f766e', soft: '#ccfbf1', softer: '#f0fdfa', name: 'Turkuaz' },
   veri:    { color: '#ec4899', dark: '#be185d', soft: '#fce7f3', softer: '#fdf2f8', name: 'Pembe' },
+  // Zihinden Aritmetik kitabının kendi rengi (kitabın SVG şekillerinden).
+  zihinden: { color: '#1B4965', dark: '#0F2E42', soft: '#DCE9F2', softer: '#F4F8FB', name: 'Lacivert' },
 };
 
 /**

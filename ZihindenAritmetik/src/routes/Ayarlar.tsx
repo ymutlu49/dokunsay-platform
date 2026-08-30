@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { DILLER, useT, type DilKodu } from '../i18n';
+import { useT } from '../i18n';
 import type { Rol } from '../lib/rol';
 import { SayfaBasligi, Uyari } from '../ui/Parcalar';
 import { IkonIndir, IkonOk } from '../ui/Ikonlar';
@@ -11,17 +11,7 @@ import { IkonIndir, IkonOk } from '../ui/Ikonlar';
  * yedekleme ve künye buraya toplanmıştır. Ders sırasında açılan bir sayfada
  * ayar bulunmaması, yanlışlıkla dil ya da rol değiştirmeyi de önler.
  */
-export default function Ayarlar({
-  rol,
-  onRol,
-  dil,
-  onDil,
-}: {
-  rol: Rol;
-  onRol: (r: Rol) => void;
-  dil: DilKodu;
-  onDil: (d: DilKodu) => void;
-}) {
+export default function Ayarlar({ rol, onRol }: { rol: Rol; onRol: (r: Rol) => void }) {
   const t = useT();
 
   return (
@@ -43,25 +33,6 @@ export default function Ayarlar({
         </div>
         <p className="kucuk" style={{ marginTop: 8 }}>
           {rol === 'ogretmen' ? t('rolOgretmenAlt') : t('rolEbeveynAlt')}
-        </p>
-      </section>
-
-      <section style={{ marginBottom: 28 }}>
-        <h2>{t('dil')}</h2>
-        <div className="secim-serit" style={{ marginTop: 10 }}>
-          {DILLER.map((d) => (
-            <button
-              key={d.kod}
-              className={dil === d.kod ? 'secim etkin' : 'secim'}
-              onClick={() => onDil(d.kod)}
-              lang={d.bcp47}
-            >
-              {d.etiket}
-            </button>
-          ))}
-        </div>
-        <p className="kucuk" style={{ marginTop: 8 }}>
-          {t('dilNot')}
         </p>
       </section>
 

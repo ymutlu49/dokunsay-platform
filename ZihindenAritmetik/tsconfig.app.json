@@ -20,7 +20,12 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "erasableSyntaxOnly": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+
+    /* Platformun ortak kabugu */
+    "paths": {
+      "@shared/*": ["../_platform/shared/*"]
+    }
   },
   "include": ["src"]
 }

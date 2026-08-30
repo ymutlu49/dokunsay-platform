@@ -1,6 +1,6 @@
-import { useEffect, useState, type ReactNode } from 'react';
+import { useState, type ReactNode } from 'react';
 import { HashRouter, NavLink, Navigate, Route, Routes } from 'react-router-dom';
-import { DilBaglami, dilOku, dilYaz, useT, type DilKodu, type Sozluk } from './i18n';
+import { DilBaglami, useT, type DilKodu, type Sozluk } from './i18n';
 import { rolOku, rolYaz, type Rol } from './lib/rol';
 import { useKimlikYuvasi } from './lib/kimlikYuvasi';
 import Bugun from './routes/Bugun';
@@ -77,19 +77,14 @@ function AltBar({ rol }: { rol: Rol }) {
 
 const GIRIS_ANAHTARI = 'za.girisGoruldu';
 
-export default function App() {
+export default function App({ dil }: { dil: DilKodu }) {
   useKimlikYuvasi();
 
-  const [dil, setDil] = useState<DilKodu>(dilOku);
   const [rol, setRol] = useState<Rol | null>(rolOku);
   // Giriş sayfası ilk açılışta bir kez görünür; sonra rol seçimine geçilir.
   const [girisGoruldu, setGirisGoruldu] = useState(
     () => localStorage.getItem(GIRIS_ANAHTARI) === '1',
   );
-
-  useEffect(() => {
-    dilYaz(dil);
-  }, [dil]);
 
   function rolSec(r: Rol) {
     rolYaz(r);
@@ -164,7 +159,7 @@ export default function App() {
               <Route path="/yedek" element={<Yedek />} />
               <Route
                 path="/ayarlar"
-                element={<Ayarlar rol={rol} onRol={rolSec} dil={dil} onDil={setDil} />}
+                element={<Ayarlar rol={rol} onRol={rolSec} />}
               />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>

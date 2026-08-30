@@ -1,6 +1,10 @@
 import react from '@vitejs/plugin-react';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 /**
  * PWA olarak kurulur: telefon, tablet, masaüstü ve akıllı tahtada aynı kod.
@@ -13,8 +17,16 @@ import { VitePWA } from 'vite-plugin-pwa';
  */
 export default defineConfig({
   base: process.env.BASE_PATH || './',
+  resolve: {
+    // Platformun ortak kabugu (AppShell, LangSwitcher) diger yedi aracla ayni yerden gelir.
+    alias: { '@shared': path.resolve(__dirname, '../_platform/shared') },
+    // Ortak dosyalar uygulama klasorunun disinda durur ve orada node_modules
+    // yoktur; react'i bu uygulamanin kopyasindan cozdur. (Diger araclar Vite 6
+    // kullandigi icin buna ihtiyac duymuyor; Vite 8'in cozumleyicisi katidir.)
+    dedupe: ['react', 'react-dom'],
+  },
   // DokunSay platformunda her aracin kendi dev portu vardir (3001'den baslar).
-  server: { port: 3008, host: true },
+  server: { port: 3008, host: true, fs: { allow: [path.resolve(__dirname, '..')] } },
   plugins: [
     react(),
     VitePWA({

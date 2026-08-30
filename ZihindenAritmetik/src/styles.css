@@ -619,38 +619,52 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
 
 .ayar-dugmesi:hover { color: var(--lacivert); }
 
-/* Kimlik yuvası — DokunSay giriş rozeti sayfa akışında, sağ üstte durur;
-   boşken hiç yer kaplamaz. */
+/* Kimlik yuvası — DokunSay giriş rozeti ortak üst bandın araç alanında durur.
+   Rozeti oraya taşıyan useKimlikYuvasi'dir; kapı betiği <head>'de çalıştığı
+   için yuvayı kendisi bulamaz. */
 .numap-yuvasi:empty { display: none; }
 
 .numap-yuvasi {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  justify-content: flex-end;
-  gap: 8px;
-  padding: 8px 18px calc(8px + var(--sa-t));
-  background: var(--kagit);
-  border-bottom: 1px solid var(--cizgi);
-  font-size: 0.84rem;
-  font-weight: 600;
-  color: var(--metin-2);
+  gap: 7px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  white-space: nowrap;
+  color: var(--appshell-accent-dark, var(--lacivert));
 }
 
-.numap-yuvasi .nm { color: var(--vurgu-koyu); }
+.numap-yuvasi .nm { color: var(--appshell-accent-dark, var(--lacivert)); }
 
 .numap-yuvasi button,
 .numap-yuvasi a {
   cursor: pointer;
   border: 0;
   border-radius: 999px;
-  background: var(--lacivert);
+  background: var(--appshell-accent, var(--lacivert));
   color: #fff;
-  font: 700 12px inherit;
-  padding: 6px 12px;
+  font: 700 11px inherit;
+  padding: 5px 10px;
   text-decoration: none;
 }
 
-@media print { .numap-yuvasi { display: none !important; } }
+/* Ortak kabuk içinde: üst bant sabit değil, akışta. Tam ekran tahta ve sunum
+   modları viewport'a sabitlendiği için bandı kasıtlı olarak örter. */
+.ds-appshell__main { display: block; }
+
+/* Üst bant kendi rengini (beyaz metin, vurgu gradyanı) kullanır. Uygulamanın
+   genel başlık rengi oraya sızarsa koyu zeminde koyu metin çıkar. */
+.ds-appshell__topbar h1,
+.ds-appshell__topbar h2,
+.ds-appshell__topbar h3,
+.ds-appshell__topbar p {
+  color: inherit;
+}
+
+@media print {
+  .numap-yuvasi,
+  .ds-appshell__topbar { display: none !important; }
+}
 
 /* -------------------------------------------------------------- giriş sayfası */
 
