@@ -273,6 +273,24 @@ sayesinde ileride eklenen veri türleri yedek kodu değişmeden kapsanır.
 Kitabı alanlar uygulamayı kitaba basılan **erişim kodu** ile açar. Tanıtım
 sayfası (`/giris`) herkese açıktır; kod yalnızca uygulamanın kendisini korur.
 
+> ### Şu anki durum: kilit KAPALI
+>
+> `src/content/kodlar.json` içindeki `ozetler` dizisi boş olduğu sürece
+> `KILIT_VAR` false olur ve uygulama kod sormaz — Ayarlar'daki "Kitap kodu"
+> bölümü de gizlenir. Kitap basılmadan kimsede kod olmadığı için canlı site
+> böyle bırakılmıştır.
+>
+> **Kitap baskıya girdiğinde açmak için** üretilmiş partiyi yerine koyup
+> yayımlamak yeterlidir:
+>
+> ```bash
+> cp _kodlar/kodlar-2026-1.json src/content/kodlar.json
+> ```
+>
+> `_kodlar/2026-1` partisi (2000 kod) üretilmiş ve hazır beklemektedir:
+> `.json` uygulamaya konacak özetler, `.csv` basılacak düz kodlardır.
+> **İkisi de depo dışıdır; ayrıca yedekleyin.**
+
 ### Nasıl çalışır
 
 Kodlar bir baskı partisi için önceden üretilir. Uygulamaya yalnızca kodların
