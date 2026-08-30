@@ -30,6 +30,23 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
+      // Servis calisani gecici olarak kapali (kendini kaldiran surum).
+      //
+      // Ilk uretim dagitiminda eksik bir on-bellekle kayitli kalan servis
+      // calisani, ikinci dagitimda eski varliklar silinince sayfayi bos
+      // acmaya basladi. selfDestroying, daha once kayitli olan calisani ve
+      // onbellegini ziyaretcinin tarayicisindan temizler; sayfa yeniden
+      // acilir hale gelir.
+      //
+      // Cevrimdisi destegi yeniden acilmadan once gercek bir tarayicida
+      // sinanmalidir (gomulu onizleme paneli servis calisani kaydina izin
+      // vermiyor, bu yuzden burada dogrulanamiyor).
+      selfDestroying: true,
+      // Kayit betigi enjekte EDILMEZ. Edilirse sayfa her acilista kendini
+      // kaldiran calisani yeniden kaydeder; calisan kendini kaldirip sayfayi
+      // yeniler ve dongu olusur. Daha once kayitli olan ziyaretcilerde
+      // tarayici sw.js'i kendisi yeniden getirir ve temizlik boylece calisir.
+      injectRegister: false,
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg', 'simge-180.png'],
       workbox: {

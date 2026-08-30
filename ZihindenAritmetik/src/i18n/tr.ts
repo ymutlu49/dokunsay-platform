@@ -389,7 +389,7 @@ export const tr = {
     'Zamanlı test, puan ve sıralama yoktur. Kitabın savı, zihinden aritmetiğin bir hız yarışı değil bir düşünme biçimi olduğudur; uygulama da buna göre kurulmuştur.',
   girisKurBaslik: 'Uygulamayı cihazınıza kurun',
   girisKurAciklama:
-    'Kurulduğunda tam ekran açılır ve internet olmadan da çalışır. Mağazadan indirmek gerekmez.',
+    'Kurulduğunda ayrı bir uygulama gibi tam ekran açılır. Mağazadan indirmek gerekmez.',
   girisKur: 'Cihaza kur',
   girisKurElle:
     'Tarayıcı menüsünden "Uygulamayı yükle" ya da "Ana ekrana ekle" seçeneğini kullanabilirsiniz.',
