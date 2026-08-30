@@ -25,7 +25,14 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..', '..');
 const OUT_DIR = path.join(ROOT, 'dist-site');
 
-const SITE_BASE = (process.env.SITE_BASE || '/').replace(/\/+$/, '/') || '/';
+let SITE_BASE = (process.env.SITE_BASE || '/').replace(/\/+$/, '/') || '/';
+// MSYS/Git-Bash güvenliği: bash'te `SITE_BASE=/` değeri, POSIX→Windows yol dönüşümüyle
+// `C:/Program Files/Git/`e çevrilebilir → base bozulur, JS yüklenmez, sayfa boş açılır.
+// Bu mangle'ı (Program Files ya da sürücü-harfi öneki) yakala ve köke sıfırla.
+if (SITE_BASE.includes('Program Files') || /^[A-Za-z]:/.test(SITE_BASE)) {
+  console.warn(`⚠  SITE_BASE MSYS tarafından bozulmuş görünüyor ("${SITE_BASE}"); "/" olarak sıfırlandı.`);
+  SITE_BASE = '/';
+}
 
 const APPS = [
   { dir: '_platform/launcher', name: 'Launcher', folder: '' },
@@ -36,6 +43,7 @@ const APPS = [
   { dir: 'DokunSayTam',        name: 'Tam',      folder: 'DokunSayTam' },
   { dir: 'Dokunsay-geo',       name: 'Geo',      folder: 'Dokunsay-geo' },
   { dir: 'Dokunsay-veri-app',  name: 'Veri',     folder: 'Dokunsay-veri-app' },
+  { dir: 'ZihindenAritmetik',  name: 'Zihinden', folder: 'ZihindenAritmetik' },
 ];
 
 const BOLD = '\x1b[1m';
@@ -109,6 +117,17 @@ try {
   // empty file
   execSync(process.platform === 'win32' ? `type nul > "${nojekyll}"` : `touch "${nojekyll}"`, { shell: true });
 } catch { /* ignore */ }
+
+// ── Giriş kapısı + yaş verisi (her TAM derlemede yeniden uygulanır; yoksa oyun ──
+//    index'leri sıfırlanır ve kapı kaybolurdu) ───────────────────────────────────
+try {
+  console.log(`\n${BOLD}🔒 Giriş kapısı + yaş verisi enjekte ediliyor${RESET}`);
+  execSync(`node "${path.join(__dirname, 'gen-levels.mjs')}"`, { stdio: 'inherit', shell: true });
+  execSync(`node "${path.join(__dirname, 'inject-gate.mjs')}"`, { stdio: 'inherit', shell: true });
+} catch (e) {
+  console.error(`${FAIL}✗ kapı/levels enjeksiyonu başarısız: ${e.message}${RESET}`);
+  failed++;
+}
 
 console.log('\n' + '═'.repeat(60));
 console.log(`${BOLD}ÖZET${RESET}`);

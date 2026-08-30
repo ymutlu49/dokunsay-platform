@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Karşılaştırma ve Sıralama — Öğrenme Yörüngesi · DokunSay</title>
+<meta name="description" content="Karşılaştırma ve Sıralama öğrenme yörüngesi: 23 gelişim basamağı, her birinde DokunSay etkinliği ve gözlem ölçütü. Clements &amp; Sarama çerçevesi. Çoklukları karşılaştırma, zihinsel sayı doğrusu.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --c:#2E7D32;
+    --amber:#2E7D32; --ink:#182219; --body:#37433c; --muted:#5f6b63; --line:#dfe7df;
+    --bg:#f3f7f1; --card:#ffffff; --maxw:1180px; --r:18px;
+    --shadow:0 10px 30px -14px rgba(24,40,25,.22);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Inter,system-ui,sans-serif;color:var(--body);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4,h5,h6{font-family:Poppins,sans-serif;color:var(--ink);line-height:1.16;letter-spacing:-.01em}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  .eyebrow{font-family:Poppins;font-weight:700;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase}
+
+
+.dsh{background:linear-gradient(135deg,#14391a 0%,#1d2b22 100%);color:#fff;padding:12px 24px;box-shadow:0 4px 10px rgba(24,40,25,.10),0 2px 4px rgba(24,40,25,.05);position:sticky;top:0;z-index:50}
+.dsh-row{display:flex;align-items:center;justify-content:space-between;gap:16px;max-width:1440px;margin:0 auto;flex-wrap:wrap}
+.dsh-brand{display:flex;align-items:center;gap:13px;text-decoration:none;color:#fff}
+.dsh-logo{width:40px;height:40px;border-radius:12px;background:#fff;display:grid;place-items:center;padding:5px;box-shadow:0 1px 4px rgba(15,23,42,.12);flex:0 0 auto}
+.dsh-logo svg{display:block;width:100%;height:100%}
+.dsh-titles{display:flex;flex-direction:column;line-height:1.12}
+.dsh-name{font-family:Poppins,system-ui,sans-serif;font-size:20px;font-weight:800;letter-spacing:.4px;color:#fff}
+.dsh-sub{font-size:11.5px;font-weight:700;opacity:.72;letter-spacing:.3px;margin-top:2px;color:#fff}
+.dsh-nav{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.dsh-pill{display:inline-flex;align-items:center;gap:6px;padding:8px 15px;border-radius:999px;font-weight:700;font-size:.86rem;font-family:inherit;line-height:1;text-decoration:none;white-space:nowrap;border:1px solid transparent;transition:filter .15s,background .15s}
+.dsh-pill:hover{filter:brightness(1.13)}
+.dsh-amber{color:#fde6c0;background:rgba(245,158,11,.18);border-color:rgba(245,158,11,.45)}
+.dsh-green{color:#d7f0d9;background:rgba(46,125,50,.22);border-color:rgba(46,125,50,.5)}
+.dsh-teal{color:#bfe8e4;background:rgba(13,148,136,.2);border-color:rgba(13,148,136,.5)}
+.dsh-pill.is-active{box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.45);filter:brightness(1.12)}
+.dsh .hcmo-auth{display:inline-flex;align-items:center;gap:6px}
+.dsh .hcmo-auth:empty{display:none}
+.dsh .hcmo-auth a{display:inline-flex;align-items:center;gap:5px;padding:8px 14px;border-radius:999px;font-weight:700;font-size:.86rem;text-decoration:none;white-space:nowrap;color:#fde6c0;background:rgba(245,158,11,.18);border:1px solid rgba(245,158,11,.45);transition:background .15s}
+.dsh .hcmo-auth a:hover{background:rgba(245,158,11,.3)}
+.dsh .hcmo-auth a#hcmo-stu{color:#cfe8ff;background:rgba(96,165,250,.16);border-color:rgba(96,165,250,.4)}
+.dsh .hcmo-auth a#hcmo-stu:hover{background:rgba(96,165,250,.28)}
+.dsh .hcmo-auth>span{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:.86rem;color:#e8eefc}
+.dsh .hcmo-auth .nm{color:#fde6c0}
+.dsh .hcmo-auth #hcmo-out{cursor:pointer;border:0;border-radius:999px;background:#f59e0b;color:#3a2606;font-weight:800;font-size:.8rem;padding:7px 13px;font-family:inherit}
+.dsh .hcmo-auth #hcmo-out:hover{filter:brightness(1.07)}
+@media (max-width:760px){.dsh{padding:10px 15px}.dsh-pill{padding:7px 11px;font-size:.8rem}.dsh-name{font-size:18px}}
+@media print{.dsh{display:none}}
+
+  .hero{background:linear-gradient(135deg,color-mix(in srgb,var(--c) 88%,#000),color-mix(in srgb,var(--c) 62%,#14391a));color:#fff;padding:30px 0 40px;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;right:-70px;top:-60px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.16),transparent 70%)}
+  .crumb{font-size:.84rem;color:rgba(255,255,255,.8);margin-bottom:16px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .crumb a{color:rgba(255,255,255,.92);text-decoration:underline;text-underline-offset:2px}
+  .hero-grid{display:flex;align-items:flex-start;gap:18px;position:relative;z-index:1}
+  .hero-ic{font-size:2.6rem;line-height:1;background:rgba(255,255,255,.16);width:74px;height:74px;border-radius:18px;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+  .hero .eyebrow{color:rgba(255,255,255,.85)}
+  .hero h1{color:#fff;font-size:clamp(1.9rem,4.4vw,2.9rem);font-weight:900;margin:6px 0 10px}
+  .hero .lede{color:rgba(255,255,255,.94);font-size:1.06rem;max-width:680px}
+  .hero .ltname{opacity:.8;font-style:italic}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px}
+  .hm{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.22);color:#fff;border-radius:999px;padding:.34em .9em;font-size:.82rem;font-weight:600;font-family:Poppins}
+  .hero-cta{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+  .btn{font-family:Poppins;font-weight:700;font-size:.9rem;border-radius:999px;padding:.6em 1.2em;cursor:pointer;border:0;display:inline-flex;align-items:center;gap:7px}
+  .btn-w{background:#fff;color:var(--ink)}.btn-w:hover{transform:translateY(-1px)}
+  .btn-o{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.4)}.btn-o:hover{background:rgba(255,255,255,.24)}
+
+  .layout{display:grid;grid-template-columns:266px 1fr;gap:34px;align-items:start;padding:34px 0 50px}
+  .side{position:sticky;top:78px}
+  .side-in{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;max-height:calc(100vh - 100px);display:flex;flex-direction:column}
+  .side-head{font-family:Poppins;font-weight:800;color:var(--ink);font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;padding:14px 16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between}
+  .side-head span{color:var(--c)}
+  .side-list{list-style:none;overflow-y:auto;padding:6px}
+  .side-list a{display:flex;gap:10px;align-items:center;padding:8px 9px;border-radius:10px;transition:background .15s}
+  .side-list a:hover{background:#f1f8f2}
+  .side-list a.act{background:color-mix(in srgb,var(--c) 12%,#fff)}
+  .s-num{flex:0 0 auto;width:24px;height:24px;border-radius:7px;background:color-mix(in srgb,var(--c) 14%,#fff);color:var(--c);font-family:Poppins;font-weight:700;font-size:.8rem;display:flex;align-items:center;justify-content:center}
+  .side-list a.act .s-num{background:var(--c);color:#fff}
+  .s-txt{display:flex;flex-direction:column;min-width:0}
+  .s-txt b{font-family:Inter;font-weight:600;font-size:.86rem;color:var(--ink);line-height:1.25}
+  .s-txt small{color:var(--muted);font-size:.72rem}
+
+  .levels{display:flex;flex-direction:column;gap:20px}
+  .level{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px 24px;scroll-margin-top:84px;position:relative}
+  .level.bn{border-color:#f3c98b;box-shadow:0 0 0 1px #f3c98b inset}
+  .level.bn::before{content:"";position:absolute;left:0;top:18px;bottom:18px;width:4px;border-radius:4px;background:linear-gradient(#f59e0b,#ea580c)}
+  .lv-top{display:flex;gap:14px;align-items:flex-start;margin-bottom:14px}
+  .lv-num{flex:0 0 auto;width:42px;height:42px;border-radius:12px;background:var(--c);color:#fff;font-family:Poppins;font-weight:800;font-size:1.25rem;display:flex;align-items:center;justify-content:center}
+  .lv-badges{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:3px}
+  .age-pill{font-family:Poppins;font-weight:700;font-size:.7rem;color:var(--c);background:color-mix(in srgb,var(--c) 12%,#fff);border-radius:999px;padding:.2em .7em}
+  .bn-pill{font-family:Poppins;font-weight:700;font-size:.7rem;color:#9a3412;background:#fff3e2;border:1px solid #f3c98b;border-radius:999px;padding:.2em .7em}
+  .lv-id h3{font-size:1.2rem;font-weight:700}
+  .lv-body{display:grid;grid-template-columns:1fr 196px;gap:20px;align-items:start}
+  .lv-main{min-width:0}
+  .lv-desc{font-size:.98rem;color:var(--body);margin-bottom:12px}
+  .lv-desc b{color:var(--ink)}
+  .note{border-radius:12px;padding:12px 15px;margin-bottom:11px}
+  .note h5{font-size:.74rem;letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px}
+  .note p{font-size:.92rem}
+  .note.how{background:#f4f8f5;border:1px solid #dcebe1}.note.how h5{color:#15803d}
+  .note.teach{background:#fff8ee;border:1px solid #f3e2c4}.note.teach h5{color:#b45309}
+  .lv-viz{background:linear-gradient(#f8fbf7,#eef5ec);border:1px solid var(--line);border-radius:14px;padding:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:sticky;top:80px}
+  .lv-viz svg{width:100%;height:auto;max-height:130px}
+  .lv-viz .viz-cap{font-size:.7rem;color:var(--muted);font-weight:600;margin-top:4px;font-family:Poppins;letter-spacing:.04em}
+  .lv-viz.emblem span{font-size:3.2rem;filter:saturate(1.05)}
+
+  .act{margin-top:14px;background:#fbfdfb;border:1px solid #e3efe5;border-radius:14px;padding:15px 17px}
+  .act-head{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+  .act-head h4{font-size:1rem;font-weight:700;color:#15803d}
+  .act-ic{font-size:1.1rem}
+  .act-sub{margin-bottom:10px}
+  .act-sub h5{font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:#64748b;margin-bottom:5px}
+  .mats{list-style:none;display:flex;flex-wrap:wrap;gap:6px}
+  .mats li{background:#eef6ef;border:1px solid #d7e9d9;color:#2f5337;border-radius:8px;padding:.22em .6em;font-size:.84rem}
+  .steps{margin:0 0 0 18px;padding:0}
+  .steps li{font-size:.92rem;margin-bottom:5px;padding-left:3px}
+  .crit{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:9px 12px;font-size:.9rem;color:#166534;margin:10px 0}
+  .crit .tick{color:#2E7D32;font-weight:800}
+  .scaf{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+  .scaf-c{border-radius:10px;padding:9px 12px;font-size:.88rem}
+  .scaf-c h6{font-size:.74rem;margin-bottom:3px;font-weight:700}
+  .scaf-c.easy{background:#f1f5f9;border:1px solid #e2e8f0}.scaf-c.easy h6{color:#475569}
+  .scaf-c.hard{background:#faf5ff;border:1px solid #e9d5ff}.scaf-c.hard h6{color:#7c3aed}
+  .obs{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:11px 14px;font-size:.92rem}
+  .obs b{color:var(--ink)}
+
+  .chips{margin-top:12px}
+  .chips-lab{font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;color:#94a3b8;font-weight:700;font-family:Poppins}
+  .chips-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+  .chip{display:inline-flex;flex-direction:column;border-radius:10px;padding:7px 11px;font-size:.8rem;border:1px solid;max-width:240px;transition:transform .14s}
+  .chip:hover{transform:translateY(-2px)}
+  .chip b{font-family:Poppins;font-weight:700;font-size:.82rem}
+  .chip span{font-size:.74rem;opacity:.85;line-height:1.3}
+  .chip-ds{background:#fff7ec;border-color:#f6dcae;color:#9a5b16}
+  .chip-gs{background:#eef2ff;border-color:#c7d2fe;color:#4338ca}
+  .chip-ab{background:#ecfdf5;border-color:#bbf7d0;color:#166534}
+  .chip-adim{background:#f8fafc;border-color:#e2e8f0;color:#64748b;cursor:default}
+
+  .lv-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:16px;padding-top:14px;border-top:1px dashed var(--line);flex-wrap:wrap}
+  .printcard{background:#fff;border:1px solid var(--line);color:var(--body);font-family:Poppins;font-weight:600;font-size:.82rem;border-radius:999px;padding:.5em 1em;cursor:pointer}
+  .printcard:hover{background:#f1f8f2;color:var(--ink)}
+  .nextlv{font-family:Poppins;font-weight:600;font-size:.86rem;color:var(--c)}
+  .nextlv b{font-weight:700}
+  .nextlv.done{color:var(--muted)}
+
+  footer{background:#14391a;color:#9db89f;padding:36px 0;margin-top:10px;font-size:.88rem}
+  footer a{color:#d8e6d8;text-decoration:underline}
+  .foot-note{max-width:760px;font-size:.82rem;color:#7f9781;margin-top:8px}
+
+  @media(max-width:980px){
+    .layout{grid-template-columns:1fr;gap:0}
+    .side{position:static;margin-bottom:20px}
+    .side-in{max-height:none}
+    .side-list{max-height:300px}
+    .lv-body{grid-template-columns:1fr}
+    .lv-viz{order:-1;flex-direction:row;gap:12px;position:static}
+    .lv-viz svg{max-height:90px;width:auto}
+    .scaf{grid-template-columns:1fr}
+    .nav-links{display:none}
+  }
+
+  /* ── Yazdırma ── */
+  @media print{
+    header,.hero-cta,.side,footer,.printcard,.nextlv,.chips{display:none!important}
+    body{background:#fff}
+    .hero{background:#fff;color:#000;padding:0 0 10px;border-bottom:2px solid #000}
+    .hero::after{display:none}.hero-ic{background:#eee}
+    .hero h1,.hero .eyebrow,.hero .lede,.crumb{color:#000}
+    .layout{display:block;padding:6px 0}
+    .levels{gap:0}
+    .level{break-inside:avoid;page-break-inside:avoid;border:1px solid #999;box-shadow:none;margin-bottom:10px}
+    .lv-viz{border:1px solid #ccc}
+    body.printing-one .level:not(.print-target){display:none!important}
+    body.printing-one .hero .lede,body.printing-one .hero-meta{display:none}
+  }
+</style>
+</head>
+<body data-key="comp">
+<header class="dsh"><div class="dsh-row"><a class="dsh-brand" href="/" aria-label="DokunSay ana sayfa"><span class="dsh-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" aria-hidden="true"><line x1="28" y1="27" x2="72" y2="27" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="28" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="72" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><circle cx="28" cy="27" r="21" fill="#2E7D32"/><circle cx="20.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="28" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="35.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="72" cy="27" r="21" fill="#0d9488"/><text x="72" y="32" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="14" fill="#fff">üç</text><circle cx="50" cy="73" r="21" fill="#1B5E20"/><text x="50" y="82" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="27" fill="#fff">3</text></svg></span><span class="dsh-titles"><span class="dsh-name">DokunSay</span><span class="dsh-sub">Matematik Öğretim Araçları Platformu</span></span></a><nav class="dsh-nav" aria-label="Site gezinme"><a class="dsh-pill dsh-amber is-active" href="/yorunge/" aria-current="page">🧭 Öğrenme Yörüngeleri</a><a class="dsh-pill dsh-green" href="/rehber/">📘 Müdahale Rehberi</a><a class="dsh-pill dsh-teal" href="/#tools-section">🛠️ Araçlar</a><span id="hcmoAuth" class="hcmo-auth"></span></nav></div></header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="crumb"><a href="/yorunge/">Öğrenme Yörüngeleri</a> <span>›</span> <span>Sayılar ve İşlemler</span></div>
+    <div class="hero-grid">
+      <div class="hero-ic">⚖️</div>
+      <div>
+        <span class="eyebrow">Sayılar ve İşlemler</span>
+        <h1>Karşılaştırma ve Sıralama</h1>
+        <p class="lede">Çoklukları karşılaştırma, zihinsel sayı doğrusu. <span class="ltname">(Comparing/Ordering)</span></p>
+        <div class="hero-meta">
+          <span class="hm">📊 23 basamak</span>
+          <span class="hm">🎂 0–10 yaş</span>
+          <span class="hm">⚠ 2 darboğaz</span>
+          <span class="hm">🎯 Çekirdek alan · tam etkileşimli</span>
+        </div>
+        <div class="hero-cta">
+          <a class="btn btn-w" href="calisma-yapraklari.html">✏️ Çalışma yaprakları</a>
+          <a class="btn btn-w" href="calisma-yapraklari-dokunsay.html">🧩 DokunSay materyalli yapraklar</a>
+          <a class="btn btn-o" href="etkinlik-kartlari.pdf" target="_blank" rel="noopener">⬇ Etkinlik kartları (PDF)</a>
+          <button class="btn btn-o" id="printAll" type="button">🖨️ Yazdır</button>
+          <a class="btn btn-o" href="/yorunge/">← Tüm yörüngeler</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main class="wrap">
+  <div class="layout">
+    <aside class="side">
+    <div class="side-in">
+      <div class="side-head">Düzeyler <span>23</span></div>
+      <ol class="side-list"><li><a href="#lv-0" data-i="0"><span class="s-num" style="--c:#2E7D32">1</span><span class="s-txt"><b>Karşılaştırma Duyarlılığı: Temeller</b><small>0–1 yaş</small></span></a></li><li><a href="#lv-1" data-i="1"><span class="s-num" style="--c:#2E7D32">2</span><span class="s-txt"><b>Eşleyerek Karşılaştırmaya Başlayan</b><small>2–3 yaş</small></span></a></li><li><a href="#lv-2" data-i="2"><span class="s-num" style="--c:#2E7D32">3</span><span class="s-txt"><b>Bakarak Karşılaştıran</b><small>2–3 yaş</small></span></a></li><li><a href="#lv-3" data-i="3"><span class="s-num" style="--c:#2E7D32">4</span><span class="s-txt"><b>&quot;Birinci–İkinci&quot; Diyen</b><small>3 yaş</small></span></a></li><li><a href="#lv-4" data-i="4"><span class="s-num" style="--c:#2E7D32">5</span><span class="s-txt"><b>Aynı Tür Nesneleri Karşılaştıran</b><small>3–4 yaş</small></span></a></li><li><a href="#lv-5" data-i="5"><span class="s-num" style="--c:#2E7D32">6</span><span class="s-txt"><b>Farklı Tür Nesneleri Karşılaştıran</b><small>3–4 yaş</small></span></a></li><li><a href="#lv-6" data-i="6"><span class="s-num" style="--c:#2E7D32">7</span><span class="s-txt"><b>Eşleyerek Karşılaştıran</b><small>4 yaş</small></span></a></li><li><a href="#lv-7" data-i="7"><span class="s-num" style="--c:#2E7D32">8</span><span class="s-txt"><b>Sayarak Karşılaştıran (Eş Boy Nesneler)</b><small>4 yaş</small></span></a></li><li><a href="#lv-8" data-i="8"><span class="s-num" style="--c:#2E7D32">9</span><span class="s-txt"><b>Kapladığı Yere Bakıp Tahmin Eden (Az/Çok)</b><small>4–5 yaş</small></span></a></li><li><a href="#lv-9" data-i="9"><span class="s-num" style="--c:#2E7D32">10</span><span class="s-txt"><b>Sayarak Karşılaştıran (5’e kadar)</b><small>4–5 yaş</small></span></a></li><li><a href="#lv-10" data-i="10"><span class="s-num" style="--c:#2E7D32">11</span><span class="s-txt"><b>Zihinsel Sayı Doğrusu (5’e kadar)</b><small>5 yaş · ⚠ darboğaz</small></span></a></li><li><a href="#lv-11" data-i="11"><span class="s-num" style="--c:#2E7D32">12</span><span class="s-txt"><b>Büyüklük Sırasına Dizen (5’e kadar)</b><small>5 yaş</small></span></a></li><li><a href="#lv-12" data-i="12"><span class="s-num" style="--c:#2E7D32">13</span><span class="s-txt"><b>Sıra Sayılarını Kullanan (1.–10.)</b><small>5–6 yaş</small></span></a></li><li><a href="#lv-13" data-i="13"><span class="s-num" style="--c:#2E7D32">14</span><span class="s-txt"><b>Sayarak Karşılaştıran (10’a kadar)</b><small>5–6 yaş</small></span></a></li><li><a href="#lv-14" data-i="14"><span class="s-num" style="--c:#2E7D32">15</span><span class="s-txt"><b>Zihinsel Sayı Doğrusu (10’a kadar)</b><small>6 yaş · ⚠ darboğaz</small></span></a></li><li><a href="#lv-15" data-i="15"><span class="s-num" style="--c:#2E7D32">16</span><span class="s-txt"><b>Büyüklük Sırasına Dizen (6 ve ötesi)</b><small>6 yaş</small></span></a></li><li><a href="#lv-16" data-i="16"><span class="s-num" style="--c:#2E7D32">17</span><span class="s-txt"><b>Kapladığı Yere Bakıp Tahmin Eden</b><small>6–7 yaş</small></span></a></li><li><a href="#lv-17" data-i="17"><span class="s-num" style="--c:#2E7D32">18</span><span class="s-txt"><b>Basamak Değeriyle Karşılaştıran</b><small>6–7 yaş</small></span></a></li><li><a href="#lv-18" data-i="18"><span class="s-num" style="--c:#2E7D32">19</span><span class="s-txt"><b>Zihinsel Sayı Doğrusu (100’e kadar)</b><small>7–8 yaş</small></span></a></li><li><a href="#lv-19" data-i="19"><span class="s-num" style="--c:#2E7D32">20</span><span class="s-txt"><b>Göz Atarak Çokluk Tahmin Eden</b><small>8 yaş</small></span></a></li><li><a href="#lv-20" data-i="20"><span class="s-num" style="--c:#2E7D32">21</span><span class="s-txt"><b>Zihinsel Sayı Doğrusu (1000’e kadar)</b><small>8–9 yaş</small></span></a></li><li><a href="#lv-21" data-i="21"><span class="s-num" style="--c:#2E7D32">22</span><span class="s-txt"><b>Bir Bölümünü Sayıp Tahmin Eden</b><small>9–10 yaş</small></span></a></li><li><a href="#lv-22" data-i="22"><span class="s-num" style="--c:#2E7D32">23</span><span class="s-txt"><b>Öbeklere Ayırıp Tahmin Eden</b><small>9–10 yaş</small></span></a></li></ol>
+    </div>
+  </aside>
+    <div class="levels">
+      
+  <article class="level" id="lv-0">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#2E7D32">1</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#2E7D32">0–1 yaş</span>
+          
+        </div>
+        <h3>Karşılaştırma Duyarlılığı: Temeller</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> İlk aylardan itibaren sayı değişimlerine duyarlıdır: küçük gruplarda 1 ile 2’yi, büyük gruplarda ikiye katlanma gibi belirgin farkları sezer (doğuştan eşitlik duyarlılığı).</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Bebek, bir yanda 2 oyuncak bir yanda 6 oyuncak görünce belirgin biçimde &quot;çok&quot; olan yana daha uzun bakar ya da uzanır. Sayıyı adlandıramaz; ama &quot;orada daha fazla var&quot; duygusunu sezer.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, sayı sözcüğünden önce gelen en erken karşılaştırma sezgisidir (yaklaşık sayı sistemi). Yalnız belirgin oranlar (örneğin 1’e 3) ayırt edilir; yakın çokluklar henüz değil. Amaç saydırmak değil, miktar farkına dikkati uyandırmaktır.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>İki tepsi</li><li>Aynı tür, aynı renk büyük nesneler (top, küp)</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Bir tepsiye 2, ötekine 6 nesne koyun; bebeği ikisinin ortasına alın.</li><li>&quot;Bak, burada daha çok var!&quot; deyin ve fazlası olan yanı gösterin.</li><li>Bebeğin bakışını/uzanmasını gözleyin; hangi yana yöneldiğini not edin.</li><li>Tepsilerin yerini değiştirip yineleyin (yer değil, çokluk önemli).</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Belirgin biçimde fazla olan yana tutarlı olarak daha çok bakar/uzanırsa ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Farkı abartın (1’e 6).</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Farkı azaltın (2’ye 4).</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey etkinliği"><b>ADIM</b><span>İlgili düzey etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz" aria-hidden="true"><svg viewBox="0 0 180 178" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="57.6" cy="143" r="9" fill="#2E7D32"/><circle cx="57.6" cy="120" r="9" fill="#2E7D32"/><circle cx="57.6" cy="97" r="9" fill="#2E7D32"/><circle cx="57.6" cy="74" r="9" fill="#2E7D32"/><circle cx="57.6" cy="51" r="9" fill="#2E7D32"/><circle cx="57.6" cy="28" r="9" fill="#2E7D32"/><text x="57.6" y="172" font-size="13" fill="#475569" text-anchor="middle" font-family="Inter,sans-serif" font-weight="600">6</text><circle cx="122.4" cy="143" r="9" fill="#cbd5e1"/><circle cx="122.4" cy="120" r="9" fill="#cbd5e1"/><text x="122.4" y="172" font-size="13" fill="#475569" text-anchor="middle" font-family="Inter,sans-serif" font-weight="600">2</text><text x="90" y="89" font-size="22" fill="#0f172a" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="800">></text></svg><span class="viz-cap">bir bakışta</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="0" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-1">Sıradaki düzey · <b>Eşleyerek Karşılaştırmaya Başlayan</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-1">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#2E7D32">2</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#2E7D32">2–3 yaş</span>
+          
+        </div>
+        <h3>Eşleyerek Karşılaştırmaya Başlayan</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Çok küçük iki koleksiyonun &quot;aynı sayıda&quot; olduğunu sezgisel öğe-öğe eşlemeyle fark eder; nesneleri/sözcükleri/eylemleri birebir ya da çoğa-bir eşleyebilir.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk, kendi önündeki kurabiyelerle arkadaşınınkini gözüyle kabaca &quot;eşler&quot; ve birinde fazla olduğunu fark eder: &quot;Onunki çok!&quot; der ya da kendi azını işaret eder. Saymaz; göz kararıyla eşleştirir.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Burada karşılaştırma, sayı bilgisinden değil EŞLEME sezgisinden doğar: &quot;benimki kadar var mı?&quot; Adalet/pay duygusu güçlü bir motivasyon kaynağıdır. Bu erken eşleme, ileride birebir eşleyerek karşılaştırmanın tohumudur.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay pulları (iki renk)</li><li>İki küçük tabak</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Bir tabağa 2, ötekine 4 pul koyun; &quot;Hangisinde daha çok?&quot; diye sorun.</li><li>Çocuk göstersin; doğruysa &quot;Evet, burada daha çok&quot; diye adlandırın.</li><li>Pulları yan yana kabaca eşleştirip fazlalığı birlikte gösterin.</li><li>Çokluğu yakınlaştırarak (3’e 4) zorlaştırın.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Kabaca eşleyerek, açıkça fazla olan kümeyi tutarlı seçerse ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Belirgin fark (2’ye 5) ve pulları büyük tutun.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Yakın çokluk (3’e 4); pulları dağınık dizin.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey etkinliği"><b>ADIM</b><span>İlgili düzey etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz" aria-hidden="true"><svg viewBox="0 0 180 132" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="57.6" cy="97" r="9" fill="#2E7D32"/><circle cx="57.6" cy="74" r="9" fill="#2E7D32"/><circle cx="57.6" cy="51" r="9" fill="#2E7D32"/><circle cx="57.6" cy="28" r="9" fill="#2E7D32"/><text x="57.6" y="126" font-size="13" fill="#475569" text-anchor="middle" font-family="Inter,sans-serif" font-weight="600">4</text><circle cx="122.4" cy="97" r="9" fill="#cbd5e1"/><circle cx="122.4" cy="74" r="9" fill="#cbd5e1"/><text x="122.4" y="126" font-size="13" fill="#475569" text-anchor="middle" font-family="Inter,sans-serif" font-weight="600">2</text><text x="90" y="66" font-size="22" fill="#0f172a" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="800">></text></svg><span class="viz-cap">bir bakışta</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="1" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-2">Sıradaki düzey · <b>Bakarak Karşılaştıran</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-2">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#2E7D32">3</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#2E7D32">2–3 yaş</span>
+          
+        </div>
+        <h3>Bakarak Karşılaştıran</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Sayıca çok farklı koleksiyonları (biri diğerinin en az iki katı) karşılaştırır; benzer büyüklükteki koleksiyonları ancak çok küçük sayılarda ayırt eder.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Biri en az iki katı olan iki kümeyi (örneğin 2 ile 6) gördüğünde, çoğu olanı saymadan, bir bakışta seçer: &quot;Bu daha çok!&quot; Yakın çokluklarda (4 ile 5) ise henüz şaşırır.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Algısal karşılaştırma, oran belirgin olduğunda (≥2 kat) güvenilirdir; yakın sayılarda değildir. Bu normaldir. Çocuğu yakın çokluklarda zorlamak yerine, belirgin farklarla &quot;çok/az&quot; dilini sağlamlaştırın — sayarak karşılaştırmaya zemin hazırlar.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay pulları/çubukları</li><li>İki tabak ya da iki çubuk yuvası</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>İki katı farkla iki küme kurun (2 ile 6) ve kısaca gösterip kapatın.</li><li>&quot;Hangisinde daha çok vardı?&quot; diye sorun; bakışta seçmesini isteyin.</li><li>DokunSay çubuğunda iki yığını yan yana dizip fazlalığı gösterin.</li><li>Farkı koruyarak (3 ile 7) birkaç kez yineleyin.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Belirgin farklı (≥2 kat) kümelerde çoğu olanı saymadan seçerse ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Çok belirgin fark (1 ile 5) ve açık gösterim.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Oranı yakınlaştırın (4 ile 6); gösterimi kısaltın.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey etkinliği"><b>ADIM</b><span>İlgili düzey etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz" aria-hidden="true"><svg viewBox="0 0 180 178" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="57.6" cy="143" r="9" fill="#2E7D32"/><circle cx="57.6" cy="120" r="9" fill="#2E7D32"/><circle cx="57.6" cy="97" r="9" fill="#2E7D32"/><circle cx="57.6" cy="74" r="9" fill="#2E7D32"/><circle cx="57.6" cy="51" r="9" fill="#2E7D32"/><circle cx="57.6" cy="28" r="9" fill="#2E7D32"/><text x="57.6" y="172" font-size="13" fill="#475569" text-anchor="middle" font-family="Inter,sans-serif" font-weight="600">6</text><circle cx="122.4" cy="143" r="9" fill="#cbd5e1"/><circle cx="122.4" cy="120" r="9" fill="#cbd5e1"/><text x="122.4" y="172" font-size="13" fill="#475569" text-anchor="middle" font-family="Inter,sans-serif" font-weight="600">2</text><text x="90" y="89" font-size="22" fill="#0f172a" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="800">></text></svg><span class="viz-cap">bir bakışta</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="2" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-3">Sıradaki düzey · <b>&quot;Birinci–İkinci&quot; Diyen</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-3">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#2E7D32">4</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#2E7D32">3 yaş</span>
+          
+        </div>
+        <h3>&quot;Birinci–İkinci&quot; Diyen</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Bir dizideki &quot;birinci&quot; ve çoğu zaman &quot;ikinci&quot; nesneyi belirler.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Bir sıraya dizilmiş oyuncaklarda &quot;birinci&quot; ve &quot;ikinci&quot;yi gösterir: yarış oyununda &quot;Ben birinci oldum!&quot; der, ikinciyi de doğru işaret eder. Üçüncü ve sonrası henüz karışabilir.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Sıra sayıları (sıralamadaki konum) çokluktan farklı bir fikirdir: &quot;kaç tane&quot; değil, &quot;kaçıncı&quot;. &quot;Birinci/ikinci&quot; çoğu çocukta günlük dilden (yarış, sıra) önce gelir. Bir başlangıç ucu belirleyip oradan saymak kritiktir — nereden başlandığı değişirse &quot;birinci&quot; de değişir.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay çubuğunda sıralı 3–4 pul</li><li>Küçük bir bayrak/işaret</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Pulları soldan sağa bir sıraya dizin; bir başlangıç ucu belirleyin.</li><li>&quot;Birinci hangisi?&quot; diye sorun; çocuk göstersin.</li><li>&quot;Peki ikinci?&quot; diye sürdürün; doğruları adlandırın.</li><li>Başlangıç ucunu değiştirip &quot;Şimdi birinci hangisi oldu?&quot; diye düşündürün.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Bir sırada birinci ve ikinciyi (başlangıç ucuna göre) doğru belirlerse ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Yalnız &quot;birinci&quot; ile çalışın; sıra kısa (3) olsun.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>İkinciyi ekleyin; başlangıç ucunu sık değiştirin.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey etkinliği"><b>ADIM</b><span>İlgili düzey etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz" aria-hidden="true"><svg viewBox="0 0 210 96" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="60" cy="59.519999999999996" r="11" fill="#2E7D32"/><text x="60" y="42.519999999999996" font-size="12" fill="#64748b" text-anchor="middle" font-family="Inter,sans-serif" font-weight="600">1</text><circle cx="90" cy="59.519999999999996" r="11" fill="#2E7D32"/><text x="90" y="42.519999999999996" font-size="12" fill="#64748b" text-anchor="middle" font-family="Inter,sans-serif" font-weight="600">2</text><circle cx="120" cy="59.519999999999996" r="11" fill="#2E7D32"/><text x="120" y="42.519999999999996" font-size="12" fill="#64748b" text-anchor="middle" font-family="Inter,sans-serif" font-weight="600">3</text><circle cx="150" cy="59.519999999999996" r="11" fill="#2E7D32"/><text x="150" y="42.519999999999996" font-size="12" fill="#64748b" text-anchor="middle" font-family="Inter,sans-serif" font-weight="600">4</text></svg><span class="viz-cap">bir bakışta</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="3" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-4">Sıradaki düzey · <b>Aynı Tür Nesneleri Karşılaştıran</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-4">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#2E7D32">5</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#2E7D32">3–4 yaş</span>
+          
+        </div>
+        <h3>Aynı Tür Nesneleri Karşılaştıran</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> 1–4 özdeş nesneli koleksiyonları &quot;yalnızca bakarak&quot; (saymadan anlık bilme — sanbil — yoluyla) sözel ya da sözel olmayan biçimde karşılaştırır.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Yakın ama eşit olmayan iki küme aynı nesnelerden (örneğin 4 ile 5 özdeş düğme) olduğunda, çoğu olanı bulur — çoğunlukla yan yana koyup eşleyerek ya da kısa bir sayma denemesiyle.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Nesneler aynı/benzer olduğunda karşılaştırma kolaylaşır: çocuk yalnız çokluğa odaklanabilir, biçim/renk farkı dikkatini dağıtmaz. Yakın çoklukların (4 ile 5) ayırt edilmeye başlaması önemli bir ilerlemedir; çocuğu eşlemeye/saymaya yönlendirin.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay pulları (tek renk, özdeş)</li><li>İki çubuk yuvası ya da tabak</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Aynı pullardan 4 ve 5’lik iki küme yapın.</li><li>&quot;Hangisinde daha çok? Nasıl anladın?&quot; diye sorun.</li><li>Pulları DokunSay çubuğunda alt alta hizalayıp &quot;fazla olanı&quot; gösterin.</li><li>Çokluğu değiştirip (5 ile 6) yineleyin.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Yakın çokluklu, özdeş nesnelerde çoğu olanı eşleyerek/sayarak bulursa ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Farkı açın (3 ile 5); pulları hizalı dizin.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Farkı 1’e indirin (5 ile 6); pulları dağınık koyun.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey etkinliği"><b>ADIM</b><span>İlgili düzey etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz" aria-hidden="true"><svg viewBox="0 0 180 155" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="57.6" cy="120" r="9" fill="#2E7D32"/><circle cx="57.6" cy="97" r="9" fill="#2E7D32"/><circle cx="57.6" cy="74" r="9" fill="#2E7D32"/><circle cx="57.6" cy="51" r="9" fill="#2E7D32"/><circle cx="57.6" cy="28" r="9" fill="#2E7D32"/><text x="57.6" y="149" font-size="13" fill="#475569" text-anchor="middle" font-family="Inter,sans-serif" font-weight="600">5</text><circle cx="122.4" cy="120" r="9" fill="#cbd5e1"/><circle cx="122.4" cy="97" r="9" fill="#cbd5e1"/><circle cx="122.4" cy="74" r="9" fill="#cbd5e1"/><circle cx="122.4" cy="51" r="9" fill="#cbd5e1"/><text x="122.4" y="149" font-size="13" fill="#475569" text-anchor="middle" font-family="Inter,sans-serif" font-weight="600">4</text><text x="90" y="77.5" font-size="22" fill="#0f172a" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="800">></text></svg><span class="viz-cap">bir bakışta</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="4" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-5">Sıradaki düzey · <b>Farklı Tür Nesneleri Karşılaştıran</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-5">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#2E7D32">6</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#2E7D32">3–4 yaş</span>
+          
+        </div>
+        <h3>Farklı Tür Nesneleri Karşılaştıran</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> FARKLI türden nesnelerden oluşan eş küçük koleksiyonları eşleyerek aynı sayıda olduklarını gösterir.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Kümeler farklı nesnelerden olsa bile (örneğin 4 araba ile 6 boncuk) çoğu olanı çokluğa göre seçer; &quot;araba mı boncuk mu&quot; değil, &quot;kaç tane&quot; diye bakar. Büyük boncuklar az ama yer kaplıyorsa yine de çokluğu seçebilir.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, önemli bir soyutlamadır: karşılaştırma artık nesnenin türünden ve büyüklüğünden bağımsızlaşır. Sık yanılgı, &quot;daha çok yer kaplayan = daha çok&quot; demektir. Az sayıda ama iri nesneyi çoğu sanmak tipiktir; çocuğu teker teker eşlemeye/saymaya çağırın.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>İki farklı tür nesne (küçük arabalar; iri boncuklar)</li><li>DokunSay pulları (eşleme için)</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>4 araba ile 6 boncuk koyun (boncuklar daha iri ve dağınık olsun).</li><li>&quot;Hangisinden daha çok var?&quot; diye sorun.</li><li>Her arabanın yanına bir boncuk eşleştirip artan boncukları gösterin.</li><li>Bilerek &quot;az ama iri&quot; kümeyi öne çıkarıp yanıltıcı durumu tartışın.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Farklı türden nesnelerde, büyüklük yanıltsa bile çoğu olanı çokluğa göre seçerse ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Nesneleri benzer boyda tutun; farkı açın (3 ile 6).</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Az olanı çok iri, çoğu olanı küçük yapın (algısal tuzak).</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey etkinliği"><b>ADIM</b><span>İlgili düzey etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz" aria-hidden="true"><svg viewBox="0 0 180 178" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="57.6" cy="143" r="9" fill="#2E7D32"/><circle cx="57.6" cy="120" r="9" fill="#2E7D32"/><circle cx="57.6" cy="97" r="9" fill="#2E7D32"/><circle cx="57.6" cy="74" r="9" fill="#2E7D32"/><circle cx="57.6" cy="51" r="9" fill="#2E7D32"/><circle cx="57.6" cy="28" r="9" fill="#2E7D32"/><text x="57.6" y="172" font-size="13" fill="#475569" text-anchor="middle" font-family="Inter,sans-serif" font-weight="600">6</text><circle cx="122.4" cy="143" r="9" fill="#cbd5e1"/><circle cx="122.4" cy="120" r="9" fill="#cbd5e1"/><circle cx="122.4" cy="97" r="9" fill="#cbd5e1"/><circle cx="122.4" cy="74" r="9" fill="#cbd5e1"/><text x="122.4" y="172" font-size="13" fill="#475569" text-anchor="middle" font-family="Inter,sans-serif" font-weight="600">4</text><text x="90" y="89" font-size="22" fill="#0f172a" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="800">></text></svg><span class="viz-cap">bir bakışta</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="5" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-6">Sıradaki düzey · <b>Eşleyerek Karşılaştıran</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-6">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#2E7D32">7</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#2E7D32">4 yaş</span>
+          
+        </div>
+        <h3>Eşleyerek Karşılaştıran</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> 1–6 nesnelik grupları birebir eşleyerek karşılaştırır; artakalandan hangisinin çok olduğunu çıkarır.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>İki kümeyi birebir eşler: her bardağa bir tabak koyar, eşi kalmayanı görür ve &quot;bir bardak fazla&quot; der. Saymadan, eşleşmenin artığıyla çoğu olanı kesin biçimde bulur.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Birebir eşleme, çokluk karşılaştırmasının altın yöntemidir: sayıyı bilmeden &quot;hangisi fazla, ne kadar fazla&quot; sorusunu çözer. Bu beceri, sayma-karşılaştırmaya ve toplama-çıkarmadaki &quot;fark&quot; fikrine doğrudan köprüdür. Eşlemeyi gözle görülür kılın (çiftleri yan yana).</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay pulları (iki renk)</li><li>DokunSay çubuğu (eşleme rayı)</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Bir renkten 5, öteki renkten 7 pul verin.</li><li>&quot;Her maviye bir sarı eşle; eşi olmayan kaldı mı?&quot; deyin.</li><li>Eşleri çubukta alt alta dizip artan pulları gösterin.</li><li>&quot;Hangisi fazla? Kaç fazla?&quot; diye fark fikrini ekleyin.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Birebir eşleyip eşi kalmayandan çoğu olanı (ve kaç fazla olduğunu) bulursa ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Küçük kümeler (3 ile 4); eşleri hizalı dizin.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Büyük kümeler (6 ile 8); &quot;kaç fazla?&quot; sorusunu vurgulayın.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey etkinliği"><b>ADIM</b><span>İlgili düzey etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz" aria-hidden="true"><svg viewBox="0 0 180 201" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="57.6" cy="166" r="9" fill="#2E7D32"/><circle cx="57.6" cy="143" r="9" fill="#2E7D32"/><circle cx="57.6" cy="120" r="9" fill="#2E7D32"/><circle cx="57.6" cy="97" r="9" fill="#2E7D32"/><circle cx="57.6" cy="74" r="9" fill="#2E7D32"/><circle cx="57.6" cy="51" r="9" fill="#2E7D32"/><circle cx="57.6" cy="28" r="9" fill="#2E7D32"/><text x="57.6" y="195" font-size="13" fill="#475569" text-anchor="middle" font-family="Inter,sans-serif" font-weight="600">7</text><circle cx="122.4" cy="166" r="9" fill="#cbd5e1"/><circle cx="122.4" cy="143" r="9" fill="#cbd5e1"/><circle cx="122.4" cy="120" r="9" fill="#cbd5e1"/><circle cx="122.4" cy="97" r="9" fill="#cbd5e1"/><circle cx="122.4" cy="74" r="9" fill="#cbd5e1"/><text x="122.4" y="195" font-size="13" fill="#475569" text-anchor="middle" font-family="Inter,sans-serif" font-weight="600">5</text><text x="90" y="100.5" font-size="22" fill="#0f172a" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="800">></text></svg><span class="viz-cap">bir bakışta</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="6" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-7">Sıradaki düzey · <b>Sayarak Karşılaştıran (Eş Boy Nesneler)</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-7">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#2E7D32">8</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#2E7D32">4 yaş</span>
+          
+        </div>
+        <h3>Sayarak Karşılaştıran (Eş Boy Nesneler)</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Nesneler yaklaşık eş boyda ve gruplar küçükken (≤5) sayarak doğru karşılaştırır; büyük koleksiyonun nesneleri küçükse yanılabilir.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Aynı boyutta iki kümeyi tek tek sayar, sonuçları karşılaştırır: &quot;Burada 5, burada 6 var; altı daha çok.&quot; Artık eşlemeye gerek kalmadan iki sayıyı bilip büyüğü söyleyebilir.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Eşlemeden SAYARAK karşılaştırmaya geçiş büyük bir adımdır: sayı dizisindeki sıranın &quot;sonraki daha çok&quot; anlamını taşıdığını kavramaktır. Önce aynı boyutta nesnelerle çalışın (büyüklük yanıltmasın). Sık yanılgı: doğru sayıp ama iki sayıdan hangisinin büyük olduğunu seçememek; sayı dizisini referans alın.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay pulları (özdeş)</li><li>İki çubuk yuvası</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>İki yuvaya 5 ve 6 pul koyun; her birini tek tek saydırın.</li><li>&quot;Kaç oldu? Peki öteki?&quot; diye iki sonucu söyletin.</li><li>&quot;Hangisi daha çok — beş mi altı mı?&quot; diye sayıları karşılaştırın.</li><li>DokunSay çubuğunda hangisinin daha uzağa ulaştığını gösterin.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> İki kümeyi sayıp sonuçları karşılaştırarak çoğu olanı doğru söylerse ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Fark 2 olsun (4 ile 6); birlikte sayın.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Fark 1 olsun (6 ile 7); sayıları kendi karşılaştırsın.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey etkinliği"><b>ADIM</b><span>İlgili düzey etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz" aria-hidden="true"><svg viewBox="0 0 180 178" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="57.6" cy="143" r="9" fill="#2E7D32"/><circle cx="57.6" cy="120" r="9" fill="#2E7D32"/><circle cx="57.6" cy="97" r="9" fill="#2E7D32"/><circle cx="57.6" cy="74" r="9" fill="#2E7D32"/><circle cx="57.6" cy="51" r="9" fill="#2E7D32"/><circle cx="57.6" cy="28" r="9" fill="#2E7D32"/><text x="57.6" y="172" font-size="13" fill="#475569" text-anchor="middle" font-family="Inter,sans-serif" font-weight="600">6</text><circle cx="122.4" cy="143" r="9" fill="#cbd5e1"/><circle cx="122.4" cy="120" r="9" fill="#cbd5e1"/><circle cx="122.4" cy="97" r="9" fill="#cbd5e1"/><circle cx="122.4" cy="74" r="9" fill="#cbd5e1"/><circle cx="122.4" cy="51" r="9" fill="#cbd5e1"/><text x="122.4" y="172" font-size="13" fill="#475569" text-anchor="middle" font-family="Inter,sans-serif" font-weight="600">5</text><text x="90" y="89" font-size="22" fill="#0f172a" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="800">></text></svg><span class="viz-cap">bir bakışta</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="7" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-8">Sıradaki düzey · <b>Kapladığı Yere Bakıp Tahmin Eden (Az/Çok)</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-8">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#2E7D32">9</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#2E7D32">4–5 yaş</span>
+          
+        </div>
+        <h3>Kapladığı Yere Bakıp Tahmin Eden (Az/Çok)</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Fark belirginken azı/çoğu tahmin eder; az yer kaplayan kümelere &quot;küçük bir sayı&quot; (1–4), çok yer kaplayanlara &quot;büyük bir sayı&quot; (10–20+) atfeder.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Saymadan, bir bakışta &quot;hangi küme daha büyük/daha kalabalık&quot; diye kaba bir tahmin yapar: dağınık ama az bir yığınla sıkışık çok bir yığını ayırt etmeye çalışır, bazen yanılır.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, uzamsal-sayısal sezginin erken biçimidir: &quot;çok yer kaplıyor&quot; ile &quot;çok sayıda&quot; henüz birbirine karışır. Tahmin değerli bir beceridir; ama tahminden sonra saydırıp kontrol ettirin — sezgiyi gerçek sayıyla kalibre etmek ileride güçlü bir büyüklük duygusu kurar.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay pulları</li><li>İki tepsi (biri geniş-seyrek, biri dar-sıkışık)</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Bir tepsiye seyrek 6, ötekine sıkışık 9 pul koyun.</li><li>&quot;Saymadan tahmin et: hangisinde daha çok var?&quot; deyin.</li><li>Tahminini söyledikten sonra ikisini de saydırıp karşılaştırın.</li><li>&quot;Tahminin doğru muydu?&quot; diye sezgisini sonuçla buluşturun.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Saymadan büyük/küçük yönünde makul tahmin yapıp sonra sayarak kontrol ederse ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Yerleşimi adil tutun; farkı açın (4 ile 9).</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Azı seyrek-geniş, çoğu sıkışık yapın (uzamsal tuzak).</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey etkinliği"><b>ADIM</b><span>İlgili düzey etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#2E7D32">⚖️</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="8" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-9">Sıradaki düzey · <b>Sayarak Karşılaştıran (5’e kadar)</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-9">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#2E7D32">10</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#2E7D32">4–5 yaş</span>
+          
+        </div>
+        <h3>Sayarak Karşılaştıran (5’e kadar)</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Büyük koleksiyonun nesneleri DAHA KÜÇÜK olsa bile, 5’e kadar sayarak doğru karşılaştırır (algısal çeldiriciye aldanmaz).</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>5’e kadar olan iki kümeyi güvenle sayar ve büyüğü söyler: &quot;3 ile 5 — beş daha çok.&quot; Beşli yapıyı tanıdığı için 5’e dek karşılaştırmalar onun için sağlamdır.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>5 sınırı bilinçli seçilmiştir: çocuğun parmak/beşli çerçeve sezgisiyle örtüşür, böylece sayma-karşılaştırma kararlı çalışır. Bu düzey, hemen ardından gelen &quot;Zihinsel Sayı Doğrusu — 5’e dek&quot; darboğazının ön koşuludur. Sayma doğruysa ama karşılaştırma değilse, sayı dizisini sık tekrar edin.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay pulları</li><li>Beşli çerçeve (1×5)</li><li>İki çubuk yuvası</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>İki yuvaya 3 ve 5 pul koyup beşli çerçevede gösterin.</li><li>Her birini saydırıp &quot;kaç?&quot; sonuçlarını söyletin.</li><li>&quot;Hangisi daha çok?&quot; diye 5’e dek karşılaştırın.</li><li>&quot;Üçten beşe kaç fazla?&quot; diye fark fikrini ekleyin.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> 5’e kadar iki kümeyi sayıp doğru karşılaştırırsa (ve farkı söyleyebilirse) ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Bir kümeyi hep 5 (dolu çerçeve) tutun.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Fark 1 olsun (4 ile 5); çerçevesiz, dağınık dizin.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey etkinliği"><b>ADIM</b><span>İlgili düzey etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz" aria-hidden="true"><svg viewBox="0 0 180 155" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="57.6" cy="120" r="9" fill="#2E7D32"/><circle cx="57.6" cy="97" r="9" fill="#2E7D32"/><circle cx="57.6" cy="74" r="9" fill="#2E7D32"/><circle cx="57.6" cy="51" r="9" fill="#2E7D32"/><circle cx="57.6" cy="28" r="9" fill="#2E7D32"/><text x="57.6" y="149" font-size="13" fill="#475569" text-anchor="middle" font-family="Inter,sans-serif" font-weight="600">5</text><circle cx="122.4" cy="120" r="9" fill="#cbd5e1"/><circle cx="122.4" cy="97" r="9" fill="#cbd5e1"/><circle cx="122.4" cy="74" r="9" fill="#cbd5e1"/><text x="122.4" y="149" font-size="13" fill="#475569" text-anchor="middle" font-family="Inter,sans-serif" font-weight="600">3</text><text x="90" y="77.5" font-size="22" fill="#0f172a" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="800">></text></svg><span class="viz-cap">bir bakışta</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="9" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-10">Sıradaki düzey · <b>Zihinsel Sayı Doğrusu (5’e kadar)</b> →</a>
+    </div>
+  </article>
+
+  <article class="level bn" id="lv-10">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#2E7D32">11</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#2E7D32">5 yaş</span>
+          <span class="bn-pill">⚠ Darboğaz · kritik geçiş</span>
+        </div>
+        <h3>Zihinsel Sayı Doğrusu (5’e kadar)</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Algısal destek varken sayılar arası ilişkileri kullanarak göreli büyüklük ve konum belirler (&quot;4, 2’den büyük ve 5’e yakın&quot;).</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>0’dan 5’e bir doğru çizip &quot;3 nereye gelir?&quot; diye sorduğunuzda, ortanın biraz sağına, orantılı bir yere koyar. Sayıları yalnız &quot;daha çok/az&quot; değil, bir DOĞRU ÜZERİNDEKİ konum olarak düşünmeye başlar.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu yörüngenin ilk gerçek darboğazıdır. Zihinsel sayı doğrusu — sayıların zihinde orantılı, çizgisel bir uzayda yer alması — tüm sayı duygusunun omurgasıdır. SIKIŞIK ya da çarpık bir zihinsel sayı doğrusu (örneğin küçük sayıları çok geniş, büyükleri üst üste yerleştirmek) matematik öğrenme güçlüğünün (diskalkuli) çekirdek imzasıdır. Çocuk 3’ü 5’lik doğruda kabaca ortaya koyamıyorsa, bunu ciddiye alın: DokunSay dokunsal sayı doğrusunda tekrar tekrar &quot;konum&quot; deneyimi verin; sayıyı parmakla kaydırarak yere oturtun.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay sayı doğrusu (0–5, dokunsal)</li><li>DokunSay pulları/çubukları</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>0 ve 5 uçlarını gösterip &quot;Bu doğrunun başı sıfır, sonu beş&quot; deyin.</li><li>&quot;3 sence nereye gelir?&quot; diye parmağıyla göstermesini isteyin.</li><li>Pulu o noktaya koydurup birlikte 0’dan sayarak yerini doğrulayın.</li><li>1, 2, 4 için yineleyin; her birinin doğru üzerinde &quot;adil&quot; yerini tartışın.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> 0–5 doğrusunda bir sayıyı (örneğin 3) orantılı, makul bir konuma yerleştirirse ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Doğruyu tüm tik işaretleriyle (0,1,2,3,4,5) gösterin.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Yalnız 0 ve 5 ucu işaretli; ara tikleri kaldırıp tahminle yerleştirtin.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><a class="chip chip-ds" href="/DokunSayBar/" title="Dokunsal sayı doğrusu"><b>DokunSay Bar</b><span>Dokunsal sayı doğrusu</span></a><a class="chip chip-gs" href="https://galaksay.com/oyna/" title="Sayı doğrusu görevi"><b>GalakSay</b><span>Sayı doğrusu görevi</span></a><span class="chip chip-adim" title="Zihinsel sayı doğrusu"><b>ADIM</b><span>Zihinsel sayı doğrusu</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz" aria-hidden="true"><svg viewBox="0 0 220 96" xmlns="http://www.w3.org/2000/svg" role="img"><line x1="20" y1="53.760000000000005" x2="200" y2="53.760000000000005" stroke="#94a3b8" stroke-width="2"/><polygon points="200,53.760000000000005 192,48.760000000000005 192,58.760000000000005" fill="#94a3b8"/><line x1="20" y1="48.760000000000005" x2="20" y2="58.760000000000005" stroke="#cbd5e1" stroke-width="1.5"/><text x="20" y="73.76" font-size="11" fill="#94a3b8" text-anchor="middle" font-family="Inter,sans-serif">0</text><line x1="56" y1="48.760000000000005" x2="56" y2="58.760000000000005" stroke="#cbd5e1" stroke-width="1.5"/><text x="56" y="73.76" font-size="11" fill="#94a3b8" text-anchor="middle" font-family="Inter,sans-serif">1</text><line x1="92" y1="48.760000000000005" x2="92" y2="58.760000000000005" stroke="#cbd5e1" stroke-width="1.5"/><text x="92" y="73.76" font-size="11" fill="#94a3b8" text-anchor="middle" font-family="Inter,sans-serif">2</text><line x1="128" y1="48.760000000000005" x2="128" y2="58.760000000000005" stroke="#cbd5e1" stroke-width="1.5"/><text x="128" y="73.76" font-size="11" fill="#94a3b8" text-anchor="middle" font-family="Inter,sans-serif">3</text><line x1="164" y1="48.760000000000005" x2="164" y2="58.760000000000005" stroke="#cbd5e1" stroke-width="1.5"/><text x="164" y="73.76" font-size="11" fill="#94a3b8" text-anchor="middle" font-family="Inter,sans-serif">4</text><line x1="200" y1="48.760000000000005" x2="200" y2="58.760000000000005" stroke="#cbd5e1" stroke-width="1.5"/><text x="200" y="73.76" font-size="11" fill="#94a3b8" text-anchor="middle" font-family="Inter,sans-serif">5</text><circle cx="128" cy="53.760000000000005" r="7" fill="#f59e0b"/></svg><span class="viz-cap">bir bakışta</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="10" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-11">Sıradaki düzey · <b>Büyüklük Sırasına Dizen (5’e kadar)</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-11">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#2E7D32">12</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#2E7D32">5 yaş</span>
+          
+        </div>
+        <h3>Büyüklük Sırasına Dizen (5’e kadar)</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Miktarları (nokta kartları) ya da rakamları 5’e kadar sıraya dizer; birimli uzunlukları sıralar.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>1’den 5’e kadar olan kümeleri ya da sayı kartlarını azdan çoğa dizer: 2, 4, 1, 3, 5 kartlarını alıp 1-2-3-4-5 sırasına sokar. &quot;Önce en az, sonra biraz daha çok…&quot; diye düşünür.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Sıralama, ikili karşılaştırmadan bir adım ileridir: birden çok kümeyi aynı anda bir DÜZENE sokmaktır. Bu, zihinsel sayı doğrusunu eyleme döker — her sayı bir öncekinden &quot;bir fazla&quot;. Sık yanılgı: yalnız iki komşuyu doğru sıralayıp bütünü bozmak. Çocuğu &quot;en azdan başla, her seferinde bir sonrakini bul&quot; stratejisine yönlendirin.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay pulları</li><li>1–5 pul içeren 5 çubuk/kart</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>1, 2, 3, 4, 5 pul içeren çubukları karışık verin.</li><li>&quot;En az olandan en çok olana doğru sırala&quot; deyin.</li><li>Her adımda &quot;şimdi kalanların en azı hangisi?&quot; diye seçtirin.</li><li>Sıralayınca yükselen &quot;merdiveni&quot; birlikte sayarak doğrulayın.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> 1–5 arası kümeleri/sayıları azdan çoğa doğru biçimde sıralarsa ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Üç kümeyle başlayın (1, 3, 5).</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Beş kümeyi çoktan aza (tersten) sıralatın.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey etkinliği"><b>ADIM</b><span>İlgili düzey etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz" aria-hidden="true"><svg viewBox="0 0 220 96" xmlns="http://www.w3.org/2000/svg" role="img"><line x1="20" y1="53.760000000000005" x2="200" y2="53.760000000000005" stroke="#94a3b8" stroke-width="2"/><polygon points="200,53.760000000000005 192,48.760000000000005 192,58.760000000000005" fill="#94a3b8"/><line x1="20" y1="48.760000000000005" x2="20" y2="58.760000000000005" stroke="#cbd5e1" stroke-width="1.5"/><text x="20" y="73.76" font-size="11" fill="#94a3b8" text-anchor="middle" font-family="Inter,sans-serif">0</text><line x1="56" y1="48.760000000000005" x2="56" y2="58.760000000000005" stroke="#cbd5e1" stroke-width="1.5"/><text x="56" y="73.76" font-size="11" fill="#94a3b8" text-anchor="middle" font-family="Inter,sans-serif">1</text><line x1="92" y1="48.760000000000005" x2="92" y2="58.760000000000005" stroke="#cbd5e1" stroke-width="1.5"/><text x="92" y="73.76" font-size="11" fill="#94a3b8" text-anchor="middle" font-family="Inter,sans-serif">2</text><line x1="128" y1="48.760000000000005" x2="128" y2="58.760000000000005" stroke="#cbd5e1" stroke-width="1.5"/><text x="128" y="73.76" font-size="11" fill="#94a3b8" text-anchor="middle" font-family="Inter,sans-serif">3</text><line x1="164" y1="48.760000000000005" x2="164" y2="58.760000000000005" stroke="#cbd5e1" stroke-width="1.5"/><text x="164" y="73.76" font-size="11" fill="#94a3b8" text-anchor="middle" font-family="Inter,sans-serif">4</text><line x1="200" y1="48.760000000000005" x2="200" y2="58.760000000000005" stroke="#cbd5e1" stroke-width="1.5"/><text x="200" y="73.76" font-size="11" fill="#94a3b8" text-anchor="middle" font-family="Inter,sans-serif">5</text><circle cx="56" cy="53.760000000000005" r="7" fill="#2E7D32"/><circle cx="92" cy="53.760000000000005" r="7" fill="#2E7D32"/><circle cx="128" cy="53.760000000000005" r="7" fill="#2E7D32"/><circle cx="164" cy="53.760000000000005" r="7" fill="#2E7D32"/><circle cx="200" cy="53.760000000000005" r="7" fill="#2E7D32"/></svg><span class="viz-cap">bir bakışta</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="11" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-12">Sıradaki düzey · <b>Sıra Sayılarını Kullanan (1.–10.)</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-12">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#2E7D32">13</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#2E7D32">5–6 yaş</span>
+          
+        </div>
+        <h3>Sıra Sayılarını Kullanan (1.–10.)</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> &quot;Birinci&quot;den &quot;onuncu&quot;ya kadar sıra sayılarını belirler ve kullanır.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Bir sırada &quot;üçüncü&quot; ve &quot;dördüncü&quot;yü doğru gösterir: &quot;Üçüncü kutuda ne var?&quot; diye sorduğunuzda baştan sayıp doğru kutuyu açar. Birinci/ikincinin ötesine geçmiştir.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Sıra sayıları (3., 4., 5.) konumu adlandırır ve baştan sayma gerektirir. Sık karışıklık: &quot;üçüncü&quot; (konum) ile &quot;üç&quot; (çokluk) arasını ayırt etmek. Ayrıca başlangıç ucu kritiktir — soldan mı sağdan mı sayıldığı sonucu değiştirir. Sıra sözcüklerini günlük rutinlerle (sıradaki sıran, yarış) pekiştirin.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay çubuğunda sıralı 5 pul</li><li>Küçük bir işaret/bayrak</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Pulları soldan sağa dizin; başlangıç ucunu birlikte belirleyin.</li><li>&quot;Üçüncü pulu göster&quot; deyin; baştan saymasını isteyin.</li><li>&quot;Dördüncü, beşinci&quot; diye sürdürün; her birini adlandırın.</li><li>&quot;Üçüncü&quot; ile &quot;üç tane&quot; arasındaki farkı bir örnekle ayırt edin.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Bir sırada 3., 4. gibi sıra sayılarını baştan sayarak doğru belirlerse ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Sırayı kısa (3–4) tutup birinci/ikinciden başlayın.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Başlangıç ucunu değiştirin; &quot;sondan ikinci&quot; gibi sorular ekleyin.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey etkinliği"><b>ADIM</b><span>İlgili düzey etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz" aria-hidden="true"><svg viewBox="0 0 210 96" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="45" cy="59.519999999999996" r="11" fill="#2E7D32"/><text x="45" y="42.519999999999996" font-size="12" fill="#64748b" text-anchor="middle" font-family="Inter,sans-serif" font-weight="600">1</text><circle cx="75" cy="59.519999999999996" r="11" fill="#2E7D32"/><text x="75" y="42.519999999999996" font-size="12" fill="#64748b" text-anchor="middle" font-family="Inter,sans-serif" font-weight="600">2</text><circle cx="105" cy="59.519999999999996" r="11" fill="#2E7D32"/><text x="105" y="42.519999999999996" font-size="12" fill="#64748b" text-anchor="middle" font-family="Inter,sans-serif" font-weight="600">3</text><circle cx="135" cy="59.519999999999996" r="11" fill="#2E7D32"/><text x="135" y="42.519999999999996" font-size="12" fill="#64748b" text-anchor="middle" font-family="Inter,sans-serif" font-weight="600">4</text><circle cx="165" cy="59.519999999999996" r="11" fill="#2E7D32"/><text x="165" y="42.519999999999996" font-size="12" fill="#64748b" text-anchor="middle" font-family="Inter,sans-serif" font-weight="600">5</text></svg><span class="viz-cap">bir bakışta</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="12" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-13">Sıradaki düzey · <b>Sayarak Karşılaştıran (10’a kadar)</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-13">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#2E7D32">14</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#2E7D32">5–6 yaş</span>
+          
+        </div>
+        <h3>Sayarak Karşılaştıran (10’a kadar)</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Büyük koleksiyonun nesneleri daha küçük olsa bile 10’a kadar sayarak doğru karşılaştırır; &quot;kaç fazla/eksik&quot; sorusunu çözmeye başlar.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>10’a kadar iki kümeyi sayar ve büyüğü söyler: &quot;Burada 7, burada 9 var; dokuz daha çok.&quot; Onluk çerçeve yardımıyla &quot;dolu/boş&quot; okuyarak da hızlı karşılaştırabilir.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Sayma-karşılaştırma artık 10’a ölçeklenir. Bu, zihinsel sayı doğrusunun 10’a genişleyeceği bir sonraki darboğazın hazırlığıdır. Onluk çerçeveyle çalışmak, &quot;9, 7’den iki fazla&quot; gibi fark ilişkilerini görünür kılar. Sayma doğru ama karşılaştırma kararsızsa, sayıların sırasını (hangisi sonra gelir = daha çok) vurgulayın.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay pulları</li><li>Onluk çerçeve (2×5)</li><li>İki çubuk yuvası</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>İki onluk çerçeveye 7 ve 9 pul koyup gösterin.</li><li>Her birini saydırın; &quot;kaç dolu, kaç boş?&quot; diye okutun.</li><li>&quot;Hangisi daha çok — yedi mi dokuz mu?&quot; diye karşılaştırın.</li><li>&quot;Dokuz, yediden kaç fazla?&quot; diye fark ilişkisini ekleyin.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> 10’a kadar iki kümeyi sayıp doğru karşılaştırırsa (farkı da söyleyebilirse) ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Fark 2+ olsun (6 ile 9); çerçevede gösterin.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Fark 1 olsun (8 ile 9); çerçevesiz dağınık dizin.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey etkinliği"><b>ADIM</b><span>İlgili düzey etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz" aria-hidden="true"><svg viewBox="0 0 180 247" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="57.6" cy="212" r="9" fill="#2E7D32"/><circle cx="57.6" cy="189" r="9" fill="#2E7D32"/><circle cx="57.6" cy="166" r="9" fill="#2E7D32"/><circle cx="57.6" cy="143" r="9" fill="#2E7D32"/><circle cx="57.6" cy="120" r="9" fill="#2E7D32"/><circle cx="57.6" cy="97" r="9" fill="#2E7D32"/><circle cx="57.6" cy="74" r="9" fill="#2E7D32"/><circle cx="57.6" cy="51" r="9" fill="#2E7D32"/><circle cx="57.6" cy="28" r="9" fill="#2E7D32"/><text x="57.6" y="241" font-size="13" fill="#475569" text-anchor="middle" font-family="Inter,sans-serif" font-weight="600">9</text><circle cx="122.4" cy="212" r="9" fill="#cbd5e1"/><circle cx="122.4" cy="189" r="9" fill="#cbd5e1"/><circle cx="122.4" cy="166" r="9" fill="#cbd5e1"/><circle cx="122.4" cy="143" r="9" fill="#cbd5e1"/><circle cx="122.4" cy="120" r="9" fill="#cbd5e1"/><circle cx="122.4" cy="97" r="9" fill="#cbd5e1"/><circle cx="122.4" cy="74" r="9" fill="#cbd5e1"/><text x="122.4" y="241" font-size="13" fill="#475569" text-anchor="middle" font-family="Inter,sans-serif" font-weight="600">7</text><text x="90" y="123.5" font-size="22" fill="#0f172a" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="800">></text></svg><span class="viz-cap">bir bakışta</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="13" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-14">Sıradaki düzey · <b>Zihinsel Sayı Doğrusu (10’a kadar)</b> →</a>
+    </div>
+  </article>
+
+  <article class="level bn" id="lv-14">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#2E7D32">15</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#2E7D32">6 yaş</span>
+          <span class="bn-pill">⚠ Darboğaz · kritik geçiş</span>
+        </div>
+        <h3>Zihinsel Sayı Doğrusu (10’a kadar)</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> İç temsiller ve sayı ilişkisi bilgisiyle 10’a kadar göreli büyüklük/konum belirler (&quot;Hangisi 6’ya daha yakın: 4 mü 9 mu?&quot;).</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>0’dan 10’a bir doğruda &quot;7 nereye gelir?&quot; diye sorduğunuzda, 5’in (ortanın) belirgin biçimde sağına, 10’a yakın ama tam ona değil bir yere koyar. Sayıları orantılı aralıklarla yerleştirir; küçükleri geniş, büyükleri sıkışık koymaz.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>İkinci ve en kritik darboğaz. 0–10 zihinsel sayı doğrusunda ORANTILI (lineer) yerleştirme, okul matematiğinin en güçlü erken yordayıcılarından biridir. Tipik gelişende temsil giderek çizgiselleşir; matematik öğrenme güçlüğünde (diskalkuli) ise doğru sıkışık ya da logaritmik kalır — küçük sayılar arası abartılı, büyükler arası ezilmiş. Çocuk 7’yi 10’luk doğruda 5’in sağına koyamıyor, sayıları orantısız yerleştiriyorsa, DokunSay dokunsal sayı doğrusunda yoğun &quot;yerleştir-ve-kontrol et&quot; çalışması yapın; her tahminden sonra 0’dan sayarak gerçek yerle buluşturun.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay sayı doğrusu (0–10, dokunsal)</li><li>DokunSay pulları</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>0 ve 10 uçlarını gösterin; &quot;5 tam ortada&quot; diye orta noktayı çıpalayın.</li><li>&quot;7 nereye gelir?&quot; diye parmağıyla göstertin (ortanın sağına).</li><li>Pulu koydurup 0’dan sayarak gerçek konumu birlikte denetleyin.</li><li>2, 4, 8, 9 için yineleyin; &quot;orantılı mı duruyor?&quot; diye doğruyu okutun.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> 0–10 doğrusunda sayıları (örneğin 7’yi ortanın sağına) orantılı konumlandırırsa ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>0, 5, 10 noktaları işaretli olsun (çıpa noktaları).</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Yalnız 0 ve 10 işaretli; ara çıpaları kaldırıp tahminle yerleştirtin.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><a class="chip chip-ds" href="/DokunSayBar/" title="0–10 dokunsal sayı doğrusu"><b>DokunSay Bar</b><span>0–10 dokunsal sayı doğrusu</span></a><span class="chip chip-adim" title="Yerleştirme etkinliği"><b>ADIM</b><span>Yerleştirme etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz" aria-hidden="true"><svg viewBox="0 0 220 96" xmlns="http://www.w3.org/2000/svg" role="img"><line x1="20" y1="53.760000000000005" x2="200" y2="53.760000000000005" stroke="#94a3b8" stroke-width="2"/><polygon points="200,53.760000000000005 192,48.760000000000005 192,58.760000000000005" fill="#94a3b8"/><line x1="20" y1="48.760000000000005" x2="20" y2="58.760000000000005" stroke="#cbd5e1" stroke-width="1.5"/><text x="20" y="73.76" font-size="11" fill="#94a3b8" text-anchor="middle" font-family="Inter,sans-serif">0</text><line x1="38" y1="48.760000000000005" x2="38" y2="58.760000000000005" stroke="#cbd5e1" stroke-width="1.5"/><text x="38" y="73.76" font-size="11" fill="#94a3b8" text-anchor="middle" font-family="Inter,sans-serif">1</text><line x1="56" y1="48.760000000000005" x2="56" y2="58.760000000000005" stroke="#cbd5e1" stroke-width="1.5"/><text x="56" y="73.76" font-size="11" fill="#94a3b8" text-anchor="middle" font-family="Inter,sans-serif">2</text><line x1="74" y1="48.760000000000005" x2="74" y2="58.760000000000005" stroke="#cbd5e1" stroke-width="1.5"/><text x="74" y="73.76" font-size="11" fill="#94a3b8" text-anchor="middle" font-family="Inter,sans-serif">3</text><line x1="92" y1="48.760000000000005" x2="92" y2="58.760000000000005" stroke="#cbd5e1" stroke-width="1.5"/><text x="92" y="73.76" font-size="11" fill="#94a3b8" text-anchor="middle" font-family="Inter,sans-serif">4</text><line x1="110" y1="48.760000000000005" x2="110" y2="58.760000000000005" stroke="#cbd5e1" stroke-width="1.5"/><text x="110" y="73.76" font-size="11" fill="#94a3b8" text-anchor="middle" font-family="Inter,sans-serif">5</text><line x1="128" y1="48.760000000000005" x2="128" y2="58.760000000000005" stroke="#cbd5e1" stroke-width="1.5"/><text x="128" y="73.76" font-size="11" fill="#94a3b8" text-anchor="middle" font-family="Inter,sans-serif">6</text><line x1="146" y1="48.760000000000005" x2="146" y2="58.760000000000005" stroke="#cbd5e1" stroke-width="1.5"/><text x="146" y="73.76" font-size="11" fill="#94a3b8" text-anchor="middle" font-family="Inter,sans-serif">7</text><line x1="164" y1="48.760000000000005" x2="164" y2="58.760000000000005" stroke="#cbd5e1" stroke-width="1.5"/><text x="164" y="73.76" font-size="11" fill="#94a3b8" text-anchor="middle" font-family="Inter,sans-serif">8</text><line x1="182" y1="48.760000000000005" x2="182" y2="58.760000000000005" stroke="#cbd5e1" stroke-width="1.5"/><text x="182" y="73.76" font-size="11" fill="#94a3b8" text-anchor="middle" font-family="Inter,sans-serif">9</text><line x1="200" y1="48.760000000000005" x2="200" y2="58.760000000000005" stroke="#cbd5e1" stroke-width="1.5"/><text x="200" y="73.76" font-size="11" fill="#94a3b8" text-anchor="middle" font-family="Inter,sans-serif">10</text><circle cx="146" cy="53.760000000000005" r="7" fill="#f59e0b"/></svg><span class="viz-cap">bir bakışta</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="14" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-15">Sıradaki düzey · <b>Büyüklük Sırasına Dizen (6 ve ötesi)</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-15">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#2E7D32">16</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#2E7D32">6 yaş</span>
+          
+        </div>
+        <h3>Büyüklük Sırasına Dizen (6 ve ötesi)</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Miktarları/rakamları 6 ve ötesine sıralar; 1–6 birimli uzunlukları dizer.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>6 ve üzeri kümeleri/sayıları sıralar: 8, 6, 10, 7, 9 kartlarını alıp 6-7-8-9-10 düzenine sokar. Sayı dizisini referans alarak &quot;sonraki hep bir fazla&quot; mantığıyla ilerler.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Sıralama aralığı 10’a genişler; bu, 0–10 zihinsel sayı doğrusunun pekişmesini destekler. Daha büyük sayılarda sık yanılgı, basamak/ad benzerliklerinden (yedi/dokuz) ya da yalnız komşu çiftlere bakmaktan doğar. Çocuğu her adımda &quot;kalanların en azı/en çoğu&quot; stratejisine ve bütünü baştan kontrol etmeye yönlendirin.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay pulları</li><li>6–10 pul içeren çubuklar/kartlar</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>6, 7, 8, 9, 10 pul içeren çubukları karışık verin.</li><li>&quot;Azdan çoğa sırala&quot; deyin; gerekiyorsa saydırın.</li><li>Her adımda kalanların en azını seçtirin.</li><li>Yükselen merdiveni baştan sona sayarak doğrulayın.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> 6 ve üzeri sayıları/kümeleri doğru sıralarsa ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Üç kümeyle başlayın (6, 8, 10).</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Karışık aralık (4, 7, 6, 9, 10) ve tersten sıralama isteyin.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey etkinliği"><b>ADIM</b><span>İlgili düzey etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz" aria-hidden="true"><svg viewBox="0 0 220 96" xmlns="http://www.w3.org/2000/svg" role="img"><line x1="20" y1="53.760000000000005" x2="200" y2="53.760000000000005" stroke="#94a3b8" stroke-width="2"/><polygon points="200,53.760000000000005 192,48.760000000000005 192,58.760000000000005" fill="#94a3b8"/><line x1="20" y1="48.760000000000005" x2="20" y2="58.760000000000005" stroke="#cbd5e1" stroke-width="1.5"/><text x="20" y="73.76" font-size="11" fill="#94a3b8" text-anchor="middle" font-family="Inter,sans-serif">0</text><line x1="38" y1="48.760000000000005" x2="38" y2="58.760000000000005" stroke="#cbd5e1" stroke-width="1.5"/><text x="38" y="73.76" font-size="11" fill="#94a3b8" text-anchor="middle" font-family="Inter,sans-serif">1</text><line x1="56" y1="48.760000000000005" x2="56" y2="58.760000000000005" stroke="#cbd5e1" stroke-width="1.5"/><text x="56" y="73.76" font-size="11" fill="#94a3b8" text-anchor="middle" font-family="Inter,sans-serif">2</text><line x1="74" y1="48.760000000000005" x2="74" y2="58.760000000000005" stroke="#cbd5e1" stroke-width="1.5"/><text x="74" y="73.76" font-size="11" fill="#94a3b8" text-anchor="middle" font-family="Inter,sans-serif">3</text><line x1="92" y1="48.760000000000005" x2="92" y2="58.760000000000005" stroke="#cbd5e1" stroke-width="1.5"/><text x="92" y="73.76" font-size="11" fill="#94a3b8" text-anchor="middle" font-family="Inter,sans-serif">4</text><line x1="110" y1="48.760000000000005" x2="110" y2="58.760000000000005" stroke="#cbd5e1" stroke-width="1.5"/><text x="110" y="73.76" font-size="11" fill="#94a3b8" text-anchor="middle" font-family="Inter,sans-serif">5</text><line x1="128" y1="48.760000000000005" x2="128" y2="58.760000000000005" stroke="#cbd5e1" stroke-width="1.5"/><text x="128" y="73.76" font-size="11" fill="#94a3b8" text-anchor="middle" font-family="Inter,sans-serif">6</text><line x1="146" y1="48.760000000000005" x2="146" y2="58.760000000000005" stroke="#cbd5e1" stroke-width="1.5"/><text x="146" y="73.76" font-size="11" fill="#94a3b8" text-anchor="middle" font-family="Inter,sans-serif">7</text><line x1="164" y1="48.760000000000005" x2="164" y2="58.760000000000005" stroke="#cbd5e1" stroke-width="1.5"/><text x="164" y="73.76" font-size="11" fill="#94a3b8" text-anchor="middle" font-family="Inter,sans-serif">8</text><line x1="182" y1="48.760000000000005" x2="182" y2="58.760000000000005" stroke="#cbd5e1" stroke-width="1.5"/><text x="182" y="73.76" font-size="11" fill="#94a3b8" text-anchor="middle" font-family="Inter,sans-serif">9</text><line x1="200" y1="48.760000000000005" x2="200" y2="58.760000000000005" stroke="#cbd5e1" stroke-width="1.5"/><text x="200" y="73.76" font-size="11" fill="#94a3b8" text-anchor="middle" font-family="Inter,sans-serif">10</text><circle cx="128" cy="53.760000000000005" r="7" fill="#2E7D32"/><circle cx="146" cy="53.760000000000005" r="7" fill="#2E7D32"/><circle cx="164" cy="53.760000000000005" r="7" fill="#2E7D32"/><circle cx="182" cy="53.760000000000005" r="7" fill="#2E7D32"/><circle cx="200" cy="53.760000000000005" r="7" fill="#2E7D32"/></svg><span class="viz-cap">bir bakışta</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="15" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-16">Sıradaki düzey · <b>Kapladığı Yere Bakıp Tahmin Eden</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-16">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#2E7D32">17</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#2E7D32">6–7 yaş</span>
+          
+        </div>
+        <h3>Kapladığı Yere Bakıp Tahmin Eden</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Tahmin kategorilerini genişletir: &quot;küçük&quot; (saymadan bilinebilir), &quot;orta&quot; (10–20) ve &quot;büyük&quot; sayılar; dizilim güçlüğü etkiler.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Bir kavanozdaki ~15–25 boncuğa bakıp &quot;yaklaşık yirmi var&quot; gibi incelikli bir tahmin yapar; &quot;çok/az&quot;ın ötesinde bir sayıya yaklaşır. Tahminini bir referansla (&quot;on şöyle görünüyordu&quot;) ayarlayabilir.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Tahmin artık nicelikli ve daha isabetlidir: çocuk uzamsal yoğunluğu yaklaşık bir SAYIYA çevirir. Bu beceri zihinsel sayı doğrusuna yaslanır — iyi kalibre bir doğru, iyi tahmin demektir. Tahmin sonrası saydırıp &quot;ne kadar yakındın?&quot; diye geri bildirim verin; &quot;vahşi&quot; tahminleri değil, makul aralığı ödüllendirin.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>Şeffaf bir kavanoz/kap</li><li>DokunSay pulları (20+ adet)</li><li>Bir referans kümesi (10’luk)</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Önce 10’luk bir referans gösterin: &quot;On böyle görünüyor.&quot;</li><li>Kaba ~18 pul koyup &quot;saymadan tahmin et&quot; deyin.</li><li>Tahminini yazdırın/söyletin, sonra birlikte sayın.</li><li>&quot;Tahminin gerçeğe ne kadar yakındı?&quot; diye değerlendirin.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Saymadan, makul bir aralıkta (örneğin gerçeğin ±%25’i) sayısal tahmin yaparsa ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Az sayı (≤12) ve görünür referans bırakın.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Daha çok (25–30) ve referansı kaldırıp düzensiz dizin.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey etkinliği"><b>ADIM</b><span>İlgili düzey etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#2E7D32">⚖️</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="16" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-17">Sıradaki düzey · <b>Basamak Değeriyle Karşılaştıran</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-17">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#2E7D32">18</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#2E7D32">6–7 yaş</span>
+          
+        </div>
+        <h3>Basamak Değeriyle Karşılaştıran</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Sayıları basamak değeri anlayışıyla karşılaştırır (&quot;63, 59’dan büyüktür; çünkü 6 onluk 5 onluktan fazladır&quot;).</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>İki basamaklı iki sayıyı basamak değerine göre karşılaştırır: 34 ile 43’te &quot;43 daha büyük, çünkü onlukları daha çok&quot; der. Yalnız rakamlara değil, onluk-birlik yapısına bakar.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Basamak değeri karşılaştırması, sayı duygusunun onluk sisteme taşınmasıdır: önce onluklar, eşitse birlikler. Klasik yanılgılar: &quot;daha çok basamak/daha büyük rakam = daha büyük sayı&quot; (örneğin 19’u 21’den büyük sanmak) ya da yalnız birler basamağına bakmak. DokunSay onluk çubuk + birlik pullarıyla iki sayının onluk yığınlarını yan yana gösterin.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay onluk çubukları + birlik pulları</li><li>İki basamaklı sayı kartları (34, 43)</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>34 ve 43’ü onluk çubuk + birlik pulla kurun.</li><li>&quot;Önce onluklara bak — hangisinde daha çok?&quot; diye sorun.</li><li>Onluklar eşitse birliklere bakma kuralını bir örnekle gösterin (36 ile 32).</li><li>&quot;Hangisi büyük ve neden?&quot; diye gerekçeyi söyletin.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> İki basamaklı sayıları önce onluk sonra birlik kuralıyla doğru karşılaştırırsa ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Onlukları farklı tutun (24 ile 51) — tek bakışta ayrışsın.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Onlukları eşit yapın (36 ile 32) ya da 19 ile 21 tuzağını sorun.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey etkinliği"><b>ADIM</b><span>İlgili düzey etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz" aria-hidden="true"><svg viewBox="0 0 180 132" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="57.6" cy="97" r="9" fill="#2E7D32"/><circle cx="57.6" cy="74" r="9" fill="#2E7D32"/><circle cx="57.6" cy="51" r="9" fill="#2E7D32"/><circle cx="57.6" cy="28" r="9" fill="#2E7D32"/><text x="57.6" y="126" font-size="13" fill="#475569" text-anchor="middle" font-family="Inter,sans-serif" font-weight="600">4</text><circle cx="122.4" cy="97" r="9" fill="#cbd5e1"/><circle cx="122.4" cy="74" r="9" fill="#cbd5e1"/><circle cx="122.4" cy="51" r="9" fill="#cbd5e1"/><text x="122.4" y="126" font-size="13" fill="#475569" text-anchor="middle" font-family="Inter,sans-serif" font-weight="600">3</text><text x="90" y="66" font-size="22" fill="#0f172a" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="800">></text></svg><span class="viz-cap">bir bakışta</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="17" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-18">Sıradaki düzey · <b>Zihinsel Sayı Doğrusu (100’e kadar)</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-18">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#2E7D32">19</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#2E7D32">7–8 yaş</span>
+          
+        </div>
+        <h3>Zihinsel Sayı Doğrusu (100’e kadar)</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Sayı ilişkileri ve zihinsel imgelerle (onlukların içine yerleşmiş birlikler) 100’e kadar göreli büyüklük/konum belirler.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>0’dan 100’e bir doğruda &quot;40 nereye gelir?&quot; diye sorduğunuzda, ortanın (50) biraz soluna, orantılı bir yere koyar. 100’lük aralıkta sayıları çizgisel, dengeli yerleştirir.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Zihinsel sayı doğrusu onluk ölçeğe taşınır. Orantısal (lineer) yerleştirme burada da güçlü bir başarı yordayıcısıdır; sıkışık/logaritmik temsil hâlâ bir uyarıdır. Çocuk 50’yi orta çıpa olarak kullanmayı öğrenmelidir: &quot;40, 50’den biraz az.&quot; DokunSay sayı doğrusunda onluk çıpalarla (0, 50, 100) çalışın.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay sayı doğrusu (0–100, onluk işaretli)</li><li>DokunSay pulları/işaretçi</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>0, 50, 100 çıpalarını gösterip &quot;50 tam ortada&quot; deyin.</li><li>&quot;40 nereye gelir?&quot; diye işaretletin (ortanın biraz soluna).</li><li>Onluk tik işaretlerinden sayarak gerçek konumu denetleyin.</li><li>70, 25, 90 için yineleyip orantıyı tartışın.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> 0–100 doğrusunda sayıları (örneğin 40’ı 50’nin soluna) orantılı yerleştirirse ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Tüm onluk tikler (0,10,…,100) görünür olsun.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Yalnız 0, 50, 100 çıpa; ara tikleri kaldırın.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey etkinliği"><b>ADIM</b><span>İlgili düzey etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz" aria-hidden="true"><svg viewBox="0 0 220 96" xmlns="http://www.w3.org/2000/svg" role="img"><line x1="20" y1="53.760000000000005" x2="200" y2="53.760000000000005" stroke="#94a3b8" stroke-width="2"/><polygon points="200,53.760000000000005 192,48.760000000000005 192,58.760000000000005" fill="#94a3b8"/><line x1="20" y1="48.760000000000005" x2="20" y2="58.760000000000005" stroke="#cbd5e1" stroke-width="1.5"/><text x="20" y="73.76" font-size="11" fill="#94a3b8" text-anchor="middle" font-family="Inter,sans-serif">0</text><line x1="38" y1="48.760000000000005" x2="38" y2="58.760000000000005" stroke="#cbd5e1" stroke-width="1.5"/><text x="38" y="73.76" font-size="11" fill="#94a3b8" text-anchor="middle" font-family="Inter,sans-serif">10</text><line x1="56" y1="48.760000000000005" x2="56" y2="58.760000000000005" stroke="#cbd5e1" stroke-width="1.5"/><text x="56" y="73.76" font-size="11" fill="#94a3b8" text-anchor="middle" font-family="Inter,sans-serif">20</text><line x1="74" y1="48.760000000000005" x2="74" y2="58.760000000000005" stroke="#cbd5e1" stroke-width="1.5"/><text x="74" y="73.76" font-size="11" fill="#94a3b8" text-anchor="middle" font-family="Inter,sans-serif">30</text><line x1="92" y1="48.760000000000005" x2="92" y2="58.760000000000005" stroke="#cbd5e1" stroke-width="1.5"/><text x="92" y="73.76" font-size="11" fill="#94a3b8" text-anchor="middle" font-family="Inter,sans-serif">40</text><line x1="110" y1="48.760000000000005" x2="110" y2="58.760000000000005" stroke="#cbd5e1" stroke-width="1.5"/><text x="110" y="73.76" font-size="11" fill="#94a3b8" text-anchor="middle" font-family="Inter,sans-serif">50</text><line x1="128" y1="48.760000000000005" x2="128" y2="58.760000000000005" stroke="#cbd5e1" stroke-width="1.5"/><text x="128" y="73.76" font-size="11" fill="#94a3b8" text-anchor="middle" font-family="Inter,sans-serif">60</text><line x1="146" y1="48.760000000000005" x2="146" y2="58.760000000000005" stroke="#cbd5e1" stroke-width="1.5"/><text x="146" y="73.76" font-size="11" fill="#94a3b8" text-anchor="middle" font-family="Inter,sans-serif">70</text><line x1="164" y1="48.760000000000005" x2="164" y2="58.760000000000005" stroke="#cbd5e1" stroke-width="1.5"/><text x="164" y="73.76" font-size="11" fill="#94a3b8" text-anchor="middle" font-family="Inter,sans-serif">80</text><line x1="182" y1="48.760000000000005" x2="182" y2="58.760000000000005" stroke="#cbd5e1" stroke-width="1.5"/><text x="182" y="73.76" font-size="11" fill="#94a3b8" text-anchor="middle" font-family="Inter,sans-serif">90</text><line x1="200" y1="48.760000000000005" x2="200" y2="58.760000000000005" stroke="#cbd5e1" stroke-width="1.5"/><text x="200" y="73.76" font-size="11" fill="#94a3b8" text-anchor="middle" font-family="Inter,sans-serif">100</text><circle cx="92" cy="53.760000000000005" r="7" fill="#f59e0b"/></svg><span class="viz-cap">bir bakışta</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="18" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-19">Sıradaki düzey · <b>Göz Atarak Çokluk Tahmin Eden</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-19">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#2E7D32">20</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#2E7D32">8 yaş</span>
+          
+        </div>
+        <h3>Göz Atarak Çokluk Tahmin Eden</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Bir grubu gözle tarar ve sonucu zihinsel sayı doğrusuyla ilişkilendirerek işe yarar çokluk tahminleri üretir.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Kalabalık bir kümeyi (örneğin ~60 nesne) gözüyle tarayıp küçük gruplara bölerek tahmin eder: &quot;Şurada onar onar var gibi, altı grup… altmış kadar.&quot; Tek tek saymadan yapıyı kullanır.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, tahminin stratejik biçimidir: &quot;tara, grupla, ölçekle.&quot; Çocuk artık rastgele tahmin etmez; bir küçük birim (5’lik/10’luk) seçip onu tekrarlayarak bütüne ölçekler. Bu, çarpımsal düşünme ve örnekleme fikrinin tohumudur. Stratejiyi sesli yaptırın: &quot;Bir grup ne kadar? Kaç grup var?&quot;</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>Çok sayıda DokunSay pulu (50–70)</li><li>Geniş bir tepsi/zemin</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Pulları geniş bir alana dağıtın (sayılamayacak kadar çok görünsün).</li><li>&quot;Bir köşede yaklaşık kaç var?&quot; diye küçük bir grubu kestirtin.</li><li>&quot;Kaç tane öyle grup var?&quot; diye bütüne ölçeklettirin.</li><li>Tahminden sonra onar onar gruplayıp gerçeğe yaklaştırın.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Büyük kümeyi tarayıp gruplayarak (birimi ölçekleyerek) makul tahmin yaparsa ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Pulları gevşek 10’luk öbekler hâlinde dizin.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Tümüyle düzensiz dağıtıp daha büyük sayı (80+) kullanın.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey etkinliği"><b>ADIM</b><span>İlgili düzey etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#2E7D32">⚖️</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="19" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-20">Sıradaki düzey · <b>Zihinsel Sayı Doğrusu (1000’e kadar)</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-20">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#2E7D32">21</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#2E7D32">8–9 yaş</span>
+          
+        </div>
+        <h3>Zihinsel Sayı Doğrusu (1000’e kadar)</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Basamak değeri dâhil sayı ilişkileri ve iç imgelerle 1000’e kadar göreli büyüklük/konum belirler.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>0’dan 1000’e bir doğruda &quot;400 nereye gelir?&quot; diye sorduğunuzda, ortanın (500) biraz soluna, orantılı yerleştirir. Yüzlük ölçekte de sayıları çizgisel düşünür: &quot;400, 500’ün biraz altı.&quot;</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Zihinsel sayı doğrusu yüzlük/binlik ölçeğe genişler. Burada yüzlük çıpalar (0, 500, 1000) ve &quot;yarısı/çeyreği&quot; gibi referanslar kritiktir. Sık zorluk: basamak sayısı arttıkça orantı duygusunun bozulması (örneğin 400 ile 40’ı karıştırmak ya da büyük sayıları uca yığmak). DokunSay sayı doğrusunda yüzlük adımlarla çalışın; &quot;500 yarı yol&quot; çıpasını içselleştirin.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay sayı doğrusu (0–1000, yüzlük işaretli)</li><li>DokunSay işaretçisi</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>0, 500, 1000 çıpalarını gösterip &quot;500 tam yarı yol&quot; deyin.</li><li>&quot;400 nereye gelir?&quot; diye işaretletin (yarının biraz soluna).</li><li>Yüzlük tiklerden sayarak konumu denetleyin.</li><li>750, 250, 900 için yineleyip yarım/çeyrek çıpaları kullanın.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> 0–1000 doğrusunda sayıları (örneğin 400’ü 500’ün soluna) orantılı yerleştirirse ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Tüm yüzlük tikler (0,100,…,1000) görünür olsun.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Yalnız 0, 500, 1000 çıpa; &quot;640’ı yerleştir&quot; gibi ara sayılar sorun.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey etkinliği"><b>ADIM</b><span>İlgili düzey etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz" aria-hidden="true"><svg viewBox="0 0 220 96" xmlns="http://www.w3.org/2000/svg" role="img"><line x1="20" y1="53.760000000000005" x2="200" y2="53.760000000000005" stroke="#94a3b8" stroke-width="2"/><polygon points="200,53.760000000000005 192,48.760000000000005 192,58.760000000000005" fill="#94a3b8"/><line x1="20" y1="48.760000000000005" x2="20" y2="58.760000000000005" stroke="#cbd5e1" stroke-width="1.5"/><text x="20" y="73.76" font-size="11" fill="#94a3b8" text-anchor="middle" font-family="Inter,sans-serif">0</text><line x1="38" y1="48.760000000000005" x2="38" y2="58.760000000000005" stroke="#cbd5e1" stroke-width="1.5"/><text x="38" y="73.76" font-size="11" fill="#94a3b8" text-anchor="middle" font-family="Inter,sans-serif">10</text><line x1="56" y1="48.760000000000005" x2="56" y2="58.760000000000005" stroke="#cbd5e1" stroke-width="1.5"/><text x="56" y="73.76" font-size="11" fill="#94a3b8" text-anchor="middle" font-family="Inter,sans-serif">20</text><line x1="74" y1="48.760000000000005" x2="74" y2="58.760000000000005" stroke="#cbd5e1" stroke-width="1.5"/><text x="74" y="73.76" font-size="11" fill="#94a3b8" text-anchor="middle" font-family="Inter,sans-serif">30</text><line x1="92" y1="48.760000000000005" x2="92" y2="58.760000000000005" stroke="#cbd5e1" stroke-width="1.5"/><text x="92" y="73.76" font-size="11" fill="#94a3b8" text-anchor="middle" font-family="Inter,sans-serif">40</text><line x1="110" y1="48.760000000000005" x2="110" y2="58.760000000000005" stroke="#cbd5e1" stroke-width="1.5"/><text x="110" y="73.76" font-size="11" fill="#94a3b8" text-anchor="middle" font-family="Inter,sans-serif">50</text><line x1="128" y1="48.760000000000005" x2="128" y2="58.760000000000005" stroke="#cbd5e1" stroke-width="1.5"/><text x="128" y="73.76" font-size="11" fill="#94a3b8" text-anchor="middle" font-family="Inter,sans-serif">60</text><line x1="146" y1="48.760000000000005" x2="146" y2="58.760000000000005" stroke="#cbd5e1" stroke-width="1.5"/><text x="146" y="73.76" font-size="11" fill="#94a3b8" text-anchor="middle" font-family="Inter,sans-serif">70</text><line x1="164" y1="48.760000000000005" x2="164" y2="58.760000000000005" stroke="#cbd5e1" stroke-width="1.5"/><text x="164" y="73.76" font-size="11" fill="#94a3b8" text-anchor="middle" font-family="Inter,sans-serif">80</text><line x1="182" y1="48.760000000000005" x2="182" y2="58.760000000000005" stroke="#cbd5e1" stroke-width="1.5"/><text x="182" y="73.76" font-size="11" fill="#94a3b8" text-anchor="middle" font-family="Inter,sans-serif">90</text><line x1="200" y1="48.760000000000005" x2="200" y2="58.760000000000005" stroke="#cbd5e1" stroke-width="1.5"/><text x="200" y="73.76" font-size="11" fill="#94a3b8" text-anchor="middle" font-family="Inter,sans-serif">100</text><circle cx="92" cy="53.760000000000005" r="7" fill="#f59e0b"/></svg><span class="viz-cap">bir bakışta</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="20" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-21">Sıradaki düzey · <b>Bir Bölümünü Sayıp Tahmin Eden</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-21">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#2E7D32">22</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#2E7D32">9–10 yaş</span>
+          
+        </div>
+        <h3>Bir Bölümünü Sayıp Tahmin Eden</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Tahmin edilecek koleksiyonun bir bölümünü sayar ve bunu dayanak (referans) olarak kullanır — sezgisel ya da tekrarlı toplama/çarpma yoluyla.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Bir tahmin yaparken zihnindeki referans (ölçüt) noktalarını kullanır: &quot;Bu yığın, az önce gördüğüm 100’lükten biraz fazla — yaklaşık 130.&quot; Bilinen bir miktarı çapa alıp ondan ayarlar.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Ölçüt-noktası (benchmark) stratejisi, tahminin en güçlü biçimlerinden biridir: &quot;bildiğim bir miktara göre ne kadar fazla/az?&quot; Bu doğrudan iyi kalibre bir zihinsel sayı doğrusuna dayanır — referanslar doğru üzerindeki sabit noktalardır. Çocuğa kararlı çıpalar (10, 100, yarı) verin ve &quot;çapadan ne kadar uzakta?&quot; diye düşündürün.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay pulları (çok sayıda)</li><li>Bir referans/çıpa kümesi (100’lük)</li><li>İki kap</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Bir kaba sayılmış 100 pul (çıpa) koyup gösterin.</li><li>Öteki kaba ~130 pul koyup &quot;çıpaya göre tahmin et&quot; deyin.</li><li>&quot;Çıpadan fazla mı az mı, ne kadar?&quot; diye ayarlattırın.</li><li>Tahminden sonra sayıp çıpa stratejisinin işe yararlığını gösterin.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Bilinen bir ölçüt noktasına göre ayarlayarak makul tahmin yaparsa ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Çıpayı görünür bırakın; hedef çıpaya yakın (110) olsun.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Çıpayı kaldırın; hedefi uzaklaştırın (180) ya da çıpanın katını sorun.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey etkinliği"><b>ADIM</b><span>İlgili düzey etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#2E7D32">⚖️</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="21" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-22">Sıradaki düzey · <b>Öbeklere Ayırıp Tahmin Eden</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-22">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#2E7D32">23</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#2E7D32">9–10 yaş</span>
+          
+        </div>
+        <h3>Öbeklere Ayırıp Tahmin Eden</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Tahmin edilecek kümeyi uygun alt kümelere ayırır, alt küme değerlerini birleştirerek çokluğu kurar (tekrarlı toplama → çarpma; düzenli → düzensiz dizilimler).</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Büyük bir miktarı zihinde parçalara ayırarak tahmin eder: &quot;Şu yarım yığın yaklaşık 70, öteki yarım da öyle — toplam 140 civarı.&quot; Sayıyı bileşenlerine bölüp parçaları toplar.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>En ileri tahmin stratejisi: kümeyi yönetilebilir parçalara AYIR, her parçayı kestir, sonra BİRLEŞTİR. Bu, parça-bütün düşünme, çarpımsal akıl yürütme ve esnek hesabın tahmine taşınmış hâlidir. Çocuğun parçalama mantığını sesli kurmasını isteyin; farklı parçalamaların benzer sonuca varması güçlü bir sezgi işaretidir.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>Çok sayıda DokunSay pulu (100+)</li><li>Geniş bir zemin</li><li>Ayırıcı (ip/çubuk)</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Büyük bir yığını gösterip &quot;saymadan tahmin edeceğiz&quot; deyin.</li><li>Yığını zihinde/ip ile iki-üç parçaya böldürün.</li><li>Her parçayı ayrı kestirtip &quot;parçaları topla&quot; deyin.</li><li>Farklı bir parçalamayla tekrar tahmin ettirip sonuçları kıyaslayın.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Büyük kümeyi parçalara ayırıp parça-tahminlerini birleştirerek makul sonuca varırsa ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>İki eşit parçaya böldürüp her parçaya referans verin.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Eşit olmayan üç parçaya böldürün; referansı kaldırın.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey etkinliği"><b>ADIM</b><span>İlgili düzey etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#2E7D32">⚖️</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="22" type="button">🖨️ Bu kartı yazdır</button>
+      <div class="nextlv done">Bu, yörüngenin son düzeyi 🎒</div>
+    </div>
+  </article>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <b style="color:#d8e6d8">Her Çocuk Matematik Öğrenebilir</b> · DokunSay — Karşılaştırma ve Sıralama yörüngesi ·
+    <a href="/yorunge/">Tüm yörüngeler</a> · <a href="/">Araçlar</a>
+    <p class="foot-note">Düzey adları ve sıralaması Clements &amp; Sarama öğrenme yörüngeleri ([LT]², learningtrajectories.org) çerçevesinden uyarlanmıştır. Yaş bantları olasılıksal alt-sınır niteliğinde illüstratiftir; tanı eşiği değildir. Çocuğu sınıfına göre değil, bulunduğu basamağa göre destekleyin.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // Scrollspy — kenar çubuğunda etkin düzeyi vurgula
+  var links = Array.prototype.slice.call(document.querySelectorAll('.side-list a'));
+  var byId = {}; links.forEach(function(a){ byId[a.getAttribute('href').slice(1)] = a; });
+  var spy = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(e.isIntersecting){
+        links.forEach(function(l){ l.classList.remove('act'); });
+        var a = byId[e.target.id]; if(a){ a.classList.add('act');
+          // kenar çubuğunu etkin öğeye kaydır
+          var sl = a.closest('.side-list'); if(sl){ var r=a.offsetTop - sl.offsetTop; if(r<sl.scrollTop||r>sl.scrollTop+sl.clientHeight-40) sl.scrollTop=r-12; }
+        }
+      }
+    });
+  }, { rootMargin:'-45% 0px -50% 0px', threshold:0 });
+  document.querySelectorAll('.level').forEach(function(l){ spy.observe(l); });
+
+  // Tek kart yazdır
+  function printOne(i){
+    var card = document.getElementById('lv-'+i); if(!card) return;
+    document.body.classList.add('printing-one'); card.classList.add('print-target');
+    window.print();
+  }
+  window.addEventListener('afterprint', function(){
+    document.body.classList.remove('printing-one');
+    var t=document.querySelector('.print-target'); if(t) t.classList.remove('print-target');
+  });
+  document.querySelectorAll('.printcard').forEach(function(b){
+    b.addEventListener('click', function(){ printOne(b.getAttribute('data-lv')); });
+  });
+  var pa=document.getElementById('printAll'); if(pa) pa.addEventListener('click', function(){ window.print(); });
+})();
+</script>
+</body>
+</html>

@@ -4,7 +4,10 @@ import { TTS } from '../../lib/tts.js';
    Tekrar kullanılabilir "🔊" butonu. Herhangi bir metni sesli okur.
    Diskalküli araştırması (Apostolidou 2025): işitsel destek bilişsel yükü azaltır. */
 export function SpeakButton({text,lang,ttsOn,size=14,title}){
-  if(!ttsOn||!TTS.isAvailable()||!text) return null;
+  // canSpeak: bu dilde GERÇEKTEN okuma yapılabiliyor mu? Kurmancî'de gerçek ku/kmr sesi
+  // yoksa artık sessiz kalınıyor (2026-07-19 kararı); düğmeyi ekranda bırakmak, basınca
+  // hiçbir şey olmadığı için "uygulama bozuk" izlenimi verirdi.
+  if(!ttsOn||!TTS.isAvailable()||!TTS.canSpeak(lang)||!text) return null;
   return (
     <button
       onClick={e=>{e.stopPropagation();TTS.speak(text,lang);}}

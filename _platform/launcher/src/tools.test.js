@@ -3,12 +3,12 @@ import { TOOLS, TOOL_CATEGORIES } from './tools.js';
 
 describe('TOOLS kataloğu', () => {
   it('tam olarak 7 araç içerir', () => {
-    expect(TOOLS).toHaveLength(7);
+    expect(TOOLS).toHaveLength(8);
   });
 
   it('beklenen tüm araçları kapsar', () => {
     const ids = TOOLS.map((t) => t.id).sort();
-    expect(ids).toEqual(['bar', 'basamak', 'clock', 'geo', 'kesir', 'tam', 'veri']);
+    expect(ids).toEqual(['bar', 'basamak', 'clock', 'geo', 'kesir', 'tam', 'veri', 'zihinden']);
   });
 
   it('her araç 5 dili sağlar (tr, ku, en, ar, fa)', () => {
@@ -38,13 +38,13 @@ describe('TOOLS kataloğu', () => {
     }
   });
 
-  it('dev portları benzersizdir ve 3001-3007 aralığında', () => {
+  it('dev portları benzersizdir ve 3001-3008 aralığında', () => {
     const ports = TOOLS.map((t) => parseInt(t.devUrl.split(':').pop(), 10));
     const unique = new Set(ports);
     expect(unique.size).toBe(ports.length);
     for (const p of ports) {
       expect(p).toBeGreaterThanOrEqual(3001);
-      expect(p).toBeLessThanOrEqual(3007);
+      expect(p).toBeLessThanOrEqual(3008);
     }
   });
 

@@ -45,4 +45,5 @@ export const ar = {
   autoGroup: "اجمع في ١٠!",
   readNum: readArabic,
   ttsLang: "ar-SA",
+  activityStarted: "بدأ النشاط",
 };

@@ -2,6 +2,7 @@ import { SHAPE_DEF } from '../../constants/shapes2d.js';
 import { P, CAT_META } from '../../constants/palette.js';
 import { LANGS } from '../../constants/i18n.js';
 import { symmCount } from '../../utils/geometry.js';
+import { pickLabel, pickText } from '../../utils/label.js';
 
 // ── Özellikler Paneli ──
 export function PropsPanel({item,lang,dispatch}){
@@ -30,8 +31,8 @@ export function PropsPanel({item,lang,dispatch}){
       <span style={{fontSize:12,fontWeight:800,color:c||P.text}}>{val}</span>
     </div>
   );
-  const shLabel=lang==="ku"?def.labelKu:lang==="en"?def.labelEn:def.label;
-  const catLabel=lang==="ku"?cat.labelKu:lang==="en"?cat.labelEn:cat.label;
+  const shLabel=pickLabel(def,lang);
+  const catLabel=pickLabel(cat,lang);
   return (
     <div style={{padding:"8px 10px"}}>
       <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:8,

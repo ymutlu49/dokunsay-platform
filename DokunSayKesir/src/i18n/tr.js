@@ -241,4 +241,10 @@ export default {
   "act.37.d": "YANILGI: 'Farklı paydalı kesirler denk olamaz.' ya da 'Farklı paydalı her iki kesir birbirine denktir.' DOĞRU: 1/2 = 2/4 = 3/6 denk, ama 4/8 ≠ 5/10 değilken 6/8 = 9/12. Pay VE paydayı aynı sayıyla çarp/böl. Her tıklamada farklı örnek gelir — bazıları denk, bazıları değil! = ile doğrula, sayı doğrularındaki konumlara bak. (Pesen, 2008)",
   "act.38.n": "Y15: Yarısı = 2'ye mi 1/2'ye mi böl?",
   "act.38.d": "YANILGI: 'Bir kesrin YARISINI bulmak için 1/2'ye bölmek gerekir.' DOĞRU: Yarısı = 2'ye BÖLMEK = 1/2 ile ÇARPMAK. 1/2'ye bölmek sonucu İKİ KAT eder (büyütür), yarıya indirmez! 1/2 × 1/2 = 1/4 (yarının yarısı, doğru). 1/2 ÷ 1/2 = 1 (yanılgı). Sol: 1/2, orta: 1/2, × ve = hazır. Sağ modele 1/4 koy! (Fischbein ve ark., 1985; Tirosh, 2000)",
+  "act.39.n": "B1: Sonuç 1'den büyük mü?",
+  "act.39.d": "Sen seç: iki kesir çubuğu koy ve topla. Ama ÖNCE tahmin et — sonuç 1 bütünden büyük mü, küçük mü? Sonra modelle kontrol et. İpucu yok.",
+  "act.40.n": "T1: 3 Pizza, 4 Kişi",
+  "act.40.d": "3 pizzayı 4 arkadaş EŞİT paylaşacak. Her birine ne düşer? Modellerle göster, sonra cevabını bir kesir olarak yaz ve nasıl bulduğunu anlat.",
+  "act.41.n": "T2: Sen Kesir Sor",
+  "act.41.d": "Sıra sende: bir kesir kur ama arkadaşına gösterme. İpucu ver — 'yarımdan büyük, bütünden küçük, paydası 8'. Arkadaşın bulabilir mi?",
 };

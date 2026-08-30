@@ -4,6 +4,7 @@ import MaterialsTab from "./MaterialsTab";
 import ActivitiesTab from "./ActivitiesTab";
 import SidebarFooter from "./SidebarFooter";
 import UserMenu from "../auth/UserMenu";
+import { AppTabs } from "@shared/AppTabs.jsx";
 
 interface SidebarProps {
   lang: Language;
@@ -15,6 +16,7 @@ interface SidebarProps {
   onDashboard: () => void;
   showLabels: boolean;
   showNumberLine: boolean;
+  showSentence: boolean;
   covered: boolean;
   canUndo: boolean;
   canRedo: boolean;
@@ -38,6 +40,7 @@ interface SidebarProps {
   onRedo: () => void;
   onToggleLabels: () => void;
   onToggleNumberLine: () => void;
+  onToggleSentence: () => void;
   onToggleCover: () => void;
   onSave: () => void;
   onLoad: () => void;
@@ -67,7 +70,7 @@ export default function Sidebar(props: SidebarProps) {
       role="navigation"
       aria-label="DokunSay"
       style={{
-        width: collapsed ? 48 : 210, minWidth: collapsed ? 48 : 210,
+        width: collapsed ? 52 : 220, minWidth: collapsed ? 52 : 220,
         background: palette.panel,
         borderRight: `2px solid ${palette.brd}`,
         display: "flex", flexDirection: "column",
@@ -93,27 +96,18 @@ export default function Sidebar(props: SidebarProps) {
 
       {!collapsed && (
         <>
-          {/* Tabs */}
-          <div style={{ display: "flex", borderBottom: `1px solid ${palette.brd}` }}>
-            {(["mat", "act"] as const).map((tab) => (
-              <button
-                key={tab}
-                onClick={() => props.onSetSideTab(tab)}
-                style={{
-                  flex: 1, padding: "6px 0", border: "none",
-                  borderBottom: sideTab === tab ? "3px solid #f59e0b" : "3px solid transparent",
-                  background: "transparent", cursor: "pointer",
-                  fontSize: 10, fontWeight: 800,
-                  color: sideTab === tab ? (isDark ? "#fff" : palette.tx) : palette.sub,
-                  fontFamily: "inherit",
-                }}
-              >
-                {tab === "mat"
-                  ? `📦 ${translate("material", lang)}`
-                  : `📋 ${translate("activity", lang)}`}
-              </button>
-            ))}
-          </div>
+          {/* Tabs — ortak AppTabs bileşeni (tüm DokunSay uygulamalarında aynı görünüm) */}
+          <AppTabs
+            tabs={[
+              { id: "mat", icon: "📦", label: translate("material", lang) },
+              { id: "act", icon: "📋", label: translate("activity", lang) },
+            ]}
+            active={sideTab}
+            onChange={(id) => props.onSetSideTab(id as "mat" | "act")}
+            isDark={isDark}
+            variant="pills"
+            ariaLabel={translate("material", lang) + " / " + translate("activity", lang)}
+          />
 
           {sideTab === "mat" && (
             <MaterialsTab
@@ -143,6 +137,7 @@ export default function Sidebar(props: SidebarProps) {
             lang={lang} palette={palette} isDark={isDark}
             showLabels={props.showLabels}
             showNumberLine={props.showNumberLine}
+            showSentence={props.showSentence}
             covered={props.covered}
             canUndo={props.canUndo}
             canRedo={props.canRedo}
@@ -151,6 +146,7 @@ export default function Sidebar(props: SidebarProps) {
             onRedo={props.onRedo}
             onToggleLabels={props.onToggleLabels}
             onToggleNumberLine={props.onToggleNumberLine}
+            onToggleSentence={props.onToggleSentence}
             onToggleCover={props.onToggleCover}
             onSave={props.onSave}
             onLoad={props.onLoad}

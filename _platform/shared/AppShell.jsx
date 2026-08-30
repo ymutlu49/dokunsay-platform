@@ -1,5 +1,5 @@
 /**
- * DokunSay Platform — Ortak Uygulama Kabuğu (AppShell)
+ * Her Çocuk Matematik Öğrenebilir (HÇMÖ) — Ortak Uygulama Kabuğu (AppShell)
  *
  * Tüm DokunSay uygulamalarının dış çerçevesini sağlar:
  * - Renk (app'in accent'i), tipografi (Nunito), arka plan
@@ -14,8 +14,9 @@
  *   </AppShell>
  *
  * `backHref`: "Menüye Dön" butonunun gideceği URL. Varsayılan:
- *   - dev  → http://localhost:3000/ (launcher dev sunucusu)
- *   - prod → ../ (bulunduğu alt dizinden üst dizine)
+ *   - dev → http://localhost:3000/ (launcher dev sunucusu)
+ *   - WordPress (HÇMÖ umbrella host hercocukmatematikogrenebilir.com, /dokunsay/<App>/) → /araclar/ (virtual page)
+ *   - Diğer prod (dist-site, GitHub Pages) → ../ (üst dizin = launcher)
  * `showBack={false}` ile bağımsız açılımda gizlenir.
  */
 
@@ -28,8 +29,15 @@ function computeBackHref() {
   if (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.DEV) {
     return 'http://localhost:3000/';
   }
-  // Prod: bir üst dizine git (GitHub Pages alt-yol yapısına uygun)
   try {
+    // WordPress kurulumu: uygulamalar /dokunsay/<App>/ altında, ama
+    // /dokunsay/ gerçek bir sayfa değil; menü /araclar/ virtual sayfasında.
+    // '..' kullanırsak umbrella ana sayfasına (hercocukmatematikogrenebilir.com) düşer.
+    const path = window.location.pathname || '';
+    if (path.indexOf('/dokunsay/') !== -1) {
+      return '/araclar/';
+    }
+    // dist-site (GitHub Pages vb.): launcher root'ta — bir üst dizine git
     return new URL('..', window.location.href).pathname;
   } catch {
     return '../';

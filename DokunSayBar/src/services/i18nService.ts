@@ -15,7 +15,7 @@ type TranslationKey =
   | "undo" | "redo" | "labels" | "numline"
   | "cover" | "reveal" | "note" | "save" | "load"
   | "png" | "print" | "hint"
-  | "trashY" | "trashN" | "nlDesc" | "textPh"
+  | "trashY" | "trashN" | "nlDesc" | "sentenceDesc" | "textPh"
   | "checkOk" | "checkNo" | "checkNone"
   | "speakBtn" | "checkBtn"
   | "keşif" | "oyun" | "sayma" | "işlem" | "tahmin"
@@ -26,6 +26,10 @@ type TranslationKey =
   | "shortcuts" | "voiceCommands" | "closeHint"
   | "delete" | "copy" | "countTTS"
   | "read" | "check"
+  | "help" | "fullscreen" | "close"
+  | "colorBlue" | "colorRed"
+  | "gridNone" | "gridSquare" | "gridDot" | "gridLine"
+  | "jumpArcs" | "newPage" | "deletePage"
   /* About */
   | "about" | "aboutSubtitle" | "aboutDescription" | "aboutCreators"
   | "aboutRoleMutlu" | "aboutNameDemirtas" | "aboutRoleDemirtas" | "aboutMission"
@@ -62,6 +66,7 @@ const TRANSLATIONS: Record<Language, Record<TranslationKey, string>> = {
     hint: "Soldan çubuk seçerek başlayın",
     trashY: "Bırak — Sil", trashN: "Silmek için buraya sürükle",
     nlDesc: "Sayı Doğrusu",
+    sentenceDesc: "Sembolik ve sözel gösterim",
     textPh: "Metin yazın...",
     checkOk: "Harika! Doğru!",
     checkNo: "Henüz tam değil. Tekrar dene!",
@@ -79,6 +84,10 @@ const TRANSLATIONS: Record<Language, Record<TranslationKey, string>> = {
     closeHint: "Kapatmak için herhangi bir yere tıklayın",
     delete: "Sil", copy: "Kopyala", countTTS: "Sesli say (TTS)",
     read: "Oku", check: "Kontrol",
+    help: "Yardım", fullscreen: "Tam ekran", close: "Kapat",
+    colorBlue: "Mavi", colorRed: "Kırmızı",
+    gridNone: "Izgara yok", gridSquare: "Kare ızgara", gridDot: "Nokta ızgara", gridLine: "Çizgi ızgara",
+    jumpArcs: "Sıçrama yayları", newPage: "Yeni sayfa", deletePage: "Sayfayı sil",
     about: "Hakkında",
     aboutSubtitle: "Sayı Çubukları ile Matematik Öğrenme Platformu",
     aboutDescription: "DokunSay, Prof. Dr. Yılmaz Mutlu ve Matematik Öğretmeni Çiğdem Demirtaş tarafından geliştirilen DokunSay Sayı Çubukları Seti'nin dijital uyarlamasıdır. Bu interaktif platform, somut manipülatif temelli öğretim yaklaşımıyla çocukların sayı kavramını, temel aritmetik işlemlerini ve matematiksel düşünme becerilerini geliştirmelerini desteklemek amacıyla tasarlanmıştır.",
@@ -122,13 +131,14 @@ const TRANSLATIONS: Record<Language, Record<TranslationKey, string>> = {
     clear: "Paqij Bike", start: "Dest Pê Bike",
     sel: "Hilbijêre", draw: "Bikişîne", write: "Binivîse", erase: "Jê Bibe",
     undo: "Paş", redo: "Pêş",
-    labels: "Etîket", numline: "Hêl",
+    labels: "Etîket", numline: "Jimarxêz",
     cover: "Bigire", reveal: "Veke",
     note: "Not", save: "Tomar Bike", load: "Bar Bike",
     png: "PNG Daxîne", print: "Çap Bike",
     hint: "Ji milê çepê çovikek hilbijêre",
     trashY: "Berde — Jê Bibe", trashN: "Ji bo jêbirinê bikişîne vir",
-    nlDesc: "Hêla Hejmaran",
+    nlDesc: "Jimarxêz",
+    sentenceDesc: "Nîşandana sembolîk û devkî",
     textPh: "Li vir binivîse...",
     checkOk: "Pîroz be! Rast e!",
     checkNo: "Hê temam nebûye. Careke din biceribîne!",
@@ -146,6 +156,10 @@ const TRANSLATIONS: Record<Language, Record<TranslationKey, string>> = {
     closeHint: "Ji bo girtinê li her derê bitikîne",
     delete: "Jê bibe", copy: "Kopî bike", countTTS: "Bijmêre (TTS)",
     read: "Bixwîne", check: "Kontrol",
+    help: "Arîkarî", fullscreen: "Ekrana tijî", close: "Bigire",
+    colorBlue: "Şîn", colorRed: "Sor",
+    gridNone: "Bê tor", gridSquare: "Tora çargoşe", gridDot: "Tora xalan", gridLine: "Tora xêzan",
+    jumpArcs: "Kevanên çengê", newPage: "Rûpela nû", deletePage: "Rûpelê jê bibe",
     about: "Derbarê",
     aboutSubtitle: "Platforma Fêrbûna Matematîkê bi Çovikên Hejmaran",
     aboutDescription: "DokunSay, guhertoya dîjîtal a DokunSay Çovikên Hejmaran e ku ji aliyê Prof. Dr. Yılmaz Mutlu û Mamosteyê Matematîkê Çiğdem Demirtaş ve hatiye pêşxistin. Ev platforma înteraktîf, bi nêzîkatiya hînkirinê ya li ser amûrên berçav, ji bo piştgirîkirina zarokan di pêşxistina têgeha hejmaran, hesabên bingehîn û jêhatîbûna ramana matematîkî de hatiye sêwirandin.",
@@ -196,6 +210,7 @@ const TRANSLATIONS: Record<Language, Record<TranslationKey, string>> = {
     hint: "Select a rod from the left panel to begin",
     trashY: "Release — Delete", trashN: "Drag here to delete",
     nlDesc: "Number Line",
+    sentenceDesc: "Symbolic and verbal display",
     textPh: "Type text...",
     checkOk: "Well done! Correct!",
     checkNo: "Not quite right. Try again!",
@@ -213,6 +228,10 @@ const TRANSLATIONS: Record<Language, Record<TranslationKey, string>> = {
     closeHint: "Click anywhere to close",
     delete: "Delete", copy: "Copy", countTTS: "Count aloud (TTS)",
     read: "Read", check: "Check",
+    help: "Help", fullscreen: "Fullscreen", close: "Close",
+    colorBlue: "Blue", colorRed: "Red",
+    gridNone: "No grid", gridSquare: "Square grid", gridDot: "Dot grid", gridLine: "Line grid",
+    jumpArcs: "Jump arcs", newPage: "New page", deletePage: "Delete page",
     about: "About",
     aboutSubtitle: "Mathematics Learning Platform with Number Rods",
     aboutDescription: "DokunSay is the digital adaptation of the DokunSay Number Rods Set, developed by Prof. Dr. Yılmaz Mutlu and Mathematics Teacher Çiğdem Demirtaş. This interactive platform is designed to support children in developing number sense, basic arithmetic operations, and mathematical thinking skills through a concrete manipulative-based instructional approach.",
@@ -263,6 +282,7 @@ const TRANSLATIONS: Record<Language, Record<TranslationKey, string>> = {
     hint: "اختر قضيبًا من اللوحة الجانبية للبدء",
     trashY: "أفلت — حذف", trashN: "اسحب إلى هنا للحذف",
     nlDesc: "خط الأعداد",
+    sentenceDesc: "عرض رمزي ولفظي",
     textPh: "اكتب نصًّا...",
     checkOk: "أحسنت! إجابة صحيحة!",
     checkNo: "ليس صحيحًا تمامًا. حاول مرة أخرى!",
@@ -280,6 +300,10 @@ const TRANSLATIONS: Record<Language, Record<TranslationKey, string>> = {
     closeHint: "انقر في أي مكان للإغلاق",
     delete: "حذف", copy: "نسخ", countTTS: "عدّ بصوت عالٍ",
     read: "اقرأ", check: "تحقّق",
+    help: "مساعدة", fullscreen: "ملء الشاشة", close: "إغلاق",
+    colorBlue: "أزرق", colorRed: "أحمر",
+    gridNone: "بدون شبكة", gridSquare: "شبكة مربّعة", gridDot: "شبكة نقطية", gridLine: "شبكة خطية",
+    jumpArcs: "أقواس القفز", newPage: "صفحة جديدة", deletePage: "حذف الصفحة",
     about: "حول التطبيق",
     aboutSubtitle: "منصة تعلّم الرياضيات بقضبان الأعداد",
     aboutDescription: "دوكون ساي هو التطبيق الرقمي لمجموعة قضبان الأعداد DokunSay التي طوّرها الأستاذ الدكتور يلماز موتلو ومعلمة الرياضيات تشيدم دميرتاش. صُمّمت هذه المنصة التفاعلية لدعم الأطفال في تطوير الحسّ العددي والعمليات الحسابية الأساسية ومهارات التفكير الرياضي من خلال منهج تعليمي قائم على الأدوات المحسوسة.",
@@ -330,6 +354,7 @@ const TRANSLATIONS: Record<Language, Record<TranslationKey, string>> = {
     hint: "برای شروع، یک میله از پنل کناری انتخاب کنید",
     trashY: "رها کنید — حذف", trashN: "برای حذف به اینجا بکشید",
     nlDesc: "خط اعداد",
+    sentenceDesc: "نمایش نمادین و کلامی",
     textPh: "متن بنویسید...",
     checkOk: "آفرین! درست است!",
     checkNo: "هنوز کامل نیست. دوباره امتحان کن!",
@@ -347,6 +372,10 @@ const TRANSLATIONS: Record<Language, Record<TranslationKey, string>> = {
     closeHint: "برای بستن، هر جایی کلیک کنید",
     delete: "حذف", copy: "کپی", countTTS: "شمارش با صدا",
     read: "بخوان", check: "بررسی",
+    help: "راهنما", fullscreen: "تمام‌صفحه", close: "بستن",
+    colorBlue: "آبی", colorRed: "قرمز",
+    gridNone: "بدون شبکه", gridSquare: "شبکه مربعی", gridDot: "شبکه نقطه‌ای", gridLine: "شبکه خطی",
+    jumpArcs: "کمان‌های پرش", newPage: "صفحه جدید", deletePage: "حذف صفحه",
     about: "درباره",
     aboutSubtitle: "پلتفرم یادگیری ریاضی با میله‌های اعداد",
     aboutDescription: "دوکون‌سای نسخه دیجیتال مجموعه میله‌های اعداد DokunSay است که توسط پروفسور دکتر یلماز موتلو و معلم ریاضی چیدم دمیرتاش توسعه یافته است. این پلتفرم تعاملی با رویکرد آموزشی مبتنی بر ابزارهای دست‌ورزی عینی، برای حمایت از کودکان در توسعه درک عددی، عملیات حسابی پایه و مهارت‌های تفکر ریاضی طراحی شده است.",

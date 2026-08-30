@@ -102,7 +102,7 @@ export default function AboutModal({ lang, onClose }: AboutModalProps) {
             fontFamily: "inherit",
           }}
         >
-          {t("closeHint").split(",")[0] || "OK"}
+          {t("close")}
         </button>
       </div>
     </div>

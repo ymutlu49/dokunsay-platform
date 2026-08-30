@@ -1,0 +1,786 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Kesirler — Çalışma Yaprakları · DokunSay</title>
+<meta name="description" content="Kesirler öğrenme yörüngesi için her düzeye bir baskıya hazır çalışma yaprağı. CRA (somut→temsilî→soyut) temelli, diskalkuli-dostu. Clements &amp; Sarama.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{ --c:#2E7D32; --ink:#1f2733; --body:#39434f; --mut:#7c8aa0; --line:#e7e2d6; --paper:#fffdf7; --tint:color-mix(in srgb, var(--c) 8%, #fffdf7); }
+*{ box-sizing:border-box; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+html,body{ margin:0; background:#eceae3; font-family:'Lexend',system-ui,Segoe UI,sans-serif; color:var(--body); }
+.bar{ position:sticky; top:0; z-index:9; display:flex; gap:14px; align-items:center; justify-content:space-between;
+  background:#fff; border-bottom:1px solid #dcd8cd; padding:11px 18px; box-shadow:0 1px 6px rgba(0,0,0,.05); }
+.bar .t{ font-family:'Poppins',sans-serif; font-weight:700; color:var(--ink); font-size:15px; }
+.bar .t small{ display:block; font-weight:500; color:var(--mut); font-size:12px; }
+.bar .actions{ display:flex; gap:9px; }
+.btn{ font-family:'Poppins',sans-serif; font-weight:600; font-size:13.5px; border:0; border-radius:10px; padding:9px 15px; cursor:pointer; text-decoration:none; }
+.btn-print{ background:var(--c); color:#fff; } .btn-back{ background:#eef1f4; color:#334155; }
+.wrap{ max-width:880px; margin:18px auto 40px; padding:0 14px; }
+
+/* ── A4 çalışma yaprağı ───────────────────────────────────────────── */
+.sheet{ background:var(--paper); width:210mm; height:297mm; overflow:hidden; margin:0 auto 20px; padding:11mm 13mm 6mm;
+  border-radius:4px; box-shadow:0 6px 26px rgba(31,39,51,.13); position:relative;
+  display:flex; flex-direction:column; gap:1.8mm; }
+.lbl{ display:inline-block; font-family:'Poppins',sans-serif; font-weight:700; font-size:10.5pt; color:var(--c); letter-spacing:.2px; margin-bottom:2px; }
+
+.ws-head{ border-bottom:3px solid var(--c); padding-bottom:7px; }
+.ws-top{ display:flex; justify-content:space-between; align-items:center; font-size:10pt; color:var(--mut); }
+.ws-brand{ display:inline-flex; align-items:center; gap:7px; font-family:'Poppins',sans-serif; }
+.ws-brand b{ color:var(--ink); } .logo{ width:22px; height:22px; }
+.ws-name{ font-size:9.5pt; } .nl{ display:inline-block; width:34mm; border-bottom:1.4px dotted #b8c0cc; } .nl.sm{ width:24mm; }
+.ws-eyebrow{ font-family:'Poppins',sans-serif; font-weight:600; font-size:10pt; color:var(--c); margin-top:8px; text-transform:uppercase; letter-spacing:.4px; }
+.ws-title{ font-family:'Poppins',sans-serif; font-weight:800; font-size:18pt; line-height:1.1; color:var(--ink); margin:2px 0 6px; display:flex; align-items:baseline; gap:8px; }
+.ws-no{ background:var(--c); color:#fff; font-size:12pt; min-width:27px; height:27px; padding:0 6px; border-radius:8px; display:inline-flex; align-items:center; justify-content:center; }
+.ws-meta{ display:flex; flex-wrap:wrap; gap:7px; align-items:center; }
+.pill{ font-family:'Poppins',sans-serif; font-weight:600; font-size:9.5pt; background:#eef2f7; color:#475569; border-radius:20px; padding:4px 11px; }
+.pill.warn{ background:#fff3e2; color:#9a3412; }
+.cra{ display:inline-flex; align-items:center; gap:4px; margin-left:auto; }
+.cra-s{ font-family:'Poppins',sans-serif; font-weight:600; font-size:9pt; color:#94a3b8; background:#f1f4f8; border-radius:7px; padding:3px 9px; }
+.cra-s.on{ color:#fff; } .cra-arr{ color:#cbd5e1; font-size:10pt; }
+
+.ws-obj{ background:var(--tint); border-radius:10px; padding:7px 12px; }
+.ws-obj p{ margin:1px 0 0; font-size:11pt; line-height:1.42; color:var(--ink); }
+.ws-method .msteps{ margin:1px 0 0; padding-left:0; list-style:none; display:flex; flex-direction:column; gap:2px; counter-reset:m; }
+.ws-method .msteps li{ font-size:10pt; line-height:1.32; padding-left:26px; position:relative; }
+.ws-method .msteps li::before{ counter-increment:m; content:counter(m); position:absolute; left:0; top:0;
+  width:21px; height:21px; border-radius:50%; background:var(--c); color:#fff; font-family:'Poppins',sans-serif; font-weight:700; font-size:10pt; display:flex; align-items:center; justify-content:center; }
+.ws-method .msteps b{ color:var(--c); }
+
+.ws-egbox{ background:#f4f8f5; border:1.5px dashed color-mix(in srgb,var(--c) 45%,#cbd5e1); border-radius:10px; padding:6px 12px 7px; }
+.ws-egbox .lbl{ color:color-mix(in srgb,var(--c) 70%, #166534); }
+
+.items-grid{ display:grid; grid-template-columns:1fr 1fr; gap:5px; margin-top:2px; align-items:start; }
+.ex{ border:1.4px solid var(--line); border-radius:11px; padding:7px 10px 8px; background:#fff; break-inside:avoid; }
+.ex.wide{ grid-column:1 / -1; }
+.ex.eg{ border:0; padding:2px 0 0; background:transparent; grid-column:1 / -1; }
+.ex-q{ display:flex; gap:7px; align-items:flex-start; }
+.ex-no{ flex:0 0 auto; width:22px; height:22px; border-radius:50%; background:var(--c); color:#fff; font-family:'Poppins',sans-serif; font-weight:700; font-size:10.5pt; display:flex; align-items:center; justify-content:center; }
+.ex.eg .ex-no{ background:#fef3c7; }
+.ex-q p{ margin:1px 0 0; font-size:10.8pt; line-height:1.4; color:var(--ink); }
+.ex-v{ margin:4px 0 3px; text-align:center; } .ex-a{ margin:0; text-align:center; }
+.ex.wide .ex-v, .ex.wide .ex-a, .ex.eg .ex-v, .ex.eg .ex-a{ text-align:left; margin-left:30px; }
+
+/* SVG görseller — içsel boyut ama A4'e sığması için yükseklik sınırlı */
+.ws-svg{ max-width:100%; width:auto; height:auto; vertical-align:middle; }
+.ex-v .ws-svg{ max-height:16mm; }
+.ex-v .ws-svg.ws-tall{ max-height:17mm; }
+.ws-egbox .ex-v .ws-svg{ max-height:12mm; } .ws-egbox .ex-v .ws-svg.ws-tall{ max-height:13mm; }
+.ex-v .ws-frac{ max-height:26mm; } .ws-svg.ws-frac{ width:auto; max-height:26mm; } svg.ws-glyph{ width:12mm; height:12mm; }
+.pat-row{ display:flex; align-items:center; gap:7px; flex-wrap:wrap; }
+.pat-c svg{ width:13mm; height:13mm; } .pat-q{ width:13mm; height:13mm; border:2px dashed #b8c0cc; border-radius:8px; display:inline-flex; align-items:center; justify-content:center; font-family:'Poppins',sans-serif; font-weight:800; font-size:16pt; color:#b8c0cc; }
+
+/* Yanıt alanları */
+.wbox{ display:inline-block; width:14mm; height:14mm; border:2px solid #94a3b8; border-radius:8px; vertical-align:middle; margin:0 3px; background:#fff; }
+.wbox.wbox-lg{ width:18mm; height:14mm; border-color:var(--c); }
+.eqrow{ display:flex; align-items:center; flex-wrap:wrap; gap:5px; font-family:'Poppins',sans-serif; font-weight:600; font-size:15pt; color:var(--ink); }
+.bignum{ font-family:'Poppins',sans-serif; font-weight:700; font-size:17pt; color:var(--ink); } .bignum.sm{ font-size:14pt; padding:0 3px; }
+.seqn{ font-family:'Poppins',sans-serif; font-weight:600; font-size:14pt; } .seqsep{ color:#94a3b8; }
+.ans-hint{ margin:5px 0 0 0; font-size:10.5pt; color:var(--mut); font-style:normal; }
+.ans-shown{ font-family:'Poppins',sans-serif; font-size:14pt; color:#166534; }
+
+.ws-scaffold{ display:flex; gap:8px; flex-wrap:wrap; }
+.sc{ flex:1 1 44%; font-size:9.8pt; line-height:1.30; border-radius:9px; padding:5px 10px; }
+.sc-easy{ background:#eef4fb; } .sc-easy b{ color:#1d4ed8; }
+.sc-hard{ background:#f5f0fb; } .sc-hard b{ color:#7c3aed; }
+
+.ws-foot{ margin-top:auto; padding-top:5px; border-top:1px solid var(--line); display:flex; flex-direction:column; gap:4px; }
+.ws-check{ background:#f0fdf4; border-radius:9px; padding:5px 11px; font-size:10pt; line-height:1.35; color:#166534; display:flex; justify-content:space-between; align-items:center; gap:10px; }
+.ws-check b{ color:#15803d; } .stars{ font-size:14pt; color:#f59e0b; letter-spacing:2px; white-space:nowrap; }
+.ws-credit{ font-size:7.8pt; color:var(--mut); line-height:1.35; display:flex; flex-direction:column; gap:1px; }
+.ws-credit .mat{ color:#475569; }
+.ws-credit a{ color:#475569; }
+/* Kavram yanılgısı şeridi. Punto (8.7pt) künyeden (7.8pt) büyük ama gövde metninden
+   küçük: öğretmene yönelik ikincil bilgi, çocuğun göreviyle yarışmamalı. Yapraklar
+   milimetrik dolu olduğu için bu ölçüler A4 taşmasına karşı ölçülerek seçildi. */
+.ws-mis{ background:#fff7ed; border-left:3px solid #fb923c; border-radius:9px; padding:3px 10px; font-size:8.7pt; line-height:1.26; color:#7c2d12; }
+.ws-mis b{ color:#9a3412; font-weight:700; }
+.ws-mis .mis-cite{ color:#a16207; white-space:nowrap; }
+
+/* ── Baskı ─────────────────────────────────────────────────────────── */
+@media print{
+  @page{ size:A4; margin:0; }
+  html,body{ background:#fff; }
+  .bar,.wrap>.intro{ display:none !important; }
+  .wrap{ margin:0; padding:0; max-width:none; }
+  .sheet{ width:210mm; height:297mm; margin:0; border-radius:0; box-shadow:none; overflow:hidden; break-before:page; }
+  .sheet:first-child{ break-before:avoid; }
+}
+.intro{ background:#fff; border-radius:14px; padding:16px 20px; margin-bottom:18px; box-shadow:0 2px 10px rgba(0,0,0,.05); }
+.intro h2{ font-family:'Poppins',sans-serif; margin:0 0 5px; color:var(--ink); font-size:18px; }
+.intro p{ margin:0; font-size:13.5px; line-height:1.55; color:#5b6573; }
+</style>
+</head>
+<body>
+<div class="bar no-print">
+  <span class="t">🍕 Kesirler — Çalışma Yaprakları<small>11 düzey · Sayılar ve İşlemler · CRA temelli · DokunSay materyalleriyle</small></span>
+  <span class="actions">
+    <a class="btn btn-back" href="./">← Yörüngeye dön</a>
+    <button class="btn btn-print" onclick="window.print()">🖨️ Yazdır / PDF kaydet</button>
+  </span>
+</div>
+<div class="wrap">
+  <div class="intro no-print">
+    <h2>Kesirler · Çalışma Yaprakları · DokunSay materyalleriyle</h2>
+    <p>Her düzey için bir baskıya-hazır A4 çalışma yaprağı — <b>tüm görseller gerçek DokunSay Kesir materyalinin çizimleridir</b> (sayı çubuğu + pul, onluk kart, Basamak blokları, Kesir, Geo). Çocuk önce <b>somut araçla</b> yapar, sonra <b>sayfadaki aynı materyalin çiziminde</b> gösterir, en sonda <b>sembolü yazar</b> — sayfa ile araç birebir örtüşür. Çocuğun düzeyinden başlayın; ✓ölçütü karşılayınca sonraki yaprağa geçin.</p>
+  </div>
+  <section class="sheet" style="--c:#2E7D32">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🍕 Sayılar ve İşlemler · Kesirler</div>
+    <h1 class="ws-title"><span class="ws-no">1</span>Oranı Sezen: Temeller</h1>
+    <div class="ws-meta">
+      <span class="pill">0–4 yaş</span>
+      <span class="pill">Düzey 1/11</span>
+      
+      <span class="cra"><span class="cra-s on" style="background:#2E7D32">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Oranlara ilişkin sezgisel bir duyarlılık vardır: miktarların göreli büyüklüğünü (az–çok, yarısı–tamamı) açık bilgi olmadan ayırt eder.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Kesir ile elle yap — paylaşılacak özdeş nesneler (kurabiye, kraker, üzüm).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Baktım: paylar aynı kadar — adil.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 252 46" width="252" height="46" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><rect x="0" y="2" width="126" height="42" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/><rect x="126" y="2" width="126" height="42" fill="#fffdf7" stroke="#b91c1c" stroke-width="2"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">aynı kadar</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>Bu iki pay aynı kadar mı? Bakarak söyle.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 252 46" width="252" height="46" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><rect x="0" y="2" width="126" height="42" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/><rect x="126" y="2" width="126" height="42" fill="#fffdf7" stroke="#b91c1c" stroke-width="2"/></svg></div>
+    <div class="ex-a"><p class="ans-hint">○ aynı kadar</p></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Kurabiyeyi arkadaşınla bölüşeceksin. Nasıl olmalı?</p></div>
+    
+    <div class="ex-a"><p class="ans-hint">○ aynı kadar olmalı</p></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> İki kişiye, az sayıda (2–4) özdeş nesne dağıttırın; siz model olun.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Üç kişiye dağıttırın ya da &quot;birer fazla kaldı, ne yapalım?&quot; diye düşündürün.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Miktarı biçimle karıştırır: uzun ince bardaktaki suyu, geniş bardaktakinden çok sanır. <b>→ Ne yapmalı:</b> Aynı suyu iki kaba dök, sonra geri dök; 'aynı su' dedirt. <span class="mis-cite">📖 Piaget &amp; Inhelder (1974)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Paylaşırken &quot;eşit/adil&quot; olmaya çalışır ya da eşitsizliği fark edip itiraz ederse ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 paylaşılacak özdeş nesneler (kurabiye, kraker, üzüm) · iki oyuncak/kukla (&quot;misafir&quot;) · iki küçük tabak</span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/frac/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#2E7D32">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🍕 Sayılar ve İşlemler · Kesirler</div>
+    <h1 class="ws-title"><span class="ws-no">2</span>Şekli Eş Parçalara Bölen</h1>
+    <div class="ws-meta">
+      <span class="pill">4–6 yaş</span>
+      <span class="pill">Düzey 2/11</span>
+      <span class="pill warn">★ Kritik geçiş</span>
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#2E7D32">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Daire ya da dikdörtgen gibi bir bütün şekli eş parçalara böler; paylaşım bağlamında parçaların &quot;aynı büyüklükte&quot; olması gerektiğini gözetmeye başlar.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Kesir ile elle yap — katlanabilir kâğıt daireler/şeritler (&quot;pizza&quot;, &quot;çikolata&quot;).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>İkiye böldüm, üst üste koydum: çakıştı — eş parça.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 252 46" width="252" height="46" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><rect x="0" y="2" width="126" height="42" fill="#fffdf7" stroke="#b91c1c" stroke-width="2"/><rect x="126" y="2" width="126" height="42" fill="#fffdf7" stroke="#b91c1c" stroke-width="2"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">eş parça</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>Çubuğu iki kişiye böl. Parçalar ÇAKIŞIYOR mu?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 252 46" width="252" height="46" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><rect x="0" y="2" width="126" height="42" fill="#fffdf7" stroke="#b91c1c" stroke-width="2"/><rect x="126" y="2" width="126" height="42" fill="#fffdf7" stroke="#b91c1c" stroke-width="2"/></svg></div>
+    <div class="ex-a"><p class="ans-hint">○ üst üste koy, çakışmalı</p></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Kâğıdı katla, sonra aç: parçalar eş çıktı mı?</p></div>
+    
+    <div class="ex-a"><p class="ans-hint">○ katlayıp denetle</p></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Yalnız ikiye bölmeyle ve katlama yardımıyla çalışın; şerit (dikdörtgen) kullanın — katlaması kolaydır.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Daireyi dörde, üçe bölmeyi isteyin (üç parça katlamayla zordur — eşitliği tartıştırın).</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Bütünü böler ama parçaları eşitlemez; farklı büyüklükteki parçalara da 'eş parça' der. <b>→ Ne yapmalı:</b> Parçaları üst üste bindirt; çakışmıyorsa yeniden kestir. <span class="mis-cite">📖 Streefland (1991)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Bir şekli istenen sayıda (önce 2, sonra 4) gözle denk / üst üste çakışan eşit parçaya bölerse ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 katlanabilir kâğıt daireler/şeritler (&quot;pizza&quot;, &quot;çikolata&quot;) · DokunSay Kesir aracı (bar modeli) · kontrol için makas (parçaları üst üste koyma) <a href="https://dokunsay.com/DokunSayKesir/">🔗 dokunsay.com/DokunSayKesir/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/frac/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#2E7D32">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🍕 Sayılar ve İşlemler · Kesirler</div>
+    <h1 class="ws-title"><span class="ws-no">3</span>Yarımı Tanıyan</h1>
+    <div class="ws-meta">
+      <span class="pill">5–7 yaş</span>
+      <span class="pill">Düzey 3/11</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#2E7D32">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>En azından sürekli (alan) gösterimlerde, özellikle adil paylaşım bağlamında &quot;yarım&quot;ı tanır.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Kesir ile elle yap — ikiye bölünebilen nesneler/kâğıtlar (elma, çikolata, daire).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>İki eş parçadan biri: yarım. İkisi birleşince bütün.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 92 92" width="92" height="92" class="ws-svg ws-frac" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="46" cy="46" r="40" fill="#fffdf7" stroke="#b91c1c" stroke-width="2.5"/><path d="M46 46 L46 6 A40 40 0 0 1 46 86 Z" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/><path d="M46 46 L46 86 A40 40 0 0 1 45.99999999999999 6 Z" fill="#fffdf7" stroke="#b91c1c" stroke-width="2"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">yarım</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex">
+    <div class="ex-q"><span class="ex-no">1</span><p>Boyalı parçanın adı ne?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 92 92" width="92" height="92" class="ws-svg ws-frac" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="46" cy="46" r="40" fill="#fffdf7" stroke="#b91c1c" stroke-width="2.5"/><path d="M46 46 L46 6 A40 40 0 0 1 46 86 Z" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/><path d="M46 46 L46 86 A40 40 0 0 1 45.99999999999999 6 Z" fill="#fffdf7" stroke="#b91c1c" stroke-width="2"/></svg></div>
+    <div class="ex-a"><p class="ans-hint">○ yarım</p></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>İki yarım birleşince ne olur?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 92 92" width="92" height="92" class="ws-svg ws-frac" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="46" cy="46" r="40" fill="#fffdf7" stroke="#b91c1c" stroke-width="2.5"/><path d="M46 46 L46 6 A40 40 0 0 1 46 86 Z" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/><path d="M46 46 L46 86 A40 40 0 0 1 45.99999999999999 6 Z" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/></svg></div>
+    <div class="ex-a"><p class="ans-hint">○ bir bütün</p></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>Bir elmanın yarısını göster. Kaç eş parçadan biri?</p></div>
+    
+    <div class="ex-a"><p class="ans-hint">○ 2 eş parçadan 1'i</p></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Hep aynı şekille (daire) çalışın; &quot;yarım&quot;ı siz adlandırıp tekrarlatın.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Farklı şekillerde (kare, şerit, bardak su) yarımı buldurun; &quot;çeyrek de var mı?&quot; diye uzatın.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> İkiye ayrılmış her şeye 'yarım' der; eş olmayan iki parçadan büyüğünü yarım sayar. <b>→ Ne yapmalı:</b> Kâğıdı katlat-açtır; iki parça çakışmazsa yarım olmadığını söylet. <span class="mis-cite">📖 Clements &amp; Sarama (2009)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> İki eşit parçadan birini &quot;yarım&quot; diye tanır/oluşturur VE iki yarımın bütün ettiğini söylerse ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 ikiye bölünebilen nesneler/kâğıtlar (elma, çikolata, daire) · DokunSay Kesir aracı (bar modeli, pasta grafik) · iki denk parça (yarımlar) <a href="https://dokunsay.com/DokunSayKesir/">🔗 dokunsay.com/DokunSayKesir/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/frac/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#2E7D32">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🍕 Sayılar ve İşlemler · Kesirler</div>
+    <h1 class="ws-title"><span class="ws-no">4</span>Birim Kesri Tanıyan</h1>
+    <div class="ws-meta">
+      <span class="pill">8–9 yaş</span>
+      <span class="pill">Düzey 4/11</span>
+      <span class="pill warn">★ Kritik geçiş</span>
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#2E7D32">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Basit ayrık (nesne grubu) ve kimi sürekli (alan) gösterimlerde birim kesirleri (1/2, 1/3, 1/4) tanır.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Kesir ile elle yap — DokunSay Kesir aracı (pasta grafik + bar modeli).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Bütün 4 eşe bölündü, ben birini aldım: 1/4.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 92 92" width="92" height="92" class="ws-svg ws-frac" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="46" cy="46" r="40" fill="#fffdf7" stroke="#b91c1c" stroke-width="2.5"/><path d="M46 46 L46 6 A40 40 0 0 1 86 46 Z" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/><path d="M46 46 L86 46 A40 40 0 0 1 46 86 Z" fill="#fffdf7" stroke="#b91c1c" stroke-width="2"/><path d="M46 46 L46 86 A40 40 0 0 1 6 46.00000000000001 Z" fill="#fffdf7" stroke="#b91c1c" stroke-width="2"/><path d="M46 46 L6 46.00000000000001 A40 40 0 0 1 45.99999999999999 6 Z" fill="#fffdf7" stroke="#b91c1c" stroke-width="2"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">1/4</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex">
+    <div class="ex-q"><span class="ex-no">1</span><p>Bütün kaça bölündü? Bir parçanın adı ne?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 92 92" width="92" height="92" class="ws-svg ws-frac" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="46" cy="46" r="40" fill="#fffdf7" stroke="#b91c1c" stroke-width="2.5"/><path d="M46 46 L46 6 A40 40 0 0 1 86 46 Z" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/><path d="M46 46 L86 46 A40 40 0 0 1 46 86 Z" fill="#fffdf7" stroke="#b91c1c" stroke-width="2"/><path d="M46 46 L46 86 A40 40 0 0 1 6 46.00000000000001 Z" fill="#fffdf7" stroke="#b91c1c" stroke-width="2"/><path d="M46 46 L6 46.00000000000001 A40 40 0 0 1 45.99999999999999 6 Z" fill="#fffdf7" stroke="#b91c1c" stroke-width="2"/></svg></div>
+    <div class="ex-a"><div class="eqrow"><span class="wbox"></span>/<span class="wbox"></span></div></div>
+  </div><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">2</span><p>Buradaki alt sayı (payda) neyi gösteriyor?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 252 46" width="252" height="46" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><rect x="0" y="2" width="84" height="42" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/><rect x="84" y="2" width="84" height="42" fill="#fffdf7" stroke="#b91c1c" stroke-width="2"/><rect x="168" y="2" width="84" height="42" fill="#fffdf7" stroke="#b91c1c" stroke-width="2"/></svg></div>
+    <div class="ex-a"><p class="ans-hint">○ bütün kaça bölündü</p></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>1/5'i kendin çiz. Kaç eş parça yapmalısın?</p></div>
+    
+    <div class="ex-a"><p class="ans-hint">○ 5 eş parça, birini boya</p></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Yalnız 1/2 ve 1/4 ile çalışın; pastayı önceden eşit bölünmüş verin, o yalnız adlandırsın.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> 1/3, 1/6, 1/8 ekleyin; &quot;1/3 mü büyük 1/5 mi?&quot; gibi yalnız sözlü/zihinden karşılaştırtın.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> 1/4'ü 'dört parça' diye okur; paydayı alınan parça sayısı sanır. <b>→ Ne yapmalı:</b> Dört eş dilimden birini boyat; 'dörtte bir' derken tek dilimi göster. <span class="mis-cite">📖 Behr, Lesh, Post &amp; Silver (1983)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Bir bütünü n eşit parçaya bölüp bir parçayı 1/n diye doğru adlandırır VE payda büyüdükçe parçanın küçüldüğünü (1/2 &gt; 1/4) gösterirse ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay Kesir aracı (pasta grafik + bar modeli) · kesir daireleri (1/2, 1/3, 1/4 dilimleri) · katlanabilir kâğıt şeritler <a href="https://dokunsay.com/DokunSayKesir/">🔗 dokunsay.com/DokunSayKesir/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/frac/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#2E7D32">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🍕 Sayılar ve İşlemler · Kesirler</div>
+    <h1 class="ws-title"><span class="ws-no">5</span>Kesri Tanıyan</h1>
+    <div class="ws-meta">
+      <span class="pill">8–9 yaş</span>
+      <span class="pill">Düzey 5/11</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#2E7D32">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Paydası küçük basit kesirleri (örn. 2/3, 3/4) tanıdık sürekli (alan) ve ayrık (nesne grubu) bağlamlarda tanır.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Kesir ile elle yap — DokunSay Kesir aracı (bar modeli + pasta grafik).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>4 eş parçanın 3'ü dolu: pay 3, payda 4 → 3/4.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 252 46" width="252" height="46" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><rect x="0" y="2" width="63" height="42" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/><rect x="63" y="2" width="63" height="42" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/><rect x="126" y="2" width="63" height="42" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/><rect x="189" y="2" width="63" height="42" fill="#fffdf7" stroke="#b91c1c" stroke-width="2"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">3/4</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>Kaç parça dolu, bütün kaça bölünmüş? Kesri yaz.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 252 46" width="252" height="46" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><rect x="0" y="2" width="63" height="42" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/><rect x="63" y="2" width="63" height="42" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/><rect x="126" y="2" width="63" height="42" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/><rect x="189" y="2" width="63" height="42" fill="#fffdf7" stroke="#b91c1c" stroke-width="2"/></svg></div>
+    <div class="ex-a"><div class="eqrow"><span class="wbox"></span>/<span class="wbox"></span></div></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Bu daireyi kesirle oku.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 92 92" width="92" height="92" class="ws-svg ws-frac" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="46" cy="46" r="40" fill="#fffdf7" stroke="#b91c1c" stroke-width="2.5"/><path d="M46 46 L46 6 A40 40 0 0 1 80.64101615137756 66 Z" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/><path d="M46 46 L80.64101615137756 66 A40 40 0 0 1 11.358983848622458 66.00000000000001 Z" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/><path d="M46 46 L11.358983848622458 66.00000000000001 A40 40 0 0 1 45.99999999999999 6 Z" fill="#fffdf7" stroke="#b91c1c" stroke-width="2"/></svg></div>
+    <div class="ex-a"><div class="eqrow"><span class="wbox"></span>/<span class="wbox"></span></div></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>2/5'te üstteki 2 neyi söylüyor?</p></div>
+    
+    <div class="ex-a"><p class="ans-hint">○ kaç parça alındığını</p></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Paydası 2 ve 4 olan kesirlerle (1/2, 3/4) sınırlı kalın; doluları birlikte sayın.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Paydası 5–8 olan kesirler ve &quot;bu kesirde kaç parça boş?&quot; (tümleyen) sorusu ekleyin.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Nesne grubunda paydayı yok sayar: 8 elmanın 3/4'ü için 3 elma alır. <b>→ Ne yapmalı:</b> 8 elmayı 4 eş yığına ayırt, sonra 3 yığını birlikte saydır. <span class="mis-cite">📖 Behr, Lesh, Post &amp; Silver (1983)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Pay &gt; 1 olan kesirleri (3/4, 2/3) bütünün parça yapısını okuyarak doğru adlandırır ve pay/paydanın anlamını ayırt ederse ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay Kesir aracı (bar modeli + pasta grafik) · kesir çubukları (1/2, 1/3, 1/4, 1/5 takımları) · kesir kartları (3/4, 2/3 yazılı) <a href="https://dokunsay.com/DokunSayKesir/">🔗 dokunsay.com/DokunSayKesir/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/frac/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#2E7D32">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🍕 Sayılar ve İşlemler · Kesirler</div>
+    <h1 class="ws-title"><span class="ws-no">6</span>Birim Kesirlerden Kesir Oluşturan</h1>
+    <div class="ws-meta">
+      <span class="pill">9–10 yaş</span>
+      <span class="pill">Düzey 6/11</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#2E7D32">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Eş parçalar ve birim kesrin doğru sayıda yinelenmesiyle bir kesir gösterimi oluşturur; kesri yazılı gösterimle (pay/payda) etiketler.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Kesir ile elle yap — DokunSay Kesir aracı (bar modeli).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Üç tane 1/4 yan yana koydum, 3/4 oldu.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 252 46" width="252" height="46" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><rect x="0" y="2" width="63" height="42" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/><rect x="63" y="2" width="63" height="42" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/><rect x="126" y="2" width="63" height="42" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/><rect x="189" y="2" width="63" height="42" fill="#fffdf7" stroke="#b91c1c" stroke-width="2"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">1/4 + 1/4 + 1/4 = 3/4</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>1/4'lerden 3/4 KUR: kaç tane 1/4 gerekli?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 252 46" width="252" height="46" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><rect x="0" y="2" width="63" height="42" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/><rect x="63" y="2" width="63" height="42" fill="#fffdf7" stroke="#b91c1c" stroke-width="2"/><rect x="126" y="2" width="63" height="42" fill="#fffdf7" stroke="#b91c1c" stroke-width="2"/><rect x="189" y="2" width="63" height="42" fill="#fffdf7" stroke="#b91c1c" stroke-width="2"/></svg></div>
+    <div class="ex-a"><div class="eqrow">1/4 + 1/4 + 1/4 = <span class="wbox wbox-lg"></span></div></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>2/3 kurmak için kaç tane 1/3 alırsın?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 92 92" width="92" height="92" class="ws-svg ws-frac" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="46" cy="46" r="40" fill="#fffdf7" stroke="#b91c1c" stroke-width="2.5"/><path d="M46 46 L46 6 A40 40 0 0 1 80.64101615137756 66 Z" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/><path d="M46 46 L80.64101615137756 66 A40 40 0 0 1 11.358983848622458 66.00000000000001 Z" fill="#fffdf7" stroke="#b91c1c" stroke-width="2"/><path d="M46 46 L11.358983848622458 66.00000000000001 A40 40 0 0 1 45.99999999999999 6 Z" fill="#fffdf7" stroke="#b91c1c" stroke-width="2"/></svg></div>
+    <div class="ex-a"><div class="eqrow"><span class="wbox"></span> tane 1/3</div></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>Kaç tane alacağını hangi sayıdan okudun?</p></div>
+    
+    <div class="ex-a"><p class="ans-hint">○ paydan — üstteki sayı</p></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Hedefi birim kesir + bir fazla (2/4, 2/3) tutun; siz ilk parçayı koyup o sürdürsün.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Bir bütünü aşan istek (5/4) ya da iki farklı paydadan seçtirip doğru olanı kullandırın.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Kesri iki ayrı tam sayı gibi okur; 3/4'ü 'üç ve dört' diye söyler. <b>→ Ne yapmalı:</b> 1/4 şeridini üç kez yan yana koydurt, sonra 3/4 yazdır. <span class="mis-cite">📖 Kieren (1976)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Verilen birim kesirlerden (1/n) istenen kesri (m/n), doğru sayıda parçayı birleştirerek oluşturursa ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay Kesir aracı (bar modeli) · tek tip birim kesir parçaları (yalnız 1/4'ler, ayrıca 1/3'ler) · hedef kesir kartları (3/4, 2/3) <a href="https://dokunsay.com/DokunSayKesir/">🔗 dokunsay.com/DokunSayKesir/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/frac/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#2E7D32">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🍕 Sayılar ve İşlemler · Kesirler</div>
+    <h1 class="ws-title"><span class="ws-no">7</span>Kesir Oluşturan</h1>
+    <div class="ws-meta">
+      <span class="pill">9–10 yaş</span>
+      <span class="pill">Düzey 7/11</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#2E7D32">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Birim ya da birim olmayan kesirlerin yinelenmesiyle, bütünü aşmayan (&quot;bütünün parçası&quot;) kesir gösterimleri oluşturur.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Kesir ile elle yap — DokunSay Kesir aracı (bar modeli + pasta grafik).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Bütünü 6'ya böldüm, 5'ini aldım: 5/6 — bir parça eksik.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 252 46" width="252" height="46" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><rect x="0" y="2" width="42" height="42" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/><rect x="42" y="2" width="42" height="42" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/><rect x="84" y="2" width="42" height="42" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/><rect x="126" y="2" width="42" height="42" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/><rect x="168" y="2" width="42" height="42" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/><rect x="210" y="2" width="42" height="42" fill="#fffdf7" stroke="#b91c1c" stroke-width="2"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">5/6</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>Bütünü sen böl ve 5/6 oluştur.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 252 46" width="252" height="46" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><rect x="0" y="2" width="42" height="42" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/><rect x="42" y="2" width="42" height="42" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/><rect x="84" y="2" width="42" height="42" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/><rect x="126" y="2" width="42" height="42" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/><rect x="168" y="2" width="42" height="42" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/><rect x="210" y="2" width="42" height="42" fill="#fffdf7" stroke="#b91c1c" stroke-width="2"/></svg></div>
+    <div class="ex-a"><p class="ans-hint">○ 6 eş parça, 5'ini boya</p></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Bu kesir bütüne ne kadar yakın? Ne eksik?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 92 92" width="92" height="92" class="ws-svg ws-frac" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="46" cy="46" r="40" fill="#fffdf7" stroke="#b91c1c" stroke-width="2.5"/><path d="M46 46 L46 6 A40 40 0 0 1 80.64101615137754 26 Z" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/><path d="M46 46 L80.64101615137754 26 A40 40 0 0 1 80.64101615137756 66 Z" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/><path d="M46 46 L80.64101615137756 66 A40 40 0 0 1 46 86 Z" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/><path d="M46 46 L46 86 A40 40 0 0 1 11.358983848622458 66.00000000000001 Z" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/><path d="M46 46 L11.358983848622458 66.00000000000001 A40 40 0 0 1 11.358983848622458 25.999999999999996 Z" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/><path d="M46 46 L11.358983848622458 25.999999999999996 A40 40 0 0 1 45.99999999999999 6 Z" fill="#fffdf7" stroke="#b91c1c" stroke-width="2"/></svg></div>
+    <div class="ex-a"><p class="ans-hint">○ bir parça eksik</p></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>Bir kesir seç ve arkadaşına kurdur.</p></div>
+    
+    <div class="ex-a"><p class="ans-hint">○ paydayı ve payı sen söyle</p></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Paydası ≤4 kesirlerle (3/4, 2/3) ve hazır bölünmüş bütünle başlayın.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Paydası 6–10 kesirler, bir bütünü aşan kesir (7/6) ya da yalnız sözlü tarif ekleyin.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Farklı boydaki bütünlerden alınan yarımları eşit sayar; bütünü göz ardı eder. <b>→ Ne yapmalı:</b> Kısa ve uzun şeritten birer yarım kestirt, yan yana koydur. <span class="mis-cite">📖 Mack (1990)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> İstenen herhangi bir kesri (m/n), bütünü doğru paydaya bölüp doğru sayıda pay alarak kendisi oluşturursa ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay Kesir aracı (bar modeli + pasta grafik) · bölünebilir bütün şablonları (boş bar/daire) · kesir kartları (5/6, 3/8, 4/5) <a href="https://dokunsay.com/DokunSayKesir/">🔗 dokunsay.com/DokunSayKesir/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/frac/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#2E7D32">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🍕 Sayılar ve İşlemler · Kesirler</div>
+    <h1 class="ws-title"><span class="ws-no">8</span>Kesri Tekrarlayıp Bütünü Aşan</h1>
+    <div class="ws-meta">
+      <span class="pill">10–11 yaş</span>
+      <span class="pill">Düzey 8/11</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#2E7D32">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Kesir birimini yineleyerek bütünden büyük sonuçlar dahil gösterimler oluşturur (örn. 5/4); kesri referans bütüne bağlı bir sayı olarak anlar.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Kesir ile elle yap — DokunSay Kesir aracı (bar modeli + sayı doğrusu).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>1/4'ü dört kez yerleştirdim: 4/4, tam bir bütün.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 92 92" width="92" height="92" class="ws-svg ws-frac" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="46" cy="46" r="40" fill="#fffdf7" stroke="#b91c1c" stroke-width="2.5"/><path d="M46 46 L46 6 A40 40 0 0 1 86 46 Z" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/><path d="M46 46 L86 46 A40 40 0 0 1 46 86 Z" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/><path d="M46 46 L46 86 A40 40 0 0 1 6 46.00000000000001 Z" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/><path d="M46 46 L6 46.00000000000001 A40 40 0 0 1 45.99999999999999 6 Z" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">4/4 = 1</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>Kaç tane 1/4 bir bütün eder?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 252 46" width="252" height="46" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><rect x="0" y="2" width="63" height="42" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/><rect x="63" y="2" width="63" height="42" fill="#fffdf7" stroke="#b91c1c" stroke-width="2"/><rect x="126" y="2" width="63" height="42" fill="#fffdf7" stroke="#b91c1c" stroke-width="2"/><rect x="189" y="2" width="63" height="42" fill="#fffdf7" stroke="#b91c1c" stroke-width="2"/></svg></div>
+    <div class="ex-a"><div class="eqrow"><span class="wbox"></span> tane → 4/4 = 1</div></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Bir bütünden fazlası: 5/4 ne demek?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 92 92" width="92" height="92" class="ws-svg ws-frac" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="46" cy="46" r="40" fill="#fffdf7" stroke="#b91c1c" stroke-width="2.5"/><path d="M46 46 L46 6 A40 40 0 0 1 86 46 Z" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/><path d="M46 46 L86 46 A40 40 0 0 1 46 86 Z" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/><path d="M46 46 L46 86 A40 40 0 0 1 6 46.00000000000001 Z" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/><path d="M46 46 L6 46.00000000000001 A40 40 0 0 1 45.99999999999999 6 Z" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/></svg></div>
+    <div class="ex-a"><p class="ans-hint">○ bir bütün ve bir 1/4 daha</p></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>1/3'ü tekrarla: 4 tane olursa bütünü aştın mı?</p></div>
+    
+    <div class="ex-a"><p class="ans-hint">○ aştım — 4/3 > 1</p></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Yalnız 1/2 ve 1/4 ile; bütünü doldurmaya (n/n) odaklanın.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Bütünü aşan tekrar (5/4, 7/3) ve &quot;kaç tane 1/6 yarım eder?&quot; gibi ara hedefler.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> 5/4 'olamaz' der; pay paydadan büyük olunca kesrin bütünü aşamayacağını sanır. <b>→ Ne yapmalı:</b> İki bütün daire ver; 1/4'leri saydırıp beşinciyi ikinciden aldır. <span class="mis-cite">📖 Streefland (1991)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Bir birim kesri tekrarlayarak bütünü yapar (n tane 1/n = 1) VE kaç tekrarın hangi kesri verdiğini söylerse ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay Kesir aracı (bar modeli + sayı doğrusu) · tek bir birim kesir parçası (1/4, 1/3) · ölçü için boş bir bütün şerit <a href="https://dokunsay.com/DokunSayKesir/">🔗 dokunsay.com/DokunSayKesir/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/frac/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#2E7D32">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🍕 Sayılar ve İşlemler · Kesirler</div>
+    <h1 class="ws-title"><span class="ws-no">9</span>Kesirlerle Toplama–Çıkarma Yapan</h1>
+    <div class="ws-meta">
+      <span class="pill">10–11 yaş</span>
+      <span class="pill">Düzey 9/11</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#2E7D32">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Basit yaygın kesirleri somut modeller kullanarak toplar ve çıkarır.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Kesir ile elle yap — DokunSay Kesir aracı (bar modeli).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Bir parça ve iki parça — üç parça: payda 4 sabit.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 252 46" width="252" height="46" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><rect x="0" y="2" width="63" height="42" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/><rect x="63" y="2" width="63" height="42" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/><rect x="126" y="2" width="63" height="42" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/><rect x="189" y="2" width="63" height="42" fill="#fffdf7" stroke="#b91c1c" stroke-width="2"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">1/4 + 2/4 = 3/4</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>1/4 ile 2/4'yi yan yana diz. Kaç parça oldu?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 252 46" width="252" height="46" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><rect x="0" y="2" width="63" height="42" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/><rect x="63" y="2" width="63" height="42" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/><rect x="126" y="2" width="63" height="42" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/><rect x="189" y="2" width="63" height="42" fill="#fffdf7" stroke="#b91c1c" stroke-width="2"/></svg></div>
+    <div class="ex-a"><div class="eqrow">1/4 + 2/4 = <span class="wbox wbox-lg"></span></div></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Payda neden değişmedi? Anlat.</p></div>
+    
+    <div class="ex-a"><p class="ans-hint">○ parçaların boyu aynı kaldı</p></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Yalnız toplama, küçük paylar (1/4 + 1/4), sonuç bütünü aşmasın; parçaları birlikte sayın.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Bütünü aşan toplamlar (5/6 + 3/6), ardışık iki işlem ya da yalnız semboller (çubuksuz).</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Paydaları da toplar: 1/4 + 2/4 sonucunu 3/8 der. <b>→ Ne yapmalı:</b> Aynı şeritten 1/4 ile 2/4'ü birleştirtip bütüne ölçtür. <span class="mis-cite">📖 Hart (1981)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Paydası eşit kesirlerde payları toplayıp/çıkararak doğru sonucu bulur VE paydanın neden değişmediğini açıklarsa ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay Kesir aracı (bar modeli) · aynı paydalı kesir çubukları (1/4'lük, 1/5'lik takımlar) · işlem kartları (1/4 + 2/4, 3/5 − 1/5) <a href="https://dokunsay.com/DokunSayKesir/">🔗 dokunsay.com/DokunSayKesir/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/frac/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#2E7D32">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🍕 Sayılar ve İşlemler · Kesirler</div>
+    <h1 class="ws-title"><span class="ws-no">10</span>Kesirlerle Çarpma–Bölme Yapan</h1>
+    <div class="ws-meta">
+      <span class="pill">11–12 yaş</span>
+      <span class="pill">Düzey 10/11</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#2E7D32">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Basit yaygın kesirleri dikdörtgen alan (dizilim) modeli kullanarak çarpar.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Kesir ile elle yap — DokunSay Kesir aracı (bar/alan modeli + pasta grafik).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Yarımı üçe böldüm; minik parça bütünün 1/6'sı.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 92 92" width="92" height="92" class="ws-svg ws-frac" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="46" cy="46" r="40" fill="#fffdf7" stroke="#b91c1c" stroke-width="2.5"/><path d="M46 46 L46 6 A40 40 0 0 1 80.64101615137754 26 Z" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/><path d="M46 46 L80.64101615137754 26 A40 40 0 0 1 80.64101615137756 66 Z" fill="#fffdf7" stroke="#b91c1c" stroke-width="2"/><path d="M46 46 L80.64101615137756 66 A40 40 0 0 1 46 86 Z" fill="#fffdf7" stroke="#b91c1c" stroke-width="2"/><path d="M46 46 L46 86 A40 40 0 0 1 11.358983848622458 66.00000000000001 Z" fill="#fffdf7" stroke="#b91c1c" stroke-width="2"/><path d="M46 46 L11.358983848622458 66.00000000000001 A40 40 0 0 1 11.358983848622458 25.999999999999996 Z" fill="#fffdf7" stroke="#b91c1c" stroke-width="2"/><path d="M46 46 L11.358983848622458 25.999999999999996 A40 40 0 0 1 45.99999999999999 6 Z" fill="#fffdf7" stroke="#b91c1c" stroke-width="2"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">1/2'nin 1/3'ü = 1/6</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex">
+    <div class="ex-q"><span class="ex-no">1</span><p>Yarımı üçe böl. Küçük parça bütünün kaçta kaçı?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 92 92" width="92" height="92" class="ws-svg ws-frac" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="46" cy="46" r="40" fill="#fffdf7" stroke="#b91c1c" stroke-width="2.5"/><path d="M46 46 L46 6 A40 40 0 0 1 80.64101615137754 26 Z" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/><path d="M46 46 L80.64101615137754 26 A40 40 0 0 1 80.64101615137756 66 Z" fill="#fffdf7" stroke="#b91c1c" stroke-width="2"/><path d="M46 46 L80.64101615137756 66 A40 40 0 0 1 46 86 Z" fill="#fffdf7" stroke="#b91c1c" stroke-width="2"/><path d="M46 46 L46 86 A40 40 0 0 1 11.358983848622458 66.00000000000001 Z" fill="#fffdf7" stroke="#b91c1c" stroke-width="2"/><path d="M46 46 L11.358983848622458 66.00000000000001 A40 40 0 0 1 11.358983848622458 25.999999999999996 Z" fill="#fffdf7" stroke="#b91c1c" stroke-width="2"/><path d="M46 46 L11.358983848622458 25.999999999999996 A40 40 0 0 1 45.99999999999999 6 Z" fill="#fffdf7" stroke="#b91c1c" stroke-width="2"/></svg></div>
+    <div class="ex-a"><div class="eqrow">1/2'nin 1/3'ü = <span class="wbox wbox-lg"></span></div></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Gerçek parçalarla dene: 1/2’yi ikiye böl. Ne elde ettin?</p></div>
+    
+    <div class="ex-a"><div class="eqrow">= <span class="wbox wbox-lg"></span></div></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>Parçayı böldükçe payda büyüyor mu, küçülüyor mu?</p></div>
+    
+    <div class="ex-a"><p class="ans-hint">○ payda büyür, parça küçülür</p></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Yalnız birim kesir çarpımları (1/2'nin 1/2'si) ve &quot;bütünde kaç yarım var&quot; gibi kolay bölme.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Pay &gt; 1 kesirlerle (2/3'ün 3/4'ü) ya da kesre bölme (1/2 ÷ 1/4) ekleyin.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Çarpma hep büyütür sanır; 1/2 × 1/3 sonucunu çarpanlardan büyük bekler. <b>→ Ne yapmalı:</b> Kâğıdı önce 1/2, sonra dik yönde 1/3 katlat; ortak parçayı saydır. <span class="mis-cite">📖 Ni &amp; Zhou (2005)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> &quot;Bir kesrin kesri&quot;ni (çarpma) ya da &quot;bütünde kaç birim kesir var&quot;ı (bölme) modelle doğru bulur VE sonucun yönünü (küçülme/büyüme) açıklarsa ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay Kesir aracı (bar/alan modeli + pasta grafik) · iki yöne bölünebilen ızgara/bar · işlem kartları (1/2'nin 1/3'ü, 1 ÷ 1/4) <a href="https://dokunsay.com/DokunSayKesir/">🔗 dokunsay.com/DokunSayKesir/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/frac/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#2E7D32">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🍕 Sayılar ve İşlemler · Kesirler</div>
+    <h1 class="ws-title"><span class="ws-no">11</span>Kesir ve Tam Sayıları Sıralayan</h1>
+    <div class="ws-meta">
+      <span class="pill">11–12 yaş</span>
+      <span class="pill">Düzey 11/11</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#2E7D32">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Basit oranları yüzde, kesir ve ondalık gösterimle ifade eder; tam sayıları, pozitif kesirleri ve ondalıkları sıralar.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Kesir ile elle yap — DokunSay Kesir aracı (sayı doğrusu + bar modeli).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>4 parçadan 3'ü dolu: 3/4 — yarımdan çok, 1'den az.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 252 46" width="252" height="46" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><rect x="0" y="2" width="63" height="42" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/><rect x="63" y="2" width="63" height="42" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/><rect x="126" y="2" width="63" height="42" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/><rect x="189" y="2" width="63" height="42" fill="#fffdf7" stroke="#b91c1c" stroke-width="2"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">1/2 < 3/4 < 1</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>1/2, 3/4 ve 1'i doğruya yerleştir.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 420 56" width="420" height="56" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><line x1="22" y1="34" x2="398" y2="34" stroke="#6d28d9" stroke-width="3"/><polygon points="398,34 389,29 389,39" fill="#6d28d9"/><line x1="22" y1="28" x2="22" y2="40" stroke="#8b5cf6" stroke-width="2"/><text x="22" y="57" font-size="14" fill="#5b21b6" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="600">0</text><line x1="210" y1="28" x2="210" y2="40" stroke="#8b5cf6" stroke-width="2"/><text x="210" y="57" font-size="14" fill="#5b21b6" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="600">1</text><line x1="398" y1="28" x2="398" y2="40" stroke="#8b5cf6" stroke-width="2"/><text x="398" y="57" font-size="14" fill="#5b21b6" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="600">2</text><circle cx="210" cy="34" r="6.5" fill="#8b5cf6" stroke="#6d28d9" stroke-width="1.6"/></svg></div>
+    <div class="ex-a"><p class="ans-hint">○ 1/2 · 3/4 · 1</p></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>2/3 ile 1/3'ten hangisi büyük? Neden?</p></div>
+    
+    <div class="ex-a"><p class="ans-hint">○ aynı parçadan daha çok var</p></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Yalnız 1/2, 1 ve bir kesir (3/4) ile; bar modeliyle uzunlukları karşılaştırtın.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Farklı paydalı kesirleri (2/3, 3/4, 5/6) ve bütünü aşan kesirleri (7/4) birlikte sıralatın.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Payda büyükse kesir de büyüktür sanır: 1/8 &gt; 1/4 der. <b>→ Ne yapmalı:</b> 1/4 ve 1/8 şeritlerini üst üste koydur; hangisi uzun diye sordur. <span class="mis-cite">📖 Ni &amp; Zhou (2005)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Kesirleri ve tam sayıları sayı doğrusunda doğru konumlandırıp büyüklüğe göre sıralar VE 1/2 veya 1 çıpasıyla gerekçelendirirse ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay Kesir aracı (sayı doğrusu + bar modeli) · 0–2 arası boş sayı doğrusu şeridi · yerleştirilecek kesir/tam sayı kartları (1/2, 3/4, 1, 5/4) <a href="https://dokunsay.com/DokunSayKesir/">🔗 dokunsay.com/DokunSayKesir/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/frac/</span>
+    </div>
+  </div>
+</section>
+</div>
+</body>
+</html>

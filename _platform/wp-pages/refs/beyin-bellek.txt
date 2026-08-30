@@ -1,0 +1,562 @@
+Beyin, Bellek ve Sayılar: Diskalkuliye Çok Boyutlu Bir Yaklaşım Öz et Giriş: Bu makale, diskalkulinin temel tanımını, nörobiyolojik ve bilişsel boyutlarını ortaya koymayı amaçlamaktadır.
+iskalkuli, matematiksel becerilerde beklenmedik, kalıcı ve şiddetli güçlüklerle tanımlanan özgül bir öğrenme güçlüğüdür.
+öntem: Kuramsal ve alanyazın taramasına dayalı olarak, diskalkulinin tanı ölçütleri, yaygınlık oranları, heterojen yapısı ile matematik kaygısı, dikkat eksikliği ve disleksi gibi eşgörü durumları incelenmiştir.
+ulgular: Bulgular, genetik ve nörobiyolojik faktörlerden çevresel etkenlere uzanan çok boyutlu etkileşimin diskalkulinin ortaya çıkışında etkili olduğunu göstermektedir.
+iskalkulinin diğer öğrenme güçlükleriyle sıkça bir arada görülmesi, tanılama ve müdahale süreçlerini karmaşıklaştırmaktadır.
+artışma: Sayısal işlemleme, çalışma belleği ve yürütücü işlevlerdeki güçlükler, öğrencilerin akademik performansını ve duygusal iyilik hâlini olumsuz etkileyebilir.
+rken tanı ve bütüncül yaklaşımlar, hem öğrencilerin matematik başarısını hem de özgüven düzeylerini artırmada kritik önem taşımaktadır.
+iskalkuli, yalnızca “matematik başarısızlığı” olarak ele alınamayacak kadar çok yönlü bir öğrenme güçlüğüdür.
+ok boyutlu değerlendirme, bireyselleştirilmiş öğretim ve aile-okul iş birliği, bu alanda sürdürülebilir olumlu gelişmeler sağlamaktadır Anahtar kelimeler : diskalkuli, öğrenme güçlüğü, matematik kaygısı, çalışma belleği, disleksi, dikkat eksikliği, erken tanı.
+rain, Memory and Numbers: A Multidimensional Approach to Dyscalculia Abstract Introduction: This article aims to present the basic definition, neurobiological and cognitive dimensions of dyscalculia.
+yscalculia is a specific learning disability characterized by unexpected, persistent, and severe difficulties in mathematical skills.
+ethod: Based on theoretical and literature review, the diagnostic criteria of dyscalculia, prevalence rates, heterogeneous structure, and comorbid conditions such as math anxiety, attention deficit, and dyslexia were examined.
+esults: The findings indicate that a multidimensional interaction ranging from genetic and neurobiological factors to environmental influences is effective in the emergence of dyscalculia.
+he frequent co-occurrence of dyscalculia with other learning disabilities complicates diagnosis and intervention processes.
+iscussion: Difficulties in numerical processing, working memory, and executive functions can negatively affect students' academic performance and emotional well-being.
+arly diagnosis and holistic approaches are critical in improving both students' mathematical achievement and confidence levels.
+yscalculia is a multifaceted learning disability that cannot be considered merely as "mathematical failure." Multidimensional assessment, individualized instruction, and family-school collaboration provide sustainable positive developments in this field.
+eywords: dyscalculia, learning disability, math anxiety, working memory, dyslexia, attention deficit, early diagnosis.
+iriş Matematik, bilim ve teknolojinin öncü rol oynadığı günümüz toplumunda, hem günlük yaşamda hem de akademik ve mesleki alanlarda başarının en önemli belirleyicilerinden biridir (OECD, 2019).
+emel aritmetik beceriler ve sayısal problem çözme yetkinliği, bireyin sosyoekonomik fırsatlara erişimini genişletmekle kalmaz; aynı zamanda toplumsal ilerleme ve yenilikçi uygulamaların gelişmesi için de kritik bir temel sunar.
+ununla birlikte, matematik alanındaki güçlükler bazen “yeterince çalışmama” veya “yetenek eksikliği” gibi yüzeysel sebeplere dayandırılarak göz ardı edilebilmektedir.
+ysa bu tür güçlüklerin altında yatan daha derin bilişsel ve nörobiyolojik mekanizmalar bulunabilmektedir (Mazzocco &amp; Thompson, 2005).
+iskalkuli, çocuğun genel zekâ düzeyi ve aldığı eğitimle açıklanamayacak kadar kalıcı ve şiddetli matematiksel başarısızlıkla karakterize, özgül bir öğrenme güçlüğüdür (APA, 2013; Kucian &amp; von Aster, 2015).
+oğunlukla okulöncesi veya ilkokul yıllarında sayma, temel işlem yapma ve sayı kavramını anlamlandırma güçlükleriyle kendini gösterir.
+u süreçte, diskalkuli çoğunlukla disleksi, dikkat eksikliği/hiperaktivite bozukluğu (DEHB) gibi diğer nörogelişimsel yetersizliklerle bir arada görülerek, öğrenme sürecinde daha karmaşık ve çok yönlü zorluklar yaratabilir (Willcutt ve ark., 2013).
+u makale, diskalkulinin kuramsal altyapısını, nörobiyolojik ve bilişsel etmenlerini, yaygınlık oranlarını ve tanılama süreçlerini bütüncül bir bakış açısıyla ele almayı amaçlamaktadır.
+akalenin ilk aşamalarında diskalkulinin tanımı ve türleri (gelişimsel/edinilmiş) sunulmakta; ardından genetik ve nörobiyolojik bulgulara, temel bilişsel süreçlere (sayı hissi, çalışma belleği, dikkat vb.) ve çevresel faktörlere değinilmektedir.
+iskalkulinin toplumdaki yaygınlık oranları ve bu oranlardaki değişkenliğe katkıda bulunan kesme noktaları, tanı ölçütleri ve örneklem farklılıkları incelenirken, heterojen yapısına, eşgörü durumlarına (disleksi, DEHB vb.) ve matematik kaygısıyla ilişkisinin iki yönlü etkileşimine özel vurgu yapılmaktadır.
+öylece diskalkulinin, yalnızca “matematikte başarısızlık” ekseninde değerlendirilemeyecek kadar çok boyutlu bir öğrenme güçlüğü olduğu ve erken tanılama ile sistematik desteğin, kalıcı akademik ve duygusal faydalar sağladığı bir kez daha ortaya konmaktadır.
+iskalkulinin Tanımı Diskalkuli, çoğunlukla çocuğun genel zekâ düzeyi, aldığı eğitim veya sosyokültürel imkânlarıyla açıklanamayacak kadar derin ve ısrarlı matematiksel başarısızlık olarak tanımlanmaktadır (Price &amp; Ansari, 2013).
+iteratürde, bu öğrenme güçlüğü genel olarak “gelişimsel diskalkuli” ve “edinilmiş diskalkuli” olmak üzere iki alt başlıkta incelenmektedir.
+onuç olarak bu iki türün ortak yönleri olsa da, oluşum itibariyle birbirinden ayrılan yönleri de vardır.
+elişimsel diskalkuli, doğuştan ya da erken çocukluk döneminden itibaren ortaya çıkan ve uygun eğitim fırsatlarına rağmen süreklilik gösteren matematiksel beceri eksikliğini ifade eder (Shalev &amp; Gross-Tsur, 2001; Kucian &amp; von Aster, 2015).
+u form, çocuğun temel sayı algısını kazanmaya başladığı dönemdeki sorunlarla belirgin hâle gelir ve sıklıkla disleksi, dikkat eksikliği-hiperaktivite bozukluğu (DEHB) gibi diğer nörogelişimsel farklılıklarla birlikte görülür (Rubinsten &amp; Henik, 2009).
+dinilmiş diskalkuli ise, önceki dönemde herhangi bir matematiksel güçlüğü olmayan bireyde; travma, inme, beyin hasarı veya benzeri nörolojik rahatsızlıkların ardından daha önce kazanılmış matematik becerilerinin kaybedilmesiyle ortaya çıkan tablodur (Sharma, 1990).
+u tür olgularda, beynin özellikle paryetal lob gibi sayısal işlemler için kritik öneme sahip bölgelerinde hasar bulguları tespit edilmiştir (Dehaene, 2011).
+iskalkulinin ardındaki mekanizmaları açıklayan kuramsal modeller, hem nörolojik (beynin sayısal işleme devrelerindeki farklılıklar) hem de bilişsel (çalışma belleği, dikkat ve sayı hissi gibi işlevler) boyutlara vurgu yapar (Butterworth &amp; Yeo, 2004; Menon, 2016).
+alışmalar, paryetal korteksin özellikle intraparyetal sulkus (IPS) bölgesinin, diskalkuliyle yakından ilişkili olabileceğini göstermektedir (Molko ve ark., 2003; Price ve ark., 2007).
+ilişsel açıdan ise sayısal büyüklük temsili (approximate number system) ve sayı-semantiği (anlamsal) süreçlerindeki aksaklıkların, diskalkulinin ortaya çıkışında kritik rol oynayabileceği ileri sürülmektedir (Mazzocco ve ark., 2011; Piazza ve ark., 2010).
+merikan Psikiyatri Birliği’nin (APA) Diagnostic and Statistical Manual of Mental Disorders (DSM-5) sınıflandırması, diskalkuliyi “özgül öğrenme bozukluğu” kategorisinde değerlendirir (APA, 2013).
+u sınıflandırmaya göre, diskalkuli; temel aritmetik becerilerde, sayı büyüklüğü algısında ve akıcı/doğru hesaplamada belirgin zorluk yaşanmasıyla tanımlanır; aynı zamanda bireyin yaşına ve eğitim düzeyine kıyasla beklenmedik derecede düşük matematik performansı göstermesi beklenir.
+SM-5 ayrıca, bu güçlüğün başka bir nörogelişimsel farklılıkla veya entelektüel yetersizlikle de açıklanamaması gerektiğini vurgular (APA, 2013).
+enzer şekilde, Dünya Sağlık Örgütü’nün (WHO) Uluslararası Hastalık Sınıflandırması (ICD) sisteminde de diskalkuli, “öğrenme ve gelişim bozuklukları” altında ayrı bir alt kategori olarak yer alır (WHO, 2019).
+er iki sınıflandırma sistemi de diskalkulinin tanı sürecinde, bireyin genel zekâ veya bilişsel düzeyi, yaşı ve sosyokültürel koşulları gibi etkenleri mutlaka göz önünde bulundurmak gerektiğini vurgular.
+olayısıyla diskalkuli, hem DSM hem de ICD çerçevelerinde matematik alanına özgü bir öğrenme güçlüğü olarak kabul edilmekte ve resmi tanı kriterleri içinde açıkça tanımlanmaktadır.
+iskalkulinin Nedenleri Genetik ve Nörobiyolojik Temeller Diskalkulinin nedenleri üzerine yürütülen araştırmaların önemli bir kısmı, bu öğrenme güçlüğünün basitçe tek bir faktöre atfedilemeyeceğini; aksine genetik , nörobiyolojik , bilişsel ve çevresel etkenlerin bir arada rol oynadığını göstermektedir (Kaufmann ve ark., 2013; Rubins ten &amp; Henik, 2009).
+kiz çalışmaları, bu alanyazındaki güçlü kanıtlar arasında yer alır.
+rneğin Alarcón ve arkadaşları (1997), matematik performansındaki bireysel farklılıkların kısmen kalıtsal olduğunu ve özellikle tek yumurta ikizlerinin diskalkuli riski açısından benzer profiller sergilediğini ortaya koymuştur.
+ynı doğrultuda Shalev ve çalışma arkadaşları (2001) da diskalkulinin ailevi kümelenme (familial aggregation) gösterdiğini vurgulayarak, genetik etkenlerin önemini teyit etmiştir.
+örobiyolojik temelde, paryetal lobun (özellikle intraparyetal sulkus - IPS) diskalkulide kilit bir rol oynadığı ileri sürülmektedir (Molko ve ark., 2003; Price ve ark., 2007).
+atematiksel işlemlerin temsili ve sayı büyüklüğünün kodlanmasında kritik önemi bulunan bu bölgedeki yapısal veya işlevsel anomalilerin, diskalkulide sıklıkla rapor edildiği bildirilir (Butterworth ve ark., 2011).
+yrıca frontal korteksin planlama, dikkat ve yürütücü işlevlere ilişkin kısımları da diskalkulinin şiddetini artırabilecek faktörler olarak gösterilmektedir (Menon, 2016).
+rneğin, düşük dikkat kontrolü veya zayıf yürütücü işlevler, çocuğun aritmetik problem çözme sırasında işlem adımlarını hatırlamasını ve sıra dışı stratejiler geliştirmesini zorlaştırabilir (Peng ve ark., 2018).
+ilişsel Etkenler Diskalkuliyi hazırlayan önemli bilişsel faktörlerden biri, sayı hissi (number sense) veya yaklaşık sayı sistemi (ANS) olarak adlandırılan doğuştan gelen miktar algısıdır (Mazzocco ve ark., 2011; Piazza ve ark., 2010).
+u sistem, rakamsal semboller olmaksızın yaklaşık miktarları hızlıca değerlendirip karşılaştırabilmeyi sağlar.
+azı araştırmacılar, diskalkulide bu çekirdek sistemin işlevinde bozulma olduğunu ve dolayısıyla çocuğun sembolik matematiğe temel hazırlayan mekanizmalarda zorluk yaşadığını ileri sürmektedir (Rubinsten &amp; Henik, 2009).
+alışma belleği, sayısal bilginin eşzamanlı depolanması ve işlenmesiyle ilişkilidir (Baddeley, 2000).
+iskalkulik öğrencilerde hem görsel-uzamsal hem de fonolojik döngü bileşenlerinde yetersizlikler rapor edilmiş; bu durumun, çok adımlı işlemlerde veya sözel problem çözmede zorlanmalara neden olduğu gösterilmiştir (Passolunghi &amp; Mammarella, 2012; Menon, 2016).
+yrıca dikkat eksikliği, zayıf işlemleme hızı gibi yürütücü işlev sorunlarının da diskalkulinin şiddetini artırdığı bilinmektedir (Peng ve ark., 2018).
+rneğin aritmetik işlemleri yaparken hatırlanması gereken geçici bilgiler, düşük çalışma belleği kapasitesi yüzünden kaybolabilir; bu da hesaplama yanlışlarını tetikler (Swanson, 2006).
+azı araştırmacılar, diskalkuliyi yalnızca sembolik olmayan (nokta kümeleri, yaklaşık büyüklük) işlemleme bozukluğuna değil aynı zamanda sembolik sayı işlemlemedeki (yazılı/sözel rakamlar) güçlüklere de dayandırır (Defever ve ark., 2013; Piazza ve ark., 2010).
+zellikle sembolik sistemle (örneğin “3” rakamı ya da “üç” sözcüğü) sayı büyüklüğünü bağlantılandırmada sorun yaşayan çocuklar, temel aritmetik becerileri kalıcı olarak kazanmakta güçlük çekebilir.
+aha genel olarak söylemek gerekirse bu durum matematiğin sembolik diline geçişte zorluklar yaşanmasına neden olabilir.
+evresel Faktörler Eğitim ortamlarının niteliği, diskalkulinin ortaya çıkışını ve seyrini etkileyebilmektedir.
+ğer çocuk, erken dönemde yapılandırılmış ve somut örneklere dayalı bir matematik öğretimi alamazsa, sayı kavramını içselleştirmekte zorlanabilir (Price &amp; Ansari, 2013).
+yrıca sınırlı uygulama, ezber odaklı yaklaşımlar ya da öğrenciye özel farklılaştırmanın yapılmaması, matematik kaygısını artırarak diskalkulinin belirtilerini pekiştirebilir (Kucian &amp; von Aster, 2015).
+üşük sosyoekonomik düzey, ailelerin çocuklarını desteklemede karşılaşabileceği sınırlı kaynaklar (örneğin ders materyali eksikliği), çocuğun okul dışı takviye alamaması gibi zorluklara yol açar (Shalev, 2004).
+atematik kaygısı yüksek olan çocuklar ise sık başarısızlık deneyimi yaşayarak “matematikten kaçınma” eğilimi gösterir; bu durum, öğrenme deneyimlerinin sayısını azaltarak diskalkuli riskini artırır (Rubinsten &amp; Tannock, 2010).
+onuç olarak, diskalkulinin ortaya çıkışını ve ilerlemesini etkileyen faktörler genetikten çevresel değişkenlere dek uzanan geniş bir yelpazede incelenir.
+raştırmalar, ikiz çalışmalarının işaret ettiği yüksek kalıtım oranları ve beyin görüntüleme bulgularıyla nörobiyolojik temelin altını çizerken; sınıf-içi uygulamalar, öğretmen yeterlikleri, aile-çocuk etkileşimi gibi unsurların da çevresel bağlamda belirleyici olabileceğini öne sürmektedir.
+u çok yönlü anlayış, diskalkuliye yönelik tanılama ve müdahale programlarının hem bilişsel-nörobiyolojik boyutları hem de eğitimsel-psikososyal unsurları dikkate alan kapsayıcı bir yaklaşıma ihtiyaç duyduğuna işaret etmektedir.
+aygınlık ve Yaygınlık Oranlarının Farklılığının Nedenleri Diskalkulinin toplumdaki gerçek yaygınlık oranına dair araştırmalar farklı sonuçlar vermektedir.
+alışmaların çoğu, okul çağı çocuklarında diskalkulinin (gelişimsel diskalkuli/MLD) %3 ila %7 aralığında görülebileceğini öne sürerken (Kucian &amp; von Aster, 2015; Price &amp; Ansari, 2013; Shalev &amp; Gross-Tsur, 2001), bazı araştırmalarda bu aralığın biraz daha yüksek ya da geniş (%5.9 - %13.8) olduğu rapor edilmiştir (Barbaresi ve ark., 2005).
+ullanılan testler ve kesme noktaları gibi faktörler bu farklılıklara neden olabilmektedir.
+esme Noktaları ve Tanı Ölçütlerindeki Farklılıklar Bu farklılıkların temel sebeplerinden biri, araştırmacıların kullandığı tanı ölçütleri ve kesme noktalarındaki çeşitliliktir (Murphy ve ark., 2007).
+rneğin bazı çalışmalar matematik başarısını %10’nun altında kalan çocukları “diskalkulik” olarak sınıflandırırken, bazıları diskalkuliye sahip bireyleri daha “esnek” bir ölçüt olarak %25 ya da %35 kesim noktasının altında kalan şeklinde belirleyebilmektedir.
+u durum, rapor edilen oranların %3 mü, %6 mı yoksa %7 mi olacağı üzerinde doğrudan etki yaratmaktadır.
+aha katı kesim noktaları referans alındığında diskalkuli tanısı alan öğrenci sayısı/oranı azalmakta, daha esnek bir referans alındığında ise sayı/oran artmaktadır.
+iskalkulinin kızlarda ve erkeklerde ortaya çıkış sıklığı konusunda tutarsız bulgular mevcuttur.
+azı araştırmalar erkeklerde riskin daha yüksek olduğunu (örneğin, Reigosa-Crespo ve ark., 2012 çalışmasında 4:1 gibi bir erkek-kız oranı) bildirirken, bazı araştırmalar ise kız ve erkek öğrenciler arasında belirgin bir fark bulunmadığını ileri sürmektedir (Shalev &amp; Gross-Tsur, 2001).
+ültürel farklılıklar, örneklem büyüklükleri, ölçme araçları ve tanı kriterleri gibi etmenler de cinsiyet dağılımına dair çelişkili sonuçların ortaya çıkmasında rol oynayabilir.
+rneklem Çeşitliliği ve Metodolojik Farklar Diskalkuli konusunda yapılan popülasyon tabanlı çalışmaların sonuçları, ülkelere ve kültürlere göre değişiklikler gösterebilmektedir.
+rneğin, bazı Avrupa ülkelerinde %3.4 (Reigosa-Crespo ve ark., 2012) oranları rapor edilirken, Birleşik Krallık örnekleminde bu oran %5–6 seviyesinde seyrettiği rapor edilmiştir (Morsanyi ve ark., 2018).
+linik örneklemlerde, zaten öğrenme güçlüğü tanısı almaya gelmiş çocuklar incelendiğinde, diskalkuli oranı görece daha yüksek bulunabilmektedir.
+ysa geniş popülasyon taramalarında, diskalkuli kadar “sınır” düzeyde matematik güçlüklerine sahip ancak kesin tanı almayan çocuklar da göz önünde bulundurulduğunda oranlar farklılaşabilmektedir (Shalev, 2004).
+şgörü Durumların Neden Olduğu Tanı Güçlüğü Diskalkuli, sıklıkla disleksi (okuma güçlüğü), dikkat eksikliği ve hiperaktivite (DEHB), dil yetersizlikleri gibi diğer öğrenme güçlükleri veya gelişimsel farklılıklarla bir arada görülebilir (Willcutt ve ark., 2013).
+u eşgörüler, tanı koymayı güçleştirir; çünkü belirtiler üst üste binebilir veya bir bozukluğun belirtileri diğerini maskeleyebilir.
+iskalkuli tanısının konulmasında, okullarda uygulanan matematik sınavları veya akademik başarı testleri genellikle “alt becerileri” derinlemesine değerlendirmez.
+unun yanı sıra, çocuğun genel zekâ düzeyi ortalama ya da üzerinde olsa bile, matematikte yaşanan belirgin zorlanma tanısının atlanması söz konusu olabilir.
+yrıca, düşük sosyoekonomik düzeydeki çocuklarda yetersiz öğretim ya da okul devamsızlığı gibi durumlar, “sahte” bir matematik güçlüğü tablosu yaratabilir.
+olayısıyla, gerçek diskalkulinin net olarak saptanması daha da karmaşıklaşır (Price &amp; Ansari, 2013; Mutlu &amp; Olkun, 2019).
+onuç olarak diskalkulinin yaygınlığına dair %3–7 bandında farklı oranlar öne sürülse de, bu farklılık hem metodolojik faktörlerden (kesme noktaları, ölçme araçları) hem de örneklem türlerinden (klinik/popülasyon tabanlı, farklı kültürler) kaynaklanabilir.
+azı araştırmalarda cinsiyet dağılımının erkekler lehine olduğunu gösteren veriler bulunsa bile, bu sonuçların tüm kültürler ve örneklemler için genellenebilmesi kolay değildir.
+yrıca disleksi, DEHB veya dil bozukluğu gibi eşgörü durumları, matematik performansındaki düşüşe farklı düzeylerde katkıda bulunarak diskalkuli tanısını karmaşıklaştırır.
+iskalkulide Heterojenlik, Alt Tipler ve Eşgörü Diskalkuli araştırmalarındaki en tutarlı bulgunun heterojenite olduğu söylenebilir.
+iskalkuli, tek bir temel yetersizlik durumu ile açıklanamayacak kadar çoklu bilişsel, nörobiyolojik ve davranışsal faktörün etkileşimiyle ortaya çıkan, oldukça heterojen bir öğrenme güçlüğü olarak tanımlanmaktadır (Rubinsten &amp; Henik, 2009; Träff et al., 2017; Kroesbergen et al., 2022).
+u durum, hem tanılama hem de müdahale sürecinde “tek tip” anlayışını zorlaştırır ve farklı alt tiplere göre uyarlanmış yaklaşımları gerekli kılar (Büttner &amp; Hasselhorn, 2011; Kaufmann et al., 2013).
+azı çocuklarda “sayı hissi yetersizliği” (number sense/approximate number system) öne çıkarken (Henik et al., 2011; Kaufmann et al., 2013), kimilerinde “sembollere erişim” güçlüğü (Andersson &amp; Östergren, 2012; Raddatz et al., 2017) ya da bu iki eksikliğin bir arada bulunması (Bartelet et al., 2014; Landerl et al., 2013) matematik performansını belirgin biçimde olumsuz etkileyebilir.
+yrıca dikkat, bellek veya yürütücü işlevlerde yaşanan genel bilişsel eksiklikler, diskalkuli belirtilerini daha karmaşık hale getirerek tanı ve müdahaleyi güçleştirir (Peng et al., 2018; Willcutt et al., 2013).
+u nedenle, hiçbir ek bilişsel sorun taşımayan “saf (pure) diskalkuli” vakaları literatürde oldukça azdır; dil, dikkat veya bellek süreçlerine dair kısmi bir zayıflık dahi, diskalkulinin şiddetini ve gidişatını belirgin biçimde etkilemektedir (Henik et al., 2011; Landerl et al., 2013).
+iskalkuli aynı zamanda disleksi, dikkat eksikliği ve hiperaktivite bozukluğu (DEHB), gelişimsel koordinasyon bozukluğu (dyspraxia) veya dil yetersizlikleri gibi nörogelişimsel yetersizliklerle de sıkça bir arada görülebilmektedir (Büttner &amp; Hasselhorn, 2011; Landerl et al., 2013).
+isleksi eşlik ettiğinde sözel ve sayısal sembolleri anlamlandırma, matematiksel yönergeleri takip etme ve problem çözme süreçleri daha da karmaşıklaşır (Chen et al., 2023).
+EHB ile birlikte görüldüğünde ise matematikteki işlem basamaklarını takip etme, strateji geliştirme ve hataları fark etme becerileri dikkat eksikliği nedeniyle büyük ölçüde sekteye uğrar (Shalev et al., 1995).
+elişimsel koordinasyon bozukluğu ya da dil bozukluğu gibi diğer sorunlar da, geometrik şekil çizimi veya matematiksel terimleri kavrama aşamalarında öğrenciyi daha fazla zorlar (Koponen et al., 2006; Henik et al., 2011).
+irden fazla yetersizliğin aynı anda varlığı, diskalkulinin kendine özgü belirtilerini maskeleyip karmaşıklaştırabileceği gibi, her bir bozukluğun bulgularını güçlendirerek tanılama ve müdahale süreçlerini daha da zora sokmaktadır (Willcutt et al., 2013; Landerl et al., 2013).
+üm bu etkenler göz önüne alındığında, diskalkulinin klinik ve eğitsel yansımaları standart bir test veya müdahale programı ile sınırlı kalamayacak kadar geniş bir yelpazede değerlendirilmeyi gerektirir.
+ireyselleştirilmiş değerlendirme sürecinde, sayı hissi ve sembollere erişim düzeyinin yanı sıra dikkat, bellek ve yürütücü işlevler gibi genel bilişsel alanlar da ölçülmelidir (Kaufmann et al., 2013; Träff et al., 2017).
+anı sürecinde yalnızca standart matematik testlerinin kullanılması yerine, çok boyutlu ölçüm araçları ile eşgörü durumlara özgü testlerin de uygulanması önerilir (Pieters et al., 2012).
+üdahale aşamasında ise öğrencinin ek yetersizliklerine yönelik (ör. sözel destek, görsel-uzamsal materyaller, dikkat geliştirme egzersizleri) uyarlamalar yapılarak, eğitim materyalleri ve öğretim stratejileri mümkün olduğunca bireyselleştirilmelidir (Henik et al., 2011; Raddatz et al., 2017).
+onuç olarak, diskalkulinin heterojen, çok katmanlı ve eşgörü yapısı hem tanılama hem de müdahale süreçlerinde çok yönlü, esnek ve birey odaklı bir yaklaşımı zorunlu kılmaktadır (Rubinsten &amp; Henik, 2009; Kroesbergen et al., 2022). “Saf” diskalkuli vakalarının az görülmesi ve sık rastlanan eşgörüler, bu öğrenme güçlüğünü karmaşık bir tabloya dönüştürmekte; eğitim-öğretim uygulamalarında kapsamlı ve çok boyutlu çözümlerin geliştirilmesini gerekli hale getirmektedir (Willcutt et al., 2013).
+iskalkuli ve Matematik Kaygısı Matematik öğrenme süreçlerinde ortaya çıkan kaygı ve diskalkuli belirtileri, öğrencilerin başarı motivasyonunu ve performansını derinden etkileyen çift yönlü bir etkileşim sunar (Rubinsten &amp; Tannock, 2010; Mammarella ve ark., 2015; Mutlu, 2019).
+u etkileşimi anlamak, hem matematik kaygısının yönetimi hem de diskalkuliye özel destek programlarının başarısı bakımından kritik önem taşır (Ashcraft &amp; Ridley, 2005; Eysenck &amp; Calvo, 1992).
+atematik kaygısı, matematikle ilgili her türlü etkinlikte (sınav, sözlü katılım, problem çözme vb.) ortaya çıkan yoğun stres, endişe veya korku olarak tanımlanır (Hembree, 1990; Ma, 1999).
+u duygusal tepkiler, bireyin çalışma belleği kaynaklarını fazlasıyla meşgul ederek “zihinsel blokaj” etkisi yaratır ve özellikle çok adımlı işlem ya da yüksek işlem talebi olan görevlerde performansı düşürür (Eysenck &amp; Calvo, 1992; Beilock &amp; Maloney, 2015; Ashcraft &amp; Ridley, 2005).
+ununla birlikte, diskalkuli temel aritmetik işlemlerde, matematiksel kavramları anlamada ve problem çözmede belirgin güçlüklerle tanımlanmaktadır (Kaufmann ve ark., 2013).
+iskalkuliden kaynaklanan aritmetik hatalar, işlem yavaşlığı veya strateji kullanmadaki yetersizlikler, öğrencinin sıkça başarısızlık deneyimi yaşamasına neden olur; böylece yüksek kaygıya zemin hazırlayan bir kısır döngü ortaya çıkar (Rubinsten &amp; Tannock, 2010; Mammarella ve ark., 2015).
+üşük başarı deneyimi kaygıyı artırır, artan kaygı ise çalışma belleğine ek yük bindirerek daha fazla hata ve başarısızlığa yol açar (Nelson &amp; Powell, 2018).
+u etkileşim, öğrencinin matematiğe ilişkin özgüvenini düşürüp aktif katılımını engeller; dolayısıyla başarısızlık döngüsünü derinleştirir.
+aygıyı azaltmak ve diskalkulinin olumsuz etkilerini hafifletmek için, hem duygusal hem de pedagojik odaklı çeşitli stratejiler önerilmektedir (Hembree, 1990; Passolunghi ve ark., 2020).
+uygusal düzenleme çalışmaları, nefes egzersizleri ve aşamalı maruz bırakma yöntemi, öğrencilerin anlık kaygısını hafifletip giderek zorlaşan problem etkinliklerinde pratik kazanmalarına yardımcı olabilir (Hofmann ve ark., 2009; Samuel &amp; Warner, 2021).
+yrıca, hataları bir öğrenme fırsatı olarak sunan ve başarısızlık korkusunu azaltan pozitif geribildirim sistemleriyle öğrencinin öz-yeterlik algısı yükseltilir; “ceza” yerine “deneme-yanılma” kültürü vurgulanır (Beilock &amp; Maloney, 2015; Karunakaran, 2020).
+unun yanı sıra, diskalkuli ve kaygı birikimi yaşayan öğrencilerde aşamalı ve bireyselleştirilmiş öğretim yaklaşımları (örneğin, somut materyaller, görsel destek, küçük grup çalışmaları) kaygıyı kontrol altında tutarak daha rahat pratik yapma ortamı sağlar (Passolunghi ve ark., 2020; Nelson &amp; Powell, 2018).
+onuç olarak, diskalkuli ve matematik kaygısı arasındaki çift yönlü ve pekiştirici ilişkiyi kırmanın yolu, hem bilişsel (matematiksel strateji ve çalışma belleği desteği) hem de duygusal (kaygı giderici müdahaleler, olumlu geribildirim) boyutları içeren bütüncül bir müdahaleden geçer (Rubinsten &amp; Tannock, 2010; Mammarella ve ark., 2015; Mutlu, 2022).
+ozitif geribildirim, duygusal düzenleme teknikleri ve aşamalı matematik öğretimi stratejileri, gerek diskalkuli belirtilerinin gerekse matematik kaygısının önemli ölçüde hafiflemesine katkıda bulunur (Passolunghi ve ark., 2020).
+iskalkuli ve Çalışma Belleği Matematiksel becerilerin kazanılıp uygulanmasında önemli bir işlevi olan çalışma belleği (working memory), diskalkuliye sahip bireylerde en sık etkilenen bilişsel alanlardan biridir (Menon, 2016; Passolunghi &amp; Mammarella, 2012).
+u yetersizlik, öğrencilerin hem basit aritmetik işlemlerde hem de çok adımlı problem çözme etkinliklerinde güçlük yaşamalarına yol açarak akademik ilerlemelerini sınırlayabilir (Peng ve ark., 2018; Mutlu, 2024).
+alışma belleği, bilgiyi kısa süreliğine saklama ve aynı anda işleme kapasitesini içeren bir sistem olarak tanımlanır (Baddeley, 2000).
+odelin temel bileşenlerinden fonolojik döngü (Phonological Loop), sözel/işitsel bilgiyi geçici olarak depolayıp yineleme yoluyla korurken; görsel-uzamsal not defteri (Visuospatial Sketchpad), görsel ve mekânsal bilgileri kısa süreliğine saklar ve işler (Baddeley &amp; Hitch, 1974).
+üm bu süreçleri koordine eden merkezi yürütücü (Central Executive) ise dikkati paylaştırma, gereksiz bilgiyi baskılama ve doğru stratejiyi seçme gibi yürütücü işlevlerden sorumludur (Menon, 2016).
+iskalkulide yalnızca temel sayı işlemleme zorlukları görülmez; aynı zamanda çalışma belleğinin özellikle görsel-uzamsal ve yürütücü işlev bileşenlerinde zayıflık rapor edilmiştir (Rubinsten &amp; Henik, 2009; Peng ve ark., 2018).
+rneğin, “8 + 7 = 15” gibi basit bir işlemde ara adımları zihinde tutamama veya çok adımlı problem çözerken “elde var 1” gibi bilgileri unutarak yanlış sonuçlara gitme yaygın bir durumdur.
+enzer biçimde, öğrenciler strateji seçiminde de (örneğin, hatalı bir yöntemi bırakıp doğru yaklaşıma geçme) zorlanır; planlama, dikkat ve ketleme gerektiren süreçlerde aksaklıklar yaşanması, yanlış işlem sırası veya eksik cevaplar doğurabilir (Andersson &amp; Lyxell, 2007; Geary, 2010).
+nılan nedenlerle, çalışma belleğini destekleyici müdahalelerin diskalkulili öğrencilerde önemli bir iyileşme sağlayabileceği düşünülmektedir (Passolunghi &amp; Mammarella, 2012).
+örsel-uzamsal becerileri hedefleyen bilgisayar oyunları, kart eşleştirme veya dizi tekrarlama gibi egzersizlerin, özellikle kısa vadede bellek kapasitesini artırma potansiyeline sahip olduğu belirtilmiştir (Klingberg ve ark., 2005; Holmes ve ark., 2009).
+yrıca, geçici bilgileri not alma, basamaklı problem çözme rehberi kullanma veya yapışkan notlarla ara değerleri kaydetme gibi “dışsal bellek” uygulamaları, öğrencinin zihinsel yükünü hafifleterek hata riskini azaltabilir (Geary ve ark., 2004).
+te yandan, adım adım rehberlik yaklaşımı da diskalkulili öğrenciler için etkili görülmektedir (Swanson, 2006). “Önce verileri oku, sonra işlemi belirle, ardından sırasıyla uygula, sonucu kontrol et” gibi yapılandırılmış yönergeler, hem merkezi yürütücünün aşırı yüklenmesini engeller hem de strateji seçimini kolaylaştırır.
+onuç olarak, çalışma belleği, diskalkulinin bilişsel temelinde kritik bir yer tutar.
+zellikle görsel-uzamsal ve yürütücü işlevlerdeki zayıflık, öğrencilerin işlem hızı ve doğruluğuna doğrudan etki ederek matematik başarısını olumsuz etkiler (Menon, 2016; Peng ve ark., 2018).
+u nedenle, bellek geliştirme egzersizleri, not alma teknikleri ve kademeli rehberlik gibi müdahalelerin erken yaşlardan itibaren düzenli şekilde uygulanması, diskalkulili bireylerde hem akademik performansı artırmakta hem de öğrenme motivasyonu ve özgüven üzerinde olumlu sonuçlar doğurmaktadır (Swanson, 2006).
+iskalkuli ve Disleksi Diskalkuli, temel matematik becerilerindeki güçlüklerle tanımlanırken, disleksi okuma ve yazmada belirgin sorunlarla ilişkilendirilir (Landerl ve ark., 2009).
+u iki özgül öğrenme güçlüğü farklı bilişsel profillere sahip olsa da (dil-odaklı ve sayı-odaklı), aynı bireyde eşzamanlı olarak ortaya çıkabilmekte ve öğrenme sürecindeki zorlukları katlanarak artırabilmektedir (Willcutt ve ark., 2013; Butterworth ve ark., 2011).
+zellikle hem harf–ses ilişkilendirmesinde hem de sayı sembollerini kavramada benzer işlemleme güçlükleri görüldüğünde, çocuğun derslere yönelik motivasyonu ve akademik özgüveni olumsuz etkilenebilir (Moreau ve ark., 2018; Pennington, 2006).
+er ne kadar disleksinin fonolojik farkındalık ve hızlı isimlendirme sorunlarıyla (örneğin harfleri, heceleri seslendirme) ön plana çıktığı bilinse de, aynı bireyin matematik alanında da sembol tanıma ve aritmetik hatırlama güçlüğü yaşaması olasıdır (De Smedt &amp; Boets, 2010).
+iskalkulide ise sayı hissi (number sense) ve işlem stratejilerinde görülen eksiklikler, disleksiden farklı olarak, sayısal büyüklük karşılaştırma ve basit hesaplamalar gibi alanlarda belirgindir (Rousselle &amp; Noël, 2007).
+ununla birlikte, fonolojik işlemleme eksikliği ya da sınırlı sözel bellek, iki bozukluğun da ortak zeminini oluşturan faktörlerden biri olabilir (Landerl ve ark., 2009).
+iskalkuli ve disleksi tanısı almış öğrencilerde, her iki yetersizliğin kesişimi, okuduğunu anlama gerektiren matematik sorularını anlamada, problem çözme aşamalarını izleme ve gerekli sözel/aritmetik bilgiyi eşzamanlı hatırlama süreçlerinde güçlük olarak öne çıkar (Moll ve ark., 2015; Willcutt ve ark., 2013).
+u durum, ders esnasında hem okuma görevlerini hem de aritmetik işlemleri kapsayan etkinliklerde performansı ciddi biçimde düşürebilir (Butterworth ve ark., 2011).
+rken yaşlardan itibaren yeterli tanılama yapılmadığında, iki alandaki gecikme üst sınıflarda daha karmaşık içeriklerle birleşerek akademik ilerlemeyi daha da zorlaştırır (Pennington, 2006).
+u konuda önerilen müdahaleler, okuma odaklı fonolojik farkındalığı geliştiren yöntemlerle sayısal düşünceyi hedef alan uygulamaları birlikte içermelidir (Landerl ve ark., 2009).
+rneğin, kelime dağarcığı veya harf-ses çalışmaları esnasında, sayısal sembollerle eşleştirme ve basit aritmetik egzersizlerine yer verilebilir (De Smedt &amp; Boets, 2010).
+erek disleksili gerekse diskalkulili çocuklar için, çoklu duyu (somut–resim–sembol) yaklaşımının kullanılması, aşamalı rehberlik ve sık geri bildirimle pekiştirme, her iki alanda da öğrenmeyi kolaylaştırır (Moll ve ark., 2015).
+yrıca aile ile iş birliği içinde hem okuma hem de matematik pratiklerini günlük yaşamda kısa fakat düzenli alıştırmalar halinde sürdürmek, özellikle eşgörülü vakalarda kalıcı gelişim için kritik öneme sahiptir (Moreau ve ark., 2018).
+onuç olarak, diskalkuli ve disleksinin birlikteliği, iki farklı öğrenme güçlüğünün kesiştiği karmaşık bir yapı sunar; bütüncül ve eşzamanlı müdahale yaklaşımları bu çocukların akademik ve sosyal açıdan daha olumlu bir deneyim yaşamalarına yardımcı olur (Willcutt ve ark., 2013; Pennington, 2006).
+iskalkuli ve Dikkat Eksikliği Diskalkuli, sayısal işlemleme ve işlem hızı sorunlarıyla ilişkilendirilse de, dikkat eksikliği gibi nörogelişimsel farklılıklarla eşzamanlı ortaya çıkabildiği bildirilmektedir (Rubinsten &amp; Henik, 2009; Shalev ve ark., 2004).
+u durum, öğrencinin hem akademik alanlarda hem de günlük yaşamda karşılaştığı matematiksel güçlükleri katlanarak artırır ve performansı daha da olumsuz etkiler (Kroesbergen ve ark., 2023).
+ikkat eksikliği, çoğunlukla DEHB (Dikkat Eksikliği ve Hiperaktivite Bozukluğu) çatısı altında değerlendirilse de, “sürekli dikkat” (sustained attention), yürütücü işlev ve ketleme sorunları farklı düzeylerde görülebilir.
+iskalkuli tanısı konan bireylerde de bellek, işlemleme hızı ve dikkat süreçlerinde yetersizlik rapor edilmiştir (Willcutt ve ark., 2013; Peng ve ark., 2018).
+zellikle çalışma belleği kapasitesindeki düşüklük, uzun yönergelerin izlenmesini veya çok aşamalı matematik işlemlerinin yapılmasını zorlaştırabilir (Menon, 2016).
+şlemleme hızı zayıf olan çocuklar, matematiksel işlemleri daha fazla hata ve gecikmeyle gerçekleştirir; dolayısıyla diskalkuli ve dikkat eksikliği birlikteliği, performansın iyice düşmesine neden olur (Kroesbergen ve ark., 2023).
+yrıca strateji seçimi, planlama ve hata izleme gibi yürütücü işlevler baskı altında kaldığında öğrenciler yanlış işlem sıralaması yapabilir veya hataları zamanında fark edemeyebilir (Shalev ve ark., 1995).
+u iki yetersizlik durumu aynı anda ortaya çıktığında, çocuğun matematik derslerindeki zorlanmaları daha da belirginleşir.
+ayıf sayı kavramı ve kalıcı aritmetik güçlüklerin yanı sıra dikkati sürdürememe ve bilişsel kontrol eksikliği gibi faktörler de derse katılımı ve başarıyı düşürür (Nelson &amp; Powell, 2018).
+zellikle üst sınıflarda, matematik konularının karmaşıklığı arttıkça bu tablo daha belirgin hale gelir.
+u konuda önerilen müdahaleler hem sayısal becerileri hem de dikkat işlevlerini hedef almalıdır.
+ğrencinin dikkat kapasitesi kısa ve hedefe yönelik etkinliklerle desteklenebilir; uzun ve çok aşamalı problemlerin yerine küçük bölümler hâlinde planlanan etkinliklerle ve hızlı geribildirimle öğrencinin odaklanması güçlendirilebilir (Ashkenazi ve ark., 2009).
+erslerde zamanlayıcı kullanmak, renkli kodlamalar ve önemli bilgileri vurgulamak gibi teknikler de dikkati koruma becerisini artırır (Kain ve ark., 2008).
+ynı zamanda, diskalkulili çocukların işlem basamaklarını ezbere öğrenmesi yerine somut–resim–soyut (SRS) gibi anlamlandırıcı yaklaşımlarla öğretim yapılmalı ve bu esnada kısa açıklamalar, adım adım rehberlik sağlanmalıdır (Mudaly &amp; Naidoo, 2015; Powell ve ark., 2020).
+ot alma, özet tablolar veya madde madde ilerleme gibi yöntemler, hem bellek hem de dikkat yönetimi açısından fayda sağlayabilir (Geary ve ark., 2004).
+avranışsal düzenleme ve ödül sistemleri de, özellikle DEHB tanısı almış öğrencilerde görev tamamlama motivasyonunu yükseltir ve matematik başarısının artmasıyla özgüven gelişimini destekler.
+v ödevlerinde de benzer stratejilerin kullanılması ve ailelerin günlük yaşam içindeki basit hesaplama pratikleriyle (örneğin alışverişte para üstü hesaplamak) çocuğa destek sunması, dikkat ve matematik becerilerinin pekişmesi açısından önemlidir (Schuchardt ve ark., 2015).
+onuç olarak, diskalkuli ve dikkat eksikliği birlikteliği, öğrenme ortamında matematiksel beceri sorunları ile dikkat dağınıklığının kesiştiği karmaşık bir tablo oluşturur (Shalev ve ark., 1995; Willcutt ve ark., 2013).
+u öğrenciler yalnızca temel işlemlerde değil, strateji geliştirme, hataları fark etme ve sürekli dikkat sağlama gibi alanlarda da çok yönlü desteğe ihtiyaç duyarlar.
+rken tanı ve SRS yaklaşımı, kısa odaklanma egzersizleri veya davranışsal düzenleme gibi hedefe yönelik müdahalelerin bir arada kullanılması, çocuğun akademik performansını ve motivasyonunu olumlu yönde etkiler (Kain ve ark., 2008; Nelson &amp; Powell, 2018).
+ğitimcilerle ailelerin iş birliği içinde planlama yapması, öğrencinin matematikteki gereksinimlerinin yanı sıra dikkatsel zorluklarını da dikkate alarak bütüncül bir destek sunmayı mümkün kılar.
+u sayede çocuk, hem başarı hem de özgüven açısından daha olumlu bir öğrenme deneyimi yaşar.
+iskalkulide Değerlendirme ve Tanılama Diskalkuli, sayı kavramlarını, temel aritmetik işlemleri ve matematiksel düşünme becerilerini beklenen düzeyde geliştirememe hâli olarak tanımlanır ve bu durum, bireyin hem günlük yaşamında karşılaştığı basit işlemlerde hem de akademik bağlamda matematikle ilgili performansında belirgin güçlükler doğurur (APA, 2013; Kaufmann ve ark., 2013; Kucian &amp; von Aster, 2015).
+rken dönemde fark edilmesi ve uygun şekilde tanılanması, akademik başarının artırılması ve günlük yaşam becerilerinin iyileştirilmesi açısından büyük önem taşır (Haberstroh &amp; Schulte-Körne, 2022; Shalev, 2004).
+iskalkulinin değerlendirme sürecinde öncelikle öğrencinin sayısal ve aritmetik becerileri ayrıntılı biçimde taranır.
+u amaçla kâğıt-kalem testleri ve standart matematik ölçümleri (toplama-çıkarma, çarpma-bölme, problem çözme gibi müfredata dayalı beceriler) yaygın biçimde kullanılır (Geary ve ark., 2007).
+yrıca aritmetik akıcılık veya sayı-doğrusu uygulamalarıyla (ör. kısa sürede doğru işlem yapma, sembolik veya sembolik olmayan karşılaştırma testleri) diskalkuli belirtileri erken dönemde yakalanabilir (Shalev &amp; Gross-Tsur, 2001).
+on yıllarda ise dijital veya çevrim içi tarama araçları öne çıkmıştır.
+u araçlar, öğrencinin işlem hızı, hata türleri ve sayısal sembollere verdiği tepkileri detaylı olarak kaydederek öğretmenlere erken uyarı sinyalleri sunar (Ashwini ve ark., 2024; Dhingra ve ark., 2024).
+u tarama ve test sürecinin yanı sıra, çok boyutlu bir değerlendirme yaklaşımı benimsenmelidir.
+iskalkuli tanısı, sadece akademik test sonuçlarıyla değil, zekâ düzeyi, nöropsikolojik profil, kaygı ve motivasyon düzeyleri gibi etkenlerle birlikte ele alınarak konmalıdır (Kaufmann ve ark., 2013; Peng ve ark., 2018).
+ekâ testleri ya da nöropsikolojik ölçekler, bireyin çalışma belleği, görsel-uzamsal beceriler ve yürütücü işlevlerine dair ayrıntılı bilgi sunar (Passolunghi &amp; Mammarella, 2012).
+ynı şekilde matematik kaygısı veya düşük motivasyon, diskalkulinin yarattığı performans düşüklüğünü daha da derinleştirebileceğinden (Rubinsten &amp; Henik, 2009), bu alanda anket ve gözlem formlarıyla ek veri toplanması önerilir (Beilock &amp; Maloney, 2015).
+yrıca ebeveyn ve öğretmen görüşmeleri, çocuğun evde ve okulda hangi zorluklarla karşılaştığını daha bütüncül biçimde anlamayı sağlar (Shalev, 2004; Willcutt ve ark., 2013; Mazzocco &amp; Thompson, 2005).
+ıbbi değerlendirmeler ise özellikle edinilmiş diskalkuli olasılığını (örneğin beyin hasarı veya nörolojik durumlar sonucu oluşan tablolar) dışlamak veya doğrulamak adına gerekli olabilir (Molko ve ark., 2003).
+anı kriterleri açısından DSM-5 (APA, 2013) çerçevesinde diskalkuli; zekâ ve eğitim imkânı gibi etkenlerle açıklanamayan, uzun süreli (en az 6–12 ay) ve yaş düzeyinin belirgin şekilde altında kalan matematiksel işlevsizlik olarak tarif edilir.
+urada dikkat edilmesi gereken noktalar, çocuğun genel entelektüel kapasitesinin normal aralıkta olması, yeterli eğitim fırsatına rağmen beklenenden düşük matematik başarısı göstermesi ve belirtilerin başka bir nörogelişimsel farklılık veya yetersizlikle tam olarak açıklanamamasıdır (Shalev, 2004).
+te yandan, disleksi veya DEHB gibi farklı özgül öğrenme güçlükleriyle sıklıkla eş zamanlı görülmesinden, her bir yetersizlik belirtilerinin ayrı ayrı değerlendirildiği çok boyutlu bir tanılama süreci önem taşır (Willcutt ve ark., 2013).
+onuç olarak, diskalkulide değerlendirme ve tanılama, çok katmanlı bir bakış gerektirir.
+âğıt-kalem veya dijital testlerin yanı sıra zekâ ölçekleri, nöropsikolojik incelemeler ve aile-öğretmen görüşmeleriyle elde edilen veriler bütüncül biçimde yorumlanmalıdır (Kaufmann ve ark., 2013; Peng ve ark., 2018; Mutlu ve Akgün, 2017).
+zellikle DSM-5 ölçütlerine göre diskalkuli belirtilerinin en az 6 ay devam ettiğinin gözlenmesi, bozukluğun kalıcı doğasını göstermesi açısından kritik bir göstergedir (APA, 2013; Shalev, 2004).
+rken ve kapsamlı değerlendirme, çocuğun matematiksel güçlüklerinin doğru saptanmasına ve bireyselleştirilmiş müdahale programlarının zamanında uygulanmasına olanak tanır (Kucian &amp; von Aster, 2015).
+u sayede hem akademik performansı hem de günlük yaşam becerileri olumlu yönde desteklenen öğrenciler, matematikle ilgili özgüven kazanarak daha verimli bir öğrenme süreci yaşayabilir.
+onuç Diskalkuli, özellikle temel sayı algısı ve aritmetik becerilerinde beklenmedik ve kalıcı zorluklarla tanımlanan özgül bir öğrenme güçlüğü olarak literatürde yer almaktadır (APA, 2013; Kucian &amp; von Aster, 2015).
+u makalede aktarılan kuramsal ve uygulamaya dönük veriler, diskalkulinin yalnızca tek bir bilişsel yetersizliğe indirgenemeyeceğini; aksine genetik, nörobiyolojik, bilişsel ve çevresel etkenlerin karşılıklı etkileşimiyle şekillenen çok boyutlu bir tablo sunduğunu göstermektedir (Kaufmann ve ark., 2013; Rubinsten &amp; Henik, 2009).
+arietal lob ve özellikle intraparietal sulkus gibi beyin bölgelerinde tespit edilen yapısal ya da işlevsel farklılıkların (Molko ve ark., 2003; Price ve ark., 2007), sayı hissi veya çalışma belleği gibi süreçlerde gözlenen eksikliklerle birleşmesi (Menon, 2016; Passolunghi &amp; Mammarella, 2012), diskalkulinin karmaşık ve heterojen yapısının altını çizer.
+iskalkulinin erken dönemde fark edilmesi, öğrencilerin ilerleyen yaşlarda yaşayabileceği matematik kaygısı, başarısızlık deneyimi ve motivasyon kaybı gibi olumsuzlukları azaltmada büyük önem taşır (Mazzocco &amp; Thompson, 2005).
+ncak disleksi veya dikkat eksikliği/hiperaktivite bozukluğu (DEHB) gibi ek yetersizliklerin sık görülmesi, tanılama ve müdahale süreçlerini daha da zorlaştırarak (Willcutt ve ark., 2013; Landerl ve ark., 2013) alanyazında “saf diskalkuli” örneklerinin nadir bulunmasına yol açar.
+olayısıyla çok boyutlu bir değerlendirme yaklaşımı çerçevesinde, yalnızca sayısal testler değil; dikkat, bellek, dil becerileri ve eşlik edebilecek diğer nörogelişimsel alanlar da titizlikle incelenmelidir (Kaufmann ve ark., 2013; Peng ve ark., 2018).
+iskalkuliyle ilgili yaygınlık oranlarının %3 ila %7 arasında değiştiği bildirilmekle beraber (Shalev &amp; Gross-Tsur, 2001; Price &amp; Ansari, 2013), bu aralığı etkileyen temel faktörlerin tanı ölçütlerindeki farklılıklar, kesme noktaları ve örneklem çeşitliliği olduğu görülmektedir (Murphy ve ark., 2007).
+yrıca farklı ülkelerde veya kültürlerde yürütülen çalışmalar, metodolojik farklılıklar ve sosyokültürel etkenler nedeniyle çelişkili oranlar rapor edebilmektedir (Reigosa-Crespo ve ark., 2012; Morsanyi ve ark., 2018).
+u durum, diskalkuliye ilişkin genelleme yapmayı güçleştirmekte, dolayısıyla her çalışmanın kendi ölçme-tanı standartları ve örneklem yapısı içinde değerlendirilmesi gerektiğini göstermektedir.
+iskalkulinin heterojen ve çok katmanlı doğası, müdahale yaklaşımlarında da “tek boyutlu” çözümlerin yeterli olmadığını ortaya koymaktadır (Rubinsten &amp; Henik, 2009; Träff ve ark., 2017).
+ğrencinin sayı hissi, sembolik işleme, çalışma belleği ve dikkat gibi temel bilişsel alanlardaki ihtiyaçları göz önüne alınarak bireyselleştirilmiş ve esnek eğitim stratejileri geliştirilmelidir (Henik ve ark., 2011; Kaufmann ve ark., 2013).
+yrıca matematik kaygısı yüksek veya disleksi/DEHB gibi ek güçlükleri bulunan vakalarda, duygusal düzenlemeyi ve yürütücü işlevleri desteklemeyi de içeren kapsamlı bir planlama gerekir (Moll ve ark., 2015; Kroesbergen ve ark., 2022).
+onuç olarak, diskalkuliye dair kapsamlı bir bakış, bu öğrenme güçlüğünün nörobiyolojik temellerle bilişsel süreçlerin kesiştiği karmaşık bir yapı sunduğunu göstermektedir.
+elecekte yapılacak beyin görüntüleme destekli boylamsal araştırmaların, diskalkulinin erken tanı ve önlenmesinde kritik veriler sunabileceği öngörülmektedir (Menon, 2016; Price &amp; Ansari, 2013).
+enzer şekilde, farklı kültürel örneklemlerde yapılacak çalışmalar ve meta-analitik incelemeler, diskalkuli eşgörüsü olan öğrencilerde hangi strateji ve öğretim yöntemlerinin en etkili olduğu konusunda yol gösterici olabilir (Willcutt ve ark., 2013).
+öylece diskalkulinin gerek akademik başarı gerekse duygusal iyilik hâli üzerindeki uzun vadeli etkileri daha iyi anlaşılarak, kanıta dayalı ve kişiye özgü müdahale programlarının geliştirilmesi mümkün olacaktır.
+aynaklar Andersson, U., &amp; Östergren, R. (2012).
+umber magnitude processing and basic cognitive functions in children with mathematical learning disabilities.
+earning and Individual Differences, 22 (6), 701–714.
+shcraft, M.
+., &amp; Ridley, K.
+. (2005).
+ath anxiety and its cognitive consequences: A tutorial review.
+n J.
+.
+.
+ampbell (Ed.), Handbook of mathematical cognition (pp. 315–327).
+sychology Press.
+shkenazi, S., Black, J.
+., Abrams, D.
+., Hoeft, F., &amp; Menon, V. (2009).
+eurobiological underpinnings of math and reading learning disabilities.
+ournal of Learning Disabilities, 42 (3), 210–229.
+addeley, A. (2000).
+he episodic buffer: A new component of working memory? Trends in Cognitive Sciences, 4 (11), 417–423.
+addeley, A.
+., &amp; Hitch, G. (1974).
+orking memory.
+n G.
+ower (Ed.), The psychology of learning and motivation (pp. 47–89).
+cademic Press.
+arbaresi, W.
+., Katusic, S.
+., Colligan, R.
+., Weaver, A.
+., &amp; Jacobsen, S.
+. (2005).
+ath learning disorder: Incidence in a population-based birth cohort, 1976–82, Rochester, Minn.
+mbulatory Pediatrics, 5 (5), 281–289.
+artelet, D., Ansari, D., Vaessen, A., &amp; Blomert, L. (2014).
+ognitive subtypes of mathematics learning difficulties in primary education.
+esearch in Developmental Disabilities, 35 (3), 657–670.
+eilock, S.
+., &amp; Maloney, E.
+. (2015).
+ath anxiety: A factor in math achievement not to be ignored.
+olicy Insights from the Behavioral and Brain Sciences, 2 (1), 4–12.
+üttner, G., &amp; Hasselhorn, M. (2011).
+earning disabilities: Debates on definitions, causes, subtypes, and responses.
+nternational Journal of Disability, Development and Education, 58 (1), 75–87.
+utterworth, B., Varma, S., &amp; Laurillard, D. (2011).
+yscalculia: From brain to education.
+cience, 332 (6033), 1049–1053.
+utterworth, B., &amp; Yeo, D. (2004).
+yscalculia guidance: Helping pupils with specific learning difficulties in maths.
+avid Fulton Publishers.
+arbonneau, K.
+., Marley, S.
+., &amp; Selig, J.
+. (2013).
+ meta-analysis of the efficacy of teaching mathematics with concrete manipulatives.
+ournal of Educational Psychology, 105 (2), 380–400.
+hen, R., Georgiou, G.
+., Peng, P., Li, Y., Li, B., Wang, J., &amp; Tao, S. (2023).
+hat components of working memory are impaired in children with reading and/or mathematics difficulties? Children, 10 (10), 1719. https://doi.org/10.3390/children10101719 De Smedt, B., &amp; Boets, B. (2010).
+honological processing and arithmetic fact retrieval: Evidence from developmental dyslexia.
+europsychologia, 48 (14), 3973–3981.
+efever, E., Sasanguie, D., Vandewaetere, M., &amp; Reynvoet, B. (2013).
+hat can the approximate number system tell us about mathematical abilities? Evidence from a cross-sectional study in children with mathematical learning disabilities.
+LOS ONE, 8 (6), e65581.
+ehaene, S. (2011).
+he number sense: How the mind creates mathematics (Rev. &amp; updated ed.).
+xford University Press.
+hingra, K., Aggarwal, R., Garg, A., Pujari, J., &amp; Yadav, D. (2024).
+athlete: An adaptive assistive technology tool for children with dyscalculia.
+isability and Rehabilitation: Assistive Technology, 19 (1), 9–15. https://doi.org/10.1080/17483107.2022.2056009 Eysenck, M.
+., &amp; Calvo, M.
+. (1992).
+nxiety and performance: The processing efficiency theory.
+ognition &amp; Emotion, 6 (6), 409–434.
+eary, D.
+. (2010).
+athematical disabilities: Reflections on cognitive, neuropsychological, and genetic components.
+earning and Individual Differences, 20 (2), 130–133.
+eary, D.
+., Hoard, M.
+., Byrd-Craven, J., &amp; DeSoto, M.
+. (2004).
+trategy choices in simple and complex addition: Contributions of working memory and counting knowledge for children with mathematical disability.
+ournal of Experimental Child Psychology, 88 (2), 121–151.
+eary, D.
+., Hoard, M.
+., Byrd‐Craven, J., Nugent, L., &amp; Numtee, C. (2007).
+ognitive mechanisms underlying achievement deficits in children with mathematical learning disability.
+hild Development, 78 (4), 1343–1359.
+aberstroh, S., &amp; Schulte-Körne, G. (2022).
+he diagnosis and treatment of dyscalculia.
+eutsches Ärzteblatt International, 119 (5), 65–71.
+aas, B., Kreis, Y., &amp; Lavicza, Z. (2021).
+ase study on augmented reality, digital and physical modelling with mathematical learning disabilities students in an elementary school in Luxemburg.
+nternational Journal for Technology in Mathematics Education, 28 (3), 125–132.
+embree, R. (1990).
+he nature, effects, and relief of mathematics anxiety.
+ournal for Research in Mathematics Education, 21 (1), 33–46.
+enik, A., Rubinsten, O., &amp; Ashkenazi, S. (2011).
+he “where” and “what” in developmental dyscalculia.
+he Clinical Neuropsychologist, 25 (6), 989–1008.
+ofmann, S.
+., Heering, S., Sawyer, A.
+., &amp; Asnaani, A. (2009).
+ow to handle anxiety: The effects of reappraisal, acceptance, and suppression strategies on anxious arousal.
+ehaviour Research and Therapy, 47 (5), 389–394.
+olmes, J., Gathercole, S.
+., &amp; Dunning, D.
+. (2009).
+daptive training leads to sustained enhancement of poor working memory in children.
+evelopmental Science, 12 (4), F9–F15.
+ain, J., El Banna, M., &amp; Cooley, V. (2008).
+iddle school math intervention results: A model of success.
+ducation, 129 (2), 287–292.
+arunakaran, M.
+. (2020).
+pportunities to decrease elementary prospective teachers’ mathematics anxiety.
+he Mathematics Enthusiast, 17 (2), 469–492.
+aufmann, L., Mazzocco, M.
+., Dowker, A., von Aster, M., Göbel, S.
+., Grabner, R.
+., … Nuerk, H.
+. (2013).
+yscalculia from a developmental and differential perspective.
+rontiers in Psychology, 4 , 516.
+lingberg, T., Fernell, E., Olesen, P.
+., Johnson, M., Gustafsson, P., Dahlström, K., … Westerberg, H. (2005).
+omputerized training of working memory in children with ADHD—a randomized, controlled trial.
+ournal of the American Academy of Child &amp; Adolescent Psychiatry, 44 (2), 177–186.
+roesbergen, E.
+., Huijsmans, M.
+., &amp; Friso-van den Bos, I. (2023).
+ meta-analysis on the differences in mathematical and cognitive skills between individuals with and without mathematical learning disabilities.
+eview of Educational Research, 93 (5), 718–755.
+roesbergen, E.
+., Huijsmans, M.
+., &amp; Kleemans, T. (2022).
+he heterogeneity of Mathematical Learning Disabilities: Consequences for research and practice.
+nternational Electronic Journal of Elementary Education, 14 (3), 227–241.
+ucian, K., &amp; von Aster, M. (2015).
+evelopmental dyscalculia.
+uropean Journal of Pediatrics, 174 , 1–13.
+ucian, K., &amp; von Aster, M. (2015).
+evelopmental dyscalculia.
+uropean Journal of Pediatrics, 174 , 1–13.
+umar, S.
+., &amp; Raja, B. (2010).
+omputer-supported instruction in enhancing the performance of dyscalculics.
+ournal on School Educational Technology, 5 (3), 36–41.
+anderl, K., Göbel, S.
+., &amp; Moll, K. (2013).
+ore deficit and individual manifestations of developmental dyscalculia (DD): The role of comorbidity.
+rends in Neuroscience and Education, 2 (2), 38–42.
+anderl, K., Fussenegger, B., Moll, K., &amp; Willburger, E. (2009).
+yslexia and dyscalculia: Two learning disorders with different cognitive profiles.
+ournal of Experimental Child Psychology, 103 (3), 309–324.
+a, X. (1999).
+ meta-analysis of the relationship between anxiety toward mathematics and achievement in mathematics.
+ournal for Research in Mathematics Education, 30 (5), 520–540.
+ammarella, I.
+., Hill, F., Devine, A., Caviola, S., &amp; Szűcs, D. (2015).
+ath anxiety and developmental dyscalculia: A study on working memory processes.
+ournal of Clinical and Experimental Neuropsychology, 37 (8), 878–887.
+azzocco, M.
+., Feigenson, L., &amp; Halberda, J. (2011).
+mpaired acuity of the approximate number system underlies mathematical learning disability (dyscalculia).
+hild Development, 82 (4), 1224–1237.
+azzocco, M.
+., &amp; Thompson, R.
+. (2005).
+indergarten predictors of math learning disability.
+earning Disabilities Research &amp; Practice, 20 (3), 142–155.
+enon, V. (2016).
+orking memory in children's math learning and its disruption in dyscalculia.
+urrent Opinion in Behavioral Sciences, 10 , 125–132.
+iundy, K., Zaman, H.
+., Nosrdin, A., &amp; Ng, K.
+. (2019).
+valuation of visual-based Augmented Reality (AR) learning application (V-ARA-Dculia) for dyscalculia learners.
+OIV: International Journal on Informatics Visualization, 3 (4), 343–354.
+olko, N., Cachia, A., Rivière, D., Mangin, J.
+., Bruandet, M., Le Bihan, D., … Dehaene, S. (2003).
+unctional and structural alterations of the intraparietal sulcus in a developmental dyscalculia of genetic origin.
+euron, 40 (4), 847–858.
+oll, K., Göbel, S.
+., &amp; Snowling, M.
+. (2015).
+asic number processing in children with specific learning disorders: Comorbidity of reading and mathematics disorders.
+hild Neuropsychology, 21 (3), 399–417.
+oreau, D., Wilson, A.
+., McKay, N.
+., Nihill, K., &amp; Waldie, K.
+. (2018).
+o evidence for systematic white matter correlates of dyslexia and dyscalculia.
+euroImage: Clinical, 18 , 356–366.
+orsanyi, K., van Bers, B.
+., McCormack, T., &amp; McGourty, J. (2018).
+he prevalence of specific learning disorder in mathematics and comorbidity with other developmental disorders in primary school‐age children.
+ritish Journal of Psychology, 109 (4), 917–940.
+udaly, V., &amp; Naidoo, J. (2015).
+n assessment of a transitional approach to bridging the gap between the concrete and the abstract in mathematics education.
+frican Journal of Research in Mathematics, Science and Technology Education, 19 (3), 207–217.
+urphy, M.
+., Mazzocco, M.
+., Hanich, L.
+., &amp; Early, M.
+. (2007).
+ognitive characteristics of children with mathematics learning disability (MLD) vary as a function of the cutoff criterion used to define MLD.
+ournal of Learning Disabilities, 40 (5), 458–478.
+utlu, Y. (2019).
+ath Anxiety in Students with and without Math Learning Difficulties.
+nternational Electronic Journal of Elementary Education, 11 (5), 471–475.
+utlu, Y. (2022).
+atematik kaygısının etkileri.
+n M.
+.
+arı &amp; M.
+aloğlu (Eds.), Matematik kaygısı (pp. 193–212).
+egem Akademi Yayınları.
+utlu, Y. (2024).
+ffects of dyscalculia on personal, social, academic, professional and daily life: A case study.
+nternational Electronic Journal of Elementary Education, 17 (1), 89–101.
+utlu, Y., &amp; Akgün, L. (2017).
+atematik öğrenme güçlüğünü tanılamada yeni bir model önerisi: Çoklu süzgeç modeli.
+lköğretim Online, 16 (3), 1153–1173.
+utlu, Y., &amp; Korkmaz, E. (2020).
+nvestigating clock reading skills of third graders with and without dyscalculia risk.
+nternational Online Journal of Primary Education, 9 (1), 97–110.
+utlu, Y., &amp; Olkun, S. (2019).
+anılamadan eğitsel müdahaleye gelişimsel diskalkuli.
+egem Akademi Yayınları.
+utlu, Y., &amp; Söylemez, İ. (2021).
+atematik öğrenme güçlüğü yaşayan çocuklar için oyunlarla matematik.
+izetek Yayıncılık.
+utlu, Y., Çalışkan, E.
+., &amp; Yasul, A.
+. (2022).
+e asked teachers: Do you know what dyscalculıa ıs? International Online Journal of Primary Education, 11 (2), 361–378.
+elson, G., &amp; Powell, S.
+. (2018).
+ systematic review of longitudinal studies of mathematics difficulty.
+ournal of Learning Disabilities, 51 (6), 523–539.
+rganisation for Economic Co-operation and Development (OECD). (2019).
+ISA 2018 results (Volume I): What students know and can do.
+ECD Publishing.
+apadimitriou, A., &amp; Tzivinikou, S. (2020).
+he effectiveness of the concrete–representational–abstract (CRA) instructional approach in teaching students with dyscalculia.
+uropean Journal of Special Education Research, 6 (1), 43–62.
+assolunghi, M.
+., &amp; Mammarella, I.
+. (2012).
+elective spatial working memory impairment in a group of children with mathematics learning disabilities and poor problem-solving skills.
+ournal of Learning Disabilities, 45 (4), 341–350.
+assolunghi, M.
+., De Vita, C., &amp; Pellizzoni, S. (2020).
+athematics anxiety, working memory, and mathematics performance in secondary-school children.
+rontiers in Psychology, 11 , 1–9.
+ennington, B.
+. (2006).
+rom single to multiple deficit models of developmental disorders.
+ognition, 101 (2), 385–413.
+eng, P., Wang, C., &amp; Namkung, J. (2018).
+nderstanding the cognition related to mathematics difficulties: A meta-analysis on the cognitive deficit profiles and the bottleneck theory.
+eview of Educational Research, 88 (3), 434–476.
+iazza, M., Facoetti, A., Trussardi, A.
+., Berteletti, I., Conte, S., Lucangeli, D., … Zorzi, M. (2010).
+evelopmental trajectory of number acuity reveals a severe impairment in developmental dyscalculia.
+ognition, 116 (1), 33–41.
+owell, S.
+., Driver, M.
+., Roberts, G., &amp; Fall, A.
+. (2020).
+n analysis of mathematics interventions: Examining instructional components of tier 2 interventions.
+earning Disability Quarterly, 43 (1), 15–27.
+rice, G.
+., &amp; Ansari, D. (2013).
+yscalculia: Characteristics, causes, and treatments.
+umeracy, 6 (1), 2.
+rice, G.
+., Holloway, I., Räsänen, P., Vesterinen, M., &amp; Ansari, D. (2007).
+mpaired parietal magnitude processing in developmental dyscalculia.
+urrent Biology, 17 (24), R1042–R1043.
+addatz, J., Kuhn, J.
+., Holling, H., Moll, K., &amp; Dobel, C. (2017).
+omorbidity of arithmetic and reading disorder: Basic number processing and calculation in children with learning impairments.
+ournal of Learning Disabilities, 50 (3), 298–308.
+äsänen, P., Salminen, J., Wilson, A.
+., Aunio, P., &amp; Dehaene, S. (2009).
+omputer-assisted intervention for children with low numeracy skills.
+ognitive Development, 24 (4), 450–472.
+eigosa-Crespo, V., Valdés-Sosa, M., Butterworth, B., Estévez, N., Rodríguez, M., Santos, E., … Lage, A. (2012).
+asic numerical capacities and prevalence of developmental dyscalculia: The Havana Survey.
+evelopmental Psychology, 48 (1), 123–135.
+ousselle, L., &amp; Noël, M.-P. (2007).
+asic numerical skills in children with mathematics learning disabilities: A comparison of symbolic vs non-symbolic number magnitude processing.
+ognition, 102 (3), 361–395.
+ubinsten, O., &amp; Henik, A. (2009).
+evelopmental dyscalculia: Heterogeneity might not mean different mechanisms.
+rends in Cognitive Sciences, 13 (2), 92–99.
+ubinsten, O., &amp; Tannock, R. (2010).
+athematics anxiety in children with developmental dyscalculia.
+ehavioral and Brain Functions, 6 , 46.
+amuel, T.
+., &amp; Warner, J. (2021). “I can math!”: Reducing math anxiety and increasing math self-efficacy using a mindfulness and growth mindset-based intervention in first-year students.
+ommunity College Journal of Research and Practice, 45 (3), 205–222.
+chuchardt, K., Maehler, C., &amp; Hasselhorn, M. (2008).
+orking memory deficits in children with specific learning disorders.
+ournal of Learning Disabilities, 41 (6), 514–523.
+chuchardt, K., Schuler, P., &amp; Mermer, G. (2015).
+ntervention strategies for children with mathematics learning difficulties.
+ournal of Educational Research, 18 (4), 215–224.
+halev, R.
+. (2004).
+evelopmental dyscalculia.
+ournal of Child Neurology, 19 (10), 765–771.
+halev, R.
+., &amp; Gross-Tsur, V. (2001).
+evelopmental dyscalculia.
+ediatric Neurology, 24 (5), 337–342.
+halev, R.
+., Manor, O., &amp; Gross-Tsur, V. (1995).
+he development of brain mechanisms for exact and approximate calculation: A prospective study.
+ournal of Clinical and Experimental Neuropsychology, 17 (1), 5–16.
+harma, K. (1990).
+cquired dyscalculia in childhood: A case study.
+nternational Journal of Rehabilitation Research, 13 (3), 221–225.
+wanson, H.
+. (2006).
+ross-sectional and incremental changes in working memory and mathematical problem solving.
+ournal of Educational Psychology, 98 (2), 265–281.
+räff, U., Olsson, L., &amp; Skagerlund, K. (2017).
+eterogeneity of developmental dyscalculia: Cases with different deficit profiles in the triple code model.
+rontiers in Psychology, 8 , 1637.
+igna, G., Ghidoni, E., Burgio, F., Danesin, L., Angelini, D., Benavides-Varela, S., &amp; Semenza, C. (2022).
+yscalculia in early adulthood: Implications for numerical activities of daily living.
+rain Sciences, 12 (3), 373.
+erkijika, S.
+., &amp; De Wet, L. (2015).
+sing a brain–computer interface (BCI) in reducing math anxiety: Evidence from South Africa.
+omputers &amp; Education, 81 , 113–122.
+illcutt, E.
+., Petrill, S.
+., Wu, S., Boada, R., DeFries, J.
+., Olson, R.
+., &amp; Pennington, B.
+. (2013).
+omorbidity between reading disability and math disability: Concurrent psychopathology, functional impairment, and neuropsychological functioning.
+ournal of Learning Disabilities, 46 (6), 500–516.
+orld Health Organization (WHO). (2019).
+nternational classification of diseases (11th revision). https://icd.who.int/

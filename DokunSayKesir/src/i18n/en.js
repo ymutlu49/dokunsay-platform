@@ -241,4 +241,10 @@ export default {
   "act.37.d": "MISCONCEPTION: 'Fractions with different denominators can't be equivalent' or 'Any two fractions with different denominators are equivalent.' TRUE: 1/2 = 2/4 = 3/6 and 6/8 = 9/12. Multiply/divide numerator AND denominator by the same number. Each click shows a different example — some equivalent, some not!",
   "act.38.n": "M15: Half = ÷2 or ÷1/2?",
   "act.38.d": "MISCONCEPTION: 'To find half of a fraction you must divide by 1/2.' TRUE: Half = DIVIDE by 2 = MULTIPLY by 1/2. Dividing by 1/2 DOUBLES the result! 1/2 × 1/2 = 1/4 (correct). Put 1/4 on the right model.",
+  "act.39.n": "B1: Is the Sum More Than 1?",
+  "act.39.d": "You choose: place two fraction bars and add them. But PREDICT first — will the result be more or less than one whole? Then check with the model. No hints.",
+  "act.40.n": "T1: 3 Pizzas, 4 Friends",
+  "act.40.d": "Four friends will share 3 pizzas EQUALLY. How much does each get? Show it with the models, then write your answer as a fraction and explain how you found it.",
+  "act.41.n": "T2: You Ask the Fraction",
+  "act.41.d": "Your turn: build a fraction but don't show your friend. Give clues — 'bigger than a half, smaller than a whole, denominator 8'. Can your friend find it?",
 };

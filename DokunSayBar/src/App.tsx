@@ -17,6 +17,8 @@ import { generateId } from "./utils/idGenerator";
 import { getAdjacentPairs } from "./state/selectors";
 import { useHistory } from "./hooks/useHistory";
 import { useActivityChecker } from "./hooks/useActivityChecker";
+import { useItemOperations } from "./hooks/useItemOperations";
+import { useVoiceCommands } from "./hooks/useVoiceCommands";
 import { useResponsive } from "./hooks/useResponsive";
 import type { CanvasItem, Template, RodItem, DrawLine, Point } from "./types";
 
@@ -28,6 +30,8 @@ import Chip from "./components/canvas/Chip";
 import DotGroup from "./components/canvas/DotGroup";
 import EmptyState from "./components/overlays/EmptyState";
 import NumberLine from "./components/canvas/NumberLine";
+import SentenceStrip from "./components/canvas/SentenceStrip";
+import { describeCanvas } from "./utils/sentence";
 import PageNavigator from "./components/canvas/PageNavigator";
 import InstructionModal from "./components/overlays/InstructionModal";
 import CoverOverlay from "./components/overlays/CoverOverlay";
@@ -35,6 +39,10 @@ import FeedbackBanner from "./components/overlays/FeedbackBanner";
 import HelpModal from "./components/overlays/HelpModal";
 import AboutModal from "./components/overlays/AboutModal";
 import { useState as useLocalState } from "react";
+
+/** Dokunuş (tap) ile sürükleme (drag) ayrımı için piksel eşiği. Bu mesafenin
+ *  altındaki hareket "dokunuş" sayılır → çubuk/çerçeve deliğine pul ekle/çıkar. */
+const TAP_SLOP = 6;
 
 export default function App() {
   const { state, dispatch } = useAppState();
@@ -44,7 +52,7 @@ export default function App() {
     items, lines, pages, currentPage,
     tool, penColor, penWidth, eraserWidth, textSize, textBold,
     selectedId, language, bgColor, gridType,
-    showLabels, showNumberLine, covered, activeTemplate, feedback, sideTab,
+    showLabels, showNumberLine, showSentence, covered, activeTemplate, feedback, sideTab,
     collapsed, helpOpen, numPickerOpen, counting, voiceOn, teacherMode,
     progress, customTemplates, instruction, textInput, textValue, snapEffect,
   } = state;
@@ -56,6 +64,10 @@ export default function App() {
   const dpRef = useRef<Point>({ x: 0, y: 0 });
   const doffRef = useRef<Point>({ x: 0, y: 0 });
   const nearTrashRef = useRef(false);
+  // Tap-vs-drag ayrımı: dokunulan öğenin yerel koordinatı + hareket bayrağı + başlangıç noktası
+  const tapRef = useRef<{ localX: number; localY: number } | null>(null);
+  const movedRef = useRef(false);
+  const dStartRef = useRef<Point>({ x: 0, y: 0 });
   const [, forceRender] = useLocalState(0);
 
   const [aboutOpen, setAboutOpen] = useLocalState(false);
@@ -91,114 +103,18 @@ export default function App() {
   }, []);
 
   const adjPairs = useMemo(() => getAdjacentPairs(items), [items]);
+  // Cümle TÜRETİLİR (saklanmaz): items değişince kendiliğinden güncellenir; geri al,
+  // sayfa değiştirme ve şablon yükleme ek kod olmadan doğru çalışır.
+  const sentence = useMemo(
+    () => (showSentence ? describeCanvas(items, language) : null),
+    [showSentence, items, language],
+  );
 
   // ===== Item Operations =====
-  const place = useCallback((def: Partial<CanvasItem>) => {
-    const el = cvRef.current;
-    if (!el) return;
-    const r = el.getBoundingClientRect();
-    let x: number, y: number;
-    if (def.type === "chip") {
-      const cnt = items.filter((i) => i.type === "chip").length;
-      x = 20 + (cnt % 10) * (CHIP_SIZE + 4);
-      y = Math.round(r.height * 0.55 + (Math.floor(cnt / 10)) * (CHIP_SIZE + 6));
-    } else {
-      x = Math.round(r.width / 2 - getItemWidth(def as CanvasItem) / 2);
-      y = Math.round(r.height / 2 - getItemHeight(def as CanvasItem) / 2);
-    }
-    updateWithHistory((prev) => [...prev, { ...def, id: generateId(), x, y } as CanvasItem]);
-    sfx.place();
-  }, [items, updateWithHistory]);
-
-  const flipItem = useCallback((id: number) => {
-    // When flipping, remove child chips (holes disappear)
-    updateWithHistory((p) => {
-      const rod = p.find((i) => i.id === id && i.type === "rod") as RodItem | undefined;
-      if (!rod) return p.map((i) => i.id === id && i.type === "rod" ? { ...i, flipped: !(i as any).flipped } : i);
-      if (!rod.flipped) {
-        // Flipping to hidden → remove child chips
-        return p.filter((i) => !(i.type === "chip" && (i as any).parentId === id))
-          .map((i) => i.id === id ? { ...i, flipped: true } : i);
-      }
-      return p.map((i) => i.id === id ? { ...i, flipped: false } : i);
-    });
-    sfx.flip();
-  }, [updateWithHistory]);
-
-  const rotateItem = useCallback((id: number) => {
-    // When rotating, detach child chips (positions become invalid)
-    updateWithHistory((p) => p
-      .map((i) => {
-        if (i.id === id && i.type === "rod") return { ...i, rot: i.rot === 0 ? 90 : 0 } as RodItem;
-        if (i.id === id && i.type === "frame") {
-          // Kareyi (beşlik/onluk) döndür: sütun ↔ satır yer değiştirir
-          const f = i as any;
-          return { ...f, rows: f.cols, cols: f.rows };
-        }
-        if (i.type === "chip" && (i as any).parentId === id) return { ...i, parentId: undefined, holeIndex: undefined };
-        return i;
-      }));
-    sfx.rotate();
-  }, [updateWithHistory]);
-
-  const removeItem = useCallback((id: number) => {
-    // When removing rod, also remove child chips
-    updateWithHistory((p) => p.filter((i) => i.id !== id && !(i.type === "chip" && (i as any).parentId === id)));
-    sfx.remove();
-  }, [updateWithHistory]);
-
-  const lockItem = useCallback((id: number) => {
-    updateWithHistory((p) => p.map((i) => i.id === id ? { ...i, locked: !i.locked } : i));
-  }, [updateWithHistory]);
-
-  const splitRod = useCallback((id: number, at: number) => {
-    const rod = items.find((i): i is RodItem => i.id === id && i.type === "rod");
-    if (!rod || at < 1 || at >= rod.value) return;
-    const isV = rod.rot === 90;
-    const newRod1Id = generateId();
-    const newRod2Id = generateId();
-    updateWithHistory((p) => {
-      // Remove original rod and its child chips
-      const filtered = p.filter((i) => i.id !== id && !(i.type === "chip" && (i as any).parentId === id));
-      return [
-        ...filtered,
-        { id: newRod1Id, type: "rod" as const, value: at, flipped: rod.flipped, rot: rod.rot, x: rod.x, y: rod.y, locked: false },
-        { id: newRod2Id, type: "rod" as const, value: rod.value - at, flipped: rod.flipped, rot: rod.rot, x: isV ? rod.x : rod.x + at * CELL_SIZE, y: isV ? rod.y + at * CELL_SIZE : rod.y, locked: false },
-      ];
-    });
-    dispatch({ type: "SET_SELECTED", id: null });
-    sfx.snap();
-  }, [items, updateWithHistory, dispatch]);
-
-  const mergeRods = useCallback((a: RodItem, b: RodItem) => {
-    updateWithHistory((p) => [
-      ...p.filter((i) => i.id !== a.id && i.id !== b.id),
-      { id: generateId(), type: "rod" as const, value: a.value + b.value, flipped: a.flipped, rot: a.rot, x: Math.min(a.x, b.x), y: Math.min(a.y, b.y), locked: false },
-    ]);
-    sfx.snap();
-  }, [updateWithHistory]);
-
-  const startCount = useCallback((rid: number) => {
-    const rod = items.find((i): i is RodItem => i.id === rid && i.type === "rod");
-    if (!rod || rod.flipped) return;
-    if (ctRef.current) clearInterval(ctRef.current);
-    dispatch({ type: "SET_COUNTING", counting: { rid, step: 0 } });
-    speakNumber(1, language);
-    sfx.note(1);
-    let step = 0;
-    ctRef.current = setInterval(() => {
-      step++;
-      if (step >= rod.value) {
-        clearInterval(ctRef.current!);
-        ctRef.current = null;
-        setTimeout(() => dispatch({ type: "SET_COUNTING", counting: null }), 800);
-      } else {
-        dispatch({ type: "SET_COUNTING", counting: { rid, step } });
-        sfx.note(step + 1);
-        speakNumber(step + 1, language);
-      }
-    }, 600);
-  }, [items, language, dispatch]);
+  // Blok hooks/useItemOperations.ts'e tasindi (STANDARDS.md §2.5, 600 satir kurali).
+  // Davranis aynen korundu; yalnizca yerel degiskenler parametreye cevrildi.
+  const { place, flipItem, rotateItem, removeItem, lockItem, splitRod, mergeRods, startCount } =
+    useItemOperations({ cvRef, ctRef, items, language, updateWithHistory, dispatch });
 
   // ===== Template Loading =====
   const loadTemplate = useCallback((tp: Template) => {
@@ -214,7 +130,7 @@ export default function App() {
     });
     dispatch({ type: "SET_ITEMS", items: newItems as CanvasItem[] });
     dispatch({ type: "SET_LINES", lines: [] });
-    dispatch({ type: "TOGGLE_COVERED" }); dispatch({ type: "TOGGLE_COVERED" }); // ensure false
+    dispatch({ type: "SET_COVERED", covered: false });
     dispatch({ type: "SET_ACTIVE_TEMPLATE", template: tp });
     if (tp.d) {
       dispatch({ type: "SET_INSTRUCTION", instruction: { n: tp.n, k: tp.k, en: tp.en, ar: tp.ar, fa: tp.fa, i: tp.i, d: tp.d, dk: tp.dk, den: tp.den, dar: tp.dar, dfa: tp.dfa } });
@@ -274,81 +190,13 @@ export default function App() {
   }, [activeTemplate, language]);
 
   // ===== Voice Commands =====
-  const toggleVoice = useCallback(() => {
-    if (voiceOn) {
-      stopVoiceRecognition(voiceRef.current);
-      voiceRef.current = null;
-      dispatch({ type: "SET_VOICE", on: false });
-      return;
-    }
-    const rec = startVoiceRecognition(language, {
-      onResult: (txt) => {
-        const cmd = parseVoiceCommand(txt);
-        if (!cmd) return;
-
-        switch (cmd.action) {
-          // Placing items
-          case "placeRod": place({ type: "rod", value: cmd.value, flipped: false, rot: 0 } as any); break;
-          case "placeMultipleRods": for (let i = 0; i < cmd.count; i++) setTimeout(() => place({ type: "rod", value: cmd.value, flipped: false, rot: 0 } as any), i * 100); break;
-          case "placeFiveFrame": place({ type: "frame", cols: 5, rows: 1 } as any); break;
-          case "placeTenFrame": place({ type: "frame", cols: 5, rows: 2 } as any); break;
-          case "placeDotGroup": place({ type: "dotgroup", value: cmd.value } as any); break;
-          case "placeChip": place({ type: "chip", color: cmd.color, label: cmd.label } as any); break;
-          case "placeMultipleChips": for (let i = 0; i < cmd.count; i++) setTimeout(() => place({ type: "chip", color: cmd.color, label: null } as any), i * 100); break;
-          case "placeOperator": place({ type: "chip", color: "yellow", label: cmd.operator } as any); break;
-          case "placeExpression": cmd.parts.forEach((p, i) => setTimeout(() => {
-            if (["+", "−", "×", "÷", "="].includes(p)) place({ type: "chip", color: "yellow", label: p } as any);
-            else place({ type: "chip", color: "green", label: p } as any);
-          }, i * 150)); break;
-          // Canvas
-          case "clear": dispatch({ type: "CLEAR_CANVAS" }); break;
-          case "undo": undo(); break;
-          case "redo": redo(); break;
-          // File
-          case "save": saveAsJson(items, lines); break;
-          case "load": handleLoad(); break;
-          case "exportPng": handleExportPng(); break;
-          case "print": handlePrint(); break;
-          // Activity
-          case "check": checkActivity(); break;
-          case "nextActivity": case "prevActivity": case "loadActivity": break; // TODO: wire to template navigation
-          // View
-          case "cover": if (!covered) dispatch({ type: "TOGGLE_COVERED" }); break;
-          case "reveal": if (covered) dispatch({ type: "TOGGLE_COVERED" }); break;
-          case "toggleLabels": dispatch({ type: "TOGGLE_LABELS" }); break;
-          case "toggleNumberLine": dispatch({ type: "TOGGLE_NUMBER_LINE" }); break;
-          case "fullscreen": if (document.fullscreenElement) document.exitFullscreen(); else document.documentElement.requestFullscreen(); break;
-          // Selected item
-          case "flipSelected": if (selectedId != null) flipItem(selectedId); break;
-          case "rotateSelected": if (selectedId != null) rotateItem(selectedId); break;
-          case "deleteSelected": if (selectedId != null) { removeItem(selectedId); dispatch({ type: "SET_SELECTED", id: null }); } break;
-          case "lockSelected": if (selectedId != null) lockItem(selectedId); break;
-          case "unlockSelected": if (selectedId != null) lockItem(selectedId); break;
-          case "splitSelected": if (selectedId != null) splitRod(selectedId, cmd.at); break;
-          case "mergeSelected": if (adjPairs.length > 0) mergeRods(adjPairs[0].l, adjPairs[0].r); break;
-          case "countSelected": { const rod = items.find((i) => i.id === selectedId && i.type === "rod"); if (rod) startCount(rod.id); } break;
-          // Tool switching
-          case "selectTool": dispatch({ type: "SET_TOOL", tool: cmd.tool }); break;
-          case "setPenColor": dispatch({ type: "SET_PEN_COLOR", color: cmd.color }); dispatch({ type: "SET_TOOL", tool: "pen" }); break;
-          // Grid & background
-          case "setGrid": dispatch({ type: "SET_GRID_TYPE", gridType: cmd.grid }); break;
-          case "setBgColor": dispatch({ type: "SET_BG_COLOR", color: cmd.color }); break;
-          // Language
-          case "setLanguage": dispatch({ type: "SET_LANGUAGE", language: cmd.lang as any }); break;
-          // Music
-          case "playNote": { const r = items.find((i) => i.id === selectedId && i.type === "rod"); if (r) sfx.note((r as any).value); } break;
-          // Speak / Help / About
-          case "speakInstruction": handleSpeakInstruction(); break;
-          case "help": dispatch({ type: "TOGGLE_HELP" }); break;
-          case "about": setAboutOpen(true); break;
-        }
-      },
-      onError: () => dispatch({ type: "SET_VOICE", on: false }),
-    });
-    if (rec) { voiceRef.current = rec; dispatch({ type: "SET_VOICE", on: true }); }
-  }, [voiceOn, language, dispatch, place, undo, redo, checkActivity, items, lines, covered, selectedId,
-      flipItem, rotateItem, removeItem, lockItem, splitRod, mergeRods, startCount, adjPairs,
-      handleLoad, handleExportPng, handlePrint, handleSpeakInstruction]);
+  // Blok hooks/useVoiceCommands.ts'e tasindi (STANDARDS.md §2.5, 600 satir kurali).
+  const { toggleVoice } = useVoiceCommands({
+    voiceOn, language, dispatch, voiceRef, items, lines, covered, selectedId, adjPairs,
+    place, undo, redo, checkActivity, flipItem, rotateItem, removeItem, lockItem,
+    splitRod, mergeRods, startCount, handleLoad, handleExportPng, handlePrint,
+    handleSpeakInstruction, setAboutOpen,
+  });
 
   // ===== Drag & Drop =====
   const startDrag = useCallback((e: React.PointerEvent, eid: number) => {
@@ -360,6 +208,10 @@ export default function App() {
     if (!it || it.locked) return;
     doffRef.current = { x: e.clientX - r.left - it.x, y: e.clientY - r.top - it.y };
     dpRef.current = { x: it.x, y: it.y };
+    // Dokunuş konumunu (öğeye göre yerel) + başlangıç + hareket durumunu kaydet
+    tapRef.current = { localX: e.clientX - r.left - it.x, localY: e.clientY - r.top - it.y };
+    dStartRef.current = { x: e.clientX, y: e.clientY };
+    movedRef.current = false;
     if (e.altKey) dragRef.current = { ...it, id: generateId(), src: "p" } as any;
     else dragRef.current = { ...it, src: "c" } as any;
     forceRender((v: number) => v + 1);
@@ -372,6 +224,12 @@ export default function App() {
     function onMove(e: PointerEvent) {
       const r = cvRef.current!.getBoundingClientRect();
       const mx = e.clientX - r.left, my = e.clientY - r.top;
+      // Eşik aşılana kadar hareketi yok say → dokunuş olarak değerlendir
+      if (!movedRef.current) {
+        const ddx = e.clientX - dStartRef.current.x, ddy = e.clientY - dStartRef.current.y;
+        if (ddx * ddx + ddy * ddy <= TAP_SLOP * TAP_SLOP) return;
+        movedRef.current = true;
+      }
       const rawX = mx - doffRef.current.x, rawY = my - doffRef.current.y;
 
       // Smart alignment snap
@@ -384,6 +242,49 @@ export default function App() {
     function onUp() {
       const d = dragRef.current;
       if (!d) return;
+
+      // ── DOKUNUŞ (hareket yok) → çubuk/çerçeve deliğine pul ekle-çıkar, dolu pula dokun → kaldır ──
+      if (!movedRef.current) {
+        const tap = tapRef.current;
+        if (tap) {
+          if (d.type === "rod" && !(d as any).flipped && (((d as any).rot || 0) === 0)) {
+            const val = (d as any).value as number;
+            const hi = Math.max(0, Math.min(val - 1, Math.floor(tap.localX / CELL_SIZE)));
+            const existing = items.find((c) => c.type === "chip" && (c as any).parentId === d.id && (c as any).holeIndex === hi);
+            if (existing) { updateWithHistory((p) => p.filter((i) => i.id !== existing.id)); sfx.remove(); }
+            else {
+              const holeX = d.x + hi * CELL_SIZE + CELL_SIZE / 2 - CHIP_SIZE / 2;
+              const holeY = d.y + ROD_HEIGHT / 2 - CHIP_SIZE / 2;
+              updateWithHistory((p) => [...p, { id: generateId(), type: "chip", x: holeX, y: holeY, color: getHoleColor(hi), label: null, parentId: d.id, holeIndex: hi, locked: false } as any]);
+              sfx.snap();
+              dispatch({ type: "SET_SNAP_EFFECT", effect: { x: holeX + CHIP_SIZE / 2, y: holeY + CHIP_SIZE / 2, t: Date.now() } });
+              setTimeout(() => dispatch({ type: "SET_SNAP_EFFECT", effect: null }), 500);
+            }
+          } else if (d.type === "frame") {
+            const cols = (d as any).cols || 5; const rows = (d as any).rows || 2;
+            const c = Math.floor((tap.localX - FRAME_PADDING) / FRAME_CELL_SIZE);
+            const rr = Math.floor((tap.localY - FRAME_PADDING) / FRAME_CELL_SIZE);
+            if (c >= 0 && c < cols && rr >= 0 && rr < rows) {
+              const hi = rr * cols + c;
+              const existing = items.find((ch) => ch.type === "chip" && (ch as any).parentId === d.id && (ch as any).holeIndex === hi);
+              if (existing) { updateWithHistory((p) => p.filter((i) => i.id !== existing.id)); sfx.remove(); }
+              else {
+                const holeX = d.x + FRAME_PADDING + c * FRAME_CELL_SIZE + FRAME_CELL_SIZE / 2 - CHIP_SIZE / 2;
+                const holeY = d.y + FRAME_PADDING + rr * FRAME_CELL_SIZE + FRAME_CELL_SIZE / 2 - CHIP_SIZE / 2;
+                updateWithHistory((p) => [...p, { id: generateId(), type: "chip", x: holeX, y: holeY, color: getHoleColor(hi), label: null, parentId: d.id, holeIndex: hi, locked: false } as any]);
+                sfx.snap();
+              }
+            }
+          } else if (d.type === "chip" && (d as any).parentId != null) {
+            updateWithHistory((p) => p.filter((i) => i.id !== d.id)); sfx.remove();
+          }
+        }
+        dragRef.current = null;
+        nearTrashRef.current = false;
+        setAlignGuides([]);
+        forceRender((v: number) => v + 1);
+        return;
+      }
 
       if (nearTrashRef.current) {
         if (d.src === "c") updateWithHistory((p) => p.filter((i) => i.id !== d.id));
@@ -497,7 +398,7 @@ export default function App() {
           collapsed={collapsed} sideTab={sideTab}
           userProfile={auth.profile}
           onDashboard={() => authDispatch({ type: "SET_PAGE", page: "dashboard" })}
-          showLabels={showLabels} showNumberLine={showNumberLine} covered={covered}
+          showLabels={showLabels} showNumberLine={showNumberLine} showSentence={showSentence} covered={covered}
           canUndo={canUndo} canRedo={canRedo}
           activeTpl={activeTemplate} teacherMode={teacherMode}
           progress={progress} customTemplates={customTemplates}
@@ -515,6 +416,7 @@ export default function App() {
           onUndo={undo} onRedo={redo}
           onToggleLabels={() => dispatch({ type: "TOGGLE_LABELS" })}
           onToggleNumberLine={() => dispatch({ type: "TOGGLE_NUMBER_LINE" })}
+          onToggleSentence={() => dispatch({ type: "TOGGLE_SENTENCE" })}
           onToggleCover={() => dispatch({ type: "TOGGLE_COVERED" })}
           onSave={handleSave} onLoad={handleLoad}
           onExportPng={handleExportPng} onPrint={handlePrint}
@@ -631,41 +533,25 @@ export default function App() {
             >
               {renderItem(it)}
 
-              {/* Clickable holes — tap to toggle chip (add/remove) */}
+              {/* Boş delik ipuçları — seçili çubukta, "dokun → doldur" (sadece görsel; dokunuş çubuk seviyesinde işlenir) */}
               {it.type === "rod" && !it.flipped && (it.rot || 0) === 0 && tool === "select" && selectedId === it.id && !dragRef.current && (
                 Array.from({ length: it.value }, (_, hi) => {
-                  const existingChip = items.find((c) => c.type === "chip" && (c as any).parentId === it.id && (c as any).holeIndex === hi);
+                  const filled = items.some((c) => c.type === "chip" && (c as any).parentId === it.id && (c as any).holeIndex === hi);
+                  if (filled) return null;
+                  const hc = getHoleColor(hi);
                   return (
                     <div
-                      key={`hole-${hi}`}
-                      onPointerDown={(e) => {
-                        e.stopPropagation();
-                        e.preventDefault();
-                        if (existingChip) {
-                          // Remove existing chip
-                          updateWithHistory((p) => p.filter((i) => i.id !== existingChip.id));
-                          sfx.remove();
-                        } else {
-                          // Place new chip
-                          const holeX = it.x + hi * CELL_SIZE + CELL_SIZE / 2 - CHIP_SIZE / 2;
-                          const holeY = it.y + ROD_HEIGHT / 2 - CHIP_SIZE / 2;
-                          updateWithHistory((p) => [...p, {
-                            id: generateId(), type: "chip" as const,
-                            x: holeX, y: holeY,
-                            color: getHoleColor(hi), label: null,
-                            parentId: it.id, holeIndex: hi, locked: false,
-                          } as any]);
-                          sfx.snap();
-                        }
-                      }}
+                      key={`ghost-${hi}`}
                       style={{
                         position: "absolute",
                         left: hi * CELL_SIZE + (CELL_SIZE - CHIP_SIZE) / 2,
                         top: (ROD_HEIGHT - CHIP_SIZE) / 2,
                         width: CHIP_SIZE, height: CHIP_SIZE,
                         borderRadius: "50%",
-                        cursor: "pointer",
-                        zIndex: 8,
+                        border: `2px dashed ${hc === "blue" ? "rgba(37,99,235,.55)" : "rgba(220,38,38,.55)"}`,
+                        boxSizing: "border-box",
+                        pointerEvents: "none",
+                        zIndex: 4,
                       }}
                     />
                   );
@@ -766,45 +652,31 @@ export default function App() {
                 );
               })()}
 
-              {/* Frame — tap-to-toggle pul ekle/kaldır (aynı çubuk mantığı) */}
+              {/* Çerçeve boş delik ipuçları — seçili, "dokun → doldur" (sadece görsel) */}
               {it.type === "frame" && tool === "select" && selectedId === it.id && !dragRef.current && (() => {
                 const rows = (it as any).rows || 2;
                 const cols = (it as any).cols || 5;
                 return Array.from({ length: rows }, (_, r) =>
                   Array.from({ length: cols }, (_, c) => {
                     const hi = r * cols + c;
-                    const existingChip = items.find(
+                    const filled = items.some(
                       (ch) => ch.type === "chip" && (ch as any).parentId === it.id && (ch as any).holeIndex === hi
                     );
+                    if (filled) return null;
+                    const hc = getHoleColor(hi);
                     return (
                       <div
-                        key={`fhole-${hi}`}
-                        onPointerDown={(e) => {
-                          e.stopPropagation();
-                          e.preventDefault();
-                          if (existingChip) {
-                            updateWithHistory((p) => p.filter((i2) => i2.id !== existingChip.id));
-                            sfx.remove();
-                          } else {
-                            const holeX = it.x + FRAME_PADDING + c * FRAME_CELL_SIZE + FRAME_CELL_SIZE / 2 - CHIP_SIZE / 2;
-                            const holeY = it.y + FRAME_PADDING + r * FRAME_CELL_SIZE + FRAME_CELL_SIZE / 2 - CHIP_SIZE / 2;
-                            updateWithHistory((p) => [...p, {
-                              id: generateId(), type: "chip" as const,
-                              x: holeX, y: holeY,
-                              color: getHoleColor(hi), label: null,
-                              parentId: it.id, holeIndex: hi, locked: false,
-                            } as any]);
-                            sfx.snap();
-                          }
-                        }}
+                        key={`fghost-${hi}`}
                         style={{
                           position: "absolute",
                           left: FRAME_PADDING + c * FRAME_CELL_SIZE + (FRAME_CELL_SIZE - CHIP_SIZE) / 2,
                           top: FRAME_PADDING + r * FRAME_CELL_SIZE + (FRAME_CELL_SIZE - CHIP_SIZE) / 2,
                           width: CHIP_SIZE, height: CHIP_SIZE,
                           borderRadius: "50%",
-                          cursor: "pointer",
-                          zIndex: 8,
+                          border: `2px dashed ${hc === "blue" ? "rgba(37,99,235,.55)" : "rgba(220,38,38,.55)"}`,
+                          boxSizing: "border-box",
+                          pointerEvents: "none",
+                          zIndex: 4,
                         }}
                       />
                     );
@@ -833,6 +705,9 @@ export default function App() {
 
           {/* Number line */}
           {showNumberLine && <NumberLine lang={language} isDark={dk} />}
+
+          {/* Sembolik + sözel cümle şeridi — yapı okunaklı değilse hiç çizilmez */}
+          {sentence && <SentenceStrip sentence={sentence} lang={language} isDark={dk} />}
 
           {/* Watermark */}
           <div style={{ position: "absolute", bottom: 6, right: 10, fontSize: 10, fontWeight: 700, color: "rgba(60,60,40,.15)", pointerEvents: "none" }}>Prof. Dr. Yılmaz Mutlu</div>

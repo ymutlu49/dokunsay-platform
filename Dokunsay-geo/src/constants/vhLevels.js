@@ -8,8 +8,8 @@ export const VH_LEVELS=[
   {
     id:0, key:"visual",
     // Orijinal adı: "Visualization" / "Recognition"
-    name:{tr:"Görsel Düzey",ku:"Asta Dîtinê",en:"Visual Level"},
-    shortName:{tr:"Görsel",ku:"Dîtin",en:"Visual"},
+    name:{tr:"Görsel Düzey",ku:"Asta Dîtinê",en:"Visual Level",ar:"المستوى البصري",fa:"سطح دیداری"},
+    shortName:{tr:"Görsel",ku:"Dîtin",en:"Visual",ar:"بصري",fa:"دیداری"},
     color:"#fbbf24",       // sarı
     colorSoft:"#fef3c7",
     icon:"👁️",
@@ -78,8 +78,8 @@ export const VH_LEVELS=[
   },
   {
     id:1, key:"analysis",
-    name:{tr:"Analiz Düzeyi",ku:"Asta Analîzê",en:"Analysis Level"},
-    shortName:{tr:"Analiz",ku:"Analîz",en:"Analysis"},
+    name:{tr:"Analiz Düzeyi",ku:"Asta Analîzê",en:"Analysis Level",ar:"مستوى التحليل",fa:"سطح تحلیل"},
+    shortName:{tr:"Analiz",ku:"Analîz",en:"Analysis",ar:"تحليل",fa:"تحلیل"},
     color:"#818cf8",
     colorSoft:"#e0e7ff",
     icon:"📐",
@@ -145,8 +145,8 @@ export const VH_LEVELS=[
   {
     id:2, key:"abstraction",
     // Orijinal: "Abstraction" / "Informal Deduction" / "Ordering"
-    name:{tr:"Soyutlama (Gayri Resmi Çıkarım)",ku:"Ramandin",en:"Abstraction (Informal Deduction)"},
-    shortName:{tr:"Soyutlama",ku:"Ramandin",en:"Abstraction"},
+    name:{tr:"Soyutlama (Gayri Resmi Çıkarım)",ku:"Ramandin",en:"Abstraction (Informal Deduction)",ar:"التجريد (استدلال غير صوري)",fa:"انتزاع (استنتاج غیررسمی)"},
+    shortName:{tr:"Soyutlama",ku:"Ramandin",en:"Abstraction",ar:"تجريد",fa:"انتزاع"},
     color:"#34d399",
     colorSoft:"#d1fae5",
     icon:"🔗",

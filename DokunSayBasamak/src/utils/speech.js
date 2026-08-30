@@ -1,18 +1,20 @@
 /**
  * DokunSay Basamak — Sesli Okuma
- * Platform TTS flag'ine bağlı (shared/tts.js).
+ *
+ * Seslendirme TEK YOLDAN geçer: shared/tts.js. Buradaki yerel `SpeechSynthesisUtterance`
+ * kopyası kaldırıldı (2026-07-19 platform denetimi) — `lang="ku"` veriyordu, çoğu motorda
+ * karşılığı olmadığı için sistem varsayılan sesine düşüyordu (yani rastgele bir dil).
+ * Ortak modül ayrıca matematik gösterimini ve emojiyi okunabilir hâle getirir.
  */
 
-import { isTTSEnabled } from '@shared/tts.js';
+import { speak as platformSpeak, canSpeak } from '@shared/tts.js';
 
 export function speakInLang(text, langCode) {
-  if (!window.speechSynthesis || !isTTSEnabled()) return;
-  window.speechSynthesis.cancel();
-  const utt = new SpeechSynthesisUtterance(text);
-  utt.lang = langCode === "ku" ? "ku" : langCode === "en" ? "en-US" : "tr-TR";
-  utt.rate = 0.85;
-  window.speechSynthesis.speak(utt);
+  platformSpeak(text, langCode);
 }
+
+/** Bu dilde seslendirme yapılabilir mi? 🔊 düğmelerini buna göre gizle. */
+export { canSpeak };
 
 export const SPEECH_SUPPORTED = typeof window !== "undefined" &&
   !!(window.SpeechRecognition || window.webkitSpeechRecognition);

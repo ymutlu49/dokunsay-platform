@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Öğrenme Yörüngeleri — DokunSay</title>
+<meta name="description" content="Matematik, adım adım. Çocuğun sınıfına göre değil, bulunduğu seviyeye göre öğrenme yörüngeleri — Clements & Sarama. Her yörüngede DokunSay araçları ve etkinlikler.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --amber:#2E7D32; --orange:#43A047; --terra:#1B5E20; --warm-ink:#1d2b22;
+    --ink:#182219; --body:#37433c; --muted:#5f6b63; --line:#dfe7df; --bg:#f3f7f1; --card:#ffffff;
+    --say:#2E7D32; --geo:#7c3aed; --olcme:#0d9488; --cebir:#6f8f1f; --veri:#2563eb;
+    --maxw:1120px; --r:18px; --shadow:0 10px 30px -14px rgba(24,40,25,.22);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Inter,system-ui,sans-serif;color:var(--body);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4{font-family:Poppins,sans-serif;color:var(--ink);line-height:1.14;letter-spacing:-.02em}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  .eyebrow{font-family:Poppins;font-weight:700;font-size:.76rem;letter-spacing:.16em;text-transform:uppercase}
+
+  /* Ortak site üst başlığı — anasayfayla aynı (site-header.mjs ile birebir). */
+  .dsh{background:linear-gradient(135deg,#14391a 0%,#1d2b22 100%);color:#fff;padding:12px 24px;box-shadow:0 4px 10px rgba(24,40,25,.10),0 2px 4px rgba(24,40,25,.05);position:sticky;top:0;z-index:50}
+  .dsh-row{display:flex;align-items:center;justify-content:space-between;gap:16px;max-width:1440px;margin:0 auto;flex-wrap:wrap}
+  .dsh-brand{display:flex;align-items:center;gap:13px;text-decoration:none;color:#fff}
+  .dsh-logo{width:40px;height:40px;border-radius:12px;background:#fff;display:grid;place-items:center;padding:5px;box-shadow:0 1px 4px rgba(15,23,42,.12);flex:0 0 auto}
+  .dsh-logo svg{display:block;width:100%;height:100%}
+  .dsh-titles{display:flex;flex-direction:column;line-height:1.12}
+  .dsh-name{font-family:Poppins,system-ui,sans-serif;font-size:20px;font-weight:800;letter-spacing:.4px;color:#fff}
+  .dsh-sub{font-size:11.5px;font-weight:700;opacity:.72;letter-spacing:.3px;margin-top:2px;color:#fff}
+  .dsh-nav{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .dsh-pill{display:inline-flex;align-items:center;gap:6px;padding:8px 15px;border-radius:999px;font-weight:700;font-size:.86rem;font-family:inherit;line-height:1;text-decoration:none;white-space:nowrap;border:1px solid transparent;transition:filter .15s,background .15s}
+  .dsh-pill:hover{filter:brightness(1.13)}
+  .dsh-amber{color:#fde6c0;background:rgba(245,158,11,.18);border-color:rgba(245,158,11,.45)}
+  .dsh-green{color:#d7f0d9;background:rgba(46,125,50,.22);border-color:rgba(46,125,50,.5)}
+  .dsh-teal{color:#bfe8e4;background:rgba(13,148,136,.2);border-color:rgba(13,148,136,.5)}
+  .dsh-pill.is-active{box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.45);filter:brightness(1.12)}
+  .dsh .numap-auth{display:inline-flex;align-items:center;gap:6px}
+  .dsh .numap-auth:empty{display:none}
+  .dsh .numap-auth a{display:inline-flex;align-items:center;gap:5px;padding:8px 14px;border-radius:999px;font-weight:700;font-size:.86rem;text-decoration:none;white-space:nowrap;color:#d7f0d9;background:rgba(46,125,50,.22);border:1px solid rgba(46,125,50,.5);transition:background .15s;cursor:pointer}
+  .dsh .numap-auth a:hover{background:rgba(46,125,50,.34)}
+  .dsh .numap-auth>span{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:.86rem;color:#e8efe9}
+  .dsh .numap-auth .nm{color:#d7f0d9}
+  .dsh .numap-auth #numap-out{cursor:pointer;border:0;border-radius:999px;background:#2E7D32;color:#fff;font-weight:800;font-size:.8rem;padding:7px 13px;font-family:inherit}
+  .dsh .numap-auth #numap-out:hover{filter:brightness(1.1)}
+  @media (max-width:760px){.dsh{padding:10px 15px}.dsh-pill{padding:7px 11px;font-size:.8rem}.dsh-name{font-size:18px}}
+  @media print{.dsh{display:none}}
+
+  .hero{background:linear-gradient(135deg,#14391a,#1d2b22);color:#fff;padding:62px 0 56px;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;right:-60px;top:-40px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(67,160,71,.25),transparent 70%)}
+  .hero .eyebrow{color:#a5d6a7}
+  .hero h1{color:#fff;font-size:clamp(2rem,4.6vw,3rem);font-weight:900;margin:12px 0 14px}
+  .hero p{color:#d8e6d8;font-size:1.1rem;max-width:640px}
+  .hero p b{color:#fff}
+
+  .sec{padding:54px 0}
+  .strand-head{display:flex;align-items:center;gap:12px;margin:0 0 22px;padding-left:14px;border-left:5px solid var(--c,#2E7D32)}
+  .strand-head h2{font-size:1.5rem;font-weight:800}
+  .strand-head .sub{font-size:.92rem;color:var(--muted)}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px;transition:transform .18s,box-shadow .22s;display:block;position:relative;overflow:hidden}
+  .card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+  .card::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--c,#2E7D32)}
+  .card .ic{font-size:1.9rem;margin-bottom:10px;display:block}
+  .card h3{font-size:1.16rem;font-weight:700;margin-bottom:5px}
+  .card .age{display:inline-block;font-family:Poppins;font-weight:700;font-size:.7rem;color:var(--c,#2E7D32);background:color-mix(in srgb,var(--c,#2E7D32) 12%,#fff);border-radius:999px;padding:.2em .7em;margin-bottom:9px}
+  .card p{font-size:.9rem;margin-bottom:12px}
+  .card .foot{display:flex;align-items:center;justify-content:space-between;font-size:.82rem;font-weight:600}
+  .card .lv{color:var(--muted)}
+  .card .go{color:var(--c,#2E7D32);font-family:Poppins;font-weight:700}
+  .note{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:22px 24px;font-size:.95rem;color:var(--body);margin-top:8px}
+  .note b{color:var(--ink)}
+
+  footer{background:#14391a;color:#9db89f;padding:40px 0;margin-top:30px;font-size:.9rem}
+  footer a{color:#d8e6d8}
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .5s,transform .5s}.reveal.in{opacity:1;transform:none}
+
+  /* ── Görünüm kontrolleri + Yaşa-göre görünüm ───────────────────── */
+  .controls{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin:34px 0 2px;justify-content:space-between}
+  .seg{display:inline-flex;flex-wrap:wrap;background:#fff;border:1px solid var(--line);border-radius:999px;padding:4px;box-shadow:var(--shadow)}
+  .seg button{font-family:Poppins;font-weight:700;font-size:.86rem;border:0;background:transparent;color:var(--body);cursor:pointer;border-radius:999px;padding:.5em 1.05em;transition:.15s}
+  .seg button.on{background:linear-gradient(135deg,#14391a,#1d2b22);color:#fff}
+  .meta-note{font-size:.86rem;color:var(--muted);font-weight:600}
+  .ages{display:flex;flex-wrap:wrap;gap:7px;align-items:center}
+  .ages .lbl{font-family:Poppins;font-weight:700;font-size:.82rem;color:var(--body);margin-right:3px}
+  .ages button{font-family:Poppins;font-weight:700;font-size:.86rem;border:1px solid var(--line);background:#fff;color:var(--body);cursor:pointer;border-radius:11px;min-width:40px;height:40px;padding:0 6px;transition:.15s}
+  .ages button:hover{border-color:var(--amber);color:var(--ink)}
+  .ages button.on{background:var(--amber);border-color:var(--amber);color:#fff;box-shadow:0 4px 12px -4px rgba(46,125,50,.6)}
+  .age-summary{font-family:Poppins;font-weight:700;font-size:1.08rem;color:var(--ink);margin:30px 0 20px}
+  .age-summary span{color:var(--terra)}
+  .age-traj{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;margin-bottom:14px;border-left:5px solid var(--c,#2E7D32)}
+  .age-traj .h{display:flex;align-items:center;gap:11px;margin-bottom:11px;flex-wrap:wrap}
+  .age-traj .h .ic{font-size:1.5rem}
+  .age-traj .h h3{font-size:1.12rem;font-weight:700}
+  .age-traj .h .go{margin-left:auto;font-family:Poppins;font-weight:700;font-size:.82rem;color:var(--c,#2E7D32)}
+  .age-lv-list{display:flex;flex-direction:column;gap:6px}
+  .age-lv{display:flex;align-items:center;gap:11px;padding:9px 13px;border-radius:11px;background:color-mix(in srgb,var(--c,#2E7D32) 6%,#fff);transition:.15s}
+  .age-lv:hover{background:color-mix(in srgb,var(--c,#2E7D32) 14%,#fff);transform:translateX(3px)}
+  .age-lv .n{flex:0 0 auto;width:27px;height:27px;border-radius:8px;background:var(--c,#2E7D32);color:#fff;font-family:Poppins;font-weight:700;font-size:.78rem;display:flex;align-items:center;justify-content:center}
+  .age-lv .t{font-size:.93rem;font-weight:600;color:var(--ink)}
+  .age-lv .bn{flex:0 0 auto;margin-left:auto;font-size:.72rem;font-weight:700;color:#b45309;background:#fff4e3;border-radius:999px;padding:.15em .7em}
+  .age-empty{color:var(--muted);font-size:.96rem;padding:26px 0}
+
+  /* ── Bireysel düzey görünümü ────────────────────────────────────── */
+  .bir-clear{font-family:Poppins;font-weight:700;font-size:.8rem;color:var(--terra);cursor:pointer;border:0;background:none;padding:0}
+  .bir-clear:hover{text-decoration:underline}
+  .bir-intro{font-size:.92rem;color:var(--body);margin:2px 0 18px;max-width:660px}
+  .bir-intro b{color:var(--ink)}
+  .bir-traj{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:15px 17px;margin-bottom:12px;border-left:5px solid var(--c,#2E7D32)}
+  .bir-head{display:flex;align-items:center;gap:10px;margin-bottom:11px}
+  .bir-head .ic{font-size:1.4rem}
+  .bir-head .nm{font-weight:700;color:var(--ink)}
+  .bir-head .go2{margin-left:auto;font-size:.8rem;font-weight:600;color:var(--c,#2E7D32)}
+  .bir-sel{width:100%;font-family:Inter,sans-serif;font-size:.92rem;color:var(--ink);background:#fff;border:1.5px solid var(--line);border-radius:11px;padding:10px 12px;cursor:pointer}
+  .bir-sel:focus{outline:none;border-color:var(--c,#2E7D32)}
+  .bir-lower{margin-top:11px}
+  .bir-prog{display:flex;align-items:center;gap:10px;margin-bottom:9px}
+  .bir-bar{flex:1;height:8px;background:var(--line);border-radius:999px;overflow:hidden}
+  .bir-bar i{display:block;height:100%;background:var(--c,#2E7D32);border-radius:999px;transition:width .3s}
+  .bir-prog span{font-size:.78rem;font-weight:700;color:var(--muted);white-space:nowrap}
+  .bir-next{display:flex;align-items:center;gap:9px;flex-wrap:wrap;padding:11px 14px;border-radius:12px;background:color-mix(in srgb,var(--c,#2E7D32) 9%,#fff);border:1px dashed color-mix(in srgb,var(--c,#2E7D32) 45%,#fff)}
+  .bir-next .bir-target{font-family:Poppins;font-weight:700;font-size:.72rem;color:var(--c,#2E7D32);text-transform:uppercase;letter-spacing:.04em}
+  .bir-next b{font-size:.94rem;color:var(--ink);font-weight:700}
+  .bir-next .go{margin-left:auto;font-family:Poppins;font-weight:700;font-size:.82rem;color:var(--c,#2E7D32)}
+  .bir-next .bn{font-size:.72rem;font-weight:700;color:#b45309;background:#fff4e3;border-radius:999px;padding:.15em .7em}
+  .bir-done{padding:10px 14px;border-radius:12px;background:#ecfdf5;color:#065f46;font-size:.88rem;font-weight:600}
+  @media(max-width:840px){.grid{grid-template-columns:1fr}.nav-links{display:none}.controls{gap:12px}.age-traj .h .go{margin-left:0}}
+</style>
+</head>
+<body>
+<header class="dsh"><div class="dsh-row"><a class="dsh-brand" href="/" aria-label="DokunSay ana sayfa"><span class="dsh-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" aria-hidden="true"><line x1="28" y1="27" x2="72" y2="27" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="28" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="72" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><circle cx="28" cy="27" r="21" fill="#2E7D32"/><circle cx="20.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="28" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="35.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="72" cy="27" r="21" fill="#0d9488"/><text x="72" y="32" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="14" fill="#fff">üç</text><circle cx="50" cy="73" r="21" fill="#1B5E20"/><text x="50" y="82" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="27" fill="#fff">3</text></svg></span><span class="dsh-titles"><span class="dsh-name">DokunSay</span><span class="dsh-sub">Matematik Öğretim Araçları Platformu</span></span></a><nav class="dsh-nav" aria-label="Site gezinme"><a class="dsh-pill dsh-amber is-active" href="/yorunge/" aria-current="page">🧭 Öğrenme Yörüngeleri</a><a class="dsh-pill dsh-green" href="/rehber/">📘 Müdahale Rehberi</a><a class="dsh-pill dsh-teal" href="/#tools-section">🛠️ Araçlar</a><span id="hcmoAuth" class="hcmo-auth"></span></nav></div></header>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Öğrenme Yörüngeleri</span>
+    <h1>Matematik, adım adım</h1>
+    <p>Öğrenmeyi <b>sınıfa göre değil, çocuğun bulunduğu seviyeye göre</b> düzenleriz. Clements &amp; Sarama
+      öğrenme yörüngeleri: her alanda, çocuğun nerede olduğunu ve sıradaki kazanımı gösteren basamaklar —
+      ve her basamağı öğreten <b>DokunSay araçları ve etkinlikler</b>. Matematik öğrenme güçlüğü yaşayan da,
+      hızlı ilerleyen de aynı haritada.</p>
+  </div>
+</section>
+
+<div class="wrap"><div id="viewControls" class="controls" aria-label="Görünüm seçimi"></div></div>
+
+<main class="wrap" id="app">
+  <!-- içerik JS ile render edilir; render başarısızsa aşağıdaki not görünür -->
+  <noscript><p class="note" style="margin-top:40px">Yörüngeleri görmek için JavaScript gerekir.</p></noscript>
+</main>
+
+<footer>
+  <div class="wrap">
+    Her Çocuk Matematik Öğrenebilir · DokunSay — Öğrenme Yörüngeleri ·
+    <a href="/">Araçlara dön</a> · Clements &amp; Sarama çerçevesi
+  </div>
+</footer>
+
+<script src="levels.js"></script>
+<script>
+const STRANDS = [
+  { key:'say',   label:'Sayılar ve İşlemler', sub:'Sanbil, sayma, karşılaştırma, işlemler, kesirler', c:'#2E7D32' },
+  { key:'cebir', label:'Cebir ve Örüntü',      sub:'Örüntü ve cebirsel düşünme',                       c:'#6f8f1f' },
+  { key:'geo',   label:'Geometri ve Uzamsal',  sub:'Şekiller, şekil oluşturma, uzamsal düşünme',       c:'#7c3aed' },
+  { key:'olcme', label:'Ölçme',                sub:'Uzunluk, alan, hacim, açı',                        c:'#0d9488' },
+  { key:'veri',  label:'Veri ve Sınıflama',    sub:'Sınıflama ve veri analizi',                        c:'#2563eb' },
+];
+const T = [
+  {k:'sub',s:'say',ic:'👁️',n:'Sanbil',d:'Saymadan, bir bakışta miktarı bilme.',lv:12,age:'3–9 yaş'},
+  {k:'count',s:'say',ic:'🔢',n:'Sayma',d:'Nesneleri birebir sayma; son söz = çokluk.',lv:19,age:'2–10 yaş'},
+  {k:'comp',s:'say',ic:'⚖️',n:'Karşılaştırma / Sıralama',d:'Çoklukları karşılaştırma, zihinsel sayı doğrusu.',lv:24,age:'2–10 yaş'},
+  {k:'add',s:'say',ic:'➕',n:'Toplama / Çıkarma',d:'Birleştirme/ayırma; sayma → türetme stratejileri.',lv:12,age:'3–10 yaş'},
+  {k:'compose',s:'say',ic:'🧩',n:'Sayı Oluşturma',d:'Parça-bütün; 10’u bileşenlerine ayırma.',lv:11,age:'2–9 yaş'},
+  {k:'multdiv',s:'say',ic:'✖️',n:'Çarpma / Bölme',d:'Eşit gruplar, paylaştırma, diziler.',lv:9,age:'3–10 yaş'},
+  {k:'frac',s:'say',ic:'🍕',n:'Kesirler',d:'Eş paylaşım, birim kesir, kesir işlemleri.',lv:11,age:'4–11 yaş'},
+  {k:'pattern',s:'cebir',ic:'🔁',n:'Örüntü ve Cebirsel Düşünme',d:'Örüntü tanıma/sürdürme; birim; ilişkisel düşünme.',lv:12,age:'3–11 yaş'},
+  {k:'shape2d',s:'geo',ic:'🔺',n:'2B Şekiller',d:'Şekil tanıma, kenar/köşe, özellikler.',lv:22,age:'2–10 yaş'},
+  {k:'comp2d',s:'geo',ic:'🧷',n:'2B Şekil Oluşturma',d:'Parçalardan şekil kurma, ayrıştırma.',lv:11,age:'2–9 yaş'},
+  {k:'disembed',s:'geo',ic:'🔍',n:'Gömülü Şekli Ayırma',d:'Karmaşık resimde gizli şekli ayırma.',lv:5,age:'3–9 yaş'},
+  {k:'shape3d',s:'geo',ic:'🧊',n:'3B Şekiller',d:'Küp/koni/silindir; yüz–köşe.',lv:6,age:'2–10 yaş'},
+  {k:'comp3d',s:'geo',ic:'🏗️',n:'3B Şekil Oluşturma',d:'Bloklarla yapı kurma.',lv:9,age:'2–9 yaş'},
+  {k:'spviz',s:'geo',ic:'🔄',n:'Uzamsal Görselleştirme',d:'Döndürme, yansıtma, kaydırma.',lv:7,age:'2–10 yaş'},
+  {k:'sporient',s:'geo',ic:'🧭',n:'Uzamsal Yönelim',d:'Yön bulma, harita, koordinat.',lv:10,age:'2–10 yaş'},
+  {k:'mlen',s:'olcme',ic:'📏',n:'Ölçme: Uzunluk',d:'Karşılaştırma, birim, cetvel.',lv:12,age:'2–10 yaş'},
+  {k:'marea',s:'olcme',ic:'🟩',n:'Ölçme: Alan',d:'Yüzey kaplama, satır-sütun.',lv:8,age:'3–10 yaş'},
+  {k:'mvol',s:'olcme',ic:'🧪',n:'Ölçme: Hacim',d:'Kapları doldurma, 3B birim.',lv:8,age:'4–11 yaş'},
+  {k:'mang',s:'olcme',ic:'📐',n:'Ölçme: Açı ve Dönüş',d:'Açı karşılaştırma ve ölçme.',lv:6,age:'4–11 yaş'},
+  {k:'classif',s:'veri',ic:'📊',n:'Sınıflama ve Veri Analizi',d:'Gruplama, veri okuma, grafik.',lv:11,age:'2–11 yaş'},
+];
+const app = document.getElementById('app');
+const ctl = document.getElementById('viewControls');
+const LEVELS = window.YORUNGE_LEVELS || {};
+const AGES = [2,3,4,5,6,7,8,9,10,11];
+const TOTAL_LV = Object.values(LEVELS).reduce((s,a)=>s+a.length,0) || 224;
+let mode = 'strand', age = 5;
+
+// Bireysel düzey işaretleri — öğrenci hesabına (varsa) yoksa cihaza anahtarlı
+function bkey(){ var u=window.HCMO_USER, id=u&&((u.student&&u.student.id)||(u.user&&u.user.id)); return 'dokunsay_bireysel_'+(id||'local'); }
+function bload(){ try{ return JSON.parse(localStorage.getItem(bkey())||'{}')||{}; }catch(e){ return {}; } }
+function bsave(o){ try{ localStorage.setItem(bkey(), JSON.stringify(o)); }catch(e){} }
+let BIR = null;
+function getBir(){ if(BIR===null) BIR=bload(); return BIR; }
+
+function reveal(){
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.1});
+  document.querySelectorAll('.reveal:not(.in)').forEach(el=>io.observe(el));
+  requestAnimationFrame(()=>document.querySelectorAll('.reveal').forEach(el=>{if(el.getBoundingClientRect().top<innerHeight)el.classList.add('in')}));
+}
+
+function renderControls(){
+  ctl.innerHTML =
+    '<div class="seg" role="tablist">'
+    + '<button data-mode="strand" class="'+(mode==='strand'?'on':'')+'">📚 Alana göre</button>'
+    + '<button data-mode="age" class="'+(mode==='age'?'on':'')+'">🎂 Yaşa göre</button>'
+    + '<button data-mode="bireysel" class="'+(mode==='bireysel'?'on':'')+'">👤 Bireysel</button>'
+    + '</div>'
+    + (mode==='age'
+        ? '<div class="ages"><span class="lbl">Yaş:</span>'+AGES.map(a=>'<button data-age="'+a+'" class="'+(a===age?'on':'')+'">'+a+'</button>').join('')+'</div>'
+        : mode==='bireysel'
+          ? '<span class="meta-note">Çocuğun ulaştığı düzeyi işaretle · cihazda saklanır · <button class="bir-clear" id="birClear">tümünü temizle</button></span>'
+          : '<span class="meta-note">20 yörünge · '+TOTAL_LV+' basamak · Clements &amp; Sarama</span>');
+  ctl.querySelectorAll('[data-mode]').forEach(b=>b.onclick=()=>{ if(mode!==b.dataset.mode){ mode=b.dataset.mode; render(); }});
+  ctl.querySelectorAll('[data-age]').forEach(b=>b.onclick=()=>{ age=+b.dataset.age; render(); });
+  var bc=document.getElementById('birClear');
+  if(bc) bc.onclick=()=>{ if(confirm('Tüm bireysel düzey işaretleri silinsin mi?')){ BIR={}; bsave(BIR); render(); } };
+}
+
+function renderStrand(){
+  app.innerHTML='';
+  STRANDS.forEach(st=>{
+    const sec=document.createElement('section');sec.className='sec';sec.id=st.key;
+    sec.innerHTML=`<div class="strand-head reveal" style="--c:${st.c}"><h2>${st.label}</h2><span class="sub">${st.sub}</span></div><div class="grid"></div>`;
+    const grid=sec.querySelector('.grid');
+    T.filter(t=>t.s===st.key).forEach(t=>{
+      const a=document.createElement('a');a.className='card reveal';a.style.setProperty('--c',st.c);a.href=`/yorunge/${t.k}/`;
+      a.innerHTML=`<span class="ic">${t.ic}</span><span class="age">${t.age}</span><h3>${t.n}</h3><p>${t.d}</p><div class="foot"><span class="lv">${t.lv} basamak</span><span class="go">İncele →</span></div>`;
+      grid.appendChild(a);
+    });
+    app.appendChild(sec);
+  });
+  reveal();
+}
+
+function renderAge(){
+  app.innerHTML='';
+  let nTraj=0,nLv=0;
+  const body=document.createElement('div');body.className='sec';body.style.paddingTop='6px';
+  STRANDS.forEach(st=>{
+    const trajs=T.filter(t=>t.s===st.key).map(t=>{
+      const lvls=(LEVELS[t.k]||[]).filter(lv=>age>=lv.a0&&age<=lv.a1);
+      return {t,lvls};
+    }).filter(x=>x.lvls.length);
+    if(!trajs.length)return;
+    const head=document.createElement('div');head.className='strand-head reveal';head.style.setProperty('--c',st.c);
+    head.innerHTML=`<h2 style="font-size:1.22rem">${st.label}</h2>`;
+    body.appendChild(head);
+    trajs.forEach(({t,lvls})=>{
+      nTraj++;nLv+=lvls.length;
+      const card=document.createElement('div');card.className='age-traj reveal';card.style.setProperty('--c',st.c);
+      card.innerHTML=`<div class="h"><span class="ic">${t.ic}</span><h3>${t.n}</h3><a class="go" href="/yorunge/${t.k}/">Yörüngeyi aç →</a></div>`
+        +`<div class="age-lv-list">`+lvls.map(lv=>
+          `<a class="age-lv" href="/yorunge/${t.k}/#lv-${lv.n-1}"><span class="n">${lv.n}</span><span class="t">${lv.t}</span>${lv.b?'<span class="bn">⚠ darboğaz</span>':''}</a>`
+        ).join('')+`</div>`;
+      body.appendChild(card);
+    });
+  });
+  const sum=document.createElement('div');sum.className='age-summary';
+  sum.innerHTML = nTraj
+    ? `🎂 <span>${age} yaş</span> için uygun düzeyler — ${nTraj} yörünge · ${nLv} basamak`
+    : `🎂 <span>${age} yaş</span> için eşleşen düzey bulunamadı.`;
+  app.appendChild(sum);
+  if(nTraj) app.appendChild(body);
+  else { const e=document.createElement('p');e.className='age-empty';e.textContent='Bu yaş için içerik yok — başka bir yaş seçin.';app.appendChild(e); }
+  reveal();
+}
+
+function birLower(t,st,cur){
+  const lvls=LEVELS[t.k]||[];
+  if(!cur) return '';
+  const pct=Math.round(cur/lvls.length*100);
+  const next=lvls.find(lv=>lv.n===cur+1);
+  return `<div class="bir-prog"><div class="bir-bar"><i style="width:${pct}%;background:${st.c}"></i></div><span>${cur}/${lvls.length} · %${pct}</span></div>`
+    + (next
+        ? `<a class="bir-next" style="--c:${st.c}" href="/yorunge/${t.k}/#lv-${next.n-1}"><span class="bir-target">🎯 Sıradaki hedef</span><b>D${next.n} · ${next.t}</b>${next.b?'<span class="bn">⚠ darboğaz</span>':''}<span class="go">Aç →</span></a>`
+        : `<div class="bir-done">🎉 Bu yörüngenin tüm düzeyleri işaretlendi.</div>`);
+}
+
+function renderBireysel(){
+  app.innerHTML='';
+  const data=getBir();
+  const sum=document.createElement('div');sum.className='age-summary';
+  sum.innerHTML=`👤 <span>Bireyselleştirilmiş düzey</span> — ${T.filter(t=>data[t.k]).length}/20 yörüngede işaretli`;
+  app.appendChild(sum);
+  const intro=document.createElement('p');intro.className='bir-intro';
+  intro.innerHTML='Her yörüngede çocuğun <b>ulaştığı son düzeyi</b> seçin; uygulama <b>sıradaki hedefi</b> ve ilgili etkinlik sayfasını göstersin. İşaretler '+(window.HCMO_USER&&window.HCMO_USER.student?'bu öğrenci hesabında':'bu cihazda')+' saklanır.';
+  app.appendChild(intro);
+  const body=document.createElement('div');body.className='sec';body.style.paddingTop='6px';
+  STRANDS.forEach(st=>{
+    const head=document.createElement('div');head.className='strand-head';head.style.setProperty('--c',st.c);
+    head.innerHTML=`<h2 style="font-size:1.18rem">${st.label}</h2>`;
+    body.appendChild(head);
+    T.filter(t=>t.s===st.key).forEach(t=>{
+      const lvls=LEVELS[t.k]||[];
+      const cur=data[t.k]||0;
+      const card=document.createElement('div');card.className='bir-traj';card.style.setProperty('--c',st.c);
+      const opts=['<option value="0">— ulaştığı düzeyi seç —</option>'].concat(lvls.map(lv=>`<option value="${lv.n}"${lv.n===cur?' selected':''}>D${lv.n} · ${lv.t}</option>`)).join('');
+      card.innerHTML=`<div class="bir-head"><span class="ic">${t.ic}</span><span class="nm">${t.n}</span><a class="go2" href="/yorunge/${t.k}/">yörünge →</a></div>`
+        +`<select class="bir-sel" data-k="${t.k}" aria-label="${t.n} düzeyi">${opts}</select>`
+        +`<div class="bir-lower">${birLower(t,st,cur)}</div>`;
+      body.appendChild(card);
+    });
+  });
+  app.appendChild(body);
+  app.querySelectorAll('.bir-sel').forEach(sel=>sel.onchange=()=>{
+    const d=getBir(),k=sel.dataset.k,v=+sel.value;
+    if(v)d[k]=v;else delete d[k];bsave(d);
+    const t=T.find(x=>x.k===k),st=STRANDS.find(s=>s.key===t.s);
+    sel.parentElement.querySelector('.bir-lower').innerHTML=birLower(t,st,v);
+    sum.innerHTML=`👤 <span>Bireyselleştirilmiş düzey</span> — ${T.filter(x=>d[x.k]).length}/20 yörüngede işaretli`;
+  });
+}
+
+function render(){ renderControls(); (mode==='age'?renderAge:mode==='bireysel'?renderBireysel:renderStrand)(); }
+render();
+</script>
+</body>
+</html>

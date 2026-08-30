@@ -17,7 +17,7 @@ const NumberLine = ({ position, jumps, walkDirection, animateNumberLine, panelPo
       padding: '3px 0', cursor: 'grab', userSelect: 'none', touchAction: 'none',
     }}>
       <div style={{ width: 40, height: 5, borderRadius: 3, background: 'rgba(0,0,0,.12)' }} />
-      <span style={{ fontSize: 8, fontWeight: 700, color: 'rgba(0,0,0,.2)' }}>{'↕ sürükle'}</span>
+      <span style={{ fontSize: 10, fontWeight: 700, color: 'rgba(0,0,0,.6)' }}>{'↕ sürükle'}</span>
       <div style={{ width: 40, height: 5, borderRadius: 3, background: 'rgba(0,0,0,.12)' }} />
       {panelPos && (
         <button onClick={(e) => { e.stopPropagation(); resetPosition('nl'); }} style={{
@@ -88,7 +88,7 @@ const NumberLine = ({ position, jumps, walkDirection, animateNumberLine, panelPo
         })()}
 
         {/* Animasyonlu atlamalar */}
-        {jumps.map((j, ji) => {
+        {(jumps || []).filter(j => j && typeof j.from === 'number' && typeof j.to === 'number').map((j, ji) => {
           const x1 = 20 + ((j.from + 10) / 20) * 800;
           const x2 = 20 + ((j.to + 10) / 20) * 800;
           const mx = (x1 + x2) / 2;

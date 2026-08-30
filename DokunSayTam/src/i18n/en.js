@@ -35,6 +35,17 @@ export default {
   cat_comparison: 'Comparison',
   cat_scenario: 'Scenario',
   cat_misconception: 'Misconception',
+  cat_independent: 'Independent',
+  cat_transfer: 'Transfer',
+
+  diff_1: 'Explore',
+  diff_2: 'Guided',
+  diff_3: 'Directed',
+  diff_4: 'Independent',
+  diff_5: 'Transfer',
+
+  act_misconception: 'Targeted misconception',
+  act_source: 'Source',
 
   misconception_1: 'Negative × negative = negative (wrong)',
   misconception_2: 'Magnitude misconception',
@@ -58,6 +69,7 @@ export default {
   btn_close: 'Close',
 
   a11y_dyscalculia: 'Dyscalculia Mode',
+  a11y_dyslexia: 'Dyslexia Mode',
   a11y_high_contrast: 'High Contrast',
   a11y_tts: 'Text-to-Speech',
   a11y_sfx: 'Sound Effects',

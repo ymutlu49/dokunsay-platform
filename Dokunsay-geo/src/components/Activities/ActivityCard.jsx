@@ -4,6 +4,8 @@ import { LANGS } from '../../constants/i18n.js';
 import { P } from '../../constants/palette.js';
 import { VHBadge } from '../Common/VHBadge.jsx';
 import { SpeakButton } from '../Common/SpeakButton.jsx';
+import { pickLabel, pickText } from '../../utils/label.js';
+import { DiffBadge } from '../Common/DiffBadge.jsx';
 
 // FIX4: ActivityCard — dile göre q/hint/opts
 export function ActivityCard({act,lang,onCorrect,ariaRef,ttsOn}){
@@ -14,13 +16,14 @@ export function ActivityCard({act,lang,onCorrect,ariaRef,ttsOn}){
   const [showHint,setShowHint]=useState(false);
   const lvlColor=["#f59e0b","#6366f1","#10b981"][act.level];
 
-  const qText=typeof act.q==="object"?act.q[lang]||act.q.tr:act.q;
-  const hintText=typeof act.hint==="object"?act.hint[lang]||act.hint.tr:act.hint;
+  const qText=pickText(act.q,lang);
+  const hintText=pickText(act.hint,lang);
   const optsArr=Array.isArray(act.opts)?act.opts:(act.opts&&typeof act.opts==="object"?act.opts[lang]||act.opts.tr:[]);
+  const misText=act.mis?pickText(act.mis,lang):null;
   const isShape=(key)=>!!SHAPE_DEF[key];
 
   function getLabel(opt){
-    if(isShape(opt)){const d=SHAPE_DEF[opt];return lang==="ku"?d.labelKu:lang==="en"?d.labelEn:d.label;}
+    if(isShape(opt)){const d=SHAPE_DEF[opt];return pickLabel(d,lang);}
     return opt;
   }
 
@@ -49,7 +52,7 @@ export function ActivityCard({act,lang,onCorrect,ariaRef,ttsOn}){
         <VHBadge level={act.level}/>
         <span style={{fontSize:14}}>{act.icon}</span>
         <span style={{fontSize:11,fontWeight:800,color:P.text}}>
-          {typeof act.label==="object"?act.label[lang]||act.label.tr:act.label}
+          {pickText(act.label,lang)}
         </span>
         {/* CRA rozeti — diskalküli araştırması (Apostolidou 2025, TouchMath):
             L0: Concrete (somut), L1: Representational (temsili), L2: Abstract */}
@@ -60,6 +63,8 @@ export function ActivityCard({act,lang,onCorrect,ariaRef,ttsOn}){
             tr:["Somut","Temsili","Soyut"],
             ku:["Somet","Temsîl","Fikrî"],
             en:["Concrete","Representational","Abstract"],
+            ar:["محسوس","تمثيلي","مجرّد"],
+            fa:["عینی","نیمه‌عینی","انتزاعی"],
           };
           return (
             <span title={(CRA_LABELS[lang]||CRA_LABELS.tr)[act.level]+" — CRA"}
@@ -77,11 +82,31 @@ export function ActivityCard({act,lang,onCorrect,ariaRef,ttsOn}){
           </span>
         )}
       </div>
+
+      {/* ── Zorluk basamağı (STANDARDS §1.6) ── */}
+      <div style={{padding:"6px 12px 0",display:"flex",alignItems:"center",gap:6,flexWrap:"wrap"}}>
+        <DiffBadge diff={act.diff} lang={lang}/>
+      </div>
+
+      {/* ── Kavram yanılgısı şeridi (STANDARDS §1.5) — literatür atıflı ── */}
+      {misText&&(
+        <div data-testid="mis-strip"
+          style={{margin:"6px 12px 0",padding:"6px 8px",borderRadius:7,
+            background:"rgba(220,38,38,.06)",borderLeft:"2.5px solid #dc2626",
+            fontSize:10,color:"#7f1d1d",lineHeight:1.5}}>
+          <span style={{fontWeight:800}}>⚠ {L.misTitle}: </span>{misText}
+          {act.src&&(
+            <span style={{display:"block",marginTop:3,fontSize:8,fontStyle:"italic",opacity:.8}}>
+              📖 {L.misSrc}: {act.src}
+            </span>
+          )}
+        </div>
+      )}
       <div style={{padding:"9px 11px",fontSize:12,fontWeight:700,color:P.text,lineHeight:1.5,
         display:"flex",alignItems:"flex-start",gap:7}}>
         <span style={{flex:1}}>{qText}</span>
         <SpeakButton text={qText} lang={lang} ttsOn={ttsOn}
-          title={lang==="ku"?"Pirsê bixwîne":lang==="en"?"Read question":"Soruyu oku"}/>
+          title={pickText({tr:"Soruyu oku",ku:"Pirsê bixwîne",en:"Read question",ar:"اقرأ السؤال",fa:"سؤال را بخوان"},lang)}/>
       </div>
       <div style={{padding:"0 11px 9px"}}>
         {act.answer!==undefined?(
@@ -126,7 +151,7 @@ export function ActivityCard({act,lang,onCorrect,ariaRef,ttsOn}){
         fontSize:11,color:"#92400e",lineHeight:1.5,display:"flex",alignItems:"flex-start",gap:6}}>
         <span style={{flex:1}}>💡 {hintText}</span>
         <SpeakButton text={hintText} lang={lang} ttsOn={ttsOn} size={12}
-          title={lang==="ku"?"Şîretê bixwîne":lang==="en"?"Read hint":"İpucunu oku"}/>
+          title={pickText({tr:"İpucunu oku",ku:"Şîretê bixwîne",en:"Read hint",ar:"اقرأ التلميح",fa:"راهنما را بخوان"},lang)}/>
       </div>}
       {fb&&<div role="status" style={{margin:"0 11px 7px",padding:"6px 9px",borderRadius:7,textAlign:"center",
         background:fb==="ok"?"rgba(5,150,105,.1)":"rgba(239,68,68,.1)",

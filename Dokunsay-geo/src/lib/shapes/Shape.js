@@ -1,3 +1,4 @@
+import { pickLabel } from '../../utils/label.js';
 // ══════════════════════════════════════════════════════════════
 // Shape — 2B şekiller için soyut taban sınıf.
 // Alt sınıflar (Triangle, Quadrilateral, RegularPolygon, CircleShape)
@@ -32,9 +33,7 @@ export class Shape {
   get icon() { return this.def.icon; }
 
   localizedLabel(lang = "tr") {
-    if (lang === "ku") return this.def.labelKu;
-    if (lang === "en") return this.def.labelEn;
-    return this.def.label;
+    return pickLabel(this.def, lang);
   }
 
   // Alt sınıflar polimorfik olarak bunları override edebilir.

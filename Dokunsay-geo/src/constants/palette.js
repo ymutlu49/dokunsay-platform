@@ -38,10 +38,10 @@ export const P = {
 
 // Kategori başlıkları ve renk eşlemesi — SHAPE_DEF.cat bu anahtarları referanslar.
 export const CAT_META = {
-  triangle: { label: "Üçgenler", labelKu: "Sêgoşe", labelEn: "Triangles", color: P.tri, colorB: P.triB },
-  quadrilateral: { label: "Dörtgenler", labelKu: "Çargoşe", labelEn: "Quadrilaterals", color: P.quad, colorB: P.quadB },
-  polygon: { label: "Çokgenler", labelKu: "Pirgoşe", labelEn: "Polygons", color: P.poly, colorB: P.polyB },
-  circle: { label: "Daire ve Çember", labelKu: "Gilover û Gilovêr", labelEn: "Disk & Circle", color: P.circ, colorB: P.circB },
+  triangle: { label: "Üçgenler", labelKu: "Sêgoşe", labelEn: "Triangles", labelAr: "مثلثات", labelFa: "مثلث‌ها", color: P.tri, colorB: P.triB },
+  quadrilateral: { label: "Dörtgenler", labelKu: "Çargoşe", labelEn: "Quadrilaterals", labelAr: "رباعيات الأضلاع", labelFa: "چهارضلعی‌ها", color: P.quad, colorB: P.quadB },
+  polygon: { label: "Çokgenler", labelKu: "Pirgoşe", labelEn: "Polygons", labelAr: "مضلّعات", labelFa: "چندضلعی‌ها", color: P.poly, colorB: P.polyB },
+  circle: { label: "Daire ve Çember", labelKu: "Gilover û Gilovêr", labelEn: "Disk & Circle", labelAr: "الأقراص والدوائر", labelFa: "قرص و دایره", color: P.circ, colorB: P.circB },
 };
 
 export const CAT_ORDER = ["triangle", "quadrilateral", "polygon", "circle"];

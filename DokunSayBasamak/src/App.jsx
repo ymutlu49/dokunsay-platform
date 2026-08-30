@@ -1,10 +1,40 @@
 import { useState, useRef, useEffect, useCallback, useReducer } from "react";
+import { normalizeLang } from "@shared/LangSwitcher.jsx";
+import { AppTabs } from "@shared/AppTabs.jsx";
+import { IconButton } from "@shared/AppToolbar.jsx";
 
 /* ── Constants ── */
 import { PALETTE } from "./constants/palette";
 import { BLOCK_UNIT_PX, HUNDRED_SIDE_PX, GRID_SNAP } from "./constants/dimensions";
 import { BLOCK_TYPES, SUP, SUB } from "./constants/blockTypes";
 import { ACTIVITIES } from "./constants/activities";
+
+/* Etkinlik ADI ve YÖNERGESİ dile göre seçilir (2026-07-19 denetimi).
+   Önceden `tp.n` / `tp.d` ham basılıyordu: arayüz beş dile çevrilirken çocuğun okuduğu
+   GÖREV Türkçe kalıyordu — Kurmancî seçen çocuk menüyü kendi dilinde, yönergeyi Türkçe
+   görüyordu (§1.7). Alan kalıbı DokunSayBar ile aynı: n/k/en/ar/fa · d/dk/den/dar/dfa. */
+const actName = (a, lang) => (lang === "ku" ? a.k : lang === "en" ? a.en : lang === "ar" ? a.ar : lang === "fa" ? a.fa : a.n) || a.n;
+const actDesc = (a, lang) => (lang === "ku" ? a.dk : lang === "en" ? a.den : lang === "ar" ? a.dar : lang === "fa" ? a.dfa : a.d) || a.d;
+
+/* Zorluk etiketi BEŞ basamaklı (STANDARDS.md §1.6). Önceden üçlü ternary vardı
+   (1?kolay : 2?orta : zor) → diff 4-5 sessizce "zor"a düşüyordu, yani yazılsa bile
+   ayırt edilemezdi. Üst iki basamağın hiç yazılmamış olmasının teknik sebebi buydu. */
+const DIFF_STYLE = {
+  1: { bg: "#dcfce7", fg: "#166534" },
+  2: { bg: "#fef9c3", fg: "#854d0e" },
+  3: { bg: "#ffedd5", fg: "#9a3412" },
+  4: { bg: "#fee2e2", fg: "#991b1b" },
+  5: { bg: "#ede9fe", fg: "#5b21b6" },
+};
+const DIFF_LABEL = {
+  tr: { 1: "Keşif", 2: "Rehberli", 3: "Yönlendirilmiş", 4: "Bağımsız", 5: "Transfer" },
+  ku: { 1: "Vekolîn", 2: "Bi rêber", 3: "Beralîkirî", 4: "Serbixwe", 5: "Veguhastin" },
+  en: { 1: "Explore", 2: "Guided", 3: "Directed", 4: "Independent", 5: "Transfer" },
+  ar: { 1: "استكشاف", 2: "موجَّه", 3: "مُرشَد", 4: "مستقل", 5: "نقل" },
+  fa: { 1: "کاوش", 2: "با راهنما", 3: "هدایت‌شده", 4: "مستقل", 5: "انتقال" },
+};
+const diffLabel = (d, lang) => (DIFF_LABEL[lang] || DIFF_LABEL.tr)[Math.min(5, Math.max(1, d || 1))];
+
 import { QUIZ_POOL } from "./constants/quizPool";
 
 /* ── i18n ── */
@@ -12,7 +42,7 @@ import { LANGS } from "./i18n";
 
 /* ── Utils ── */
 import { createAudioContext, playTone, playGroup, playBreak, playAdd, playRemove, playCorrect, playWrong } from "./utils/audio";
-import { speakInLang, SPEECH_SUPPORTED } from "./utils/speech";
+import { speakInLang, SPEECH_SUPPORTED, canSpeak } from "./utils/speech";
 import { loadProgress, saveProgress } from "./utils/progress";
 import { interpretCommand } from "./utils/turkishParser";
 
@@ -50,7 +80,9 @@ export default function App() {
   }, [soundEnabled]);
 
   /* ── Dil ── */
-  const [langCode, setLangCode] = useState("tr");
+  const [langCode, _setLangCode] = useState(()=>{try{return normalizeLang(localStorage.getItem("dk_lang")||"tr")}catch{return "tr"}});
+  const setLangCode = (l)=>{_setLangCode(l);try{localStorage.setItem("dk_lang",l);window.dispatchEvent(new CustomEvent("dk-lang-change",{detail:{lang:l}}));}catch{}};
+  useEffect(()=>{const h=e=>{const l=e.detail&&e.detail.lang;if(l)_setLangCode(l);};window.addEventListener("dk-lang-change",h);return()=>window.removeEventListener("dk-lang-change",h);},[]);
   const L = LANGS[langCode] || LANGS.tr;
   const t = key => L[key] ?? LANGS.tr[key] ?? key;
   const readNum = n => L.readNum(n);
@@ -269,7 +301,7 @@ export default function App() {
       if (s.tens) { for (let i = 0; i < s.tens; i++) addItem("tens", x + (i % 8) * (U + gap), y + Math.floor(i / 8) * (W + gap)); if (s.tens > 8) y += 2 * (W + gap); else y += W + 10; }
       if (s.ones) { for (let i = 0; i < s.ones; i++) addItem("ones", x + (i % 10) * (U + gap), y + Math.floor(i / 10) * (U + gap)); }
     }, 60);
-    announce(`Etkinlik başlatıldı: ${act.n}`);
+    announce(`${t("activityStarted")}: ${actName(act, langCode)}`);
   }
 
   function addBlocks(type, count) {
@@ -614,26 +646,9 @@ export default function App() {
       {/* ARIA */}
       <div aria-live="polite" aria-atomic="true" style={{ position: "absolute", width: 1, height: 1, overflow: "hidden", clip: "rect(0,0,0,0)", whiteSpace: "nowrap" }}>{ariaMsg}</div>
 
-      {/* ══ HEADER ══ (app kimliği AppShell'de — burada sadece işlevsel unsurlar) */}
-      <header role="banner" style={{ height: 40, minHeight: 40, background: "linear-gradient(135deg,#3d2e1a,#2a2018)", display: "flex", alignItems: "center", padding: "0 14px", gap: 10, boxShadow: "0 2px 12px rgba(60,50,30,.2)" }}>
-        <LangSwitcher
-          lang={langCode}
-          setLang={setLangCode}
-          langs={Object.values(LANGS).map(l => l.code)}
-          labels={Object.fromEntries(Object.values(LANGS).map(l => [l.code, l.code.toUpperCase()]))}
-        />
-        <div style={{ flex: 1 }} />
-        <div aria-live="polite" style={{ background: "rgba(255,255,255,.07)", borderRadius: 8, padding: "3px 10px", display: "flex", alignItems: "center", gap: 6, minWidth: 80 }}>
-          <span style={{ fontSize: 10, color: "rgba(255,255,255,.35)" }}>∑</span>
-          <span style={{ fontSize: 17, fontWeight: 900, color: totalValue > 0 ? PALETTE.accent : "rgba(255,255,255,.2)" }}>{totalValue > 0 ? totalValue : "—"}</span>
-          {okunus && <span style={{ fontSize: 9, color: "rgba(255,255,255,.35)", fontStyle: "italic", maxWidth: 80, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{okunus}</span>}
-          {totalValue > 0 && <button onClick={() => speakInLang(`${totalValue} — ${okunus}`, langCode)} aria-label="Seslendir" style={{ background: "none", border: "none", color: "rgba(255,255,255,.35)", cursor: "pointer", fontSize: 13, padding: "1px 2px" }}>🔊</button>}
-        </div>
-      </header>
-
       <div style={{ display: "flex", flex: 1, overflow: "hidden" }}>
         {/* ══ SIDEBAR ══ */}
-        <nav aria-label="Araçlar" style={{ width: sidebarCollapsed ? 48 : 252, minWidth: sidebarCollapsed ? 48 : 252, background: `linear-gradient(180deg,${PALETTE.side},#efe8d6)`, borderRight: "1px solid " + PALETTE.sideB, display: "flex", flexDirection: "column", transition: "width .25s", overflow: "hidden" }}>
+        <nav aria-label="Araçlar" style={{ width: sidebarCollapsed ? 52 : 220, minWidth: sidebarCollapsed ? 52 : 220, background: `linear-gradient(180deg,${PALETTE.side},#efe8d6)`, borderRight: "1px solid " + PALETTE.sideB, display: "flex", flexDirection: "column", transition: "width .25s", overflow: "hidden" }}>
           {sidebarCollapsed ? (
             <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", gap: 8, padding: "12px 0" }}>
               {[["📦", "mat"], ["📋", "act"], ["🎮", "game"], ["⚙️", "feat"]].map(([ic, id]) => (
@@ -647,10 +662,13 @@ export default function App() {
                 <div style={{ flex: 1, fontSize: 13, fontWeight: 900, color: PALETTE.text }}>Basamak Değeri</div>
                 <button onClick={() => setSidebarCollapsed(true)} style={{ background: "none", border: "none", cursor: "pointer", fontSize: 12, color: "#ccc", width: 26, height: 26, borderRadius: 6 }}>◀</button>
               </div>
-              <div role="tablist" style={{ display: "flex", padding: "4px 8px", gap: 3, background: "rgba(60,50,30,.02)" }}>
-                {[["📦", "mat", t("tabBlocks")], ["📋", "act", t("tabAct")], ["🎮", "game", t("tabGame")], ["⚙️", "feat", t("tabSettings")]].map(([ic, id, lbl]) => (
-                  <button key={id} role="tab" aria-selected={sidebarTab === id} onClick={() => setSidebarTab(id)} style={{ flex: 1, padding: "6px 0", border: "none", borderRadius: 8, background: sidebarTab === id ? "#fff" : "transparent", cursor: "pointer", fontSize: 12, fontWeight: 800, color: sidebarTab === id ? PALETTE.text : "#bbb", fontFamily: "inherit", boxShadow: sidebarTab === id ? "0 1px 4px " + PALETTE.sh : "none" }} title={lbl}>{ic}</button>
-                ))}
+              <div style={{ padding: "4px 8px", background: "rgba(60,50,30,.02)" }}>
+                <AppTabs active={sidebarTab} onChange={setSidebarTab} tabs={[
+                  { id: "mat", icon: "📦", label: t("tabBlocks") },
+                  { id: "act", icon: "📋", label: t("tabAct") },
+                  { id: "game", icon: "🎮", label: t("tabGame") },
+                  { id: "feat", icon: "⚙️", label: t("tabSettings") },
+                ]} />
               </div>
 
               {/* BLOKLAR */}
@@ -659,7 +677,7 @@ export default function App() {
                   {BLOCK_TYPES.map(bt => {
                     const cnt = counts[bt.t]; const glowing = canAutoGroup[bt.t];
                     return (
-                      <div key={bt.t} style={{ background: "#fff", borderRadius: 12, padding: "8px 12px", marginBottom: 6, borderLeft: "3px solid " + bt.color, border: "1px solid " + (glowing ? "rgba(245,158,11,.3)" : "rgba(60,50,30,.04)"), borderLeftWidth: 3, borderLeftColor: bt.color, boxShadow: glowing ? "0 0 14px rgba(245,158,11,.18)" : "0 1px 4px " + PALETTE.sh, position: "relative", transition: "box-shadow .3s" }}>
+                      <div key={bt.t} style={{ background: "#fff", borderRadius: 12, padding: "8px 12px", marginBottom: 6, borderLeft: "3px solid " + bt.color, border: "1px solid " + (glowing ? "rgba(59,130,246,.3)" : "rgba(60,50,30,.04)"), borderLeftWidth: 3, borderLeftColor: bt.color, boxShadow: glowing ? "0 0 14px rgba(59,130,246,.18)" : "0 1px 4px " + PALETTE.sh, position: "relative", transition: "box-shadow .3s" }}>
                         {cnt > 0 && <div style={{ position: "absolute", top: -4, right: -4, background: bt.color, color: "#fff", fontSize: 10, fontWeight: 900, borderRadius: 10, padding: "1px 6px", minWidth: 20, textAlign: "center" }}>{cnt}</div>}
                         {glowing && <div aria-live="assertive" style={{ position: "absolute", top: -4, left: -4, background: PALETTE.accent, color: "#fff", fontSize: 8, fontWeight: 800, borderRadius: 8, padding: "1px 5px", animation: "pulse 1.5s infinite" }}>10+ grupla!</div>}
                         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
@@ -699,8 +717,8 @@ export default function App() {
                         {acts.map((tp, i) => (
                           <button key={i} onClick={() => setPendingActivity(tp)} style={{ display: "flex", alignItems: "center", gap: 6, padding: "6px 8px", width: "100%", background: PALETTE.card, border: "1px solid rgba(60,50,30,.04)", borderRadius: 8, cursor: "pointer", fontFamily: "inherit", textAlign: "left", color: PALETTE.text, marginBottom: 3, fontSize: 11, fontWeight: 600 }}>
                             <span aria-hidden style={{ fontSize: 14 }}>{tp.i}</span>
-                            <span style={{ flex: 1, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{tp.n}</span>
-                            <span style={{ fontSize: 9, background: tp.diff === 1 ? "#dcfce7" : tp.diff === 2 ? "#fef9c3" : "#fee2e2", color: tp.diff === 1 ? "#166534" : tp.diff === 2 ? "#854d0e" : "#991b1b", padding: "1px 5px", borderRadius: 4, flexShrink: 0 }}>{tp.diff === 1 ? t("easy") : tp.diff === 2 ? t("medium") : t("hard")}</span>
+                            <span style={{ flex: 1, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{actName(tp, langCode)}</span>
+                            <span style={{ fontSize: 9, background: DIFF_STYLE[Math.min(5, Math.max(1, tp.diff || 1))].bg, color: DIFF_STYLE[Math.min(5, Math.max(1, tp.diff || 1))].fg, padding: "1px 5px", borderRadius: 4, flexShrink: 0 }}>{diffLabel(tp.diff, langCode)}</span>
                           </button>
                         ))}
                       </div>
@@ -723,11 +741,11 @@ export default function App() {
                           ))}
                         </div>
                       </div>
-                      <button onClick={startQuiz} style={{ width: "100%", padding: "12px", borderRadius: 10, border: "1.5px solid rgba(245,158,11,.15)", background: "#fff", cursor: "pointer", fontSize: 12, fontWeight: 700, color: PALETTE.accentD, fontFamily: "inherit", textAlign: "left", marginBottom: 6 }}>🧮 Basamak Değeri Quiz</button>
+                      <button onClick={startQuiz} style={{ width: "100%", padding: "12px", borderRadius: 10, border: "1.5px solid rgba(59,130,246,.15)", background: "#fff", cursor: "pointer", fontSize: 12, fontWeight: 700, color: PALETTE.accentD, fontFamily: "inherit", textAlign: "left", marginBottom: 6 }}>🧮 Basamak Değeri Quiz</button>
                       <button onClick={startBuild} style={{ width: "100%", padding: "12px", borderRadius: 10, border: "1.5px solid rgba(59,130,246,.15)", background: "#fff", cursor: "pointer", fontSize: 12, fontWeight: 700, color: PALETTE.hunsB, fontFamily: "inherit", textAlign: "left" }}>🏗️ Sayı Oluştur</button>
                     </>
                   ) : (
-                    <div style={{ background: PALETTE.accentL, borderRadius: 12, padding: "12px", border: "1.5px solid rgba(245,158,11,.2)" }}>
+                    <div style={{ background: PALETTE.accentL, borderRadius: 12, padding: "12px", border: "1.5px solid rgba(59,130,246,.2)" }}>
                       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
                         <span style={{ fontSize: 15, fontWeight: 900, color: PALETTE.accentD }}>🏆 {game.score}/{game.total}</span>
                         <button onClick={() => setGame(null)} style={{ padding: "4px 10px", borderRadius: 8, border: "1px solid " + PALETTE.sideB, background: "#fff", cursor: "pointer", fontSize: 10, fontWeight: 700, color: "#b5a990", fontFamily: "inherit" }}>✕ Bitir</button>
@@ -736,7 +754,7 @@ export default function App() {
                         const pool = QUIZ_POOL.filter(q => q.bloom <= currentQuizLevel); const q = pool[game.qIdx]; if (!q) return null;
                         return (
                           <div>
-                            <div style={{ padding: "12px", borderRadius: 12, background: "#fff", border: "1.5px solid rgba(245,158,11,.15)", textAlign: "center", marginBottom: 8 }}>
+                            <div style={{ padding: "12px", borderRadius: 12, background: "#fff", border: "1.5px solid rgba(59,130,246,.15)", textAlign: "center", marginBottom: 8 }}>
                               <div style={{ fontSize: 9, color: "#b5a990", marginBottom: 4 }}>{"🎯 " + bloomLevels[q.bloom]}</div>
                               <div style={{ fontSize: 14, fontWeight: 900, color: PALETTE.text }}>{q.q}</div>
                             </div>
@@ -810,10 +828,18 @@ export default function App() {
           <div ref={canvasRef} onClick={() => setSelectedBlock(null)} style={{ position: "absolute", inset: 0, overflow: "hidden", ...bgStyle }}>
             <svg width={0} height={0} style={{ position: "absolute" }}><BlockPatternDefs /></svg>
 
+            {/* Floating toplam değer (eski iç-header yerine) */}
+            <div aria-live="polite" style={{ position: "absolute", top: 8, right: 8, zIndex: 7, padding: "4px 10px", background: "rgba(255,255,255,.92)", backdropFilter: "blur(8px)", borderRadius: 8, boxShadow: "0 2px 8px rgba(60,50,30,.15)", border: "1px solid rgba(0,0,0,.06)", display: "flex", alignItems: "center", gap: 5 }}>
+              <span style={{ fontSize: 10, fontWeight: 700, color: "rgba(0,0,0,.5)" }}>∑</span>
+              <span style={{ fontSize: 14, fontWeight: 900, color: totalValue > 0 ? PALETTE.accent : "rgba(0,0,0,.3)" }}>{totalValue > 0 ? totalValue : "—"}</span>
+              {okunus && <span style={{ fontSize: 9, color: "rgba(0,0,0,.5)", fontStyle: "italic", maxWidth: 120, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{okunus}</span>}
+              {totalValue > 0 && canSpeak(langCode) && <button onClick={() => speakInLang(`${totalValue} — ${okunus}`, langCode)} aria-label="Seslendir" style={{ background: "none", border: "none", color: "rgba(0,0,0,.5)", cursor: "pointer", fontSize: 12, padding: "1px 2px" }}>🔊</button>}
+            </div>
+
             {/* Toolbar */}
             <div role="toolbar" aria-label="Çizim araçları" style={{ position: "absolute", top: 8, left: "50%", transform: "translateX(-50%)", zIndex: 30, display: "flex", gap: 1, background: "rgba(255,255,255,.94)", backdropFilter: "blur(16px)", borderRadius: 10, padding: "3px 5px", boxShadow: "0 2px 12px rgba(0,0,0,.05)", border: "1px solid rgba(0,0,0,.04)", alignItems: "center" }}>
               {[["select", "🖱️", "Seç"], ["pen", "✏️", "Kalem"], ["highlighter", "🖍️", "Vurgulayıcı"], ["eraser", "🧹", "Silgi"]].map(([t2, ic, lbl]) => (
-                <button key={t2} aria-label={lbl} aria-pressed={tool === t2} onClick={() => { setTool(t2); if (t2 === "highlighter") { setPenAlpha(.35); setPenWidth(12); } else if (t2 === "pen") { setPenAlpha(1); setPenWidth(3); } }} style={{ width: 30, height: 30, borderRadius: 7, border: tool === t2 ? "2px solid " + PALETTE.accent : "2px solid transparent", background: tool === t2 ? PALETTE.accentL : "transparent", cursor: "pointer", fontSize: 13, display: "flex", alignItems: "center", justifyContent: "center" }}>{ic}</button>
+                <IconButton key={t2} icon={ic} title={lbl} active={tool === t2} onClick={() => { setTool(t2); if (t2 === "highlighter") { setPenAlpha(.35); setPenWidth(12); } else if (t2 === "pen") { setPenAlpha(1); setPenWidth(3); } }} />
               ))}
               {(tool === "pen" || tool === "highlighter") && <>
                 {["#1a1a1a", "#ef4444", "#3b82f6", "#22c55e", "#f59e0b", "#8b5cf6"].map(c => (
@@ -821,13 +847,13 @@ export default function App() {
                 ))}
               </>}
               <div aria-hidden style={{ width: 1, height: 16, background: "rgba(0,0,0,.08)", margin: "0 1px" }} />
-              <button onClick={() => dispatch({ type: "UNDO_STROKE" })} disabled={!strokes.length} style={{ width: 26, height: 26, borderRadius: 6, border: "none", background: "transparent", cursor: strokes.length ? "pointer" : "default", fontSize: 13, color: strokes.length ? "#666" : "#ddd" }}>↩</button>
-              <button onClick={() => dispatch({ type: "REDO_STROKE" })} disabled={!undone.length} style={{ width: 26, height: 26, borderRadius: 6, border: "none", background: "transparent", cursor: undone.length ? "pointer" : "default", fontSize: 13, color: undone.length ? "#666" : "#ddd" }}>↪</button>
+              <IconButton icon="↩" title="Çizimi geri al" onClick={() => dispatch({ type: "UNDO_STROKE" })} disabled={!strokes.length} />
+              <IconButton icon="↪" title="Çizimi ileri al" onClick={() => dispatch({ type: "REDO_STROKE" })} disabled={!undone.length} />
               <div aria-hidden style={{ width: 1, height: 16, background: "rgba(0,0,0,.08)", margin: "0 1px" }} />
-              <button onClick={() => dispatch({ type: "UNDO" })} disabled={!itemHistory.length} style={{ width: 26, height: 26, borderRadius: 6, border: "none", background: "transparent", cursor: itemHistory.length ? "pointer" : "default", fontSize: 11, color: itemHistory.length ? PALETTE.accent : "#ddd", fontWeight: 900 }}>⊘</button>
-              <button onClick={() => dispatch({ type: "REDO" })} disabled={!itemFuture.length} style={{ width: 26, height: 26, borderRadius: 6, border: "none", background: "transparent", cursor: itemFuture.length ? "pointer" : "default", fontSize: 11, color: itemFuture.length ? PALETTE.accent : "#ddd", fontWeight: 900 }}>⊛</button>
+              <IconButton icon="⊘" title="Blokları geri al" onClick={() => dispatch({ type: "UNDO" })} disabled={!itemHistory.length} />
+              <IconButton icon="⊛" title="Blokları ileri al" onClick={() => dispatch({ type: "REDO" })} disabled={!itemFuture.length} />
               <div aria-hidden style={{ width: 1, height: 16, background: "rgba(0,0,0,.08)", margin: "0 1px" }} />
-              <button onClick={() => { if (items.length > 0 || strokes.length > 0) { dispatch({ type: "CLEAR_ALL" }); } }} disabled={items.length === 0 && strokes.length === 0} style={{ width: 28, height: 28, borderRadius: 6, border: "none", background: items.length > 0 || strokes.length > 0 ? "rgba(239,68,68,.08)" : "transparent", cursor: items.length > 0 || strokes.length > 0 ? "pointer" : "default", fontSize: 14, color: items.length > 0 || strokes.length > 0 ? "#ef4444" : "#ddd", display: "flex", alignItems: "center", justifyContent: "center" }}>🗑</button>
+              <IconButton icon="🗑" title="Hepsini temizle" danger onClick={() => { if (items.length > 0 || strokes.length > 0) { dispatch({ type: "CLEAR_ALL" }); } }} disabled={items.length === 0 && strokes.length === 0} />
             </div>
 
             <div ref={cursorRef} aria-hidden style={{ position: "absolute", display: "none", borderRadius: "50%", border: "2px solid #000", pointerEvents: "none", zIndex: 26 }} />
@@ -888,9 +914,9 @@ export default function App() {
             )}
 
             {dragFromSidebar && dropHighlight && (
-              <div aria-hidden style={{ position: "absolute", inset: 0, zIndex: 0, border: "3px dashed rgba(245,158,11,.45)", borderRadius: 4, pointerEvents: "none" }}>
+              <div aria-hidden style={{ position: "absolute", inset: 0, zIndex: 0, border: "3px dashed rgba(59,130,246,.45)", borderRadius: 4, pointerEvents: "none" }}>
                 <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", background: PALETTE.accentL, padding: "8px 20px", borderRadius: 12 }}>
-                  <span style={{ fontSize: 13, fontWeight: 800, color: "rgba(245,158,11,.7)" }}>📥 Buraya bırak</span>
+                  <span style={{ fontSize: 13, fontWeight: 800, color: "rgba(59,130,246,.7)" }}>📥 Buraya bırak</span>
                 </div>
               </div>
             )}
@@ -940,8 +966,8 @@ export default function App() {
         <ModalBackdrop onClose={() => setPendingActivity(null)}>
           <div style={{ textAlign: "center" }}>
             <div style={{ fontSize: 40, marginBottom: 8 }} aria-hidden>{pendingActivity.i}</div>
-            <div style={{ fontSize: 18, fontWeight: 900, marginBottom: 6 }}>{pendingActivity.n}</div>
-            <div style={{ fontSize: 13, marginBottom: 8, color: "#555", lineHeight: 1.6 }}>{pendingActivity.d}</div>
+            <div style={{ fontSize: 18, fontWeight: 900, marginBottom: 6 }}>{actName(pendingActivity, langCode)}</div>
+            <div style={{ fontSize: 13, marginBottom: 8, color: "#555", lineHeight: 1.6 }}>{actDesc(pendingActivity, langCode)}</div>
             <button onClick={() => { runSetup(pendingActivity); setPendingActivity(null); }} style={{ padding: "10px 28px", borderRadius: 10, border: "none", background: `linear-gradient(135deg,${PALETTE.accent},${PALETTE.accentD})`, color: "#fff", fontSize: 14, fontWeight: 800, cursor: "pointer", width: "100%" }}>Başla ▸</button>
           </div>
         </ModalBackdrop>

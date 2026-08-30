@@ -241,4 +241,10 @@ export default {
   "act.37.d": "Xeletî: 'Parjimarên bi tevparên cuda nikarin hevkêş bin' an 'Her du parjimarên bi tevparên cuda hevkêş in.' RAST: 1/2 = 2/4 = 3/6 û 6/8 = 9/12. Par Û tevpar bi heman hejmarê car/par bike. Her kliq mînakek cuda — hin hevkêş, hin na!",
   "act.38.n": "Y15: Nîv = ÷2 an ÷1/2?",
   "act.38.d": "Xeletî: 'Ji bo nîvkirina parjimarekê pêdivî ye bi 1/2ê were dabeşkirin.' RAST: Nîv = dabeşkirin bi 2ê = carkirin bi 1/2yê. Dabeşkirin bi 1/2yê encamê DU CARAN mezin dike! 1/2 × 1/2 = 1/4 rast e. Li rastê 1/4 deyne.",
+  "act.39.n": "B1: Encam ji 1ê mezintir e?",
+  "act.39.d": "Tu hilbijêre: du darikên kesrî deyne û kom bike. Lê PÊŞÎ texmîn bike — encam ji 1 giştî mezintir e an biçûktir? Paşê bi modelê kontrol bike. Alîkarî tune.",
+  "act.40.n": "T1: 3 Pizza, 4 Kes",
+  "act.40.d": "3 pizza dê ji aliyê 4 hevalan ve WEKHEV bên parvekirin. Ji her yekê re çi dikeve? Bi modelan nîşan bide, paşê bersiva xwe wek kesrekê binivîse û rave bike ka te çawa dît.",
+  "act.41.n": "T2: Tu Kesrê Bipirse",
+  "act.41.d": "Dor a te ye: kesrekê ava bike lê nîşanî hevalê xwe nede. Nîşan bide — 'ji nîvê mezintir, ji giştî biçûktir, binê wê 8 e'. Ma hevalê te dikare bibîne?",
 };

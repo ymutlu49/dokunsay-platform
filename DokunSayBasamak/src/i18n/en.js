@@ -45,4 +45,5 @@ export const en = {
   autoGroup: "10+ group!",
   readNum: readEnglish,
   ttsLang: "en-US",
+  activityStarted: "Activity started",
 };

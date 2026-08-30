@@ -26,9 +26,9 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install dependencies (all 8 projects)
+      - name: Install dependencies (all 9 projects)
         run: |
-          for dir in _platform/launcher DokunSayBar DokunSayBasamak DokunSayClock DokunSayKesir DokunSayTam Dokunsay-geo Dokunsay-veri-app; do
+          for dir in _platform/launcher DokunSayBar DokunSayBasamak DokunSayClock DokunSayKesir DokunSayTam Dokunsay-geo Dokunsay-veri-app ZihindenAritmetik; do
             echo "📦 Installing $dir"
             cd "$dir"
             # Lock yoksa veya uyumsuzsa fallback: npm install

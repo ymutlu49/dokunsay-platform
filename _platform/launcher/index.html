@@ -25,8 +25,63 @@
       }
       #root { min-height: 100vh; }
     </style>
+
+    <!-- Yapılandırılmış veri: site + tasarımcılar (SEO / AI görünürlüğü) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://dokunsay.com/#site",
+          "name": "DokunSay",
+          "alternateName": "DokunSay — Matematik Öğretim Araçları Platformu",
+          "url": "https://dokunsay.com/",
+          "inLanguage": ["tr", "ku", "en", "ar", "fa"],
+          "description": "Diskalkuli (matematik öğrenme güçlüğü) yaşayan öğrenciler için dokunsal/manipülatif matematik öğretim araçları ailesi: sayı çubukları, basamak blokları, kesir, saat, tam sayılar, geometri ve veri araçları. DokunSay materyalleri Yılmaz Mutlu ve Sinan Olkun'un endüstriyel tasarımlarıdır.",
+          "author": { "@id": "https://hercocukmatematikogrenebilir.com/yilmaz-mutlu/#person" },
+          "isPartOf": {
+            "@type": "WebSite",
+            "name": "Her Çocuk Matematik Öğrenebilir",
+            "url": "https://hercocukmatematikogrenebilir.com/"
+          }
+        },
+        {
+          "@type": "Person",
+          "@id": "https://hercocukmatematikogrenebilir.com/yilmaz-mutlu/#person",
+          "name": "Yılmaz Mutlu",
+          "honorificPrefix": "Prof. Dr.",
+          "url": "https://hercocukmatematikogrenebilir.com/yilmaz-mutlu/",
+          "jobTitle": "Profesör, Matematik Eğitimi",
+          "worksFor": {
+            "@type": "CollegeOrUniversity",
+            "name": "Muş Alparslan Üniversitesi",
+            "department": "Eğitim Fakültesi"
+          },
+          "knowsAbout": [
+            "diskalkuli (matematik öğrenme güçlüğü)",
+            "matematik kaygısı",
+            "eğitsel sinirbilim",
+            "matematiksel biliş"
+          ],
+          "sameAs": [
+            "https://scholar.google.com/citations?user=lYPwcn4AAAAJ",
+            "https://orcid.org/0000-0002-4265-856X",
+            "https://www.researchgate.net/profile/Yilmaz-Mutlu-2",
+            "https://alparslan.academia.edu/YMutlu",
+            "https://pbs.alparslan.edu.tr/kisi.php?pers_id=488"
+          ]
+        }
+      ]
+    }
+    </script>
   </head>
   <body>
+    <!-- numap-gate.js giriş rozetini/davetini bu yuvaya koyar. Yuva React'ten
+         önce, statik olarak burada durmalı: kapı betiği uygulama monte olmadan
+         çalışır, yuvayı bulamazsa rozeti sayfaya sabitler ve üst menünün
+         üstüne biner. -->
+    <div id="numapAuth" class="numap-yuvasi"></div>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

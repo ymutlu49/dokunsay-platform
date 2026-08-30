@@ -188,10 +188,10 @@ export default function BottomToolbar(props: BottomToolbarProps) {
 
       {/* ═══ CHIPS GROUP ═══ */}
       <div style={{ display: "flex", gap: 3, alignItems: "center", padding: "3px 8px", borderRadius: 10, background: groupBg, border: `1px solid ${groupBorder}` }}>
-        <div onClick={() => props.onPlaceChip("blue", null)} style={{ cursor: "pointer", transition: "transform .1s" }} title="Blue">
+        <div onClick={() => props.onPlaceChip("blue", null)} style={{ cursor: "pointer", transition: "transform .1s" }} title={t("colorBlue")}>
           <Chip color="blue" size={CHIP_PALETTE_SIZE} />
         </div>
-        <div onClick={() => props.onPlaceChip("red", null)} style={{ cursor: "pointer" }} title="Red">
+        <div onClick={() => props.onPlaceChip("red", null)} style={{ cursor: "pointer" }} title={t("colorRed")}>
           <Chip color="red" size={CHIP_PALETTE_SIZE} />
         </div>
 
@@ -245,8 +245,9 @@ export default function BottomToolbar(props: BottomToolbarProps) {
       <div style={{ display: "flex", gap: 2, padding: 3, borderRadius: 10, background: groupBg, border: `1px solid ${groupBorder}` }}>
         {(["none", "square", "dot", "line"] as GridType[]).map((g) => {
           const icons: Record<GridType, string> = { none: "⊘", square: "⊞", dot: "⁙", line: "≡" };
+          const gridTitles: Record<GridType, string> = { none: t("gridNone"), square: t("gridSquare"), dot: t("gridDot"), line: t("gridLine") };
           return (
-            <button key={g} title={g} onClick={() => props.onSetGridType(g)} style={iconBtn(gridType === g, { width: 28, height: 28, fontSize: 13 })}>
+            <button key={g} title={gridTitles[g]} onClick={() => props.onSetGridType(g)} style={iconBtn(gridType === g, { width: 28, height: 28, fontSize: 13 })}>
               {icons[g]}
             </button>
           );
@@ -282,7 +283,7 @@ export default function BottomToolbar(props: BottomToolbarProps) {
 
       {/* ═══ UTILITY GROUP ═══ */}
       <div style={{ display: "flex", gap: 1, padding: 3, borderRadius: 10, background: groupBg, border: `1px solid ${groupBorder}` }}>
-        <button title="Tam ekran" onClick={() => {
+        <button title={t("fullscreen")} onClick={() => {
           if (document.fullscreenElement) document.exitFullscreen();
           else document.documentElement.requestFullscreen();
         }} style={iconBtn(false, { width: 28, height: 28 })}>

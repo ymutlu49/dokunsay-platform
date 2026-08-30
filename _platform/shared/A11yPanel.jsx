@@ -82,6 +82,50 @@ const I18N = {
     on: 'On',
     off: 'Off',
   },
+  ar: {
+    title: 'إمكانية الوصول',
+    trigger_label: 'فتح إعدادات إمكانية الوصول',
+    close: 'إغلاق',
+    reset: 'إعادة تعيين',
+    dyscalculia: 'وضع عسر الحساب',
+    dyscalculia_desc: 'حركات بطيئة، أزرار كبيرة، تركيز قوي',
+    dyslexia: 'وضع عسر القراءة',
+    dyslexia_desc: 'تباعد واسع بين الأسطر/الحروف، خط ملائم لعسر القراءة',
+    highContrast: 'تباين عالٍ',
+    highContrast_desc: 'تباين ألوان قوي',
+    colorblind: 'وضع عمى الألوان',
+    colorblind_desc: 'تمييز الألوان بالأنماط والمرشّحات',
+    tts: 'القراءة الصوتية',
+    tts_desc: 'قراءة النصوص بصوت عالٍ',
+    sfx: 'المؤثرات الصوتية',
+    sfx_desc: 'أصوات النقر/العمليات',
+    reduceMotion: 'تقليل الحركة',
+    reduceMotion_desc: 'إيقاف الحركات',
+    on: 'مُفعّل',
+    off: 'مُعطّل',
+  },
+  fa: {
+    title: 'دسترس‌پذیری',
+    trigger_label: 'باز کردن تنظیمات دسترس‌پذیری',
+    close: 'بستن',
+    reset: 'بازنشانی',
+    dyscalculia: 'حالت اختلال محاسبه',
+    dyscalculia_desc: 'انیمیشن آهسته، دکمه‌های بزرگ، تمرکز واضح',
+    dyslexia: 'حالت نارساخوانی',
+    dyslexia_desc: 'فاصله زیاد خط/حرف، فونت مناسب نارساخوانی',
+    highContrast: 'کنتراست بالا',
+    highContrast_desc: 'تضاد رنگی قوی',
+    colorblind: 'حالت کوررنگی',
+    colorblind_desc: 'تمایز رنگ با الگو و فیلتر',
+    tts: 'خواندن صوتی',
+    tts_desc: 'متن‌ها با صدا خوانده شوند',
+    sfx: 'جلوه‌های صوتی',
+    sfx_desc: 'صداهای کلیک/عملیات',
+    reduceMotion: 'کاهش حرکت',
+    reduceMotion_desc: 'توقف حرکت‌ها',
+    on: 'روشن',
+    off: 'خاموش',
+  },
 };
 
 const TOGGLES = [
@@ -94,12 +138,42 @@ const TOGGLES = [
   { key: 'reduceMotion', icon: '🐢', color: '#8b5cf6' },
 ];
 
-export function A11yPanel({ useA11y, lang = 'tr', position = 'bottom-right' }) {
+/** Cross-app paylaşılan dili tespit et: localStorage(dk_lang) → <html lang> → 'tr'. */
+function detectSharedLang() {
+  try {
+    const ls = localStorage.getItem('dk_lang');
+    if (ls) return ls;
+  } catch { /* ignore */ }
+  if (typeof document !== 'undefined') {
+    const h = document.documentElement.getAttribute('lang');
+    if (h) return h;
+  }
+  return 'tr';
+}
+
+export function A11yPanel({ useA11y, lang, position = 'bottom-right' }) {
   const [open, setOpen] = useState(false);
+  const [detectedLang, setDetectedLang] = useState(detectSharedLang);
   const panelRef = useRef(null);
   const triggerRef = useRef(null);
   const { prefs, toggle, reset, announce } = useA11y();
-  const t = I18N[lang] || I18N.tr;
+
+  // Dil: prop açıkça verilmişse onu kullan; yoksa cross-app paylaşılan dili
+  // (dk_lang + 'dk-lang-change' event) canlı izle. Memory: "A11yPanel auto-dil".
+  useEffect(() => {
+    if (lang) return undefined;
+    function onChange(ev) { const n = ev.detail?.lang; if (n) setDetectedLang(n); }
+    function onStorage(ev) { if (ev.key === 'dk_lang' && ev.newValue) setDetectedLang(ev.newValue); }
+    window.addEventListener('dk-lang-change', onChange);
+    window.addEventListener('storage', onStorage);
+    return () => {
+      window.removeEventListener('dk-lang-change', onChange);
+      window.removeEventListener('storage', onStorage);
+    };
+  }, [lang]);
+
+  const effLang = lang || detectedLang;
+  const t = I18N[effLang] || I18N.tr;
 
   const handleToggle = (key) => {
     toggle(key);

@@ -1,0 +1,467 @@
+<!--
+  /diskalkuli-nedir/ — Akademik içerik, ebeveynler/öğretmenler tarzı düzen.
+
+  Tasarım:
+  • Mor tema (#9333ea) — navigation'daki "Diskalkuli Nedir?" rengiyle uyumlu
+  • Kart yoğun düzen (.dk-p-* sınıfları, ebeveynler/öğretmenler ile aynı)
+  • Kompakt prose bölümleri yerine kartlara dağıtılmış akademik içerik
+  • Akademik referanslar inline + sonda kompakt kaynakça
+
+  Bireysel isim atfı yok. Kurumsal "Diskalkuli Akademi" / "alanyazın" çerçevesi.
+
+  WP'de /diskalkuli-nedir/ sayfasının Custom HTML bloğuna yapıştır.
+-->
+<style>
+.dk-p-hero{background:linear-gradient(180deg,#fff 0%,#faf5ff 100%);padding:56px 20px;text-align:center;border-bottom:1px solid rgba(0,0,0,.06);font-family:'Inter',sans-serif}
+.dk-p-hero .wrap{max-width:840px;margin:0 auto}
+.dk-p-eyebrow{display:inline-block;background:#9333ea22;color:#9333ea;padding:6px 14px;border-radius:20px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px;border:1px solid #9333ea44}
+.dk-p-hero h1{font-size:clamp(28px,3.6vw,42px);font-weight:800;color:#031f42;margin:0 0 14px;letter-spacing:-.02em;line-height:1.2}
+.dk-p-hero h1 .grad{background:linear-gradient(135deg,#9333ea,#7c3aed);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.dk-p-hero p{font-size:clamp(15px,1.2vw,17px);color:#4a5568;margin:0 auto;max-width:720px;line-height:1.7}
+.dk-p-section{padding:48px 20px;font-family:'Inter',sans-serif}
+.dk-p-section .wrap{max-width:1100px;margin:0 auto}
+.dk-p-section h2{font-size:clamp(22px,2.3vw,28px);font-weight:800;color:#031f42;margin:0 0 14px;letter-spacing:-.01em;text-align:center;display:flex;align-items:center;justify-content:center;gap:10px}
+.dk-p-section h2::before{content:"";width:4px;height:24px;background:#9333ea;border-radius:3px}
+.dk-p-section .sub{text-align:center;color:#6a7390;max-width:680px;margin:0 auto 32px;font-size:15px;line-height:1.65}
+.dk-p-section p{color:#4a5568;font-size:15px;line-height:1.75;margin:0 0 14px}
+
+.dk-p-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.dk-p-step{background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:14px;padding:26px 24px;transition:all .3s cubic-bezier(0.16,1,0.3,1);position:relative;overflow:hidden}
+.dk-p-step:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(3,31,66,.08);border-color:#9333ea}
+.dk-p-step-num{width:42px;height:42px;border-radius:50%;background:#9333ea;color:#fff;display:inline-grid;place-items:center;font-weight:800;font-size:18px;margin-bottom:14px}
+.dk-p-step h3{font-size:17px;font-weight:800;margin:0 0 8px;color:#031f42}
+.dk-p-step p{font-size:14px;color:#6a7390;line-height:1.65;margin:0 0 14px}
+.dk-p-step a{font-size:13px;font-weight:700;color:#9333ea;text-decoration:none;display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:8px;background:#9333ea10;transition:all .2s}
+.dk-p-step a:hover{background:#9333ea;color:#fff}
+
+.dk-p-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:6px}
+.dk-p-card{background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:12px;padding:20px 22px}
+.dk-p-card h4{font-size:15px;font-weight:700;margin:0 0 8px;color:#031f42}
+.dk-p-card p{font-size:13.5px;color:#4a5568;margin:0;line-height:1.6}
+
+.dk-p-cite{display:inline-block;background:rgba(147,51,234,.1);color:#7c3aed;font-size:11px;padding:1px 6px;border-radius:5px;font-weight:600;margin:0 2px;white-space:nowrap}
+
+.dk-p-callout{background:#faf5ff;border:1px solid #9333ea44;border-left:4px solid #9333ea;border-radius:12px;padding:20px 24px;margin:22px auto;max-width:820px}
+.dk-p-callout strong{color:#7c3aed;display:block;margin-bottom:6px;font-size:14px;letter-spacing:.04em}
+.dk-p-callout p{margin:0;color:#374151;font-size:14px;line-height:1.65}
+
+.dk-p-age{display:grid;grid-template-columns:120px 1fr;gap:18px;align-items:start}
+.dk-p-age-badge{background:linear-gradient(135deg,#9333ea,#7c3aed);color:#fff;padding:10px 12px;border-radius:10px;font-weight:700;text-align:center;font-size:12px;line-height:1.3}
+.dk-p-age-body strong{display:block;color:#031f42;font-size:14px;margin-bottom:6px;font-weight:700}
+.dk-p-age-body ul{padding-left:18px;margin:0}
+.dk-p-age-body li{font-size:13.5px;color:#4a5568;line-height:1.6;margin-bottom:5px}
+@media(max-width:600px){.dk-p-age{grid-template-columns:1fr;gap:10px}}
+
+.dk-p-prose{max-width:820px;margin:0 auto}
+.dk-p-prose p{font-size:15px;color:#4a5568;line-height:1.78;margin:0 0 14px}
+.dk-p-prose strong{color:#031f42;font-weight:700}
+
+.dk-p-mech{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:6px}
+.dk-p-mech-card{background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:12px;padding:22px;border-top:3px solid #9333ea}
+.dk-p-mech-card .mech-tag{display:inline-block;background:#9333ea15;color:#7c3aed;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:3px 8px;border-radius:6px;margin-bottom:8px}
+.dk-p-mech-card h4{font-size:15px;font-weight:700;margin:0 0 8px;color:#031f42}
+.dk-p-mech-card p{font-size:13.5px;color:#4a5568;margin:0;line-height:1.6}
+
+.dk-p-sss{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.dk-p-sss-card{background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:12px;padding:20px 22px}
+.dk-p-sss-card h4{font-size:14px;font-weight:700;margin:0 0 8px;color:#9333ea;line-height:1.4}
+.dk-p-sss-card p{font-size:13.5px;color:#4a5568;margin:0;line-height:1.65}
+.dk-p-sss-card a{color:#9333ea;text-decoration:none;font-weight:600}
+.dk-p-sss-card a:hover{text-decoration:underline}
+
+.dk-p-refs{background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:12px;padding:24px 28px;max-width:900px;margin:0 auto}
+.dk-p-refs-toggle{cursor:pointer;font-size:14px;font-weight:700;color:#9333ea;background:none;border:0;padding:0;display:flex;align-items:center;gap:8px;margin-bottom:14px}
+.dk-p-refs ul{list-style:none;padding:0;margin:0;max-height:280px;overflow-y:auto;padding-right:8px}
+.dk-p-refs li{font-size:12.5px;color:#374151;line-height:1.55;margin-bottom:7px;padding-left:24px;position:relative;text-indent:-24px}
+.dk-p-refs a{color:#9333ea;text-decoration:none;font-size:11px;background:#9333ea10;padding:1px 6px;border-radius:4px;font-weight:600;margin-left:4px;text-indent:0;display:inline-block}
+.dk-p-refs a:hover{background:#9333ea22}
+
+.dk-p-cta{background:linear-gradient(135deg,#9333ea 0%,#7c3aed 100%);color:#fff;padding:46px 32px;border-radius:16px;text-align:center;margin:28px 0;position:relative;overflow:hidden}
+.dk-p-cta::before{content:"";position:absolute;top:-50%;right:-10%;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.15),transparent 70%)}
+.dk-p-cta h2{color:#fff !important;margin:0 0 10px;position:relative;text-align:center;justify-content:center}
+.dk-p-cta h2::before{display:none}
+.dk-p-cta p{color:rgba(255,255,255,.92);margin:0 0 22px;max-width:580px;margin-left:auto;margin-right:auto;position:relative;font-size:15px;line-height:1.65}
+.dk-p-cta-btns{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;position:relative}
+</style>
+
+<header class="dk-p-hero">
+  <div class="wrap">
+    <span class="dk-p-eyebrow">Akademik rehber · 7 dakika okuma</span>
+    <h1>Diskalkuli <span class="grad">Nedir?</span></h1>
+    <p>Sayı kavramlarını, aritmetik işlemleri ve matematiksel akıl yürütmeyi kazanmada beklenmedik ve kalıcı güçlüklerle tanımlanan bir <strong>nörogelişimsel öğrenme güçlüğü</strong>. Alanyazın temelli bu rehber; tanımı, bilişsel-nörobiyolojik temelleri, gelişimsel işaretleri ve eğitsel müdahale yaklaşımlarını derler.</p>
+  </div>
+</header>
+
+<section class="dk-p-section" style="background:#fff">
+  <div class="wrap">
+    <h2>Bu rehberde neler var?</h2>
+    <p class="sub">Akademik kaynaklara dayalı, kapsamlı ama erişilebilir bir bakış. Her bölüm bağımsız okunabilir.</p>
+    <div class="dk-p-steps">
+      <div class="dk-p-step">
+        <div class="dk-p-step-num">1</div>
+        <h3>Bilimsel tanım</h3>
+        <p>DSM-5 ve ICD-11 sınıflandırması, gelişimsel ve edinilmiş diskalkuli ayrımı.</p>
+        <a href="#tanim">Tanıma git →</a>
+      </div>
+      <div class="dk-p-step">
+        <div class="dk-p-step-num">2</div>
+        <h3>Bilişsel temeller</h3>
+        <p>Sayı hissi, çalışma belleği, sembolik işleme; paryetal korteks ve IPS.</p>
+        <a href="#mekanizma">Temellere git →</a>
+      </div>
+      <div class="dk-p-step">
+        <div class="dk-p-step-num">3</div>
+        <h3>Gelişimsel işaretler</h3>
+        <p>Yaşa göre belirtiler, eşgörü durumları, tanılama ve müdahale.</p>
+        <a href="#yaslara-gore">İşaretlere git →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dk-p-section" style="background:#f9fafb" id="tanim">
+  <div class="wrap">
+    <h2>Bilimsel tanım ve sınıflandırma</h2>
+    <div class="dk-p-prose">
+      <p><strong>Diskalkuli (developmental dyscalculia)</strong>, bireyin genel zekâ düzeyi, eğitim olanakları ve sosyokültürel koşullarıyla açıklanamayacak ölçüde derin ve ısrarlı matematiksel beceri eksikliğidir <span class="dk-p-cite">Price &amp; Ansari, 2013</span>. Sayı kavramlarının kazanımında, sayma işlemlerinde, aritmetik akıcılıkta ve matematiksel akıl yürütmede beklenmedik düzeyde güçlüklerle kendini gösterir.</p>
+      <p>Amerikan Psikiyatri Birliği'nin (APA) DSM-5 sınıflamasında <em>"Özel Öğrenme Bozukluğu — Matematiksel Bozukluk"</em> alt başlığı altında yer alır <span class="dk-p-cite">APA, 2013</span>. Dünya Sağlık Örgütü'nün (WHO) ICD-11 sisteminde de "öğrenme ve gelişim bozuklukları" çatısı altında ayrı bir alt kategoridir <span class="dk-p-cite">WHO, 2019</span>.</p>
+    </div>
+
+    <div class="dk-p-cards" style="margin-top:22px">
+      <div class="dk-p-card">
+        <h4>Gelişimsel diskalkuli</h4>
+        <p>Doğuştan veya erken çocukluktan itibaren ortaya çıkar; çocuk uygun eğitim fırsatlarına rağmen matematiksel becerileri yaşıtlarıyla aynı düzeyde edinemez <span class="dk-p-cite">Shalev &amp; Gross-Tsur, 2001</span>.</p>
+      </div>
+      <div class="dk-p-card">
+        <h4>Edinilmiş diskalkuli</h4>
+        <p>Önceden kazanılmış matematiksel becerilerin travma, inme veya beyin hasarı sonrası kaybedilmesidir; özellikle paryetal lob hasarlarıyla ilişkilendirilir <span class="dk-p-cite">Dehaene, 2011</span>.</p>
+      </div>
+      <div class="dk-p-card">
+        <h4>Yaygın yanılgı</h4>
+        <p>Diskalkuli; tembellik, ilgisizlik veya zekâ eksikliği <strong>değildir</strong>. Standart zekâ düzeyine sahip bireylerde sayı işleme devrelerindeki yapısal/işlevsel farklılıklarla açıklanır <span class="dk-p-cite">Butterworth ve ark., 2011</span>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dk-p-section" style="background:#fff" id="mekanizma">
+  <div class="wrap">
+    <h2>Bilişsel ve nörobiyolojik temeller</h2>
+    <p class="sub">Diskalkulinin tek bir nedeni yoktur; <strong>genetik, nörobiyolojik, bilişsel ve çevresel etkenlerin etkileşimiyle</strong> ortaya çıkan çok faktörlü bir öğrenme güçlüğüdür <span class="dk-p-cite">Kaufmann ve ark., 2013</span>. İkiz çalışmaları kalıtım yatkınlığını desteklemektedir <span class="dk-p-cite">Alarcón ve ark., 1997</span>.</p>
+
+    <div class="dk-p-mech">
+      <div class="dk-p-mech-card">
+        <span class="mech-tag">Çekirdek Mekanizma 1</span>
+        <h4>Sayı hissi (Number sense / ANS)</h4>
+        <p>Doğuştan gelen, sembolden bağımsız miktar algılama yetisi. Diskalkulili bireylerde bu yaklaşık sayı sisteminin (ANS) işlevinde bozulma raporlanmıştır <span class="dk-p-cite">Mazzocco ve ark., 2011</span><span class="dk-p-cite">Piazza ve ark., 2010</span>.</p>
+      </div>
+      <div class="dk-p-mech-card">
+        <span class="mech-tag">Çekirdek Mekanizma 2</span>
+        <h4>Çalışma belleği</h4>
+        <p>Sayısal bilginin eşzamanlı depolanması ve işlenmesi <span class="dk-p-cite">Baddeley, 2000</span>. Özellikle görsel-uzamsal not defteri ve merkezi yürütücü bileşenlerde yetersizlikler bildirilmiştir <span class="dk-p-cite">Passolunghi &amp; Mammarella, 2012</span>.</p>
+      </div>
+      <div class="dk-p-mech-card">
+        <span class="mech-tag">Çekirdek Mekanizma 3</span>
+        <h4>Sembolik sayı işleme</h4>
+        <p>Yazılı/sözel sayı sembollerini büyüklük temsiline bağlama. Bu süreçte yaşanan güçlükler, temel aritmetiğin kalıcı kazanımını engelleyebilir <span class="dk-p-cite">Rousselle &amp; Noël, 2007</span>.</p>
+      </div>
+      <div class="dk-p-mech-card">
+        <span class="mech-tag">Nörobiyolojik Düzey</span>
+        <h4>Paryetal korteks ve IPS</h4>
+        <p><strong>İntraparyetal sulkus</strong> (IPS), sayısal büyüklük temsilinde kritik rol oynar. Diskalkulide bu bölgede yapısal ve işlevsel farklılıklar bildirilmiştir <span class="dk-p-cite">Molko ve ark., 2003</span><span class="dk-p-cite">Price ve ark., 2007</span>.</p>
+      </div>
+      <div class="dk-p-mech-card">
+        <span class="mech-tag">Yürütücü İşlevler</span>
+        <h4>Frontal korteks katkısı</h4>
+        <p>Planlama, dikkat ve yürütücü işlevlerle ilgili frontal bölgeler diskalkulinin şiddetini etkiler. Düşük dikkat kontrolü matematik performansını derinden etkiler <span class="dk-p-cite">Menon, 2016</span>.</p>
+      </div>
+      <div class="dk-p-mech-card">
+        <span class="mech-tag">Çevresel Etkenler</span>
+        <h4>Eğitim niteliği</h4>
+        <p>Erken matematik öğretiminin niteliği, somut materyal kullanımı ve ezber yerine kavramsal yapılandırmayı önceleyen yaklaşımlar diskalkulinin seyrini etkiler <span class="dk-p-cite">Price &amp; Ansari, 2013</span>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dk-p-section" style="background:#f9fafb">
+  <div class="wrap">
+    <h2>Yaygınlık ve heterojenite</h2>
+    <div class="dk-p-cards">
+      <div class="dk-p-card" style="border-top:3px solid #9333ea">
+        <h4>%3–7 yaygınlık</h4>
+        <p>Okul çağı çocuklarında diskalkulinin yaygınlığı %3–7 aralığında raporlanmaktadır <span class="dk-p-cite">Kucian &amp; von Aster, 2015</span>. Aralıktaki değişkenlik tanı ölçütleri ve kesim noktalarına bağlıdır.</p>
+      </div>
+      <div class="dk-p-card" style="border-top:3px solid #9333ea">
+        <h4>Heterojen yapı</h4>
+        <p>Bazı öğrencilerde sayı hissi yetersizliği baskınken, diğerlerinde sembollere erişim güçlüğü ya da her iki eksikliğin birleşimi görülür <span class="dk-p-cite">Bartelet ve ark., 2014</span>.</p>
+      </div>
+      <div class="dk-p-card" style="border-top:3px solid #9333ea">
+        <h4>Bireyselleştirme zorunluluğu</h4>
+        <p>"Tek tip" müdahale yerine, alt tipi ve eşgörü profilini dikkate alan bireyselleştirilmiş yaklaşımlar gereklidir <span class="dk-p-cite">Träff ve ark., 2017</span>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dk-p-section" style="background:#fff" id="yaslara-gore">
+  <div class="wrap">
+    <h2>Gelişimsel işaretler — yaşa göre</h2>
+    <p class="sub">Aşağıdaki örüntüler, normatif gelişim çizgisine göre <strong>beklenmedik geri kalma</strong> olarak değerlendirilmelidir. Tek başına bir belirti tanı için yeterli değildir.</p>
+
+    <div class="dk-p-cards">
+      <div class="dk-p-card">
+        <div class="dk-p-age">
+          <div class="dk-p-age-badge">4–6 YAŞ<br>Okul Öncesi</div>
+          <div class="dk-p-age-body">
+            <strong>Erken sayma ve miktar algısı:</strong>
+            <ul>
+              <li>Birebir eşleme (parmak ↔ sayı sözcüğü) yerleşmez.</li>
+              <li>"Daha fazla / daha az" karşılaştırmalarında kararsızlık.</li>
+              <li>Sıra (1., 2., 3.) kavramı güçlükle edinilir.</li>
+              <li>Küçük kümeleri (1–4) anında tanıma (subitizing) zayıftır.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="dk-p-card">
+        <div class="dk-p-age">
+          <div class="dk-p-age-badge">6–8 YAŞ<br>1.–2. Sınıf</div>
+          <div class="dk-p-age-body">
+            <strong>Sembolik aritmetiğin yerleşmesinde gecikme:</strong>
+            <ul>
+              <li>Basit toplama/çıkarmada uzun süreli parmak sayma.</li>
+              <li>Onluk–birlik (basamak değeri) belirsizliği.</li>
+              <li>Saat okumayı edinmede gecikme.</li>
+              <li>Rakam ↔ miktar eşleştirmesinde tutarsızlık.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="dk-p-card">
+        <div class="dk-p-age">
+          <div class="dk-p-age-badge">8–10 YAŞ<br>3.–4. Sınıf</div>
+          <div class="dk-p-age-body">
+            <strong>Akıcılık ve strateji geçişinde sıkışma:</strong>
+            <ul>
+              <li>Çarpım tablosunda otomatikleşme yok.</li>
+              <li>Sözel problemlerde işlem seçiminde güçlük.</li>
+              <li>Para üstü, ölçü dönüşümü, yön (sağ/sol) belirsizliği.</li>
+              <li>Yazılı işlemde basamak hizalaması ve "elde var" hataları.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="dk-p-card">
+        <div class="dk-p-age">
+          <div class="dk-p-age-badge">10+ YAŞ<br>5. Sınıf ve üstü</div>
+          <div class="dk-p-age-body">
+            <strong>Soyutlama eşiğinde performans düşüşü:</strong>
+            <ul>
+              <li>Kesir, ondalık, oran kavramlarında derin kavrayış güçlüğü.</li>
+              <li>Yüzde, grafik okuma, veri yorumlamada zayıflık.</li>
+              <li>Matematik kaygısı ve özgüven kaybı <span class="dk-p-cite">Mammarella ve ark., 2015</span>.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dk-p-section" style="background:#f9fafb">
+  <div class="wrap">
+    <h2>Eşgörü durumları</h2>
+    <p class="sub">Diskalkuli sıklıkla diğer nörogelişimsel farklılıklarla birlikte görülür <span class="dk-p-cite">Willcutt ve ark., 2013</span>. "Saf diskalkuli" vakaları alanyazında nadirdir <span class="dk-p-cite">Henik ve ark., 2011</span>.</p>
+
+    <div class="dk-p-cards">
+      <div class="dk-p-card">
+        <h4>Disleksi</h4>
+        <p>Sözel ve sayısal sembollerin işlemlenmesinde ortak fonolojik temel; okuma odaklı problemleri zorlaştırır <span class="dk-p-cite">Landerl ve ark., 2009</span>.</p>
+      </div>
+      <div class="dk-p-card">
+        <h4>DEHB</h4>
+        <p>Çalışma belleği ve sürekli dikkat eksiklikleri matematik performansını derinden etkiler <span class="dk-p-cite">Shalev ve ark., 1995</span>.</p>
+      </div>
+      <div class="dk-p-card">
+        <h4>Gelişimsel koordinasyon bozukluğu</h4>
+        <p>Görsel-uzamsal becerileri olumsuz etkileyerek geometri ve şekil çiziminde güçlük yaratır <span class="dk-p-cite">Koponen ve ark., 2006</span>.</p>
+      </div>
+      <div class="dk-p-card">
+        <h4>Matematik kaygısı</h4>
+        <p>Diskalkuli ile çift yönlü pekiştirici etkileşim. Başarısızlık kaygıyı artırır, kaygı çalışma belleğini bloke eder <span class="dk-p-cite">Beilock &amp; Maloney, 2015</span>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dk-p-section" style="background:#fff" id="tanilama">
+  <div class="wrap">
+    <h2>Tanılama süreci</h2>
+    <p class="sub">DSM-5'e göre diskalkuli tanısı için belirtilerin <strong>en az 6 ay süreyle</strong> ve yaşıt ortalamasının belirgin altında sürmesi gerekir <span class="dk-p-cite">APA, 2013</span>. Tek bir testle değil, çok katmanlı bir süreçle yapılır.</p>
+
+    <div class="dk-p-steps">
+      <div class="dk-p-step">
+        <div class="dk-p-step-num">1</div>
+        <h3>Müfredat temelli ölçüm</h3>
+        <p>Aritmetik akıcılık, sayı doğrusu yerleştirme, sembolik–sembolik olmayan karşılaştırma görevleri.</p>
+      </div>
+      <div class="dk-p-step">
+        <div class="dk-p-step-num">2</div>
+        <h3>Bilişsel bileşen değerlendirmesi</h3>
+        <p>Çalışma belleği, işlemleme hızı, dikkat ve yürütücü işlev profili <span class="dk-p-cite">Peng ve ark., 2018</span>.</p>
+      </div>
+      <div class="dk-p-step">
+        <div class="dk-p-step-num">3</div>
+        <h3>Eşgörü taraması</h3>
+        <p>Disleksi, DEHB, dil bozukluğu vb. için ek tarama; tanı sürecinin doğruluğu için kritik.</p>
+      </div>
+      <div class="dk-p-step">
+        <div class="dk-p-step-num">4</div>
+        <h3>Bağlamsal veri</h3>
+        <p>Aile ve öğretmen görüşmeleri; ev/okul performansı arasındaki tutarlılık <span class="dk-p-cite">Mazzocco &amp; Thompson, 2005</span>.</p>
+      </div>
+      <div class="dk-p-step">
+        <div class="dk-p-step-num">5</div>
+        <h3>Norm temelli karşılaştırma</h3>
+        <p>Türkiye örneklemine kalibre edilmiş norm tablolarından yararlanma <span class="dk-p-cite">Mutlu &amp; Akgün, 2017</span>.</p>
+      </div>
+      <div class="dk-p-step">
+        <div class="dk-p-step-num">6</div>
+        <h3>Numap ile dijital tarama</h3>
+        <p>A1–A11 bataryası, 48–119 ay (4–10 yaş) Türkiye normları, otomatik risk etiketi.</p>
+        <a href="/platform/numap.html">Numap'a git →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dk-p-section" style="background:#f9fafb" id="mudahale">
+  <div class="wrap">
+    <h2>Eğitsel müdahale yaklaşımları</h2>
+    <p class="sub">Etkili müdahale <strong>bütüncül</strong> ve <strong>bireyselleştirilmiş</strong> olmalıdır <span class="dk-p-cite">Kucian &amp; von Aster, 2015</span>. Alanyazında öne çıkan ilkeler:</p>
+
+    <div class="dk-p-cards">
+      <div class="dk-p-card">
+        <h4>Somut–Yarı Somut–Soyut (CRA)</h4>
+        <p>Bruner'in temsil kuramı temelli, somut materyalden simgesel gösterime aşamalı geçiş.</p>
+      </div>
+      <div class="dk-p-card">
+        <h4>Çoklu duyusal kodlama</h4>
+        <p>Sayı kavramının nesne, görsel ve sembol katmanlarında eşzamanlı sunulması <span class="dk-p-cite">Powell ve ark., 2020</span>.</p>
+      </div>
+      <div class="dk-p-card">
+        <h4>Çalışma belleği desteği</h4>
+        <p>Adımlı problem rehberleri, görsel ipuçları, dış bellek araçları <span class="dk-p-cite">Geary ve ark., 2004</span>.</p>
+      </div>
+      <div class="dk-p-card">
+        <h4>Sayı doğrusu temelli müdahaleler</h4>
+        <p>Sayı–uzam ilişkisini güçlendiren yapılandırılmış etkinlikler.</p>
+      </div>
+      <div class="dk-p-card">
+        <h4>Kaygı duyarlı pedagoji</h4>
+        <p>Hata yapma korkusunu düşüren, deneme-yanılma kültürünü besleyen geri bildirim <span class="dk-p-cite">Beilock &amp; Maloney, 2015</span>.</p>
+      </div>
+      <div class="dk-p-card">
+        <h4>Aile-okul iş birliği</h4>
+        <p>Düzenli, kısa süreli ev pratikleri ile sınıf desteğinin bütünleştirilmesi.</p>
+      </div>
+    </div>
+
+    <div class="dk-p-callout">
+      <strong>Diskalkuli Akademi ekosistemi</strong>
+      <p>Bu ilkeler üç katmanda birleşir: <a href="/platform/numap.html" style="color:#7c3aed">Numap</a> (tanılama, A1–A11 bataryası), <a href="/platform/galaksay.html" style="color:#7c3aed">Galaksay</a> (müdahale, 59+ oyunlaştırılmış modül), <a href="/araclar/" style="color:#7c3aed">DokunSay</a> (sınıf/ev içi 7 ücretsiz interaktif araç).</p>
+    </div>
+  </div>
+</section>
+
+<section class="dk-p-section" style="background:#fff">
+  <div class="wrap">
+    <h2>Sıkça karşılaşılan sorular</h2>
+    <div class="dk-p-sss">
+      <div class="dk-p-sss-card">
+        <h4>Diskalkuli "geçer" mi?</h4>
+        <p>Alanyazın diskalkuliyi yaşam boyu sürebilen bir nörogelişimsel farklılık olarak tanımlar. Belirtiler ortadan kalkmasa da, hedefli müdahaleyle bireyin matematikle işlevsel ilişki kurması mümkündür <span class="dk-p-cite">Shalev, 2004</span>.</p>
+      </div>
+      <div class="dk-p-sss-card">
+        <h4>Özel eğitim şart mı?</h4>
+        <p>Şiddet düzeyine bağlıdır. Hafif-orta düzeyde sınıf içi farklılaştırılmış öğretim ve ev desteği yeterli olabilir; ağır vakalarda bireyselleştirilmiş eğitim programı (BEP) önerilir.</p>
+      </div>
+      <div class="dk-p-sss-card">
+        <h4>Numap testi ücretli mi?</h4>
+        <p>Temel A1–A11 batarya bireysel kullanım için ücretsizdir. Detaylı klinik rapor üretimi ve kurumsal panel için abonelik seçenekleri mevcuttur.</p>
+      </div>
+      <div class="dk-p-sss-card">
+        <h4>Kaç haftada sonuç görülür?</h4>
+        <p>Hedefli müdahalede 4–6 hafta içinde ilk anlamlı performans değişimleri gözlenebilir; kalıcı dönüşüm 6–12 aylık sistematik destek gerektirir <span class="dk-p-cite">Kaufmann ve ark., 2013</span>.</p>
+      </div>
+      <div class="dk-p-sss-card">
+        <h4>Sınıfımda şüpheli öğrenci var.</h4>
+        <p>Önce <a href="/platform/numap.html">Numap</a> ile tarama yapın; risk altındaki öğrenciler için <a href="/araclar/">DokunSay araçları</a> ile sınıf içi farklılaştırılmış çalışma uygulayın.</p>
+      </div>
+      <div class="dk-p-sss-card">
+        <h4>Çocuğumun zekâsında sorun mu var?</h4>
+        <p>Hayır. Diskalkuli zekâ düzeyinden bağımsız bir öğrenme güçlüğüdür. Ortalama veya üzeri zekâ düzeyine sahip çocuklarda da görülebilir <span class="dk-p-cite">APA, 2013</span>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dk-p-section" style="background:#f9fafb">
+  <div class="wrap">
+    <h2>Kaynakça</h2>
+    <p class="sub">Bu rehberde atıfta bulunulan akademik kaynaklar (APA stilinde).</p>
+    <div class="dk-p-refs">
+      <ul>
+        <li>Alarcón, M., DeFries, J. C., Light, J. G., &amp; Pennington, B. F. (1997). A twin study of mathematics disability. <em>Journal of Learning Disabilities, 30</em>(6), 617–623.</li>
+        <li>American Psychiatric Association. (2013). <em>Diagnostic and statistical manual of mental disorders</em> (5th ed.). APA.</li>
+        <li>Baddeley, A. (2000). The episodic buffer: A new component of working memory? <em>Trends in Cognitive Sciences, 4</em>(11), 417–423.</li>
+        <li>Bartelet, D., Ansari, D., Vaessen, A., &amp; Blomert, L. (2014). Cognitive subtypes of mathematics learning difficulties in primary education. <em>Research in Developmental Disabilities, 35</em>(3), 657–670.</li>
+        <li>Beilock, S. L., &amp; Maloney, E. A. (2015). Math anxiety: A factor in math achievement not to be ignored. <em>Policy Insights from the Behavioral and Brain Sciences, 2</em>(1), 4–12.</li>
+        <li>Butterworth, B., Varma, S., &amp; Laurillard, D. (2011). Dyscalculia: From brain to education. <em>Science, 332</em>(6033), 1049–1053.</li>
+        <li>Dehaene, S. (2011). <em>The number sense: How the mind creates mathematics</em> (Rev. ed.). Oxford University Press.</li>
+        <li>Geary, D. C., Hoard, M. K., Byrd-Craven, J., &amp; DeSoto, M. C. (2004). Strategy choices in simple and complex addition. <em>Journal of Experimental Child Psychology, 88</em>(2), 121–151.</li>
+        <li>Henik, A., Rubinsten, O., &amp; Ashkenazi, S. (2011). The "where" and "what" in developmental dyscalculia. <em>Clinical Neuropsychologist, 25</em>(6), 989–1008.</li>
+        <li>Kaufmann, L., Mazzocco, M. M., Dowker, A., et al. (2013). Dyscalculia from a developmental and differential perspective. <em>Frontiers in Psychology, 4</em>, 516.</li>
+        <li>Koponen, T., Mononen, R., Räsänen, P., &amp; Ahonen, T. (2006). Basic numeracy in children with specific language impairment. <em>Developmental Psychology, 42</em>(1), 58–73.</li>
+        <li>Kucian, K., &amp; von Aster, M. (2015). Developmental dyscalculia. <em>European Journal of Pediatrics, 174</em>(1), 1–13. <a href="https://doi.org/10.1007/s00431-014-2455-7" target="_blank" rel="noopener">DOI ↗</a></li>
+        <li>Landerl, K., Bevan, A., &amp; Butterworth, B. (2009). Developmental dyscalculia and basic numerical capacities. <em>Cognition, 93</em>(2), 99–125.</li>
+        <li>Mammarella, I. C., Hill, F., Devine, A., Caviola, S., &amp; Szücs, D. (2015). Math anxiety and developmental dyscalculia. <em>Journal of Learning Disabilities, 48</em>(3), 327–338.</li>
+        <li>Mazzocco, M. M. M., Feigenson, L., &amp; Halberda, J. (2011). Impaired acuity of the approximate number system underlies mathematical learning disability. <em>Child Development, 82</em>(4), 1224–1237.</li>
+        <li>Mazzocco, M. M. M., &amp; Thompson, R. E. (2005). Kindergarten predictors of math learning disability. <em>Learning Disabilities Research &amp; Practice, 20</em>(3), 142–155.</li>
+        <li>Menon, V. (2016). Working memory in children's math learning and its disruption in dyscalculia. <em>Current Opinion in Behavioral Sciences, 10</em>, 125–132.</li>
+        <li>Molko, N., Cachia, A., Rivière, D., et al. (2003). Functional and structural alterations of the intraparietal sulcus in a developmental dyscalculia of genetic origin. <em>Neuron, 40</em>(4), 847–858.</li>
+        <li>Mutlu, Y., &amp; Akgün, L. (2017). Matematik öğrenme güçlüğünü tanılamada yeni bir model önerisi: Çoklu Süzgeç Modeli. <em>İlköğretim Online, 16</em>(3), 1153–1173.</li>
+        <li>Passolunghi, M. C., &amp; Mammarella, I. C. (2012). Selective spatial working memory impairment in a group of children with mathematics learning disabilities. <em>Journal of Learning Disabilities, 45</em>(4), 341–350.</li>
+        <li>Peng, P., Wang, T., Wang, C., &amp; Lin, X. (2018). A meta-analysis on the relation between math anxiety and math performance. <em>Educational Research Review, 30</em>, 100295.</li>
+        <li>Piazza, M., Facoetti, A., Trussardi, A. N., et al. (2010). Developmental trajectory of number acuity reveals a severe impairment in developmental dyscalculia. <em>Cognition, 116</em>(1), 33–41.</li>
+        <li>Powell, S. R., Mason, E. N., Bos, S. E., et al. (2020). A systematic review of mathematics interventions for K-2 students. <em>Learning Disability Quarterly, 43</em>(2), 105–120.</li>
+        <li>Price, G. R., &amp; Ansari, D. (2013). Dyscalculia: Characteristics, causes, and treatments. <em>Numeracy, 6</em>(1), Article 2.</li>
+        <li>Price, G. R., Holloway, I. D., Räsänen, P., Vesterinen, M., &amp; Ansari, D. (2007). Impaired parietal magnitude processing in developmental dyscalculia. <em>Current Biology, 17</em>(24), R1042–R1043.</li>
+        <li>Rousselle, L., &amp; Noël, M. P. (2007). Basic numerical skills in children with mathematics learning disabilities. <em>Cognition, 102</em>(3), 361–395.</li>
+        <li>Shalev, R. S. (2004). Developmental dyscalculia. <em>Journal of Child Neurology, 19</em>(10), 765–771.</li>
+        <li>Shalev, R. S., &amp; Gross-Tsur, V. (2001). Developmental dyscalculia. <em>Pediatric Neurology, 24</em>(5), 337–342.</li>
+        <li>Shalev, R. S., Manor, O., Amir, N., &amp; Gross-Tsur, V. (1995). Acquisition of arithmetic in normally achieving school-aged children. <em>Cortex, 31</em>(1), 99–110.</li>
+        <li>Träff, U., Olsson, L., Östergren, R., &amp; Skagerlund, K. (2017). Heterogeneity of developmental dyscalculia. <em>Frontiers in Psychology, 7</em>, 2000.</li>
+        <li>Willcutt, E. G., Petrill, S. A., Wu, S., et al. (2013). Comorbidity between reading disability and math disability. <em>Journal of Learning Disabilities, 46</em>(6), 500–516.</li>
+        <li>World Health Organization. (2019). <em>International classification of diseases for mortality and morbidity statistics</em> (11th rev.). WHO.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="dk-p-section" style="background:#fff">
+  <div class="wrap">
+    <div class="dk-p-cta">
+      <h2>İlk adım: bilimsel değerlendirme</h2>
+      <p>Çocuğunuzu ya da öğrencinizi Numap ile okul öncesinden ilkokul 4. sınıfa kadar (48–119 ay / 4–10 yaş) Türkiye normlarına göre değerlendirin. A1–A11 bataryası yaklaşık 15 dakikada tamamlanır.</p>
+      <div class="dk-p-cta-btns">
+        <a class="dk-btn dk-btn--secondary dk-btn--lg" href="/platform/numap.html">Numap ile Tara →</a>
+        <a class="dk-btn dk-btn--ghost dk-btn--lg" href="/araclar/" style="background:rgba(255,255,255,.15);color:#fff;border-color:rgba(255,255,255,.4)">DokunSay Araçları</a>
+      </div>
+    </div>
+  </div>
+</section>

@@ -45,4 +45,5 @@ export const fa = {
   autoGroup: "در ۱۰ گروه کن!",
   readNum: readPersian,
   ttsLang: "fa-IR",
+  activityStarted: "فعالیت شروع شد",
 };

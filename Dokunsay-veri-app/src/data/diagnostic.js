@@ -283,7 +283,7 @@ export const DIAGNOSTIC_QUESTIONS_B = [
       en: "What's the WEAK point of this claim?",
     },
     options: [
-      { tr: "Ortalama yanlış hesaplanmış", ku: "Navînî çewt hesab kiriye", en: "Average miscalculated" },
+      { tr: "Ortalama yanlış hesaplanmış", ku: "Navgîn çewt hatiye hesibandin", en: "Average miscalculated" },
       { tr: "Kahvaltı yapan çocukların ailesi daha varlıklı/düzenli olabilir (karıştırıcı)", ku: "Dibe ku malbatên ku taştê dixwin bêtir dewlemend bin (sedemek din)", en: "Breakfast-eaters may have wealthier/more stable families (confounder)" },
       { tr: "Grafik yok", ku: "Grafîk tune", en: "No graph shown" },
       { tr: "Kahvaltı önemsizdir", ku: "Taştê ne giring e", en: "Breakfast is unimportant" },

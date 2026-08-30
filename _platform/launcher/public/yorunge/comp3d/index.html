@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yapı Kurma (3B) — Öğrenme Yörüngesi · DokunSay</title>
+<meta name="description" content="Yapı Kurma (3B) öğrenme yörüngesi: 9 gelişim basamağı, her birinde DokunSay etkinliği ve gözlem ölçütü. Clements &amp; Sarama çerçevesi. Bloklarla yapı kurma.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --c:#7c3aed;
+    --amber:#2E7D32; --ink:#182219; --body:#37433c; --muted:#5f6b63; --line:#dfe7df;
+    --bg:#f3f7f1; --card:#ffffff; --maxw:1180px; --r:18px;
+    --shadow:0 10px 30px -14px rgba(24,40,25,.22);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Inter,system-ui,sans-serif;color:var(--body);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4,h5,h6{font-family:Poppins,sans-serif;color:var(--ink);line-height:1.16;letter-spacing:-.01em}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  .eyebrow{font-family:Poppins;font-weight:700;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase}
+
+
+.dsh{background:linear-gradient(135deg,#14391a 0%,#1d2b22 100%);color:#fff;padding:12px 24px;box-shadow:0 4px 10px rgba(24,40,25,.10),0 2px 4px rgba(24,40,25,.05);position:sticky;top:0;z-index:50}
+.dsh-row{display:flex;align-items:center;justify-content:space-between;gap:16px;max-width:1440px;margin:0 auto;flex-wrap:wrap}
+.dsh-brand{display:flex;align-items:center;gap:13px;text-decoration:none;color:#fff}
+.dsh-logo{width:40px;height:40px;border-radius:12px;background:#fff;display:grid;place-items:center;padding:5px;box-shadow:0 1px 4px rgba(15,23,42,.12);flex:0 0 auto}
+.dsh-logo svg{display:block;width:100%;height:100%}
+.dsh-titles{display:flex;flex-direction:column;line-height:1.12}
+.dsh-name{font-family:Poppins,system-ui,sans-serif;font-size:20px;font-weight:800;letter-spacing:.4px;color:#fff}
+.dsh-sub{font-size:11.5px;font-weight:700;opacity:.72;letter-spacing:.3px;margin-top:2px;color:#fff}
+.dsh-nav{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.dsh-pill{display:inline-flex;align-items:center;gap:6px;padding:8px 15px;border-radius:999px;font-weight:700;font-size:.86rem;font-family:inherit;line-height:1;text-decoration:none;white-space:nowrap;border:1px solid transparent;transition:filter .15s,background .15s}
+.dsh-pill:hover{filter:brightness(1.13)}
+.dsh-amber{color:#fde6c0;background:rgba(245,158,11,.18);border-color:rgba(245,158,11,.45)}
+.dsh-green{color:#d7f0d9;background:rgba(46,125,50,.22);border-color:rgba(46,125,50,.5)}
+.dsh-teal{color:#bfe8e4;background:rgba(13,148,136,.2);border-color:rgba(13,148,136,.5)}
+.dsh-pill.is-active{box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.45);filter:brightness(1.12)}
+.dsh .hcmo-auth{display:inline-flex;align-items:center;gap:6px}
+.dsh .hcmo-auth:empty{display:none}
+.dsh .hcmo-auth a{display:inline-flex;align-items:center;gap:5px;padding:8px 14px;border-radius:999px;font-weight:700;font-size:.86rem;text-decoration:none;white-space:nowrap;color:#fde6c0;background:rgba(245,158,11,.18);border:1px solid rgba(245,158,11,.45);transition:background .15s}
+.dsh .hcmo-auth a:hover{background:rgba(245,158,11,.3)}
+.dsh .hcmo-auth a#hcmo-stu{color:#cfe8ff;background:rgba(96,165,250,.16);border-color:rgba(96,165,250,.4)}
+.dsh .hcmo-auth a#hcmo-stu:hover{background:rgba(96,165,250,.28)}
+.dsh .hcmo-auth>span{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:.86rem;color:#e8eefc}
+.dsh .hcmo-auth .nm{color:#fde6c0}
+.dsh .hcmo-auth #hcmo-out{cursor:pointer;border:0;border-radius:999px;background:#f59e0b;color:#3a2606;font-weight:800;font-size:.8rem;padding:7px 13px;font-family:inherit}
+.dsh .hcmo-auth #hcmo-out:hover{filter:brightness(1.07)}
+@media (max-width:760px){.dsh{padding:10px 15px}.dsh-pill{padding:7px 11px;font-size:.8rem}.dsh-name{font-size:18px}}
+@media print{.dsh{display:none}}
+
+  .hero{background:linear-gradient(135deg,color-mix(in srgb,var(--c) 88%,#000),color-mix(in srgb,var(--c) 62%,#14391a));color:#fff;padding:30px 0 40px;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;right:-70px;top:-60px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.16),transparent 70%)}
+  .crumb{font-size:.84rem;color:rgba(255,255,255,.8);margin-bottom:16px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .crumb a{color:rgba(255,255,255,.92);text-decoration:underline;text-underline-offset:2px}
+  .hero-grid{display:flex;align-items:flex-start;gap:18px;position:relative;z-index:1}
+  .hero-ic{font-size:2.6rem;line-height:1;background:rgba(255,255,255,.16);width:74px;height:74px;border-radius:18px;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+  .hero .eyebrow{color:rgba(255,255,255,.85)}
+  .hero h1{color:#fff;font-size:clamp(1.9rem,4.4vw,2.9rem);font-weight:900;margin:6px 0 10px}
+  .hero .lede{color:rgba(255,255,255,.94);font-size:1.06rem;max-width:680px}
+  .hero .ltname{opacity:.8;font-style:italic}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px}
+  .hm{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.22);color:#fff;border-radius:999px;padding:.34em .9em;font-size:.82rem;font-weight:600;font-family:Poppins}
+  .hero-cta{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+  .btn{font-family:Poppins;font-weight:700;font-size:.9rem;border-radius:999px;padding:.6em 1.2em;cursor:pointer;border:0;display:inline-flex;align-items:center;gap:7px}
+  .btn-w{background:#fff;color:var(--ink)}.btn-w:hover{transform:translateY(-1px)}
+  .btn-o{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.4)}.btn-o:hover{background:rgba(255,255,255,.24)}
+
+  .layout{display:grid;grid-template-columns:266px 1fr;gap:34px;align-items:start;padding:34px 0 50px}
+  .side{position:sticky;top:78px}
+  .side-in{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;max-height:calc(100vh - 100px);display:flex;flex-direction:column}
+  .side-head{font-family:Poppins;font-weight:800;color:var(--ink);font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;padding:14px 16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between}
+  .side-head span{color:var(--c)}
+  .side-list{list-style:none;overflow-y:auto;padding:6px}
+  .side-list a{display:flex;gap:10px;align-items:center;padding:8px 9px;border-radius:10px;transition:background .15s}
+  .side-list a:hover{background:#f1f8f2}
+  .side-list a.act{background:color-mix(in srgb,var(--c) 12%,#fff)}
+  .s-num{flex:0 0 auto;width:24px;height:24px;border-radius:7px;background:color-mix(in srgb,var(--c) 14%,#fff);color:var(--c);font-family:Poppins;font-weight:700;font-size:.8rem;display:flex;align-items:center;justify-content:center}
+  .side-list a.act .s-num{background:var(--c);color:#fff}
+  .s-txt{display:flex;flex-direction:column;min-width:0}
+  .s-txt b{font-family:Inter;font-weight:600;font-size:.86rem;color:var(--ink);line-height:1.25}
+  .s-txt small{color:var(--muted);font-size:.72rem}
+
+  .levels{display:flex;flex-direction:column;gap:20px}
+  .level{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px 24px;scroll-margin-top:84px;position:relative}
+  .level.bn{border-color:#f3c98b;box-shadow:0 0 0 1px #f3c98b inset}
+  .level.bn::before{content:"";position:absolute;left:0;top:18px;bottom:18px;width:4px;border-radius:4px;background:linear-gradient(#f59e0b,#ea580c)}
+  .lv-top{display:flex;gap:14px;align-items:flex-start;margin-bottom:14px}
+  .lv-num{flex:0 0 auto;width:42px;height:42px;border-radius:12px;background:var(--c);color:#fff;font-family:Poppins;font-weight:800;font-size:1.25rem;display:flex;align-items:center;justify-content:center}
+  .lv-badges{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:3px}
+  .age-pill{font-family:Poppins;font-weight:700;font-size:.7rem;color:var(--c);background:color-mix(in srgb,var(--c) 12%,#fff);border-radius:999px;padding:.2em .7em}
+  .bn-pill{font-family:Poppins;font-weight:700;font-size:.7rem;color:#9a3412;background:#fff3e2;border:1px solid #f3c98b;border-radius:999px;padding:.2em .7em}
+  .lv-id h3{font-size:1.2rem;font-weight:700}
+  .lv-body{display:grid;grid-template-columns:1fr 196px;gap:20px;align-items:start}
+  .lv-main{min-width:0}
+  .lv-desc{font-size:.98rem;color:var(--body);margin-bottom:12px}
+  .lv-desc b{color:var(--ink)}
+  .note{border-radius:12px;padding:12px 15px;margin-bottom:11px}
+  .note h5{font-size:.74rem;letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px}
+  .note p{font-size:.92rem}
+  .note.how{background:#f4f8f5;border:1px solid #dcebe1}.note.how h5{color:#15803d}
+  .note.teach{background:#fff8ee;border:1px solid #f3e2c4}.note.teach h5{color:#b45309}
+  .lv-viz{background:linear-gradient(#f8fbf7,#eef5ec);border:1px solid var(--line);border-radius:14px;padding:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:sticky;top:80px}
+  .lv-viz svg{width:100%;height:auto;max-height:130px}
+  .lv-viz .viz-cap{font-size:.7rem;color:var(--muted);font-weight:600;margin-top:4px;font-family:Poppins;letter-spacing:.04em}
+  .lv-viz.emblem span{font-size:3.2rem;filter:saturate(1.05)}
+
+  .act{margin-top:14px;background:#fbfdfb;border:1px solid #e3efe5;border-radius:14px;padding:15px 17px}
+  .act-head{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+  .act-head h4{font-size:1rem;font-weight:700;color:#15803d}
+  .act-ic{font-size:1.1rem}
+  .act-sub{margin-bottom:10px}
+  .act-sub h5{font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:#64748b;margin-bottom:5px}
+  .mats{list-style:none;display:flex;flex-wrap:wrap;gap:6px}
+  .mats li{background:#eef6ef;border:1px solid #d7e9d9;color:#2f5337;border-radius:8px;padding:.22em .6em;font-size:.84rem}
+  .steps{margin:0 0 0 18px;padding:0}
+  .steps li{font-size:.92rem;margin-bottom:5px;padding-left:3px}
+  .crit{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:9px 12px;font-size:.9rem;color:#166534;margin:10px 0}
+  .crit .tick{color:#2E7D32;font-weight:800}
+  .scaf{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+  .scaf-c{border-radius:10px;padding:9px 12px;font-size:.88rem}
+  .scaf-c h6{font-size:.74rem;margin-bottom:3px;font-weight:700}
+  .scaf-c.easy{background:#f1f5f9;border:1px solid #e2e8f0}.scaf-c.easy h6{color:#475569}
+  .scaf-c.hard{background:#faf5ff;border:1px solid #e9d5ff}.scaf-c.hard h6{color:#7c3aed}
+  .obs{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:11px 14px;font-size:.92rem}
+  .obs b{color:var(--ink)}
+
+  .chips{margin-top:12px}
+  .chips-lab{font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;color:#94a3b8;font-weight:700;font-family:Poppins}
+  .chips-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+  .chip{display:inline-flex;flex-direction:column;border-radius:10px;padding:7px 11px;font-size:.8rem;border:1px solid;max-width:240px;transition:transform .14s}
+  .chip:hover{transform:translateY(-2px)}
+  .chip b{font-family:Poppins;font-weight:700;font-size:.82rem}
+  .chip span{font-size:.74rem;opacity:.85;line-height:1.3}
+  .chip-ds{background:#fff7ec;border-color:#f6dcae;color:#9a5b16}
+  .chip-gs{background:#eef2ff;border-color:#c7d2fe;color:#4338ca}
+  .chip-ab{background:#ecfdf5;border-color:#bbf7d0;color:#166534}
+  .chip-adim{background:#f8fafc;border-color:#e2e8f0;color:#64748b;cursor:default}
+
+  .lv-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:16px;padding-top:14px;border-top:1px dashed var(--line);flex-wrap:wrap}
+  .printcard{background:#fff;border:1px solid var(--line);color:var(--body);font-family:Poppins;font-weight:600;font-size:.82rem;border-radius:999px;padding:.5em 1em;cursor:pointer}
+  .printcard:hover{background:#f1f8f2;color:var(--ink)}
+  .nextlv{font-family:Poppins;font-weight:600;font-size:.86rem;color:var(--c)}
+  .nextlv b{font-weight:700}
+  .nextlv.done{color:var(--muted)}
+
+  footer{background:#14391a;color:#9db89f;padding:36px 0;margin-top:10px;font-size:.88rem}
+  footer a{color:#d8e6d8;text-decoration:underline}
+  .foot-note{max-width:760px;font-size:.82rem;color:#7f9781;margin-top:8px}
+
+  @media(max-width:980px){
+    .layout{grid-template-columns:1fr;gap:0}
+    .side{position:static;margin-bottom:20px}
+    .side-in{max-height:none}
+    .side-list{max-height:300px}
+    .lv-body{grid-template-columns:1fr}
+    .lv-viz{order:-1;flex-direction:row;gap:12px;position:static}
+    .lv-viz svg{max-height:90px;width:auto}
+    .scaf{grid-template-columns:1fr}
+    .nav-links{display:none}
+  }
+
+  /* ── Yazdırma ── */
+  @media print{
+    header,.hero-cta,.side,footer,.printcard,.nextlv,.chips{display:none!important}
+    body{background:#fff}
+    .hero{background:#fff;color:#000;padding:0 0 10px;border-bottom:2px solid #000}
+    .hero::after{display:none}.hero-ic{background:#eee}
+    .hero h1,.hero .eyebrow,.hero .lede,.crumb{color:#000}
+    .layout{display:block;padding:6px 0}
+    .levels{gap:0}
+    .level{break-inside:avoid;page-break-inside:avoid;border:1px solid #999;box-shadow:none;margin-bottom:10px}
+    .lv-viz{border:1px solid #ccc}
+    body.printing-one .level:not(.print-target){display:none!important}
+    body.printing-one .hero .lede,body.printing-one .hero-meta{display:none}
+  }
+</style>
+</head>
+<body data-key="comp3d">
+<header class="dsh"><div class="dsh-row"><a class="dsh-brand" href="/" aria-label="DokunSay ana sayfa"><span class="dsh-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" aria-hidden="true"><line x1="28" y1="27" x2="72" y2="27" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="28" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="72" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><circle cx="28" cy="27" r="21" fill="#2E7D32"/><circle cx="20.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="28" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="35.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="72" cy="27" r="21" fill="#0d9488"/><text x="72" y="32" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="14" fill="#fff">üç</text><circle cx="50" cy="73" r="21" fill="#1B5E20"/><text x="50" y="82" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="27" fill="#fff">3</text></svg></span><span class="dsh-titles"><span class="dsh-name">DokunSay</span><span class="dsh-sub">Matematik Öğretim Araçları Platformu</span></span></a><nav class="dsh-nav" aria-label="Site gezinme"><a class="dsh-pill dsh-amber is-active" href="/yorunge/" aria-current="page">🧭 Öğrenme Yörüngeleri</a><a class="dsh-pill dsh-green" href="/rehber/">📘 Müdahale Rehberi</a><a class="dsh-pill dsh-teal" href="/#tools-section">🛠️ Araçlar</a><span id="hcmoAuth" class="hcmo-auth"></span></nav></div></header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="crumb"><a href="/yorunge/">Öğrenme Yörüngeleri</a> <span>›</span> <span>Geometri ve Uzamsal</span></div>
+    <div class="hero-grid">
+      <div class="hero-ic">🏗️</div>
+      <div>
+        <span class="eyebrow">Geometri ve Uzamsal</span>
+        <h1>Yapı Kurma (3B)</h1>
+        <p class="lede">Bloklarla yapı kurma. <span class="ltname">(Composing 3D Shapes)</span></p>
+        <div class="hero-meta">
+          <span class="hm">📊 9 basamak</span>
+          <span class="hm">🎂 0–7 yaş</span>
+          <span class="hm">⚠ 1 darboğaz</span>
+          <span class="hm">🎯 Profil alanı · gözlem</span>
+        </div>
+        <div class="hero-cta">
+          <a class="btn btn-w" href="calisma-yapraklari.html">✏️ Çalışma yaprakları</a>
+          <a class="btn btn-w" href="calisma-yapraklari-dokunsay.html">🧩 DokunSay materyalli yapraklar</a>
+          <a class="btn btn-o" href="etkinlik-kartlari.pdf" target="_blank" rel="noopener">⬇ Etkinlik kartları (PDF)</a>
+          <button class="btn btn-o" id="printAll" type="button">🖨️ Yazdır</button>
+          <a class="btn btn-o" href="/yorunge/">← Tüm yörüngeler</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main class="wrap">
+  <div class="layout">
+    <aside class="side">
+    <div class="side-in">
+      <div class="side-head">Düzeyler <span>9</span></div>
+      <ol class="side-list"><li><a href="#lv-0" data-i="0"><span class="s-num" style="--c:#7c3aed">1</span><span class="s-txt"><b>Blokları Tek Tek Kullanan: Temeller</b><small>0–2 yaş</small></span></a></li><li><a href="#lv-1" data-i="1"><span class="s-num" style="--c:#7c3aed">2</span><span class="s-txt"><b>Üst Üste Dizen</b><small>0–2 yaş</small></span></a></li><li><a href="#lv-2" data-i="2"><span class="s-num" style="--c:#7c3aed">3</span><span class="s-txt"><b>Sıra Yapan</b><small>1–2 yaş</small></span></a></li><li><a href="#lv-3" data-i="3"><span class="s-num" style="--c:#7c3aed">4</span><span class="s-txt"><b>Aynı Şekli Üst Üste Dizen</b><small>2–3 yaş</small></span></a></li><li><a href="#lv-4" data-i="4"><span class="s-num" style="--c:#7c3aed">5</span><span class="s-txt"><b>Zemin ve Duvar Yapan</b><small>2–3 yaş</small></span></a></li><li><a href="#lv-5" data-i="5"><span class="s-num" style="--c:#7c3aed">6</span><span class="s-txt"><b>Kemer ve Köşeleri Deneyerek Kuran</b><small>3–4 yaş</small></span></a></li><li><a href="#lv-6" data-i="6"><span class="s-num" style="--c:#7c3aed">7</span><span class="s-txt"><b>Yapıyı Planlayarak Kuran</b><small>4–5 yaş · ⚠ darboğaz</small></span></a></li><li><a href="#lv-7" data-i="7"><span class="s-num" style="--c:#7c3aed">8</span><span class="s-txt"><b>Parça Değiştirip Karmaşık Yapılar Kuran</b><small>5–6 yaş</small></span></a></li><li><a href="#lv-8" data-i="8"><span class="s-num" style="--c:#7c3aed">9</span><span class="s-txt"><b>Katlı ve Çatılı Yapılar Kuran</b><small>6–7 yaş</small></span></a></li></ol>
+    </div>
+  </aside>
+    <div class="levels">
+      
+  <article class="level" id="lv-0">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#7c3aed">1</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#7c3aed">0–2 yaş</span>
+          
+        </div>
+        <h3>Blokları Tek Tek Kullanan: Temeller</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Blokları rastgele yerleştirir ya da tek tek kullanır; bloklara vurabilir, onları birbirine çarpabilir ya da kaydırabilir; tek bir bloğu başka bir nesneyi temsil etmek için kullanabilir.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk küp blokları eline alır, vurur, ağzına götürür, bir yerden başka yere taşır — ama onları birbirine bağlamaz. İki blok yan yana gelse bile her biri ayrı bir nesnedir; &quot;birlikte bir şey&quot; kurma niyeti henüz yoktur.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, 3B oluşturmanın en erken zeminidir: çocuk blokların tek tek varlığını, ağırlığını ve dokusunu keşfeder. Henüz parçaları bir bütüne dönüştürmez; amaç istiflemek değil, blokları tanıdık birer &quot;nesne&quot; kılmaktır. Bol serbest keşif (tutma, bırakma, çarpma) sonraki tüm yapı kurma becerisinin duyusal tohumudur. Acele istifletmeyin; önce bloklarla rahat bir ilişki kursun.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>birkaç büyük, hafif küp blok (kavraması kolay)</li><li>geniş, yumuşak bir zemin/halı</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Çocuğun önüne 3–4 küp blok serpin, birlikte oturun.</li><li>Bir bloğu alıp ona uzatın: &quot;Al bakalım, bu bir küp.&quot; — dokunsun, çevirsin.</li><li>Bloğu bir yerden başka yere taşımasını, bırakmasını gözleyin.</li><li>İki bloğu hafifçe &quot;tak&quot; diye birbirine vurun; sesi ve tepkisini paylaşın.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Blokları tek tek tutar, taşır, inceler (henüz birleştirmeden) ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Tek bir blok verip ona odaklatın; büyük ve renkli olsun.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>İki bloğu üst üste koyup gösterin: &quot;Bak, üstüne!&quot; — taklit etmeye çalışır mı diye bekleyin.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey için ADIM etkinliği"><b>ADIM</b><span>İlgili düzey için ADIM etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#7c3aed">🏗️</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="0" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-1">Sıradaki düzey · <b>Üst Üste Dizen</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-1">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#7c3aed">2</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#7c3aed">0–2 yaş</span>
+          
+        </div>
+        <h3>Üst Üste Dizen</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> &quot;Üstüne koyma&quot; uzamsal ilişkisini kullanarak blokları üst üste dizer; hangi bloğu seçeceği henüz sistemli değildir.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk bir bloğu bir diğerinin ÜSTÜNE koyar — iki, üç katlı küçük bir kule yapar. Çoğu zaman kule yıkılır, gülerek yeniden başlar. &quot;Üstüne&quot; ilişkisini ilk kez bir eyleme döker: dikey yönde yapı kurar.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>İstifleme, 3B oluşturmadaki ilk gerçek uzamsal ilişkidir: &quot;üstüne&quot; (dikey birleştirme). Çocuk artık blokları yalnız taşımıyor, bir bütün kurma niyetiyle üst üste diziyor. Yıkmak da öğrenmenin parçasıdır — denge, ağırlık ve dengesizlik deneyimi verir. &quot;Üstüne koy, bir daha üstüne&quot; diyerek ilişkiyi adlandırın; kaç kat olduğunu birlikte sayarak dikey yapıyı dile döktürün.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>4–6 eş küp blok (üst üste konabilen)</li><li>düz, sağlam bir zemin (masa/tepsi)</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Bir bloğu koyun, ikincisini üstüne yerleştirip &quot;üstüne!&quot; deyin.</li><li>Çocuğa bir blok uzatın: &quot;Şimdi sen üstüne koy.&quot;</li><li>Her yeni katta &quot;bir daha üstüne&quot; diyerek kuleyi yükseltin.</li><li>Kule yıkılınca &quot;bom! yeniden yapalım&quot; deyip tekrar başlatın.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> En az iki bloğu üst üste koyarak (&quot;üstüne&quot; ilişkisiyle) bir kule istiflerse ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Geniş tabanlı, ağır bloklarla başlayın (kolay dengelenir); siz tutun, o bıraksın.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Daha küçük/yuvarlak bloklar verin ya da &quot;kaç kat oldu?&quot; diye saydırın.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey için ADIM etkinliği"><b>ADIM</b><span>İlgili düzey için ADIM etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#7c3aed">🏗️</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="1" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-2">Sıradaki düzey · <b>Sıra Yapan</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-2">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#7c3aed">3</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#7c3aed">1–2 yaş</span>
+          
+        </div>
+        <h3>Sıra Yapan</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> &quot;Yanına koyma&quot; ilişkisini kullanarak bloklardan (tek boyutlu) bir sıra yapar.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk blokları bu kez üst üste değil, YAN YANA dizer: bir tren, bir yol, bir duvar gibi yatay bir sıra yapar. &quot;Üstüne&quot;nin yanına artık &quot;yanına&quot; ilişkisi eklenir; yapı dikeyden yatay düzleme genişler.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Sıra yapmak, ikinci temel uzamsal ilişkiyi (&quot;yanına&quot; — yatay bitiştirme) getirir. Çocuk artık iki yönde düşünebiliyor: yukarı (istif) ve yana (sıra). Bu, ileride zemin/duvar gibi düzlemsel yapıların ön koşuludur. &quot;Yanına koy, bir tane daha yanına&quot; diyerek ilişkiyi adlandırın; &quot;tren&quot; ya da &quot;yol&quot; gibi anlamlı bir bağlam sırayı amaçlı kılar. İstif ile sırayı yan yana göstererek iki ilişkiyi ayırt ettirin.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>6–8 eş küp blok (yan yana dizilebilen)</li><li>uzun, düz bir zemin (masa kenarı/şerit)</li><li>&quot;tren/yol&quot; için küçük bir oyuncak</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>İki bloğu yan yana koyun: &quot;Yanına koyduk — bak, bir tren oldu!&quot;</li><li>Çocuğa blok uzatın: &quot;Treni uzat, yanına bir vagon daha ekle.&quot;</li><li>Sırayı birlikte uzatın; her blokta &quot;yanına&quot; deyin.</li><li>Bitmiş sırayı oyuncakla gezdirin: &quot;yol boyunca gidiyor!&quot;</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Blokları yan yana bitiştirerek (&quot;yanına&quot; ilişkisiyle) yatay bir sıra/dizi yaparsa ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Bir oluk/kenar boyunca dizdirin (çizgi hazır olsun); kısa sıra (3) yeter.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Hem sıra hem istif isteyin (&quot;önce yan yana yol, sonra üstüne köprü&quot;).</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey için ADIM etkinliği"><b>ADIM</b><span>İlgili düzey için ADIM etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#7c3aed">🏗️</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="2" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-3">Sıradaki düzey · <b>Aynı Şekli Üst Üste Dizen</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-3">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#7c3aed">4</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#7c3aed">2–3 yaş</span>
+          
+        </div>
+        <h3>Aynı Şekli Üst Üste Dizen</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Eş blokları (ya da benzer biçimde işine yarayan ilişkilere sahip blokları) seçerek üst üste ya da sıra hâlinde dizer; blok seçimi sistemlileşmiştir.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk artık AYNI bloklardan düzenli bir kule kurar: eş küpleri seçip üst üste hizalı istifler, gelişigüzel değil. &quot;Hepsi aynı olsun&quot; diye benzer parçaları gruplar ve dengeli, daha yüksek bir yapı yapar.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu düzeyde istifleme bilinçli ve seçicidir: çocuk eş birimleri (aynı küpleri) seçip düzenli bir bütün kurar. Aynı şekli üst üste koymak, hizalama ve denge duygusunu güçlendirir — kule daha yüksek ve sağlam olur. &quot;Aynısından bir tane daha&quot; diyerek benzerlik seçimini destekleyin; kuleyi sayarak (&quot;üç kat, dört kat&quot;) yapının düzenini vurgulayın. Eş parçalarla çalışmak, ileride &quot;birim&quot; fikrinin ilk tohumudur.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>8–10 özdeş küp blok (tek tip)</li><li>karışıklık için birkaç farklı blok (seçim yaptırmak için)</li><li>düz, sağlam zemin</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Karışık blokları gösterin: &quot;Aynı olanlardan bir kule yapalım.&quot;</li><li>Bir küp koyun: &quot;Buna benzeyen bir tane daha bul, üstüne koy.&quot;</li><li>Çocuk eş blokları seçip hizalı istiflesin; her katta &quot;aynısı, üstüne&quot; deyin.</li><li>Kuleyi birlikte sayın: &quot;kaç kat oldu?&quot; — yüksekliği kutlayın.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Eş (aynı) bloklardan seçerek hizalı, düzenli bir kule istiflerse ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Yalnız tek tip blok verin (seçim yok); birlikte hizalayın.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Çok benzer ama farklı boyda bloklar koyup doğru olanı seçtirin; daha yüksek kule isteyin.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey için ADIM etkinliği"><b>ADIM</b><span>İlgili düzey için ADIM etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#7c3aed">🏗️</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="3" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-4">Sıradaki düzey · <b>Zemin ve Duvar Yapan</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-4">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#7c3aed">5</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#7c3aed">2–3 yaş</span>
+          
+        </div>
+        <h3>Zemin ve Duvar Yapan</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Bir yapı içinde dikey ve yatay bileşenler kurar; ancak dağarcığı sınırlıdır — bir &quot;zemin&quot; ya da basit bir &quot;duvar&quot; gibi (2B/düzlemsel) yapılar.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk istif ve sırayı BİRLEŞTİRİR: birkaç bloğu bir araya getirip basit bir 3B yapı (bir zemin, bir duvar, bir oturak) kurar. &quot;Üstüne&quot; ve &quot;yanına&quot; ilişkilerini aynı yapıda kullanır; parçalar artık birbirini tamamlayan bir bütün oluşturur.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Burada gerçek 3B parça birleştirme başlar: çocuk iki ilişkiyi (dikey + yatay) tek bir yapıda eşgüdümler. Bir &quot;zemin&quot; (yan yana sıra) üstüne bir &quot;duvar&quot; (istif) gelir. Bu, yapının parçalardan kurulduğunu ilk kez deneyimlemesidir. &quot;Önce tabanı yap, sonra üstüne koy&quot; diyerek sırayı yönlendirin; çocuğun &quot;bu ne oldu?&quot; sorusuna ad vermesini (&quot;masa&quot;, &quot;duvar&quot;) teşvik edin. Henüz öngörü değil, eyleyerek keşif çağıdır.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>10–12 küp blok (farklı boyları da olabilir)</li><li>düz bir oyun zemini</li><li>ilham için basit bir nesne (kutu, küçük kap)</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>&quot;Hadi bir şey yapalım — önce yere bir taban koyalım&quot; deyip yan yana birkaç blok dizin.</li><li>&quot;Şimdi üstüne bir duvar koyalım&quot; deyip tabanın üstüne istifleyin.</li><li>Çocuk parçaları birleştirip kendi yapısını kursun (zemin + üstü).</li><li>&quot;Bu ne oldu?&quot; diye sorup yapısını adlandırmasını isteyin.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Birkaç bloğu birleştirerek (taban + üstü gibi) basit bir 3B yapı kurarsa ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Yalnız iki parça birleştirin (bir sıra + bir blok üstüne); siz başlatın.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Üç bölümlü bir yapı (zemin + iki duvar) ya da &quot;içine bir şey koyabilir misin?&quot; deyin.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey için ADIM etkinliği"><b>ADIM</b><span>İlgili düzey için ADIM etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#7c3aed">🏗️</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="4" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-5">Sıradaki düzey · <b>Kemer ve Köşeleri Deneyerek Kuran</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-5">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#7c3aed">6</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#7c3aed">3–4 yaş</span>
+          
+        </div>
+        <h3>Kemer ve Köşeleri Deneyerek Kuran</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Birden çok uzamsal ilişkiyi, birden çok yönde ve temas noktasında kullanır; deneme-yanılma ile de olsa kemerler, kapalı alanlar, köşeler ve çapraz (artı) biçimler üretir.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk birden çok uzamsal ilişkiyi (üstüne, yanına, içine, arasına) bir arada kullanarak ÇOKLU İLİŞKİLİ bir yapı kurar: köşeli bir ev, bir kemer/köprü, içi boş bir kapalı alan (garaj, kale). Yapı artık &quot;bir şeyi temsil eder&quot; — bir resim/model gibi.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu düzeyde oluşturma çoklu ilişkiyle zenginleşir: çocuk yalnız üst üste/yan yana değil, &quot;köşe yapma&quot;, &quot;üstünü kapatma&quot; (kemer), &quot;içini boşaltma&quot; (kapalı alan) gibi ilişkileri birleştirir. Kemer kurmak özellikle önemlidir: iki dik desteğin üstüne yatay bir blok koymak, denge ve boşluk-doldurma sezgisi gerektirir. &quot;İçine / üstüne / arasına&quot; ilişkilerini bol bol adlandırın. Henüz tam öngörü yoktur; yapı çoğu kez kurarken &quot;ortaya çıkar&quot; — bu yaratıcılığı kutlayın.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>12–16 küp blok (uzun/köprü bloğu da olsun)</li><li>geniş oyun zemini</li><li>küçük bir oyuncak (içine konacak: araba/figür)</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>&quot;Bir garaj yapalım — arabamız içine girsin&quot; deyip kapalı bir alan kurdurun.</li><li>İki dik destek koyup üstüne uzun bir blok koyun: &quot;Bak, bir kemer/köprü!&quot;</li><li>Çocuk köşe ve duvarları birleştirip içi boş bir yapı (ev/kale) kursun.</li><li>Oyuncağı &quot;içine&quot; koydurup &quot;üstünden&quot;, &quot;yanından&quot; geçirerek ilişkileri adlandırın.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Birden çok uzamsal ilişki (köşe, kemer, kapalı alan) kullanarak anlamlı bir yapı/resim oluşturursa ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Tek bir ilişkiye odaklanın (yalnız kapalı bir kutu/garaj); köprü desteğini siz tutun.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Kemer + kapalı alanı birleştirtin (&quot;köprülü bir kale&quot;) ya da iki katlı yapı isteyin.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey için ADIM etkinliği"><b>ADIM</b><span>İlgili düzey için ADIM etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#7c3aed">🏗️</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="5" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-6">Sıradaki düzey · <b>Yapıyı Planlayarak Kuran</b> →</a>
+    </div>
+  </article>
+
+  <article class="level bn" id="lv-6">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#7c3aed">7</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#7c3aed">4–5 yaş</span>
+          <span class="bn-pill">⚠ Darboğaz · kritik geçiş</span>
+        </div>
+        <h3>Yapıyı Planlayarak Kuran</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Ortaya çıkacak 3B şekli önceden öngörerek kurar; kemer, kapalı alan, köşe ve çaprazları sistemli üretir; birkaç blok yüksekliğinde kurar, giderek derinlik ve çatı ekler.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Çocuğa bir model (resim ya da hazır bir yapı) gösterip &quot;Aynısını yap&quot; dediğinizde, kurmaya başlamadan ÖNCE zihninde tasarlar: &quot;Önce iki kule, üstüne bir köprü.&quot; Yapıyı öngörüyle, hedefe yönelik kurar — deneme-yanılmayla rastlamaz, plana göre ilerler.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu yörüngenin gerçek darboğazıdır. Önceki düzeylerde yapı &quot;kurarken ortaya çıkardı&quot;; burada çocuk hedef 3B şekli ZİHNİNDE ÖNGÖRÜP ona göre parça seçer ve birleştirir. Bu öngörülü oluşturma — bir model imgesini tutup onu adım adım gerçek bloklara çevirmek — güçlü uzamsal-yapısal akıl yürütme gerektirir ve birçok çocukta gözle görülür bir eşiktir. Çocuk yalnız deneme-yanılmayla, modele bakmadan rastgele kuruyorsa, ona &quot;önce nereye ne koyacaksın?&quot; diye PLAN sordurun; modeli parçalara böldürüp (&quot;kaç kule var? üstünde ne var?&quot;) öngörüyü dile döktürün. DokunSay Geo'da hedef yapıyı gösterip kopyalatmak bu öngörüyü doğrudan çalıştırır.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>12–18 küp blok (model ile aynı parçalar)</li><li>kopyalanacak bir model (hazır yapı ya da DokunSay Geo'da hedef görsel)</li><li>modeli gizlemek için bir örtü/kart</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Bir hedef yapı gösterin (ör. iki kule + üstünde köprü): &quot;Aynısını yapacağız.&quot;</li><li>Kurmadan önce sordurun: &quot;Önce neyi yapacaksın? Sonra nereye ne koyacaksın?&quot;</li><li>Çocuk planına göre parçaları seçip yapıyı öngörüyle kursun.</li><li>Bitince modelle yan yana koyup &quot;aynı mı? nesi farklı?&quot; diye karşılaştırın.</li><li>İsterseniz modeli örtüp &quot;hatırından yap&quot; diyerek öngörüyü güçlendirin.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Bir model verildiğinde, deneme-yanılmadan çok öngörüyle (plana göre) hedef 3B şekli oluşturursa ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Basit, az parçalı model (tek kule + üstünde bir blok); model hep görünür kalsın.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Çok parçalı/asimetrik model, modeli kısa gösterip örtün ya da &quot;yandan da aynı görünsün&quot; deyin.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="Küp bloklarla modeldeki 3B yapıyı öngörüyle kurma"><b>ADIM</b><span>Küp bloklarla modeldeki 3B yapıyı öngörüyle kurma</span></span><a class="chip chip-ds" href="/Dokunsay-geo/" title="Küp bloklarla hedef yapıyı eşleyerek inşa"><b>DokunSay Geo</b><span>Küp bloklarla hedef yapıyı eşleyerek inşa</span></a></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#7c3aed">🏗️</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="6" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-7">Sıradaki düzey · <b>Parça Değiştirip Karmaşık Yapılar Kuran</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-7">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#7c3aed">8</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#7c3aed">5–6 yaş</span>
+          
+        </div>
+        <h3>Parça Değiştirip Karmaşık Yapılar Kuran</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Eş bir bütünün yerine bileşik bir parça koyabilir (örn. bir uzun blok yerine iki kısa blok); birden çok kemerli karmaşık köprüler, rampalar ve merdivenler; çatılı ve birden çok iç mekânlı 3B yapılar kurar.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk bir blok grubunu, ona eşdeğer tek bir bütünle DEĞİŞTİREBİLİR: &quot;İki küçük blok yerine bir uzun blok koyabilirim.&quot; Ayrıca bir yapı birimini (bir sütun, bir kemer) defalarca TEKRARLAYARAK daha büyük bir bütün kurar (sıra sütun, art arda kemerler).</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu düzeyde iki güçlü fikir belirir: yerine koyma (substitution — bir parçalar kümesi, eşdeğer başka bir bütünle değiştirilebilir) ve tekrarlama (bir birimi çoğaltarak yapı kurma). Çocuk &quot;iki birim = bir büyük birim&quot; denkliğini görür ve aynı yapı parçasını kalıp gibi yineler. Bu, ölçme, eşdeğerlik ve örüntülü yapıların 3B zeminidir. &quot;Bunun yerine ne koyabilirsin, aynı yeri doldurur?&quot; ve &quot;aynı kemerden bir tane daha yap&quot; diyerek iki beceriyi de besleyin. Yerine konan parçanın aynı boşluğu doldurduğunu (denklik) birlikte doğrulayın.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>karışık küp bloklar (kısa + uzun; iki kısa = bir uzun olacak şekilde)</li><li>tekrarlanacak bir birim için yeterli eş blok</li><li>düz oyun zemini</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>İki kısa bloğu yan yana koyun: &quot;Bunların yerine tek parça ne koyabiliriz?&quot; — eşdeğer uzun bloğu buldurun.</li><li>Değiştirip &quot;aynı yeri doldurdu mu?&quot; diye denkliği doğrulayın.</li><li>Bir birim yapın (ör. bir kemer/sütun): &quot;Aynısından bir tane daha, yanına.&quot;</li><li>Birimi tekrarlatarak büyük bir yapı kurdurun (kemerli geçit, sütun dizisi).</li><li>&quot;Kaç kemer/sütun oldu?&quot; diye tekrarları saydırın.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Bir blok grubunu eşdeğer bir bütünle değiştirir VE bir yapı birimini tekrarlayarak büyük bir yapı kurarsa ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Yalnız yerine koymayı çalıştırın (iki kısa ↔ bir uzun); ya da tek bir birimi iki kez tekrarlatın.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Çok parçalı yerine koyma (üç blok ↔ bir bütün) ve birimi 4+ kez düzenli tekrarlatın.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey için ADIM etkinliği"><b>ADIM</b><span>İlgili düzey için ADIM etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#7c3aed">🏗️</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="7" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-8">Sıradaki düzey · <b>Katlı ve Çatılı Yapılar Kuran</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-8">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#7c3aed">9</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#7c3aed">6–7 yaş</span>
+          
+        </div>
+        <h3>Katlı ve Çatılı Yapılar Kuran</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Birden çok katlı, her katın tavanı tam oturtulmuş karmaşık kuleler/yapılar kurar; kemerleri ve alt yapıları olan, yetişkin yapılarına benzer blok yapıları üretir (birimlerin birimleri).</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk önce küçük birimleri (bir blok grubuyla bir &quot;oda&quot;, bir &quot;kat&quot;) kurar, sonra bu birimleri BİRİM olarak kullanıp daha büyük bir bütün (çok katlı bir bina, kanatlı bir kale) oluşturur. &quot;Bir kat&quot; artık tek bir parça gibi düşünülür; katları üst üste koyarak yapıyı ölçekler.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, 3B oluşturmanın doruğudur: birimlerin birimleri (units of units). Çocuk küçük bir yapıyı (örneğin bir kat) zihinde tek bir birim olarak kavrar ve onu daha büyük bir yapının parçası yapar — yapı hiyerarşik hâle gelir. Bu çarpımsal/hiyerarşik yapı düşüncesi, ileride alan-hacim, çok basamaklı sayılar ve ölçme birimlerinin (birimin birimi) güçlü zeminidir. &quot;Bir kat kaç bloktan? Üç kat yaparsan toplam yapı nasıl?&quot; diye birim-üstü-birim ilişkisini sesli kurdurun; bir katı kalıp alıp tekrarlatarak hiyerarşiyi görünür kılın.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>çok sayıda küp blok (en az 24)</li><li>kat/birim şablonu için bir taban (kartonet/tepsi)</li><li>karmaşık bir hedef yapı görseli (çok katlı bina/kale)</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Önce küçük bir birim kurdurun: &quot;Bir kat yapalım — taban + duvarlar.&quot;</li><li>&quot;Bu bir kat. Şimdi bunun aynısından bir kat daha, üstüne&quot; diyerek birimi tekrarlatın.</li><li>Katları üst üste koyup çok katlı bütünü oluşturun (birim-üstü birim).</li><li>&quot;Bir kat kaç bloktu? Üç kat toplam kaç eder?&quot; diye hiyerarşiyi düşündürün.</li><li>Yan kanat/avlu ekleyip yapıyı birden çok birimden (kat + kanat) kurdurun.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Küçük birimleri (kat/oda) tek tek kurup bunları birim olarak kullanarak çok katlı/karmaşık bir bütün oluşturursa ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>İki özdeş katla başlayın; her katı birlikte kurup üst üste koyun.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Farklı birimleri birleştirin (kat + köprü + kanat) ya da &quot;toplam kaç blok?&quot; diye katmanları çarpımsal saydırın.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey için ADIM etkinliği"><b>ADIM</b><span>İlgili düzey için ADIM etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#7c3aed">🏗️</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="8" type="button">🖨️ Bu kartı yazdır</button>
+      <div class="nextlv done">Bu, yörüngenin son düzeyi 🎒</div>
+    </div>
+  </article>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <b style="color:#d8e6d8">Her Çocuk Matematik Öğrenebilir</b> · DokunSay — Yapı Kurma (3B) yörüngesi ·
+    <a href="/yorunge/">Tüm yörüngeler</a> · <a href="/">Araçlar</a>
+    <p class="foot-note">Düzey adları ve sıralaması Clements &amp; Sarama öğrenme yörüngeleri ([LT]², learningtrajectories.org) çerçevesinden uyarlanmıştır. Yaş bantları olasılıksal alt-sınır niteliğinde illüstratiftir; tanı eşiği değildir. Çocuğu sınıfına göre değil, bulunduğu basamağa göre destekleyin.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // Scrollspy — kenar çubuğunda etkin düzeyi vurgula
+  var links = Array.prototype.slice.call(document.querySelectorAll('.side-list a'));
+  var byId = {}; links.forEach(function(a){ byId[a.getAttribute('href').slice(1)] = a; });
+  var spy = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(e.isIntersecting){
+        links.forEach(function(l){ l.classList.remove('act'); });
+        var a = byId[e.target.id]; if(a){ a.classList.add('act');
+          // kenar çubuğunu etkin öğeye kaydır
+          var sl = a.closest('.side-list'); if(sl){ var r=a.offsetTop - sl.offsetTop; if(r<sl.scrollTop||r>sl.scrollTop+sl.clientHeight-40) sl.scrollTop=r-12; }
+        }
+      }
+    });
+  }, { rootMargin:'-45% 0px -50% 0px', threshold:0 });
+  document.querySelectorAll('.level').forEach(function(l){ spy.observe(l); });
+
+  // Tek kart yazdır
+  function printOne(i){
+    var card = document.getElementById('lv-'+i); if(!card) return;
+    document.body.classList.add('printing-one'); card.classList.add('print-target');
+    window.print();
+  }
+  window.addEventListener('afterprint', function(){
+    document.body.classList.remove('printing-one');
+    var t=document.querySelector('.print-target'); if(t) t.classList.remove('print-target');
+  });
+  document.querySelectorAll('.printcard').forEach(function(b){
+    b.addEventListener('click', function(){ printOne(b.getAttribute('data-lv')); });
+  });
+  var pa=document.getElementById('printAll'); if(pa) pa.addEventListener('click', function(){ window.print(); });
+})();
+</script>
+</body>
+</html>

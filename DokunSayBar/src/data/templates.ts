@@ -221,6 +221,87 @@ export const ACTIVITY_TEMPLATES: Template[] = [
     dfa: "میله بالایی برعکس است! طولش را تخمین بزن، یک میله هم‌اندازه از سمت چپ انتخاب کن و زیرش بگذار. با 🔄 برگردان و مقایسه کن.",
     it: [{ t: "rod", v: 6, x: 120, y: 100, f: 1 }],
   },
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     KAVRAM YANILGISI ETKİNLİKLERİ (STANDARDS.md §1.5 — en az 3, literatür atıflı)
+     ve ÜST ZORLUK BASAMAKLARI (§1.6: diff 4 "Bağımsız" · diff 5 "Transfer").
+
+     2026-07-19 denetimi: Bar'daki 22 etkinliğin TAMAMI diff 1-3'teydi ve tek bir
+     yanılgı etkinliği yoktu — oysa §1.2 Bar'ın çerçevesini "CRA + Bruner + Kavram
+     Yanılgısı Literatürü" diye ilan ediyor. Üst iki basamağın hiç yazılmamış olmasının
+     teknik sebebi de bulundu: kenar çubuğundaki yıldız göstergesi 3 basamağa sabitti ve
+     diff 4 eklenince repeat(-1) ile çöküyordu (ActivitiesTab'de düzeltildi).
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  {
+    n: "Y1. Uzun Olan Daha Çok mu?", k: "Y1. Ya Dirêjtir Bêtir e?", en: "Y1. Does Longer Mean More?", ar: "Y1. هل الأطول يعني أكثر؟", fa: "Y1. آیا بلندتر یعنی بیشتر؟", i: "↔️",
+    cat: "sayma", diff: 3, chk: "none",
+    mis: "uzunluk-cokluk-karistirma", src: "Piaget & Szeminska (1952)",
+    d: "İki sırada da 5 birim çubuk var. Alttakiler aralıklı, üsttekiler bitişik dizili. Say bakalım: hangisinde daha çok var? Aralıkları açmak sayıyı değiştirir mi?",
+    dk: "Di her du rêzan de 5 çovikên yekeyî hene. Yên jêr bi navber, yên jor bi hev ve ne. Bijmêre: di kîjanê de bêtir heye? Vekirina navberan hejmarê diguherîne?",
+    den: "Both rows have 5 unit rods. The bottom ones are spaced out, the top ones are touching. Count them: which row has more? Does opening the gaps change the number?",
+    dar: "في الصفّين 5 قضبان وحدة. السفلية متباعدة والعلوية متلاصقة. عُدّ: أيّ صفّ فيه أكثر؟ هل توسيع المسافات يغيّر العدد؟",
+    dfa: "در هر دو ردیف ۵ میله واحد هست. ردیف پایین با فاصله و ردیف بالا چسبیده است. بشمار: در کدام بیشتر است؟ آیا باز کردن فاصله‌ها عدد را عوض می‌کند؟",
+    it: [
+      { t: "rod", v: 1, x: 90, y: 90 }, { t: "rod", v: 1, x: 122, y: 90 }, { t: "rod", v: 1, x: 154, y: 90 },
+      { t: "rod", v: 1, x: 186, y: 90 }, { t: "rod", v: 1, x: 218, y: 90 },
+      { t: "rod", v: 1, x: 90, y: 210 }, { t: "rod", v: 1, x: 160, y: 210 }, { t: "rod", v: 1, x: 230, y: 210 },
+      { t: "rod", v: 1, x: 300, y: 210 }, { t: "rod", v: 1, x: 370, y: 210 }
+    ],
+  },
+  {
+    n: "Y2. Sıfırdan Başla", k: "Y2. Ji Sifirê Dest Pê Bike", en: "Y2. Start from Zero", ar: "Y2. ابدأ من الصفر", fa: "Y2. از صفر شروع کن", i: "0️⃣",
+    cat: "tahmin", diff: 3, chk: "none",
+    mis: "sifirdan-baslamama", src: "Lehrer (2003)",
+    d: "Sayı doğrusunu aç. Çubuğun sol ucunu 1'e değil SIFIRA hizala, sonra sağ ucunun hangi sayıyı gösterdiğine bak. 1'den başlatsaydın kaç okurdun? Neden fark ediyor?",
+    dk: "Xêza hejmaran veke. Serê çepê yê çovikê ne li 1ê, li SIFIRÊ bîne. Paşê binêre serê rastê kîjan hejmarê nîşan dide. Ger te ji 1ê dest pê bikira, te çend dixwend? Çima cudahî çêdibe?",
+    den: "Open the number line. Align the rod's left end to ZERO, not to 1, then read where its right end lands. What would you have read if you started from 1? Why does it matter?",
+    dar: "افتح خطّ الأعداد. حاذِ الطرف الأيسر للقضيب مع الصفر لا مع ١، ثم انظر أيّ عدد يشير إليه طرفه الأيمن. ماذا كنت ستقرأ لو بدأت من ١؟ ولماذا يهمّ ذلك؟",
+    dfa: "خط اعداد را باز کن. سر چپ میله را روی صفر بگذار، نه روی ۱، بعد ببین سر راستش کدام عدد را نشان می‌دهد. اگر از ۱ شروع می‌کردی چه می‌خواندی؟ چرا فرق می‌کند؟",
+    it: [{ t: "rod", v: 6, x: 100, y: 120 }],
+  },
+  {
+    n: "Y3. Baştan Sayma — Üstüne Say", k: "Y3. Ji Nû Ve Nejmêre — Li Ser Bijmêre", en: "Y3. Don't Recount — Count On", ar: "Y3. لا تُعِد العدّ — أكمل العدّ", fa: "Y3. از اول نشمار — ادامه بشمار", i: "➕",
+    cat: "işlem", diff: 4, chk: "chips_on_rod",
+    mis: "tumunu-sayma", src: "Carpenter & Moser (1984)",
+    d: "7'lik çubuk hazır. Üstüne 3 pul yerleştir. Şimdi baştan 1-2-3 diye sayma: yedi de, üstüne devam et — sekiz, dokuz, on. Toplam kaç etti?",
+    dk: "Çovika 7an amade ye. 3 pûlan li ser wê deyne. Naha ji 1ê nejmêre: heft bêje û li ser bidomîne — heşt, neh, deh. Bi tevahî çend bû?",
+    den: "The 7-rod is ready. Place 3 counters on it. Now don't start from 1: say seven, then count on — eight, nine, ten. How many altogether?",
+    dar: "قضيب السبعة جاهز. ضع 3 أقراص عليه. لا تبدأ من ١: قل سبعة ثم أكمل — ثمانية، تسعة، عشرة. كم صار المجموع؟",
+    dfa: "میله ۷تایی آماده است. ۳ مهره رویش بگذار. حالا از ۱ شروع نکن: بگو هفت و ادامه بده — هشت، نه، ده. جمعاً چند شد؟",
+    it: [{ t: "rod", v: 7, x: 110, y: 140 }],
+  },
+  {
+    n: "Y4. Eşittir Denge Demek", k: "Y4. Wekhev Hevsengî ye", en: "Y4. Equals Means Balance", ar: "Y4. يساوي تعني التوازن", fa: "Y4. مساوی یعنی تعادل", i: "⚖️",
+    cat: "işlem", diff: 4, chk: "part_whole",
+    mis: "esittir-sonuc-sanma", src: "Rittle-Johnson & Alibali (1999)",
+    d: "En üstteki 9'luk çubuk bir taraf. Altta 5'lik çubuk duruyor ama iki taraf EŞİT değil. Eksik parçayı ekle. Eşittir 'sonucu yaz' demek değil — iki taraf aynı olsun demek.",
+    dk: "Çovika 9an a jorîn aliyek e. Li jêr çovika 5an heye lê her du alî WEKHEV nînin. Parçeya kêm zêde bike. Wekhev nayê wateya 'encamê binivîse' — tê wateya ku her du alî wek hev bin.",
+    den: "The 9-rod on top is one side. Below sits a 5-rod, but the two sides are NOT equal. Add the missing piece. Equals doesn't mean 'write the answer' — it means both sides are the same.",
+    dar: "قضيب التسعة في الأعلى هو أحد الطرفين. في الأسفل قضيب الخمسة، لكنّ الطرفين غير متساويين. أضف القطعة الناقصة. 'يساوي' لا تعني 'اكتب الناتج' بل تعني أنّ الطرفين متماثلان.",
+    dfa: "میله ۹تایی بالا یک طرف است. پایین میله ۵تایی هست اما دو طرف مساوی نیستند. قطعه کم را اضافه کن. مساوی یعنی «دو طرف یکی باشد»، نه «جواب را بنویس».",
+    it: [{ t: "rod", v: 9, x: 90, y: 80 }, { t: "rod", v: 5, x: 90, y: 200 }],
+  },
+  {
+    n: "T1. Rafa Sığar mı?", k: "T1. Li Refikê Cih Digire?", en: "T1. Will It Fit on the Shelf?", ar: "T1. هل يتّسع على الرفّ؟", fa: "T1. روی قفسه جا می‌شود؟", i: "📚",
+    cat: "tahmin", diff: 5, chk: "none",
+    d: "Raf 12 birim uzunluğunda (üstteki çubuk). Kitaplar 5, 4 ve 6 birim. Hepsi tek rafa sığar mı? Sığmıyorsa hangisini çıkarırsın? Önce TAHMİN et, sonra çubuklarla dene ve kararını anlat.",
+    dk: "Refik 12 yeke dirêj e (çovika jorîn). Pirtûk 5, 4 û 6 yeke ne. Hemû li refikekê cih digirin? Ger cih negirin, tu ê kîjanê derxînî? Pêşî TEXMÎN bike, paşê bi çovikan biceribîne û biryara xwe rave bike.",
+    den: "The shelf is 12 units long (top rod). The books are 5, 4 and 6 units. Do they all fit on one shelf? If not, which one would you take out? Estimate FIRST, then test with the rods and explain your decision.",
+    dar: "الرفّ طوله 12 وحدة (القضيب العلوي). الكتب 5 و4 و6 وحدات. هل تتّسع كلّها على رفّ واحد؟ إن لم تتّسع، أيّها تُخرج؟ قدّر أوّلًا ثمّ جرّب بالقضبان واشرح قرارك.",
+    dfa: "قفسه ۱۲ واحد است (میله بالا). کتاب‌ها ۵، ۴ و ۶ واحدند. همه روی یک قفسه جا می‌شوند؟ اگر نه، کدام را برمی‌داری؟ اول تخمین بزن، بعد با میله‌ها امتحان کن و تصمیمت را توضیح بده.",
+    it: [{ t: "rod", v: 12, x: 80, y: 80 }, { t: "rod", v: 5, x: 80, y: 200 }, { t: "rod", v: 4, x: 240, y: 200 }, { t: "rod", v: 6, x: 368, y: 200 }],
+  },
+  {
+    n: "T2. Sen Soru Kur", k: "T2. Tu Pirsê Çêke", en: "T2. You Pose the Problem", ar: "T2. اطرح أنت السؤال", fa: "T2. تو مسئله بساز", i: "✍️",
+    cat: "keşif", diff: 5, chk: "none",
+    d: "Sıra sende: çubukları kullanarak bir arkadaşına SORU hazırla. Bir hikâye kur (kaç kalem, kaç adım, kaç dilim…), cevabı sen bil ama gösterme. Sonra arkadaşın çözsün.",
+    dk: "Dor a te ye: bi çovikan ji hevalekî xwe re PIRSEK amade bike. Çîrokek çêke (çend qelem, çend gav, çend perçe…), bersivê tu bizanibe lê nîşan nede. Paşê bila hevalê te çareser bike.",
+    den: "Your turn: use the rods to write a PROBLEM for a friend. Make up a story (how many pencils, how many steps, how many slices…), know the answer yourself but don't show it. Then let your friend solve it.",
+    dar: "دورك: استخدم القضبان لتضع سؤالًا لصديقك. اختلق قصّة (كم قلمًا، كم خطوة، كم شريحة…)، واعرف الجواب لكن لا تُظهره. ثمّ دع صديقك يحلّه.",
+    dfa: "نوبت توست: با میله‌ها برای دوستت یک مسئله بساز. یک داستان بساز (چند مداد، چند قدم، چند تکه…)، جواب را خودت بدان اما نشان نده. بعد بگذار دوستت حلش کند.",
+    it: [],
+  },
 ];
 
 export const ACTIVITY_CATEGORIES = ["keşif", "oyun", "sayma", "işlem", "tahmin"] as const;

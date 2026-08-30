@@ -1,12 +1,14 @@
 import React from "react";
 import { useA11y, useFS } from "../contexts/A11yContext.jsx";
-import { speak } from "../utils/speech.js";
+import { speak, canSpeak } from "../utils/speech.js";
 import { LEVEL_COLORS, P } from "../data/constants.js";
 import { MODULE_INTROS } from "../data/activities.jsx";
 
 export function SpeakButton({ text, size = "md", style }) {
   const { ttsOn, lang } = useA11y();
-  if (!ttsOn || !text) return null;
+  // canSpeak: bu dilde GERÇEKTEN okuma yapılabiliyor mu? Kurmancî'de gerçek ku/kmr sesi
+  // yoksa sessiz kalınıyor (2026-07-19 kararı) — düğmeyi bırakmak "uygulama bozuk" izlenimi verir.
+  if (!ttsOn || !canSpeak(lang) || !text) return null;
   const btnSize = size === "sm" ? 22 : size === "lg" ? 34 : 28;
   const iconSize = size === "sm" ? 12 : size === "lg" ? 18 : 14;
   return (

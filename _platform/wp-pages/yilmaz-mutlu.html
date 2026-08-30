@@ -1,0 +1,531 @@
+<!--
+  Prof. Dr. Yılmaz MUTLU — Akademik profil sayfası.
+
+  WordPress'te yeni bir sayfa oluştur:
+    Başlık:  Prof. Dr. Yılmaz Mutlu
+    URL:     /yilmaz-mutlu/   (veya /prof-dr-yilmaz-mutlu/)
+    Şablon:  Tam genişlik, içerik
+    Editör:  Custom HTML bloğuna bu dosyanın içeriğini yapıştır.
+
+  Tasarım: araclar-fixed.html ile uyumlu palet (.dk-* prefix). Inter font.
+
+  Kaynak: y.mutlu@alparslan.edu.tr — CV (PDF, 2026-05-02 tarihli).
+
+  NOT: DOI'si bulunan makaleler https://doi.org/ üzerinden linklendi.
+       DOI'si olmayan makaleler düz metin olarak listelendi (uydurma URL kullanılmadı).
+       ORCID, Google Scholar veya AVESIS profili adresi sonradan eklenebilir
+       (sayfanın üst CTA'sında "Akademik Profil" butonu için).
+-->
+<style>
+.dk-pf-hero{background:linear-gradient(180deg,#fff 0%,#e8f2fc 100%);padding:56px 20px 40px;border-bottom:1px solid rgba(0,0,0,.06);font-family:'Inter',sans-serif}
+.dk-pf-hero .wrap{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:160px 1fr;gap:28px;align-items:center}
+.dk-pf-photo{width:160px;height:160px;border-radius:50%;background:#cbd5e1 center/cover no-repeat;border:4px solid #fff;box-shadow:0 8px 28px rgba(3,31,66,.15)}
+.dk-pf-eyebrow{display:inline-block;background:rgba(0,113,220,.1);color:#0071dc;padding:5px 12px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px;border:1px solid rgba(0,113,220,.25)}
+.dk-pf-hero h1{font-size:clamp(28px,3.4vw,40px);font-weight:800;color:#031f42;margin:0 0 8px;letter-spacing:-.02em;line-height:1.15;font-family:'Inter',sans-serif}
+.dk-pf-hero h1 .grad{background:linear-gradient(135deg,#0071dc,#005bb3);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.dk-pf-title{color:#4a5568;font-size:16px;font-weight:600;margin:0 0 14px;line-height:1.5}
+.dk-pf-meta{display:flex;flex-wrap:wrap;gap:10px;font-size:13px;color:#4a5568}
+.dk-pf-meta a{color:#0071dc;text-decoration:none;font-weight:600}
+.dk-pf-meta a:hover{text-decoration:underline}
+.dk-pf-meta-item{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.7);padding:5px 11px;border-radius:14px;border:1px solid rgba(0,0,0,.06)}
+
+@media (max-width:680px){
+  .dk-pf-hero .wrap{grid-template-columns:1fr;text-align:center}
+  .dk-pf-photo{margin:0 auto}
+  .dk-pf-meta{justify-content:center}
+}
+
+.dk-pf-section{padding:44px 20px;font-family:'Inter',sans-serif}
+.dk-pf-section .wrap{max-width:1100px;margin:0 auto}
+.dk-pf-section h2{font-size:clamp(20px,2.1vw,26px);font-weight:800;color:#031f42;margin:0 0 8px;letter-spacing:-.01em;display:flex;align-items:center;gap:10px}
+.dk-pf-section h2::before{content:"";width:4px;height:24px;background:#0071dc;border-radius:3px}
+.dk-pf-section .lead{color:#4a5568;font-size:15px;line-height:1.7;margin:0 0 24px;max-width:780px}
+.dk-pf-section p{color:#4a5568;font-size:15px;line-height:1.75;margin:0 0 14px}
+.dk-pf-section p strong{color:#031f42;font-weight:700}
+
+.dk-pf-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:8px 0 24px}
+.dk-pf-stat{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:12px;padding:16px;text-align:center}
+.dk-pf-stat-val{font-size:24px;font-weight:800;color:#0071dc;line-height:1}
+.dk-pf-stat-lbl{font-size:11px;color:#6a7390;text-transform:uppercase;letter-spacing:.08em;font-weight:600;margin-top:4px}
+
+.dk-pf-grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.dk-pf-card{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:20px;transition:all .25s}
+.dk-pf-card:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(3,31,66,.06);border-color:rgba(0,113,220,.3)}
+.dk-pf-card-tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:3px 9px;border-radius:10px;margin-bottom:8px;background:rgba(0,113,220,.1);color:#0071dc}
+.dk-pf-card h3{font-size:16px;font-weight:700;margin:0 0 6px;color:#031f42;line-height:1.35}
+.dk-pf-card p{font-size:13px;color:#6a7390;margin:0;line-height:1.55}
+
+.dk-pf-list{list-style:none;padding:0;margin:0;counter-reset:pub}
+.dk-pf-list li{counter-increment:pub;padding:14px 16px 14px 48px;border-radius:10px;border:1px solid transparent;position:relative;font-size:14px;line-height:1.6;color:#031f42;transition:all .15s}
+.dk-pf-list li:hover{background:#f9fafb;border-color:rgba(0,113,220,.15)}
+.dk-pf-list li::before{content:counter(pub);position:absolute;left:14px;top:14px;width:24px;height:24px;border-radius:50%;background:rgba(0,113,220,.1);color:#0071dc;display:grid;place-items:center;font-size:11px;font-weight:800;font-variant-numeric:tabular-nums}
+.dk-pf-list li .pub-meta{color:#6a7390;font-size:12px;margin-top:4px;display:block}
+.dk-pf-list li a{color:#0071dc;text-decoration:none;font-weight:600;font-size:12px;display:inline-block;margin-top:4px;padding:2px 8px;background:rgba(0,113,220,.08);border-radius:6px;transition:background .15s}
+.dk-pf-list li a:hover{background:rgba(0,113,220,.18);text-decoration:none}
+
+.dk-pf-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;border-bottom:1px solid rgba(0,0,0,.08);padding-bottom:0}
+.dk-pf-tab{padding:8px 14px;font-size:13px;font-weight:700;color:#6a7390;background:transparent;border:0;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s}
+.dk-pf-tab.active,.dk-pf-tab:hover{color:#0071dc;border-bottom-color:#0071dc}
+
+.dk-pf-cta{background:linear-gradient(135deg,#0071dc 0%,#005bb3 100%);color:#fff;padding:36px 28px;border-radius:16px;text-align:center;margin:32px auto 0;max-width:1100px}
+.dk-pf-cta h2{color:#fff !important;margin:0 0 8px;font-size:22px;font-weight:800}
+.dk-pf-cta h2::before{display:none}
+.dk-pf-cta p{color:rgba(255,255,255,.9);margin:0 0 18px;font-size:14px}
+.dk-pf-cta a{display:inline-block;background:#fff;color:#0071dc;padding:10px 22px;border-radius:10px;font-weight:700;font-size:14px;text-decoration:none;margin:4px}
+.dk-pf-cta a:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(0,0,0,.18)}
+</style>
+
+<header class="dk-pf-hero">
+  <div class="wrap">
+    <!-- Foto: WordPress'e yükledikten sonra background-image URL'sini güncelle -->
+    <div class="dk-pf-photo" style="background-image:url('/wp-content/uploads/yilmaz-mutlu.jpg')" aria-label="Prof. Dr. Yılmaz Mutlu"></div>
+    <div>
+      <span class="dk-pf-eyebrow">Akademik Profil · Kurucu</span>
+      <h1>Prof. Dr. <span class="grad">Yılmaz Mutlu</span></h1>
+      <p class="dk-pf-title">Muş Alparslan Üniversitesi Eğitim Fakültesi · Matematik ve Fen Bilimleri Eğitimi Bölümü · İlköğretim Matematik Öğretmenliği Programı</p>
+      <div class="dk-pf-meta">
+        <span class="dk-pf-meta-item">📧 <a href="mailto:y.mutlu@alparslan.edu.tr">y.mutlu@alparslan.edu.tr</a></span>
+        <span class="dk-pf-meta-item">🏛 Muş Alparslan Ünv.</span>
+        <span class="dk-pf-meta-item">🎓 Diskalkuli · DokunSay</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="dk-pf-section" style="background:#fff">
+  <div class="wrap">
+    <h2>Hakkında</h2>
+    <p><strong>Prof. Dr. Yılmaz Mutlu</strong>, Muş Alparslan Üniversitesi Eğitim Fakültesi Matematik ve Fen Bilimleri Eğitimi Bölümü öğretim üyesidir. Lisans öğrenimini Selçuk Üniversitesi Matematik Öğretmenliği programında (2006), doktora derecesini Atatürk Üniversitesi Eğitim Bilimleri Enstitüsü Matematik Eğitimi Bilim Dalı'nda <em>"Bilgisayar destekli öğretim materyallerinin matematik öğrenme güçlüğü yaşayan öğrencilerin sayı algılama becerileri üzerindeki etkilerinin incelenmesi"</em> başlıklı tez ile (2016) tamamlamıştır. 2020 yılında doçentlik, <strong>2026 yılında profesörlük</strong> unvanını almıştır.</p>
+
+    <p>Akademik çalışmalarını <strong>matematik öğrenme güçlüğü (diskalkuli)</strong>, erken matematik becerileri, eğitsel sinirbilim ve bedenlenmiş biliş alanlarında yoğunlaştıran Mutlu, Türkiye'de bu alanın öncü araştırmacılarındandır. Diskalkuli tanılamasında <strong>Çoklu Süzgeç Modeli</strong>'ni; eğitsel müdahalede <strong>Altı Adımlı Diskalkuli Müdahale Modeli</strong>'ni; kapsayıcı sınıf öğretiminde <strong>Hilal-Yıldız Modeli</strong>'ni ve matematiği beşeri bilimlerle bütünleştiren <strong>MARSS Yaklaşımı</strong>'nı geliştirmiştir.</p>
+
+    <p>Matematik öğrenme güçlüğü yaşayan öğrenciler için tasarladığı <strong>Sayı Seti</strong> (Patent No: 2017/15245, 2020) Türk Patent Enstitüsü tarafından tescillenmiştir. Bu tasarımdan ilham alarak geliştirdiği <strong>DokunSay</strong> matematik öğretim materyalleri serisi; Sayı Çubukları, Basamak Değeri, Saat, Kesir, Tam Sayılar, Geometri ve İstatistik başlıklarında <strong>yedi interaktif öğretim aracını</strong> kapsamaktadır. Materyaller somut–yarı somut–soyut (CRA) yaklaşımı temel alınarak Bruner, Bloom, Piaget, Van Hiele, Dienes ve Curcio gibi öğrenme kuramlarıyla bütünleştirilmiştir.</p>
+
+    <p>Halen Muş Alparslan Üniversitesi Matematik Eğitimi Anabilim Dalı Başkanı olarak görev yapan Mutlu, çok sayıda TÜBİTAK projesinde yürütücü, danışman ve araştırmacı olarak yer almıştır. <em>"Her Çocuk Matematik Öğrenebilir!"</em> başlıklı TÜBİTAK projesi (2022–2023) bunlardan en kapsamlısıdır. Ayrıca yüksek lisans ve doktora tezleri yönetmekte, ulusal ve uluslararası kongrelerde davetli konuşmacı olarak yer almaktadır.</p>
+
+    <div class="dk-pf-stats">
+      <div class="dk-pf-stat"><div class="dk-pf-stat-val">7</div><div class="dk-pf-stat-lbl">DokunSay Aracı</div></div>
+      <div class="dk-pf-stat"><div class="dk-pf-stat-val">4</div><div class="dk-pf-stat-lbl">Telif Kitap</div></div>
+      <div class="dk-pf-stat"><div class="dk-pf-stat-val">30+</div><div class="dk-pf-stat-lbl">Hakemli Makale</div></div>
+      <div class="dk-pf-stat"><div class="dk-pf-stat-val">10+</div><div class="dk-pf-stat-lbl">TÜBİTAK Projesi</div></div>
+      <div class="dk-pf-stat"><div class="dk-pf-stat-val">1</div><div class="dk-pf-stat-lbl">Patent</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="dk-pf-section" style="background:#f9fafb">
+  <div class="wrap">
+    <h2>Akademik Görevler</h2>
+    <div class="dk-pf-grid2">
+      <div class="dk-pf-card">
+        <span class="dk-pf-card-tag">2026 –</span>
+        <h3>Profesör</h3>
+        <p>Muş Alparslan Üniversitesi · Eğitim Fakültesi · Matematik ve Fen Bilimleri Eğitimi Bölümü · İlköğretim Matematik Öğretmenliği Programı</p>
+      </div>
+      <div class="dk-pf-card">
+        <span class="dk-pf-card-tag">2020 – 2026</span>
+        <h3>Doçent</h3>
+        <p>Muş Alparslan Üniversitesi · Eğitim Fakültesi · Matematik ve Fen Bilimleri Eğitimi Bölümü · Matematik Eğitimi Anabilim Dalı</p>
+      </div>
+      <div class="dk-pf-card">
+        <span class="dk-pf-card-tag">2016 – 2020</span>
+        <h3>Doktor Öğretim Üyesi</h3>
+        <p>Muş Alparslan Üniversitesi · Eğitim Fakültesi · Matematik Eğitimi Anabilim Dalı</p>
+      </div>
+      <div class="dk-pf-card">
+        <span class="dk-pf-card-tag">2010 – 2016</span>
+        <h3>Araştırma Görevlisi</h3>
+        <p>Muş Alparslan Üniversitesi · Eğitim Fakültesi · Matematik Eğitimi Anabilim Dalı</p>
+      </div>
+      <div class="dk-pf-card">
+        <span class="dk-pf-card-tag">İdari · 2022 – Devam Ediyor</span>
+        <h3>Anabilim Dalı Başkanı</h3>
+        <p>Matematik Eğitimi Anabilim Dalı · Muş Alparslan Üniversitesi</p>
+      </div>
+      <div class="dk-pf-card">
+        <span class="dk-pf-card-tag">Öğrenim · 2016</span>
+        <h3>Doktora — Matematik Eğitimi</h3>
+        <p>Atatürk Üniversitesi · Eğitim Bilimleri Enstitüsü · Tez Danışmanı: Prof. Dr. Levent Akgün</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dk-pf-section" style="background:#fff">
+  <div class="wrap">
+    <h2>Patent ve Tasarımlar</h2>
+    <p class="lead">Mutlu'nun ürettiği özgün öğretim materyalleri Türk Patent Enstitüsü tarafından tescillenmiş ve endüstriyel tasarım olarak korunmaktadır. <strong>DokunSay</strong> serisi, bu tasarımların dijital interaktif uygulamalarıdır.</p>
+
+    <div class="dk-pf-grid2">
+      <div class="dk-pf-card" style="border-left:4px solid #f59e0b">
+        <span class="dk-pf-card-tag" style="background:#fef3c7;color:#92400e">Patent · 2020</span>
+        <h3>Matematik Öğrenme Güçlüğü Yaşayan Öğrencilere Yönelik Sayı Seti</h3>
+        <p>Patent No: <strong>2017/15245</strong> · Buluş Sahipleri: Yılmaz Mutlu, Sinan Olkun</p>
+      </div>
+      <div class="dk-pf-card" style="border-left:4px solid #ec4899">
+        <span class="dk-pf-card-tag" style="background:#fce7f3;color:#9d174d">Endüstriyel Tasarım · 2022–2023</span>
+        <h3>DokunSay Noktalı Sayı Çubukları</h3>
+        <p>Yılmaz Mutlu, Çiğdem Demirtaş</p>
+      </div>
+      <div class="dk-pf-card" style="border-left:4px solid #3b82f6">
+        <span class="dk-pf-card-tag" style="background:#dbeafe;color:#1e40af">Endüstriyel Tasarım · 2022–2023</span>
+        <h3>DokunSay Dijital Saat</h3>
+        <p>Yılmaz Mutlu, İhsan Söylemez</p>
+      </div>
+      <div class="dk-pf-card" style="border-left:4px solid #8b5cf6">
+        <span class="dk-pf-card-tag" style="background:#ede9fe;color:#5b21b6">Endüstriyel Tasarım · 2022–2023</span>
+        <h3>DokunSay Kesir Öğretim Materyalleri</h3>
+        <p>Yılmaz Mutlu, Edanur Güven</p>
+      </div>
+      <div class="dk-pf-card" style="border-left:4px solid #10b981">
+        <span class="dk-pf-card-tag" style="background:#d1fae5;color:#065f46">Endüstriyel Tasarım · 2021–2022</span>
+        <h3>Matematik Öğretim Materyali Setleri (1, 2, 3)</h3>
+        <p>Yılmaz Mutlu, Sinan Olkun</p>
+      </div>
+      <div class="dk-pf-card" style="border-left:4px solid #f59e0b">
+        <span class="dk-pf-card-tag" style="background:#fef3c7;color:#92400e">Endüstriyel Tasarım · 2021–2022</span>
+        <h3>Boncuklarla Matematik (1, 2, 3)</h3>
+        <p>Yılmaz Mutlu</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dk-pf-section" style="background:#f9fafb">
+  <div class="wrap">
+    <h2>Telif Kitaplar</h2>
+    <p class="lead">Mutlu'nun telif kitapları, diskalkuli alanında Türkiye'de yazılmış sınırlı sayıdaki kapsamlı kaynaklardandır.</p>
+
+    <ol class="dk-pf-list">
+      <li>
+        <strong>Matematik Öğretiminde Farklılaştırma: Kuram, Strateji ve Uygulama</strong> (2026).
+        <span class="pub-meta">Vizetek Yayıncılık · 514 sayfa · ISBN: 978-625-382-286-6</span>
+      </li>
+      <li>
+        <strong>"Aptal" Değilmişim, Diskalkuliymişim</strong> (2025).
+        <span class="pub-meta">Vizetek Yayıncılık · 83 sayfa · ISBN: 978-625-5711-22-9</span>
+      </li>
+      <li>
+        Mutlu, Y., Çam, Z., Uçar, S. <strong>Rakamların Ötesindeki Hikayeler: Diskalkuli ile Yaşayanlar</strong> (2024).
+        <span class="pub-meta">Vizetek Yayıncılık · 150 sayfa · ISBN: 978-625-95005-4-6</span>
+      </li>
+      <li>
+        Mutlu, Y., Çam, Z., Çalışkan, E. F. <strong>Diskalkulik Çocukların Yaşadıkları Sorunlar ve Çözüm Önerileri</strong> (2021).
+        <span class="pub-meta">Vize Yayıncılık · 87 sayfa · ISBN: 978-625-7103-71-8</span>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="dk-pf-section" style="background:#fff">
+  <div class="wrap">
+    <h2>Uluslararası Hakemli Dergilerde Yayımlanan Makaleler</h2>
+    <p class="lead">DOI numarası bulunan makalelere doğrudan erişim için "DOI" butonuna tıklayın.</p>
+
+    <ol class="dk-pf-list">
+      <li>
+        Mutlu, Y., Polat, K., Oflaz, G., Çam, Z. (2026). <strong>Teachers' Self-Efficacy in Dyscalculia: Development and Psychometric Validation of a New Scale.</strong>
+        <span class="pub-meta">The Journal of Intelligence</span>
+      </li>
+      <li>
+        Mutlu, Y., Polat, K., Durmaz, B. (2026). <strong>An alternative approach to addressing learning losses in mathematics using differentiated instruction strategy.</strong>
+        <span class="pub-meta">The Journal of Educational Research, 119(3), 1–16.</span>
+      </li>
+      <li>
+        Mutlu, Y., Erdem, Y., Söylemez, İ. (2025). <strong>Examination of Early Mathematical Skills of Preschool Children With and Without Risk of Dyscalculia.</strong>
+        <span class="pub-meta">European Journal of Psychology and Educational Research, 8(4), 245–261.</span>
+        <a href="https://doi.org/10.12973/ejper.8.4.245" target="_blank" rel="noopener">DOI ↗</a>
+      </li>
+      <li>
+        Mutlu, Y. (2025). <strong>The Crescent-Star Model in Education: A Holistic Framework for The Guiding Teacher and The Inclusive Classroom.</strong>
+        <span class="pub-meta">The Journal of STEM Teacher Institutes, 5(2), 85–94.</span>
+      </li>
+      <li>
+        Mutlu, Y., Olkun, S. (2025). <strong>Beyin, Bellek ve Sayılar: Diskalkuliye Çok Boyutlu Bir Yaklaşım.</strong>
+        <span class="pub-meta">Yaşadıkça Eğitim, 39, 841–858.</span>
+        <a href="https://doi.org/10.33308/26674874.2025393958" target="_blank" rel="noopener">DOI ↗</a>
+      </li>
+      <li>
+        Mutlu, Y. (2025). <strong>Prospective Elementary Mathematics Teachers' Views on the Use of Islamic Geometric Patterns in Mathematics Lessons.</strong>
+        <span class="pub-meta">Journal of STEM Teacher Institutes, 5(1), 13–20.</span>
+      </li>
+      <li>
+        Mutlu, Y., Polat, K. (2024). <strong>Bibliometric And Content Analyses Of Dyscalculia Research.</strong>
+        <span class="pub-meta">Acta Didactica Napocensia, 17(1), 44–64.</span>
+        <a href="https://doi.org/10.24193/adn.17.1.4" target="_blank" rel="noopener">DOI ↗</a>
+      </li>
+      <li>
+        Mutlu, Y. (2024). <strong>Effects of Dyscalculia on Personal, Social, Academic, Professional and Daily Life: A Case Study.</strong>
+        <span class="pub-meta">International Electronic Journal of Elementary Education, 17(1), 89–101.</span>
+      </li>
+      <li>
+        Mutlu, Y., Çalışkan, E. F., Yasul, A. F. (2022). <strong>We Asked Teachers: Do You Know What Dyscalculia Is?</strong>
+        <span class="pub-meta">International Online Journal of Primary Education (IOJPE), 11(2), 361–378.</span>
+        <a href="https://doi.org/10.55020/iojpe.1067560" target="_blank" rel="noopener">DOI ↗</a>
+      </li>
+      <li>
+        Mutlu, Y., Korkmaz, E. (2020). <strong>Investigating Clock Reading Skills of Third Graders with and without Dyscalculia Risk.</strong>
+        <span class="pub-meta">International Online Journal of Primary Education (ERIC), 9(1), 97–110.</span>
+      </li>
+      <li>
+        Mutlu, Y., Akgün, L., Akkuşci, Y. E. (2020). <strong>What Do Teachers Think About Finger-Counting?</strong>
+        <span class="pub-meta">International Journal of Curriculum and Instruction, 12(1), 268–288.</span>
+      </li>
+      <li>
+        Mutlu, Y. (2019). <strong>Math Anxiety in Students With and Without Math Learning Difficulties.</strong>
+        <span class="pub-meta">International Electronic Journal of Elementary Education, 11(5), 471–475.</span>
+        <a href="https://doi.org/10.26822/iejee.2019553343" target="_blank" rel="noopener">DOI ↗</a>
+      </li>
+      <li>
+        Mutlu, Y., Polat, S., Alan, S. (2019). <strong>Development of Preservice Mathematics Teachers' TPACK through Micro Teaching: Teaching the VuStat Program.</strong>
+        <span class="pub-meta">International Journal of Technology in Education and Science, 3(2), 107–118.</span>
+      </li>
+      <li>
+        Mutlu, Y., Akgün, L. (2019). <strong>Using Computer for Developing Arithmetical Skills of Students with Mathematics Learning Difficulties.</strong>
+        <span class="pub-meta">International Journal of Research in Education and Science, 5(1), 237–251.</span>
+      </li>
+      <li>
+        Mutlu, Y., Deniz, D., Polat, S. (2017). <strong>Sınıf öğretmenlerinin geometrik cisimler ve şekiller konusundaki bilgi düzeylerinin zihin haritaları üzerinden incelenmesi.</strong>
+        <span class="pub-meta">Journal of Human Sciences, 14(4), 4742–4752.</span>
+        <a href="https://doi.org/10.14687/jhs.v14i4.5020" target="_blank" rel="noopener">DOI ↗</a>
+      </li>
+      <li>
+        Mutlu, Y., Akgün, L. (2017). <strong>The Effects of Computer Assisted Instruction Materials on Approximate Number Skills of Students with Dyscalculia.</strong>
+        <span class="pub-meta">The Turkish Online Journal of Educational Technology, 16(2), 119–136.</span>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="dk-pf-section" style="background:#f9fafb">
+  <div class="wrap">
+    <h2>Ulusal Hakemli Dergilerde Yayımlanan Makaleler</h2>
+
+    <ol class="dk-pf-list">
+      <li>
+        Mutlu, Y., Uçar, S., Söylemez, İ., Erdem, Y. (2025). <strong>Matematik Öğretiminde Aile-Ebeveyn Katılımının Önemi: Kapsamlı Bir Derleme.</strong>
+        <span class="pub-meta">İçtimaiyat, 8(1), 178–201.</span>
+        <a href="https://doi.org/10.33709/ictimaiyat.1681751" target="_blank" rel="noopener">DOI ↗</a>
+      </li>
+      <li>
+        Çam, Ş. S., Mutlu, Y. (2024). <strong>Diskalkuli Farkındalığının Geliştirilmesinde Sinemanın Rolü: 'Amateur', 'Night School' ve 'Proxima' Örnekleri.</strong>
+        <span class="pub-meta">Mevzu — Sosyal Bilimler Dergisi, 233–260.</span>
+        <a href="https://doi.org/10.56720/mevzu.1584309" target="_blank" rel="noopener">DOI ↗</a>
+      </li>
+      <li>
+        Mutlu, Y., Söylemez, İ. (2019). <strong>Ortaokul 8. Sınıf Öğrencilerine GeoGebra Matematik Yazılımı ile Dönüşüm Geometrisi Konusunun Öğretimi.</strong>
+        <span class="pub-meta">Eğitim ve Teknoloji, 1(2), 163–172.</span>
+      </li>
+      <li>
+        Mutlu, Y., Sarı, M. H. (2019). <strong>İlköğretim 4. Sınıf Öğrencilerinin Veri İşleme Konusundaki Problem Çözme Becerilerinin İncelenmesi.</strong>
+        <span class="pub-meta">OPUS Uluslararası Toplum Araştırmaları Dergisi, 13(19), 941–959.</span>
+        <a href="https://doi.org/10.26466/opus.579427" target="_blank" rel="noopener">DOI ↗</a>
+      </li>
+      <li>
+        Mutlu, Y., Sarı, M. H. (2019). <strong>İlkokul Öğrencilerinin Basamak Değeri Kavrayışlarının Geliştirilmesi.</strong>
+        <span class="pub-meta">Kastamonu Eğitim Dergisi, 27(2), 657–667.</span>
+        <a href="https://doi.org/10.24106/kefdergi.2645" target="_blank" rel="noopener">DOI ↗</a>
+      </li>
+      <li>
+        Mutlu, Y., Olkun, S., Cumhur, F. (2019). <strong>DokunSay Sayı Tabletlerinin Okul Öncesi Çocuklarının Aritmetik Becerileri Üzerindeki Etkisinin İncelenmesi.</strong>
+        <span class="pub-meta">İlköğretim Online, 18(1), 437–451.</span>
+      </li>
+      <li>
+        Mutlu, Y., Deniz, D., Polat, S. (2019). <strong>Zihin haritalarının matematik derslerinde kullanımına ilişkin sınıf öğretmenlerinin görüşleri.</strong>
+        <span class="pub-meta">Turkish Studies — Educational Sciences, 14(4), 1631–1644.</span>
+        <a href="https://doi.org/10.29228/TurkishStudies.23356" target="_blank" rel="noopener">DOI ↗</a>
+      </li>
+      <li>
+        Mutlu, Y., Sarı, M. H., Çam, Z. (2018). <strong>Ebeveyn Matematik Kaygısı Ölçeği Geliştirme Çalışması.</strong>
+        <span class="pub-meta">Anemon Muş Alparslan Üniversitesi Sosyal Bilimler Dergisi, 6(STEMES'18), 139–145.</span>
+        <a href="https://doi.org/10.18506/anemon.463756" target="_blank" rel="noopener">DOI ↗</a>
+      </li>
+      <li>
+        Mutlu, Y., Söylemez, İ. (2018). <strong>Matematiksel Kavram Yanılgıları Konusunda Yapılmış Yüksek Lisans ve Doktora Tezlerinin İncelenmesi.</strong>
+        <span class="pub-meta">Başkent University Journal of Education, 5(2), 187–197.</span>
+      </li>
+      <li>
+        Mutlu, Y., Söylemez, İ. (2018). <strong>İlkokul 3. ve 4. Sınıf Çocukları İçin Matematik Kaygı Ölçeği Güvenirlik ve Geçerlik Çalışması.</strong>
+        <span class="pub-meta">EKEV Akademi Dergisi, 22(73), 429–440.</span>
+      </li>
+      <li>
+        Mutlu, Y., Söylemez, İ., Yasul, A. F. (2017). <strong>İlkokul öğrencilerinin matematik kaygısı ile matematik başarıları arasındaki ilişkinin incelenmesi.</strong>
+        <span class="pub-meta">Journal of Human Sciences, 14(4), 4425–4434.</span>
+      </li>
+      <li>
+        Mutlu, Y., Akgün, L. (2017). <strong>Matematik Öğrenme Güçlüğünü Tanılamada Yeni Bir Model Önerisi: Çoklu Süzgeç Modeli.</strong>
+        <span class="pub-meta">İlköğretim Online, 16(3), 1153–1173.</span>
+      </li>
+      <li>
+        Mutlu, Y., Akgün, L. (2016). <strong>1998–2013 SBS-OKS Sınav Sorularının Matematik Okuryazarlığı Ekseninde İçerik ve Bağlam Yönünden Değerlendirilmesi.</strong>
+        <span class="pub-meta">Turkish Studies, 11(3), 1769–1780.</span>
+      </li>
+      <li>
+        Karasu, T., Mutlu, Y. (2014). <strong>Öğretmenlerin Perspektifinden Özel Eğitimde Yaşanan Sorunlar ve Çözüm Önerileri: Muş İl Örneği.</strong>
+        <span class="pub-meta">Anemon Muş Alparslan Üniversitesi Sosyal Bilimler Dergisi, 2(1), 47–66.</span>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="dk-pf-section" style="background:#fff">
+  <div class="wrap">
+    <h2>Kitap Bölümleri (Seçilmiş)</h2>
+
+    <ol class="dk-pf-list">
+      <li>
+        Mutlu, Y. (2025). <strong>Diskalkulinin Tanılanmasında Sistematik Bir Yaklaşım.</strong>
+        <span class="pub-meta">Diskalkuli Çalışmalar-I (Editör: Y. Mutlu) · Vizetek · ISBN: 978-625-382-071-8</span>
+      </li>
+      <li>
+        Mutlu, Y. (2023). <strong>Zorluk, Kavram Yanılgısı ve Hata: Nedenleri, Belirlenmesi, Önlenmesi ve Giderilmesi.</strong>
+        <span class="pub-meta">İlkokul Matematiğinde Öğrenci Zorlukları, Kavram Yanılgıları, Hatalar ve Çözüm Önerileri (Ed: M. H. Sarı, S. Olkun, Y. Mutlu) · Vizetek · ISBN: 978-625-8499-99-5</span>
+      </li>
+      <li>
+        Mutlu, Y. (2023). <strong>Sosyal Adalet ve Matematik Öğrenme Güçlüğü (Diskalkuli): İlişkinin Temelleri.</strong>
+        <span class="pub-meta">Sosyal Adalet Bağlamında Matematik Öğrenme Güçlüğü (Ed: Y. Mutlu, Z. Çam) · Vizetek · ISBN: 978-625-94310-4-8</span>
+      </li>
+      <li>
+        Mutlu, Y. (2022). <strong>Matematik Kaygısının Etkileri.</strong>
+        <span class="pub-meta">Matematik Kaygısı (Ed: M. H. Sarı, M. Baloğlu) · Vizetek · ISBN: 978-625-8499-42-1</span>
+      </li>
+      <li>
+        Mutlu, Y. (2022). <strong>Matematiksel Biliş ve Eğitsel Sinirbilim.</strong>
+        <span class="pub-meta">Eğitsel Sinirbilim (Ed: E. Keleş) · Nobel · ISBN: 978-625-417-753-8</span>
+      </li>
+      <li>
+        Mutlu, Y., Olkun, S. (2019). <strong>Tanılamadan Eğitsel Müdahaleye Gelişimsel Diskalkuli.</strong>
+        <span class="pub-meta">İlköğretim Çalışmaları: Bütünsel Açıdan Çocuk · Pegem · ISBN: 978-605-80114-1-0 · İngilizce</span>
+      </li>
+      <li>
+        Mutlu, Y., Soylu, F. (2018). <strong>Eğitsel Sinirbilim ve Bedenlenmiş Biliş Perspektifinden Matematik Öğrenme Güçlüğü Yaşayan Öğrencilerde Parmakla Sayma.</strong>
+        <span class="pub-meta">Eğitim Bilimlerinde Örnek Araştırmalar · Nobel · ISBN: 978-605-7928-22-1</span>
+      </li>
+      <li>
+        Mutlu, Y. (2016). <strong>Matematik Öğrenme Güçlüğü (Gelişimsel Diskalkuli).</strong>
+        <span class="pub-meta">Matematik Eğitiminde Teoriler (Ed: E. Bingölbali, S. Arslan, İ. Ö. Zembat) · Pegem · ISBN: 978-605-318-380-8</span>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="dk-pf-section" style="background:#f9fafb">
+  <div class="wrap">
+    <h2>Uluslararası Bildiriler (Seçilmiş)</h2>
+
+    <ol class="dk-pf-list">
+      <li>
+        Mutlu, Y. (2025). <strong>A Smooth Transition from Concrete to Abstract: Sequential Coding for Children with Dyscalculia.</strong>
+        <span class="pub-meta">International Conference on Social and Educational Sciences · Tam Metin / Sözlü</span>
+      </li>
+      <li>
+        Mutlu, Y. (2025). <strong>Holistic Approach from Theory to Practice in Dyscalculia Intervention: The Six-Step Dyscalculia Intervention Model.</strong>
+        <span class="pub-meta">International Conference on Social and Educational Sciences · Tam Metin / Sözlü</span>
+      </li>
+      <li>
+        Mutlu, Y. (2025). <strong>Cognitive and Metacognitive Support Approaches in Solving Verbal Mathematics Problems: A Model Proposal for Students with Dyscalculia.</strong>
+        <span class="pub-meta">International Conference on Social and Educational Sciences · Tam Metin / Sözlü</span>
+      </li>
+      <li>
+        Mutlu, Y. (2025). <strong>Matematiği Beşeri Bilimlerle Yeniden Anlamlandırmak: MARSS Yaklaşımı ve Pedagojik Uygulamaları.</strong>
+        <span class="pub-meta">4th International Scientific Research and Innovation Congress · Davetli Konuşmacı</span>
+      </li>
+      <li>
+        Mutlu, Y. (2025). <strong>Eğitimde Hilal-Yıldız Modeli: Rehber Öğretmen ve Kapsayıcı Sınıf İçin Bütüncül Bir Çerçeve.</strong>
+        <span class="pub-meta">4th International Scientific Research and Innovation Congress · Tam Metin / Sözlü</span>
+      </li>
+      <li>
+        Mutlu, Y., Olkun, S., Cumhur, F. (2018). <strong>DokunSay Matematik Öğretim Materyallerinin Okul Öncesi Çocuklarının Aritmetik Becerileri Üzerindeki Etkisinin İncelenmesi.</strong>
+        <span class="pub-meta">International Conference on STEM and Educational Sciences · Sözlü</span>
+      </li>
+      <li>
+        Mutlu, Y., Atmaca, F., Çam, Z., Alparslan, K. (2019). <strong>Diskalkuliye Sahip Çocuklarda Çalışma Belleğinin İyileştirilmesi Mümkün mü?</strong>
+        <span class="pub-meta">1. Uluslararası Katılımlı Özgül Öğrenme Güçlüğü Kongresi · Sözlü</span>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="dk-pf-section" style="background:#fff">
+  <div class="wrap">
+    <h2>TÜBİTAK ve Diğer Projeler (Seçilmiş)</h2>
+
+    <div class="dk-pf-grid2">
+      <div class="dk-pf-card">
+        <span class="dk-pf-card-tag">2022 – 2023 · Yürütücü</span>
+        <h3>Her Çocuk Matematik Öğrenebilir!</h3>
+        <p>TÜBİTAK Projesi · Uzmanlar: L. Akgün, E. F. Çalışkan, A. F. Yasul, Z. Çam</p>
+      </div>
+      <div class="dk-pf-card">
+        <span class="dk-pf-card-tag">2025 – Devam Ediyor · Araştırmacı</span>
+        <h3>Temel Eğitimde Özel Eğitim Hizmetlerinin Güçlendirilmesi</h3>
+        <p>Uluslararası İkili İşbirliği Programları</p>
+      </div>
+      <div class="dk-pf-card">
+        <span class="dk-pf-card-tag">2025 · Danışman</span>
+        <h3>Matematik Vizyon: Eğitimde Yenilikçi Yaklaşımlar ve Matematik Öğretimi</h3>
+        <p>Diğer Kamu Kuruluşları</p>
+      </div>
+      <div class="dk-pf-card">
+        <span class="dk-pf-card-tag">2024 – 2025 · Danışman</span>
+        <h3>Domino Taşlarıyla Düzenlenen Etkinliklerin 60–72 Aylık Çocukların Matematik Başarısına Etkisi</h3>
+        <p>TÜBİTAK Projesi</p>
+      </div>
+      <div class="dk-pf-card">
+        <span class="dk-pf-card-tag">2024 · Uzman</span>
+        <h3>Nörobilim Bulgularının Matematik Sınıf Ortamına Yansıması</h3>
+        <p>TÜBİTAK Projesi</p>
+      </div>
+      <div class="dk-pf-card">
+        <span class="dk-pf-card-tag">2023 – 2024 · Araştırmacı</span>
+        <h3>Temel Eğitimde Öğrenme Kayıplarının Giderilmesi ve Öğretimin Güçlendirilmesi</h3>
+        <p>Uluslararası İkili İşbirliği Programları</p>
+      </div>
+      <div class="dk-pf-card">
+        <span class="dk-pf-card-tag">2022 – 2023 · Uzman</span>
+        <h3>Diskalkulik Öğrencilere Matematik Öğretmeye Yönelik Örnek Uygulamalar</h3>
+        <p>TÜBİTAK Projesi · Yürütücü: K. Polat</p>
+      </div>
+      <div class="dk-pf-card">
+        <span class="dk-pf-card-tag">2020 – 2021 · Danışman</span>
+        <h3>Diskalkuli Riskli Öğrencilere Saat Okuma Öğretimi</h3>
+        <p>TÜBİTAK Projesi</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dk-pf-section" style="background:#f9fafb">
+  <div class="wrap">
+    <h2>Yönetilen Tezler</h2>
+
+    <div class="dk-pf-grid2">
+      <div class="dk-pf-card">
+        <span class="dk-pf-card-tag">Doktora · 2024 · Tamamlandı</span>
+        <h3>Söylemez, İhsan</h3>
+        <p>Matematik kaygısını gidermeye yönelik etkinliklerin diskalkuli riskli çocukların matematik performansına, matematik kaygısına ve çalışma belleğine etkisi · Atatürk Üniversitesi</p>
+      </div>
+      <div class="dk-pf-card">
+        <span class="dk-pf-card-tag">Yüksek Lisans · 2025 · Devam Ediyor</span>
+        <h3>Demirtaş, Çiğdem</h3>
+        <p>Saat Okuma Becerisinin Öğretiminde Etkili Yaklaşımlar: Matematik Öğrenme Güçlüğü Bağlamında Bir Meta-Sentez · Muş Alparslan Üniversitesi</p>
+      </div>
+      <div class="dk-pf-card">
+        <span class="dk-pf-card-tag">Yüksek Lisans · 2024 · Devam Ediyor</span>
+        <h3>Güven, Edanur</h3>
+        <p>Matematik Öğrenme Güçlüğü Bağlamında Kesir Öğretimi: Kapsamlı Bir Alan Yazın İncelemesi · Muş Alparslan Üniversitesi</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dk-pf-section" style="background:#fff">
+  <div class="wrap">
+    <div class="dk-pf-cta">
+      <h2>İletişim & İşbirliği</h2>
+      <p>Akademik işbirliği, danışmanlık ya da DokunSay materyalleri hakkında detaylı bilgi için doğrudan iletişime geçebilirsiniz.</p>
+      <a href="mailto:y.mutlu@alparslan.edu.tr">y.mutlu@alparslan.edu.tr</a>
+      <a href="/araclar/">DokunSay Araçlarını İncele →</a>
+    </div>
+  </div>
+</section>

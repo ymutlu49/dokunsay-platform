@@ -48,10 +48,12 @@ html[data-dyscalculia="on"] *::after {
 /* Reduce-motion ile çakışma: reduce-motion daha önceliklidir,
    yukarıdaki 0.001ms kuralları kazanır (sonra tanımlanmış). */
 
-/* Büyük dokunmatik hedefler — motor planlama desteği */
-html[data-dyscalculia="on"] button,
-html[data-dyscalculia="on"] a,
-html[data-dyscalculia="on"] [role="button"],
+/* Büyük dokunmatik hedefler — motor planlama desteği.
+   İstisnalar: AppShell üst bar chrome elemanları (LangSwitcher, geri butonu)
+   ve A11yPanel — bunlar zaten kompakt tasarlanmış kontroller. */
+html[data-dyscalculia="on"] button:not(.ds-lang-switcher__btn):not([class*="ds-a11y"]):not([class*="ds-appshell__back"]),
+html[data-dyscalculia="on"] a:not(.ds-appshell__back):not([class*="ds-lang"]):not([class*="ds-a11y"]),
+html[data-dyscalculia="on"] [role="button"]:not([class*="ds-lang"]):not([class*="ds-a11y"]),
 html[data-dyscalculia="on"] input[type="button"],
 html[data-dyscalculia="on"] input[type="submit"],
 html[data-dyscalculia="on"] input[type="checkbox"],
@@ -67,8 +69,9 @@ html[data-dyscalculia="on"] *:focus-visible {
   box-shadow: 0 0 0 6px rgba(245, 158, 11, 0.25) !important;
 }
 
-/* Hafif padding artışı — UI öğeleri arasında nefes alma boşluğu */
-html[data-dyscalculia="on"] button:not([class*="ds-a11y"]):not([class*="ds-appshell__back"]) {
+/* Hafif padding artışı — UI öğeleri arasında nefes alma boşluğu.
+   LangSwitcher kompakt kalır (üst bar chrome'u). */
+html[data-dyscalculia="on"] button:not(.ds-lang-switcher__btn):not([class*="ds-a11y"]):not([class*="ds-appshell__back"]) {
   padding: 12px 18px !important;
 }
 

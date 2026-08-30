@@ -1,9 +1,9 @@
-import { ACTIVITIES, LESSONS } from '../../constants/activities';
+import { ACTIVITIES, LESSONS, actName, actDesc } from '../../constants/activities';
 import { THEME } from '../../constants/theme';
 
 const TeacherPanel = ({
   onClose, studentName, setStudentName, studentClass, setStudentClass,
-  notes, setNotes, completed, setCompleted, game,
+  notes, setNotes, completed, setCompleted, game, lang = 'tr',
 }) => (
   <div onClick={onClose} style={{
     position: 'fixed', inset: 0, zIndex: 9999,
@@ -16,7 +16,7 @@ const TeacherPanel = ({
       <div style={{ fontSize: 22, fontWeight: 900, marginBottom: 16 }}>{'👨‍🏫 Öğretmen Paneli'}</div>
 
       {/* Öğrenci bilgileri */}
-      <div style={{ background: THEME.accentL, borderRadius: 14, padding: '14px', marginBottom: 14, border: '1.5px solid rgba(245,158,11,.12)' }}>
+      <div style={{ background: THEME.accentL, borderRadius: 14, padding: '14px', marginBottom: 14, border: '1.5px solid rgba(139,92,246,.12)' }}>
         <div style={{ fontSize: 10, fontWeight: 800, color: THEME.accentD, marginBottom: 8 }}>{'👤 Öğrenci'}</div>
         <div style={{ display: 'flex', gap: 8 }}>
           <input value={studentName} onChange={(e) => setStudentName(e.target.value)} placeholder="Ad..." style={{
@@ -40,11 +40,11 @@ const TeacherPanel = ({
         </div>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4 }}>
           {ACTIVITIES.map((a, ai) => {
-            const done = !!completed[a.name];
+            const done = !!completed[a.id];
             return (
               <div key={ai} onClick={() => {
                 const nc = { ...completed };
-                if (done) delete nc[a.name]; else nc[a.name] = true;
+                if (done) delete nc[a.id]; else nc[a.id] = true;
                 setCompleted(nc);
               }} style={{
                 padding: '3px 8px', borderRadius: 6,
@@ -52,7 +52,7 @@ const TeacherPanel = ({
                 border: done ? '1.5px solid rgba(34,197,94,.3)' : '1px solid #e5e5e5',
                 cursor: 'pointer', fontSize: 9, fontWeight: done ? 700 : 500,
                 color: done ? THEME.green : '#888',
-              }}>{done ? '\✅ ' : ''}{a.name}</div>
+              }}>{done ? '✅ ' : ''}{actName(a, lang)}</div>
             );
           })}
         </div>
@@ -63,23 +63,23 @@ const TeacherPanel = ({
         <div style={{ fontSize: 10, fontWeight: 800, color: '#6d28d9', marginBottom: 8 }}>{'📚 Ders Planları'}</div>
         {LESSONS.map((ls, li) => {
           const indices = ls.activityIndices || [];
-          const doneCount = indices.filter((ai) => completed[ACTIVITIES[ai]?.name]).length;
+          const doneCount = indices.filter((ai) => completed[ACTIVITIES[ai]?.id]).length;
           return (
             <div key={li} style={{ padding: '6px 8px', marginBottom: 3, borderRadius: 6, background: '#fff', border: '1px solid rgba(0,0,0,.04)' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <span style={{ fontSize: 10, fontWeight: 800 }}>{ls.name}</span>
+                <span style={{ fontSize: 10, fontWeight: 800 }}>{actName(ls, lang)}</span>
                 <span style={{ fontSize: 9, fontWeight: 700, color: doneCount === indices.length && indices.length > 0 ? THEME.green : '#aaa' }}>
                   {doneCount + '/' + indices.length}
                 </span>
               </div>
-              <div style={{ fontSize: 8, color: '#888' }}>{ls.description}</div>
+              <div style={{ fontSize: 8, color: '#888' }}>{actDesc(ls, lang)}</div>
             </div>
           );
         })}
       </div>
 
       {/* Notlar */}
-      <div style={{ background: THEME.accentL, borderRadius: 14, padding: '14px', marginBottom: 14, border: '1.5px solid rgba(245,158,11,.12)' }}>
+      <div style={{ background: THEME.accentL, borderRadius: 14, padding: '14px', marginBottom: 14, border: '1.5px solid rgba(139,92,246,.12)' }}>
         <div style={{ fontSize: 10, fontWeight: 800, color: THEME.accentD, marginBottom: 8 }}>{'📝 Notlar'}</div>
         <textarea value={notes} onChange={(e) => setNotes(e.target.value)} placeholder="Gözlemler..." rows={3} style={{
           width: '100%', padding: '8px', borderRadius: 8, border: '1.5px solid #ddd',

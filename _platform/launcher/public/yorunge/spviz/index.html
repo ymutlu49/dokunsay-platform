@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Uzamsal Görselleştirme ve İmgelem — Öğrenme Yörüngesi · DokunSay</title>
+<meta name="description" content="Uzamsal Görselleştirme ve İmgelem öğrenme yörüngesi: 7 gelişim basamağı, her birinde DokunSay etkinliği ve gözlem ölçütü. Clements &amp; Sarama çerçevesi. Döndürme, yansıtma, kaydırma.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --c:#7c3aed;
+    --amber:#2E7D32; --ink:#182219; --body:#37433c; --muted:#5f6b63; --line:#dfe7df;
+    --bg:#f3f7f1; --card:#ffffff; --maxw:1180px; --r:18px;
+    --shadow:0 10px 30px -14px rgba(24,40,25,.22);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Inter,system-ui,sans-serif;color:var(--body);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4,h5,h6{font-family:Poppins,sans-serif;color:var(--ink);line-height:1.16;letter-spacing:-.01em}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  .eyebrow{font-family:Poppins;font-weight:700;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase}
+
+
+.dsh{background:linear-gradient(135deg,#14391a 0%,#1d2b22 100%);color:#fff;padding:12px 24px;box-shadow:0 4px 10px rgba(24,40,25,.10),0 2px 4px rgba(24,40,25,.05);position:sticky;top:0;z-index:50}
+.dsh-row{display:flex;align-items:center;justify-content:space-between;gap:16px;max-width:1440px;margin:0 auto;flex-wrap:wrap}
+.dsh-brand{display:flex;align-items:center;gap:13px;text-decoration:none;color:#fff}
+.dsh-logo{width:40px;height:40px;border-radius:12px;background:#fff;display:grid;place-items:center;padding:5px;box-shadow:0 1px 4px rgba(15,23,42,.12);flex:0 0 auto}
+.dsh-logo svg{display:block;width:100%;height:100%}
+.dsh-titles{display:flex;flex-direction:column;line-height:1.12}
+.dsh-name{font-family:Poppins,system-ui,sans-serif;font-size:20px;font-weight:800;letter-spacing:.4px;color:#fff}
+.dsh-sub{font-size:11.5px;font-weight:700;opacity:.72;letter-spacing:.3px;margin-top:2px;color:#fff}
+.dsh-nav{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.dsh-pill{display:inline-flex;align-items:center;gap:6px;padding:8px 15px;border-radius:999px;font-weight:700;font-size:.86rem;font-family:inherit;line-height:1;text-decoration:none;white-space:nowrap;border:1px solid transparent;transition:filter .15s,background .15s}
+.dsh-pill:hover{filter:brightness(1.13)}
+.dsh-amber{color:#fde6c0;background:rgba(245,158,11,.18);border-color:rgba(245,158,11,.45)}
+.dsh-green{color:#d7f0d9;background:rgba(46,125,50,.22);border-color:rgba(46,125,50,.5)}
+.dsh-teal{color:#bfe8e4;background:rgba(13,148,136,.2);border-color:rgba(13,148,136,.5)}
+.dsh-pill.is-active{box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.45);filter:brightness(1.12)}
+.dsh .hcmo-auth{display:inline-flex;align-items:center;gap:6px}
+.dsh .hcmo-auth:empty{display:none}
+.dsh .hcmo-auth a{display:inline-flex;align-items:center;gap:5px;padding:8px 14px;border-radius:999px;font-weight:700;font-size:.86rem;text-decoration:none;white-space:nowrap;color:#fde6c0;background:rgba(245,158,11,.18);border:1px solid rgba(245,158,11,.45);transition:background .15s}
+.dsh .hcmo-auth a:hover{background:rgba(245,158,11,.3)}
+.dsh .hcmo-auth a#hcmo-stu{color:#cfe8ff;background:rgba(96,165,250,.16);border-color:rgba(96,165,250,.4)}
+.dsh .hcmo-auth a#hcmo-stu:hover{background:rgba(96,165,250,.28)}
+.dsh .hcmo-auth>span{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:.86rem;color:#e8eefc}
+.dsh .hcmo-auth .nm{color:#fde6c0}
+.dsh .hcmo-auth #hcmo-out{cursor:pointer;border:0;border-radius:999px;background:#f59e0b;color:#3a2606;font-weight:800;font-size:.8rem;padding:7px 13px;font-family:inherit}
+.dsh .hcmo-auth #hcmo-out:hover{filter:brightness(1.07)}
+@media (max-width:760px){.dsh{padding:10px 15px}.dsh-pill{padding:7px 11px;font-size:.8rem}.dsh-name{font-size:18px}}
+@media print{.dsh{display:none}}
+
+  .hero{background:linear-gradient(135deg,color-mix(in srgb,var(--c) 88%,#000),color-mix(in srgb,var(--c) 62%,#14391a));color:#fff;padding:30px 0 40px;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;right:-70px;top:-60px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.16),transparent 70%)}
+  .crumb{font-size:.84rem;color:rgba(255,255,255,.8);margin-bottom:16px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .crumb a{color:rgba(255,255,255,.92);text-decoration:underline;text-underline-offset:2px}
+  .hero-grid{display:flex;align-items:flex-start;gap:18px;position:relative;z-index:1}
+  .hero-ic{font-size:2.6rem;line-height:1;background:rgba(255,255,255,.16);width:74px;height:74px;border-radius:18px;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+  .hero .eyebrow{color:rgba(255,255,255,.85)}
+  .hero h1{color:#fff;font-size:clamp(1.9rem,4.4vw,2.9rem);font-weight:900;margin:6px 0 10px}
+  .hero .lede{color:rgba(255,255,255,.94);font-size:1.06rem;max-width:680px}
+  .hero .ltname{opacity:.8;font-style:italic}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px}
+  .hm{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.22);color:#fff;border-radius:999px;padding:.34em .9em;font-size:.82rem;font-weight:600;font-family:Poppins}
+  .hero-cta{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+  .btn{font-family:Poppins;font-weight:700;font-size:.9rem;border-radius:999px;padding:.6em 1.2em;cursor:pointer;border:0;display:inline-flex;align-items:center;gap:7px}
+  .btn-w{background:#fff;color:var(--ink)}.btn-w:hover{transform:translateY(-1px)}
+  .btn-o{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.4)}.btn-o:hover{background:rgba(255,255,255,.24)}
+
+  .layout{display:grid;grid-template-columns:266px 1fr;gap:34px;align-items:start;padding:34px 0 50px}
+  .side{position:sticky;top:78px}
+  .side-in{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;max-height:calc(100vh - 100px);display:flex;flex-direction:column}
+  .side-head{font-family:Poppins;font-weight:800;color:var(--ink);font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;padding:14px 16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between}
+  .side-head span{color:var(--c)}
+  .side-list{list-style:none;overflow-y:auto;padding:6px}
+  .side-list a{display:flex;gap:10px;align-items:center;padding:8px 9px;border-radius:10px;transition:background .15s}
+  .side-list a:hover{background:#f1f8f2}
+  .side-list a.act{background:color-mix(in srgb,var(--c) 12%,#fff)}
+  .s-num{flex:0 0 auto;width:24px;height:24px;border-radius:7px;background:color-mix(in srgb,var(--c) 14%,#fff);color:var(--c);font-family:Poppins;font-weight:700;font-size:.8rem;display:flex;align-items:center;justify-content:center}
+  .side-list a.act .s-num{background:var(--c);color:#fff}
+  .s-txt{display:flex;flex-direction:column;min-width:0}
+  .s-txt b{font-family:Inter;font-weight:600;font-size:.86rem;color:var(--ink);line-height:1.25}
+  .s-txt small{color:var(--muted);font-size:.72rem}
+
+  .levels{display:flex;flex-direction:column;gap:20px}
+  .level{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px 24px;scroll-margin-top:84px;position:relative}
+  .level.bn{border-color:#f3c98b;box-shadow:0 0 0 1px #f3c98b inset}
+  .level.bn::before{content:"";position:absolute;left:0;top:18px;bottom:18px;width:4px;border-radius:4px;background:linear-gradient(#f59e0b,#ea580c)}
+  .lv-top{display:flex;gap:14px;align-items:flex-start;margin-bottom:14px}
+  .lv-num{flex:0 0 auto;width:42px;height:42px;border-radius:12px;background:var(--c);color:#fff;font-family:Poppins;font-weight:800;font-size:1.25rem;display:flex;align-items:center;justify-content:center}
+  .lv-badges{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:3px}
+  .age-pill{font-family:Poppins;font-weight:700;font-size:.7rem;color:var(--c);background:color-mix(in srgb,var(--c) 12%,#fff);border-radius:999px;padding:.2em .7em}
+  .bn-pill{font-family:Poppins;font-weight:700;font-size:.7rem;color:#9a3412;background:#fff3e2;border:1px solid #f3c98b;border-radius:999px;padding:.2em .7em}
+  .lv-id h3{font-size:1.2rem;font-weight:700}
+  .lv-body{display:grid;grid-template-columns:1fr 196px;gap:20px;align-items:start}
+  .lv-main{min-width:0}
+  .lv-desc{font-size:.98rem;color:var(--body);margin-bottom:12px}
+  .lv-desc b{color:var(--ink)}
+  .note{border-radius:12px;padding:12px 15px;margin-bottom:11px}
+  .note h5{font-size:.74rem;letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px}
+  .note p{font-size:.92rem}
+  .note.how{background:#f4f8f5;border:1px solid #dcebe1}.note.how h5{color:#15803d}
+  .note.teach{background:#fff8ee;border:1px solid #f3e2c4}.note.teach h5{color:#b45309}
+  .lv-viz{background:linear-gradient(#f8fbf7,#eef5ec);border:1px solid var(--line);border-radius:14px;padding:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:sticky;top:80px}
+  .lv-viz svg{width:100%;height:auto;max-height:130px}
+  .lv-viz .viz-cap{font-size:.7rem;color:var(--muted);font-weight:600;margin-top:4px;font-family:Poppins;letter-spacing:.04em}
+  .lv-viz.emblem span{font-size:3.2rem;filter:saturate(1.05)}
+
+  .act{margin-top:14px;background:#fbfdfb;border:1px solid #e3efe5;border-radius:14px;padding:15px 17px}
+  .act-head{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+  .act-head h4{font-size:1rem;font-weight:700;color:#15803d}
+  .act-ic{font-size:1.1rem}
+  .act-sub{margin-bottom:10px}
+  .act-sub h5{font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:#64748b;margin-bottom:5px}
+  .mats{list-style:none;display:flex;flex-wrap:wrap;gap:6px}
+  .mats li{background:#eef6ef;border:1px solid #d7e9d9;color:#2f5337;border-radius:8px;padding:.22em .6em;font-size:.84rem}
+  .steps{margin:0 0 0 18px;padding:0}
+  .steps li{font-size:.92rem;margin-bottom:5px;padding-left:3px}
+  .crit{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:9px 12px;font-size:.9rem;color:#166534;margin:10px 0}
+  .crit .tick{color:#2E7D32;font-weight:800}
+  .scaf{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+  .scaf-c{border-radius:10px;padding:9px 12px;font-size:.88rem}
+  .scaf-c h6{font-size:.74rem;margin-bottom:3px;font-weight:700}
+  .scaf-c.easy{background:#f1f5f9;border:1px solid #e2e8f0}.scaf-c.easy h6{color:#475569}
+  .scaf-c.hard{background:#faf5ff;border:1px solid #e9d5ff}.scaf-c.hard h6{color:#7c3aed}
+  .obs{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:11px 14px;font-size:.92rem}
+  .obs b{color:var(--ink)}
+
+  .chips{margin-top:12px}
+  .chips-lab{font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;color:#94a3b8;font-weight:700;font-family:Poppins}
+  .chips-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+  .chip{display:inline-flex;flex-direction:column;border-radius:10px;padding:7px 11px;font-size:.8rem;border:1px solid;max-width:240px;transition:transform .14s}
+  .chip:hover{transform:translateY(-2px)}
+  .chip b{font-family:Poppins;font-weight:700;font-size:.82rem}
+  .chip span{font-size:.74rem;opacity:.85;line-height:1.3}
+  .chip-ds{background:#fff7ec;border-color:#f6dcae;color:#9a5b16}
+  .chip-gs{background:#eef2ff;border-color:#c7d2fe;color:#4338ca}
+  .chip-ab{background:#ecfdf5;border-color:#bbf7d0;color:#166534}
+  .chip-adim{background:#f8fafc;border-color:#e2e8f0;color:#64748b;cursor:default}
+
+  .lv-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:16px;padding-top:14px;border-top:1px dashed var(--line);flex-wrap:wrap}
+  .printcard{background:#fff;border:1px solid var(--line);color:var(--body);font-family:Poppins;font-weight:600;font-size:.82rem;border-radius:999px;padding:.5em 1em;cursor:pointer}
+  .printcard:hover{background:#f1f8f2;color:var(--ink)}
+  .nextlv{font-family:Poppins;font-weight:600;font-size:.86rem;color:var(--c)}
+  .nextlv b{font-weight:700}
+  .nextlv.done{color:var(--muted)}
+
+  footer{background:#14391a;color:#9db89f;padding:36px 0;margin-top:10px;font-size:.88rem}
+  footer a{color:#d8e6d8;text-decoration:underline}
+  .foot-note{max-width:760px;font-size:.82rem;color:#7f9781;margin-top:8px}
+
+  @media(max-width:980px){
+    .layout{grid-template-columns:1fr;gap:0}
+    .side{position:static;margin-bottom:20px}
+    .side-in{max-height:none}
+    .side-list{max-height:300px}
+    .lv-body{grid-template-columns:1fr}
+    .lv-viz{order:-1;flex-direction:row;gap:12px;position:static}
+    .lv-viz svg{max-height:90px;width:auto}
+    .scaf{grid-template-columns:1fr}
+    .nav-links{display:none}
+  }
+
+  /* ── Yazdırma ── */
+  @media print{
+    header,.hero-cta,.side,footer,.printcard,.nextlv,.chips{display:none!important}
+    body{background:#fff}
+    .hero{background:#fff;color:#000;padding:0 0 10px;border-bottom:2px solid #000}
+    .hero::after{display:none}.hero-ic{background:#eee}
+    .hero h1,.hero .eyebrow,.hero .lede,.crumb{color:#000}
+    .layout{display:block;padding:6px 0}
+    .levels{gap:0}
+    .level{break-inside:avoid;page-break-inside:avoid;border:1px solid #999;box-shadow:none;margin-bottom:10px}
+    .lv-viz{border:1px solid #ccc}
+    body.printing-one .level:not(.print-target){display:none!important}
+    body.printing-one .hero .lede,body.printing-one .hero-meta{display:none}
+  }
+</style>
+</head>
+<body data-key="spviz">
+<header class="dsh"><div class="dsh-row"><a class="dsh-brand" href="/" aria-label="DokunSay ana sayfa"><span class="dsh-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" aria-hidden="true"><line x1="28" y1="27" x2="72" y2="27" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="28" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="72" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><circle cx="28" cy="27" r="21" fill="#2E7D32"/><circle cx="20.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="28" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="35.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="72" cy="27" r="21" fill="#0d9488"/><text x="72" y="32" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="14" fill="#fff">üç</text><circle cx="50" cy="73" r="21" fill="#1B5E20"/><text x="50" y="82" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="27" fill="#fff">3</text></svg></span><span class="dsh-titles"><span class="dsh-name">DokunSay</span><span class="dsh-sub">Matematik Öğretim Araçları Platformu</span></span></a><nav class="dsh-nav" aria-label="Site gezinme"><a class="dsh-pill dsh-amber is-active" href="/yorunge/" aria-current="page">🧭 Öğrenme Yörüngeleri</a><a class="dsh-pill dsh-green" href="/rehber/">📘 Müdahale Rehberi</a><a class="dsh-pill dsh-teal" href="/#tools-section">🛠️ Araçlar</a><span id="hcmoAuth" class="hcmo-auth"></span></nav></div></header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="crumb"><a href="/yorunge/">Öğrenme Yörüngeleri</a> <span>›</span> <span>Geometri ve Uzamsal</span></div>
+    <div class="hero-grid">
+      <div class="hero-ic">🔄</div>
+      <div>
+        <span class="eyebrow">Geometri ve Uzamsal</span>
+        <h1>Uzamsal Görselleştirme ve İmgelem</h1>
+        <p class="lede">Döndürme, yansıtma, kaydırma. <span class="ltname">(Spatial Visualization)</span></p>
+        <div class="hero-meta">
+          <span class="hm">📊 7 basamak</span>
+          <span class="hm">🎂 0–9 yaş</span>
+          <span class="hm">⚠ 1 darboğaz</span>
+          <span class="hm">🎯 Profil alanı · gözlem</span>
+        </div>
+        <div class="hero-cta">
+          <a class="btn btn-w" href="calisma-yapraklari.html">✏️ Çalışma yaprakları</a>
+          <a class="btn btn-w" href="calisma-yapraklari-dokunsay.html">🧩 DokunSay materyalli yapraklar</a>
+          <a class="btn btn-o" href="etkinlik-kartlari.pdf" target="_blank" rel="noopener">⬇ Etkinlik kartları (PDF)</a>
+          <button class="btn btn-o" id="printAll" type="button">🖨️ Yazdır</button>
+          <a class="btn btn-o" href="/yorunge/">← Tüm yörüngeler</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main class="wrap">
+  <div class="layout">
+    <aside class="side">
+    <div class="side-in">
+      <div class="side-head">Düzeyler <span>7</span></div>
+      <ol class="side-list"><li><a href="#lv-0" data-i="0"><span class="s-num" style="--c:#7c3aed">1</span><span class="s-txt"><b>Sığar mı Diye Deneyen: Temeller</b><small>0–2 yaş</small></span></a></li><li><a href="#lv-1" data-i="1"><span class="s-num" style="--c:#7c3aed">2</span><span class="s-txt"><b>Deneye Deneye Yerleştiren</b><small>1–3 yaş</small></span></a></li><li><a href="#lv-2" data-i="2"><span class="s-num" style="--c:#7c3aed">3</span><span class="s-txt"><b>Basit Kaydırma-Döndürme Yapan</b><small>3–5 yaş · ⚠ darboğaz</small></span></a></li><li><a href="#lv-3" data-i="3"><span class="s-num" style="--c:#7c3aed">4</span><span class="s-txt"><b>Doğru Hareketi Seçen (yönü şaşabilir)</b><small>5–6 yaş</small></span></a></li><li><a href="#lv-4" data-i="4"><span class="s-num" style="--c:#7c3aed">5</span><span class="s-txt"><b>Zihninde Canlandırıp Hareket Ettiren</b><small>6–7 yaş</small></span></a></li><li><a href="#lv-5" data-i="5"><span class="s-num" style="--c:#7c3aed">6</span><span class="s-txt"><b>Çapraz Eksende de Hareket Ettiren</b><small>7–8 yaş</small></span></a></li><li><a href="#lv-6" data-i="6"><span class="s-num" style="--c:#7c3aed">7</span><span class="s-txt"><b>Tamamen Zihinden Hareket Ettiren</b><small>8–9 yaş</small></span></a></li></ol>
+    </div>
+  </aside>
+    <div class="levels">
+      
+  <article class="level" id="lv-0">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#7c3aed">1</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#7c3aed">0–2 yaş</span>
+          
+        </div>
+        <h3>Sığar mı Diye Deneyen: Temeller</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Nesnelerin boyut ve biçimini, onları hareket hâlinde gözleyerek keşfeder; bir boşluğa neyin sığacağını deneme-yanılma ile bulur, giderek sığacak olanı önceden kestirmeye başlar.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Bebek, elindeki halkayı çubuğa geçirmek ya da bir kapağı kutuya oturtmak için kendiliğinden bileğini çevirir, parçayı sağa sola kaydırır. Henüz &quot;döndürdüm&quot; diyemez; eli, gözüne uyacak yolu deneyerek bulur. Bir blok deliğe uymayınca onu çevirip yeniden dener.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, uzamsal dönüşümün en erken, dile dökülmemiş tohumudur: çocuk nesnelerin döndürülünce, kaydırılınca başka türlü oturduğunu eliyle keşfeder. Amaç &quot;döndürme&quot; öğretmek değil; çevirip-deneme fırsatını bolca sunarak el-göz eşgüdümünü ve &quot;parçalar hareket eder&quot; sezgisini beslemektir. Sonraki tüm uzamsal akıl yürütme bu bedensel keşfe yaslanır — uzamsal beceri ileride geometri ve STEM başarısının güçlü bir yordayıcısıdır.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>büyük delikli şekil-sokmalı oyuncak (daire, kare blok)</li><li>halka takılan bir çubuk ya da iri yapboz parçaları</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Çocuğun önüne tek bir iri blok ve uyduğu deliği koyun, birlikte bakın.</li><li>Blok uymayınca acele etmeyin: &quot;hadi başka türlü deneyelim&quot; deyip çevirmesini bekleyin.</li><li>Kendiliğinden çevirip kaydırarak denemesini gözleyin; oturunca coşkuyla onaylayın.</li><li>Aynı oyunu farklı şekillerle (yuvarlak kolay, üçgen zor) günün farklı anlarında yineleyin.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Bir parçayı yerine oturtmak için kendiliğinden çevirir/kaydırırsa (deneme-yanılmayla da olsa) ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Yalnız yuvarlak/silindir gibi her yönü uyan parçalarla başlayın — çevirme zorunlu olmasın.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Tek bir yöne oturan şekiller (üçgen, yarım ay) verip çevirme gereğini artırın.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey için ADIM etkinliği"><b>ADIM</b><span>İlgili düzey için ADIM etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#7c3aed">🔄</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="0" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-1">Sıradaki düzey · <b>Deneye Deneye Yerleştiren</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-1">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#7c3aed">2</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#7c3aed">1–3 yaş</span>
+          
+        </div>
+        <h3>Deneye Deneye Yerleştiren</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Şekilleri bir yere, fiziksel deneme-yanılma yoluyla taşıyıp yerleştirebilir.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk bir yapboz parçasını boşluğa sokarken parçayı eliyle kaydırır (öteler), bazen ters çevirir (yansıtma), bazen döndürür — hepsini fiziksel deneme-yanılmayla. &quot;Olmadı, şöyle çevireyim&quot; der gibi parçayı elinde evirip çevirir; doğru yönü gözüyle değil, eliyle bulur.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Burada üç temel dönüşüm — kaydırma (öteleme), yansıtma (ayna/ters çevirme) ve döndürme — ilk kez SOMUT olarak, elle yapılır. Çocuk henüz sonucu zihninde göremez; bu yüzden bolca fiziksel deneme normaldir ve teşvik edilmelidir. Parçayı elinde çevirmesine izin verin, &quot;kaydır&quot;, &quot;çevir&quot;, &quot;ters çevir&quot; sözcüklerini onun hareketine eşlik ederek söyleyin ki eylem bir ada kavuşsun. Acele edip parçayı siz yerleştirmeyin — keşif elin işidir.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay Geo döndürülebilir parçaları ya da iri ahşap yapboz</li><li>2–4 boşluklu basit bir çerçeve/tahta</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Bir parçayı ve uyduğu boşluğu gösterin: &quot;bunu buraya yerleştirebilir misin?&quot;</li><li>Parçayı elinde çevirip kaydırarak denemesine izin verin; siz yerine koymayın.</li><li>Hareketini adlandırın: &quot;kaydırdın… çevirdin… işte ters çevirince oldu!&quot;.</li><li>Kaydırma (sadece itme), döndürme (çevirme) ve yansıtma (ters) gereken ayrı parçalarla yineleyin.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Bir parçayı boşluğa sokmak için kaydırma/yansıtma/döndürmeyi elle (deneme-yanılmayla) yaparsa ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Yalnız kaydırma (öteleme) gereken, doğru yönde verilmiş parçalarla başlayın.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Hem döndürme hem ters çevirme gereken (asimetrik, aynalı) parçalar verin.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey için ADIM etkinliği"><b>ADIM</b><span>İlgili düzey için ADIM etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#7c3aed">🔄</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="1" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-2">Sıradaki düzey · <b>Basit Kaydırma-Döndürme Yapan</b> →</a>
+    </div>
+  </article>
+
+  <article class="level bn" id="lv-2">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#7c3aed">3</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#7c3aed">3–5 yaş</span>
+          <span class="bn-pill">⚠ Darboğaz · kritik geçiş</span>
+        </div>
+        <h3>Basit Kaydırma-Döndürme Yapan</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Kolay görevlerde nesneleri doğru biçimde kaydırır ve döndürür; hareketi başlatan erken bir sezgiyle yola çıkar, hareket sırasında gerçek zamanlı ayarlama yapar.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk kolay bir boşluğa parçayı &quot;çevirip yerleştir&quot; dendiğinde, az sayıda denemeyle doğru yapar: bir kez kaydırır ve gerekirse bir miktar döndürür. Henüz oturmamışsa parçayı rastgele evirip çevirir, doğru açıyı bulması uzun sürer ya da yansıtma (ters çevirme) gerektiğinde tıkanıp kalır.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Basit kaydırma-döndürme bu yörüngenin ilk gerçek DARBOĞAZIDIR: çocuk artık her parçayı tümüyle deneme-yanılmaya bırakmadan, basit bir kaydırma veya küçük bir döndürmeyi amaçlı yapabilmelidir. Burada uzun süreli takılma uzamsal gelişimde erken bir uyarı işaretidir — uzamsal beceri matematik ve geometri başarısının güçlü bir yordayıcısı olduğundan ihmal edilmemelidir. Çocuğa &quot;önce nereye bakıyor, sonra ne kadar çevirmeli?&quot; diye düşündürün; parçanın bir kenarını işaret edip &quot;bu kenar nereye gelmeli?&quot; diyerek tek bir hareketi hedefletin. Kaydırma ile döndürmeyi ayrı ayrı çalıştırın ki ikisi karışmasın.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay Geo döndürülebilir parçaları</li><li>tek bir kolay boşluk (yalnız hafif kaydırma ya da küçük döndürme gerektiren)</li><li>parçanın yönünü belli eden bir işaret/nokta (üst kenara)</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Parçayı boşluğa neredeyse hizalı verin: &quot;sadece kaydır, yerine otursun.&quot;</li><li>Sonra hafifçe yatık verin: &quot;şimdi biraz çevir, üstteki nokta yukarı baksın.&quot;</li><li>Çocuk rastgele çeviriyorsa durdurup &quot;hangi kenar nereye gelmeli?&quot; diye tek hedef gösterin.</li><li>Doğru oturunca &quot;bir kaydırma, bir çevirme — oldu!&quot; diyerek hareketi sözle özetleyin.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Kolay bir boşluğa parçayı basit bir kaydırma veya döndürmeyle, amaçlı (uzun deneme-yanılma olmadan) yerleştirirse ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Yalnız kaydırma gereken boşluklarla çalışın; parçayı doğru açıda verin.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Daha büyük döndürme (90°) ya da hafif ters çevirme gereken boşluklar ekleyin.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="Parçayı kaydırıp döndürerek boşluğa yerleştirme etkinliği"><b>ADIM</b><span>Parçayı kaydırıp döndürerek boşluğa yerleştirme etkinliği</span></span><a class="chip chip-ds" href="/Dokunsay-geo/" title="Döndürülebilir parçaları elle çevirip yerleştirme"><b>DokunSay Geo</b><span>Döndürülebilir parçaları elle çevirip yerleştirme</span></a></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#7c3aed">🔄</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="2" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-3">Sıradaki düzey · <b>Doğru Hareketi Seçen (yönü şaşabilir)</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-3">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#7c3aed">4</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#7c3aed">5–6 yaş</span>
+          
+        </div>
+        <h3>Doğru Hareketi Seçen (yönü şaşabilir)</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Gelişen sezgisiyle doğru hareket türünü kullanır; ancak yön ya da miktar her zaman doğru değildir — örneğin çevirme gerektiğini bilir ama ters yöne çevirebilir.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk yansıtma (ters/ayna) gerektiren bir yerleştirmeyi başlangıç düzeyinde başarır: parçayı çevirip ters yüz ederek boşluğa oturtur, ama hâlâ bir miktar deneme-yanılmaya başvurur. Üç dönüşümü de (kaydırma, yansıtma, döndürme) yapabilir; yalnız hangisinin gerektiğini bazen elinde deneyerek anlar.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu düzeyde üç dönüşüm BİRLİKTE, ama henüz başlangıç (deneme-yanılma destekli) düzeyinde elde edilir. En zorlanılan dönüşüm genellikle yansıtmadır (ayna görüntüsü): döndürmekle düzelmeyen, ancak ters çevirince oturan parçalar çocuğu zorlar. &quot;Bu parça döndürünce mi, yoksa ters çevirince mi uyar?&quot; diye iki seçeneği ayırt ettirin. Burada somuttan zihinsele geçişin ilk kıvılcımı belirir: yerleştirmeden önce &quot;sence şöyle çevirsek olur mu?&quot; diye kısa bir tahmin isteyin, sonra elle sınatın.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay Geo parçaları (aynalı/asimetrik çiftler dâhil)</li><li>yansıtma gerektiren boşluklu çerçeve</li><li>ayna ya da iki özdeş-ama-ters parça</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Yalnız ters çevirince (yansıtma) uyan bir boşluk verin: &quot;bunu nasıl uydururuz?&quot;</li><li>Çocuk önce döndürmeyi denesin; olmayınca &quot;ya ters çevirsek?&quot; diye yansıtmaya yöneltin.</li><li>Üç hareketi adlandırarak ayırt ettirin: kaydır (yerini değiştir), döndür (çevir), yansıt (ters yüz et).</li><li>Yerleştirmeden önce &quot;sence olur mu?&quot; diye kısa bir tahmin alın, sonra elle deneyin.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Kaydırma, yansıtma ve döndürmenin üçünü de (yansıtma dâhil) başlangıç düzeyinde, deneme-yanılmayla doğru uygularsa ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Yansıtma yerine yalnız kaydırma+döndürme gereken boşluklarla başlayın.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Döndürme ve yansıtmanın birlikte gerektiği parçalar verin; tahmini elle sınamadan önce sözle savundurun.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey için ADIM etkinliği"><b>ADIM</b><span>İlgili düzey için ADIM etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#7c3aed">🔄</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="3" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-4">Sıradaki düzey · <b>Zihninde Canlandırıp Hareket Ettiren</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-4">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#7c3aed">5</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#7c3aed">6–7 yaş</span>
+          
+        </div>
+        <h3>Zihninde Canlandırıp Hareket Ettiren</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Somut materyalle kaydırma ve çevirmeleri (çoğunlukla yatay/dikey) zihinsel imgelerin rehberliğinde yapar: 45°, 90° ve 180° döndürmeler; dikey/yatay doğru üzerinden çevirmeler. Hareketi ve sonucunu zihninde canlandırır.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk 90°/180° döndürme ya da yansıtma gerektiren bir yerleştirmeyi, parçayı eline almadan önce zihninde &quot;şöyle oturur&quot; diye görerek güvenle yapar. Deneme-yanılma neredeyse kaybolur: doğru dönüşümü bir bakışta seçer, parçayı tek hamlede yerine koyar.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, somuttan ZİHİNSEL imgeye geçişin sağlamlaştığı düzeydir: çocuk artık üç dönüşümü zihninde canlandırıp güvenle uygular, elle yoklamaya gerek kalmadan doğru açı/yönü öngörür. Asıl kazanım hız değil, dönüşümü önceden &quot;görmek&quot;tir. &quot;Bu parçayı çeyrek tur çevirsen neye benzer?&quot; gibi sorularla zihinsel imgeyi sözle yoklayın; çocuk yanıtını parçayı çevirmeden versin, sonra kendi kendine doğrulasın. Bu zihinsel dönüştürme becerisi, geometri ve uzamsal akıl yürütmenin — dolayısıyla ileri matematik başarısının — çekirdeğidir.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay Geo parçaları</li><li>90° ve 180° döndürme/yansıtma gerektiren boşluklu kartlar</li><li>kapatma kartı (parçayı kısa süre gizlemek için)</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Bir boşluk gösterip parçayı yana koyun: &quot;eline almadan, nasıl çevirirsen uyar?&quot;</li><li>Çocuk dönüşümü sözle/elle havada göstersin, sonra parçayı tek hamlede yerleştirsin.</li><li>&quot;Bunu yarım tur (180°) çevirsen neye benzer?&quot; diye zihinsel imgeyi sınayın.</li><li>Aynı parçayı farklı yönlerde isteyerek (çeyrek tur, ters) güvenli seçimi pekiştirin.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> 90°/180° döndürme veya yansıtma gereken yerleştirmeleri, zihinsel imgeyle güvenle (deneme-yanılmasız) yaparsa ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Yalnız 90° döndürmeyle sınırlı tutun; parçayı gizlemeden, açıkça gösterin.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>180° + yansıtmanın birlikte gerektiği boşluklar; parçayı kapatıp &quot;görmeden&quot; tahmin ettirin.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey için ADIM etkinliği"><b>ADIM</b><span>İlgili düzey için ADIM etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#7c3aed">🔄</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="4" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-5">Sıradaki düzey · <b>Çapraz Eksende de Hareket Ettiren</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-5">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#7c3aed">6</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#7c3aed">7–8 yaş</span>
+          
+        </div>
+        <h3>Çapraz Eksende de Hareket Ettiren</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Önceki tüm hareketlere ek olarak çapraz (diyagonal) kaydırma ve çevirmeleri de yapar — örneğin 45° eğik bir doğru üzerinden çevirme.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk çapraz (45°) bir kaydırma ya da yansıtma gerektiren görevi doğru yapar: parçayı köşegen yönünde öteler ya da eğik bir eksene göre çevirir. Artık yalnız dik/yatay değil, eğik yönlerde de dönüşümü güvenle uygular.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Çapraz hareket, dönüşümlerin yatay-dikey eksenden çıkıp eğik (45°) yönlere genişlemesidir: çocuk artık ara açıları ve köşegen ötelemeleri de zihninde canlandırabilir. Bu, koordinat düşüncesinin ve geometrik dönüşümlerin (öteleme/yansıma/dönme) daha soyut hâline köprüdür. &quot;Bu sefer düz değil, köşeye doğru&quot; diyerek çapraz yönü vurgulayın; eğik bir eksen (köşegen çizgi) çizip parçayı ona göre yansıtmasını isteyin. Çocuğun çapraz dönüşümü önce zihinde kestirip sonra uygulaması beklenir.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay Geo parçaları</li><li>köşegen (45°) yerleşim gerektiren boşluklu kartlar</li><li>eğik bir yansıma ekseni (çapraz çizgi/şerit)</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Bir parçayı köşegen yönünde kaydırması gereken boşluk verin: &quot;köşeye doğru kaydır.&quot;</li><li>Çapraz bir eksen çizip &quot;bu eğik çizgiye göre ters çevir&quot; diyerek 45° yansıtma isteyin.</li><li>Çocuk yönü önce zihninde kestirsin (&quot;sence nereye gider?&quot;), sonra uygulasın.</li><li>Dik/yatay ve çapraz görevleri karıştırarak &quot;bu düz mü, çapraz mı?&quot; ayrımını pekiştirin.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Çapraz (45°) kaydırma veya yansıtmayı doğru, amaçlı olarak (eğik yönde) yaparsa ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Yalnız çapraz kaydırma (öteleme) ile başlayın; eksen çizgisini belirgin tutun.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Çapraz yansıtma + döndürmeyi birleştirin ya da ekseni kaldırıp yalnız zihinden çözdürün.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey için ADIM etkinliği"><b>ADIM</b><span>İlgili düzey için ADIM etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#7c3aed">🔄</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="5" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-6">Sıradaki düzey · <b>Tamamen Zihinden Hareket Ettiren</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-6">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#7c3aed">7</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#7c3aed">8–9 yaş</span>
+          
+        </div>
+        <h3>Tamamen Zihinden Hareket Ettiren</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Şekil hareketlerinin sonucunu yalnızca zihinsel imgeleri kullanarak yordar — herhangi bir yön ve miktar için; fiziksel denemeye gereksinim duymaz.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Çocuğa &quot;bu parçayı çevirsen neye benzer?&quot; diye sorduğunuzda, parçayı eline hiç almadan sonucu zihninde döndürüp doğru şekli söyler ya da seçenekler arasından gösterir: &quot;çeyrek tur çevirirsem L gibi olur.&quot; Dönüşümü tümüyle zihinde, gözle değil imgelemle çözer.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, uzamsal görselleştirmenin doruğudur: dönüşümün sonucunu fiziksel hareket olmadan, yalnızca ZİHİNSEL imgelemle öngörme. Çocuk parçayı zihninde döndürür/yansıtır ve sonucu kestirir — bu zihinsel döndürme becerisi, geometri, ölçme ve ileri matematik ile bütün STEM alanlarındaki başarının en güçlü uzamsal yordayıcılarından biridir. &quot;Çevirmeden söyle, sonra kontrol edelim&quot; diyerek önce tahmin, sonra elle doğrulama döngüsü kurun; çocuğun yanıtını gerekçelendirmesini (&quot;çünkü uzun kenar yana gelir&quot;) isteyin. Tahmin tutmasa da süreç değerlidir — zihinsel imge böyle güçlenir.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay Geo parçaları (kontrol için)</li><li>döndürme/yansıtma sonucu için seçenekli kartlar (&quot;hangisine benzer?&quot;)</li><li>kapatma kartı</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Bir parça gösterip kapatın: &quot;bunu çeyrek tur çevirsen, şu üç şekilden hangisine benzer?&quot;</li><li>Çocuk parçaya dokunmadan zihinde çevirip yanıtlasın ve gerekçelendirsin.</li><li>Sonra Geo parçasıyla gerçekten çevirip tahminini birlikte doğrulayın.</li><li>Döndürme, yansıtma ve çapraz dönüşümleri sırayla &quot;önce zihinde, sonra elle&quot; çalıştırın.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Bir dönüşümün (döndürme/yansıtma) sonucunu parçaya dokunmadan, yalnızca zihninde doğru öngörürse ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Yalnız 90° döndürme sorun; iki belirgin seçenek arasından gösterterek başlayın.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Birden çok dönüşümü zincirleyin (&quot;çevir, sonra ters çevir — neye benzer?&quot;) ve elle doğrulamayı kaldırın.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey için ADIM etkinliği"><b>ADIM</b><span>İlgili düzey için ADIM etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#7c3aed">🔄</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="6" type="button">🖨️ Bu kartı yazdır</button>
+      <div class="nextlv done">Bu, yörüngenin son düzeyi 🎒</div>
+    </div>
+  </article>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <b style="color:#d8e6d8">Her Çocuk Matematik Öğrenebilir</b> · DokunSay — Uzamsal Görselleştirme ve İmgelem yörüngesi ·
+    <a href="/yorunge/">Tüm yörüngeler</a> · <a href="/">Araçlar</a>
+    <p class="foot-note">Düzey adları ve sıralaması Clements &amp; Sarama öğrenme yörüngeleri ([LT]², learningtrajectories.org) çerçevesinden uyarlanmıştır. Yaş bantları olasılıksal alt-sınır niteliğinde illüstratiftir; tanı eşiği değildir. Çocuğu sınıfına göre değil, bulunduğu basamağa göre destekleyin.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // Scrollspy — kenar çubuğunda etkin düzeyi vurgula
+  var links = Array.prototype.slice.call(document.querySelectorAll('.side-list a'));
+  var byId = {}; links.forEach(function(a){ byId[a.getAttribute('href').slice(1)] = a; });
+  var spy = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(e.isIntersecting){
+        links.forEach(function(l){ l.classList.remove('act'); });
+        var a = byId[e.target.id]; if(a){ a.classList.add('act');
+          // kenar çubuğunu etkin öğeye kaydır
+          var sl = a.closest('.side-list'); if(sl){ var r=a.offsetTop - sl.offsetTop; if(r<sl.scrollTop||r>sl.scrollTop+sl.clientHeight-40) sl.scrollTop=r-12; }
+        }
+      }
+    });
+  }, { rootMargin:'-45% 0px -50% 0px', threshold:0 });
+  document.querySelectorAll('.level').forEach(function(l){ spy.observe(l); });
+
+  // Tek kart yazdır
+  function printOne(i){
+    var card = document.getElementById('lv-'+i); if(!card) return;
+    document.body.classList.add('printing-one'); card.classList.add('print-target');
+    window.print();
+  }
+  window.addEventListener('afterprint', function(){
+    document.body.classList.remove('printing-one');
+    var t=document.querySelector('.print-target'); if(t) t.classList.remove('print-target');
+  });
+  document.querySelectorAll('.printcard').forEach(function(b){
+    b.addEventListener('click', function(){ printOne(b.getAttribute('data-lv')); });
+  });
+  var pa=document.getElementById('printAll'); if(pa) pa.addEventListener('click', function(){ window.print(); });
+})();
+</script>
+</body>
+</html>

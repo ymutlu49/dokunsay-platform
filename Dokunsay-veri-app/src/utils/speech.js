@@ -1,23 +1,9 @@
 // ═══════════════════════════════════════════════════════════════════
-// WEB SPEECH API — gerçek TTS
+// SESLİ OKUMA — platform ortak TTS'ine köprü
+//
+// Yerel SpeechSynthesisUtterance kopyası kaldırıldı (2026-07-19 platform denetimi).
+// Üç kusuru vardı: (1) A11y panelindeki ses aç/kapa anahtarını YOK SAYIYORDU —
+// sesi kapatmak bu uygulamada işe yaramıyordu; (2) Kurmancî'yi Türkçe sesle okuyordu
+// (artık gerçek ku sesi yoksa sessiz kalınır); (3) hız 0.92 idi, standart 0.85.
 // ═══════════════════════════════════════════════════════════════════
-export function speak(text, lang) {
-  if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
-  try {
-    window.speechSynthesis.cancel();
-    const utt = new SpeechSynthesisUtterance(text);
-    utt.lang = lang === "en" ? "en-US" : lang === "ku" ? "tr-TR" : "tr-TR";
-    utt.rate = 0.92;
-    utt.pitch = 1.0;
-    utt.volume = 1.0;
-    window.speechSynthesis.speak(utt);
-  } catch (e) {
-    // sessizce geç
-  }
-}
-
-export function stopSpeaking() {
-  if (typeof window !== "undefined" && "speechSynthesis" in window) {
-    try { window.speechSynthesis.cancel(); } catch (e) {}
-  }
-}
+export { speak, cancel as stopSpeaking, canSpeak } from '@shared/tts.js';

@@ -11,7 +11,40 @@
 import { useEffect } from 'react';
 import './LangSwitcher.css';
 
-const DEFAULT_LANGS = ['tr', 'ku', 'en', 'ar', 'fa'];
+/**
+ * SUNULAN DİLLER — 2026-07-19 kararı (kullanıcı).
+ *
+ * AR ve FA seçiciden GİZLENDİ. İçerik ve çeviri dosyaları SİLİNMEDİ; yalnızca
+ * kullanıcıya sunulmuyor. Gerekçe: platform genelinde Arapça/Farsça İÇERİK
+ * doğrulanamadı — bir kısmı hiç yoktu (çocuk Arapça arayüzde Türkçe görev
+ * görüyordu), bir kısmı ise uzman denetiminden geçmemiş çeviriydi. Matematik
+ * öğretiminde terim hassasiyeti kritiktir (pay/payda, basamak değeri, eş parça);
+ * YANLIŞ çeviri SESSİZCE yanlıştır, oysa eksik çeviri en azından bariz bozuktur.
+ * Çocuğa kendi dilini vaat edip yanlış terim öğretmektense, dili hiç sunmamak
+ * daha dürüst.
+ *
+ * §1.7'nin şartı (en az 3 dil) tr/ku/en ile zaten sağlanıyor.
+ *
+ * GERİ AÇMAK İÇİN: uzman denetimi tamamlanınca bu diziye 'ar' ve/veya 'fa' ekle —
+ * etiketler, ARIA adları ve RTL desteği aşağıda HAZIR bekliyor, başka değişiklik
+ * gerekmez.
+ */
+const DEFAULT_LANGS = ['tr', 'ku', 'en'];
+
+/** Kod tarafında tanınan TÜM diller (gizlenenler dahil) — normalizeLang için. */
+const KNOWN_LANGS = ['tr', 'ku', 'en', 'ar', 'fa'];
+
+/**
+ * Kayıtlı/gelen dil kodunu SUNULAN dillere indirger.
+ * Daha önce AR/FA seçmiş bir kullanıcının localStorage'ı hâlâ 'ar' diyor olabilir;
+ * bu durumda uygulama gizlenmiş bir dilde açılır ve seçicide hiçbir düğme aktif
+ * görünmez. Bu yardımcı onu güvenli varsayılana çeker.
+ */
+export function normalizeLang(lang, allowed = DEFAULT_LANGS) {
+  return allowed.includes(lang) ? lang : allowed[0];
+}
+
+export { KNOWN_LANGS, DEFAULT_LANGS as VISIBLE_LANGS };
 
 const DEFAULT_LABELS = {
   tr: 'TR',

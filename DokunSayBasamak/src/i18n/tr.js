@@ -45,4 +45,5 @@ export const tr = {
   autoGroup: "10+ grupla!",
   readNum: readTurkish,
   ttsLang: "tr-TR",
+  activityStarted: "Etkinlik başlatıldı",
 };

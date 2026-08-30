@@ -17,6 +17,7 @@
     "dev:tam": "cd DokunSayTam && npm run dev",
     "dev:geo": "cd Dokunsay-geo && npm run dev",
     "dev:veri": "cd Dokunsay-veri-app && npm run dev",
+    "dev:zihinden": "cd ZihindenAritmetik && npm run dev",
     "build:all": "node ./_platform/scripts/run-all.js build",
     "build:site": "node ./_platform/scripts/build-site.js",
     "preview:site": "npx serve dist-site -l 8080",

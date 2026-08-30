@@ -26,7 +26,7 @@ const FeaturesTab = ({
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 fontSize: 8, fontWeight: v === 0 ? 900 : 600,
                 color: v > 0 ? THEME.posB : v < 0 ? THEME.negB : THEME.accent,
-                background: v === elevator ? 'rgba(245,158,11,.2)' : 'transparent',
+                background: v === elevator ? 'rgba(139,92,246,.2)' : 'transparent',
                 borderRadius: 4, transition: 'background .3s',
               }}>{v === 0 ? 'Giriş' : v > 0 ? '+' + v : v}</div>
             );
@@ -34,7 +34,7 @@ const FeaturesTab = ({
           <div style={{
             position: 'absolute', top: 4 + (5 - elevator) * 16, right: -4,
             width: 8, height: 16, background: THEME.accent, borderRadius: 4,
-            transition: 'top .4s ease', boxShadow: '0 2px 8px rgba(245,158,11,.4)',
+            transition: 'top .4s ease', boxShadow: '0 2px 8px rgba(139,92,246,.4)',
           }} />
         </div>
         <div style={{ flex: 1 }}>

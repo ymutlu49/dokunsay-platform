@@ -150,4 +150,4 @@ MIT — her araç kendi `LICENSE` dosyasına sahiptir.
 
 **Prof. Dr. Yılmaz Mutlu**
 DokunSay Matematik Öğretim Araçları Platformu
-Jimaro / Diskalkuli Platformu — 2024-2026
+Jimaro / Her Çocuk Matematik Öğrenebilir — 2024-2026

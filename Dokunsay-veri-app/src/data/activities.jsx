@@ -124,7 +124,7 @@ export const MODULE_INTROS = {
     title: { tr: "Merkezi Eğilim Laboratuvarı", ku: "Laboratuara Meylê Navendî", en: "Central Tendency Lab" },
     body: {
       tr: "Ortalama (mean), medyan (median), mod (mode) — üç farklı 'merkez'. Veri ekle/çıkar, üç değerin anlık değişimini gör. Aykırı değer eklediğinde ne oluyor?",
-      ku: "Navînî, medyan, mod — sêyan bidîtin.",
+      ku: "Navgîn, medyan, mod — her sêyan bibîne.",
       en: "Mean, median, mode — three 'centers'. Add/remove data, watch them shift. What happens with an outlier?",
     },
   },
@@ -160,7 +160,7 @@ export const MODULE_INTROS = {
 export const READ_ACTIVITIES = [
   // ────── L0 — VERİYİ OKU (direkt okuma) ──────
   {
-    id: "r_l0_1", level: 0, gaise: "A", graphType: "bar",
+    id: "r_l0_1", level: 0, diff: 2, gaise: "A", graphType: "bar",
     data: {
       title: { tr: "Sınıfımızın sevdiği meyveler", ku: "Fêkiyên dibistana me hez dikin", en: "Favorite fruits in our class" },
       categories: { tr: ["Elma", "Armut", "Çilek", "Muz"], ku: ["Sêv", "Hirmî", "Tût", "Mûz"], en: ["Apple", "Pear", "Strawberry", "Banana"] },
@@ -174,7 +174,7 @@ export const READ_ACTIVITIES = [
     hint: { tr: "Çilek çubuğuna bak ve en üstteki sayıyı oku.", ku: "Li darikê tût binêre û jimara jorîn bixwîne.", en: "Look at the strawberry bar and read the number on top." },
   },
   {
-    id: "r_l0_2", level: 0, gaise: "A", graphType: "bar",
+    id: "r_l0_2", level: 0, diff: 2, gaise: "A", graphType: "bar",
     data: {
       title: { tr: "Bir haftada okunan kitap sayısı", ku: "Hejmara pirtûkên di hefteyekê de tên xwendin", en: "Books read in one week" },
       categories: { tr: ["Pzt", "Sal", "Çar", "Per", "Cum"], ku: ["Dş", "Sê", "Ça", "Pê", "În"], en: ["Mon", "Tue", "Wed", "Thu", "Fri"] },
@@ -188,7 +188,7 @@ export const READ_ACTIVITIES = [
     hint: { tr: "En uzun çubuğu bul. Sonra altındaki gün adını oku.", ku: "Darika herî dirêj bibîne, paşê navê rojê bixwîne.", en: "Find the tallest bar, then read the day name below it." },
   },
   {
-    id: "r_l0_3", level: 0, gaise: "A", graphType: "picto",
+    id: "r_l0_3", level: 0, diff: 2, gaise: "A", graphType: "picto",
     data: {
       title: { tr: "Bahçedeki çiçekler", ku: "Gulên bexçê", en: "Flowers in the garden" },
       categories: { tr: ["Gül", "Papatya", "Lale"], ku: ["Gul", "Beybûn", "Lale"], en: ["Rose", "Daisy", "Tulip"] },
@@ -203,7 +203,7 @@ export const READ_ACTIVITIES = [
     hint: { tr: "Papatya satırındaki yıldızları say, sonra 5 ile çarp.", ku: "Stêrên di rêza beybûnan de bijmêre, paşê li 5 bizêde.", en: "Count stars in daisy row, then multiply by 5." },
   },
   {
-    id: "r_l0_4", level: 0, gaise: "A", graphType: "table",
+    id: "r_l0_4", level: 0, diff: 2, gaise: "A", graphType: "table",
     data: {
       title: { tr: "Farklı boylarda öğrenci sayısı", ku: "Hejmara xwendekaran li gorî bejnê", en: "Students by height" },
       headers: { tr: ["Boy (cm)", "Kaç kişi?"], ku: ["Bejn (cm)", "Çend kes?"], en: ["Height (cm)", "How many?"] },
@@ -222,7 +222,7 @@ export const READ_ACTIVITIES = [
 
   // ────── L1 — VERİLER ARASI OKU (karşılaştırma, hesap) ──────
   {
-    id: "r_l1_1", level: 1, gaise: "A", graphType: "bar",
+    id: "r_l1_1", level: 1, diff: 3, gaise: "A", graphType: "bar",
     data: {
       title: { tr: "Hayvanat bahçesindeki hayvanlar", ku: "Heywanên bexçê heywanan", en: "Zoo animals" },
       categories: { tr: ["Aslan", "Fil", "Zürafa", "Maymun"], ku: ["Şêr", "Fîl", "Zûrafe", "Meymûn"], en: ["Lion", "Elephant", "Giraffe", "Monkey"] },
@@ -233,10 +233,13 @@ export const READ_ACTIVITIES = [
     opts: { tr: ["4", "6", "8", "12"], ku: ["4", "6", "8", "12"], en: ["4", "6", "8", "12"] },
     correct: 1,
     hint: { tr: "Maymun sayısından aslan sayısını çıkar: 12 − 6.", ku: "Jimara meymûnan ji şêran bikêne: 12 − 6.", en: "Subtract lions from monkeys: 12 − 6." },
-    misconception: "watson_mean",
+    // Yanlış etiket düzeltildi (2026-07-19): bu bir çıkarma/karşılaştırma sorusu;
+    // "watson_mean" (ortalama-mod karışması) buraya uymuyordu. Uzunluk-oran
+    // karışması ("12 çubuğu 6'nın iki katı → 2 kat fazla mı, 6 fazla mı?") doğru olan.
+    misconception: "cleveland_height_ratio",
   },
   {
-    id: "r_l1_2", level: 1, gaise: "B", graphType: "bar",
+    id: "r_l1_2", level: 1, diff: 3, gaise: "B", graphType: "bar",
     data: {
       title: { tr: "Dört ay boyunca satılan dondurma", ku: "Sê mehan dondurmeyên hatin firotin", en: "Ice cream sold over 4 months" },
       categories: { tr: ["Haz", "Tem", "Ağu", "Eyl"], ku: ["Hez", "Tîr", "Tebax", "Îlon"], en: ["Jun", "Jul", "Aug", "Sep"] },
@@ -249,7 +252,7 @@ export const READ_ACTIVITIES = [
     hint: { tr: "Tem: 80, Haz: 40. Oran: 80 ÷ 40 = 2.", ku: "Tîr: 80, Hez: 40. Rêje: 80 ÷ 40 = 2.", en: "Jul: 80, Jun: 40. Ratio: 80 ÷ 40 = 2." },
   },
   {
-    id: "r_l1_3", level: 1, gaise: "B", graphType: "bar",
+    id: "r_l1_3", level: 1, diff: 3, gaise: "B", graphType: "bar",
     data: {
       title: { tr: "Öğrencilerin bir haftada harcadıkları", ku: "Mesrefên hefteyî yên xwendekaran", en: "Weekly spending of students" },
       categories: { tr: ["Ayşe", "Burak", "Ceren", "Deniz"], ku: ["Ayşe", "Burak", "Ceren", "Deniz"], en: ["Ayse", "Burak", "Ceren", "Deniz"] },
@@ -263,7 +266,7 @@ export const READ_ACTIVITIES = [
     hint: { tr: "Hepsini topla: 25 + 40 + 15 + 30 = ?", ku: "Hemûyan kom bike: 25 + 40 + 15 + 30 = ?", en: "Add them all: 25 + 40 + 15 + 30 = ?" },
   },
   {
-    id: "r_l1_4", level: 1, gaise: "B", graphType: "bar",
+    id: "r_l1_4", level: 1, diff: 3, gaise: "B", graphType: "bar",
     data: {
       title: { tr: "Haftalık sıcaklık (°C)", ku: "Germahiya heftîyane (°C)", en: "Weekly temperature (°C)" },
       categories: { tr: ["Pzt", "Sal", "Çar", "Per", "Cum"], ku: ["Dş", "Sê", "Ça", "Pê", "În"], en: ["Mon", "Tue", "Wed", "Thu", "Fri"] },
@@ -277,7 +280,7 @@ export const READ_ACTIVITIES = [
 
   // ────── L2 — VERİ ÖTESİNİ OKU (tahmin, yorum) ──────
   {
-    id: "r_l2_1", level: 2, gaise: "B", graphType: "bar",
+    id: "r_l2_1", level: 2, diff: 3, gaise: "B", graphType: "bar",
     data: {
       title: { tr: "Her yıl satılan telefon (bin adet)", ku: "Her sal telefonên tên firotin (hezar heb)", en: "Phones sold per year (thousands)" },
       categories: { tr: ["2020", "2021", "2022", "2023", "2024"], ku: ["2020", "2021", "2022", "2023", "2024"], en: ["2020", "2021", "2022", "2023", "2024"] },
@@ -289,7 +292,7 @@ export const READ_ACTIVITIES = [
     hint: { tr: "Her yıl artış yaklaşık 15-17 bin. 85 + ~15 ≈ 100.", ku: "Her sal zêdebûn nêzî 15-17 hezar e. 85 + ~15 ≈ 100.", en: "Each year grows by ~15-17k. 85 + ~15 ≈ 100." },
   },
   {
-    id: "r_l2_2", level: 2, gaise: "B", graphType: "bar",
+    id: "r_l2_2", level: 2, diff: 3, gaise: "B", graphType: "bar",
     data: {
       title: { tr: "Sınıftaki 20 öğrencinin sevdiği spor", ku: "Sporên xwendekarên sinifê", en: "Sports liked by 20 students" },
       categories: { tr: ["Futbol", "Basketbol", "Voleybol", "Yüzme"], ku: ["Futbol", "Basketbol", "Voleybol", "Ajne"], en: ["Soccer", "Basketball", "Volleyball", "Swimming"] },
@@ -302,7 +305,7 @@ export const READ_ACTIVITIES = [
     misconception: "kahneman_small_sample",
   },
   {
-    id: "r_l2_3", level: 2, gaise: "B", graphType: "bar",
+    id: "r_l2_3", level: 2, diff: 3, gaise: "B", graphType: "bar",
     data: {
       title: { tr: "Bir torbadaki renkli bilyeler", ku: "Bilyên rengîn di tûrikekê de", en: "Colored marbles in a bag" },
       categories: { tr: ["Kırmızı", "Mavi", "Yeşil", "Sarı"], ku: ["Sor", "Şîn", "Kesk", "Zer"], en: ["Red", "Blue", "Green", "Yellow"] },
@@ -316,7 +319,7 @@ export const READ_ACTIVITIES = [
 
   // ────── L3 — VERİNİN ARKASINI OKU (eleştirel, yanıltma) ──────
   {
-    id: "r_l3_1", level: 3, gaise: "C", graphType: "bar",
+    id: "r_l3_1", level: 3, diff: 3, gaise: "C", graphType: "bar",
     truncated: true, // Kesik y-ekseni!
     data: {
       title: { tr: "Şirket X'in satışları — '%50 arttı!'", ku: "Firotina Pargîdaniya X — '%50 zêde bûye!'", en: "Company X sales — 'up 50%!'" },
@@ -330,7 +333,7 @@ export const READ_ACTIVITIES = [
     misconception: "huff_truncated_axis",
   },
   {
-    id: "r_l3_2", level: 3, gaise: "C", graphType: "bar",
+    id: "r_l3_2", level: 3, diff: 3, gaise: "C", graphType: "bar",
     data: {
       title: { tr: "'En popüler mobil uygulama' — bir haber sitesi anketi", ku: "'Sepana herî populer' — anketa malperekê ya haberan", en: "'Most popular app' — from a news site survey" },
       categories: { tr: ["A", "B", "C", "D"], ku: ["A", "B", "C", "D"], en: ["A", "B", "C", "D"] },
@@ -347,7 +350,7 @@ export const READ_ACTIVITIES = [
     misconception: "sample_bias",
   },
   {
-    id: "r_l3_3", level: 3, gaise: "C", graphType: "bar",
+    id: "r_l3_3", level: 3, diff: 3, gaise: "C", graphType: "bar",
     data: {
       title: { tr: "Okul A ve Okul B notları", ku: "Notên Dibistana A û Dibistana B", en: "School A vs B grades" },
       categories: { tr: ["Okul A", "Okul B"], ku: ["Dibistan A", "Dibistan B"], en: ["School A", "School B"] },
@@ -361,6 +364,188 @@ export const READ_ACTIVITIES = [
     },
     correct: 0,
     hint: { tr: "4 puan azdır. Örneklem büyüklüğü, konu, öğrenci profili gibi bağlamı bilmeden 'çok daha iyi' demek yanıltıcıdır.", ku: "Cudahiya 4 xalan kêm e. Bêyî zanebûna girîng, gotina 'pir çêtir' xapînok e.", en: "4 points is small. Without context (sample size, subject, demographics), 'much better' is misleading." },
+  },
+
+  // ────── diff 4 — BAĞIMSIZ (ön ipucu YOK, öğrenci kendi çözer) ──────
+  {
+    // Ağırlıklı ortalama: grup büyüklüğü yok sayma yanılgısı (Pollatsek ve ark. 1981).
+    // Basamak farkı ölçekten değil GÖREV BİÇİMİNDEN geliyor: iki grubu birleştirmek
+    // tek bir grafik değeri okumaktan farklı bir akıl yürütmedir.
+    id: "r_l2_4", level: 2, diff: 4, gaise: "B", graphType: "bar",
+    data: {
+      title: { tr: "İki şubenin deneme sınavı ortalaması", ku: "Navgîna ezmûna du şaxan", en: "Test average of two classes" },
+      categories: { tr: ["6-A (10 kişi)", "6-B (30 kişi)"], ku: ["6-A (10 kes)", "6-B (30 kes)"], en: ["6-A (10 students)", "6-B (30 students)"] },
+      values: [90, 50],
+      yLabel: { tr: "Ortalama puan", ku: "Puana navîn", en: "Mean score" },
+    },
+    q: {
+      tr: "6-A'nın ortalaması 90, 6-B'nin 50. İKİ ŞUBE BİRLİKTE ele alınırsa ortalama kaçtır?",
+      ku: "Navgîna 6-A 90 e, ya 6-B 50 e. Heke her du şax BI HEV RE bên hesibandin navgîn çend e?",
+      en: "6-A averages 90, 6-B averages 50. What is the average of BOTH classes combined?",
+    },
+    opts: { tr: ["60", "70", "75", "140"], ku: ["60", "70", "75", "140"], en: ["60", "70", "75", "140"] },
+    correct: 0,
+    hint: {
+      tr: "(90+50)/2 = 70 DEĞİL. 6-B üç kat kalabalık, bu yüzden ortalamayı kendine daha çok çeker. Toplam puan / toplam kişi: (10·90 + 30·50)/40 = (900+1500)/40 = 60.",
+      ku: "(90+50)/2 = 70 NE YE. 6-B sê qat mezintir e. Hemû puan / hemû kes: (10·90 + 30·50)/40 = 60.",
+      en: "NOT (90+50)/2 = 70. 6-B is three times larger, so it pulls the average toward itself. Total points / total students: (10·90 + 30·50)/40 = 60.",
+    },
+    misconception: "pollatsek_weighted",
+  },
+
+  // ────── diff 5 — TRANSFER (gerçek bağlamda karar + kararı savunma) ──────
+  {
+    // Gerçek karar: veriye dayanarak bir öneri seçmek, sonra gerekçeyi savunmak.
+    // PPDAC'in "Conclusion" evresi — sayı üretmek değil, sayıdan karara geçmek.
+    id: "r_l3_4", level: 3, diff: 5, gaise: "C", graphType: "bar",
+    data: {
+      title: { tr: "Okul kantininde bekleme süresi (dakika)", ku: "Dema bendewariyê li kantînê (deqîqe)", en: "Canteen waiting time (minutes)" },
+      categories: { tr: ["Pzt", "Sal", "Çar", "Per", "Cum"], ku: ["Dş", "Sê", "Ça", "Pê", "În"], en: ["Mon", "Tue", "Wed", "Thu", "Fri"] },
+      values: [4, 5, 4, 21, 5],
+      unit: { tr: "dakika", ku: "deqîqe", en: "minutes" },
+      yLabel: { tr: "Bekleme (dk)", ku: "Bendewarî (deq)", en: "Wait (min)" },
+    },
+    q: {
+      tr: "Okul müdürüne kantin için ÖNERİ yazacaksın. Ortalama bekleme 7.8 dakika. Verilere bakarak hangi öneri doğrudur?",
+      ku: "Tu ê ji ber kantînê PÊŞNIYAR binivîsî. Navgîna bendewariyê 7.8 deqîqe ye. Li gorî daneyan kîjan pêşniyar rast e?",
+      en: "You're writing a RECOMMENDATION to the principal about the canteen. Mean wait is 7.8 minutes. Based on the data, which recommendation is right?",
+    },
+    opts: {
+      tr: [
+        "Sadece PERŞEMBE günü ek görevli koy — sorun tek güne yığılmış",
+        "Her gün ek görevli koy — ortalama 7.8 dk yüksek",
+        "Hiçbir şey yapma — ortalama 8 dakikanın altında",
+        "Kantini kapat — bekleme çok uzun",
+      ],
+      ku: [
+        "Tenê roja PÊNCŞEMÊ karmendê zêde deyne — pirsgirêk li yek rojê ye",
+        "Her roj karmendê zêde deyne — navgîn bilind e",
+        "Tiştekî neke — navgîn di bin 8 deqîqeyan de ye",
+        "Kantînê bigire — bendewarî pir dirêj e",
+      ],
+      en: [
+        "Add staff on THURSDAY only — the problem is concentrated on one day",
+        "Add staff every day — the 7.8 min mean is high",
+        "Do nothing — the mean is under 8 minutes",
+        "Close the canteen — waits are too long",
+      ],
+    },
+    correct: 0,
+    hint: {
+      tr: "Ortalamaya değil, DAĞILIMA bak. Dört gün 4-5 dakika, bir gün 21 dakika. Ortalamayı tek başına Perşembe yukarı çekiyor.",
+      ku: "Ne li navgînê, li BELAVBÛNÊ binêre. Çar roj 4-5 deqîqe, rojek 21 deqîqe.",
+      en: "Look at the DISTRIBUTION, not the mean. Four days are 4-5 min; one day is 21. Thursday alone drags the mean up.",
+    },
+    misconception: "mokros_typical",
+    justify: {
+      q: {
+        tr: "Müdür soruyor: 'Neden her gün değil de sadece Perşembe?' Kararını hangi kanıtla savunursun?",
+        ku: "Midûr dipirse: 'Çima tenê Pêncşem?' Bi kîjan delîlê biryara xwe diparêzî?",
+        en: "The principal asks: 'Why Thursday only, not every day?' Which evidence defends your decision?",
+      },
+      opts: {
+        tr: [
+          "Ortalama tek başına yanıltıcı: 21 dk'lık tek bir gün ortalamayı şişiriyor, diğer 4 gün zaten 4-5 dk",
+          "Ortalama 7.8 olduğu için her gün sorun var demektir",
+          "Perşembe haftanın en kalabalık günüdür, bunu herkes bilir",
+          "Grafikteki en yüksek çubuk her zaman düzeltilmesi gereken yerdir",
+        ],
+        ku: [
+          "Navgîn bi tenê xapînok e: rojek 21 deqîqe navgînê mezin dike, 4 rojên din jixwe 4-5 deqîqe ne",
+          "Ji ber ku navgîn 7.8 e her roj pirsgirêk heye",
+          "Pêncşem roja herî qerebalix e, her kes dizane",
+          "Darika herî bilind her dem divê were rastkirin",
+        ],
+        en: [
+          "The mean alone misleads: one 21-min day inflates it, while the other 4 days are already 4-5 min",
+          "Since the mean is 7.8, there is a problem every day",
+          "Thursday is the busiest day of the week, everyone knows that",
+          "The tallest bar is always the thing that must be fixed",
+        ],
+      },
+      correct: 0,
+      explain: {
+        tr: "İyi bir gerekçe VERİYE dayanır, sezgiye değil. 'Herkes bilir' bir kanıt değildir (c). 'En yüksek çubuk' kuralı da körlemesine uygulanamaz (d) — burada işe yaraması tesadüf. Doğru savunma, ortalamanın tek bir uç değerden nasıl etkilendiğini GÖSTERİR.",
+        ku: "Sedema baş li ser DANEYAN ava dibe, ne li ser hestê. 'Her kes dizane' ne delîl e. Parastina rast nîşan dide ka navgîn çawa ji nirxek dûr tê bandorkirin.",
+        en: "A good justification rests on the DATA, not intuition. 'Everyone knows' is not evidence (c). 'Fix the tallest bar' is a blind rule (d) — it happens to work here by coincidence. The correct defence SHOWS how one extreme value moves the mean.",
+      },
+    },
+  },
+  {
+    // Korelasyon ≠ nedensellik, gerçek bağlamda karar + savunma (Batanero ve ark. 1996).
+    id: "r_l3_5", level: 3, diff: 5, gaise: "C", graphType: "bar",
+    data: {
+      title: { tr: "Belediye verisi: aylık dondurma satışı ve güneş çarpması vakası", ku: "Daneya şaredariyê: firotina qeşayê û bûyerên lêdana rojê", en: "City data: ice cream sales and heatstroke cases" },
+      categories: { tr: ["Ocak", "Nisan", "Temmuz", "Ekim"], ku: ["Çile", "Nîsan", "Tîrmeh", "Cotmeh"], en: ["Jan", "Apr", "Jul", "Oct"] },
+      values: [12, 48, 95, 40],
+      unit: { tr: "endeks", ku: "îndeks", en: "index" },
+      yLabel: { tr: "Dondurma satışı ↑ = vaka ↑", ku: "Firotina qeşayê ↑ = bûyer ↑", en: "Ice cream ↑ = cases ↑" },
+    },
+    q: {
+      tr: "Bir gazete bu veriye bakıp yazıyor: 'Dondurma satışını sınırlayın, güneş çarpması azalsın!' Belediyeye ne önerirsin?",
+      ku: "Rojnameyek dinivîse: 'Firotina qeşayê sînordar bikin!' Tu çi pêşniyar dikî?",
+      en: "A newspaper reads this data and writes: 'Limit ice cream sales to cut heatstroke!' What do you advise the city?",
+    },
+    opts: {
+      tr: [
+        "Dondurmayı sınırlama — ikisini de SICAKLIK artırıyor; gölgelik ve su dağıtımı yap",
+        "Dondurma satışını sınırla — grafik ilişkiyi açıkça gösteriyor",
+        "Daha çok dondurma sat — insanlar serinler",
+        "Veri yetersiz, hiçbir şey söylenemez",
+      ],
+      ku: [
+        "Qeşayê sînordar neke — GERMAHÎ herduyan zêde dike; sîwan û av belav bike",
+        "Firotina qeşayê sînordar bike — grafîk têkiliyê nîşan dide",
+        "Bêtir qeşa bifiroşe — mirov hênik dibin",
+        "Dane têrê nake",
+      ],
+      en: [
+        "Don't limit ice cream — HEAT drives both; provide shade and water instead",
+        "Limit ice cream sales — the graph clearly shows the link",
+        "Sell more ice cream — it cools people down",
+        "Data is insufficient, nothing can be said",
+      ],
+    },
+    correct: 0,
+    hint: {
+      tr: "İki şeyin birlikte artması, birinin diğerine YOL AÇTIĞI anlamına gelmez. Görünmeyen üçüncü bir değişken (hava sıcaklığı) ikisini birden yukarı itiyor.",
+      ku: "Zêdebûna bi hev re nayê wateya sedemîtiyê. Guhêrbarek sêyem (germahî) herduyan bilind dike.",
+      en: "Two things rising together does not mean one CAUSES the other. A hidden third variable (temperature) pushes both up.",
+    },
+    misconception: "batanero_causation",
+    justify: {
+      q: {
+        tr: "Gazete diretiyor: 'Ama veri ilişkiyi kanıtlıyor!' Nedenselliğin OLMADIĞINI nasıl gösterirsin?",
+        ku: "Rojname dibêje: 'Lê dane têkiliyê îsbat dike!' Tu çawa nîşan didî ku sedemîtî TUNE ye?",
+        en: "The paper insists: 'But the data proves the link!' How do you show causation is NOT established?",
+      },
+      opts: {
+        tr: [
+          "Sıcaklığı sabit tutup bakarız: aynı sıcaklıkta dondurma satışı değişse de vaka sayısı değişmiyorsa, neden dondurma değildir",
+          "Grafik yanlış çizilmiş, eksenleri düzeltmek yeterli",
+          "Örneklem küçük olduğu için sonuç geçersizdir",
+          "Gazetenin niyeti kötü olduğu için iddiası yanlıştır",
+        ],
+        ku: [
+          "Germahiyê sabît digirin: di heman germahiyê de firotin biguhere jî bûyer neguherin, sedem ne qeşa ye",
+          "Grafîk xelet hatiye xêzkirin",
+          "Nimûne biçûk e loma encam ne derbasdar e",
+          "Ji ber ku niyeta rojnameyê xerab e",
+        ],
+        en: [
+          "Hold temperature constant: if ice cream sales vary at the same temperature but cases don't, ice cream isn't the cause",
+          "The graph is drawn wrong; fixing the axes is enough",
+          "The sample is too small, so the result is invalid",
+          "The newspaper has bad intentions, so its claim is false",
+        ],
+      },
+      correct: 0,
+      explain: {
+        tr: "Nedenselliği çürütmenin yolu, üçüncü değişkeni SABİTLEMEKTİR — istatistikte 'kontrol etmek' denir. (b) ve (c) burada gerçek kusuru göstermiyor; grafik doğru çizilmiş ve veri belediyenin tam kaydı. (d) ise kişiye saldırıdır, kanıt değil: kötü niyetli biri de doğru söyleyebilir. İddiayı VERİYLE çürüt.",
+        ku: "Rê ew e ku guhêrbara sêyem SABÎT bê girtin — jê re 'kontrol' tê gotin. (d) êrîşa li kesê ye, ne delîl e. Îdîayê BI DANEYAN red bike.",
+        en: "To break a causal claim you HOLD the third variable constant — statisticians call this 'controlling for' it. (b) and (c) miss the real flaw: the graph is drawn correctly and the data is the city's full record. (d) attacks the person, not the claim — someone with bad motives can still be right. Refute the claim WITH DATA.",
+      },
+    },
   },
 ];
 

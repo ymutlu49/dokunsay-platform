@@ -113,7 +113,7 @@ export default function NumberLine({ lang, isDark }: NumberLineProps) {
       {/* Header: title + controls */}
       <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: minimized ? 0 : 4 }}>
         {/* Drag handle */}
-        <span style={{ fontSize: 10, opacity: 0.4, cursor: "grab" }}>⠿</span>
+        <span style={{ fontSize: 12, opacity: 0.7, cursor: "grab" }}>⠿</span>
 
         <span style={{ fontSize: 8, fontWeight: 800, color: textColor, flex: 1 }}>
           {t("nlDesc")}
@@ -144,7 +144,7 @@ export default function NumberLine({ lang, isDark }: NumberLineProps) {
           <button
             data-nl-control
             onClick={(e) => { e.stopPropagation(); setShowJumps(!showJumps); clearJumps(); }}
-            title="Jump arcs"
+            title={translate("jumpArcs", lang)}
             style={{
               padding: "1px 5px", borderRadius: 4, border: "none", cursor: "pointer",
               fontSize: 9, fontWeight: 800, fontFamily: "inherit",

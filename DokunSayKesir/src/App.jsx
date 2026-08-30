@@ -1,5 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 import { useI18n } from "./i18n/index.jsx";
+import { AppTabs } from "@shared/AppTabs.jsx";
+import { IconButton, ToolSep } from "@shared/AppToolbar.jsx";
+import { speak as platformSpeak, canSpeak } from "@shared/tts.js";
 
 var FC=["#f59e0b","#3b82f6","#ef4444","#22c55e","#8b5cf6","#ec4899","#06b6d4","#f97316","#14b8a6"];
 var FB=["#b45309","#1d4ed8","#b91c1c","#15803d","#6d28d9","#be185d","#0891b2","#c2410c","#0d9488"];
@@ -69,7 +72,7 @@ var ACT=[
     s:{m:[{w:1,p:[{n:6},{n:6},{n:6}]},{w:1,p:[{n:2}]}],o:{0:"="}}},
 
   /* Kavram Yanılgıları */
-  {n:"Y1: Bütün aynı mı?",i:"🔍",cat:"yanılgı",diff:2,d:"YANILGI: 'Aynı etiketli kesir (ör. 1/2, 1/3) her zaman aynı miktardır.' DOĞRU: Kesir, REFERANS bütüne göre değer kazanır. Her tıklamada farklı bir kesir, 1 bütün ve 2 bütün (iki farklı referans) üzerinde görünür. Sayı doğrularına bak — aynı etiket farklı miktarları gösterebilir! (Behr, Lesh, Post & Silver, 1983; Mack, 1990)",k:"KY",
+  {n:"Y1: Bütün aynı mı?",i:"🔍",cat:"yanılgı",mis:"butun-referansini-gozardi",src:"Behr, Lesh, Post & Silver (1983)",diff:2,d:"YANILGI: 'Aynı etiketli kesir (ör. 1/2, 1/3) her zaman aynı miktardır.' DOĞRU: Kesir, REFERANS bütüne göre değer kazanır. Her tıklamada farklı bir kesir, 1 bütün ve 2 bütün (iki farklı referans) üzerinde görünür. Sayı doğrularına bak — aynı etiket farklı miktarları gösterebilir! (Behr, Lesh, Post & Silver, 1983; Mack, 1990)",k:"KY",
     variants:[
       {m:[{w:1,p:[{n:2}]},{w:2,p:[{n:2}]}],o:{}},
       {m:[{w:1,p:[{n:3}]},{w:2,p:[{n:3}]}],o:{}},
@@ -82,7 +85,7 @@ var ACT=[
       {m:[{w:1,p:[{n:4},{n:4},{n:4}]},{w:3,p:[{n:4},{n:4},{n:4}]}],o:{}},
     ],
     s:{m:[{w:1,p:[{n:2}]},{w:2,p:[{n:2}]}],o:{}}},
-  {n:"Y2: Payda büyük = büyük mü?",i:"🔍",cat:"yanılgı",diff:2,d:"YANILGI: '6, 4'ten büyük olduğu için 1/6 > 1/4.' DOĞRU: Payda ne kadar büyükse parça o kadar KÜÇÜK olur (bütün daha çok parçaya bölünür). Her tıklamada farklı birim kesir çifti gelir; iki çubuğu karşılaştır. İki kesir arasındaki daireye tıkla → =, <, > arasında döner. Doğru karşılaştırmayı seç! (Stafylidou & Vosniadou, 2004; Hansen, 2014)",k:"KY",expr:"1/a ? 1/b",
+  {n:"Y2: Payda büyük = büyük mü?",i:"🔍",cat:"yanılgı",mis:"buyuk-payda-buyuk-sanma",src:"Stafylidou & Vosniadou (2004)",diff:2,d:"YANILGI: '6, 4'ten büyük olduğu için 1/6 > 1/4.' DOĞRU: Payda ne kadar büyükse parça o kadar KÜÇÜK olur (bütün daha çok parçaya bölünür). Her tıklamada farklı birim kesir çifti gelir; iki çubuğu karşılaştır. İki kesir arasındaki daireye tıkla → =, <, > arasında döner. Doğru karşılaştırmayı seç! (Stafylidou & Vosniadou, 2004; Hansen, 2014)",k:"KY",expr:"1/a ? 1/b",
     variants:[
       {m:[{w:1,p:[{n:6}]},{w:1,p:[{n:4}]}],o:{0:"<"}},
       {m:[{w:1,p:[{n:5}]},{w:1,p:[{n:3}]}],o:{0:"<"}},
@@ -93,7 +96,7 @@ var ACT=[
       {m:[{w:1,p:[{n:4}]},{w:1,p:[{n:2}]}],o:{0:"<"}},
     ],
     s:{m:[{w:1,p:[{n:6}]},{w:1,p:[{n:4}]}],o:{0:"<"}}},
-  {n:"Y3: Eş parçalar şartı",i:"🔍",cat:"yanılgı",diff:2,d:"YANILGI: 'Bütün kaç parçaya bölünürse bölünsün, her parça bir kesirdir.' DOĞRU: Bütün EŞİT parçalara bölünmedikçe kesir oluşmaz. Sol modelde eş paydalı parçalar var (her biri aynı büyüklükte). Sağ modele farklı paydalı çubuklar koy — bütünü doldursa da her parça AYRI değer taşır, aynı kesir DEĞİLDİR! (Kamii & Clark, 1995; Hansen, 2014)",k:"KY",
+  {n:"Y3: Eş parçalar şartı",i:"🔍",cat:"yanılgı",mis:"es-parca-sartini-atlama",src:"Behr, Lesh, Post & Silver (1983)",diff:2,d:"YANILGI: 'Bütün kaç parçaya bölünürse bölünsün, her parça bir kesirdir.' DOĞRU: Bütün EŞİT parçalara bölünmedikçe kesir oluşmaz. Sol modelde eş paydalı parçalar var (her biri aynı büyüklükte). Sağ modele farklı paydalı çubuklar koy — bütünü doldursa da her parça AYRI değer taşır, aynı kesir DEĞİLDİR! (Kamii & Clark, 1995; Hansen, 2014)",k:"KY",
     variants:[
       {m:[{w:1,p:[{n:3},{n:3},{n:3}]},{w:1,p:[]}],o:{}},
       {m:[{w:1,p:[{n:4},{n:4},{n:4},{n:4}]},{w:1,p:[]}],o:{}},
@@ -102,7 +105,7 @@ var ACT=[
       {m:[{w:1,p:[{n:8},{n:8},{n:8},{n:8},{n:8},{n:8},{n:8},{n:8}]},{w:1,p:[]}],o:{}},
     ],
     s:{m:[{w:1,p:[{n:3},{n:3},{n:3}]},{w:1,p:[]}],o:{}}},
-  {n:"Y4: Sayı doğrusunda konum",i:"🔍",cat:"yanılgı",diff:3,d:"YANILGI: 'Kesir bir sayı değil, iki sayının bir arada yazılmasıdır.' DOĞRU: Her kesir sayı doğrusunda TEK bir NOKTADIR. Her tıklamada farklı bir kesir çifti gelir (0-2 aralığında). Kırmızı okların yerlerini karşılaştır, <, >, = sembollerinden doğru olanı seç! (Bright, Behr, Post & Wachsmuth, 1988; Siegler et al., 2011)",k:"KY",expr:"a/b ? c/d",
+  {n:"Y4: Sayı doğrusunda konum",i:"🔍",cat:"yanılgı",mis:"kesri-sayi-saymama",src:"Siegler, Thompson & Schneider (2011)",diff:3,d:"YANILGI: 'Kesir bir sayı değil, iki sayının bir arada yazılmasıdır.' DOĞRU: Her kesir sayı doğrusunda TEK bir NOKTADIR. Her tıklamada farklı bir kesir çifti gelir (0-2 aralığında). Kırmızı okların yerlerini karşılaştır, <, >, = sembollerinden doğru olanı seç! (Bright, Behr, Post & Wachsmuth, 1988; Siegler et al., 2011)",k:"KY",expr:"a/b ? c/d",
     variants:[
       {m:[{w:2,p:[{n:4},{n:4},{n:4},{n:4},{n:4}]},{w:2,p:[{n:3},{n:3},{n:3},{n:3}]}],o:{0:"<"}},
       {m:[{w:2,p:[{n:4},{n:4},{n:4},{n:4},{n:4},{n:4},{n:4}]},{w:2,p:[{n:3},{n:3},{n:3},{n:3},{n:3}]}],o:{0:"<"}},
@@ -112,7 +115,7 @@ var ACT=[
       {m:[{w:2,p:[{n:5},{n:5},{n:5},{n:5},{n:5},{n:5},{n:5}]},{w:2,p:[{n:4},{n:4},{n:4},{n:4},{n:4}]}],o:{0:">"}},
     ],
     s:{m:[{w:2,p:[{n:4},{n:4},{n:4},{n:4},{n:4}]},{w:2,p:[{n:3},{n:3},{n:3},{n:3}]}],o:{0:"<"}}},
-  {n:"Y5: Payda toplanır mı?",i:"🔍",cat:"yanılgı",diff:3,d:"YANILGI: '1/4 + 1/4 = 2/8.' DOĞRU: Aynı paydalı kesirlerde sadece PAYLAR toplanır, payda AYNI kalır. Her tıklamada farklı paydalı toplama gelir. Sağ modele toplamı koy — paydayı toplama tuzağına düşme! (Soylu & Soylu, 2005; Newton, 2008)",k:"KY",expr:"a/n + b/n = ?",
+  {n:"Y5: Payda toplanır mı?",i:"🔍",cat:"yanılgı",mis:"payda-toplama",src:"Ni & Zhou (2005)",diff:3,d:"YANILGI: '1/4 + 1/4 = 2/8.' DOĞRU: Aynı paydalı kesirlerde sadece PAYLAR toplanır, payda AYNI kalır. Her tıklamada farklı paydalı toplama gelir. Sağ modele toplamı koy — paydayı toplama tuzağına düşme! (Soylu & Soylu, 2005; Newton, 2008)",k:"KY",expr:"a/n + b/n = ?",
     variants:[
       {m:[{w:1,p:[{n:4}]},{w:1,p:[{n:4}]},{w:1,p:[]}],o:{0:"+",1:"="}},
       {m:[{w:1,p:[{n:3}]},{w:1,p:[{n:3}]},{w:1,p:[]}],o:{0:"+",1:"="}},
@@ -122,7 +125,7 @@ var ACT=[
       {m:[{w:1,p:[{n:10},{n:10},{n:10}]},{w:1,p:[{n:10},{n:10}]},{w:1,p:[]}],o:{0:"+",1:"="}},
     ],
     s:{m:[{w:1,p:[{n:4}]},{w:1,p:[{n:4}]},{w:1,p:[]}],o:{0:"+",1:"="}}},
-  {n:"Y6: Çarpma büyütür mü?",i:"🔍",cat:"yanılgı",diff:3,d:"YANILGI: 'Çarpma her zaman büyütür.' DOĞRU: 0 ile 1 arası kesirlerle çarparken sonuç KÜÇÜLÜR. Her tıklamada farklı kesir çarpımı gelir. Sağ modele sonucu koy — sonucun çarpanlardan küçük olduğunu gör! (Graeber & Tanenhaus, 1993; Fischbein et al., 1985)",k:"KY",expr:"a × b = ?",
+  {n:"Y6: Çarpma büyütür mü?",i:"🔍",cat:"yanılgı",mis:"carpma-hep-buyutur",src:"Fischbein, Deri, Nello & Marino (1985)",diff:3,d:"YANILGI: 'Çarpma her zaman büyütür.' DOĞRU: 0 ile 1 arası kesirlerle çarparken sonuç KÜÇÜLÜR. Her tıklamada farklı kesir çarpımı gelir. Sağ modele sonucu koy — sonucun çarpanlardan küçük olduğunu gör! (Graeber & Tanenhaus, 1993; Fischbein et al., 1985)",k:"KY",expr:"a × b = ?",
     variants:[
       {m:[{w:1,p:[{n:2}]},{w:1,p:[{n:2}]},{w:1,p:[]}],o:{0:"×",1:"="}},
       {m:[{w:1,p:[{n:3}]},{w:1,p:[{n:2}]},{w:1,p:[]}],o:{0:"×",1:"="}},
@@ -132,7 +135,7 @@ var ACT=[
       {m:[{w:1,p:[{n:5},{n:5}]},{w:1,p:[{n:2}]},{w:1,p:[]}],o:{0:"×",1:"="}},
     ],
     s:{m:[{w:1,p:[{n:2}]},{w:1,p:[{n:2}]},{w:1,p:[]}],o:{0:"×",1:"="}}},
-  {n:"Y7: Bölme küçültür mü?",i:"🔍",cat:"yanılgı",diff:3,d:"YANILGI: 'Bölme her zaman küçültür.' DOĞRU: 1'den küçük bir kesire bölünce sonuç BÜYÜR. Her tıklamada farklı bölme gelir. Sağ modele sonucu koy — sonucun bölünenden BÜYÜK olduğunu gör! (Fischbein, Deri, Nello & Marino, 1985; Tirosh, 2000)",k:"KY",expr:"a ÷ b = ?",
+  {n:"Y7: Bölme küçültür mü?",i:"🔍",cat:"yanılgı",mis:"bolme-hep-kucultur",src:"Fischbein, Deri, Nello & Marino (1985)",diff:3,d:"YANILGI: 'Bölme her zaman küçültür.' DOĞRU: 1'den küçük bir kesire bölünce sonuç BÜYÜR. Her tıklamada farklı bölme gelir. Sağ modele sonucu koy — sonucun bölünenden BÜYÜK olduğunu gör! (Fischbein, Deri, Nello & Marino, 1985; Tirosh, 2000)",k:"KY",expr:"a ÷ b = ?",
     variants:[
       {m:[{w:1,p:[{n:2},{n:2}]},{w:1,p:[{n:2}]},{w:2,p:[]}],o:{0:"÷",1:"="}},
       {m:[{w:1,p:[{n:3},{n:3},{n:3}]},{w:1,p:[{n:3}]},{w:3,p:[]}],o:{0:"÷",1:"="}},
@@ -144,7 +147,7 @@ var ACT=[
     s:{m:[{w:1,p:[{n:2},{n:2}]},{w:1,p:[{n:2}]},{w:2,p:[]}],o:{0:"÷",1:"="}}},
 
   /* Yeni Kavram Yanılgıları — Literatür Taramasından */
-  {n:"Y8: Kesir iki ayrı sayı mı?",i:"🔬",cat:"yanılgı",diff:2,d:"YANILGI: 'a/b iki ayrı sayıdır.' DOĞRU: Her kesir TEK BİR DEĞERDİR, sayı doğrusunda tek bir NOKTA. Birim kesirden pay kadar uzakta tek bir yer gösterir. Her tıklamada farklı kesir gelir — pay ve payda ayrı ayrı düşünülmemeli! (Stafylidou & Vosniadou, 2004; Hwang & Riccomini, 2021)",k:"KY",
+  {n:"Y8: Kesir iki ayrı sayı mı?",i:"🔬",cat:"yanılgı",mis:"kesri-iki-ayri-sayi-sanma",src:"Stafylidou & Vosniadou (2004)",diff:2,d:"YANILGI: 'a/b iki ayrı sayıdır.' DOĞRU: Her kesir TEK BİR DEĞERDİR, sayı doğrusunda tek bir NOKTA. Birim kesirden pay kadar uzakta tek bir yer gösterir. Her tıklamada farklı kesir gelir — pay ve payda ayrı ayrı düşünülmemeli! (Stafylidou & Vosniadou, 2004; Hwang & Riccomini, 2021)",k:"KY",
     variants:[
       {m:[{w:1,p:[{n:4},{n:4},{n:4}]}],o:{}},
       {m:[{w:1,p:[{n:3},{n:3}]}],o:{}},
@@ -153,7 +156,7 @@ var ACT=[
       {m:[{w:1,p:[{n:8},{n:8},{n:8},{n:8},{n:8},{n:8},{n:8}]}],o:{}},
     ],
     s:{m:[{w:1,p:[{n:4},{n:4},{n:4}]}],o:{}}},
-  {n:"Y9: 0 ile 1 arası boş mu?",i:"🔬",cat:"yanılgı",diff:2,d:"YANILGI: '0 ile 1 arası sadece doğal sayılarla doludur; aralarında başka sayı yok.' DOĞRU: 0-1 arasında SONSUZ kesir vardır. Her tıklamada farklı üç kesir 0-1 aralığında gösterilir. Sayı doğrularındaki kırmızı okların farklı konumlarını karşılaştır — hepsi 0-1 arasında ama birbirinden farklı! (Ni & Zhou, 2005)",k:"KY",
+  {n:"Y9: 0 ile 1 arası boş mu?",i:"🔬",cat:"yanılgı",mis:"sayilar-arasi-bosluk",src:"Vamvakoussi & Vosniadou (2004)",diff:2,d:"YANILGI: '0 ile 1 arası sadece doğal sayılarla doludur; aralarında başka sayı yok.' DOĞRU: 0-1 arasında SONSUZ kesir vardır. Her tıklamada farklı üç kesir 0-1 aralığında gösterilir. Sayı doğrularındaki kırmızı okların farklı konumlarını karşılaştır — hepsi 0-1 arasında ama birbirinden farklı! (Ni & Zhou, 2005)",k:"KY",
     variants:[
       {m:[{w:1,p:[{n:2}]},{w:1,p:[{n:3}]},{w:1,p:[{n:4}]}],o:{}},
       {m:[{w:1,p:[{n:4}]},{w:1,p:[{n:6}]},{w:1,p:[{n:8}]}],o:{}},
@@ -172,7 +175,7 @@ var ACT=[
       {m:[{w:1,p:[{n:3}]},{w:1,p:[]},{w:1,p:[{n:3},{n:3}]}],o:{0:"<",1:"<"}},
     ],
     s:{m:[{w:1,p:[{n:3}]},{w:1,p:[]},{w:1,p:[{n:2}]}],o:{0:"<",1:"<"}}},
-  {n:"Y10: Pay arttıkça ne olur?",i:"🔬",cat:"yanılgı",diff:2,d:"YANILGI: 'Payla paydanın büyük/küçük olmasının kesre etkisi aynıdır.' DOĞRU: Payda SABİTKEN pay arttıkça kesir BÜYÜR. Her tıklamada farklı payda için üç kesir gösterilir. Aynı paydaya (aynı boy parçalar) sahip — kesirlerin SADELEŞTİRİLMEMİŞ halini görürsün. Kırmızı okların ilerleyişini karşılaştır! (Aksoy & Yazlık, 2017; Behr & Post, 1992)",k:"KY",
+  {n:"Y10: Pay arttıkça ne olur?",i:"🔬",cat:"yanılgı",mis:"pay-artinca-hep-buyur",src:"Ni & Zhou (2005)",diff:2,d:"YANILGI: 'Payla paydanın büyük/küçük olmasının kesre etkisi aynıdır.' DOĞRU: Payda SABİTKEN pay arttıkça kesir BÜYÜR. Her tıklamada farklı payda için üç kesir gösterilir. Aynı paydaya (aynı boy parçalar) sahip — kesirlerin SADELEŞTİRİLMEMİŞ halini görürsün. Kırmızı okların ilerleyişini karşılaştır! (Aksoy & Yazlık, 2017; Behr & Post, 1992)",k:"KY",
     variants:[
       {m:[{w:1,p:[{n:6}]},{w:1,p:[{n:6},{n:6},{n:6}]},{w:1,p:[{n:6},{n:6},{n:6},{n:6},{n:6}]}],o:{}},
       {m:[{w:1,p:[{n:5}]},{w:1,p:[{n:5},{n:5},{n:5}]},{w:1,p:[{n:5},{n:5},{n:5},{n:5}]}],o:{}},
@@ -182,7 +185,7 @@ var ACT=[
       {m:[{w:1,p:[{n:12}]},{w:1,p:[{n:12},{n:12},{n:12},{n:12},{n:12}]},{w:1,p:[{n:12},{n:12},{n:12},{n:12},{n:12},{n:12},{n:12},{n:12},{n:12},{n:12},{n:12}]}],o:{}},
     ],
     s:{m:[{w:1,p:[{n:6}]},{w:1,p:[{n:6},{n:6},{n:6}]},{w:1,p:[{n:6},{n:6},{n:6},{n:6},{n:6}]}],o:{}}},
-  {n:"Y11: 5/4 = 1 tam 1/4 mü?",i:"🔬",cat:"yanılgı",diff:3,d:"YANILGI: 'Pay paydadan büyükse kesir yanlıştır.' DOĞRU: Pay paydadan büyükse kesir BİLEŞİKTİR ve 1'den büyük bir sayıyı gösterir. Her tıklamada farklı bileşik kesir gelir. Sağ modele aynı değeri 'tam + basit kesir' olarak yeniden kur ve = ile kontrol et! (Pesen, 2007; Tzur, 1999)",k:"KY",expr:"a/b = ? tam ?/b",
+  {n:"Y11: 5/4 = 1 tam 1/4 mü?",i:"🔬",cat:"yanılgı",mis:"bilesik-kesri-cozememe",src:"Mack (1990)",diff:3,d:"YANILGI: 'Pay paydadan büyükse kesir yanlıştır.' DOĞRU: Pay paydadan büyükse kesir BİLEŞİKTİR ve 1'den büyük bir sayıyı gösterir. Her tıklamada farklı bileşik kesir gelir. Sağ modele aynı değeri 'tam + basit kesir' olarak yeniden kur ve = ile kontrol et! (Pesen, 2007; Tzur, 1999)",k:"KY",expr:"a/b = ? tam ?/b",
     variants:[
       {m:[{w:2,p:[{n:4},{n:4},{n:4},{n:4},{n:4}]},{w:2,p:[]}],o:{0:"="}},
       {m:[{w:3,p:[{n:3},{n:3},{n:3},{n:3},{n:3},{n:3},{n:3}]},{w:3,p:[]}],o:{0:"="}},
@@ -192,7 +195,7 @@ var ACT=[
       {m:[{w:2,p:[{n:6},{n:6},{n:6},{n:6},{n:6},{n:6},{n:6}]},{w:2,p:[]}],o:{0:"="}},
     ],
     s:{m:[{w:2,p:[{n:4},{n:4},{n:4},{n:4},{n:4}]},{w:2,p:[]}],o:{0:"="}}},
-  {n:"Y12: Çıkarmada terslik",i:"🔬",cat:"yanılgı",diff:3,d:"YANILGI: Payları ve paydaları AYRI AYRI çıkarma: 3/5 − 1/5 = 2/4. DOĞRU: Aynı paydalı çıkarmada sadece paylar çıkarılır, payda AYNI kalır. Her tıklamada farklı paydalarda çıkarma gelir — tuzak paydayı değiştirme! (Biber, Tuna & Aktaş, 2013; Newton, 2008)",k:"KY",expr:"a/n − b/n = ?",
+  {n:"Y12: Çıkarmada terslik",i:"🔬",cat:"yanılgı",mis:"cikarmada-payda-cikarma",src:"Ni & Zhou (2005)",diff:3,d:"YANILGI: Payları ve paydaları AYRI AYRI çıkarma: 3/5 − 1/5 = 2/4. DOĞRU: Aynı paydalı çıkarmada sadece paylar çıkarılır, payda AYNI kalır. Her tıklamada farklı paydalarda çıkarma gelir — tuzak paydayı değiştirme! (Biber, Tuna & Aktaş, 2013; Newton, 2008)",k:"KY",expr:"a/n − b/n = ?",
     variants:[
       {m:[{w:1,p:[{n:5},{n:5},{n:5}]},{w:1,p:[{n:5}]},{w:1,p:[]}],o:{0:"−",1:"="}},
       {m:[{w:1,p:[{n:6},{n:6},{n:6},{n:6},{n:6}]},{w:1,p:[{n:6},{n:6}]},{w:1,p:[]}],o:{0:"−",1:"="}},
@@ -202,7 +205,7 @@ var ACT=[
       {m:[{w:1,p:[{n:3},{n:3}]},{w:1,p:[{n:3}]},{w:1,p:[]}],o:{0:"−",1:"="}},
     ],
     s:{m:[{w:1,p:[{n:5},{n:5},{n:5}]},{w:1,p:[{n:5}]},{w:1,p:[]}],o:{0:"−",1:"="}}},
-  {n:"Y13: Toplama mı çarpma mı?",i:"🔬",cat:"yanılgı",diff:3,d:"YANILGI: Çarpma kuralını (pay×pay, payda×payda) toplamaya uygulamak: 1/3 + 1/3 = 1/9. DOĞRU: Aynı paydada TOPLAMA → paylar toplanır, payda aynı kalır. Her tıklamada farklı paydada toplama gelir. Model görselinde iki parça yan yana birleşir — çarpma kuralı geçerli değil! (Soylu & Soylu, 2005; Alkhateeb, 2019)",k:"KY",expr:"a/n + b/n = ?",
+  {n:"Y13: Toplama mı çarpma mı?",i:"🔬",cat:"yanılgı",mis:"islem-secimi-karistirma",src:"Mack (1990)",diff:3,d:"YANILGI: Çarpma kuralını (pay×pay, payda×payda) toplamaya uygulamak: 1/3 + 1/3 = 1/9. DOĞRU: Aynı paydada TOPLAMA → paylar toplanır, payda aynı kalır. Her tıklamada farklı paydada toplama gelir. Model görselinde iki parça yan yana birleşir — çarpma kuralı geçerli değil! (Soylu & Soylu, 2005; Alkhateeb, 2019)",k:"KY",expr:"a/n + b/n = ?",
     variants:[
       {m:[{w:1,p:[{n:3}]},{w:1,p:[{n:3}]},{w:1,p:[]}],o:{0:"+",1:"="}},
       {m:[{w:1,p:[{n:5},{n:5}]},{w:1,p:[{n:5}]},{w:1,p:[]}],o:{0:"+",1:"="}},
@@ -212,7 +215,7 @@ var ACT=[
       {m:[{w:1,p:[{n:10},{n:10},{n:10}]},{w:1,p:[{n:10},{n:10},{n:10},{n:10}]},{w:1,p:[]}],o:{0:"+",1:"="}},
     ],
     s:{m:[{w:1,p:[{n:3}]},{w:1,p:[{n:3}]},{w:1,p:[]}],o:{0:"+",1:"="}}},
-  {n:"Y14: Denk kesir nasıl bulunur?",i:"🔬",cat:"yanılgı",diff:2,d:"YANILGI: 'Farklı paydalı kesirler denk olamaz.' ya da 'Farklı paydalı her iki kesir birbirine denktir.' DOĞRU: Pay VE paydayı aynı sayıyla çarp/böl. Her tıklamada farklı örnek gelir — bazıları denk, bazıları değil! = sembolüne tıkla → =, <, > arasında döner. Doğru sembolü seç, sayı doğrularındaki konumları karşılaştır! (Pesen, 2008; Post, Behr & Lesh, 1986)",k:"KY",
+  {n:"Y14: Denk kesir nasıl bulunur?",i:"🔬",cat:"yanılgı",mis:"denk-kesri-carpim-sanma",src:"Behr, Lesh, Post & Silver (1983)",diff:2,d:"YANILGI: 'Farklı paydalı kesirler denk olamaz.' ya da 'Farklı paydalı her iki kesir birbirine denktir.' DOĞRU: Pay VE paydayı aynı sayıyla çarp/böl. Her tıklamada farklı örnek gelir — bazıları denk, bazıları değil! = sembolüne tıkla → =, <, > arasında döner. Doğru sembolü seç, sayı doğrularındaki konumları karşılaştır! (Pesen, 2008; Post, Behr & Lesh, 1986)",k:"KY",
     variants:[
       {m:[{w:1,p:[{n:4},{n:4}]},{w:1,p:[{n:2}]}],o:{0:"="}},
       {m:[{w:1,p:[{n:6},{n:6},{n:6}]},{w:1,p:[{n:2}]}],o:{0:"="}},
@@ -224,7 +227,7 @@ var ACT=[
       {m:[{w:1,p:[{n:12},{n:12},{n:12},{n:12}]},{w:1,p:[{n:3}]}],o:{0:"="}},
     ],
     s:{m:[{w:1,p:[{n:4},{n:4}]},{w:1,p:[{n:2}]}],o:{0:"="}}},
-  {n:"Y15: Yarısı = 2'ye mi 1/2'ye mi böl?",i:"🔬",cat:"yanılgı",diff:3,d:"YANILGI: 'Bir kesrin YARISINI bulmak için 1/2'ye bölmek gerekir.' DOĞRU: Yarısı = 2'ye BÖLMEK = 1/2 ile ÇARPMAK. 1/2'ye bölmek sonucu İKİ KAT eder (büyütür), yarıya indirmez! Her tıklamada farklı kesrin yarısı sorulur. Sağ modele yarıya karşılık gelen kesri koy! (Fischbein, Deri, Nello & Marino, 1985; Tirosh, 2000)",k:"KY",expr:"a'nın yarısı = a × 1/2",
+  {n:"Y15: Yarısı = 2'ye mi 1/2'ye mi böl?",i:"🔬",cat:"yanılgı",mis:"yarisi-ile-yariya-bolme",src:"Fischbein, Deri, Nello & Marino (1985)",diff:3,d:"YANILGI: 'Bir kesrin YARISINI bulmak için 1/2'ye bölmek gerekir.' DOĞRU: Yarısı = 2'ye BÖLMEK = 1/2 ile ÇARPMAK. 1/2'ye bölmek sonucu İKİ KAT eder (büyütür), yarıya indirmez! Her tıklamada farklı kesrin yarısı sorulur. Sağ modele yarıya karşılık gelen kesri koy! (Fischbein, Deri, Nello & Marino, 1985; Tirosh, 2000)",k:"KY",expr:"a'nın yarısı = a × 1/2",
     variants:[
       {m:[{w:1,p:[{n:2}]},{w:1,p:[{n:2}]},{w:1,p:[]}],o:{0:"×",1:"="}},
       {m:[{w:1,p:[{n:3}]},{w:1,p:[{n:2}]},{w:1,p:[]}],o:{0:"×",1:"="}},
@@ -234,6 +237,16 @@ var ACT=[
       {m:[{w:1,p:[{n:5},{n:5}]},{w:1,p:[{n:2}]},{w:1,p:[]}],o:{0:"×",1:"="}},
     ],
     s:{m:[{w:1,p:[{n:2}]},{w:1,p:[{n:2}]},{w:1,p:[]}],o:{0:"×",1:"="}}},
+  /* ── BAĞIMSIZ (diff 4) ve TRANSFER (diff 5) — §1.6'nın eksik üst basamakları.
+     NOT: bu araçta zorluk göstergesi "★".repeat(diff) olduğu için 4-5 yıldız zaten
+     sorunsuz çiziliyordu; Bar/Basamak'takinin aksine arayüz ENGEL DEĞİLDİ — içerik
+     hiç yazılmamıştı. ─────────────────────────────────────────────────────────── */
+  {n:"B1: Sonuç 1'den büyük mü?",i:"🧠",cat:"işlem",diff:4,d:"Sen seç: iki kesir çubuğu koy ve topla. Ama ÖNCE tahmin et — sonuç 1 bütünden büyük mü, küçük mü? Sonra modelle kontrol et. İpucu yok.",k:"",
+    s:{m:[{w:1,p:[]},{w:1,p:[]},{w:1,p:[]}],o:{0:"+",1:"="}}},
+  {n:"T1: 3 Pizza, 4 Kişi",i:"🍕",cat:"karşılaştır",diff:5,d:"3 pizzayı 4 arkadaş EŞİT paylaşacak. Her birine ne düşer? Modellerle göster, sonra cevabını bir kesir olarak yaz ve nasıl bulduğunu anlat.",k:"",
+    s:{m:[{w:1,p:[]},{w:1,p:[]},{w:1,p:[]}],o:{}}},
+  {n:"T2: Sen Kesir Sor",i:"✍️",cat:"karşılaştır",diff:5,d:"Sıra sende: bir kesir kur ama arkadaşına gösterme. İpucu ver — 'yarımdan büyük, bütünden küçük, paydası 8'. Arkadaşın bulabilir mi?",k:"",
+    s:{m:[{w:1,p:[]}],o:{}}},
 ];
 
 /* Pen path: quadratic Bezier ile pürüzsüz çizgi. 1-2 nokta için düz L. */
@@ -259,15 +272,13 @@ function fracLabel(val){
 }
 function trackVal(tk){var v=0;if(tk.pieces)for(var i=0;i<tk.pieces.length;i++)v+=1/tk.pieces[i].n;return v;}
 
+// Seslendirme platform ortak modülünden geçer (2026-07-19 denetimi). Yerel kopya
+// A11y panelindeki ses aç/kapa anahtarını YOK SAYIYORDU. Ortak modül ayrıca kesirleri
+// çocuk diliyle okur ("1/4" → "dörtte bir", "bir bölü dört" DEĞİL) — kesir aracında
+// bu fark doğrudan öğretilen dille ilgili.
+// i18n "speech.lang" BCP-47 etiketi verir (tr-TR / en-US / ku); ortak modül kısa kod bekler.
 function speak(text,spLang){
-  if(!window.speechSynthesis||!text)return;
-  window.speechSynthesis.cancel();
-  var u=new SpeechSynthesisUtterance(text);
-  u.lang=spLang||"tr-TR";u.rate=0.85;u.pitch=1.1;
-  var voices=window.speechSynthesis.getVoices();
-  var prefix=(spLang||"tr-TR").slice(0,2);
-  for(var i=0;i<voices.length;i++){if(voices[i].lang&&voices[i].lang.indexOf(prefix)===0){u.voice=voices[i];break;}}
-  window.speechSynthesis.speak(u);
+  platformSpeak(text, String(spLang||"tr").slice(0,2));
 }
 
 function fracSpeech(val,pieces){
@@ -384,9 +395,9 @@ function WholeBarTrack(props) {
     <div data-trackid={props.trackId} style={{display:"flex",flexDirection:"column",alignItems:"center",gap:4,userSelect:"none",padding:"10px 12px 8px",background:bg,borderRadius:12,border:brd,width:W+24}}>
       {/* Tam sayısı kontrolü (modeli uzat/kısalt) */}
       {onSetWholes?(<div onPointerDown={function(e){e.stopPropagation();}} style={{display:"flex",alignItems:"center",gap:4,fontSize:10,fontWeight:800,color:"#777"}}>
-        <button onClick={function(e){e.stopPropagation();if(wholes>1)onSetWholes(wholes-1);}} disabled={wholes<=1} title={t("track.shorten")} style={{width:18,height:18,borderRadius:"50%",border:"1px solid #bbb",background:wholes>1?"#fff":"#f0f0f0",cursor:wholes>1?"pointer":"default",fontSize:11,fontWeight:900,color:"#555",fontFamily:"inherit",lineHeight:1,opacity:wholes>1?1:.4}}>{"−"}</button>
+        <button onClick={function(e){e.stopPropagation();if(wholes>1)onSetWholes(wholes-1);}} disabled={wholes<=1} title={t("track.shorten")} style={{width:18,height:18,borderRadius:"50%",border:"1px solid #bbb",background:wholes>1?"#fff":"#f0f0f0",cursor:wholes>1?"pointer":"default",fontSize:11,fontWeight:900,color:"#555",fontFamily:"inherit",lineHeight:1,opacity:wholes>1?1:.7}}>{"−"}</button>
         <span style={{minWidth:50,textAlign:"center"}}>{wholes+" "+t("canvas.whole").trim()}</span>
-        <button onClick={function(e){e.stopPropagation();if(wholes<5)onSetWholes(wholes+1);}} disabled={wholes>=5} title={t("track.extend")} style={{width:18,height:18,borderRadius:"50%",border:"1px solid #bbb",background:wholes<5?"#fff":"#f0f0f0",cursor:wholes<5?"pointer":"default",fontSize:11,fontWeight:900,color:"#555",fontFamily:"inherit",lineHeight:1,opacity:wholes<5?1:.4}}>{"+"}</button>
+        <button onClick={function(e){e.stopPropagation();if(wholes<5)onSetWholes(wholes+1);}} disabled={wholes>=5} title={t("track.extend")} style={{width:18,height:18,borderRadius:"50%",border:"1px solid #bbb",background:wholes<5?"#fff":"#f0f0f0",cursor:wholes<5?"pointer":"default",fontSize:11,fontWeight:900,color:"#555",fontFamily:"inherit",lineHeight:1,opacity:wholes<5?1:.7}}>{"+"}</button>
       </div>):(wholes>1?<span style={{fontSize:9,fontWeight:800,color:"#777"}}>{wholes+t("canvas.whole")}</span>:null)}
       {showPie?(<svg width={pd} height={pd}><circle cx={pcx} cy={pcy} r={PR} fill="#facc15" stroke="#222" strokeWidth={2}/>{totalVal>0&&totalVal<wholes?(<path d={piePath} fill="#dc2626" stroke="#222" strokeWidth={1.5}/>):null}{totalVal>=wholes?(<circle cx={pcx} cy={pcy} r={PR} fill="#dc2626" stroke="#222" strokeWidth={2}/>):null}</svg>):null}
       <div style={{background:"#3a3a3a",borderRadius:8,padding:"5px 7px",boxShadow:"0 3px 10px rgba(0,0,0,.3)"}}>
@@ -397,7 +408,7 @@ function WholeBarTrack(props) {
       <div style={{height:110,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:2,position:"relative"}}>
         {verbalTxt?(<div style={{display:"flex",alignItems:"center",gap:4}}>
           <span style={{fontSize:Math.min(15,W*0.04),fontWeight:700,color:"#888",fontStyle:"italic"}}>{verbalTxt}</span>
-          <span onClick={function(e){e.stopPropagation();speak(fracSpeech(totalVal,pieces),t("speech.lang"));}} style={{cursor:"pointer",fontSize:12,opacity:.5,transition:"opacity .2s"}} onMouseEnter={function(e){e.currentTarget.style.opacity="1";}} onMouseLeave={function(e){e.currentTarget.style.opacity=".5";}}>{"🔊"}</span>
+          {canSpeak(String(t("speech.lang")).slice(0,2))&&<span onClick={function(e){e.stopPropagation();speak(fracSpeech(totalVal,pieces),t("speech.lang"));}} style={{cursor:"pointer",fontSize:12,opacity:.5,transition:"opacity .2s"}} onMouseEnter={function(e){e.currentTarget.style.opacity="1";}} onMouseLeave={function(e){e.currentTarget.style.opacity=".5";}}>{"🔊"}</span>}
         </div>):null}
         {totalVal>0&&fracDen>1?(
           <div style={{display:"flex",flexDirection:"column",alignItems:"center"}}>
@@ -476,7 +487,7 @@ export default function App() {
   function hPush(){pastRef.current=pastRef.current.slice(-30).concat([JSON.parse(JSON.stringify(irRef.current))]);futRef.current=[];frc(function(v){return v+1;});}
   function doUndo(){if(!pastRef.current.length)return;futRef.current.push(JSON.parse(JSON.stringify(irRef.current)));setItems(pastRef.current.pop());frc(function(v){return v+1;});}
   function doRedo(){if(!futRef.current.length)return;pastRef.current.push(JSON.parse(JSON.stringify(irRef.current)));setItems(futRef.current.pop());frc(function(v){return v+1;});}
-  function bs(active,extra){var s={padding:"4px 8px",borderRadius:5,cursor:"pointer",fontFamily:"inherit",fontSize:9,fontWeight:700,background:active?"#f59e0b":BB,border:active?"2px solid #78350f":"1px solid "+PBD,color:active?"#fff":PT};if(extra)for(var k in extra)s[k]=extra[k];return s;}
+  function bs(active,extra){var s={padding:"4px 8px",borderRadius:5,cursor:"pointer",fontFamily:"inherit",fontSize:9,fontWeight:700,background:active?"#ef4444":BB,border:active?"2px solid #7f1d1d":"1px solid "+PBD,color:active?"#fff":PT};if(extra)for(var k in extra)s[k]=extra[k];return s;}
 
   function savePage(){var d=Object.assign({},pageData);d[pageId]={items:JSON.parse(JSON.stringify(items)),lines:drawLines.slice(),ops:Object.assign({},ops)};setPageData(d);}
   function switchPage(pid){savePage();var d=pageData[pid];if(d){setItems(d.items||[]);setDrawLines(d.lines||[]);setOps(d.ops||{});}else{setItems([]);setDrawLines([]);setOps({});}setPageId(pid);setSelTrack(null);setActiveTpl(null);}
@@ -1055,9 +1066,11 @@ export default function App() {
           </div>
           {!collapsed?(
             <div style={{display:"flex",flex:1,flexDirection:"column",overflow:"hidden"}}>
-              <div style={{display:"flex",borderBottom:"1px solid "+PBD}}>
-                <button onClick={function(){setSideTab("mat");}} style={{flex:1,padding:"10px 0",border:"none",borderBottom:sideTab==="mat"?"3px solid #f59e0b":"3px solid transparent",background:sideTab==="mat"?"rgba(245,158,11,.06)":"transparent",cursor:"pointer",fontSize:12,fontWeight:800,color:sideTab==="mat"?PT:PS,fontFamily:"inherit",transition:"all .2s"}}>{t("tab.material")}</button>
-                <button onClick={function(){setSideTab("act");}} style={{flex:1,padding:"10px 0",border:"none",borderBottom:sideTab==="act"?"3px solid #f59e0b":"3px solid transparent",background:sideTab==="act"?"rgba(245,158,11,.06)":"transparent",cursor:"pointer",fontSize:12,fontWeight:800,color:sideTab==="act"?PT:PS,fontFamily:"inherit",transition:"all .2s"}}>{t("tab.activity")}</button>
+              <div style={{padding:"4px 6px",borderBottom:"1px solid "+PBD}}>
+                <AppTabs active={sideTab} onChange={setSideTab} tabs={[
+                  {id:"mat",label:t("tab.material")},
+                  {id:"act",label:t("tab.activity")},
+                ]}/>
               </div>
               {sideTab==="mat"?(
                 <div style={{flex:1,overflowY:"scroll",padding:"8px 10px",scrollbarWidth:"none"}}>
@@ -1110,20 +1123,20 @@ export default function App() {
                 </div>
               ):(
                 <div style={{flex:1,overflowY:"scroll",padding:"8px 10px",scrollbarWidth:"none"}}>
-                  {CATS.map(function(cat){var acts=ACT.filter(function(a){return a.cat===cat;});if(!acts.length)return null;var isY=cat==="yanılgı";var catLabel=t("cat."+cat);return(<div key={cat}><div style={{fontSize:9,fontWeight:800,textTransform:"uppercase",letterSpacing:1,color:isY?"#ef4444":PS,margin:"8px 0 5px"}}>{catLabel}</div>{acts.map(function(tp,idx){var ai=ACT.indexOf(tp);var isAct=activeTpl&&activeTpl.n===tp.n;return(<button key={cat+idx} onClick={function(){loadActivity(tp);}} style={{display:"flex",alignItems:"center",gap:6,padding:"6px 8px",width:"100%",background:isAct?"rgba(245,158,11,.15)":completed[tp.n]?"rgba(34,197,94,.06)":isY?"rgba(239,68,68,.04)":BB,border:isAct?"2px solid #f59e0b":completed[tp.n]?"1px solid rgba(34,197,94,.3)":"1px solid "+PBD,borderRadius:7,cursor:"pointer",fontFamily:"inherit",textAlign:"left",color:PT,marginBottom:3,fontSize:10,fontWeight:isAct?900:700,overflow:"hidden",transition:"background .15s"}}><span style={{fontSize:13,flexShrink:0}}>{completed[tp.n]?"✅":tp.i}</span><span style={{flex:1,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{t("act."+ai+".n")}</span><span style={{fontSize:8,color:"#d97706",flexShrink:0}}>{"\u2605".repeat(tp.diff)}</span></button>);})}</div>);})}
+                  {CATS.map(function(cat){var acts=ACT.filter(function(a){return a.cat===cat;});if(!acts.length)return null;var isY=cat==="yanılgı";var catLabel=t("cat."+cat);return(<div key={cat}><div style={{fontSize:9,fontWeight:800,textTransform:"uppercase",letterSpacing:1,color:isY?"#ef4444":PS,margin:"8px 0 5px"}}>{catLabel}</div>{acts.map(function(tp,idx){var ai=ACT.indexOf(tp);var isAct=activeTpl&&activeTpl.n===tp.n;return(<button key={cat+idx} onClick={function(){loadActivity(tp);}} style={{display:"flex",alignItems:"center",gap:6,padding:"6px 8px",width:"100%",background:isAct?"rgba(239,68,68,.15)":completed[tp.n]?"rgba(34,197,94,.06)":isY?"rgba(239,68,68,.04)":BB,border:isAct?"2px solid #ef4444":completed[tp.n]?"1px solid rgba(34,197,94,.3)":"1px solid "+PBD,borderRadius:7,cursor:"pointer",fontFamily:"inherit",textAlign:"left",color:PT,marginBottom:3,fontSize:10,fontWeight:isAct?900:700,overflow:"hidden",transition:"background .15s"}}><span style={{fontSize:13,flexShrink:0}}>{completed[tp.n]?"✅":tp.i}</span><span style={{flex:1,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{t("act."+ai+".n")}</span><span style={{fontSize:8,color:"#d97706",flexShrink:0}}>{"\u2605".repeat(tp.diff)}</span></button>);})}</div>);})}
                 </div>
               )}
               <div style={{padding:"8px 10px",borderTop:"1px solid "+PBD,display:"flex",gap:4,flexWrap:"wrap",alignItems:"center"}}>
-                <button onClick={doUndo} style={bs(false,{opacity:pastRef.current.length?1:.4,fontSize:12,padding:"5px 8px"})}>{"↩"}</button>
-                <button onClick={doRedo} style={bs(false,{opacity:futRef.current.length?1:.4,fontSize:12,padding:"5px 8px"})}>{"↪"}</button>
-                <div style={{width:1,height:16,background:PBD}}/>
-                <button onClick={function(){setLabels(!showLabels);}} style={bs(showLabels,{fontSize:10,padding:"5px 8px"})}>{"Aa"}</button>
-                <button onClick={function(){setTransp(!transpMode);}} style={bs(transpMode,{fontSize:10,padding:"5px 8px"})} title={t("tool.transparency")}>{"👁"}</button>
-                <div style={{width:1,height:16,background:PBD}}/>
-                <button onClick={function(){setItems(autoLayout(irRef.current));}} style={bs(false,{fontSize:10,padding:"5px 8px"})}>{"⊞"}</button>
-                <button onClick={function(){hPush();setItems([]);setDrawLines([]);setOps({});setActiveTpl(null);}} style={bs(false,{fontSize:10,padding:"5px 8px"})}>{"🗑"}</button>
-                <button onClick={function(){setHelp(!helpOpen);}} style={bs(helpOpen,{fontSize:10,padding:"5px 8px"})}>{"?"}</button>
-                <button onClick={function(){setAbout(true);}} style={bs(false,{fontSize:10,padding:"5px 8px"})}>{"ℹ"}</button>
+                <IconButton icon="↩" title="Geri al" onClick={doUndo} disabled={!pastRef.current.length}/>
+                <IconButton icon="↪" title="İleri al" onClick={doRedo} disabled={!futRef.current.length}/>
+                <ToolSep/>
+                <IconButton icon="Aa" title="Etiketler" active={showLabels} onClick={function(){setLabels(!showLabels);}}/>
+                <IconButton icon="👁" title={t("tool.transparency")} active={transpMode} onClick={function(){setTransp(!transpMode);}}/>
+                <ToolSep/>
+                <IconButton icon="⊞" title="Otomatik diz" onClick={function(){setItems(autoLayout(irRef.current));}}/>
+                <IconButton icon="🗑" title={t("tool.clear")} danger onClick={function(){hPush();setItems([]);setDrawLines([]);setOps({});setActiveTpl(null);}}/>
+                <IconButton icon="?" title="Yardım" active={helpOpen} onClick={function(){setHelp(!helpOpen);}}/>
+                <IconButton icon="ℹ" title="Hakkında" onClick={function(){setAbout(true);}}/>
                 <div style={{width:1,height:16,background:PBD}}/>
                 <button onClick={exportCanvas} style={bs(false,{fontSize:10,padding:"5px 8px"})} title={t("tool.screenshot")}>{"📷"}</button>
                 <button onClick={shareCanvas} style={bs(false,{fontSize:10,padding:"5px 8px"})} title={t("tool.share")}>{"🔗"}</button>
@@ -1153,7 +1166,7 @@ export default function App() {
           <div style={{position:"absolute",bottom:12,left:"50%",transform:"translateX(-50%)",zIndex:40,display:"flex",alignItems:"center",gap:6,padding:"6px 14px",background:"rgba(255,255,255,.95)",backdropFilter:"blur(14px)",borderRadius:14,border:"1px solid rgba(0,0,0,.1)",boxShadow:"0 -3px 16px rgba(0,0,0,.12)"}}>
             {/* Sayfa sekmeleri */}
             {pages.map(function(pg){return(
-              <div key={pg.id} onClick={function(){if(pg.id!==pageId)switchPage(pg.id);}} style={{display:"flex",alignItems:"center",gap:3,padding:"5px 10px",borderRadius:8,background:pg.id===pageId?"#f59e0b":"transparent",cursor:"pointer",fontSize:11,fontWeight:pg.id===pageId?800:600,color:pg.id===pageId?"#fff":"#888",transition:"all .2s"}}>
+              <div key={pg.id} onClick={function(){if(pg.id!==pageId)switchPage(pg.id);}} style={{display:"flex",alignItems:"center",gap:3,padding:"5px 10px",borderRadius:8,background:pg.id===pageId?"#ef4444":"transparent",cursor:"pointer",fontSize:11,fontWeight:pg.id===pageId?800:600,color:pg.id===pageId?"#fff":"#888",transition:"all .2s"}}>
                 {t("page.name")+" "+pg.name}
                 {pages.length>1?(<span onClick={function(e2){e2.stopPropagation();removePage(pg.id);}} style={{marginLeft:4,fontSize:9,color:pg.id===pageId?"rgba(255,255,255,.6)":"#ccc",cursor:"pointer"}}>{"✕"}</span>):null}
               </div>
@@ -1161,12 +1174,12 @@ export default function App() {
             <button onClick={addPage} style={{width:26,height:26,borderRadius:8,border:"1.5px dashed #bbb",background:"transparent",cursor:"pointer",fontSize:14,color:"#999",fontFamily:"inherit",display:"flex",alignItems:"center",justifyContent:"center"}}>{"+"}</button>
             <div style={{width:1,height:22,background:"rgba(0,0,0,.12)",margin:"0 3px"}}/>
             {/* Araçlar */}
-            <button onClick={function(){setTool("select");}} title={t("tool.select")} style={{width:32,height:32,borderRadius:8,border:tool==="select"?"2px solid #f59e0b":"1.5px solid transparent",background:tool==="select"?"#fef3c7":"transparent",cursor:"pointer",fontSize:16,display:"flex",alignItems:"center",justifyContent:"center",transition:"all .15s"}}>{"👆"}</button>
-            <button onClick={function(){setTool("pan");}} title={t("tool.pan")} style={{width:32,height:32,borderRadius:8,border:tool==="pan"?"2px solid #f59e0b":"1.5px solid transparent",background:tool==="pan"?"#fef3c7":"transparent",cursor:"pointer",fontSize:16,display:"flex",alignItems:"center",justifyContent:"center",transition:"all .15s"}}>{"✋"}</button>
-            <button onClick={function(){setTool("pen");}} title={t("tool.pen")} style={{width:32,height:32,borderRadius:8,border:tool==="pen"?"2px solid #f59e0b":"1.5px solid transparent",background:tool==="pen"?"#fef3c7":"transparent",cursor:"pointer",fontSize:16,display:"flex",alignItems:"center",justifyContent:"center",transition:"all .15s"}}>{"✏️"}</button>
-            <button onClick={function(){setTool("eraser");}} title={t("tool.eraser")} style={{width:32,height:32,borderRadius:8,border:tool==="eraser"?"2px solid #f59e0b":"1.5px solid transparent",background:tool==="eraser"?"#fef3c7":"transparent",cursor:"pointer",fontSize:14,fontWeight:900,display:"flex",alignItems:"center",justifyContent:"center",transition:"all .15s",color:"#666"}}>{"⌫"}</button>
-            <button onClick={function(){setTool("scissors");}} title={t("tool.scissors")} style={{width:32,height:32,borderRadius:8,border:tool==="scissors"?"2px solid #f59e0b":"1.5px solid transparent",background:tool==="scissors"?"#fef3c7":"transparent",cursor:"pointer",fontSize:16,display:"flex",alignItems:"center",justifyContent:"center",transition:"all .15s"}}>{"✂️"}</button>
-            <button onClick={function(){setTool("text");}} title={t("tool.text")} style={{width:32,height:32,borderRadius:8,border:tool==="text"?"2px solid #f59e0b":"1.5px solid transparent",background:tool==="text"?"#fef3c7":"transparent",cursor:"pointer",fontSize:16,display:"flex",alignItems:"center",justifyContent:"center",transition:"all .15s"}}>{"T"}</button>
+            <button onClick={function(){setTool("select");}} title={t("tool.select")} style={{width:32,height:32,borderRadius:8,border:tool==="select"?"2px solid #ef4444":"1.5px solid transparent",background:tool==="select"?"#fee2e2":"transparent",cursor:"pointer",fontSize:16,display:"flex",alignItems:"center",justifyContent:"center",transition:"all .15s"}}>{"👆"}</button>
+            <button onClick={function(){setTool("pan");}} title={t("tool.pan")} style={{width:32,height:32,borderRadius:8,border:tool==="pan"?"2px solid #ef4444":"1.5px solid transparent",background:tool==="pan"?"#fee2e2":"transparent",cursor:"pointer",fontSize:16,display:"flex",alignItems:"center",justifyContent:"center",transition:"all .15s"}}>{"✋"}</button>
+            <button onClick={function(){setTool("pen");}} title={t("tool.pen")} style={{width:32,height:32,borderRadius:8,border:tool==="pen"?"2px solid #ef4444":"1.5px solid transparent",background:tool==="pen"?"#fee2e2":"transparent",cursor:"pointer",fontSize:16,display:"flex",alignItems:"center",justifyContent:"center",transition:"all .15s"}}>{"✏️"}</button>
+            <button onClick={function(){setTool("eraser");}} title={t("tool.eraser")} style={{width:32,height:32,borderRadius:8,border:tool==="eraser"?"2px solid #ef4444":"1.5px solid transparent",background:tool==="eraser"?"#fee2e2":"transparent",cursor:"pointer",fontSize:14,fontWeight:900,display:"flex",alignItems:"center",justifyContent:"center",transition:"all .15s",color:"#666"}}>{"⌫"}</button>
+            <button onClick={function(){setTool("scissors");}} title={t("tool.scissors")} style={{width:32,height:32,borderRadius:8,border:tool==="scissors"?"2px solid #ef4444":"1.5px solid transparent",background:tool==="scissors"?"#fee2e2":"transparent",cursor:"pointer",fontSize:16,display:"flex",alignItems:"center",justifyContent:"center",transition:"all .15s"}}>{"✂️"}</button>
+            <button onClick={function(){setTool("text");}} title={t("tool.text")} style={{width:32,height:32,borderRadius:8,border:tool==="text"?"2px solid #ef4444":"1.5px solid transparent",background:tool==="text"?"#fee2e2":"transparent",cursor:"pointer",fontSize:16,display:"flex",alignItems:"center",justifyContent:"center",transition:"all .15s"}}>{"T"}</button>
             <button onClick={function(){hPush();setDrawLines([]);}} title={t("tool.clear")} style={{width:32,height:32,borderRadius:8,border:"1.5px solid transparent",background:"transparent",cursor:"pointer",fontSize:16,display:"flex",alignItems:"center",justifyContent:"center",opacity:drawLines.length>0?1:.35,transition:"all .15s"}}>{"🧹"}</button>
             {(tool==="pen"||tool==="text")?(<>
               <div style={{width:1,height:22,background:"rgba(0,0,0,.12)",margin:"0 3px"}}/>
@@ -1262,7 +1275,7 @@ export default function App() {
                 {idx<sortedTracks.length-1?(
                   <div onClick={function(){cycleOp(tk.id);}} style={{position:"absolute",left:(tk.x||0)+scaledBarWidth+30,top:fracCenterY-24,zIndex:8,cursor:"pointer"}}>
                     <div style={{width:48,height:48,borderRadius:"50%",background:isCmpOp?eqColor:opLabel?opColors[opLabel]||"#888":"rgba(0,0,0,.06)",border:isEqCorrect?"3px solid #16a34a":isEqWrong?"3px solid #ef4444":opLabel?"2.5px solid rgba(255,255,255,.3)":"2px dashed rgba(0,0,0,.15)",display:"flex",alignItems:"center",justifyContent:"center",boxShadow:isEqCorrect?"0 0 20px rgba(34,197,94,.5)":isEqWrong?"0 0 12px rgba(239,68,68,.3)":opLabel?"0 3px 10px rgba(0,0,0,.25)":"none",transition:"all .3s"}}>
-                      <span style={{fontSize:isEqCorrect?26:opLabel?26:18,fontWeight:900,color:opLabel?"#fff":"rgba(0,0,0,.2)"}}>{isEqCorrect?"✓":opLabel||"?"}</span>
+                      <span style={{fontSize:isEqCorrect?26:opLabel?26:22,fontWeight:900,color:opLabel?"#fff":"rgba(0,0,0,.55)"}}>{isEqCorrect?"✓":opLabel||"?"}</span>
                     </div>
                   </div>
                 ):null}

@@ -1,8 +1,21 @@
 import { useState, useMemo, useEffect } from 'react';
 import { TOOLS, TOOL_CATEGORIES } from './tools.js';
-import { LANGS, LANG_LABELS, LANG_FLAGS, useT } from './i18n.js';
+import { VISIBLE_LANGS, LANG_LABELS, LANG_FLAGS, useT } from './i18n.js';
+import { useAuthSlot } from './useAuthSlot.js';
 
 const STORAGE_KEY = 'dokunsay:platform:prefs';
+
+// DokunSay amber Üçlü-Kod işareti (yerel inline; dış marka bağımlılığı yok).
+function BrandMark({ size = 32 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 48 48" aria-hidden="true">
+      <circle cx="24" cy="24" r="22" fill="#f5b942" />
+      <circle cx="16" cy="20" r="3.4" fill="#241a05" />
+      <circle cx="32" cy="20" r="3.4" fill="#241a05" />
+      <circle cx="24" cy="31" r="3.4" fill="#241a05" />
+    </svg>
+  );
+}
 
 const AGE_RANGES = {
   all: [0, 99],
@@ -71,7 +84,7 @@ function resolveToolUrl(tool) {
 }
 
 const STATS = [
-  { key: 'tools',      icon: '🎯', value: 7 },
+  { key: 'tools',      icon: '🎯', value: 8 },
   { key: 'languages',  icon: '🌐', value: 5 },
   { key: 'activities', icon: '✨', value: '200+' },
   { key: 'frameworks', icon: '📚', value: 5 },
@@ -91,11 +104,21 @@ function openTool(tool) {
 
 export default function App() {
   const initial = loadPrefs();
-  const [lang, setLang] = useState(initial.lang || 'tr');
+  // Kayitli dil gizlenen bir dil olabilir (AR/FA daha once secilmisse) -> guvenli varsayilan.
+  // Yoksa portal gizli bir dilde acilir ve secicide hicbir dugme aktif gorunmez.
+  const [lang, setLang] = useState(
+    VISIBLE_LANGS.includes(initial.lang) ? initial.lang : 'tr'
+  );
   const [query, setQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState('all');
   const [activeAge, setActiveAge] = useState('all');
   const t = useT(lang);
+  useAuthSlot();
+
+  const trajectoriesUrl = `${import.meta.env.BASE_URL || '/'}yorunge/`.replace(/\/{2,}/g, '/');
+  const zihindenUrl = `${import.meta.env.BASE_URL || '/'}ZihindenAritmetik/`.replace(/\/{2,}/g, '/');
+  const rehberUrl = `${import.meta.env.BASE_URL || '/'}rehber/`.replace(/\/{2,}/g, '/');
+  const setUrl = `${import.meta.env.BASE_URL || '/'}sayi-cubuklari/`.replace(/\/{2,}/g, '/');
 
   useEffect(() => {
     savePrefs({ lang });
@@ -146,12 +169,7 @@ export default function App() {
         <div className="header-row">
           <div className="brand">
             <div className="brand-logo" aria-hidden="true">
-              <svg viewBox="0 0 32 32" fill="none" width="32" height="32">
-                <rect x="4" y="4" width="10" height="10" rx="2.5" fill="currentColor" opacity="0.95" />
-                <rect x="18" y="4" width="10" height="10" rx="2.5" fill="currentColor" opacity="0.7" />
-                <rect x="4" y="18" width="10" height="10" rx="2.5" fill="currentColor" opacity="0.55" />
-                <rect x="18" y="18" width="10" height="10" rx="2.5" fill="currentColor" opacity="0.9" />
-              </svg>
+              <BrandMark size={32} />
             </div>
             <div>
               <h1>{t('platform_title')}</h1>
@@ -160,8 +178,56 @@ export default function App() {
           </div>
 
           <div className="header-controls">
+            <a
+              className="trajectories-link"
+              href={trajectoriesUrl}
+              style={{
+                display: 'inline-flex', alignItems: 'center', gap: '6px',
+                padding: '8px 15px', borderRadius: '999px', fontWeight: 700, fontSize: '.86rem',
+                color: '#fde6c0', background: 'rgba(245,158,11,.18)',
+                border: '1px solid rgba(245,158,11,.45)', textDecoration: 'none', whiteSpace: 'nowrap',
+              }}
+            >
+              🧭 {t('trajectories_nav')}
+            </a>
+            <a
+              className="rehber-link"
+              href={rehberUrl}
+              style={{
+                display: 'inline-flex', alignItems: 'center', gap: '6px',
+                padding: '8px 15px', borderRadius: '999px', fontWeight: 700, fontSize: '.86rem',
+                color: '#d7f0d9', background: 'rgba(46,125,50,.2)',
+                border: '1px solid rgba(46,125,50,.5)', textDecoration: 'none', whiteSpace: 'nowrap',
+              }}
+            >
+              📘 {t('rehber_nav')}
+            </a>
+            <button
+              className="araclar-link"
+              onClick={scrollToTools}
+              style={{
+                display: 'inline-flex', alignItems: 'center', gap: '6px', cursor: 'pointer', fontFamily: 'inherit',
+                padding: '8px 15px', borderRadius: '999px', fontWeight: 700, fontSize: '.86rem',
+                color: '#bfe8e4', background: 'rgba(13,148,136,.2)',
+                border: '1px solid rgba(13,148,136,.5)', whiteSpace: 'nowrap',
+              }}
+            >
+              🛠️ {t('tools_nav')}
+            </button>
+            <a
+              className="zihinden-link"
+              href={zihindenUrl}
+              style={{
+                display: 'inline-flex', alignItems: 'center', gap: '6px',
+                padding: '8px 15px', borderRadius: '999px', fontWeight: 700, fontSize: '.86rem',
+                color: '#cfe4f5', background: 'rgba(44,136,232,.2)',
+                border: '1px solid rgba(44,136,232,.5)', textDecoration: 'none', whiteSpace: 'nowrap',
+              }}
+            >
+              📘 {t('zihinden_nav')}
+            </a>
             <div className="lang-switcher" role="group" aria-label={t('lang_btn')}>
-              {LANGS.map((l) => (
+              {VISIBLE_LANGS.map((l) => (
                 <button
                   key={l}
                   className={`lang-btn ${lang === l ? 'active' : ''}`}
@@ -186,7 +252,7 @@ export default function App() {
         </div>
         <div className="hero-inner">
           <span className="hero-eyebrow">🎯 {t('platform_subtitle')}</span>
-          <h2>{t('platform_title')}</h2>
+          <h2><span className="hero-hl">{t('platform_title')}</span></h2>
           <p className="hero-lead">{t('platform_tagline')}</p>
           <button className="hero-cta" onClick={scrollToTools}>
             {t('platform_hero_cta')} →
@@ -201,6 +267,84 @@ export default function App() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section style={{ padding: '36px 24px 0', maxWidth: '1140px', margin: '0 auto', width: '100%' }}>
+        <div
+          style={{
+            background: 'linear-gradient(135deg,#f1f8f2,#e3f1e5)',
+            border: '1px solid #c5dcc6', borderRadius: '24px', padding: '30px 32px',
+            boxShadow: '0 18px 44px -22px rgba(27,94,32,.4)',
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px', flexWrap: 'wrap' }}>
+            <span style={{ fontSize: '2rem', lineHeight: 1 }} aria-hidden="true">🧭</span>
+            <h3 style={{ margin: 0, color: '#1b5e20', fontSize: '1.55rem', fontWeight: 800, letterSpacing: '-.01em' }}>
+              {t('trajectories_nav')}
+            </h3>
+            <span style={{
+              marginLeft: 'auto', fontWeight: 800, color: '#2e7d32', fontSize: '.86rem',
+              background: '#fff', border: '1px solid #c5dcc6', borderRadius: '999px', padding: '7px 15px', whiteSpace: 'nowrap',
+            }}>{t('traj_scope')}</span>
+          </div>
+          <p style={{ margin: '0 0 20px', color: '#45584a', fontSize: '1.05rem', lineHeight: 1.6, maxWidth: '760px' }}>
+            {t('trajectories_desc')}
+          </p>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(190px,1fr))', gap: '12px', marginBottom: '22px' }}>
+            {[['🎂', t('traj_h_age')], ['👤', t('traj_h_lvl')], ['🛠️', t('traj_h_tool')]].map(([ic, tx]) => (
+              <div key={tx} style={{ display: 'flex', alignItems: 'center', gap: '11px', background: 'rgba(255,255,255,.65)', border: '1px solid #c5dcc6', borderRadius: '15px', padding: '13px 15px' }}>
+                <span style={{ fontSize: '1.4rem', flex: '0 0 auto' }} aria-hidden="true">{ic}</span>
+                <span style={{ fontWeight: 700, color: '#1b5e20', fontSize: '.96rem' }}>{tx}</span>
+              </div>
+            ))}
+          </div>
+          <a
+            href={trajectoriesUrl}
+            style={{
+              display: 'inline-flex', alignItems: 'center', gap: '8px', fontWeight: 800, color: '#fff', fontSize: '1.02rem',
+              background: 'linear-gradient(135deg,#43a047,#2e7d32)', borderRadius: '999px', padding: '14px 28px',
+              textDecoration: 'none', boxShadow: '0 10px 24px -8px rgba(27,94,32,.55)',
+            }}
+          >
+            {t('traj_explore')} →
+          </a>
+        </div>
+      </section>
+
+      <section style={{ padding: '18px 24px 0', maxWidth: '1140px', margin: '0 auto', width: '100%' }}>
+        <div
+          style={{
+            display: 'flex', gap: '20px', alignItems: 'center', flexWrap: 'wrap',
+            background: '#fff', border: '1px solid #c5dcc6', borderRadius: '20px', padding: '22px 28px',
+            boxShadow: '0 14px 36px -24px rgba(27,94,32,.45)',
+          }}
+        >
+          <span style={{ fontSize: '2.4rem', lineHeight: 1, flex: '0 0 auto' }} aria-hidden="true">📘</span>
+          <div style={{ flex: '1 1 380px', minWidth: 0 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap', marginBottom: '6px' }}>
+              <h3 style={{ margin: 0, color: '#1b5e20', fontSize: '1.3rem', fontWeight: 800, letterSpacing: '-.01em' }}>
+                {t('rehber_nav')}
+              </h3>
+              <span style={{
+                fontWeight: 800, color: '#2e7d32', fontSize: '.78rem',
+                background: '#eef6ef', border: '1px solid #c5dcc6', borderRadius: '999px', padding: '5px 12px', whiteSpace: 'nowrap',
+              }}>{t('rehber_scope')}</span>
+            </div>
+            <p style={{ margin: 0, color: '#45584a', fontSize: '.99rem', lineHeight: 1.55 }}>
+              {t('rehber_desc')}
+            </p>
+          </div>
+          <a
+            href={rehberUrl}
+            style={{
+              flex: '0 0 auto', display: 'inline-flex', alignItems: 'center', gap: '8px', fontWeight: 800, color: '#fff', fontSize: '1rem',
+              background: 'linear-gradient(135deg,#43a047,#2e7d32)', borderRadius: '999px', padding: '13px 26px',
+              textDecoration: 'none', boxShadow: '0 10px 24px -8px rgba(27,94,32,.55)',
+            }}
+          >
+            {t('rehber_explore')} →
+          </a>
         </div>
       </section>
 
@@ -233,7 +377,26 @@ export default function App() {
       <section id="tools-section" className="tools-section">
         <div className="section-heading">
           <span className="section-eyebrow">🛠️</span>
-          <h3>{t('all_tools')}</h3>
+          <h3>{t('tools_section_title')}</h3>
+          <p>{t('tools_section_sub')}</p>
+        </div>
+
+        <div style={{ maxWidth: '1140px', margin: '0 auto 22px', width: '100%', padding: '0 24px' }}>
+          <div style={{
+            display: 'flex', gap: '20px', alignItems: 'center', flexWrap: 'wrap',
+            background: 'linear-gradient(135deg,#f1f8f2,#e3f1e5)', border: '1px solid #c5dcc6', borderRadius: '20px', padding: '22px 28px',
+            boxShadow: '0 14px 36px -24px rgba(27,94,32,.45)',
+          }}>
+            <span style={{ fontSize: '2.4rem', lineHeight: 1, flex: '0 0 auto' }} aria-hidden="true">🧮</span>
+            <div style={{ flex: '1 1 360px', minWidth: 0 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap', marginBottom: '6px' }}>
+                <h3 style={{ margin: 0, color: '#1b5e20', fontSize: '1.3rem', fontWeight: 800, letterSpacing: '-.01em' }}>{t('set_nav')}</h3>
+                <span style={{ fontWeight: 800, color: '#2e7d32', fontSize: '.78rem', background: '#fff', border: '1px solid #c5dcc6', borderRadius: '999px', padding: '5px 12px', whiteSpace: 'nowrap' }}>{t('set_scope')}</span>
+              </div>
+              <p style={{ margin: 0, color: '#45584a', fontSize: '.99rem', lineHeight: 1.55 }}>{t('set_desc')}</p>
+            </div>
+            <a href={setUrl} style={{ flex: '0 0 auto', display: 'inline-flex', alignItems: 'center', gap: '8px', fontWeight: 800, color: '#fff', fontSize: '1rem', background: 'linear-gradient(135deg,#43a047,#2e7d32)', borderRadius: '999px', padding: '13px 26px', textDecoration: 'none', boxShadow: '0 10px 24px -8px rgba(27,94,32,.55)' }}>{t('set_explore')} →</a>
+          </div>
         </div>
 
         <div className="filter-panel">
@@ -363,7 +526,15 @@ export default function App() {
             <span>· {t('platform_subtitle')}</span>
           </div>
           <div className="footer-meta">
-            © 2024-2026 · {t('author')}
+            © 2024-2026 ·{' '}
+            <a
+              className="footer-author"
+              href="https://hercocukmatematikogrenebilir.com/yilmaz-mutlu/"
+              target="_blank"
+              rel="noopener author"
+            >
+              {t('author')}
+            </a>
           </div>
           <div className="footer-links">
             <a href="https://github.com/ymutlu49" target="_blank" rel="noopener noreferrer">

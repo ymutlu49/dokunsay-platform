@@ -110,7 +110,7 @@ const OperationTray = ({
       marginTop: 6, background: 'rgba(255,255,255,.92)', backdropFilter: 'blur(8px)',
       borderRadius: 10, padding: '6px 14px',
       display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
-      border: '1.5px solid rgba(245,158,11,.15)',
+      border: '1.5px solid rgba(139,92,246,.15)',
     }}>
       <div style={{ fontSize: 8, fontWeight: 800, color: THEME.accentD, textTransform: 'uppercase', letterSpacing: 1 }}>Sembolik</div>
       <div style={{ fontSize: 16, fontWeight: 900, color: THEME.text, fontFamily: "'Courier New',monospace" }}>

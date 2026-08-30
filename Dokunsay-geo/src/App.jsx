@@ -6,6 +6,7 @@
 // OOP şekil sınıfları, yardımcılar ve bileşenler alt modüllerde yer alır.
 // ══════════════════════════════════════════════════════════
 import { useState, useReducer, useRef, useEffect, useCallback } from 'react';
+import { normalizeLang } from "@shared/LangSwitcher.jsx";
 
 import { P, CAT_META, CAT_ORDER } from './constants/palette.js';
 import { SHAPE_DEF, BY_CAT } from './constants/shapes2d.js';
@@ -17,6 +18,7 @@ import { VH_ACTS_OLD } from './constants/activities.js';
 import { LANGS } from './constants/i18n.js';
 
 import { TTS } from './lib/tts.js';
+import { AppTabs } from '@shared/AppTabs.jsx';
 
 import { project3D, isoProject, symmCount, toPoints } from './utils/geometry.js';
 import { nextId } from './utils/id.js';
@@ -32,13 +34,16 @@ import { VHBadge } from './components/Common/VHBadge.jsx';
 import { SpeakButton } from './components/Common/SpeakButton.jsx';
 import { Toggle } from './components/Common/Toggle.jsx';
 import { LangSwitcher } from '@shared/LangSwitcher.jsx';
+import { pickLabel, pickText } from './utils/label.js';
+import { geoShoelaceArea, geoPerimeter, geoShapeName as geoShapeNameI18n } from './utils/geoboard.js';
 
 export default function App(){
   const [state,dispatch]=useReducer(canvasReducer,{items:[],strokes:[],history:[],future:[],selectedId:null});
   const {items,strokes,selectedId}=state;
 
   // FIX8: localStorage kalıcılık
-  const [lang,setLangRaw]=useState(()=>localStorage.getItem("dg_lang")||"tr");
+  const [lang,setLangRaw]=useState(()=>{try{return normalizeLang(localStorage.getItem("dk_lang")||localStorage.getItem("dg_lang")||"tr")}catch{return "tr"}});
+  useEffect(()=>{const h=e=>{const l=e.detail&&e.detail.lang;if(l)setLangRaw(l);};window.addEventListener("dk-lang-change",h);return()=>window.removeEventListener("dk-lang-change",h);},[]);
   const [score,setScore]=useState(()=>parseInt(localStorage.getItem("dg_score")||"0"));
   const [showSides,setShowSides]=useState(()=>localStorage.getItem("dg_sides")==="1");
   const [showAngles,setShowAngles]=useState(()=>localStorage.getItem("dg_angles")==="1");
@@ -53,7 +58,7 @@ export default function App(){
     return v===null?true:v==="1";
   });
 
-  function setLang(l){setLangRaw(l);localStorage.setItem("dg_lang",l);}
+  function setLang(l){setLangRaw(l);try{localStorage.setItem("dk_lang",l);window.dispatchEvent(new CustomEvent("dk-lang-change",{detail:{lang:l}}));}catch{}}
   function addScore(n){setScore(s=>{const ns=s+n;localStorage.setItem("dg_score",ns);return ns;});}
 
   const L=LANGS[lang]||LANGS.tr;
@@ -548,77 +553,12 @@ export default function App(){
   const GSP=GS===5?40:GS===7?28:18;  // 5:40, 7:28, 11:18 → ~160-180px
 
   /* ═══ Geometri Tahtası Yardımcıları ═══
-     Pick teoremi (Pick 1899): A = I + B/2 - 1
-       I = iç lattice noktaları, B = sınır lattice noktaları.
-       Geoboard için doğru alan hesabı; Shoelace'den daha pedagojik. */
-
-  /* Shoelace formülü ile alanı hesapla (piksel² birimde) */
-  function geoShoelaceArea(pts){
-    if(pts.length<3) return 0;
-    let a=0;
-    for(let i=0;i<pts.length;i++){
-      const j=(i+1)%pts.length;
-      a+=pts[i].c*pts[j].r - pts[j].c*pts[i].r;
-    }
-    return Math.abs(a)/2; // birim kare cinsinden
-  }
-
-  /* Çevre hesabı (birim cinsinden, Öklid mesafesi) */
-  function geoPerimeter(pts){
-    if(pts.length<2) return 0;
-    let p=0;
-    for(let i=0;i<pts.length;i++){
-      const j=(i+1)%pts.length;
-      p+=Math.hypot(pts[j].c-pts[i].c, pts[j].r-pts[i].r);
-    }
-    return p;
-  }
-
-  /* Şekil tanıma — basit kurallara dayalı */
-  function geoShapeName(pts){
-    const n=pts.length;
-    if(n<3) return null;
-    const names={
-      tr:{3:"Üçgen",4:"Dörtgen",5:"Beşgen",6:"Altıgen",7:"Yedigen",8:"Sekizgen"},
-      ku:{3:"Sêgoşe",4:"Çargoşe",5:"Pêncgoşe",6:"Şeşgoşe",7:"Heftgoşe",8:"Heştgoşe"},
-      en:{3:"Triangle",4:"Quadrilateral",5:"Pentagon",6:"Hexagon",7:"Heptagon",8:"Octagon"},
-    };
-    const nm=names[lang]||names.tr;
-    let base=nm[n]||`${n}-${lang==="ku"?"goşe":lang==="en"?"gon":"gen"}`;
-    /* Özel tanıma: dörtgen için kare/dikdörtgen/eşkenar dörtgen tespiti */
-    if(n===4){
-      const sides=[];
-      for(let i=0;i<4;i++){
-        const j=(i+1)%4;
-        sides.push(Math.hypot(pts[j].c-pts[i].c, pts[j].r-pts[i].r));
-      }
-      const allEqual=sides.every(s=>Math.abs(s-sides[0])<0.001);
-      /* Dik açı kontrolü: ardışık iki kenarın iç çarpımı sıfır mı? */
-      let allRight=true;
-      for(let i=0;i<4;i++){
-        const a={c:pts[(i+1)%4].c-pts[i].c, r:pts[(i+1)%4].r-pts[i].r};
-        const b={c:pts[(i+2)%4].c-pts[(i+1)%4].c, r:pts[(i+2)%4].r-pts[(i+1)%4].r};
-        if(Math.abs(a.c*b.c+a.r*b.r)>0.001) allRight=false;
-      }
-      if(allEqual&&allRight) base=lang==="ku"?"Çaryalî":lang==="en"?"Square":"Kare";
-      else if(allRight) base=lang==="ku"?"Çarhêla Rast":lang==="en"?"Rectangle":"Dikdörtgen";
-      else if(allEqual) base=lang==="ku"?"Lozeng":lang==="en"?"Rhombus":"Eşkenar Dörtgen";
-    }
-    /* Üçgen için eşkenar/ikizkenar */
-    if(n===3){
-      const sides=[];
-      for(let i=0;i<3;i++){
-        const j=(i+1)%3;
-        sides.push(Math.hypot(pts[j].c-pts[i].c, pts[j].r-pts[i].r));
-      }
-      const eq01=Math.abs(sides[0]-sides[1])<0.001;
-      const eq12=Math.abs(sides[1]-sides[2])<0.001;
-      const eq02=Math.abs(sides[0]-sides[2])<0.001;
-      if(eq01&&eq12) base=lang==="ku"?"Sêgoşeya Hêvkêlek":lang==="en"?"Equilateral Triangle":"Eşkenar Üçgen";
-      else if(eq01||eq12||eq02) base=lang==="ku"?"Sêgoşeya Duhêvkêlek":lang==="en"?"Isosceles Triangle":"İkizkenar Üçgen";
-    }
-    return base;
-  }
+     Bu üç saf fonksiyon (alan / çevre / şekil adı) burada birebir kopya olarak
+     duruyordu; utils/geoboard.js'te zaten aynıları vardı ve o dosya kullanılmadığı
+     için ölü koddu. 2026-07-19: kopya kaldırıldı, tek kaynak utils/geoboard.js
+     (STANDARDS §2.5). Şekil adı artık dili parametre alır ve 5 dili de destekler.
+     Alan Shoelace formülüyle hesaplanır. */
+  const geoShapeName=(pts)=>geoShapeNameI18n(pts,lang);
 
   // Geoboard → kanvasa aktar (şekiller ve aktif hatlar)
   function transferGeoboard(){
@@ -670,10 +610,9 @@ export default function App(){
       <div ref={ariaRef} aria-live="polite" aria-atomic="true"
         style={{position:"absolute",width:1,height:1,overflow:"hidden",clip:"rect(0,0,0,0)",whiteSpace:"nowrap"}}/>
 
-      {/* HEADER — Van Hiele seviye şeridi. DokunSay logo/başlık AppShell üstünde. */}
-      <header style={{height:46,minHeight:46,background:P.header,display:"flex",alignItems:"center",
-        padding:"0 14px",gap:10,boxShadow:"0 2px 16px rgba(30,27,75,.3)",zIndex:10}}>
-        <LangSwitcher lang={lang} setLang={setLang} langs={Object.keys(LANGS)} />
+      {/* HEADER — Van Hiele seviye şeridi (AppShell topbar'ın devamı, görsel birleşik) */}
+      <header style={{height:30,minHeight:30,background:P.accent,display:"flex",alignItems:"center",
+        padding:"0 12px",gap:8,zIndex:10}}>
         <div style={{flex:1}}/>
         <div style={{display:"flex",gap:3}}>
           {[0,1,2].map(lv=>{
@@ -699,10 +638,10 @@ export default function App(){
                 title={lvData.name[lang]||lvData.name.tr}
                 style={{padding:"3px 10px",borderRadius:7,border:"none",
                   cursor:unlocked?"pointer":"not-allowed",fontFamily:"inherit",
-                  background:vhLevel===lv?lvData.color+"33":"rgba(255,255,255,.07)",
-                  color:vhLevel===lv?lvData.color:(unlocked?"rgba(255,255,255,.4)":"rgba(255,255,255,.25)"),
-                  fontSize:11,fontWeight:vhLevel===lv?800:600,
-                  opacity:unlocked?1:0.55,
+                  background:vhLevel===lv?lvData.color+"33":"rgba(255,255,255,.12)",
+                  color:vhLevel===lv?lvData.color:(unlocked?"rgba(255,255,255,.85)":"rgba(255,255,255,.55)"),
+                  fontSize:12,fontWeight:vhLevel===lv?800:700,
+                  opacity:unlocked?1:0.7,
                   position:"relative",
                   display:"flex",alignItems:"center",gap:3}}>
                 {!unlocked&&<span style={{fontSize:9}}>🔒</span>}
@@ -712,7 +651,7 @@ export default function App(){
             );
           })}
         </div>
-        <div style={{fontSize:10,color:"rgba(165,180,252,.4)",marginLeft:6,fontWeight:700}}>
+        <div style={{fontSize:11,color:"rgba(199,210,254,.9)",marginLeft:6,fontWeight:700}}>
           {items.length} {t("totalShapes")}
         </div>
         <div style={{fontSize:11,fontWeight:800,color:"#fbbf24",background:"rgba(251,191,36,.15)",
@@ -724,40 +663,43 @@ export default function App(){
       <div style={{display:"flex",flex:1,overflow:"hidden"}}>
 
         {/* SOL SIDEBAR */}
-        <nav aria-label={lang==="en"?"Tools":"Araçlar"} style={{width:218,minWidth:218,background:P.side,
+        <nav aria-label={lang==="en"?"Tools":"Araçlar"} style={{width:220,minWidth:220,background:P.side,
           borderRight:"1px solid "+P.sideB,display:"flex",flexDirection:"column",
           boxShadow:"2px 0 10px rgba(99,102,241,.06)"}}>
-          <div style={{display:"flex",borderBottom:"1px solid "+P.sideB,padding:"4px 4px 0",gap:1}}>
-            {[["shapes","🔷",t("sideShapes")],["act","📋",t("sideAct")],
-              ["tan","🧩","Tangram"],
-              ["3d","🧊",lang==="ku"?"3B":lang==="en"?"3D":"3B"],
-              ["geo","⚫",t("sideGeo")],
-              ["teach","👩‍🏫",lang==="ku"?"Mamoste":lang==="en"?"Teacher":"Öğretmen"],
-              ["set","⚙️",t("sideSet")]].map(([id,ic,lbl])=>(
-              <button key={id} onClick={()=>{
-                  setSideTab(id);
-                  /* Kanvas modunu sekmeye göre ayarla */
-                  if(id==="geo") setCanvasMode("geoboard");
-                  else if(id==="tan") setCanvasMode("tangram");
-                  else if(id==="3d") setCanvasMode("3d");
-                  else setCanvasMode("free");
-                }}
-                aria-selected={sideTab===id}
-                style={{flex:1,padding:"5px 1px",borderRadius:"7px 7px 0 0",border:"none",
-                  background:sideTab===id?"#fff":"transparent",cursor:"pointer",fontFamily:"inherit",
-                  fontSize:10,fontWeight:sideTab===id?800:600,
-                  color:sideTab===id?P.accentD:"rgba(30,27,75,.4)",
-                  borderBottom:sideTab===id?`2.5px solid ${P.accent}`:"2.5px solid transparent"}}>
-                <div style={{fontSize:13}}>{ic}</div>{lbl}
-              </button>
-            ))}
+          <div style={{borderBottom:"1px solid "+P.sideB,padding:"4px"}}>
+            <AppTabs
+              compact
+              variant="pills"
+              active={sideTab}
+              ariaLabel={lang==="en"?"Tools":"Araçlar"}
+              onChange={(id)=>{
+                setSideTab(id);
+                /* Kanvas modunu sekmeye göre ayarla */
+                if(id==="geo") setCanvasMode("geoboard");
+                else if(id==="tan") setCanvasMode("tangram");
+                else if(id==="3d") setCanvasMode("3d");
+                else setCanvasMode("free");
+              }}
+              tabs={[
+                {id:"shapes",icon:"🔷",label:t("sideShapes")},
+                {id:"act",icon:"📋",label:t("sideAct")},
+                {id:"tan",icon:"🧩",label:"Tangram"},
+                {id:"3d",icon:"🧊",label:({tr:"3B",ku:"3B",en:"3D",ar:"مجسّمات",fa:"سه‌بعدی"})[lang]||"3B"},
+                {id:"geo",icon:"⚫",label:t("sideGeo")},
+                {id:"teach",icon:"👩‍🏫",label:({tr:"Öğretmen",ku:"Mamoste",en:"Teacher",ar:"المعلّم",fa:"معلم"})[lang]||"Öğretmen"},
+                {id:"set",icon:"⚙️",label:t("sideSet")},
+              ]}
+            />
           </div>
 
           {/* Şekiller */}
           {sideTab==="shapes"&&(
             <div style={{flex:1,overflowY:"auto",padding:"6px"}}>
               <div style={{display:"flex",gap:2,marginBottom:6,background:"rgba(99,102,241,.06)",borderRadius:7,padding:2}}>
-                {[["select","🖱","Seç"],["draw","✏️","Çiz"],["erase","🗑","Sil"]].map(([id,ic,lbl])=>(
+                {/* 2026-07-19: bu üç etiket SABİT TÜRKÇE yazılıydı — İngilizce ve Arapça
+                    arayüzde bile "Seç/Çiz/Sil" görünüyordu. LANGS'te karşılıkları
+                    (toolSelect/toolDraw/toolErase) zaten 5 dilde vardı, oraya bağlandı. */}
+                {[["select","🖱",L.toolSelect],["draw","✏️",L.toolDraw],["erase","🗑",L.toolErase]].map(([id,ic,lbl])=>(
                   <button key={id} onClick={()=>{setTool(id);setStampType(null);}}
                     aria-pressed={tool===id}
                     style={{flex:1,padding:"3px 0",borderRadius:5,border:"none",cursor:"pointer",fontFamily:"inherit",
@@ -770,7 +712,7 @@ export default function App(){
               {CAT_ORDER.map(cat=>{
                 const shapes=BY_CAT[cat]||[];
                 const meta=CAT_META[cat];
-                const catLbl=lang==="ku"?meta.labelKu:lang==="en"?meta.labelEn:meta.label;
+                const catLbl=pickLabel(meta,lang);
                 return (
                   <div key={cat} style={{marginBottom:8}}>
                     <div style={{fontSize:9,fontWeight:800,color:meta.colorB,textTransform:"uppercase",
@@ -778,7 +720,7 @@ export default function App(){
                     <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:3}}>
                       {shapes.map(sh=>{
                         const active=stampType===sh.key&&tool==="stamp";
-                        const lbl=lang==="ku"?sh.labelKu:lang==="en"?sh.labelEn:sh.label;
+                        const lbl=pickLabel(sh,lang);
                         /* Gerçek SVG şekli — Unicode ikona güvenmek yerine.
                            Octagon'un ⏾ (hilal) görünmesi gibi font tutarsızlıkları önlenir;
                            ayrıca pedagojik olarak doğru: butondaki şekil = yerleştirilecek şekil. */
@@ -907,16 +849,16 @@ export default function App(){
                     background:actMode==="quick"?P.accent:"transparent",
                     color:actMode==="quick"?"#fff":"rgba(30,27,75,.45)",
                     fontSize:10,fontWeight:actMode==="quick"?800:600}}>
-                  ⚡ {lang==="ku"?"Bilez":lang==="en"?"Quick":"Hızlı"}
+                  ⚡ {pickText({tr:"Hızlı",ku:"Bilez",en:"Quick",ar:"سريع",fa:"سریع"},lang)}
                 </button>
                 <button onClick={()=>setActMode("seq")}
                   aria-pressed={actMode==="seq"}
-                  title={lang==="ku"?"5 Gavê Van Hiele":lang==="en"?"Van Hiele 5 Phases":"Van Hiele 5 Faz"}
+                  title={pickText({tr:"Van Hiele 5 Faz",ku:"5 Gavê Van Hiele",en:"Van Hiele 5 Phases",ar:"مراحل فان هيله الخمس",fa:"پنج مرحلۀ ون‌هیل"},lang)}
                   style={{flex:1,padding:"5px 0",borderRadius:5,border:"none",cursor:"pointer",fontFamily:"inherit",
                     background:actMode==="seq"?P.accent:"transparent",
                     color:actMode==="seq"?"#fff":"rgba(30,27,75,.45)",
                     fontSize:10,fontWeight:actMode==="seq"?800:600}}>
-                  🎓 {lang==="ku"?"5 Gav":lang==="en"?"5 Phases":"5 Faz"}
+                  🎓 {pickText({tr:"5 Faz",ku:"5 Gav",en:"5 Phases",ar:"٥ مراحل",fa:"۵ مرحله"},lang)}
                 </button>
               </div>
               {actMode==="quick"?(
@@ -1377,7 +1319,7 @@ export default function App(){
                           <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:4}}>
                             {task.opts.map(opt=>{
                               const def=SHAPE_DEF[opt]; if(!def) return null;
-                              const lbl=lang==="ku"?def.labelKu:lang==="en"?def.labelEn:def.label;
+                              const lbl=pickLabel(def,lang);
                               const isSel=tanDiscSel===opt;
                               const isCorrect=tanDiscFb==="ok"&&opt===task.correct;
                               const isWrong=tanDiscFb==="no"&&isSel;
@@ -1480,7 +1422,7 @@ export default function App(){
                 </div>
                 <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:5,marginBottom:10}}>
                   {Object.entries(SHAPE_3D).map(([key,s3])=>{
-                    const lbl=lang==="ku"?s3.labelKu:lang==="en"?s3.labelEn:s3.label;
+                    const lbl=pickLabel(s3,lang);
                     return (
                       <button key={key}
                         onClick={()=>add3DSolid(key)}
@@ -1506,7 +1448,7 @@ export default function App(){
                 {/* Seçili cisim kontrolleri */}
                 {selected3D?(()=>{
                   const def=SHAPE_3D[selected3D.type];
-                  const lbl=lang==="ku"?def.labelKu:lang==="en"?def.labelEn:def.label;
+                  const lbl=pickLabel(def,lang);
                   return (
                     <div style={{padding:"10px 10px",borderRadius:10,
                       background:"rgba(8,145,178,.06)",border:"2px solid rgba(8,145,178,.3)",
@@ -2561,12 +2503,12 @@ export default function App(){
               <button key={id}
                 onClick={()=>{setTool(id);if(id!=="stamp") setStampType(null);}}
                 aria-pressed={tool===id} aria-label={lbl}
-                style={{height:28,padding:"0 8px",borderRadius:7,
+                style={{height:30,padding:"0 9px",borderRadius:7,
                   border:tool===id?"2px solid "+P.accent:"1.5px solid transparent",
                   background:tool===id?P.accentL:"transparent",
-                  cursor:"pointer",fontSize:12,display:"flex",alignItems:"center",gap:4,fontFamily:"inherit",
-                  color:tool===id?P.accentD:"rgba(30,27,75,.4)",fontWeight:tool===id?800:600}}>
-                <span>{ic}</span><span style={{fontSize:10}}>{lbl}</span>
+                  cursor:"pointer",fontSize:12,display:"flex",alignItems:"center",gap:5,fontFamily:"inherit",
+                  color:tool===id?P.accentD:"rgba(30,27,75,.78)",fontWeight:tool===id?800:700}}>
+                <span>{ic}</span><span style={{fontSize:11}}>{lbl}</span>
               </button>
             ))}
             <div style={{flex:1}}/>
@@ -2586,14 +2528,14 @@ export default function App(){
             )}
             <button onClick={()=>dispatch({type:"UNDO"})} disabled={!state.history.length}
               aria-label="Geri al" title="Geri Al (⌘Z)"
-              style={{width:28,height:28,borderRadius:7,border:"none",background:"transparent",
-                cursor:state.history.length?"pointer":"default",fontSize:13,
-                color:state.history.length?P.accentD:"#ddd"}}>↩</button>
+              style={{width:30,height:30,borderRadius:7,border:"none",background:"transparent",
+                cursor:state.history.length?"pointer":"default",fontSize:15,fontWeight:700,
+                color:state.history.length?P.accentD:"#94a3b8"}}>↩</button>
             <button onClick={()=>dispatch({type:"UNDO_STROKE"})} disabled={!strokes.length}
               aria-label="Çizimi geri al" title="Çizimi Geri Al"
-              style={{width:28,height:28,borderRadius:7,border:"none",background:"transparent",
-                cursor:strokes.length?"pointer":"default",fontSize:12,
-                color:strokes.length?"#7c3aed":"#ddd"}}>↩✏</button>
+              style={{width:30,height:30,borderRadius:7,border:"none",background:"transparent",
+                cursor:strokes.length?"pointer":"default",fontSize:14,fontWeight:700,
+                color:strokes.length?"#7c3aed":"#94a3b8"}}>↩✏</button>
             {/* ℹ Özellikler paneli açma/kapama — sadece şekil seçili iken */}
             {selItem&&(
               <button onClick={()=>setShowProps(s=>!s)}
@@ -2627,10 +2569,10 @@ export default function App(){
             )}
             <button onClick={()=>dispatch({type:"CLEAR"})}
               aria-label="Temizle"
-              style={{width:28,height:28,borderRadius:7,border:"none",
+              style={{width:30,height:30,borderRadius:7,border:"none",
                 background:items.length||strokes.length?"rgba(239,68,68,.1)":"transparent",
-                cursor:items.length||strokes.length?"pointer":"default",fontSize:14,
-                color:items.length||strokes.length?"#dc2626":"#ddd"}}>🗑</button>
+                cursor:items.length||strokes.length?"pointer":"default",fontSize:15,
+                color:items.length||strokes.length?"#dc2626":"#94a3b8"}}>🗑</button>
           </div>
 
           {/* SVG — viewBox 1200×800 = şekillerin ekranın %10-15'i kadarı görünmesi için */}
@@ -3039,7 +2981,7 @@ export default function App(){
                               <text x={cx} y={cy+ss*0.7} textAnchor="middle"
                                 style={{fontSize:11,fontWeight:700,fill:customColor,
                                   fontFamily:"system-ui",pointerEvents:"none"}}>
-                                {lang==="ku"?def.labelKu:lang==="en"?def.labelEn:def.label}
+                                {pickLabel(def,lang)}
                               </text>
                             </g>
                           )}
@@ -3259,7 +3201,7 @@ export default function App(){
               {/* Boş kanvas ipucu — sadece serbest modda */}
               {canvasMode==="free"&&items.length===0&&strokes.length===0&&(
                 <text x={900/zoom/2} y={600/zoom/2} textAnchor="middle"
-                  style={{fontSize:14/zoom,fill:"rgba(99,102,241,.2)",fontFamily:"system-ui",fontWeight:700}}>
+                  style={{fontSize:15/zoom,fill:"rgba(99,102,241,.55)",fontFamily:"system-ui",fontWeight:700}}>
                   {lang==="ku"?"Ji panela çepê teşeyê hilbijêre → bitikîne":lang==="en"?"Select a shape on the left → click to place":"Sol panelden şekil seç → kanvasa tıkla"}
                 </text>
               )}
@@ -3326,9 +3268,9 @@ export default function App(){
         <div style={{display:"flex",gap:1,background:"rgba(255,255,255,.6)",borderRadius:7,padding:2}}>
           {[["▫","plain","Düz"],["▦","grid","Kareli"],["⋯","dot","Noktalı"]].map(([ic,tp,lbl])=>(
             <button key={tp} onClick={()=>setBgType(tp)} aria-pressed={bgType===tp} aria-label={lbl}
-              style={{width:26,height:26,borderRadius:5,border:"none",
-                background:bgType===tp?P.accent:"transparent",cursor:"pointer",fontSize:11,
-                color:bgType===tp?"#fff":"#aaa"}}>
+              style={{width:28,height:28,borderRadius:5,border:"none",
+                background:bgType===tp?P.accent:"transparent",cursor:"pointer",fontSize:12,fontWeight:700,
+                color:bgType===tp?"#fff":"#475569"}}>
               {ic}
             </button>
           ))}
@@ -3336,15 +3278,15 @@ export default function App(){
         <div style={{width:1,height:18,background:P.sideB}}/>
         <div style={{display:"flex",gap:1,alignItems:"center",background:"rgba(255,255,255,.6)",borderRadius:7,padding:"2px 4px"}}>
           <button onClick={()=>setZoom(z=>Math.max(.3,+(z-.1).toFixed(1)))} aria-label={t("zoomOut")||"Uzaklaştır"}
-            style={{width:22,height:22,border:"none",background:"transparent",cursor:"pointer",fontSize:13,fontWeight:900,color:"#888"}}>−</button>
-          <span style={{fontSize:10,fontWeight:700,color:P.accentD,minWidth:32,textAlign:"center"}}>{Math.round(zoom*100)}%</span>
+            style={{width:24,height:24,border:"none",background:"transparent",cursor:"pointer",fontSize:15,fontWeight:900,color:"#475569"}}>−</button>
+          <span style={{fontSize:11,fontWeight:800,color:P.accentD,minWidth:36,textAlign:"center"}}>{Math.round(zoom*100)}%</span>
           <button onClick={()=>setZoom(z=>Math.min(3,+(z+.1).toFixed(1)))} aria-label={t("zoomIn")||"Yakınlaştır"}
-            style={{width:22,height:22,border:"none",background:"transparent",cursor:"pointer",fontSize:13,fontWeight:900,color:"#888"}}>+</button>
+            style={{width:24,height:24,border:"none",background:"transparent",cursor:"pointer",fontSize:15,fontWeight:900,color:"#475569"}}>+</button>
         </div>
         <button onClick={toggleFs} aria-label={isFullscreen?"Tam ekrandan çık":"Tam ekran"}
-          style={{width:28,height:28,borderRadius:7,border:"none",cursor:"pointer",fontSize:13,
+          style={{width:28,height:28,borderRadius:7,border:"none",cursor:"pointer",fontSize:14,
             background:isFullscreen?P.accentL:"rgba(255,255,255,.6)",
-            color:isFullscreen?P.accentD:"#888",display:"flex",alignItems:"center",justifyContent:"center"}}>
+            color:isFullscreen?P.accentD:"#475569",display:"flex",alignItems:"center",justifyContent:"center"}}>
           {isFullscreen?"⊡":"⊞"}
         </button>
         <div style={{flex:1}}/>
@@ -3355,9 +3297,9 @@ export default function App(){
             return (
               <button key={lv} onClick={()=>{setVhLevel(lv);setSideTab("act");}}
                 aria-pressed={vhLevel===lv}
-                style={{padding:"3px 8px",borderRadius:6,border:"none",cursor:"pointer",fontFamily:"inherit",
-                  background:vhLevel===lv?c+"22":"rgba(255,255,255,.5)",
-                  color:vhLevel===lv?c:"rgba(30,27,75,.4)",fontSize:10,fontWeight:vhLevel===lv?800:600,
+                style={{padding:"4px 10px",borderRadius:6,border:"none",cursor:"pointer",fontFamily:"inherit",
+                  background:vhLevel===lv?c+"22":"rgba(255,255,255,.7)",
+                  color:vhLevel===lv?c:"rgba(30,27,75,.78)",fontSize:11,fontWeight:vhLevel===lv?800:700,
                   display:"flex",alignItems:"center",gap:4}}>
                 <VHBadge level={lv}/><span>{lbls[lang]?.[lv]||lbls.tr[lv]}</span>
               </button>

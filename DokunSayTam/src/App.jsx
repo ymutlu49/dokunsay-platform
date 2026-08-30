@@ -7,7 +7,6 @@ import { useFactory } from './hooks/useFactory';
 import { useDrawing } from './hooks/useDrawing';
 import { usePages } from './hooks/usePages';
 import { usePanelDrag } from './hooks/usePanelDrag';
-import Header from './components/layout/Header';
 import Sidebar from './components/layout/Sidebar';
 import BottomBar from './components/layout/BottomBar';
 import Toolbar from './components/canvas/Toolbar';
@@ -23,7 +22,7 @@ import HelpModal from './components/modals/HelpModal';
 import AboutModal from './components/modals/AboutModal';
 import TeacherPanel from './components/modals/TeacherPanel';
 
-const App = () => {
+const App = ({ lang = 'tr' }) => {
   const cvRef = useRef(null);
   const [zoom, setZoom] = useState(1);
 
@@ -201,7 +200,7 @@ const App = () => {
       return (
         <div key={'it' + it.id} style={{ position: 'absolute', left: it.x - 18, top: it.y - 18, width: 36, height: 36, zIndex: 2, cursor: 'grab', touchAction: 'none' }}
           onPointerDown={(e) => startItemDrag(it.id, e)}>
-          <div style={{ width: 36, height: 36, borderRadius: 10, background: '#fff', border: '2.5px solid ' + THEME.accent, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20, fontWeight: 900, color: THEME.accent, boxShadow: '0 2px 8px rgba(245,158,11,.15)' }}>{it.v}</div>
+          <div style={{ width: 36, height: 36, borderRadius: 10, background: '#fff', border: '2.5px solid ' + THEME.accent, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20, fontWeight: 900, color: THEME.accent, boxShadow: '0 2px 8px rgba(139,92,246,.15)' }}>{it.v}</div>
         </div>
       );
     }
@@ -224,12 +223,10 @@ const App = () => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'hidden', fontFamily: "'Nunito','Segoe UI',system-ui,sans-serif" }}>
-      <Header posCount={posCount} negCount={negCount} netValue={netValue} zoom={zoom} setZoom={setZoom} />
-
       <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
         <Sidebar
           collapsed={sidebarCollapsed} setCollapsed={setSidebarCollapsed}
-          activeTab={activeTab} setActiveTab={setActiveTab}
+          activeTab={activeTab} setActiveTab={setActiveTab} lang={lang}
           materialsProps={{
             addChips, addZeroPair, clearAll, startSidebarDrag,
             showTray, setShowTray, resetTray: tray.reset,
@@ -253,6 +250,26 @@ const App = () => {
         {/* Canvas */}
         <div ref={cvRef} style={{ ...cvBg, flex: 1, position: 'relative', overflow: 'auto' }}>
           <Toolbar {...drawing} strokes={drawing.strokes} undone={drawing.undone} />
+
+          {/* Floating pul sayacı (eski iç-header yerine) */}
+          <div style={{
+            position: 'absolute', top: 8, right: 8, zIndex: 7,
+            display: 'flex', gap: 5, alignItems: 'center',
+            padding: '4px 10px',
+            background: 'rgba(255,255,255,.92)', backdropFilter: 'blur(8px)',
+            borderRadius: 8, boxShadow: '0 2px 8px rgba(30,27,75,.15)',
+            border: '1px solid rgba(0,0,0,.06)',
+          }}>
+            <span style={{ fontSize: 11, fontWeight: 800, color: '#16a34a' }}>{'⊕' + posCount}</span>
+            <span style={{ fontSize: 11, fontWeight: 800, color: '#dc2626' }}>{'⊖' + negCount}</span>
+            <span style={{ fontSize: 10, color: 'rgba(0,0,0,.25)' }}>{'│'}</span>
+            <span style={{
+              fontSize: 13, fontWeight: 900,
+              color: netValue > 0 ? '#16a34a' : netValue < 0 ? '#dc2626' : THEME.accent,
+            }}>
+              {netValue > 0 ? '+' + netValue : netValue === 0 ? '0' : '' + netValue}
+            </span>
+          </div>
 
           {/* Cursor indicator */}
           <div ref={cursorRef} style={{ position: 'absolute', display: 'none', borderRadius: '50%', border: '2px solid #000', pointerEvents: 'none', zIndex: 26, transition: 'width .1s,height .1s' }} />
@@ -322,7 +339,7 @@ const App = () => {
 
             {/* Game indicator */}
             {game && (
-              <div style={{ position: 'absolute', top: 56, left: 16, zIndex: 4, padding: '6px 14px', borderRadius: 10, background: 'rgba(245,158,11,.1)', border: '1.5px solid rgba(245,158,11,.2)' }}>
+              <div style={{ position: 'absolute', top: 56, left: 16, zIndex: 4, padding: '6px 14px', borderRadius: 10, background: 'rgba(139,92,246,.1)', border: '1.5px solid rgba(139,92,246,.2)' }}>
                 <span style={{ fontSize: 14, fontWeight: 900, color: THEME.accentD }}>{'\ud83c\udfc6 ' + game.score}</span>
                 {game.feedback === 'correct' && <span style={{ marginLeft: 8, fontSize: 18, animation: 'popIn .3s' }}>{'🎉'}</span>}
               </div>
@@ -330,9 +347,9 @@ const App = () => {
 
             {/* Drop highlight */}
             {sidebarDrag && dropHighlight && (
-              <div style={{ position: 'absolute', inset: 0, zIndex: 0, border: '3px dashed rgba(245,158,11,.4)', borderRadius: 4, pointerEvents: 'none' }}>
+              <div style={{ position: 'absolute', inset: 0, zIndex: 0, border: '3px dashed rgba(139,92,246,.4)', borderRadius: 4, pointerEvents: 'none' }}>
                 <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', background: THEME.accentL, padding: '8px 20px', borderRadius: 12 }}>
-                  <span style={{ fontSize: 13, fontWeight: 800, color: 'rgba(245,158,11,.6)' }}>{'📥 Buraya bırak'}</span>
+                  <span style={{ fontSize: 13, fontWeight: 800, color: 'rgba(139,92,246,.6)' }}>{'📥 Buraya bırak'}</span>
                 </div>
               </div>
             )}
@@ -385,6 +402,7 @@ const App = () => {
         pages={pages.pages} currentPage={pages.currentPage}
         switchPage={pages.switchPage} addPage={pages.addPage} deletePage={pages.deletePage}
         setShowHelp={setShowHelp} setShowAbout={setShowAbout} setShowTeacher={setShowTeacher}
+        zoom={zoom} setZoom={setZoom}
       />
 
       {/* Ghost drag */}
@@ -407,11 +425,12 @@ const App = () => {
       )}
 
       {/* Modals */}
-      {instructionScreen && <ActivityModal activity={instructionScreen} onClose={() => setInstructionScreen(null)} />}
+      {instructionScreen && <ActivityModal activity={instructionScreen} lang={lang} onClose={() => setInstructionScreen(null)} />}
       {showHelp && <HelpModal onClose={() => setShowHelp(false)} />}
       {showAbout && <AboutModal onClose={() => setShowAbout(false)} />}
       {showTeacher && (
         <TeacherPanel
+          lang={lang}
           onClose={() => setShowTeacher(false)}
           studentName={studentName} setStudentName={setStudentName}
           studentClass={studentClass} setStudentClass={setStudentClass}

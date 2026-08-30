@@ -28,6 +28,8 @@ export interface AppState {
   gridType: GridType;
   showLabels: boolean;
   showNumberLine: boolean;
+  /** Sembolik+sözel cümle şeridi (CRA'nın S basamağı). Veri TÜRETİLİR, saklanmaz. */
+  showSentence: boolean;
   covered: boolean;
   activeTemplate: Template | null;
   feedback: FeedbackType | null;
@@ -46,6 +48,19 @@ export interface AppState {
   snapEffect: { x: number; y: number; t: number } | null;
 }
 
+/** Cross-app paylaşılan dil (dk_lang) — başka DokunSay uygulamasında seçilen dil burada da açılsın. */
+// SUNULAN diller — ar/fa 2026-07-19'da seçiciden gizlendi (içerik doğrulanamadı;
+// bkz. shared/LangSwitcher.jsx). Kayıtlı "ar"/"fa" artık tr'ye düşer, yoksa uygulama
+// gizli bir dilde açılır ve seçicide hiçbir düğme aktif görünmezdi.
+const SUPPORTED_LANGS: Language[] = ["tr", "ku", "en"];
+function initialLanguage(): Language {
+  try {
+    const saved = localStorage.getItem("dk_lang") as Language | null;
+    if (saved && SUPPORTED_LANGS.includes(saved)) return saved;
+  } catch { /* ignore */ }
+  return "tr";
+}
+
 export const initialState: AppState = {
   pages: [{ items: [], lines: [] }],
   currentPage: 0,
@@ -58,11 +73,12 @@ export const initialState: AppState = {
   textSize: 20,
   textBold: true,
   selectedId: null,
-  language: "tr",
+  language: initialLanguage(),
   bgColor: "#f0ead6",
   gridType: "none",
   showLabels: false,
   showNumberLine: false,
+  showSentence: false,
   covered: false,
   activeTemplate: null,
   feedback: null,
@@ -101,6 +117,7 @@ export type AppAction =
   | { type: "TOGGLE_LABELS" }
   | { type: "TOGGLE_NUMBER_LINE" }
   | { type: "TOGGLE_COVERED" }
+  | { type: "SET_COVERED"; covered: boolean }
   | { type: "SET_ACTIVE_TEMPLATE"; template: Template | null }
   | { type: "SET_FEEDBACK"; feedback: FeedbackType | null }
   | { type: "SET_SIDE_TAB"; tab: SideTab }
@@ -108,6 +125,7 @@ export type AppAction =
   | { type: "SET_COLLAPSED"; collapsed: boolean }
   | { type: "TOGGLE_HELP" }
   | { type: "SET_NUM_PICKER"; open: boolean }
+  | { type: "TOGGLE_SENTENCE" }
   | { type: "SET_COUNTING"; counting: CountingState | null }
   | { type: "SET_VOICE"; on: boolean }
   | { type: "TOGGLE_TEACHER_MODE" }
@@ -167,10 +185,14 @@ export function appReducer(state: AppState, action: AppAction): AppState {
       return { ...state, gridType: action.gridType };
     case "TOGGLE_LABELS":
       return { ...state, showLabels: !state.showLabels };
+    case "TOGGLE_SENTENCE":
+      return { ...state, showSentence: !state.showSentence };
     case "TOGGLE_NUMBER_LINE":
       return { ...state, showNumberLine: !state.showNumberLine };
     case "TOGGLE_COVERED":
       return { ...state, covered: !state.covered };
+    case "SET_COVERED":
+      return { ...state, covered: action.covered };
     case "SET_ACTIVE_TEMPLATE":
       return { ...state, activeTemplate: action.template };
     case "SET_FEEDBACK":

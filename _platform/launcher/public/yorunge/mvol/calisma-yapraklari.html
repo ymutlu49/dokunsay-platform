@@ -1,0 +1,595 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Ölçme: Hacim — Çalışma Yaprakları · DokunSay</title>
+<meta name="description" content="Ölçme: Hacim öğrenme yörüngesi için her düzeye bir baskıya hazır çalışma yaprağı. CRA (somut→temsilî→soyut) temelli, diskalkuli-dostu. Clements &amp; Sarama.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{ --c:#0d9488; --ink:#1f2733; --body:#39434f; --mut:#7c8aa0; --line:#e7e2d6; --paper:#fffdf7; --tint:color-mix(in srgb, var(--c) 8%, #fffdf7); }
+*{ box-sizing:border-box; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+html,body{ margin:0; background:#eceae3; font-family:'Lexend',system-ui,Segoe UI,sans-serif; color:var(--body); }
+.bar{ position:sticky; top:0; z-index:9; display:flex; gap:14px; align-items:center; justify-content:space-between;
+  background:#fff; border-bottom:1px solid #dcd8cd; padding:11px 18px; box-shadow:0 1px 6px rgba(0,0,0,.05); }
+.bar .t{ font-family:'Poppins',sans-serif; font-weight:700; color:var(--ink); font-size:15px; }
+.bar .t small{ display:block; font-weight:500; color:var(--mut); font-size:12px; }
+.bar .actions{ display:flex; gap:9px; }
+.btn{ font-family:'Poppins',sans-serif; font-weight:600; font-size:13.5px; border:0; border-radius:10px; padding:9px 15px; cursor:pointer; text-decoration:none; }
+.btn-print{ background:var(--c); color:#fff; } .btn-back{ background:#eef1f4; color:#334155; }
+.wrap{ max-width:880px; margin:18px auto 40px; padding:0 14px; }
+
+/* ── A4 çalışma yaprağı ───────────────────────────────────────────── */
+.sheet{ background:var(--paper); width:210mm; height:297mm; overflow:hidden; margin:0 auto 20px; padding:11mm 13mm 6mm;
+  border-radius:4px; box-shadow:0 6px 26px rgba(31,39,51,.13); position:relative;
+  display:flex; flex-direction:column; gap:1.8mm; }
+.lbl{ display:inline-block; font-family:'Poppins',sans-serif; font-weight:700; font-size:10.5pt; color:var(--c); letter-spacing:.2px; margin-bottom:2px; }
+
+.ws-head{ border-bottom:3px solid var(--c); padding-bottom:7px; }
+.ws-top{ display:flex; justify-content:space-between; align-items:center; font-size:10pt; color:var(--mut); }
+.ws-brand{ display:inline-flex; align-items:center; gap:7px; font-family:'Poppins',sans-serif; }
+.ws-brand b{ color:var(--ink); } .logo{ width:22px; height:22px; }
+.ws-name{ font-size:9.5pt; } .nl{ display:inline-block; width:34mm; border-bottom:1.4px dotted #b8c0cc; } .nl.sm{ width:24mm; }
+.ws-eyebrow{ font-family:'Poppins',sans-serif; font-weight:600; font-size:10pt; color:var(--c); margin-top:8px; text-transform:uppercase; letter-spacing:.4px; }
+.ws-title{ font-family:'Poppins',sans-serif; font-weight:800; font-size:18pt; line-height:1.1; color:var(--ink); margin:2px 0 6px; display:flex; align-items:baseline; gap:8px; }
+.ws-no{ background:var(--c); color:#fff; font-size:12pt; min-width:27px; height:27px; padding:0 6px; border-radius:8px; display:inline-flex; align-items:center; justify-content:center; }
+.ws-meta{ display:flex; flex-wrap:wrap; gap:7px; align-items:center; }
+.pill{ font-family:'Poppins',sans-serif; font-weight:600; font-size:9.5pt; background:#eef2f7; color:#475569; border-radius:20px; padding:4px 11px; }
+.pill.warn{ background:#fff3e2; color:#9a3412; }
+.cra{ display:inline-flex; align-items:center; gap:4px; margin-left:auto; }
+.cra-s{ font-family:'Poppins',sans-serif; font-weight:600; font-size:9pt; color:#94a3b8; background:#f1f4f8; border-radius:7px; padding:3px 9px; }
+.cra-s.on{ color:#fff; } .cra-arr{ color:#cbd5e1; font-size:10pt; }
+
+.ws-obj{ background:var(--tint); border-radius:10px; padding:7px 12px; }
+.ws-obj p{ margin:1px 0 0; font-size:11pt; line-height:1.42; color:var(--ink); }
+.ws-method .msteps{ margin:1px 0 0; padding-left:0; list-style:none; display:flex; flex-direction:column; gap:2px; counter-reset:m; }
+.ws-method .msteps li{ font-size:10pt; line-height:1.32; padding-left:26px; position:relative; }
+.ws-method .msteps li::before{ counter-increment:m; content:counter(m); position:absolute; left:0; top:0;
+  width:21px; height:21px; border-radius:50%; background:var(--c); color:#fff; font-family:'Poppins',sans-serif; font-weight:700; font-size:10pt; display:flex; align-items:center; justify-content:center; }
+.ws-method .msteps b{ color:var(--c); }
+
+.ws-egbox{ background:#f4f8f5; border:1.5px dashed color-mix(in srgb,var(--c) 45%,#cbd5e1); border-radius:10px; padding:6px 12px 7px; }
+.ws-egbox .lbl{ color:color-mix(in srgb,var(--c) 70%, #166534); }
+
+.items-grid{ display:grid; grid-template-columns:1fr 1fr; gap:5px; margin-top:2px; align-items:start; }
+.ex{ border:1.4px solid var(--line); border-radius:11px; padding:7px 10px 8px; background:#fff; break-inside:avoid; }
+.ex.wide{ grid-column:1 / -1; }
+.ex.eg{ border:0; padding:2px 0 0; background:transparent; grid-column:1 / -1; }
+.ex-q{ display:flex; gap:7px; align-items:flex-start; }
+.ex-no{ flex:0 0 auto; width:22px; height:22px; border-radius:50%; background:var(--c); color:#fff; font-family:'Poppins',sans-serif; font-weight:700; font-size:10.5pt; display:flex; align-items:center; justify-content:center; }
+.ex.eg .ex-no{ background:#fef3c7; }
+.ex-q p{ margin:1px 0 0; font-size:10.8pt; line-height:1.4; color:var(--ink); }
+.ex-v{ margin:4px 0 3px; text-align:center; } .ex-a{ margin:0; text-align:center; }
+.ex.wide .ex-v, .ex.wide .ex-a, .ex.eg .ex-v, .ex.eg .ex-a{ text-align:left; margin-left:30px; }
+
+/* SVG görseller — içsel boyut ama A4'e sığması için yükseklik sınırlı */
+.ws-svg{ max-width:100%; width:auto; height:auto; vertical-align:middle; }
+.ex-v .ws-svg{ max-height:16mm; }
+.ex-v .ws-svg.ws-tall{ max-height:17mm; }
+.ws-egbox .ex-v .ws-svg{ max-height:12mm; } .ws-egbox .ex-v .ws-svg.ws-tall{ max-height:13mm; }
+.ex-v .ws-frac{ max-height:26mm; } .ws-svg.ws-frac{ width:auto; max-height:26mm; } svg.ws-glyph{ width:12mm; height:12mm; }
+.pat-row{ display:flex; align-items:center; gap:7px; flex-wrap:wrap; }
+.pat-c svg{ width:13mm; height:13mm; } .pat-q{ width:13mm; height:13mm; border:2px dashed #b8c0cc; border-radius:8px; display:inline-flex; align-items:center; justify-content:center; font-family:'Poppins',sans-serif; font-weight:800; font-size:16pt; color:#b8c0cc; }
+
+/* Yanıt alanları */
+.wbox{ display:inline-block; width:14mm; height:14mm; border:2px solid #94a3b8; border-radius:8px; vertical-align:middle; margin:0 3px; background:#fff; }
+.wbox.wbox-lg{ width:18mm; height:14mm; border-color:var(--c); }
+.eqrow{ display:flex; align-items:center; flex-wrap:wrap; gap:5px; font-family:'Poppins',sans-serif; font-weight:600; font-size:15pt; color:var(--ink); }
+.bignum{ font-family:'Poppins',sans-serif; font-weight:700; font-size:17pt; color:var(--ink); } .bignum.sm{ font-size:14pt; padding:0 3px; }
+.seqn{ font-family:'Poppins',sans-serif; font-weight:600; font-size:14pt; } .seqsep{ color:#94a3b8; }
+.ans-hint{ margin:5px 0 0 0; font-size:10.5pt; color:var(--mut); font-style:normal; }
+.ans-shown{ font-family:'Poppins',sans-serif; font-size:14pt; color:#166534; }
+
+.ws-scaffold{ display:flex; gap:8px; flex-wrap:wrap; }
+.sc{ flex:1 1 44%; font-size:9.8pt; line-height:1.30; border-radius:9px; padding:5px 10px; }
+.sc-easy{ background:#eef4fb; } .sc-easy b{ color:#1d4ed8; }
+.sc-hard{ background:#f5f0fb; } .sc-hard b{ color:#7c3aed; }
+
+.ws-foot{ margin-top:auto; padding-top:5px; border-top:1px solid var(--line); display:flex; flex-direction:column; gap:4px; }
+.ws-check{ background:#f0fdf4; border-radius:9px; padding:5px 11px; font-size:10pt; line-height:1.35; color:#166534; display:flex; justify-content:space-between; align-items:center; gap:10px; }
+.ws-check b{ color:#15803d; } .stars{ font-size:14pt; color:#f59e0b; letter-spacing:2px; white-space:nowrap; }
+.ws-credit{ font-size:7.8pt; color:var(--mut); line-height:1.35; display:flex; flex-direction:column; gap:1px; }
+.ws-credit .mat{ color:#475569; }
+.ws-credit a{ color:#475569; }
+/* Kavram yanılgısı şeridi. Punto (8.7pt) künyeden (7.8pt) büyük ama gövde metninden
+   küçük: öğretmene yönelik ikincil bilgi, çocuğun göreviyle yarışmamalı. Yapraklar
+   milimetrik dolu olduğu için bu ölçüler A4 taşmasına karşı ölçülerek seçildi. */
+.ws-mis{ background:#fff7ed; border-left:3px solid #fb923c; border-radius:9px; padding:3px 10px; font-size:8.7pt; line-height:1.26; color:#7c2d12; }
+.ws-mis b{ color:#9a3412; font-weight:700; }
+.ws-mis .mis-cite{ color:#a16207; white-space:nowrap; }
+
+/* ── Baskı ─────────────────────────────────────────────────────────── */
+@media print{
+  @page{ size:A4; margin:0; }
+  html,body{ background:#fff; }
+  .bar,.wrap>.intro{ display:none !important; }
+  .wrap{ margin:0; padding:0; max-width:none; }
+  .sheet{ width:210mm; height:297mm; margin:0; border-radius:0; box-shadow:none; overflow:hidden; break-before:page; }
+  .sheet:first-child{ break-before:avoid; }
+}
+.intro{ background:#fff; border-radius:14px; padding:16px 20px; margin-bottom:18px; box-shadow:0 2px 10px rgba(0,0,0,.05); }
+.intro h2{ font-family:'Poppins',sans-serif; margin:0 0 5px; color:var(--ink); font-size:18px; }
+.intro p{ margin:0; font-size:13.5px; line-height:1.55; color:#5b6573; }
+</style>
+</head>
+<body>
+<div class="bar no-print">
+  <span class="t">🧴 Ölçme: Hacim — Çalışma Yaprakları<small>8 düzey · Ölçme · CRA temelli</small></span>
+  <span class="actions">
+    <a class="btn btn-back" href="./">← Yörüngeye dön</a>
+    <button class="btn btn-print" onclick="window.print()">🖨️ Yazdır / PDF kaydet</button>
+  </span>
+</div>
+<div class="wrap">
+  <div class="intro no-print">
+    <h2>Ölçme: Hacim · Çalışma Yaprakları</h2>
+    <p>Her düzey için bir baskıya-hazır A4 çalışma yaprağı. Her yaprak <b>önce somut</b> (DokunSay Geo ile), <b>sonra resimle</b> (bu sayfa), <b>en sonda sembolle</b> (çocuk yazar) ilerler — diskalkuli için kanıta dayalı CRA sırası. Çocuğun bulunduğu düzeyden başlayın; ✓ölçütü karşılayınca bir sonraki yaprağa geçin. Yazdırıp tek tek kullanın ya da PDF olarak kaydedin.</p>
+  </div>
+  <section class="sheet" style="--c:#0d9488">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🧴 Ölçme · Ölçme: Hacim</div>
+    <h1 class="ws-title"><span class="ws-no">1</span>Hacim Duyarlılığı: Temeller</h1>
+    <div class="ws-meta">
+      <span class="pill">0–2 yaş</span>
+      <span class="pill">Düzey 1/8</span>
+      
+      <span class="cra"><span class="cra-s on" style="background:#0d9488">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>İlk yıldan itibaren hacme/miktara duyarlıdır; ancak hacmi genel &quot;büyük–küçük&quot; algısından ayrı bir nitelik olarak tanımayabilir.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Oyna</b> — DokunSay Geo ya da günlük nesnelerle birlikte oynayın — su veya kuru malzeme (kum, pirinç, mercimek) için bir leğen.</li><li><b>Söyle</b> — Sayıları/sözcükleri yüksek sesle ve ritimle siz söyleyin; çocuk katılsın.</li><li><b>Gözle</b> — Tepkisini gözleyin — bu yaşta yazı/çizim beklenmez, deneyim önemlidir.</li></ol>
+  </div>
+
+  
+
+  <div class="ws-items"><span class="lbl">🎲 Birlikte oyna (siz yönlendirin)</span>
+    <div class="items-grid"><div class="ex">
+    <div class="ex-q"><span class="ex-no">1</span><p>Çocuğa bir bardak ve bir kova verin: "Hadi dolduralım!" deyip birlikte doldurun.</p></div>
+    
+    
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Dolu kabı boşaltıp "bitti, boş!"; yeniden doldurup "doldu!" diye yaşantıyı adlandırın.</p></div>
+    
+    
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>Küçük bardakla büyük kaba aktartın; taşınca "taştı!" deyin.</p></div>
+    
+    
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">4</span><p>Dolu ve boş kabı birlikte elinde tartıtıp "bu dolu, bu boş" diye sezdirin.</p></div>
+    
+    
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Tek bir bardak ve tek bir kapla, yalnız doldur-boşalt yaptırın; siz hareketi modelleyin.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Birkaç kabı karıştırıp &quot;hangisi daha çok doldu?&quot; gibi sezgiye dayalı küçük gözlemler sorun.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Hacmi genel 'büyüklük' sanır; yüksek kabı, geniş ve daha dolu kaptan çok sayar. <b>→ Ne yapmalı:</b> İki kabı aynı bardaklara boşalttır; bardak sayısını saydır. <span class="mis-cite">📖 Piaget &amp; Inhelder (1974)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Kapları doldurup boşaltarak, aktararak &quot;dolu/boş&quot; ya da &quot;ne kadar aldığını&quot; sezgisel fark ederse ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 su veya kuru malzeme (kum, pirinç, mercimek) için bir leğen · farklı boyutta birkaç kap, bardak, kova / DokunSay Geo kapları · aktarmak için küçük bir bardak ya da kepçe <a href="https://dokunsay.com/Dokunsay-geo/">🔗 dokunsay.com/Dokunsay-geo/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/mvol/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#0d9488">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🧴 Ölçme · Ölçme: Hacim</div>
+    <h1 class="ws-title"><span class="ws-no">2</span>Hacmi Fark Eden</h1>
+    <div class="ws-meta">
+      <span class="pill">1–3 yaş</span>
+      <span class="pill">Düzey 2/8</span>
+      
+      <span class="cra"><span class="cra-s on" style="background:#0d9488">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Kapasiteyi/hacmi bir nitelik olarak ayırt etmeye başlar; çok bloğu &quot;büyük&quot;, az bloğu &quot;küçük&quot; ile ilişkilendirir.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Oyna</b> — DokunSay Geo ya da günlük nesnelerle birlikte oynayın — belirgin biçimde farklı kapasitede iki kap (geniş alçak ↔ dar yüksek) / DokunSay Geo kapları.</li><li><b>Söyle</b> — Sayıları/sözcükleri yüksek sesle ve ritimle siz söyleyin; çocuk katılsın.</li><li><b>Gözle</b> — Tepkisini gözleyin — bu yaşta yazı/çizim beklenmez, deneyim önemlidir.</li></ol>
+  </div>
+
+  
+
+  <div class="ws-items"><span class="lbl">🎲 Birlikte oyna (siz yönlendirin)</span>
+    <div class="items-grid"><div class="ex">
+    <div class="ex-q"><span class="ex-no">1</span><p>İki kabı yan yana koyun: "Sence hangisi daha çok alır?" diye tahmin ettirin.</p></div>
+    
+    
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Birini ağzına dek doldurup ötekine aktarın; "taştı mı, yer mi kaldı?" diye baktırın.</p></div>
+    
+    
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>Sonucu adlandırın: "Demek bu kap daha çok alıyormuş."</p></div>
+    
+    
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">4</span><p>Kapları değiştirip "şimdi hangisi daha çok?" diye yineleyin.</p></div>
+    
+    
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Kapasite farkı çok belirgin olsun (küçük bardak ↔ büyük kova); tahmini aktararak hemen doğrulayın.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Aynı miktarı alan ama farklı biçimli iki kapla (yanıltıcı: dar-uzun ↔ geniş-alçak) yoklayın.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Az sayıda büyük blok içeren yığını, çok sayıda küçük bloktan 'daha çok' sayar. <b>→ Ne yapmalı:</b> Aynı bloklarla iki yığın kurdur; birebir eşleyerek karşılaştırt. <span class="mis-cite">📖 Clements &amp; Sarama (2009)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> İki kabı karşılaştırıp &quot;hangisi daha çok alır?&quot; sorusuna kapasiteyi bir nicelik olarak (çok/az) yanıtlarsa ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 belirgin biçimde farklı kapasitede iki kap (geniş alçak ↔ dar yüksek) / DokunSay Geo kapları · su veya kuru malzeme · aktarma için kepçe/bardak <a href="https://dokunsay.com/Dokunsay-geo/">🔗 dokunsay.com/Dokunsay-geo/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/mvol/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#0d9488">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🧴 Ölçme · Ölçme: Hacim</div>
+    <h1 class="ws-title"><span class="ws-no">3</span>Hacim Dolduran</h1>
+    <div class="ws-meta">
+      <span class="pill">3–4 yaş</span>
+      <span class="pill">Düzey 3/8</span>
+      
+      <span class="cra"><span class="cra-s on" style="background:#0d9488">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>İki kabı, birini diğerine boşaltarak karşılaştırır; bir kabı küçük bir kapla doldurup kepçe sayısını sayar (henüz hatalı olabilir); küpleri kutuya…</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Geo ile elle yap — doldurulacak bir kutu/kap + onu dolduracak özdeş küçük küpler / DokunSay Geo küpleri.</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Su seviyelerine baktım — soldaki kapta daha çok su var.</p></div>
+    <div class="ex-v"><span style="display:inline-flex;gap:24px;align-items:flex-end"><svg viewBox="0 0 66 96" width="66" height="96" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><path d="M12 12 L54 12 L51 88 L15 88 Z" fill="#fff" stroke="#475569" stroke-width="2"/><rect x="14" y="27.199999999999996" width="38" height="60.800000000000004" fill="#2563eb" fill-opacity=".5"/></svg><svg viewBox="0 0 86 96" width="86" height="96" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><path d="M12 12 L74 12 L71 88 L15 88 Z" fill="#fff" stroke="#475569" stroke-width="2"/><rect x="14" y="61.400000000000006" width="58" height="26.599999999999998" fill="#2563eb" fill-opacity=".5"/></svg></span></div>
+    <div class="ex-a"><b class="ans-shown">soldaki</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex">
+    <div class="ex-q"><span class="ex-no">1</span><p>Hangi kapta DAHA ÇOK su var? Onu yuvarla.</p></div>
+    <div class="ex-v"><span style="display:inline-flex;gap:24px;align-items:flex-end"><svg viewBox="0 0 66 96" width="66" height="96" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><path d="M12 12 L54 12 L51 88 L15 88 Z" fill="#fff" stroke="#475569" stroke-width="2"/><rect x="14" y="27.199999999999996" width="38" height="60.800000000000004" fill="#2563eb" fill-opacity=".5"/></svg><svg viewBox="0 0 86 96" width="86" height="96" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><path d="M12 12 L74 12 L71 88 L15 88 Z" fill="#fff" stroke="#475569" stroke-width="2"/><rect x="14" y="61.400000000000006" width="58" height="26.599999999999998" fill="#2563eb" fill-opacity=".5"/></svg></span></div>
+    <div class="ex-a"><p class="ans-hint">○ çok olanı yuvarla</p></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Bu kabı kaç bardak su doldurur? Tahmin et, yaz.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 66 96" width="66" height="96" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><path d="M12 12 L54 12 L51 88 L15 88 Z" fill="#fff" stroke="#475569" stroke-width="2"/><rect x="14" y="50" width="38" height="38" fill="#2563eb" fill-opacity=".5"/></svg></div>
+    <div class="ex-a"><span class="wbox"></span></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Küçük, tabanı tek sıra alan bir kutu; iri küpler kullanın, ilk sırayı siz birlikte dizin.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Daha büyük/derin kutu; &quot;hiç boşluk kalmadı mı?&quot; diye sıkışık paketlemeyi denetletin.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Kepçeyi yarım doldurur ya da sayarken atlar; aynı kaba her seferinde başka sayı der. <b>→ Ne yapmalı:</b> Her kepçeyi ağzına dek doldurtup dökerken sesli saydır, çetele tut. <span class="mis-cite">📖 Lehrer (2003)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Bir kabı tek tip birimle (bardak ya da küp) boşluk bırakmadan doldurur/paketlerse ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 doldurulacak bir kutu/kap + onu dolduracak özdeş küçük küpler / DokunSay Geo küpleri · ya da büyük bir kap + tek bir küçük ölçü bardağı · su/kum (bardakla doldurma için) <a href="https://dokunsay.com/Dokunsay-geo/">🔗 dokunsay.com/Dokunsay-geo/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/mvol/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#0d9488">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🧴 Ölçme · Ölçme: Hacim</div>
+    <h1 class="ws-title"><span class="ws-no">4</span>Hacmi Saymaya Başlayan</h1>
+    <div class="ws-meta">
+      <span class="pill">5–6 yaş</span>
+      <span class="pill">Düzey 4/8</span>
+      <span class="pill warn">★ Kritik geçiş</span>
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#0d9488">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Küplerin uzayı doldurmasına ilişkin kısmi anlayış geliştirir; gereken kepçe sayısını tahmin eder; dolu ve boş kısımlara birlikte dikkat eder; &quot;yarısı…</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Geo ile elle yap — şeffaf ya da açık bir kutu + onu tam dolduracak özdeş küpler / DokunSay Geo küpleri.</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Su seviyelerine baktım — soldaki kapta daha çok su var.</p></div>
+    <div class="ex-v"><span style="display:inline-flex;gap:24px;align-items:flex-end"><svg viewBox="0 0 66 96" width="66" height="96" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><path d="M12 12 L54 12 L51 88 L15 88 Z" fill="#fff" stroke="#475569" stroke-width="2"/><rect x="14" y="27.199999999999996" width="38" height="60.800000000000004" fill="#2563eb" fill-opacity=".5"/></svg><svg viewBox="0 0 86 96" width="86" height="96" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><path d="M12 12 L74 12 L71 88 L15 88 Z" fill="#fff" stroke="#475569" stroke-width="2"/><rect x="14" y="61.400000000000006" width="58" height="26.599999999999998" fill="#2563eb" fill-opacity=".5"/></svg></span></div>
+    <div class="ex-a"><b class="ans-shown">soldaki</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex">
+    <div class="ex-q"><span class="ex-no">1</span><p>Hangi kapta DAHA ÇOK su var? Onu yuvarla.</p></div>
+    <div class="ex-v"><span style="display:inline-flex;gap:24px;align-items:flex-end"><svg viewBox="0 0 66 96" width="66" height="96" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><path d="M12 12 L54 12 L51 88 L15 88 Z" fill="#fff" stroke="#475569" stroke-width="2"/><rect x="14" y="27.199999999999996" width="38" height="60.800000000000004" fill="#2563eb" fill-opacity=".5"/></svg><svg viewBox="0 0 86 96" width="86" height="96" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><path d="M12 12 L74 12 L71 88 L15 88 Z" fill="#fff" stroke="#475569" stroke-width="2"/><rect x="14" y="61.400000000000006" width="58" height="26.599999999999998" fill="#2563eb" fill-opacity=".5"/></svg></span></div>
+    <div class="ex-a"><p class="ans-hint">○ çok olanı yuvarla</p></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Bu kabı kaç bardak su doldurur? Tahmin et, yaz.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 66 96" width="66" height="96" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><path d="M12 12 L54 12 L51 88 L15 88 Z" fill="#fff" stroke="#475569" stroke-width="2"/><rect x="14" y="50" width="38" height="38" fill="#2563eb" fill-opacity=".5"/></svg></div>
+    <div class="ex-a"><span class="wbox"></span></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Tabanı tek sıra (ör. 1×3) alan sığ bir kutu; tek katmanla başlayıp &quot;şimdi üstüne bir kat daha&quot; deyin.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Derin bir kutu; yarı doluyken &quot;doldu mu?&quot; diye yoklayın ya da &quot;sığacak küp sayısını yerleştirmeden tahmin et&quot; deyin.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Küple dolu kutuda yalnız görünen yüzleri sayar; içte kalan küpleri saymaz. <b>→ Ne yapmalı:</b> Kutuyu gerçekten doldurt, sonra küpleri tek tek çıkarttırıp saydır. <span class="mis-cite">📖 Battista (2004)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Bir kaba kaç birim sığdığını sayarak niceler VE kabın üç boyutunu (yalnız tabanı değil, derinliği de) hesaba katarsa ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 şeffaf ya da açık bir kutu + onu tam dolduracak özdeş küpler / DokunSay Geo küpleri · yarı doldurulup gösterilecek bir örnek kutu · saydıkça ayırmak için küçük bir tepsi <a href="https://dokunsay.com/Dokunsay-geo/">🔗 dokunsay.com/Dokunsay-geo/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/mvol/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#0d9488">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🧴 Ölçme · Ölçme: Hacim</div>
+    <h1 class="ws-title"><span class="ws-no">5</span>Birim Kabı Tekrarlayarak Ölçen</h1>
+    <div class="ws-meta">
+      <span class="pill">7–8 yaş</span>
+      <span class="pill">Düzey 5/8</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#0d9488">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Basit birimlerle doldurup doğru sayar; birim büyüklüğü ile sayısı arasındaki ilişkiyi açıkça kurar (büyük birimden daha az gerekir); 1:2 oranlı…</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Geo ile elle yap — ölçülecek bir kova/büyük kap.</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Su seviyelerine baktım — soldaki kapta daha çok su var.</p></div>
+    <div class="ex-v"><span style="display:inline-flex;gap:24px;align-items:flex-end"><svg viewBox="0 0 66 96" width="66" height="96" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><path d="M12 12 L54 12 L51 88 L15 88 Z" fill="#fff" stroke="#475569" stroke-width="2"/><rect x="14" y="27.199999999999996" width="38" height="60.800000000000004" fill="#2563eb" fill-opacity=".5"/></svg><svg viewBox="0 0 86 96" width="86" height="96" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><path d="M12 12 L74 12 L71 88 L15 88 Z" fill="#fff" stroke="#475569" stroke-width="2"/><rect x="14" y="61.400000000000006" width="58" height="26.599999999999998" fill="#2563eb" fill-opacity=".5"/></svg></span></div>
+    <div class="ex-a"><b class="ans-shown">soldaki</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex">
+    <div class="ex-q"><span class="ex-no">1</span><p>Hangi kapta DAHA ÇOK su var? Onu yuvarla.</p></div>
+    <div class="ex-v"><span style="display:inline-flex;gap:24px;align-items:flex-end"><svg viewBox="0 0 66 96" width="66" height="96" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><path d="M12 12 L54 12 L51 88 L15 88 Z" fill="#fff" stroke="#475569" stroke-width="2"/><rect x="14" y="27.199999999999996" width="38" height="60.800000000000004" fill="#2563eb" fill-opacity=".5"/></svg><svg viewBox="0 0 86 96" width="86" height="96" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><path d="M12 12 L74 12 L71 88 L15 88 Z" fill="#fff" stroke="#475569" stroke-width="2"/><rect x="14" y="61.400000000000006" width="58" height="26.599999999999998" fill="#2563eb" fill-opacity=".5"/></svg></span></div>
+    <div class="ex-a"><p class="ans-hint">○ çok olanı yuvarla</p></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Bu kabı kaç bardak su doldurur? Tahmin et, yaz.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 66 96" width="66" height="96" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><path d="M12 12 L54 12 L51 88 L15 88 Z" fill="#fff" stroke="#475569" stroke-width="2"/><rect x="14" y="50" width="38" height="38" fill="#2563eb" fill-opacity=".5"/></svg></div>
+    <div class="ex-a"><span class="wbox"></span></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Az yineleme gereken kap (3–4 bardak); siz birlikte sayıp çeteleyi tutun.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Çok yineleme (8+) gereken kap ya da &quot;kova kaç bardak alır, ölçmeden tahmin et&quot; deyip sonra doğrulatın.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Büyük birimle ölçünce sayının da büyüyeceğini sanır; birim-sayı ters ilişkisini kurmaz. <b>→ Ne yapmalı:</b> Aynı kabı büyük ve küçük kepçeyle doldurt; iki sayıyı yan yana yazdır. <span class="mis-cite">📖 Lehrer (2003)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Tek bir birimi tekrarlayarak bir kabı ölçer, kaç kez yinelediğini doğru sayar ve birimi sabit tutarsa ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 ölçülecek bir kova/büyük kap · tek bir ölçü birimi: aynı bardak ya da tek bir küp / DokunSay Geo birimi · kaç kez doldurulduğunu işaretlemek için sayma çetelesi/parmaklar · su veya kum <a href="https://dokunsay.com/Dokunsay-geo/">🔗 dokunsay.com/Dokunsay-geo/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/mvol/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#0d9488">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🧴 Ölçme · Ölçme: Hacim</div>
+    <h1 class="ws-title"><span class="ws-no">6</span>Küp Sıralarını Birim Görmeye Başlayan</h1>
+    <div class="ws-meta">
+      <span class="pill">7–9 yaş</span>
+      <span class="pill">Düzey 6/8</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#0d9488">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Küpleri kübik hacim birimleriyle ilişkilendirir; bileşik birimleri (1×1×n sıra/sütunlar) zihinde canlandırıp kullanır; paketlerken içte kalan…</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Geo ile elle yap — sığ, açık bir kutu + tek bir katmanı dolduracak özdeş küpler / DokunSay Geo küpleri.</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Su seviyelerine baktım — soldaki kapta daha çok su var.</p></div>
+    <div class="ex-v"><span style="display:inline-flex;gap:24px;align-items:flex-end"><svg viewBox="0 0 66 96" width="66" height="96" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><path d="M12 12 L54 12 L51 88 L15 88 Z" fill="#fff" stroke="#475569" stroke-width="2"/><rect x="14" y="27.199999999999996" width="38" height="60.800000000000004" fill="#2563eb" fill-opacity=".5"/></svg><svg viewBox="0 0 86 96" width="86" height="96" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><path d="M12 12 L74 12 L71 88 L15 88 Z" fill="#fff" stroke="#475569" stroke-width="2"/><rect x="14" y="61.400000000000006" width="58" height="26.599999999999998" fill="#2563eb" fill-opacity=".5"/></svg></span></div>
+    <div class="ex-a"><b class="ans-shown">soldaki</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex">
+    <div class="ex-q"><span class="ex-no">1</span><p>Hangi kapta DAHA ÇOK su var? Onu yuvarla.</p></div>
+    <div class="ex-v"><span style="display:inline-flex;gap:24px;align-items:flex-end"><svg viewBox="0 0 66 96" width="66" height="96" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><path d="M12 12 L54 12 L51 88 L15 88 Z" fill="#fff" stroke="#475569" stroke-width="2"/><rect x="14" y="27.199999999999996" width="38" height="60.800000000000004" fill="#2563eb" fill-opacity=".5"/></svg><svg viewBox="0 0 86 96" width="86" height="96" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><path d="M12 12 L74 12 L71 88 L15 88 Z" fill="#fff" stroke="#475569" stroke-width="2"/><rect x="14" y="61.400000000000006" width="58" height="26.599999999999998" fill="#2563eb" fill-opacity=".5"/></svg></span></div>
+    <div class="ex-a"><p class="ans-hint">○ çok olanı yuvarla</p></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Bu kabı kaç bardak su doldurur? Tahmin et, yaz.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 66 96" width="66" height="96" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><path d="M12 12 L54 12 L51 88 L15 88 Z" fill="#fff" stroke="#475569" stroke-width="2"/><rect x="14" y="50" width="38" height="38" fill="#2563eb" fill-opacity=".5"/></svg></div>
+    <div class="ex-a"><span class="wbox"></span></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Küçük taban (2×3); satır ve sütunu siz parmakla gösterip birlikte sayın.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Daha büyük taban (4×5) ya da &quot;iki kat olsa toplam kaç?&quot; diye katman fikrini bir adım uzatın.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Bir sırayı birim olarak göremez; küpleri hep tek tek sayar, satır yapısını kullanmaz. <b>→ Ne yapmalı:</b> Bir sırayı ayrı renkte dizdirip 'bu sıra kaç küp' diye sordur. <span class="mis-cite">📖 Battista &amp; Clements (1996)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Bir kutuda bir katmanın satır-sütun yapısını görüp &quot;bir katta kaç küp&quot; olduğunu (dizi olarak) söylerse ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 sığ, açık bir kutu + tek bir katmanı dolduracak özdeş küpler / DokunSay Geo küpleri · katmanı ayrı gösterebilmek için düz bir tepsi/zemin · satır-sütunu işaretlemek için renkli ayraç (ops.) <a href="https://dokunsay.com/Dokunsay-geo/">🔗 dokunsay.com/Dokunsay-geo/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/mvol/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#0d9488">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🧴 Ölçme · Ölçme: Hacim</div>
+    <h1 class="ws-title"><span class="ws-no">7</span>Katman Katman Sayan</h1>
+    <div class="ws-meta">
+      <span class="pill">8–9 yaş</span>
+      <span class="pill">Düzey 7/8</span>
+      <span class="pill warn">★ Kritik geçiş</span>
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#0d9488">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Doldurma, paketleme ve inşa etmeyi eşgüdümler; bir katmandaki küpleri sayar ya da hesaplar, sonra katmanları toplar ya da ritmik sayar; çarpmaya…</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Geo ile elle yap — katmanları ayrılabilen ya da şeffaf bir kutu + onu tam dolduracak özdeş küpler / DokunSay Geo küpleri.</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Su seviyelerine baktım — soldaki kapta daha çok su var.</p></div>
+    <div class="ex-v"><span style="display:inline-flex;gap:24px;align-items:flex-end"><svg viewBox="0 0 66 96" width="66" height="96" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><path d="M12 12 L54 12 L51 88 L15 88 Z" fill="#fff" stroke="#475569" stroke-width="2"/><rect x="14" y="27.199999999999996" width="38" height="60.800000000000004" fill="#2563eb" fill-opacity=".5"/></svg><svg viewBox="0 0 86 96" width="86" height="96" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><path d="M12 12 L74 12 L71 88 L15 88 Z" fill="#fff" stroke="#475569" stroke-width="2"/><rect x="14" y="61.400000000000006" width="58" height="26.599999999999998" fill="#2563eb" fill-opacity=".5"/></svg></span></div>
+    <div class="ex-a"><b class="ans-shown">soldaki</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex">
+    <div class="ex-q"><span class="ex-no">1</span><p>Hangi kapta DAHA ÇOK su var? Onu yuvarla.</p></div>
+    <div class="ex-v"><span style="display:inline-flex;gap:24px;align-items:flex-end"><svg viewBox="0 0 66 96" width="66" height="96" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><path d="M12 12 L54 12 L51 88 L15 88 Z" fill="#fff" stroke="#475569" stroke-width="2"/><rect x="14" y="27.199999999999996" width="38" height="60.800000000000004" fill="#2563eb" fill-opacity=".5"/></svg><svg viewBox="0 0 86 96" width="86" height="96" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><path d="M12 12 L74 12 L71 88 L15 88 Z" fill="#fff" stroke="#475569" stroke-width="2"/><rect x="14" y="61.400000000000006" width="58" height="26.599999999999998" fill="#2563eb" fill-opacity=".5"/></svg></span></div>
+    <div class="ex-a"><p class="ans-hint">○ çok olanı yuvarla</p></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Bu kabı kaç bardak su doldurur? Tahmin et, yaz.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 66 96" width="66" height="96" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><path d="M12 12 L54 12 L51 88 L15 88 Z" fill="#fff" stroke="#475569" stroke-width="2"/><rect x="14" y="50" width="38" height="38" fill="#2563eb" fill-opacity=".5"/></svg></div>
+    <div class="ex-a"><span class="wbox"></span></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Az katlı (2 kat) ve küçük tabanlı (2×3) kutu; her katı sökerek gizli küpleri tek tek görünür kılın.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Daha büyük/yüksek kutu; yalnız en alt katı gösterip &quot;görünmeyen üst katları da sen kur&quot; deyin ya da gizli küp sayısını ayrıca sordurun.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Katmanları eşgüdemez: bir katmanı sayar ama katman sayısıyla çarpmaz, toplar. <b>→ Ne yapmalı:</b> Bir katman kurdur, kaç katman gerektiğini saydırıp üst üste dizdir. <span class="mis-cite">📖 Battista (2004)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Bir katmanı satır-sütun olarak bulup kat sayısınca tekrarlayarak, GÖRÜNMEYEN (iç/alt) küpler dahil 3B toplamı doğru kurarsa ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 katmanları ayrılabilen ya da şeffaf bir kutu + onu tam dolduracak özdeş küpler / DokunSay Geo küpleri · bir katmanı ayrı tutmak için düz tepsi · kat sayısını işaretlemek için çetele/parmaklar <a href="https://dokunsay.com/Dokunsay-geo/">🔗 dokunsay.com/Dokunsay-geo/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/mvol/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#0d9488">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🧴 Ölçme · Ölçme: Hacim</div>
+    <h1 class="ws-title"><span class="ws-no">8</span>Hacmi Çarparak Bulan</h1>
+    <div class="ws-meta">
+      <span class="pill">8–10 yaş</span>
+      <span class="pill">Düzey 8/8</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#0d9488">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Dikdörtgenler prizmasının hacim formülünü soyut düzeyde kavrar; çarpımsal karşılaştırmalar yapar; hacmi, yapı kurmadan ya da çizmeden boyutlardan…</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Geo ile elle yap — yalnız boyutları yazılı sayı kartları (en–boy–yükseklik) / DokunSay Geo &quot;gizli kutu&quot; kartları.</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Su seviyelerine baktım — soldaki kapta daha çok su var.</p></div>
+    <div class="ex-v"><span style="display:inline-flex;gap:24px;align-items:flex-end"><svg viewBox="0 0 66 96" width="66" height="96" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><path d="M12 12 L54 12 L51 88 L15 88 Z" fill="#fff" stroke="#475569" stroke-width="2"/><rect x="14" y="27.199999999999996" width="38" height="60.800000000000004" fill="#2563eb" fill-opacity=".5"/></svg><svg viewBox="0 0 86 96" width="86" height="96" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><path d="M12 12 L74 12 L71 88 L15 88 Z" fill="#fff" stroke="#475569" stroke-width="2"/><rect x="14" y="61.400000000000006" width="58" height="26.599999999999998" fill="#2563eb" fill-opacity=".5"/></svg></span></div>
+    <div class="ex-a"><b class="ans-shown">soldaki</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex">
+    <div class="ex-q"><span class="ex-no">1</span><p>Hangi kapta DAHA ÇOK su var? Onu yuvarla.</p></div>
+    <div class="ex-v"><span style="display:inline-flex;gap:24px;align-items:flex-end"><svg viewBox="0 0 66 96" width="66" height="96" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><path d="M12 12 L54 12 L51 88 L15 88 Z" fill="#fff" stroke="#475569" stroke-width="2"/><rect x="14" y="27.199999999999996" width="38" height="60.800000000000004" fill="#2563eb" fill-opacity=".5"/></svg><svg viewBox="0 0 86 96" width="86" height="96" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><path d="M12 12 L74 12 L71 88 L15 88 Z" fill="#fff" stroke="#475569" stroke-width="2"/><rect x="14" y="61.400000000000006" width="58" height="26.599999999999998" fill="#2563eb" fill-opacity=".5"/></svg></span></div>
+    <div class="ex-a"><p class="ans-hint">○ çok olanı yuvarla</p></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Bu kabı kaç bardak su doldurur? Tahmin et, yaz.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 66 96" width="66" height="96" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><path d="M12 12 L54 12 L51 88 L15 88 Z" fill="#fff" stroke="#475569" stroke-width="2"/><rect x="14" y="50" width="38" height="38" fill="#2563eb" fill-opacity=".5"/></svg></div>
+    <div class="ex-a"><span class="wbox"></span></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Küçük boyutlar (2×2×2) ve bir doğrulayıcı somut kutuyla; önce tabanı, sonra kat çarpımını ayrı yaptırın.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Büyük boyutlar (5×4×3) yalnız zihinden ya da &quot;hacmi aynı kalacak başka bir kutu (en–boy–yükseklik) söyle&quot; diye tersine kurdurma.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Formülü ezberler, boyutları karıştırır; taban alanını hacim yerine yazar. <b>→ Ne yapmalı:</b> Formülle bulduğu sayıyı küp kurdurup saydır; iki sonucu karşılaştırt. <span class="mis-cite">📖 Battista (2004)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Yalnız boyut sayılarından (çizmeden/yerleştirmeden) hacmi en × boy × yükseklik çarpımıyla doğru bulursa ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 yalnız boyutları yazılı sayı kartları (en–boy–yükseklik) / DokunSay Geo &quot;gizli kutu&quot; kartları · ara sıra doğrulama için gerçek bir kutu + küpler · çarpımı yazmak için kâğıt/kalem <a href="https://dokunsay.com/Dokunsay-geo/">🔗 dokunsay.com/Dokunsay-geo/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/mvol/</span>
+    </div>
+  </div>
+</section>
+</div>
+</body>
+</html>

@@ -64,9 +64,9 @@ const GamesTab = ({ game, setGame, posCount, negCount, netValue, animateNumberLi
   return (
     <div style={{ flex: 1, overflowY: 'auto', padding: '10px 12px' }}>
       <div style={{
-        background: game ? 'rgba(245,158,11,.04)' : '#fff',
+        background: game ? 'rgba(139,92,246,.04)' : '#fff',
         borderRadius: 14, padding: '12px',
-        border: game ? '1.5px solid rgba(245,158,11,.2)' : '1px solid rgba(0,0,0,.05)',
+        border: game ? '1.5px solid rgba(139,92,246,.2)' : '1px solid rgba(0,0,0,.05)',
       }}>
         {!game ? (
           <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>

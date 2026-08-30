@@ -45,7 +45,7 @@ const BridgePanel = ({ posCount, negCount, zeroPairs, netValue, symExpr, animate
     </div>
 
     {/* Sembolik ifade */}
-    <div style={{ padding: '6px 12px', background: 'rgba(245,158,11,.04)', borderBottom: '1px solid rgba(0,0,0,.05)' }}>
+    <div style={{ padding: '6px 12px', background: 'rgba(139,92,246,.04)', borderBottom: '1px solid rgba(0,0,0,.05)' }}>
       <div style={{ fontSize: 8, fontWeight: 800, textTransform: 'uppercase', letterSpacing: 1, color: THEME.accentD, marginBottom: 2 }}>Sembolik İfade</div>
       <div style={{ fontSize: 13, fontWeight: 900, color: THEME.text, fontFamily: "'Courier New',monospace" }}>{symExpr}</div>
     </div>

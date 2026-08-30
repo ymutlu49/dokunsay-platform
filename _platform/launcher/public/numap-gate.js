@@ -35,7 +35,7 @@
   function clearSession() { try { localStorage.removeItem(TOKEN_KEY); localStorage.removeItem(USER_KEY); } catch (e) {} }
   function readTicket() { try { return new URLSearchParams(location.search).get('sso') || null; } catch (e) { return null; } }
   function stripTicket() { try { var u = new URL(location.href); u.searchParams.delete('sso'); history.replaceState({}, d.title, u.pathname + u.search + u.hash); } catch (e) {} }
-  function goLogin() { location.href = LOGIN; }
+  function goLogin() { location.href = LOGIN + (LOGIN.indexOf('?') >= 0 ? '&' : '?') + 'sso_return=' + encodeURIComponent(location.href); }
   function logout() { var t = getToken(); clearSession(); if (t) { try { fetch(API + '/auth/logout', { method: 'POST', headers: { Authorization: 'Bearer ' + t } }); } catch (e) {} } }
 
   // Kimliği çöz → cb(user|null). Önce ?sso= bileti (varsa), sonra saklı token doğrulaması.

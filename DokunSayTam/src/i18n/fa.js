@@ -35,6 +35,17 @@ export default {
   cat_comparison: 'مقایسه',
   cat_scenario: 'سناریو',
   cat_misconception: 'کج‌فهمی',
+  cat_independent: 'مستقل',
+  cat_transfer: 'انتقال',
+
+  diff_1: 'کاوش',
+  diff_2: 'با راهنما',
+  diff_3: 'هدایت‌شده',
+  diff_4: 'مستقل',
+  diff_5: 'انتقال',
+
+  act_misconception: 'کج‌فهمی هدف',
+  act_source: 'منبع',
 
   misconception_1: 'تصور منفی × منفی = منفی',
   misconception_2: 'کج‌فهمی اندازۀ عدد',
@@ -58,6 +69,7 @@ export default {
   btn_close: 'بستن',
 
   a11y_dyscalculia: 'حالت دیسکالکولی',
+  a11y_dyslexia: 'حالت دیسلکسی',
   a11y_high_contrast: 'تضاد بالا',
   a11y_tts: 'خواندن صوتی',
   a11y_sfx: 'جلوه‌های صوتی',

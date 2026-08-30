@@ -1,0 +1,680 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Çarpma ve Bölme — Çalışma Yaprakları · DokunSay</title>
+<meta name="description" content="Çarpma ve Bölme öğrenme yörüngesi için her düzeye bir baskıya hazır çalışma yaprağı. CRA (somut→temsilî→soyut) temelli, diskalkuli-dostu. Clements &amp; Sarama.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{ --c:#2E7D32; --ink:#1f2733; --body:#39434f; --mut:#7c8aa0; --line:#e7e2d6; --paper:#fffdf7; --tint:color-mix(in srgb, var(--c) 8%, #fffdf7); }
+*{ box-sizing:border-box; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+html,body{ margin:0; background:#eceae3; font-family:'Lexend',system-ui,Segoe UI,sans-serif; color:var(--body); }
+.bar{ position:sticky; top:0; z-index:9; display:flex; gap:14px; align-items:center; justify-content:space-between;
+  background:#fff; border-bottom:1px solid #dcd8cd; padding:11px 18px; box-shadow:0 1px 6px rgba(0,0,0,.05); }
+.bar .t{ font-family:'Poppins',sans-serif; font-weight:700; color:var(--ink); font-size:15px; }
+.bar .t small{ display:block; font-weight:500; color:var(--mut); font-size:12px; }
+.bar .actions{ display:flex; gap:9px; }
+.btn{ font-family:'Poppins',sans-serif; font-weight:600; font-size:13.5px; border:0; border-radius:10px; padding:9px 15px; cursor:pointer; text-decoration:none; }
+.btn-print{ background:var(--c); color:#fff; } .btn-back{ background:#eef1f4; color:#334155; }
+.wrap{ max-width:880px; margin:18px auto 40px; padding:0 14px; }
+
+/* ── A4 çalışma yaprağı ───────────────────────────────────────────── */
+.sheet{ background:var(--paper); width:210mm; height:297mm; overflow:hidden; margin:0 auto 20px; padding:11mm 13mm 6mm;
+  border-radius:4px; box-shadow:0 6px 26px rgba(31,39,51,.13); position:relative;
+  display:flex; flex-direction:column; gap:1.8mm; }
+.lbl{ display:inline-block; font-family:'Poppins',sans-serif; font-weight:700; font-size:10.5pt; color:var(--c); letter-spacing:.2px; margin-bottom:2px; }
+
+.ws-head{ border-bottom:3px solid var(--c); padding-bottom:7px; }
+.ws-top{ display:flex; justify-content:space-between; align-items:center; font-size:10pt; color:var(--mut); }
+.ws-brand{ display:inline-flex; align-items:center; gap:7px; font-family:'Poppins',sans-serif; }
+.ws-brand b{ color:var(--ink); } .logo{ width:22px; height:22px; }
+.ws-name{ font-size:9.5pt; } .nl{ display:inline-block; width:34mm; border-bottom:1.4px dotted #b8c0cc; } .nl.sm{ width:24mm; }
+.ws-eyebrow{ font-family:'Poppins',sans-serif; font-weight:600; font-size:10pt; color:var(--c); margin-top:8px; text-transform:uppercase; letter-spacing:.4px; }
+.ws-title{ font-family:'Poppins',sans-serif; font-weight:800; font-size:18pt; line-height:1.1; color:var(--ink); margin:2px 0 6px; display:flex; align-items:baseline; gap:8px; }
+.ws-no{ background:var(--c); color:#fff; font-size:12pt; min-width:27px; height:27px; padding:0 6px; border-radius:8px; display:inline-flex; align-items:center; justify-content:center; }
+.ws-meta{ display:flex; flex-wrap:wrap; gap:7px; align-items:center; }
+.pill{ font-family:'Poppins',sans-serif; font-weight:600; font-size:9.5pt; background:#eef2f7; color:#475569; border-radius:20px; padding:4px 11px; }
+.pill.warn{ background:#fff3e2; color:#9a3412; }
+.cra{ display:inline-flex; align-items:center; gap:4px; margin-left:auto; }
+.cra-s{ font-family:'Poppins',sans-serif; font-weight:600; font-size:9pt; color:#94a3b8; background:#f1f4f8; border-radius:7px; padding:3px 9px; }
+.cra-s.on{ color:#fff; } .cra-arr{ color:#cbd5e1; font-size:10pt; }
+
+.ws-obj{ background:var(--tint); border-radius:10px; padding:7px 12px; }
+.ws-obj p{ margin:1px 0 0; font-size:11pt; line-height:1.42; color:var(--ink); }
+.ws-method .msteps{ margin:1px 0 0; padding-left:0; list-style:none; display:flex; flex-direction:column; gap:2px; counter-reset:m; }
+.ws-method .msteps li{ font-size:10pt; line-height:1.32; padding-left:26px; position:relative; }
+.ws-method .msteps li::before{ counter-increment:m; content:counter(m); position:absolute; left:0; top:0;
+  width:21px; height:21px; border-radius:50%; background:var(--c); color:#fff; font-family:'Poppins',sans-serif; font-weight:700; font-size:10pt; display:flex; align-items:center; justify-content:center; }
+.ws-method .msteps b{ color:var(--c); }
+
+.ws-egbox{ background:#f4f8f5; border:1.5px dashed color-mix(in srgb,var(--c) 45%,#cbd5e1); border-radius:10px; padding:6px 12px 7px; }
+.ws-egbox .lbl{ color:color-mix(in srgb,var(--c) 70%, #166534); }
+
+.items-grid{ display:grid; grid-template-columns:1fr 1fr; gap:5px; margin-top:2px; align-items:start; }
+.ex{ border:1.4px solid var(--line); border-radius:11px; padding:7px 10px 8px; background:#fff; break-inside:avoid; }
+.ex.wide{ grid-column:1 / -1; }
+.ex.eg{ border:0; padding:2px 0 0; background:transparent; grid-column:1 / -1; }
+.ex-q{ display:flex; gap:7px; align-items:flex-start; }
+.ex-no{ flex:0 0 auto; width:22px; height:22px; border-radius:50%; background:var(--c); color:#fff; font-family:'Poppins',sans-serif; font-weight:700; font-size:10.5pt; display:flex; align-items:center; justify-content:center; }
+.ex.eg .ex-no{ background:#fef3c7; }
+.ex-q p{ margin:1px 0 0; font-size:10.8pt; line-height:1.4; color:var(--ink); }
+.ex-v{ margin:4px 0 3px; text-align:center; } .ex-a{ margin:0; text-align:center; }
+.ex.wide .ex-v, .ex.wide .ex-a, .ex.eg .ex-v, .ex.eg .ex-a{ text-align:left; margin-left:30px; }
+
+/* SVG görseller — içsel boyut ama A4'e sığması için yükseklik sınırlı */
+.ws-svg{ max-width:100%; width:auto; height:auto; vertical-align:middle; }
+.ex-v .ws-svg{ max-height:16mm; }
+.ex-v .ws-svg.ws-tall{ max-height:17mm; }
+.ws-egbox .ex-v .ws-svg{ max-height:12mm; } .ws-egbox .ex-v .ws-svg.ws-tall{ max-height:13mm; }
+.ex-v .ws-frac{ max-height:26mm; } .ws-svg.ws-frac{ width:auto; max-height:26mm; } svg.ws-glyph{ width:12mm; height:12mm; }
+.pat-row{ display:flex; align-items:center; gap:7px; flex-wrap:wrap; }
+.pat-c svg{ width:13mm; height:13mm; } .pat-q{ width:13mm; height:13mm; border:2px dashed #b8c0cc; border-radius:8px; display:inline-flex; align-items:center; justify-content:center; font-family:'Poppins',sans-serif; font-weight:800; font-size:16pt; color:#b8c0cc; }
+
+/* Yanıt alanları */
+.wbox{ display:inline-block; width:14mm; height:14mm; border:2px solid #94a3b8; border-radius:8px; vertical-align:middle; margin:0 3px; background:#fff; }
+.wbox.wbox-lg{ width:18mm; height:14mm; border-color:var(--c); }
+.eqrow{ display:flex; align-items:center; flex-wrap:wrap; gap:5px; font-family:'Poppins',sans-serif; font-weight:600; font-size:15pt; color:var(--ink); }
+.bignum{ font-family:'Poppins',sans-serif; font-weight:700; font-size:17pt; color:var(--ink); } .bignum.sm{ font-size:14pt; padding:0 3px; }
+.seqn{ font-family:'Poppins',sans-serif; font-weight:600; font-size:14pt; } .seqsep{ color:#94a3b8; }
+.ans-hint{ margin:5px 0 0 0; font-size:10.5pt; color:var(--mut); font-style:normal; }
+.ans-shown{ font-family:'Poppins',sans-serif; font-size:14pt; color:#166534; }
+
+.ws-scaffold{ display:flex; gap:8px; flex-wrap:wrap; }
+.sc{ flex:1 1 44%; font-size:9.8pt; line-height:1.30; border-radius:9px; padding:5px 10px; }
+.sc-easy{ background:#eef4fb; } .sc-easy b{ color:#1d4ed8; }
+.sc-hard{ background:#f5f0fb; } .sc-hard b{ color:#7c3aed; }
+
+.ws-foot{ margin-top:auto; padding-top:5px; border-top:1px solid var(--line); display:flex; flex-direction:column; gap:4px; }
+.ws-check{ background:#f0fdf4; border-radius:9px; padding:5px 11px; font-size:10pt; line-height:1.35; color:#166534; display:flex; justify-content:space-between; align-items:center; gap:10px; }
+.ws-check b{ color:#15803d; } .stars{ font-size:14pt; color:#f59e0b; letter-spacing:2px; white-space:nowrap; }
+.ws-credit{ font-size:7.8pt; color:var(--mut); line-height:1.35; display:flex; flex-direction:column; gap:1px; }
+.ws-credit .mat{ color:#475569; }
+.ws-credit a{ color:#475569; }
+/* Kavram yanılgısı şeridi. Punto (8.7pt) künyeden (7.8pt) büyük ama gövde metninden
+   küçük: öğretmene yönelik ikincil bilgi, çocuğun göreviyle yarışmamalı. Yapraklar
+   milimetrik dolu olduğu için bu ölçüler A4 taşmasına karşı ölçülerek seçildi. */
+.ws-mis{ background:#fff7ed; border-left:3px solid #fb923c; border-radius:9px; padding:3px 10px; font-size:8.7pt; line-height:1.26; color:#7c2d12; }
+.ws-mis b{ color:#9a3412; font-weight:700; }
+.ws-mis .mis-cite{ color:#a16207; white-space:nowrap; }
+
+/* ── Baskı ─────────────────────────────────────────────────────────── */
+@media print{
+  @page{ size:A4; margin:0; }
+  html,body{ background:#fff; }
+  .bar,.wrap>.intro{ display:none !important; }
+  .wrap{ margin:0; padding:0; max-width:none; }
+  .sheet{ width:210mm; height:297mm; margin:0; border-radius:0; box-shadow:none; overflow:hidden; break-before:page; }
+  .sheet:first-child{ break-before:avoid; }
+}
+.intro{ background:#fff; border-radius:14px; padding:16px 20px; margin-bottom:18px; box-shadow:0 2px 10px rgba(0,0,0,.05); }
+.intro h2{ font-family:'Poppins',sans-serif; margin:0 0 5px; color:var(--ink); font-size:18px; }
+.intro p{ margin:0; font-size:13.5px; line-height:1.55; color:#5b6573; }
+</style>
+</head>
+<body>
+<div class="bar no-print">
+  <span class="t">✖️ Çarpma ve Bölme — Çalışma Yaprakları<small>9 düzey · Sayılar ve İşlemler · CRA temelli</small></span>
+  <span class="actions">
+    <a class="btn btn-back" href="./">← Yörüngeye dön</a>
+    <button class="btn btn-print" onclick="window.print()">🖨️ Yazdır / PDF kaydet</button>
+  </span>
+</div>
+<div class="wrap">
+  <div class="intro no-print">
+    <h2>Çarpma ve Bölme · Çalışma Yaprakları</h2>
+    <p>Her düzey için bir baskıya-hazır A4 çalışma yaprağı. Her yaprak <b>önce somut</b> (DokunSay Bar ile), <b>sonra resimle</b> (bu sayfa), <b>en sonda sembolle</b> (çocuk yazar) ilerler — diskalkuli için kanıta dayalı CRA sırası. Çocuğun bulunduğu düzeyden başlayın; ✓ölçütü karşılayınca bir sonraki yaprağa geçin. Yazdırıp tek tek kullanın ya da PDF olarak kaydedin.</p>
+  </div>
+  <section class="sheet" style="--c:#2E7D32">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">✖️ Sayılar ve İşlemler · Çarpma ve Bölme</div>
+    <h1 class="ws-title"><span class="ws-no">1</span>Eşitliği Gözetmeden Paylaştıran: Temeller</h1>
+    <div class="ws-meta">
+      <span class="pill">0–3 yaş</span>
+      <span class="pill">Düzey 1/9</span>
+      
+      <span class="cra"><span class="cra-s on" style="background:#2E7D32">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Herkese BİR ŞEYLER verir; ancak verilenlerin eşit sayıda olması gerekmez.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Oyna</b> — DokunSay Bar ya da günlük nesnelerle birlikte oynayın — DokunSay pulları (ya da bisküvi/şeker).</li><li><b>Söyle</b> — Sayıları/sözcükleri yüksek sesle ve ritimle siz söyleyin; çocuk katılsın.</li><li><b>Gözle</b> — Tepkisini gözleyin — bu yaşta yazı/çizim beklenmez, deneyim önemlidir.</li></ol>
+  </div>
+
+  
+
+  <div class="ws-items"><span class="lbl">🎲 Birlikte oyna (siz yönlendirin)</span>
+    <div class="items-grid"><div class="ex">
+    <div class="ex-q"><span class="ex-no">1</span><p>Birkaç misafiri (oyuncak) karşılıklı dizip her birinin önüne bir tepsi koyun.</p></div>
+    
+    
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Çocuğa bir avuç pul verip "Hadi herkese ikram et" deyin.</p></div>
+    
+    
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>Dağıtırken "sana bir, sana bir" ritmini birlikte söyleyin.</p></div>
+    
+    
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">4</span><p>Bittiğinde "Herkese bir şeyler düştü mü? Acaba aynı mı oldu?" diye baktırın.</p></div>
+    
+    
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> İki misafirle ve az pulla başlayın; ilk birkaç dağıtımı birlikte yapın.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Üç misafire çıkın; &quot;herkese tıpatıp aynı olsun&quot; diye eşitliği zorlayın.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Herkese bir şey verince işi bitmiş sayar; payların eşit olmasını gerekli görmez (“herkeste var, oldu”). <b>→ Ne yapmalı:</b> Payları yan yana dizdirip “seninki mi çok?” diye karşılaştırtın; itirazın doğmasına izin verin. <span class="mis-cite">📖 Clements &amp; Sarama (2009)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Bir çokluğu, herkese pay düşecek biçimde (eşitliği sezerek) kendiliğinden paylaştırırsa ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay pulları (ya da bisküvi/şeker) · 2–3 oyuncak/kukla &quot;misafir&quot; · gruplama tepsileri (her misafire bir tepsi) <a href="https://dokunsay.com/DokunSayBar/">🔗 dokunsay.com/DokunSayBar/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/multdiv/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#2E7D32">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">✖️ Sayılar ve İşlemler · Çarpma ve Bölme</div>
+    <h1 class="ws-title"><span class="ws-no">2</span>Teker Teker Dağıtmaya Başlayan</h1>
+    <div class="ws-meta">
+      <span class="pill">4–6 yaş</span>
+      <span class="pill">Düzey 2/9</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#2E7D32">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Küçük gruplar (5’ten az) oluşturur; &quot;birer birer dağıtarak&quot; paylaştırır ama genellikle yalnız 2 kişi arasında; sonucun sayısal anlamını kavramayabilir.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Bar ile elle yap — DokunSay pulları (6–8 pul).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Saymadan, bir bakışta gördüm.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 241 44" width="241" height="44" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="22" cy="22" r="13" fill="#f59e0b"/><circle cx="57" cy="22" r="13" fill="#f59e0b"/><circle cx="92" cy="22" r="13" fill="#f59e0b"/><circle cx="149" cy="22" r="13" fill="#0d9488"/><circle cx="184" cy="22" r="13" fill="#0d9488"/><circle cx="219" cy="22" r="13" fill="#0d9488"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">6</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex">
+    <div class="ex-q"><span class="ex-no">1</span><p>Kaç grup var, her grupta kaç tane? Topla.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 156 120" width="156" height="120" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="24" cy="24" r="12" fill="#2E7D32"/><circle cx="60" cy="24" r="12" fill="#2E7D32"/><circle cx="96" cy="24" r="12" fill="#2E7D32"/><circle cx="132" cy="24" r="12" fill="#2E7D32"/><circle cx="24" cy="60" r="12" fill="#2E7D32"/><circle cx="60" cy="60" r="12" fill="#2E7D32"/><circle cx="96" cy="60" r="12" fill="#2E7D32"/><circle cx="132" cy="60" r="12" fill="#2E7D32"/><circle cx="24" cy="96" r="12" fill="#2E7D32"/><circle cx="60" cy="96" r="12" fill="#2E7D32"/><circle cx="96" cy="96" r="12" fill="#2E7D32"/><circle cx="132" cy="96" r="12" fill="#2E7D32"/></svg></div>
+    <div class="ex-a"><div class="eqrow">3 grup × 4 = <span class="wbox wbox-lg"></span></div></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Ritmik say (atlayarak): eksik sayıları yaz.</p></div>
+    
+    <div class="ex-a"><div class="eqrow"><span class="bignum sm">4</span> <span class="bignum sm">8</span> <span class="wbox"></span> <span class="bignum sm">16</span></div></div>
+  </div><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">3</span><p>12 taneyi 3 kişiye eşit paylaştır: her birine kaç düşer?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 252 92" width="252" height="92" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="26" cy="26" r="14" fill="#2E7D32"/><circle cx="66" cy="26" r="14" fill="#2E7D32"/><circle cx="106" cy="26" r="14" fill="#2E7D32"/><circle cx="146" cy="26" r="14" fill="#2E7D32"/><circle cx="186" cy="26" r="14" fill="#2E7D32"/><circle cx="226" cy="26" r="14" fill="#2E7D32"/><circle cx="26" cy="66" r="14" fill="#2E7D32"/><circle cx="66" cy="66" r="14" fill="#2E7D32"/><circle cx="106" cy="66" r="14" fill="#2E7D32"/><circle cx="146" cy="66" r="14" fill="#2E7D32"/><circle cx="186" cy="66" r="14" fill="#2E7D32"/><circle cx="226" cy="66" r="14" fill="#2E7D32"/></svg></div>
+    <div class="ex-a"><span class="wbox"></span></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> 4 pul ve 2 tepsi ile başlayın; ilk turu birlikte dağıtın.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> 3 tepsiye çıkın ya da &quot;tek pul artarsa ne yaparız?&quot; diye kalanı düşündürün.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Dağıtım turunu tamamlamadan bırakır; kalan nesneleri tek bir kişiye yığar. <b>→ Ne yapmalı:</b> Tur bitmeden yeni tura geçmeyi engelleyin; her turu birlikte yüksek sesle sayın. <span class="mis-cite">📖 Clements &amp; Sarama (2009)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Bir çokluğu, tepsilere dönüşümlü (birer birer) dağıtarak paylaştırırsa ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay pulları (6–8 pul) · 2 gruplama tepsisi · dağıtımı başlatmak için bir &quot;başla&quot; işareti <a href="https://dokunsay.com/DokunSayBar/">🔗 dokunsay.com/DokunSayBar/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/multdiv/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#2E7D32">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">✖️ Sayılar ve İşlemler · Çarpma ve Bölme</div>
+    <h1 class="ws-title"><span class="ws-no">3</span>Eşit Dağıtan ve Küçük Gruplar Kuran</h1>
+    <div class="ws-meta">
+      <span class="pill">5–6 yaş</span>
+      <span class="pill">Düzey 3/9</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#2E7D32">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Küçük EŞİT gruplar (6’dan az) oluşturur; 2’den çok alıcıya birer birer eşit dağıtır; ancak sonuçta eşit miktarlar oluştuğunu kavramayabilir.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Bar ile elle yap — DokunSay pulları (8–10 pul).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Saymadan, bir bakışta gördüm.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 311 44" width="311" height="44" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="22" cy="22" r="13" fill="#f59e0b"/><circle cx="57" cy="22" r="13" fill="#f59e0b"/><circle cx="92" cy="22" r="13" fill="#f59e0b"/><circle cx="127" cy="22" r="13" fill="#f59e0b"/><circle cx="184" cy="22" r="13" fill="#0d9488"/><circle cx="219" cy="22" r="13" fill="#0d9488"/><circle cx="254" cy="22" r="13" fill="#0d9488"/><circle cx="289" cy="22" r="13" fill="#0d9488"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">8</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex">
+    <div class="ex-q"><span class="ex-no">1</span><p>Kaç grup var, her grupta kaç tane? Topla.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 192 156" width="192" height="156" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="24" cy="24" r="12" fill="#2E7D32"/><circle cx="60" cy="24" r="12" fill="#2E7D32"/><circle cx="96" cy="24" r="12" fill="#2E7D32"/><circle cx="132" cy="24" r="12" fill="#2E7D32"/><circle cx="168" cy="24" r="12" fill="#2E7D32"/><circle cx="24" cy="60" r="12" fill="#2E7D32"/><circle cx="60" cy="60" r="12" fill="#2E7D32"/><circle cx="96" cy="60" r="12" fill="#2E7D32"/><circle cx="132" cy="60" r="12" fill="#2E7D32"/><circle cx="168" cy="60" r="12" fill="#2E7D32"/><circle cx="24" cy="96" r="12" fill="#2E7D32"/><circle cx="60" cy="96" r="12" fill="#2E7D32"/><circle cx="96" cy="96" r="12" fill="#2E7D32"/><circle cx="132" cy="96" r="12" fill="#2E7D32"/><circle cx="168" cy="96" r="12" fill="#2E7D32"/><circle cx="24" cy="132" r="12" fill="#2E7D32"/><circle cx="60" cy="132" r="12" fill="#2E7D32"/><circle cx="96" cy="132" r="12" fill="#2E7D32"/><circle cx="132" cy="132" r="12" fill="#2E7D32"/><circle cx="168" cy="132" r="12" fill="#2E7D32"/></svg></div>
+    <div class="ex-a"><div class="eqrow">4 grup × 5 = <span class="wbox wbox-lg"></span></div></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Ritmik say (atlayarak): eksik sayıları yaz.</p></div>
+    
+    <div class="ex-a"><div class="eqrow"><span class="bignum sm">5</span> <span class="bignum sm">10</span> <span class="wbox"></span> <span class="bignum sm">20</span></div></div>
+  </div><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">3</span><p>20 taneyi 4 kişiye eşit paylaştır: her birine kaç düşer?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 252 172" width="252" height="172" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="26" cy="26" r="14" fill="#2E7D32"/><circle cx="66" cy="26" r="14" fill="#2E7D32"/><circle cx="106" cy="26" r="14" fill="#2E7D32"/><circle cx="146" cy="26" r="14" fill="#2E7D32"/><circle cx="186" cy="26" r="14" fill="#2E7D32"/><circle cx="226" cy="26" r="14" fill="#2E7D32"/><circle cx="26" cy="66" r="14" fill="#2E7D32"/><circle cx="66" cy="66" r="14" fill="#2E7D32"/><circle cx="106" cy="66" r="14" fill="#2E7D32"/><circle cx="146" cy="66" r="14" fill="#2E7D32"/><circle cx="186" cy="66" r="14" fill="#2E7D32"/><circle cx="226" cy="66" r="14" fill="#2E7D32"/><circle cx="26" cy="106" r="14" fill="#2E7D32"/><circle cx="66" cy="106" r="14" fill="#2E7D32"/><circle cx="106" cy="106" r="14" fill="#2E7D32"/><circle cx="146" cy="106" r="14" fill="#2E7D32"/><circle cx="186" cy="106" r="14" fill="#2E7D32"/><circle cx="226" cy="106" r="14" fill="#2E7D32"/><circle cx="26" cy="146" r="14" fill="#2E7D32"/><circle cx="66" cy="146" r="14" fill="#2E7D32"/></svg></div>
+    <div class="ex-a"><span class="wbox"></span></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Çift sayılarla (6, 8) ve 2 tepsiyle çalışın; karşılıklı dizip eşitliği göz önüne serin.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Tek artıklı sayı (9) ya da 3 eşit tepsi; &quot;artan olursa eşit olur mu?&quot; diye sorgulayın.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Eşit dağıtır ama “her birine kaç düştü?” sorusuna toplam nesne sayısını söyler; sonucun sayısal anlamını görmez. <b>→ Ne yapmalı:</b> Yalnız BİR payı öne çekip saydırın; diğer payları elinizle kapatın. <span class="mis-cite">📖 Anghileri (2001)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Bir çokluğu eşit gruplara bölüp, grupların eşitliğini sayarak doğrularsa ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay pulları (8–10 pul) · 2 gruplama tepsisi · eşitliği denetlemek için karşılıklı dizme alanı <a href="https://dokunsay.com/DokunSayBar/">🔗 dokunsay.com/DokunSayBar/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/multdiv/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#2E7D32">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">✖️ Sayılar ve İşlemler · Çarpma ve Bölme</div>
+    <h1 class="ws-title"><span class="ws-no">4</span>Somut Modelleyen (×/÷)</h1>
+    <div class="ws-meta">
+      <span class="pill">6–7 yaş</span>
+      <span class="pill">Düzey 4/9</span>
+      <span class="pill warn">★ Kritik geçiş</span>
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#2E7D32">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Küçük sayılı çarpma problemlerini her grubu kurup TÜMÜNÜ sayarak çözer; paylaşım/bölme problemlerini somut, informal stratejilerle…</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Bar ile elle yap — DokunSay pulları.</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Grupları topladım (ritmik saydım).</p></div>
+    <div class="ex-v"><svg viewBox="0 0 84 120" width="84" height="120" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="24" cy="24" r="12" fill="#2E7D32"/><circle cx="60" cy="24" r="12" fill="#2E7D32"/><circle cx="24" cy="60" r="12" fill="#2E7D32"/><circle cx="60" cy="60" r="12" fill="#2E7D32"/><circle cx="24" cy="96" r="12" fill="#2E7D32"/><circle cx="60" cy="96" r="12" fill="#2E7D32"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">6</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex">
+    <div class="ex-q"><span class="ex-no">1</span><p>Kaç grup var, her grupta kaç tane? Topla.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 120 84" width="120" height="84" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="24" cy="24" r="12" fill="#2E7D32"/><circle cx="60" cy="24" r="12" fill="#2E7D32"/><circle cx="96" cy="24" r="12" fill="#2E7D32"/><circle cx="24" cy="60" r="12" fill="#2E7D32"/><circle cx="60" cy="60" r="12" fill="#2E7D32"/><circle cx="96" cy="60" r="12" fill="#2E7D32"/></svg></div>
+    <div class="ex-a"><div class="eqrow">2 grup × 3 = <span class="wbox wbox-lg"></span></div></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Ritmik say (atlayarak): eksik sayıları yaz.</p></div>
+    
+    <div class="ex-a"><div class="eqrow"><span class="bignum sm">3</span> <span class="bignum sm">6</span> <span class="wbox"></span> <span class="bignum sm">12</span></div></div>
+  </div><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">3</span><p>6 taneyi 2 kişiye eşit paylaştır: her birine kaç düşer?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 252 52" width="252" height="52" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="26" cy="26" r="14" fill="#2E7D32"/><circle cx="66" cy="26" r="14" fill="#2E7D32"/><circle cx="106" cy="26" r="14" fill="#2E7D32"/><circle cx="146" cy="26" r="14" fill="#2E7D32"/><circle cx="186" cy="26" r="14" fill="#2E7D32"/><circle cx="226" cy="26" r="14" fill="#2E7D32"/></svg></div>
+    <div class="ex-a"><span class="wbox"></span></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Küçük tutun (2 tepside 2'şer); grupları siz başlatın, çocuk tamamlasın.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> 4 tepside 3'er gibi büyütün ya da grupları kapatıp &quot;saymadan tahmin et&quot; deyin (ritmik saymaya köprü).</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Grup sayısını toplamla karıştırır: 3 grup × 4’te “hepsi kaç?” sorusuna 3 der. <b>→ Ne yapmalı:</b> “Kaç grup?” ve “hepsi kaç?” sorularını ayrı ayrı saydırın. <span class="mis-cite">📖 Greer (1992)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Eşit grupları somut kurup hepsini sayarak çarpımı bulur ve aynı modelle bölmeyi çözerse ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay pulları · 3–4 gruplama tepsisi (eşit gruplar için) · hepsini saymak için birleştirme alanı <a href="https://dokunsay.com/DokunSayBar/">🔗 dokunsay.com/DokunSayBar/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/multdiv/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#2E7D32">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">✖️ Sayılar ve İşlemler · Çarpma ve Bölme</div>
+    <h1 class="ws-title"><span class="ws-no">5</span>Kişi Artarsa Payın Azalacağını Bilen</h1>
+    <div class="ws-meta">
+      <span class="pill">8–9 yaş</span>
+      <span class="pill">Düzey 5/9</span>
+      <span class="pill warn">★ Kritik geçiş</span>
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#2E7D32">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Basit somut durumlarda bölen ile bölüm arasındaki TERS ilişkiyi kavrar: paylaşan kişi sayısı artarsa her birine düşen azalır.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Bar ile elle yap — DokunSay pulları (12 pul).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Saymadan, bir bakışta gördüm.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 451 44" width="451" height="44" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="22" cy="22" r="13" fill="#f59e0b"/><circle cx="57" cy="22" r="13" fill="#f59e0b"/><circle cx="92" cy="22" r="13" fill="#f59e0b"/><circle cx="127" cy="22" r="13" fill="#f59e0b"/><circle cx="162" cy="22" r="13" fill="#f59e0b"/><circle cx="197" cy="22" r="13" fill="#f59e0b"/><circle cx="254" cy="22" r="13" fill="#0d9488"/><circle cx="289" cy="22" r="13" fill="#0d9488"/><circle cx="324" cy="22" r="13" fill="#0d9488"/><circle cx="359" cy="22" r="13" fill="#0d9488"/><circle cx="394" cy="22" r="13" fill="#0d9488"/><circle cx="429" cy="22" r="13" fill="#0d9488"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">12</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex">
+    <div class="ex-q"><span class="ex-no">1</span><p>Kaç grup var, her grupta kaç tane? Topla.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 156 120" width="156" height="120" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="24" cy="24" r="12" fill="#2E7D32"/><circle cx="60" cy="24" r="12" fill="#2E7D32"/><circle cx="96" cy="24" r="12" fill="#2E7D32"/><circle cx="132" cy="24" r="12" fill="#2E7D32"/><circle cx="24" cy="60" r="12" fill="#2E7D32"/><circle cx="60" cy="60" r="12" fill="#2E7D32"/><circle cx="96" cy="60" r="12" fill="#2E7D32"/><circle cx="132" cy="60" r="12" fill="#2E7D32"/><circle cx="24" cy="96" r="12" fill="#2E7D32"/><circle cx="60" cy="96" r="12" fill="#2E7D32"/><circle cx="96" cy="96" r="12" fill="#2E7D32"/><circle cx="132" cy="96" r="12" fill="#2E7D32"/></svg></div>
+    <div class="ex-a"><div class="eqrow">3 grup × 4 = <span class="wbox wbox-lg"></span></div></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Ritmik say (atlayarak): eksik sayıları yaz.</p></div>
+    
+    <div class="ex-a"><div class="eqrow"><span class="bignum sm">4</span> <span class="bignum sm">8</span> <span class="wbox"></span> <span class="bignum sm">16</span></div></div>
+  </div><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">3</span><p>12 taneyi 3 kişiye eşit paylaştır: her birine kaç düşer?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 252 92" width="252" height="92" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="26" cy="26" r="14" fill="#2E7D32"/><circle cx="66" cy="26" r="14" fill="#2E7D32"/><circle cx="106" cy="26" r="14" fill="#2E7D32"/><circle cx="146" cy="26" r="14" fill="#2E7D32"/><circle cx="186" cy="26" r="14" fill="#2E7D32"/><circle cx="226" cy="26" r="14" fill="#2E7D32"/><circle cx="26" cy="66" r="14" fill="#2E7D32"/><circle cx="66" cy="66" r="14" fill="#2E7D32"/><circle cx="106" cy="66" r="14" fill="#2E7D32"/><circle cx="146" cy="66" r="14" fill="#2E7D32"/><circle cx="186" cy="66" r="14" fill="#2E7D32"/><circle cx="226" cy="66" r="14" fill="#2E7D32"/></svg></div>
+    <div class="ex-a"><span class="wbox"></span></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> 2 kişi ↔ 4 kişi gibi ikiye katlanan karşıtlıklarla çalışın; iki paylaştırmayı yan yana görünür tutun.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Üç durumu sıralatın (2-3-6 kişi) ya da &quot;pay 2 olsun istersek kaç kişi olmalı?&quot; diye tersinden sordurun.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> “Daha çok kişi olursa herkese daha çok düşer” der. <b>→ Ne yapmalı:</b> Aynı 12 pulu önce 2, sonra 4 kişiye dağıttırıp iki payı yan yana koydurun. <span class="mis-cite">📖 Fischbein ve ark. (1985)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Bütün sabitken kişi (grup) sayısı artınca payın azalacağını önceden söyler ve paylaştırarak doğrularsa ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay pulları (12 pul) · 2 + 4 gruplama tepsisi (iki ayrı paylaştırma) · iki paylaştırmayı yan yana koyacak karşılaştırma alanı <a href="https://dokunsay.com/DokunSayBar/">🔗 dokunsay.com/DokunSayBar/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/multdiv/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#2E7D32">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">✖️ Sayılar ve İşlemler · Çarpma ve Bölme</div>
+    <h1 class="ws-title"><span class="ws-no">6</span>Ritmik Sayarak Çözen (×/÷)</h1>
+    <div class="ws-meta">
+      <span class="pill">9–10 yaş</span>
+      <span class="pill">Düzey 6/9</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#2E7D32">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Çarpma ve ölçme bölmesi (&quot;kaç grup?&quot;) için tekrarlı toplama, ikiye katlama ya da ritmik sayma kullanır; paylaştırma bölmesinde deneme-yanılmaya…</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Bar ile elle yap — DokunSay pulları (eşit gruplara dizili).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Saymadan, bir bakışta gördüm.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 473 44" width="473" height="44" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="22" cy="22" r="13" fill="#f59e0b"/><circle cx="57" cy="22" r="13" fill="#f59e0b"/><circle cx="92" cy="22" r="13" fill="#f59e0b"/><circle cx="127" cy="22" r="13" fill="#f59e0b"/><circle cx="184" cy="22" r="13" fill="#0d9488"/><circle cx="219" cy="22" r="13" fill="#0d9488"/><circle cx="254" cy="22" r="13" fill="#0d9488"/><circle cx="289" cy="22" r="13" fill="#0d9488"/><circle cx="346" cy="22" r="13" fill="#f59e0b"/><circle cx="381" cy="22" r="13" fill="#f59e0b"/><circle cx="416" cy="22" r="13" fill="#f59e0b"/><circle cx="451" cy="22" r="13" fill="#f59e0b"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">12</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex">
+    <div class="ex-q"><span class="ex-no">1</span><p>Kaç grup var, her grupta kaç tane? Topla.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 192 156" width="192" height="156" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="24" cy="24" r="12" fill="#2E7D32"/><circle cx="60" cy="24" r="12" fill="#2E7D32"/><circle cx="96" cy="24" r="12" fill="#2E7D32"/><circle cx="132" cy="24" r="12" fill="#2E7D32"/><circle cx="168" cy="24" r="12" fill="#2E7D32"/><circle cx="24" cy="60" r="12" fill="#2E7D32"/><circle cx="60" cy="60" r="12" fill="#2E7D32"/><circle cx="96" cy="60" r="12" fill="#2E7D32"/><circle cx="132" cy="60" r="12" fill="#2E7D32"/><circle cx="168" cy="60" r="12" fill="#2E7D32"/><circle cx="24" cy="96" r="12" fill="#2E7D32"/><circle cx="60" cy="96" r="12" fill="#2E7D32"/><circle cx="96" cy="96" r="12" fill="#2E7D32"/><circle cx="132" cy="96" r="12" fill="#2E7D32"/><circle cx="168" cy="96" r="12" fill="#2E7D32"/><circle cx="24" cy="132" r="12" fill="#2E7D32"/><circle cx="60" cy="132" r="12" fill="#2E7D32"/><circle cx="96" cy="132" r="12" fill="#2E7D32"/><circle cx="132" cy="132" r="12" fill="#2E7D32"/><circle cx="168" cy="132" r="12" fill="#2E7D32"/></svg></div>
+    <div class="ex-a"><div class="eqrow">4 grup × 5 = <span class="wbox wbox-lg"></span></div></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Ritmik say (atlayarak): eksik sayıları yaz.</p></div>
+    
+    <div class="ex-a"><div class="eqrow"><span class="bignum sm">5</span> <span class="bignum sm">10</span> <span class="wbox"></span> <span class="bignum sm">20</span></div></div>
+  </div><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">3</span><p>20 taneyi 4 kişiye eşit paylaştır: her birine kaç düşer?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 252 172" width="252" height="172" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="26" cy="26" r="14" fill="#2E7D32"/><circle cx="66" cy="26" r="14" fill="#2E7D32"/><circle cx="106" cy="26" r="14" fill="#2E7D32"/><circle cx="146" cy="26" r="14" fill="#2E7D32"/><circle cx="186" cy="26" r="14" fill="#2E7D32"/><circle cx="226" cy="26" r="14" fill="#2E7D32"/><circle cx="26" cy="66" r="14" fill="#2E7D32"/><circle cx="66" cy="66" r="14" fill="#2E7D32"/><circle cx="106" cy="66" r="14" fill="#2E7D32"/><circle cx="146" cy="66" r="14" fill="#2E7D32"/><circle cx="186" cy="66" r="14" fill="#2E7D32"/><circle cx="226" cy="66" r="14" fill="#2E7D32"/><circle cx="26" cy="106" r="14" fill="#2E7D32"/><circle cx="66" cy="106" r="14" fill="#2E7D32"/><circle cx="106" cy="106" r="14" fill="#2E7D32"/><circle cx="146" cy="106" r="14" fill="#2E7D32"/><circle cx="186" cy="106" r="14" fill="#2E7D32"/><circle cx="226" cy="106" r="14" fill="#2E7D32"/><circle cx="26" cy="146" r="14" fill="#2E7D32"/><circle cx="66" cy="146" r="14" fill="#2E7D32"/></svg></div>
+    <div class="ex-a"><span class="wbox"></span></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Tanıdık ritimlerle (2'şer, 5'er, 10'ar) ve az grupla başlayın; sıçramaları birlikte söyleyin.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Daha az tanıdık adımlar (3'er, 4'er) ya da &quot;kalanlı&quot; bölme (13'ü 4'erle: 3 grup, 1 artar).</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> “Kaç grup?” sorusuna, ritmik sayarken söylediği son sayıyı (toplamı) verir. <b>→ Ne yapmalı:</b> Her ritmik adımda bir parmak kaldırttırın. <span class="mis-cite">📖 Anghileri (2001)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Grup büyüklüğüyle atlayarak (4,8,12) sayıp grup sayısını izleyerek çarpımı/bölümü bulursa ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay pulları (eşit gruplara dizili) · 3–4 gruplama tepsisi · kaç grup saydığını izlemek için parmaklar <a href="https://dokunsay.com/DokunSayBar/">🔗 dokunsay.com/DokunSayBar/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/multdiv/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#2E7D32">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">✖️ Sayılar ve İşlemler · Çarpma ve Bölme</div>
+    <h1 class="ws-title"><span class="ws-no">7</span>Bildiklerinden Türeten (×/÷)</h1>
+    <div class="ws-meta">
+      <span class="pill">9–10 yaş</span>
+      <span class="pill">Düzey 7/9</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#2E7D32">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Stratejileri, örüntüleri, ayrıştırma-birleştirmeyi (12×2 = 10×2+2+2) ve türetilmiş kombinasyonları (×9 = ×10−1; 7×8 = 7×7+7) kullanır; çok…</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Bar ile elle yap — DokunSay pulları (dizi/ızgara düzeninde).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Grupları topladım (ritmik saydım).</p></div>
+    <div class="ex-v"><svg viewBox="0 0 156 228" width="156" height="228" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="24" cy="24" r="12" fill="#2E7D32"/><circle cx="60" cy="24" r="12" fill="#2E7D32"/><circle cx="96" cy="24" r="12" fill="#2E7D32"/><circle cx="132" cy="24" r="12" fill="#2E7D32"/><circle cx="24" cy="60" r="12" fill="#2E7D32"/><circle cx="60" cy="60" r="12" fill="#2E7D32"/><circle cx="96" cy="60" r="12" fill="#2E7D32"/><circle cx="132" cy="60" r="12" fill="#2E7D32"/><circle cx="24" cy="96" r="12" fill="#2E7D32"/><circle cx="60" cy="96" r="12" fill="#2E7D32"/><circle cx="96" cy="96" r="12" fill="#2E7D32"/><circle cx="132" cy="96" r="12" fill="#2E7D32"/><circle cx="24" cy="132" r="12" fill="#2E7D32"/><circle cx="60" cy="132" r="12" fill="#2E7D32"/><circle cx="96" cy="132" r="12" fill="#2E7D32"/><circle cx="132" cy="132" r="12" fill="#2E7D32"/><circle cx="24" cy="168" r="12" fill="#2E7D32"/><circle cx="60" cy="168" r="12" fill="#2E7D32"/><circle cx="96" cy="168" r="12" fill="#2E7D32"/><circle cx="132" cy="168" r="12" fill="#2E7D32"/><circle cx="24" cy="204" r="12" fill="#2E7D32"/><circle cx="60" cy="204" r="12" fill="#2E7D32"/><circle cx="96" cy="204" r="12" fill="#2E7D32"/><circle cx="132" cy="204" r="12" fill="#2E7D32"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">24</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex">
+    <div class="ex-q"><span class="ex-no">1</span><p>Kaç grup var, her grupta kaç tane? Topla.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 120 84" width="120" height="84" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="24" cy="24" r="12" fill="#2E7D32"/><circle cx="60" cy="24" r="12" fill="#2E7D32"/><circle cx="96" cy="24" r="12" fill="#2E7D32"/><circle cx="24" cy="60" r="12" fill="#2E7D32"/><circle cx="60" cy="60" r="12" fill="#2E7D32"/><circle cx="96" cy="60" r="12" fill="#2E7D32"/></svg></div>
+    <div class="ex-a"><div class="eqrow">2 grup × 3 = <span class="wbox wbox-lg"></span></div></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Ritmik say (atlayarak): eksik sayıları yaz.</p></div>
+    
+    <div class="ex-a"><div class="eqrow"><span class="bignum sm">3</span> <span class="bignum sm">6</span> <span class="wbox"></span> <span class="bignum sm">12</span></div></div>
+  </div><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">3</span><p>6 taneyi 2 kişiye eşit paylaştır: her birine kaç düşer?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 252 52" width="252" height="52" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="26" cy="26" r="14" fill="#2E7D32"/><circle cx="66" cy="26" r="14" fill="#2E7D32"/><circle cx="106" cy="26" r="14" fill="#2E7D32"/><circle cx="146" cy="26" r="14" fill="#2E7D32"/><circle cx="186" cy="26" r="14" fill="#2E7D32"/><circle cx="226" cy="26" r="14" fill="#2E7D32"/></svg></div>
+    <div class="ex-a"><span class="wbox"></span></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> ×2, ×5, ×10 demir-atma çarpımlarından tek grup ekleyerek türetin.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> İki adım (5×4'ten 7×4) ya da grup çıkararak türetme (6×4'ten 5×4).</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> 7 × 9’da 70’ten 1 çıkarır (69); çıkaracağının bir GRUP (7) olduğunu görmez. <b>→ Ne yapmalı:</b> 10 satırlık diziden bir tam SATIRI kapattırıp saydırın. <span class="mis-cite">📖 Greer (1992)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Bilinen bir çarpımdan grup ekleyip/çıkararak komşu çarpımı (ve ilgili bölümü) türetirse ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay pulları (dizi/ızgara düzeninde) · gruplama tepsileri · bilinen çarpım kartları (×2, ×5, ×10) <a href="https://dokunsay.com/DokunSayBar/">🔗 dokunsay.com/DokunSayBar/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/multdiv/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#2E7D32">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">✖️ Sayılar ve İşlemler · Çarpma ve Bölme</div>
+    <h1 class="ws-title"><span class="ws-no">8</span>Satır-Sütun Düzeniyle Çözen (×/÷)</h1>
+    <div class="ws-meta">
+      <span class="pill">9–10 yaş</span>
+      <span class="pill">Düzey 8/9</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#2E7D32">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Çok türde çarpımsal problemi esnek stratejiler ve bilinen kombinasyonlarla çözer; satır-sütun dizilerini (array) niceler; çok basamaklıda onluk ve…</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Bar ile elle yap — DokunSay pulları (ızgaraya/diziye dizili).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Grupları topladım (ritmik saydım).</p></div>
+    <div class="ex-v"><svg viewBox="0 0 156 120" width="156" height="120" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="24" cy="24" r="12" fill="#2E7D32"/><circle cx="60" cy="24" r="12" fill="#2E7D32"/><circle cx="96" cy="24" r="12" fill="#2E7D32"/><circle cx="132" cy="24" r="12" fill="#2E7D32"/><circle cx="24" cy="60" r="12" fill="#2E7D32"/><circle cx="60" cy="60" r="12" fill="#2E7D32"/><circle cx="96" cy="60" r="12" fill="#2E7D32"/><circle cx="132" cy="60" r="12" fill="#2E7D32"/><circle cx="24" cy="96" r="12" fill="#2E7D32"/><circle cx="60" cy="96" r="12" fill="#2E7D32"/><circle cx="96" cy="96" r="12" fill="#2E7D32"/><circle cx="132" cy="96" r="12" fill="#2E7D32"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">12</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex">
+    <div class="ex-q"><span class="ex-no">1</span><p>Kaç grup var, her grupta kaç tane? Topla.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 156 120" width="156" height="120" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="24" cy="24" r="12" fill="#2E7D32"/><circle cx="60" cy="24" r="12" fill="#2E7D32"/><circle cx="96" cy="24" r="12" fill="#2E7D32"/><circle cx="132" cy="24" r="12" fill="#2E7D32"/><circle cx="24" cy="60" r="12" fill="#2E7D32"/><circle cx="60" cy="60" r="12" fill="#2E7D32"/><circle cx="96" cy="60" r="12" fill="#2E7D32"/><circle cx="132" cy="60" r="12" fill="#2E7D32"/><circle cx="24" cy="96" r="12" fill="#2E7D32"/><circle cx="60" cy="96" r="12" fill="#2E7D32"/><circle cx="96" cy="96" r="12" fill="#2E7D32"/><circle cx="132" cy="96" r="12" fill="#2E7D32"/></svg></div>
+    <div class="ex-a"><div class="eqrow">3 grup × 4 = <span class="wbox wbox-lg"></span></div></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Ritmik say (atlayarak): eksik sayıları yaz.</p></div>
+    
+    <div class="ex-a"><div class="eqrow"><span class="bignum sm">4</span> <span class="bignum sm">8</span> <span class="wbox"></span> <span class="bignum sm">16</span></div></div>
+  </div><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">3</span><p>12 taneyi 3 kişiye eşit paylaştır: her birine kaç düşer?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 252 92" width="252" height="92" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="26" cy="26" r="14" fill="#2E7D32"/><circle cx="66" cy="26" r="14" fill="#2E7D32"/><circle cx="106" cy="26" r="14" fill="#2E7D32"/><circle cx="146" cy="26" r="14" fill="#2E7D32"/><circle cx="186" cy="26" r="14" fill="#2E7D32"/><circle cx="226" cy="26" r="14" fill="#2E7D32"/><circle cx="26" cy="66" r="14" fill="#2E7D32"/><circle cx="66" cy="66" r="14" fill="#2E7D32"/><circle cx="106" cy="66" r="14" fill="#2E7D32"/><circle cx="146" cy="66" r="14" fill="#2E7D32"/><circle cx="186" cy="66" r="14" fill="#2E7D32"/><circle cx="226" cy="66" r="14" fill="#2E7D32"/></svg></div>
+    <div class="ex-a"><span class="wbox"></span></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Küçük diziler (2×3, 3×3) ve açık gösterimle; problemi birlikte resmedin.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Büyük diziler (4×6), iki adımlı ya da kalanlı problemler; yalnız zihinden çözdürün.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Diziyi baştan sona tek tek sayar; bir satırı birim alıp tekrarlamaz. <b>→ Ne yapmalı:</b> Bir satırı kapatıp “kaç tane böyle satır var?” diye sordurun. <span class="mis-cite">📖 Greer (1992)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Diziyi satır × sütun çarpımsal okur, değişmeyi görür ve sözlü çarpma/bölme problemlerini doğru işlemle çözerse ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay pulları (ızgaraya/diziye dizili) · gruplama tepsileri · kısa sözlü problem kartları (eşit grup &amp; dizi) <a href="https://dokunsay.com/DokunSayBar/">🔗 dokunsay.com/DokunSayBar/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/multdiv/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#2E7D32">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">✖️ Sayılar ve İşlemler · Çarpma ve Bölme</div>
+    <h1 class="ws-title"><span class="ws-no">9</span>Paylaştırarak Bölen</h1>
+    <div class="ws-meta">
+      <span class="pill">10–11 yaş</span>
+      <span class="pill">Düzey 9/9</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#2E7D32">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Her gruba KAÇ düştüğünü (paylaştırma bölmesi) belirler; başlangıçta böleni bölünene ulaşana dek tekrar tekrar toplayabilir.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Bar ile elle yap — DokunSay pulları (12 pul).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Saymadan, bir bakışta gördüm.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 473 44" width="473" height="44" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="22" cy="22" r="13" fill="#f59e0b"/><circle cx="57" cy="22" r="13" fill="#f59e0b"/><circle cx="92" cy="22" r="13" fill="#f59e0b"/><circle cx="127" cy="22" r="13" fill="#f59e0b"/><circle cx="184" cy="22" r="13" fill="#0d9488"/><circle cx="219" cy="22" r="13" fill="#0d9488"/><circle cx="254" cy="22" r="13" fill="#0d9488"/><circle cx="289" cy="22" r="13" fill="#0d9488"/><circle cx="346" cy="22" r="13" fill="#f59e0b"/><circle cx="381" cy="22" r="13" fill="#f59e0b"/><circle cx="416" cy="22" r="13" fill="#f59e0b"/><circle cx="451" cy="22" r="13" fill="#f59e0b"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">12</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex">
+    <div class="ex-q"><span class="ex-no">1</span><p>Kaç grup var, her grupta kaç tane? Topla.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 192 156" width="192" height="156" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="24" cy="24" r="12" fill="#2E7D32"/><circle cx="60" cy="24" r="12" fill="#2E7D32"/><circle cx="96" cy="24" r="12" fill="#2E7D32"/><circle cx="132" cy="24" r="12" fill="#2E7D32"/><circle cx="168" cy="24" r="12" fill="#2E7D32"/><circle cx="24" cy="60" r="12" fill="#2E7D32"/><circle cx="60" cy="60" r="12" fill="#2E7D32"/><circle cx="96" cy="60" r="12" fill="#2E7D32"/><circle cx="132" cy="60" r="12" fill="#2E7D32"/><circle cx="168" cy="60" r="12" fill="#2E7D32"/><circle cx="24" cy="96" r="12" fill="#2E7D32"/><circle cx="60" cy="96" r="12" fill="#2E7D32"/><circle cx="96" cy="96" r="12" fill="#2E7D32"/><circle cx="132" cy="96" r="12" fill="#2E7D32"/><circle cx="168" cy="96" r="12" fill="#2E7D32"/><circle cx="24" cy="132" r="12" fill="#2E7D32"/><circle cx="60" cy="132" r="12" fill="#2E7D32"/><circle cx="96" cy="132" r="12" fill="#2E7D32"/><circle cx="132" cy="132" r="12" fill="#2E7D32"/><circle cx="168" cy="132" r="12" fill="#2E7D32"/></svg></div>
+    <div class="ex-a"><div class="eqrow">4 grup × 5 = <span class="wbox wbox-lg"></span></div></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Ritmik say (atlayarak): eksik sayıları yaz.</p></div>
+    
+    <div class="ex-a"><div class="eqrow"><span class="bignum sm">5</span> <span class="bignum sm">10</span> <span class="wbox"></span> <span class="bignum sm">20</span></div></div>
+  </div><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">3</span><p>20 taneyi 4 kişiye eşit paylaştır: her birine kaç düşer?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 252 172" width="252" height="172" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="26" cy="26" r="14" fill="#2E7D32"/><circle cx="66" cy="26" r="14" fill="#2E7D32"/><circle cx="106" cy="26" r="14" fill="#2E7D32"/><circle cx="146" cy="26" r="14" fill="#2E7D32"/><circle cx="186" cy="26" r="14" fill="#2E7D32"/><circle cx="226" cy="26" r="14" fill="#2E7D32"/><circle cx="26" cy="66" r="14" fill="#2E7D32"/><circle cx="66" cy="66" r="14" fill="#2E7D32"/><circle cx="106" cy="66" r="14" fill="#2E7D32"/><circle cx="146" cy="66" r="14" fill="#2E7D32"/><circle cx="186" cy="66" r="14" fill="#2E7D32"/><circle cx="226" cy="66" r="14" fill="#2E7D32"/><circle cx="26" cy="106" r="14" fill="#2E7D32"/><circle cx="66" cy="106" r="14" fill="#2E7D32"/><circle cx="106" cy="106" r="14" fill="#2E7D32"/><circle cx="146" cy="106" r="14" fill="#2E7D32"/><circle cx="186" cy="106" r="14" fill="#2E7D32"/><circle cx="226" cy="106" r="14" fill="#2E7D32"/><circle cx="26" cy="146" r="14" fill="#2E7D32"/><circle cx="66" cy="146" r="14" fill="#2E7D32"/></svg></div>
+    <div class="ex-a"><span class="wbox"></span></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Önce yalnız paylaştırmayı sağlamlaştırın; sonra gruplamayı ayrı bir hikâyeyle ekleyin.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Kalanlı durumlar (13÷3) ya da &quot;hangi soru paylaştırma, hangisi gruplama?&quot; diye sözlü problemlerle ayırttırın.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> “Bölme hep küçültür” sanıp 3 ÷ 12’yi çevirerek 12 ÷ 3 yapar. <b>→ Ne yapmalı:</b> 3 pulu 12 kişiye dağıttırıp “herkese tam bir tane düştü mü?” diye sorun. <span class="mis-cite">📖 Fischbein ve ark. (1985)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Paylaştırma (her grupta kaç) ve gruplama (kaç grup) bölmelerini ayırt edip ikisini de doğru çözerse ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay pulları (12 pul) · gruplama tepsileri · iki bölme hikâyesini ayırmak için iki çalışma alanı <a href="https://dokunsay.com/DokunSayBar/">🔗 dokunsay.com/DokunSayBar/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/multdiv/</span>
+    </div>
+  </div>
+</section>
+</div>
+</body>
+</html>

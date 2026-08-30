@@ -1,0 +1,558 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>3B Şekiller — Çalışma Yaprakları · DokunSay</title>
+<meta name="description" content="3B Şekiller öğrenme yörüngesi için her düzeye bir baskıya hazır çalışma yaprağı. CRA (somut→temsilî→soyut) temelli, diskalkuli-dostu. Clements &amp; Sarama.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{ --c:#7c3aed; --ink:#1f2733; --body:#39434f; --mut:#7c8aa0; --line:#e7e2d6; --paper:#fffdf7; --tint:color-mix(in srgb, var(--c) 8%, #fffdf7); }
+*{ box-sizing:border-box; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+html,body{ margin:0; background:#eceae3; font-family:'Lexend',system-ui,Segoe UI,sans-serif; color:var(--body); }
+.bar{ position:sticky; top:0; z-index:9; display:flex; gap:14px; align-items:center; justify-content:space-between;
+  background:#fff; border-bottom:1px solid #dcd8cd; padding:11px 18px; box-shadow:0 1px 6px rgba(0,0,0,.05); }
+.bar .t{ font-family:'Poppins',sans-serif; font-weight:700; color:var(--ink); font-size:15px; }
+.bar .t small{ display:block; font-weight:500; color:var(--mut); font-size:12px; }
+.bar .actions{ display:flex; gap:9px; }
+.btn{ font-family:'Poppins',sans-serif; font-weight:600; font-size:13.5px; border:0; border-radius:10px; padding:9px 15px; cursor:pointer; text-decoration:none; }
+.btn-print{ background:var(--c); color:#fff; } .btn-back{ background:#eef1f4; color:#334155; }
+.wrap{ max-width:880px; margin:18px auto 40px; padding:0 14px; }
+
+/* ── A4 çalışma yaprağı ───────────────────────────────────────────── */
+.sheet{ background:var(--paper); width:210mm; height:297mm; overflow:hidden; margin:0 auto 20px; padding:11mm 13mm 6mm;
+  border-radius:4px; box-shadow:0 6px 26px rgba(31,39,51,.13); position:relative;
+  display:flex; flex-direction:column; gap:1.8mm; }
+.lbl{ display:inline-block; font-family:'Poppins',sans-serif; font-weight:700; font-size:10.5pt; color:var(--c); letter-spacing:.2px; margin-bottom:2px; }
+
+.ws-head{ border-bottom:3px solid var(--c); padding-bottom:7px; }
+.ws-top{ display:flex; justify-content:space-between; align-items:center; font-size:10pt; color:var(--mut); }
+.ws-brand{ display:inline-flex; align-items:center; gap:7px; font-family:'Poppins',sans-serif; }
+.ws-brand b{ color:var(--ink); } .logo{ width:22px; height:22px; }
+.ws-name{ font-size:9.5pt; } .nl{ display:inline-block; width:34mm; border-bottom:1.4px dotted #b8c0cc; } .nl.sm{ width:24mm; }
+.ws-eyebrow{ font-family:'Poppins',sans-serif; font-weight:600; font-size:10pt; color:var(--c); margin-top:8px; text-transform:uppercase; letter-spacing:.4px; }
+.ws-title{ font-family:'Poppins',sans-serif; font-weight:800; font-size:18pt; line-height:1.1; color:var(--ink); margin:2px 0 6px; display:flex; align-items:baseline; gap:8px; }
+.ws-no{ background:var(--c); color:#fff; font-size:12pt; min-width:27px; height:27px; padding:0 6px; border-radius:8px; display:inline-flex; align-items:center; justify-content:center; }
+.ws-meta{ display:flex; flex-wrap:wrap; gap:7px; align-items:center; }
+.pill{ font-family:'Poppins',sans-serif; font-weight:600; font-size:9.5pt; background:#eef2f7; color:#475569; border-radius:20px; padding:4px 11px; }
+.pill.warn{ background:#fff3e2; color:#9a3412; }
+.cra{ display:inline-flex; align-items:center; gap:4px; margin-left:auto; }
+.cra-s{ font-family:'Poppins',sans-serif; font-weight:600; font-size:9pt; color:#94a3b8; background:#f1f4f8; border-radius:7px; padding:3px 9px; }
+.cra-s.on{ color:#fff; } .cra-arr{ color:#cbd5e1; font-size:10pt; }
+
+.ws-obj{ background:var(--tint); border-radius:10px; padding:7px 12px; }
+.ws-obj p{ margin:1px 0 0; font-size:11pt; line-height:1.42; color:var(--ink); }
+.ws-method .msteps{ margin:1px 0 0; padding-left:0; list-style:none; display:flex; flex-direction:column; gap:2px; counter-reset:m; }
+.ws-method .msteps li{ font-size:10pt; line-height:1.32; padding-left:26px; position:relative; }
+.ws-method .msteps li::before{ counter-increment:m; content:counter(m); position:absolute; left:0; top:0;
+  width:21px; height:21px; border-radius:50%; background:var(--c); color:#fff; font-family:'Poppins',sans-serif; font-weight:700; font-size:10pt; display:flex; align-items:center; justify-content:center; }
+.ws-method .msteps b{ color:var(--c); }
+
+.ws-egbox{ background:#f4f8f5; border:1.5px dashed color-mix(in srgb,var(--c) 45%,#cbd5e1); border-radius:10px; padding:6px 12px 7px; }
+.ws-egbox .lbl{ color:color-mix(in srgb,var(--c) 70%, #166534); }
+
+.items-grid{ display:grid; grid-template-columns:1fr 1fr; gap:5px; margin-top:2px; align-items:start; }
+.ex{ border:1.4px solid var(--line); border-radius:11px; padding:7px 10px 8px; background:#fff; break-inside:avoid; }
+.ex.wide{ grid-column:1 / -1; }
+.ex.eg{ border:0; padding:2px 0 0; background:transparent; grid-column:1 / -1; }
+.ex-q{ display:flex; gap:7px; align-items:flex-start; }
+.ex-no{ flex:0 0 auto; width:22px; height:22px; border-radius:50%; background:var(--c); color:#fff; font-family:'Poppins',sans-serif; font-weight:700; font-size:10.5pt; display:flex; align-items:center; justify-content:center; }
+.ex.eg .ex-no{ background:#fef3c7; }
+.ex-q p{ margin:1px 0 0; font-size:10.8pt; line-height:1.4; color:var(--ink); }
+.ex-v{ margin:4px 0 3px; text-align:center; } .ex-a{ margin:0; text-align:center; }
+.ex.wide .ex-v, .ex.wide .ex-a, .ex.eg .ex-v, .ex.eg .ex-a{ text-align:left; margin-left:30px; }
+
+/* SVG görseller — içsel boyut ama A4'e sığması için yükseklik sınırlı */
+.ws-svg{ max-width:100%; width:auto; height:auto; vertical-align:middle; }
+.ex-v .ws-svg{ max-height:16mm; }
+.ex-v .ws-svg.ws-tall{ max-height:17mm; }
+.ws-egbox .ex-v .ws-svg{ max-height:12mm; } .ws-egbox .ex-v .ws-svg.ws-tall{ max-height:13mm; }
+.ex-v .ws-frac{ max-height:26mm; } .ws-svg.ws-frac{ width:auto; max-height:26mm; } svg.ws-glyph{ width:12mm; height:12mm; }
+.pat-row{ display:flex; align-items:center; gap:7px; flex-wrap:wrap; }
+.pat-c svg{ width:13mm; height:13mm; } .pat-q{ width:13mm; height:13mm; border:2px dashed #b8c0cc; border-radius:8px; display:inline-flex; align-items:center; justify-content:center; font-family:'Poppins',sans-serif; font-weight:800; font-size:16pt; color:#b8c0cc; }
+
+/* Yanıt alanları */
+.wbox{ display:inline-block; width:14mm; height:14mm; border:2px solid #94a3b8; border-radius:8px; vertical-align:middle; margin:0 3px; background:#fff; }
+.wbox.wbox-lg{ width:18mm; height:14mm; border-color:var(--c); }
+.eqrow{ display:flex; align-items:center; flex-wrap:wrap; gap:5px; font-family:'Poppins',sans-serif; font-weight:600; font-size:15pt; color:var(--ink); }
+.bignum{ font-family:'Poppins',sans-serif; font-weight:700; font-size:17pt; color:var(--ink); } .bignum.sm{ font-size:14pt; padding:0 3px; }
+.seqn{ font-family:'Poppins',sans-serif; font-weight:600; font-size:14pt; } .seqsep{ color:#94a3b8; }
+.ans-hint{ margin:5px 0 0 0; font-size:10.5pt; color:var(--mut); font-style:normal; }
+.ans-shown{ font-family:'Poppins',sans-serif; font-size:14pt; color:#166534; }
+
+.ws-scaffold{ display:flex; gap:8px; flex-wrap:wrap; }
+.sc{ flex:1 1 44%; font-size:9.8pt; line-height:1.30; border-radius:9px; padding:5px 10px; }
+.sc-easy{ background:#eef4fb; } .sc-easy b{ color:#1d4ed8; }
+.sc-hard{ background:#f5f0fb; } .sc-hard b{ color:#7c3aed; }
+
+.ws-foot{ margin-top:auto; padding-top:5px; border-top:1px solid var(--line); display:flex; flex-direction:column; gap:4px; }
+.ws-check{ background:#f0fdf4; border-radius:9px; padding:5px 11px; font-size:10pt; line-height:1.35; color:#166534; display:flex; justify-content:space-between; align-items:center; gap:10px; }
+.ws-check b{ color:#15803d; } .stars{ font-size:14pt; color:#f59e0b; letter-spacing:2px; white-space:nowrap; }
+.ws-credit{ font-size:7.8pt; color:var(--mut); line-height:1.35; display:flex; flex-direction:column; gap:1px; }
+.ws-credit .mat{ color:#475569; }
+.ws-credit a{ color:#475569; }
+/* Kavram yanılgısı şeridi. Punto (8.7pt) künyeden (7.8pt) büyük ama gövde metninden
+   küçük: öğretmene yönelik ikincil bilgi, çocuğun göreviyle yarışmamalı. Yapraklar
+   milimetrik dolu olduğu için bu ölçüler A4 taşmasına karşı ölçülerek seçildi. */
+.ws-mis{ background:#fff7ed; border-left:3px solid #fb923c; border-radius:9px; padding:3px 10px; font-size:8.7pt; line-height:1.26; color:#7c2d12; }
+.ws-mis b{ color:#9a3412; font-weight:700; }
+.ws-mis .mis-cite{ color:#a16207; white-space:nowrap; }
+
+/* ── Baskı ─────────────────────────────────────────────────────────── */
+@media print{
+  @page{ size:A4; margin:0; }
+  html,body{ background:#fff; }
+  .bar,.wrap>.intro{ display:none !important; }
+  .wrap{ margin:0; padding:0; max-width:none; }
+  .sheet{ width:210mm; height:297mm; margin:0; border-radius:0; box-shadow:none; overflow:hidden; break-before:page; }
+  .sheet:first-child{ break-before:avoid; }
+}
+.intro{ background:#fff; border-radius:14px; padding:16px 20px; margin-bottom:18px; box-shadow:0 2px 10px rgba(0,0,0,.05); }
+.intro h2{ font-family:'Poppins',sans-serif; margin:0 0 5px; color:var(--ink); font-size:18px; }
+.intro p{ margin:0; font-size:13.5px; line-height:1.55; color:#5b6573; }
+</style>
+</head>
+<body>
+<div class="bar no-print">
+  <span class="t">🧊 3B Şekiller — Çalışma Yaprakları<small>7 düzey · Geometri ve Uzamsal · CRA temelli</small></span>
+  <span class="actions">
+    <a class="btn btn-back" href="./">← Yörüngeye dön</a>
+    <button class="btn btn-print" onclick="window.print()">🖨️ Yazdır / PDF kaydet</button>
+  </span>
+</div>
+<div class="wrap">
+  <div class="intro no-print">
+    <h2>3B Şekiller · Çalışma Yaprakları</h2>
+    <p>Her düzey için bir baskıya-hazır A4 çalışma yaprağı. Her yaprak <b>önce somut</b> (DokunSay Geo ile), <b>sonra resimle</b> (bu sayfa), <b>en sonda sembolle</b> (çocuk yazar) ilerler — diskalkuli için kanıta dayalı CRA sırası. Çocuğun bulunduğu düzeyden başlayın; ✓ölçütü karşılayınca bir sonraki yaprağa geçin. Yazdırıp tek tek kullanın ya da PDF olarak kaydedin.</p>
+  </div>
+  <section class="sheet" style="--c:#7c3aed">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🧊 Geometri ve Uzamsal · 3B Şekiller</div>
+    <h1 class="ws-title"><span class="ws-no">1</span>Cisimleri Algılayan: Temeller</h1>
+    <div class="ws-meta">
+      <span class="pill">0–3 yaş</span>
+      <span class="pill">Düzey 1/7</span>
+      
+      <span class="cra"><span class="cra-s on" style="background:#7c3aed">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Bebeklikten itibaren 3B şekilleri doğru algılar; ancak bu algı, durağan görünümlerden çok sürekli hareket hâlindeki nesnelerle sınırlıdır.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Oyna</b> — DokunSay Geo ya da günlük nesnelerle birlikte oynayın — katı cisim modelleri / DokunSay Geo (top, küp/kutu, koni).</li><li><b>Söyle</b> — Sayıları/sözcükleri yüksek sesle ve ritimle siz söyleyin; çocuk katılsın.</li><li><b>Gözle</b> — Tepkisini gözleyin — bu yaşta yazı/çizim beklenmez, deneyim önemlidir.</li></ol>
+  </div>
+
+  
+
+  <div class="ws-items"><span class="lbl">🎲 Birlikte oyna (siz yönlendirin)</span>
+    <div class="items-grid"><div class="ex">
+    <div class="ex-q"><span class="ex-no">1</span><p>Cismi önce yavaşça hareket ettirip döndürün: "bak, dönüyor!" — gözüyle izlemesini bekleyin.</p></div>
+    
+    
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Topu birlikte yuvarlayın; sonra kutuyu verip üst üste koymayı, durduğunu keşfedin.</p></div>
+    
+    
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>Koniyi verin: sivri ucunu ve yuvarlak tabanını parmağıyla yoklatın.</p></div>
+    
+    
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">4</span><p>Cisimleri eğimli yüzeye bırakıp "hangisi yuvarlandı, hangisi durdu?" diye gözletin.</p></div>
+    
+    
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Tek seferde tek bir cisim verin; siz hareketi (yuvarlama) modelleyin, o taklit etsin.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Birkaç cismi karıştırıp &quot;yuvarlananı bana ver&quot; gibi davranışa dayalı küçük istekler verin.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> kutuyu yalnız önden bakar, elinde çevirmez; arkasında da yüz olduğunu fark etmez. <b>→ Ne yapmalı:</b> Nesneyi avucuna verip birlikte yavaşça döndürün, her yüze dokundurun. <span class="mis-cite">📖 Clements &amp; Sarama (2009)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Hareket ettirilen cismi izler ve eline verilen cismi döndürerek/yuvarlayarak/üst üste koyarak inceliyorsa (sezgisel keşif) ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 katı cisim modelleri / DokunSay Geo (top, küp/kutu, koni) · yuvarlanmayı denemek için hafif eğimli bir yüzey · üst üste koymak için birkaç özdeş kutu <a href="https://dokunsay.com/Dokunsay-geo/">🔗 dokunsay.com/Dokunsay-geo/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/shape3d/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#7c3aed">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🧊 Geometri ve Uzamsal · 3B Şekiller</div>
+    <h1 class="ws-title"><span class="ws-no">2</span>Tanıdık Cisimleri Tanıyan (Top, Kutu)</h1>
+    <div class="ws-meta">
+      <span class="pill">3–5 yaş</span>
+      <span class="pill">Düzey 2/7</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#7c3aed">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Bazı prototip 3B şekilleri (küre, küp) günlük ya da matematiksel adlarıyla tanır; 2B sözcükleri (&quot;yuvarlak&quot;, &quot;kare&quot;) kullanabilir.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Geo ile elle yap — geometrik cisimler seti / DokunSay Geo (küre, küp, koni, silindir).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Üçgeni inceledim: 3 köşe, 3 kenar.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,50 6,50" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linejoin="round"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">3 köşe · 3 kenar</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>Üçgenleri bul ve boya.</p></div>
+    <div class="ex-v"><div class="pat-row"><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,50 6,50" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linejoin="round"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#7c3aed" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="6" y="6" width="44" height="44" rx="4" fill="none" stroke="#7c3aed" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,50 6,50" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linejoin="round"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 48,16.8 48,39.199999999999996 28,50 8,39.199999999999996 8,16.8" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linejoin="round"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#7c3aed" stroke-width="2.5"/></svg></span></div></div>
+    <div class="ex-a"><p class="ans-hint">○ yalnız üçgenleri boya</p></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Bu şeklin kaç köşesi, kaç kenarı var? Say ve yaz.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 48,16.8 48,39.199999999999996 28,50 8,39.199999999999996 8,16.8" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linejoin="round"/></svg></div>
+    <div class="ex-a"><div class="eqrow">köşe <span class="wbox"></span> · kenar <span class="wbox"></span></div></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>Aynı şekilden bir tane de sen çiz.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="6" y="6" width="44" height="44" rx="4" fill="none" stroke="#7c3aed" stroke-width="2.5"/></svg></div>
+    
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Yalnız iki şekille ve hep aynı tipik örneklerle çalışın; aralarını açın.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Üçüncü bir cisim (koni) ekleyin ya da alışılmadık örnekler (yamuk kutu, oval top) gösterin.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> küpe “kare”, küreye “yuvarlak” der; 2B sözcüklerle 3B cismi adlandırır. <b>→ Ne yapmalı:</b> Cismi ve yüzünü yan yana koyup “bu kare o küpün yüzü” dedirtin. <span class="mis-cite">📖 Clements &amp; Sarama (2009)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Tipik küre ve küpü günlük ya da matematiksel adıyla doğru tanır ve en az bir cismi günlük bir nitelikle betimlerse ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 geometrik cisimler seti / DokunSay Geo (küre, küp, koni, silindir) · aynı şekillerin farklı boy/renk örnekleri · kapatma kartı/örtü <a href="https://dokunsay.com/Dokunsay-geo/">🔗 dokunsay.com/Dokunsay-geo/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/shape3d/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#7c3aed">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🧊 Geometri ve Uzamsal · 3B Şekiller</div>
+    <h1 class="ws-title"><span class="ws-no">3</span>3B Cisimleri Tanıyan</h1>
+    <div class="ws-meta">
+      <span class="pill">5–7 yaş</span>
+      <span class="pill">Düzey 3/7</span>
+      <span class="pill warn">★ Kritik geçiş</span>
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#7c3aed">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Daha çok cismi günlük adların yanında bazı matematiksel adlarla da tanır; cisimlerin yüzlerini 2B şekiller olarak fark eder.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Geo ile elle yap — geometrik cisimler seti / DokunSay Geo (küre, küp, koni, silindir, prizma).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Üçgeni inceledim: 3 köşe, 3 kenar.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,50 6,50" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linejoin="round"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">3 köşe · 3 kenar</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>Üçgenleri bul ve boya.</p></div>
+    <div class="ex-v"><div class="pat-row"><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,50 6,50" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linejoin="round"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#7c3aed" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="6" y="6" width="44" height="44" rx="4" fill="none" stroke="#7c3aed" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,50 6,50" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linejoin="round"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 48,16.8 48,39.199999999999996 28,50 8,39.199999999999996 8,16.8" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linejoin="round"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#7c3aed" stroke-width="2.5"/></svg></span></div></div>
+    <div class="ex-a"><p class="ans-hint">○ yalnız üçgenleri boya</p></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Bu şeklin kaç köşesi, kaç kenarı var? Say ve yaz.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 48,16.8 48,39.199999999999996 28,50 8,39.199999999999996 8,16.8" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linejoin="round"/></svg></div>
+    <div class="ex-a"><div class="eqrow">köşe <span class="wbox"></span> · kenar <span class="wbox"></span></div></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>Aynı şekilden bir tane de sen çiz.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="6" y="6" width="44" height="44" rx="4" fill="none" stroke="#7c3aed" stroke-width="2.5"/></svg></div>
+    
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Aynı anda iki cisimle çalışın (silindir ↔ küp); yüzlerini birlikte parmakla yoklayın.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Birbirine benzeyenleri ayırttırın (silindir ↔ koni) ya da yalnız sözle, modeli göstermeden tanımlatın.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> yatık ya da çok ince duran silindiri silindir saymaz; yalnız dik, tipik duruşu tanır. <b>→ Ne yapmalı:</b> Aynı silindiri yatırıp döndürerek gösterin, adının değişmediğini söyletin. <span class="mis-cite">📖 Clements &amp; Sarama (2009)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> En az bir cismi matematiksel adıyla söyler, birden çok cismi doğru ayırt eder ve bir cismin yüzünü 2B şekil olarak adlandırırsa (küpün yüzü → kare) ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 geometrik cisimler seti / DokunSay Geo (küre, küp, koni, silindir, prizma) · yanına eşlik eden 2B şekil kartları (daire, kare, üçgen) · döndürerek incelemek için düz zemin <a href="https://dokunsay.com/Dokunsay-geo/">🔗 dokunsay.com/Dokunsay-geo/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/shape3d/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#7c3aed">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🧊 Geometri ve Uzamsal · 3B Şekiller</div>
+    <h1 class="ws-title"><span class="ws-no">4</span>Cisimlerin Yüzlerini Sayan</h1>
+    <div class="ws-meta">
+      <span class="pill">7–8 yaş</span>
+      <span class="pill">Düzey 4/7</span>
+      <span class="pill warn">★ Kritik geçiş</span>
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#7c3aed">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Bir cismin TÜM yüzlerini 2B şekiller olarak tanır; yüzleri atlamadan ve yinelemeden doğru sayar.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Geo ile elle yap — geometrik cisimler / DokunSay Geo (dikdörtgenler prizması, küp, üçgen prizma).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Üçgeni inceledim: 3 köşe, 3 kenar.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,50 6,50" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linejoin="round"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">3 köşe · 3 kenar</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>Üçgenleri bul ve boya.</p></div>
+    <div class="ex-v"><div class="pat-row"><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,50 6,50" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linejoin="round"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#7c3aed" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="6" y="6" width="44" height="44" rx="4" fill="none" stroke="#7c3aed" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,50 6,50" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linejoin="round"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 48,16.8 48,39.199999999999996 28,50 8,39.199999999999996 8,16.8" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linejoin="round"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#7c3aed" stroke-width="2.5"/></svg></span></div></div>
+    <div class="ex-a"><p class="ans-hint">○ yalnız üçgenleri boya</p></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Bu şeklin kaç köşesi, kaç kenarı var? Say ve yaz.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 48,16.8 48,39.199999999999996 28,50 8,39.199999999999996 8,16.8" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linejoin="round"/></svg></div>
+    <div class="ex-a"><div class="eqrow">köşe <span class="wbox"></span> · kenar <span class="wbox"></span></div></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>Aynı şekilden bir tane de sen çiz.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="6" y="6" width="44" height="44" rx="4" fill="none" stroke="#7c3aed" stroke-width="2.5"/></svg></div>
+    
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Önce yalnız üst ve alt yüzü, sonra yan yüzleri ayrı ayrı saydırın; siz cismi çevirip yönlendirin.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> İşaretsiz (etiketsiz) saydırın ya da yüz sayısı farklı cisimleri (üçgen prizma = 5, küp = 6) karşılaştırtın.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> küpün yüzlerini sayarken göremediği arka ve alt yüzü atlar, “4 yüz” der. <b>→ Ne yapmalı:</b> Küpü her sayımda bir yüz çevirin; sayılan yüze etiket yapıştırın. <span class="mis-cite">📖 Battista &amp; Clements (1996)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Bir katının yüzlerini (görünmeyenler dahil) tek tek, yinelemeden sayıp doğru sayıyı (prizma/küp için 6) söyler ve yüz şekillerini 2B adıyla belirtirse ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 geometrik cisimler / DokunSay Geo (dikdörtgenler prizması, küp, üçgen prizma) · sayılan yüzü işaretlemek için etiket/çıkartma ya da silinebilir kalem · döndürerek saymak için düz zemin <a href="https://dokunsay.com/Dokunsay-geo/">🔗 dokunsay.com/Dokunsay-geo/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/shape3d/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#7c3aed">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🧊 Geometri ve Uzamsal · 3B Şekiller</div>
+    <h1 class="ws-title"><span class="ws-no">5</span>Parçalardan 3B Şekil Kuran</h1>
+    <div class="ws-meta">
+      <span class="pill">7–9 yaş</span>
+      <span class="pill">Düzey 5/7</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#7c3aed">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>3B şekillerin parçalarını (yüzler, köşe bağlantıları) temsil eden materyalle, bileşen ve ilişki bilgisini kullanarak tümüyle doğru bir 3B şekil kurar…</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Geo ile elle yap — geçmeli yüz parçaları (Polydron benzeri) ya da karton kareler + bant / DokunSay Geo yüzleri.</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Üçgeni inceledim: 3 köşe, 3 kenar.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,50 6,50" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linejoin="round"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">3 köşe · 3 kenar</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>Üçgenleri bul ve boya.</p></div>
+    <div class="ex-v"><div class="pat-row"><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,50 6,50" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linejoin="round"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#7c3aed" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="6" y="6" width="44" height="44" rx="4" fill="none" stroke="#7c3aed" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,50 6,50" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linejoin="round"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 48,16.8 48,39.199999999999996 28,50 8,39.199999999999996 8,16.8" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linejoin="round"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#7c3aed" stroke-width="2.5"/></svg></span></div></div>
+    <div class="ex-a"><p class="ans-hint">○ yalnız üçgenleri boya</p></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Bu şeklin kaç köşesi, kaç kenarı var? Say ve yaz.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 48,16.8 48,39.199999999999996 28,50 8,39.199999999999996 8,16.8" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linejoin="round"/></svg></div>
+    <div class="ex-a"><div class="eqrow">köşe <span class="wbox"></span> · kenar <span class="wbox"></span></div></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>Aynı şekilden bir tane de sen çiz.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="6" y="6" width="44" height="44" rx="4" fill="none" stroke="#7c3aed" stroke-width="2.5"/></svg></div>
+    
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Daha az parçalı bir cisimle (üçgen prizma / açık kutu) başlayın; ilk birkaç yüzü siz yerleştirip &quot;şimdi kapatmak için kaç tane daha?&quot; diye sordurun; model küp önde kalsın.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Modeli kaldırıp bellekten kurdurun; &quot;bu parçalarla başka hangi cisim olur?&quot; ya da küp açınımının yanına geçerli olmayan bir açılım koyup &quot;bu katlanınca küp olur mu?&quot; diye sınatın.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> çubuklarla küp kurarken yalnız gördüğü ayrıtları koyar; yapı arkadan kapanmaz. <b>→ Ne yapmalı:</b> Bitince “her köşede kaç çubuk var?” diye sorup üçe tamamlatın. <span class="mis-cite">📖 Battista (1999)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Gereken yüz sayısını önceden söyler (ya da doğru sayıda ayırır), yüzleri ayrıtlarda dik açılarla tam buluşturur ve kapalı, eksiksiz bir 3B şekil (küp) kurarsa ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 geçmeli yüz parçaları (Polydron benzeri) ya da karton kareler + bant / DokunSay Geo yüzleri · örnek küp (model) · ayrıca dikdörtgen yüzler (prizma kurmak için) <a href="https://dokunsay.com/Dokunsay-geo/">🔗 dokunsay.com/Dokunsay-geo/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/shape3d/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#7c3aed">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🧊 Geometri ve Uzamsal · 3B Şekiller</div>
+    <h1 class="ws-title"><span class="ws-no">6</span>Cisimleri Adlandırıp Tanımlayan</h1>
+    <div class="ws-meta">
+      <span class="pill">8–10 yaş</span>
+      <span class="pill">Düzey 6/7</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#7c3aed">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Cisimlerin çoğunu tanımlar ve birden çok özelliğini (yüz, ayrıt, köşe sayısı gibi) söyler; verilen bir açınımın katlanınca hangi cismi oluşturacağını…</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Geo ile elle yap — geometrik cisimler / DokunSay Geo (küp, prizma, piramit, silindir).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Üçgeni inceledim: 3 köşe, 3 kenar.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,50 6,50" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linejoin="round"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">3 köşe · 3 kenar</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>Üçgenleri bul ve boya.</p></div>
+    <div class="ex-v"><div class="pat-row"><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,50 6,50" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linejoin="round"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#7c3aed" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="6" y="6" width="44" height="44" rx="4" fill="none" stroke="#7c3aed" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,50 6,50" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linejoin="round"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 48,16.8 48,39.199999999999996 28,50 8,39.199999999999996 8,16.8" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linejoin="round"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#7c3aed" stroke-width="2.5"/></svg></span></div></div>
+    <div class="ex-a"><p class="ans-hint">○ yalnız üçgenleri boya</p></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Bu şeklin kaç köşesi, kaç kenarı var? Say ve yaz.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 48,16.8 48,39.199999999999996 28,50 8,39.199999999999996 8,16.8" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linejoin="round"/></svg></div>
+    <div class="ex-a"><div class="eqrow">köşe <span class="wbox"></span> · kenar <span class="wbox"></span></div></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>Aynı şekilden bir tane de sen çiz.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="6" y="6" width="44" height="44" rx="4" fill="none" stroke="#7c3aed" stroke-width="2.5"/></svg></div>
+    
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Yalnız yüz ve köşeyle başlayın (ayrıtı sonra ekleyin); tanıdık cisimle (küp) ve apaçık açınımla çalışın.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> İki benzer cismi (kare prizma ↔ küp) yalnız özellik sayılarıyla ayırttırın ya da birkaç açınım arasından küpü oluşturanı seçtirin.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> yan yana dizili altı kareyi de küp açınımı sanır; katlanınca yüzlerin çakıştığını görmez. <b>→ Ne yapmalı:</b> Kâğıttan kesip elinde katlatın; çakışan yüzü kendisi bulsun. <span class="mis-cite">📖 Potari &amp; Spiliotopoulou (1992)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Cisimlerin çoğunu adlandırır, bir cismin birden çok özelliğini doğru söyler (ör. küp: 6 yüz, 8 köşe) ve bir açınımın hangi cismi oluşturacağını belirlerse ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 geometrik cisimler / DokunSay Geo (küp, prizma, piramit, silindir) · yüz–ayrıt–köşe sayımını yazmak için küçük tablo · küp ve prizma açınımı çizili kartlar <a href="https://dokunsay.com/Dokunsay-geo/">🔗 dokunsay.com/Dokunsay-geo/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/shape3d/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#7c3aed">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🧊 Geometri ve Uzamsal · 3B Şekiller</div>
+    <h1 class="ws-title"><span class="ws-no">7</span>Cisim Ailelerini Ayırt Eden</h1>
+    <div class="ws-meta">
+      <span class="pill">8–10 yaş</span>
+      <span class="pill">Düzey 7/7</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#7c3aed">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Cisimlerin çoğunu prototip görünüme değil, özelliklerine dayanarak tanımlar ve sınıflar…</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Geo ile elle yap — geometrik cisimler / DokunSay Geo (küp, kare/üçgen prizma, piramit, silindir, koni, küre).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Üçgeni inceledim: 3 köşe, 3 kenar.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,50 6,50" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linejoin="round"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">3 köşe · 3 kenar</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>Üçgenleri bul ve boya.</p></div>
+    <div class="ex-v"><div class="pat-row"><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,50 6,50" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linejoin="round"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#7c3aed" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="6" y="6" width="44" height="44" rx="4" fill="none" stroke="#7c3aed" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,50 6,50" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linejoin="round"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 48,16.8 48,39.199999999999996 28,50 8,39.199999999999996 8,16.8" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linejoin="round"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#7c3aed" stroke-width="2.5"/></svg></span></div></div>
+    <div class="ex-a"><p class="ans-hint">○ yalnız üçgenleri boya</p></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Bu şeklin kaç köşesi, kaç kenarı var? Say ve yaz.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 48,16.8 48,39.199999999999996 28,50 8,39.199999999999996 8,16.8" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linejoin="round"/></svg></div>
+    <div class="ex-a"><div class="eqrow">köşe <span class="wbox"></span> · kenar <span class="wbox"></span></div></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>Aynı şekilden bir tane de sen çiz.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="6" y="6" width="44" height="44" rx="4" fill="none" stroke="#7c3aed" stroke-width="2.5"/></svg></div>
+    
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> İki belirgin gruba ayırttırın (eğri yüzlü/yuvarlanan ↔ düz yüzlü/köşeli); az sayıda cisimle çalışın.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Çok ölçütlü sınıflama (&quot;prizma VE üçgen tabanlı&quot;) ya da &quot;küp hem küp hem prizma olabilir mi?&quot; gibi sınıf-içi-sınıf (hiyerarşi) sorusu sorun.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> üçgen prizmayı prizma saymaz; “prizma” deyince yalnız kutu biçimini kabul eder. <b>→ Ne yapmalı:</b> İki paralel eş yüzü elle kapatıp ailenin ölçütünü söyletin. <span class="mis-cite">📖 Clements &amp; Sarama (2009)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Cisimleri prototip görünüme değil özelliklerine göre (prizmalar, piramitler, eğri yüzlüler vb.) doğru sınıflara ayırır ve ölçütünü/gerekçesini söylerse ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 geometrik cisimler / DokunSay Geo (küp, kare/üçgen prizma, piramit, silindir, koni, küre) · grupları ayırmak için tabaklar/halkalar · ölçütü yazmak için etiket kartları <a href="https://dokunsay.com/Dokunsay-geo/">🔗 dokunsay.com/Dokunsay-geo/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/shape3d/</span>
+    </div>
+  </div>
+</section>
+</div>
+</body>
+</html>

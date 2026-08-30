@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { normalizeLang } from "@shared/LangSwitcher.jsx";
 import { A11yContext } from "./contexts/A11yContext.jsx";
 import { stopSpeaking } from "./utils/speech.js";
 import { loadCurrentStudent } from "./utils/storage.js";
@@ -11,13 +12,16 @@ import { LangSwitcher } from "@shared/LangSwitcher.jsx";
 
 export default function App() {
   // ─── STATE ─────────────────────────────────────────────────────────
-  const [lang, setLang] = useState(() => {
-    try { return localStorage.getItem("dv_lang") || "tr"; }
+  const [lang, _setLang] = useState(() => {
+    try { return normalizeLang(localStorage.getItem("dk_lang") || localStorage.getItem("dv_lang") || "tr"); }
     catch (e) { return "tr"; }
   });
+  const setLang = (l) => { _setLang(l); try { localStorage.setItem("dk_lang", l); window.dispatchEvent(new CustomEvent("dk-lang-change", { detail: { lang: l } })); } catch (e) {} };
   useEffect(() => {
-    try { localStorage.setItem("dv_lang", lang); } catch (e) {}
-  }, [lang]);
+    const h = (e) => { const l = e.detail && e.detail.lang; if (l) _setLang(l); };
+    window.addEventListener("dk-lang-change", h);
+    return () => window.removeEventListener("dk-lang-change", h);
+  }, []);
 
   const [sideTab, setSideTab] = useState("read");
 
@@ -344,17 +348,15 @@ export default function App() {
       overflow: "hidden",
     }}>
 
-      {/* ════════ HEADER — Curcio seviye şeridi. DokunSay logo/başlık AppShell'de. ════════ */}
+      {/* ════════ HEADER — Curcio seviye şeridi (AppShell topbar'ın devamı, görsel birleşik) ════════ */}
       <header style={{
-        height: 50, minHeight: 50,
-        background: P.header,
+        height: 32, minHeight: 32,
+        background: P.accent,
         display: "flex", alignItems: "center",
-        padding: "0 14px", gap: 12,
-        boxShadow: "0 2px 16px rgba(15,23,42,.35)",
+        padding: "0 12px", gap: 10,
         zIndex: 20,
       }}>
-        <LangSwitcher lang={lang} setLang={setLang} langs={Object.keys(LANGS)} />
-
+        {/* Dil seçici AppShell topbar'ında */}
         <div style={{ flex: 1 }}/>
 
         {/* Curcio seviye butonları */}

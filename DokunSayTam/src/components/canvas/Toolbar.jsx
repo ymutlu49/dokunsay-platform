@@ -48,7 +48,7 @@ const Toolbar = ({
             width: 16, height: 16, borderRadius: '50%', background: c,
             border: penColor === c ? '2.5px solid ' + THEME.accent : c === '#fff' ? '1.5px solid #ddd' : '1.5px solid rgba(0,0,0,.08)',
             cursor: 'pointer',
-            boxShadow: penColor === c ? '0 0 0 2px rgba(245,158,11,.3)' : 'none',
+            boxShadow: penColor === c ? '0 0 0 2px rgba(139,92,246,.3)' : 'none',
           }} />
         ))}
         <div style={{ width: 1, height: 22, background: 'rgba(0,0,0,.08)', margin: '0 2px' }} />
@@ -56,7 +56,7 @@ const Toolbar = ({
           <button key={s.w} onClick={() => setPenWidth(tool === 'highlighter' ? s.w * 3 : s.w)} title={s.label} style={{
             width: 28, height: 28, borderRadius: 6,
             border: (penWidth === s.w || (tool === 'highlighter' && penWidth === s.w * 3)) ? '2px solid ' + THEME.accent : '1.5px solid rgba(0,0,0,.06)',
-            background: (penWidth === s.w || (tool === 'highlighter' && penWidth === s.w * 3)) ? 'rgba(245,158,11,.08)' : 'transparent',
+            background: (penWidth === s.w || (tool === 'highlighter' && penWidth === s.w * 3)) ? 'rgba(139,92,246,.08)' : 'transparent',
             cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
           }}>
             <div style={{ width: s.w + 6, height: s.w + 1, borderRadius: s.w, background: penColor }} />
@@ -72,7 +72,7 @@ const Toolbar = ({
           <button key={s.s} onClick={() => setEraserSize(s.s)} title={s.label} style={{
             width: 28, height: 28, borderRadius: 6,
             border: eraserSize === s.s ? '2px solid ' + THEME.accent : '1.5px solid rgba(0,0,0,.06)',
-            background: eraserSize === s.s ? 'rgba(245,158,11,.08)' : 'transparent',
+            background: eraserSize === s.s ? 'rgba(139,92,246,.08)' : 'transparent',
             cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
           }}>
             <div style={{ width: s.s / 2, height: s.s / 2, borderRadius: '50%', border: '2px solid #999' }} />

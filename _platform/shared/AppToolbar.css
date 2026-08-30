@@ -1,0 +1,122 @@
+/**
+ * DokunSay Platform — Ortak Araç Çubuğu (AppToolbar) stilleri
+ *
+ * DokunSay Bar'ın alt araç çubuğu referans alınarak çıkarılmış tasarım dili:
+ * gruplu "pill" konteynerler, tutarlı araç butonları, ayraçlar. Tüm
+ * uygulamalar aynı görünür → "tek tasarımcı" hissi, kullanıcı acemilik yaşamaz.
+ *
+ * Renkler AppShell accent değişkenlerinden (--appshell-accent / -dark / -softer).
+ * Diskalkuli modu (html[data-dyscalculia]) butonları büyütür.
+ */
+
+.ds-toolbar {
+  height: 52px;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 10px;
+  background: #fff;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  font-family: inherit;
+  box-sizing: border-box;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.ds-toolbar::-webkit-scrollbar { display: none; }
+.ds-toolbar--dark {
+  background: #1f1f1f;
+  border-top-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Gruplu pill konteyner */
+.ds-toolbar__group {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  flex-shrink: 0;
+}
+.ds-toolbar--dark .ds-toolbar__group,
+.ds-toolbar__group--dark {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Araç butonu (ikon + küçük etiket) */
+.ds-toolbar__btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  color: #44403c;
+  transition: background 0.15s ease, color 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+  flex-shrink: 0;
+}
+.ds-toolbar__btn:hover { background: rgba(0, 0, 0, 0.05); }
+.ds-toolbar__btn:focus-visible { outline: 2px solid var(--appshell-accent, #f59e0b); outline-offset: -2px; }
+.ds-toolbar__btn--active {
+  background: var(--appshell-accent, #f59e0b);
+  color: #fff;
+}
+.ds-toolbar--dark .ds-toolbar__btn { color: rgba(255, 255, 255, 0.75); }
+.ds-toolbar--dark .ds-toolbar__btn:hover { background: rgba(255, 255, 255, 0.08); }
+.ds-toolbar__btn-icon { font-size: 15px; line-height: 1; }
+.ds-toolbar__btn-label { font-size: 11px; letter-spacing: 0.2px; white-space: nowrap; }
+
+/* İkon butonu (kare, etiketsiz — tam ekran/yardım/mikrofon vb.) */
+.ds-toolbar__icon-btn {
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  color: #44403c;
+  transition: background 0.15s ease, color 0.15s ease;
+  flex-shrink: 0;
+}
+.ds-toolbar__icon-btn:hover { background: rgba(0, 0, 0, 0.06); }
+.ds-toolbar__icon-btn:focus-visible { outline: 2px solid var(--appshell-accent, #f59e0b); outline-offset: -2px; }
+.ds-toolbar__icon-btn--active {
+  background: var(--appshell-accent, #f59e0b);
+  color: #fff;
+}
+.ds-toolbar__icon-btn--danger { color: #dc2626; }
+.ds-toolbar--dark .ds-toolbar__icon-btn { color: rgba(255, 255, 255, 0.75); }
+.ds-toolbar--dark .ds-toolbar__icon-btn:hover { background: rgba(255, 255, 255, 0.08); }
+
+/* Ayraç + boşluk */
+.ds-toolbar__sep {
+  width: 1px;
+  height: 22px;
+  background: rgba(0, 0, 0, 0.08);
+  margin: 0 2px;
+  flex-shrink: 0;
+}
+.ds-toolbar--dark .ds-toolbar__sep { background: rgba(255, 255, 255, 0.12); }
+.ds-toolbar__spacer { flex: 1 1 auto; }
+
+/* Diskalkuli modu — daha büyük dokunma hedefleri */
+html[data-dyscalculia="true"] .ds-toolbar { height: 60px; min-height: 60px; }
+html[data-dyscalculia="true"] .ds-toolbar__btn { padding: 8px 12px; font-size: 12px; }
+html[data-dyscalculia="true"] .ds-toolbar__btn-icon { font-size: 17px; }
+html[data-dyscalculia="true"] .ds-toolbar__icon-btn { width: 40px; height: 40px; font-size: 17px; }
+
+html[data-reduce-motion="true"] .ds-toolbar__btn,
+html[data-reduce-motion="true"] .ds-toolbar__icon-btn { transition: none; }

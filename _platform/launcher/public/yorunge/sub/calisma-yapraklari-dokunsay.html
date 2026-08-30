@@ -1,0 +1,863 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Saymadan Anlık Bilme (Sanbil) — Çalışma Yaprakları · DokunSay</title>
+<meta name="description" content="Saymadan Anlık Bilme (Sanbil) öğrenme yörüngesi için her düzeye bir baskıya hazır çalışma yaprağı. CRA (somut→temsilî→soyut) temelli, diskalkuli-dostu. Clements &amp; Sarama.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{ --c:#2E7D32; --ink:#1f2733; --body:#39434f; --mut:#7c8aa0; --line:#e7e2d6; --paper:#fffdf7; --tint:color-mix(in srgb, var(--c) 8%, #fffdf7); }
+*{ box-sizing:border-box; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+html,body{ margin:0; background:#eceae3; font-family:'Lexend',system-ui,Segoe UI,sans-serif; color:var(--body); }
+.bar{ position:sticky; top:0; z-index:9; display:flex; gap:14px; align-items:center; justify-content:space-between;
+  background:#fff; border-bottom:1px solid #dcd8cd; padding:11px 18px; box-shadow:0 1px 6px rgba(0,0,0,.05); }
+.bar .t{ font-family:'Poppins',sans-serif; font-weight:700; color:var(--ink); font-size:15px; }
+.bar .t small{ display:block; font-weight:500; color:var(--mut); font-size:12px; }
+.bar .actions{ display:flex; gap:9px; }
+.btn{ font-family:'Poppins',sans-serif; font-weight:600; font-size:13.5px; border:0; border-radius:10px; padding:9px 15px; cursor:pointer; text-decoration:none; }
+.btn-print{ background:var(--c); color:#fff; } .btn-back{ background:#eef1f4; color:#334155; }
+.wrap{ max-width:880px; margin:18px auto 40px; padding:0 14px; }
+
+/* ── A4 çalışma yaprağı ───────────────────────────────────────────── */
+.sheet{ background:var(--paper); width:210mm; height:297mm; overflow:hidden; margin:0 auto 20px; padding:11mm 13mm 6mm;
+  border-radius:4px; box-shadow:0 6px 26px rgba(31,39,51,.13); position:relative;
+  display:flex; flex-direction:column; gap:1.8mm; }
+.lbl{ display:inline-block; font-family:'Poppins',sans-serif; font-weight:700; font-size:10.5pt; color:var(--c); letter-spacing:.2px; margin-bottom:2px; }
+
+.ws-head{ border-bottom:3px solid var(--c); padding-bottom:7px; }
+.ws-top{ display:flex; justify-content:space-between; align-items:center; font-size:10pt; color:var(--mut); }
+.ws-brand{ display:inline-flex; align-items:center; gap:7px; font-family:'Poppins',sans-serif; }
+.ws-brand b{ color:var(--ink); } .logo{ width:22px; height:22px; }
+.ws-name{ font-size:9.5pt; } .nl{ display:inline-block; width:34mm; border-bottom:1.4px dotted #b8c0cc; } .nl.sm{ width:24mm; }
+.ws-eyebrow{ font-family:'Poppins',sans-serif; font-weight:600; font-size:10pt; color:var(--c); margin-top:8px; text-transform:uppercase; letter-spacing:.4px; }
+.ws-title{ font-family:'Poppins',sans-serif; font-weight:800; font-size:18pt; line-height:1.1; color:var(--ink); margin:2px 0 6px; display:flex; align-items:baseline; gap:8px; }
+.ws-no{ background:var(--c); color:#fff; font-size:12pt; min-width:27px; height:27px; padding:0 6px; border-radius:8px; display:inline-flex; align-items:center; justify-content:center; }
+.ws-meta{ display:flex; flex-wrap:wrap; gap:7px; align-items:center; }
+.pill{ font-family:'Poppins',sans-serif; font-weight:600; font-size:9.5pt; background:#eef2f7; color:#475569; border-radius:20px; padding:4px 11px; }
+.pill.warn{ background:#fff3e2; color:#9a3412; }
+.cra{ display:inline-flex; align-items:center; gap:4px; margin-left:auto; }
+.cra-s{ font-family:'Poppins',sans-serif; font-weight:600; font-size:9pt; color:#94a3b8; background:#f1f4f8; border-radius:7px; padding:3px 9px; }
+.cra-s.on{ color:#fff; } .cra-arr{ color:#cbd5e1; font-size:10pt; }
+
+.ws-obj{ background:var(--tint); border-radius:10px; padding:7px 12px; }
+.ws-obj p{ margin:1px 0 0; font-size:11pt; line-height:1.42; color:var(--ink); }
+.ws-method .msteps{ margin:1px 0 0; padding-left:0; list-style:none; display:flex; flex-direction:column; gap:2px; counter-reset:m; }
+.ws-method .msteps li{ font-size:10pt; line-height:1.32; padding-left:26px; position:relative; }
+.ws-method .msteps li::before{ counter-increment:m; content:counter(m); position:absolute; left:0; top:0;
+  width:21px; height:21px; border-radius:50%; background:var(--c); color:#fff; font-family:'Poppins',sans-serif; font-weight:700; font-size:10pt; display:flex; align-items:center; justify-content:center; }
+.ws-method .msteps b{ color:var(--c); }
+
+.ws-egbox{ background:#f4f8f5; border:1.5px dashed color-mix(in srgb,var(--c) 45%,#cbd5e1); border-radius:10px; padding:6px 12px 7px; }
+.ws-egbox .lbl{ color:color-mix(in srgb,var(--c) 70%, #166534); }
+
+.items-grid{ display:grid; grid-template-columns:1fr 1fr; gap:5px; margin-top:2px; align-items:start; }
+.ex{ border:1.4px solid var(--line); border-radius:11px; padding:7px 10px 8px; background:#fff; break-inside:avoid; }
+.ex.wide{ grid-column:1 / -1; }
+.ex.eg{ border:0; padding:2px 0 0; background:transparent; grid-column:1 / -1; }
+.ex-q{ display:flex; gap:7px; align-items:flex-start; }
+.ex-no{ flex:0 0 auto; width:22px; height:22px; border-radius:50%; background:var(--c); color:#fff; font-family:'Poppins',sans-serif; font-weight:700; font-size:10.5pt; display:flex; align-items:center; justify-content:center; }
+.ex.eg .ex-no{ background:#fef3c7; }
+.ex-q p{ margin:1px 0 0; font-size:10.8pt; line-height:1.4; color:var(--ink); }
+.ex-v{ margin:4px 0 3px; text-align:center; } .ex-a{ margin:0; text-align:center; }
+.ex.wide .ex-v, .ex.wide .ex-a, .ex.eg .ex-v, .ex.eg .ex-a{ text-align:left; margin-left:30px; }
+
+/* SVG görseller — içsel boyut ama A4'e sığması için yükseklik sınırlı */
+.ws-svg{ max-width:100%; width:auto; height:auto; vertical-align:middle; }
+.ex-v .ws-svg{ max-height:16mm; }
+.ex-v .ws-svg.ws-tall{ max-height:17mm; }
+.ws-egbox .ex-v .ws-svg{ max-height:12mm; } .ws-egbox .ex-v .ws-svg.ws-tall{ max-height:13mm; }
+.ex-v .ws-frac{ max-height:26mm; } .ws-svg.ws-frac{ width:auto; max-height:26mm; } svg.ws-glyph{ width:12mm; height:12mm; }
+.pat-row{ display:flex; align-items:center; gap:7px; flex-wrap:wrap; }
+.pat-c svg{ width:13mm; height:13mm; } .pat-q{ width:13mm; height:13mm; border:2px dashed #b8c0cc; border-radius:8px; display:inline-flex; align-items:center; justify-content:center; font-family:'Poppins',sans-serif; font-weight:800; font-size:16pt; color:#b8c0cc; }
+
+/* Yanıt alanları */
+.wbox{ display:inline-block; width:14mm; height:14mm; border:2px solid #94a3b8; border-radius:8px; vertical-align:middle; margin:0 3px; background:#fff; }
+.wbox.wbox-lg{ width:18mm; height:14mm; border-color:var(--c); }
+.eqrow{ display:flex; align-items:center; flex-wrap:wrap; gap:5px; font-family:'Poppins',sans-serif; font-weight:600; font-size:15pt; color:var(--ink); }
+.bignum{ font-family:'Poppins',sans-serif; font-weight:700; font-size:17pt; color:var(--ink); } .bignum.sm{ font-size:14pt; padding:0 3px; }
+.seqn{ font-family:'Poppins',sans-serif; font-weight:600; font-size:14pt; } .seqsep{ color:#94a3b8; }
+.ans-hint{ margin:5px 0 0 0; font-size:10.5pt; color:var(--mut); font-style:normal; }
+.ans-shown{ font-family:'Poppins',sans-serif; font-size:14pt; color:#166534; }
+
+.ws-scaffold{ display:flex; gap:8px; flex-wrap:wrap; }
+.sc{ flex:1 1 44%; font-size:9.8pt; line-height:1.30; border-radius:9px; padding:5px 10px; }
+.sc-easy{ background:#eef4fb; } .sc-easy b{ color:#1d4ed8; }
+.sc-hard{ background:#f5f0fb; } .sc-hard b{ color:#7c3aed; }
+
+.ws-foot{ margin-top:auto; padding-top:5px; border-top:1px solid var(--line); display:flex; flex-direction:column; gap:4px; }
+.ws-check{ background:#f0fdf4; border-radius:9px; padding:5px 11px; font-size:10pt; line-height:1.35; color:#166534; display:flex; justify-content:space-between; align-items:center; gap:10px; }
+.ws-check b{ color:#15803d; } .stars{ font-size:14pt; color:#f59e0b; letter-spacing:2px; white-space:nowrap; }
+.ws-credit{ font-size:7.8pt; color:var(--mut); line-height:1.35; display:flex; flex-direction:column; gap:1px; }
+.ws-credit .mat{ color:#475569; }
+.ws-credit a{ color:#475569; }
+/* Kavram yanılgısı şeridi. Punto (8.7pt) künyeden (7.8pt) büyük ama gövde metninden
+   küçük: öğretmene yönelik ikincil bilgi, çocuğun göreviyle yarışmamalı. Yapraklar
+   milimetrik dolu olduğu için bu ölçüler A4 taşmasına karşı ölçülerek seçildi. */
+.ws-mis{ background:#fff7ed; border-left:3px solid #fb923c; border-radius:9px; padding:3px 10px; font-size:8.7pt; line-height:1.26; color:#7c2d12; }
+.ws-mis b{ color:#9a3412; font-weight:700; }
+.ws-mis .mis-cite{ color:#a16207; white-space:nowrap; }
+
+/* ── Baskı ─────────────────────────────────────────────────────────── */
+@media print{
+  @page{ size:A4; margin:0; }
+  html,body{ background:#fff; }
+  .bar,.wrap>.intro{ display:none !important; }
+  .wrap{ margin:0; padding:0; max-width:none; }
+  .sheet{ width:210mm; height:297mm; margin:0; border-radius:0; box-shadow:none; overflow:hidden; break-before:page; }
+  .sheet:first-child{ break-before:avoid; }
+}
+.intro{ background:#fff; border-radius:14px; padding:16px 20px; margin-bottom:18px; box-shadow:0 2px 10px rgba(0,0,0,.05); }
+.intro h2{ font-family:'Poppins',sans-serif; margin:0 0 5px; color:var(--ink); font-size:18px; }
+.intro p{ margin:0; font-size:13.5px; line-height:1.55; color:#5b6573; }
+</style>
+</head>
+<body>
+<div class="bar no-print">
+  <span class="t">👁️ Saymadan Anlık Bilme (Sanbil) — Çalışma Yaprakları<small>12 düzey · Sayılar ve İşlemler · CRA temelli · DokunSay materyalleriyle</small></span>
+  <span class="actions">
+    <a class="btn btn-back" href="./">← Yörüngeye dön</a>
+    <button class="btn btn-print" onclick="window.print()">🖨️ Yazdır / PDF kaydet</button>
+  </span>
+</div>
+<div class="wrap">
+  <div class="intro no-print">
+    <h2>Saymadan Anlık Bilme (Sanbil) · Çalışma Yaprakları · DokunSay materyalleriyle</h2>
+    <p>Her düzey için bir baskıya-hazır A4 çalışma yaprağı — <b>tüm görseller gerçek DokunSay Bar materyalinin çizimleridir</b> (sayı çubuğu + pul, onluk kart, Basamak blokları, Kesir, Geo). Çocuk önce <b>somut araçla</b> yapar, sonra <b>sayfadaki aynı materyalin çiziminde</b> gösterir, en sonda <b>sembolü yazar</b> — sayfa ile araç birebir örtüşür. Çocuğun düzeyinden başlayın; ✓ölçütü karşılayınca sonraki yaprağa geçin.</p>
+  </div>
+  <section class="sheet" style="--c:#2E7D32">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">👁️ Sayılar ve İşlemler · Saymadan Anlık Bilme (Sanbil)</div>
+    <h1 class="ws-title"><span class="ws-no">1</span>Sayı Duyarlılığı: Temeller</h1>
+    <div class="ws-meta">
+      <span class="pill">0–1 yaş</span>
+      <span class="pill">Düzey 1/12</span>
+      
+      <span class="cra"><span class="cra-s on" style="background:#2E7D32">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Doğuştan gelen, açık bilgi içermeyen sayı duyarlılığı: 1 ile 2 nesnelik grupları (bazen 2 ile 3’ü) sezgisel olarak ayırt eder; büyük gruplar arasında…</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Oyna</b> — DokunSay Bar ya da günlük nesnelerle birlikte oynayın — 3–4 büyük, aynı renk nesne (top, küp).</li><li><b>Söyle</b> — Sayıları/sözcükleri yüksek sesle ve ritimle siz söyleyin; çocuk katılsın.</li><li><b>Gözle</b> — Tepkisini gözleyin — bu yaşta yazı/çizim beklenmez, deneyim önemlidir.</li></ol>
+  </div>
+
+  
+
+  <div class="ws-items"><span class="lbl">🎲 Birlikte oyna (siz yönlendirin)</span>
+    <div class="items-grid"><div class="ex">
+    <div class="ex-q"><span class="ex-no">1</span><p>Çocuğun önüne 2 nesne koyun, birlikte bakın.</p></div>
+    
+    
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Örtüyle kapatıp gizlice 1 nesne ekleyin, açın.</p></div>
+    
+    
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>"Bak! Daha çok oldu!" deyin; tepkisini (bakış, uzanma) gözleyin.</p></div>
+    
+    
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">4</span><p>Bazen hiç değiştirmeyin — "aynı" durumla karşılaştırın.</p></div>
+    
+    
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Farkı abartın (1 ↔ 4).</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Yakın miktarlarla deneyin (2 ↔ 3).</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> yakın miktarlarda (2↔3) tepki vermez; yalnız çok belirgin farkı sezer. <b>→ Ne yapmalı:</b> Önce farkı abartın (1↔4); tepki oluşunca miktarları yaklaştırın. <span class="mis-cite">📖 Xu &amp; Spelke (2000)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Miktar değiştiğinde dikkati/bakışı belirgin değişiyorsa ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 3–4 büyük, aynı renk nesne (top, küp) · bir tepsi veya örtü</span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/sub/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#2E7D32">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">👁️ Sayılar ve İşlemler · Saymadan Anlık Bilme (Sanbil)</div>
+    <h1 class="ws-title"><span class="ws-no">2</span>Çok Küçük Sayıları Tanıyan</h1>
+    <div class="ws-meta">
+      <span class="pill">1–2 yaş</span>
+      <span class="pill">Düzey 2/12</span>
+      
+      <span class="cra"><span class="cra-s on" style="background:#2E7D32">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Küçük miktarları sayı sözcükleriyle eşleştirmeye başlar (&quot;bir&quot;, &quot;iki&quot;); kardinal değere ilişkin ilk açık fikir oluşur.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Oyna</b> — DokunSay Bar ya da günlük nesnelerle birlikte oynayın — özdeş küçük nesneler (kaşık, blok).</li><li><b>Söyle</b> — Sayıları/sözcükleri yüksek sesle ve ritimle siz söyleyin; çocuk katılsın.</li><li><b>Gözle</b> — Tepkisini gözleyin — bu yaşta yazı/çizim beklenmez, deneyim önemlidir.</li></ol>
+  </div>
+
+  
+
+  <div class="ws-items"><span class="lbl">🎲 Birlikte oyna (siz yönlendirin)</span>
+    <div class="items-grid"><div class="ex">
+    <div class="ex-q"><span class="ex-no">1</span><p>Bir kâseye 1, diğerine 2 nesne koyun.</p></div>
+    
+    
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>"Hangisinde daha çok var?" diye sorun ya da gösterin.</p></div>
+    
+    
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>Doğru seçimi adlandırın: "Evet, burada İKİ var."</p></div>
+    
+    
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">4</span><p>Yer değiştirip yineleyin; çocuk işaret/söz ile yanıtlasın.</p></div>
+    
+    
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Nesneleri büyütün, aralarını açın.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Aynı anda &quot;bir tane ver / iki tane ver&quot; deyin.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> “iki”yi “çok” anlamında kullanır; tam olarak 2 nesneyi göstermez. <b>→ Ne yapmalı:</b> Tam 2’lik gruplarla eşleştirip “tam olarak iki” diye vurgulayın. <span class="mis-cite">📖 Le Corre &amp; Carey (2007)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> 1 ile 2’yi tutarlı ayırt edip &quot;iki&quot;yi gösterir/söylerse ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 özdeş küçük nesneler (kaşık, blok) · iki küçük kâse</span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/sub/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#2E7D32">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">👁️ Sayılar ve İşlemler · Saymadan Anlık Bilme (Sanbil)</div>
+    <h1 class="ws-title"><span class="ws-no">3</span>Küçük Grupların Aynısını Oluşturan</h1>
+    <div class="ws-meta">
+      <span class="pill">2–3 yaş</span>
+      <span class="pill">Düzey 3/12</span>
+      
+      <span class="cra"><span class="cra-s on" style="background:#2E7D32">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Model bir koleksiyonla aynı sayıda (genellikle 1–2, bazen 3) nesneden oluşan bir grup oluşturur; bunu zihinsel modelle yapar…</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Oyna</b> — DokunSay Bar ya da günlük nesnelerle birlikte oynayın — DokunSay pulları ya da düğme/blok yığını.</li><li><b>Söyle</b> — Sayıları/sözcükleri yüksek sesle ve ritimle siz söyleyin; çocuk katılsın.</li><li><b>Gözle</b> — Tepkisini gözleyin — bu yaşta yazı/çizim beklenmez, deneyim önemlidir.</li></ol>
+  </div>
+
+  
+
+  <div class="ws-items"><span class="lbl">🎲 Birlikte oyna (siz yönlendirin)</span>
+    <div class="items-grid"><div class="ex">
+    <div class="ex-q"><span class="ex-no">1</span><p>Yığını ortaya koyun.</p></div>
+    
+    
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>"Bana BİR pul ver" deyin; aldığını birlikte adlandırın.</p></div>
+    
+    
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>"Şimdi İKİ pul ver" deyin.</p></div>
+    
+    
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">4</span><p>Verdiğini tabağa dizip "Evet, iki!" diye doğrulayın.</p></div>
+    
+    
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Önce siz bir model verin, o kopyalasın.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> &quot;Üç ver&quot; ile sınırı yoklayın.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> modelin sayısını değil görünüşünü kopyalar (aynı uzunlukta dizer, sayı tutmaz). <b>→ Ne yapmalı:</b> İki grubu karşılıklı eşletip artakalanı gösterin. <span class="mis-cite">📖 Piaget (1965)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> İstenen 1–2 nesneyi saymadan doğru üretirse ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay pulları ya da düğme/blok yığını · küçük tabak <a href="https://dokunsay.com/DokunSayBar/">🔗 dokunsay.com/DokunSayBar/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/sub/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#2E7D32">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">👁️ Sayılar ve İşlemler · Saymadan Anlık Bilme (Sanbil)</div>
+    <h1 class="ws-title"><span class="ws-no">4</span>Küçük Grupları Adlandıran</h1>
+    <div class="ws-meta">
+      <span class="pill">3–4 yaş</span>
+      <span class="pill">Düzey 4/12</span>
+      
+      <span class="cra"><span class="cra-s on" style="background:#2E7D32">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Model ya da eşleme stratejisi gerekmeden 1, 2 ve 3 nesnelik grupları artan doğrulukla adlandırır (çoğu çocukta ~34–39 ay); 4’lük gruplar yaklaşık 6…</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Bar ile elle yap — 1–4 nokta kartları (zar düzeni).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Baktım ve söyledim: 3 pul. Acele etmedim.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 84 84" width="84" height="84" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><rect x="2" y="2" width="80" height="80" rx="11" fill="#fffdf7" stroke="#d4c9a8" stroke-width="2"/><circle cx="21.84" cy="21.84" r="7.140000000000001" fill="#3b82f6" stroke="#1e40af" stroke-width="1.6"/><circle cx="20.1264" cy="19.840799999999998" r="2.2848" fill="rgba(255,255,255,.4)"/><circle cx="42" cy="42" r="7.140000000000001" fill="#3b82f6" stroke="#1e40af" stroke-width="1.6"/><circle cx="40.2864" cy="40.0008" r="2.2848" fill="rgba(255,255,255,.4)"/><circle cx="62.16" cy="62.16" r="7.140000000000001" fill="#3b82f6" stroke="#1e40af" stroke-width="1.6"/><circle cx="60.4464" cy="60.160799999999995" r="2.2848" fill="rgba(255,255,255,.4)"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">3</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex">
+    <div class="ex-q"><span class="ex-no">1</span><p>Kaç pul var? Acele etme, bak ve yaz.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 84 84" width="84" height="84" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><rect x="2" y="2" width="80" height="80" rx="11" fill="#fffdf7" stroke="#d4c9a8" stroke-width="2"/><circle cx="21.84" cy="21.84" r="7.140000000000001" fill="#3b82f6" stroke="#1e40af" stroke-width="1.6"/><circle cx="20.1264" cy="19.840799999999998" r="2.2848" fill="rgba(255,255,255,.4)"/><circle cx="42" cy="42" r="7.140000000000001" fill="#3b82f6" stroke="#1e40af" stroke-width="1.6"/><circle cx="40.2864" cy="40.0008" r="2.2848" fill="rgba(255,255,255,.4)"/><circle cx="62.16" cy="62.16" r="7.140000000000001" fill="#3b82f6" stroke="#1e40af" stroke-width="1.6"/><circle cx="60.4464" cy="60.160799999999995" r="2.2848" fill="rgba(255,255,255,.4)"/></svg></div>
+    <div class="ex-a"><span class="wbox"></span></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Bu kartta kaç pul? Yaz.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 84 84" width="84" height="84" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><rect x="2" y="2" width="80" height="80" rx="11" fill="#fffdf7" stroke="#d4c9a8" stroke-width="2"/><circle cx="25.2" cy="25.2" r="7.140000000000001" fill="#3b82f6" stroke="#1e40af" stroke-width="1.6"/><circle cx="23.4864" cy="23.200799999999997" r="2.2848" fill="rgba(255,255,255,.4)"/><circle cx="58.8" cy="58.8" r="7.140000000000001" fill="#3b82f6" stroke="#1e40af" stroke-width="1.6"/><circle cx="57.0864" cy="56.800799999999995" r="2.2848" fill="rgba(255,255,255,.4)"/></svg></div>
+    <div class="ex-a"><span class="wbox"></span></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>Boş karta tam 3 pul çiz.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 84 84" width="84" height="84" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><rect x="2" y="2" width="80" height="80" rx="11" fill="#fffdf7" stroke="#d4c9a8" stroke-width="2" stroke-dasharray="6 4"/></svg></div>
+    <div class="ex-a"><p class="ans-hint">○ tam 3 pul</p></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Kartı açık bırakın, süre tanıyın.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Gösterimi kısaltın (~½ saniye) ya da 4’ü ekleyin.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> 3’ün üzerinde adlandırmayı bırakıp sessizce saymaya ya da tahmine geçer. <b>→ Ne yapmalı:</b> 1–3 aralığında kalın; kısa gösterip hemen kapatın. <span class="mis-cite">📖 Clements (1999)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> 1–3’ü saymadan, bakışta doğru adlandırırsa ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 1–4 nokta kartları (zar düzeni) · DokunSay pulları <a href="https://dokunsay.com/DokunSayBar/">🔗 dokunsay.com/DokunSayBar/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/sub/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#2E7D32">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">👁️ Sayılar ve İşlemler · Saymadan Anlık Bilme (Sanbil)</div>
+    <h1 class="ws-title"><span class="ws-no">5</span>Algısal Sanbil (4’e kadar)</h1>
+    <div class="ws-meta">
+      <span class="pill">3–4 yaş</span>
+      <span class="pill">Düzey 5/12</span>
+      <span class="pill warn">★ Kritik geçiş</span>
+      <span class="cra"><span class="cra-s on" style="background:#2E7D32">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Kısa süre gösterilen 4’e kadar nesneli grupları anında tanır ve sayıyı sözel olarak adlandırır — saymaya gerek duymadan.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Bar ile elle yap — DokunSay pulları/çubukları.</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Kartı kapattım, sonra söyledim: 4. Saymadım.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 84 84" width="84" height="84" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><rect x="2" y="2" width="80" height="80" rx="11" fill="#fffdf7" stroke="#d4c9a8" stroke-width="2"/><circle cx="25.2" cy="25.2" r="7.140000000000001" fill="#3b82f6" stroke="#1e40af" stroke-width="1.6"/><circle cx="23.4864" cy="23.200799999999997" r="2.2848" fill="rgba(255,255,255,.4)"/><circle cx="58.8" cy="25.2" r="7.140000000000001" fill="#3b82f6" stroke="#1e40af" stroke-width="1.6"/><circle cx="57.0864" cy="23.200799999999997" r="2.2848" fill="rgba(255,255,255,.4)"/><circle cx="25.2" cy="58.8" r="7.140000000000001" fill="#3b82f6" stroke="#1e40af" stroke-width="1.6"/><circle cx="23.4864" cy="56.800799999999995" r="2.2848" fill="rgba(255,255,255,.4)"/><circle cx="58.8" cy="58.8" r="7.140000000000001" fill="#3b82f6" stroke="#1e40af" stroke-width="1.6"/><circle cx="57.0864" cy="56.800799999999995" r="2.2848" fill="rgba(255,255,255,.4)"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">4</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex">
+    <div class="ex-q"><span class="ex-no">1</span><p>Kartı 2 saniye göster, KAPAT. Kaç puldu?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 84 84" width="84" height="84" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><rect x="2" y="2" width="80" height="80" rx="11" fill="#fffdf7" stroke="#d4c9a8" stroke-width="2"/><circle cx="25.2" cy="25.2" r="7.140000000000001" fill="#3b82f6" stroke="#1e40af" stroke-width="1.6"/><circle cx="23.4864" cy="23.200799999999997" r="2.2848" fill="rgba(255,255,255,.4)"/><circle cx="58.8" cy="25.2" r="7.140000000000001" fill="#3b82f6" stroke="#1e40af" stroke-width="1.6"/><circle cx="57.0864" cy="23.200799999999997" r="2.2848" fill="rgba(255,255,255,.4)"/><circle cx="25.2" cy="58.8" r="7.140000000000001" fill="#3b82f6" stroke="#1e40af" stroke-width="1.6"/><circle cx="23.4864" cy="56.800799999999995" r="2.2848" fill="rgba(255,255,255,.4)"/><circle cx="58.8" cy="58.8" r="7.140000000000001" fill="#3b82f6" stroke="#1e40af" stroke-width="1.6"/><circle cx="57.0864" cy="56.800799999999995" r="2.2848" fill="rgba(255,255,255,.4)"/></svg></div>
+    <div class="ex-a"><span class="wbox"></span></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Yine kapat: kaç pul gördün?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 84 84" width="84" height="84" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><rect x="2" y="2" width="80" height="80" rx="11" fill="#fffdf7" stroke="#d4c9a8" stroke-width="2"/><circle cx="21.84" cy="21.84" r="7.140000000000001" fill="#3b82f6" stroke="#1e40af" stroke-width="1.6"/><circle cx="20.1264" cy="19.840799999999998" r="2.2848" fill="rgba(255,255,255,.4)"/><circle cx="42" cy="42" r="7.140000000000001" fill="#3b82f6" stroke="#1e40af" stroke-width="1.6"/><circle cx="40.2864" cy="40.0008" r="2.2848" fill="rgba(255,255,255,.4)"/><circle cx="62.16" cy="62.16" r="7.140000000000001" fill="#3b82f6" stroke="#1e40af" stroke-width="1.6"/><circle cx="60.4464" cy="60.160799999999995" r="2.2848" fill="rgba(255,255,255,.4)"/></svg></div>
+    <div class="ex-a"><span class="wbox"></span></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>Çubuğu bir bakışta oku: kaç delik?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 130 36" width="130" height="36" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><defs><linearGradient id="ds1a" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fde047"/><stop offset="32%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#78350f"/></linearGradient><radialGradient id="ds1h" cx=".42" cy=".36" r=".7"><stop offset="0%" stop-color="#3a3a3a"/><stop offset="100%" stop-color="#000"/></radialGradient></defs><rect x="2" y="2" width="126" height="32" rx="9" fill="url(#ds1a)" stroke="#78350f" stroke-width="2.5"/><circle cx="20" cy="18" r="10.5" fill="url(#ds1h)" stroke="rgba(0,0,0,.5)" stroke-width="1.5"/><circle cx="20" cy="18" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="17.8" cy="15.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="50" cy="18" r="10.5" fill="url(#ds1h)" stroke="rgba(0,0,0,.5)" stroke-width="1.5"/><circle cx="50" cy="18" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="47.8" cy="15.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="80" cy="18" r="10.5" fill="url(#ds1h)" stroke="rgba(0,0,0,.5)" stroke-width="1.5"/><circle cx="80" cy="18" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="77.8" cy="15.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="110" cy="18" r="10.5" fill="url(#ds1h)" stroke="rgba(0,0,0,.5)" stroke-width="1.5"/><circle cx="110" cy="18" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="107.8" cy="15.4" r="3" fill="rgba(255,255,255,.35)"/></svg></div>
+    <div class="ex-a"><span class="wbox"></span></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Yalnız düzenli (zar) düzenle çalışın; 3’e geri dönüp güven verin.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Dağınık 4 ve kısa gösterim; &quot;5 de var mı?&quot; diye yoklayın.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> yalnız zar/nokta düzenini tanır; dağınık 4’te saymaya döner. <b>→ Ne yapmalı:</b> Aynı sayıyı farklı düzenlerde gösterin (sıra, üçgen, dağınık). <span class="mis-cite">📖 Clements (1999)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> 4’ü (en az düzenli dizilişte) saymadan, bakışta bilirse ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay pulları/çubukları · 4’e dek nokta kartları (düzenli + dağınık) · kapatma kartı <a href="https://dokunsay.com/DokunSayBar/">🔗 dokunsay.com/DokunSayBar/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/sub/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#2E7D32">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">👁️ Sayılar ve İşlemler · Saymadan Anlık Bilme (Sanbil)</div>
+    <h1 class="ws-title"><span class="ws-no">6</span>Algısal Sanbil (5’e kadar)</h1>
+    <div class="ws-meta">
+      <span class="pill">4–5 yaş</span>
+      <span class="pill">Düzey 6/12</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#2E7D32">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Kısa süre gösterilen 5’e kadar grupları anında tanıyıp adlandırır; tanıdık düzenlerin ötesinde uzamsal/sayısal yapıları kullanmaya başlar.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Bar ile elle yap — DokunSay pulları.</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Pullar dağınıktı ama yine 5 — dizilim sayıyı değiştirmez.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 106 73" width="106" height="73" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="20" cy="20" r="13" fill="#dc2626" stroke="#991b1b" stroke-width="2"/><circle cx="17.14" cy="16.62" r="3.9" fill="rgba(255,255,255,.35)"/><circle cx="53" cy="20" r="13" fill="#dc2626" stroke="#991b1b" stroke-width="2"/><circle cx="50.14" cy="16.62" r="3.9" fill="rgba(255,255,255,.35)"/><circle cx="86" cy="20" r="13" fill="#dc2626" stroke="#991b1b" stroke-width="2"/><circle cx="83.14" cy="16.62" r="3.9" fill="rgba(255,255,255,.35)"/><circle cx="20" cy="53" r="13" fill="#dc2626" stroke="#991b1b" stroke-width="2"/><circle cx="17.14" cy="49.62" r="3.9" fill="rgba(255,255,255,.35)"/><circle cx="53" cy="53" r="13" fill="#dc2626" stroke="#991b1b" stroke-width="2"/><circle cx="50.14" cy="49.62" r="3.9" fill="rgba(255,255,255,.35)"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">5</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex">
+    <div class="ex-q"><span class="ex-no">1</span><p>Pullar dağınık duruyor. Bir bakışta kaç?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 106 73" width="106" height="73" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="20" cy="20" r="13" fill="#dc2626" stroke="#991b1b" stroke-width="2"/><circle cx="17.14" cy="16.62" r="3.9" fill="rgba(255,255,255,.35)"/><circle cx="53" cy="20" r="13" fill="#dc2626" stroke="#991b1b" stroke-width="2"/><circle cx="50.14" cy="16.62" r="3.9" fill="rgba(255,255,255,.35)"/><circle cx="86" cy="20" r="13" fill="#dc2626" stroke="#991b1b" stroke-width="2"/><circle cx="83.14" cy="16.62" r="3.9" fill="rgba(255,255,255,.35)"/><circle cx="20" cy="53" r="13" fill="#dc2626" stroke="#991b1b" stroke-width="2"/><circle cx="17.14" cy="49.62" r="3.9" fill="rgba(255,255,255,.35)"/><circle cx="53" cy="53" r="13" fill="#dc2626" stroke="#991b1b" stroke-width="2"/><circle cx="50.14" cy="49.62" r="3.9" fill="rgba(255,255,255,.35)"/></svg></div>
+    <div class="ex-a"><span class="wbox"></span></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Bu sefer düzenli. Kaç pul?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 160 40" width="160" height="40" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><defs><linearGradient id="ds2a" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fde047"/><stop offset="32%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#78350f"/></linearGradient><radialGradient id="ds2h" cx=".42" cy=".36" r=".7"><stop offset="0%" stop-color="#3a3a3a"/><stop offset="100%" stop-color="#000"/></radialGradient></defs><rect x="2" y="2" width="156" height="36" rx="9" fill="url(#ds2a)" stroke="#78350f" stroke-width="2.5"/><circle cx="20" cy="20" r="10.5" fill="url(#ds2h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="20" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="17.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="50" cy="20" r="10.5" fill="url(#ds2h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="50" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="47.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="80" cy="20" r="10.5" fill="url(#ds2h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="80" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="77.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="110" cy="20" r="10.5" fill="url(#ds2h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="110" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="107.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="140" cy="20" r="10.5" fill="url(#ds2h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="140" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="137.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/></svg></div>
+    <div class="ex-a"><span class="wbox"></span></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>İkisi de 5 miydi? Dizilim değişince sayı değişir mi?</p></div>
+    
+    <div class="ex-a"><p class="ans-hint">○ değişmez — aynı 5</p></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Hep beşli çerçeve düzenini kullanın.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Çerçevesiz, dağınık 5; süreyi kısaltın.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> 5’te tek tek saymaya döner (göz kayar, dudağı kıpırdar). <b>→ Ne yapmalı:</b> Gösterim süresini kısaltın (yarım saniye) — saymaya fırsat bırakmayın. <span class="mis-cite">📖 Clements &amp; Sarama (2009)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> 5’i bakışta (parmak ya da beşli çerçeve düzeninde) bilirse ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay pulları · beşli çerçeve (1×5 kutu) · el/parmak <a href="https://dokunsay.com/DokunSayBar/">🔗 dokunsay.com/DokunSayBar/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/sub/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#2E7D32">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">👁️ Sayılar ve İşlemler · Saymadan Anlık Bilme (Sanbil)</div>
+    <h1 class="ws-title"><span class="ws-no">7</span>Kavramsal Sanbil (5’e kadar)</h1>
+    <div class="ws-meta">
+      <span class="pill">5 yaş</span>
+      <span class="pill">Düzey 7/12</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#2E7D32">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>5’e kadar TÜM düzenlemeleri, kısa gösterimde parçaları görüp bütünü hızla bilerek adlandırır (&quot;3 ile 2 gördüm — beş!&quot;).</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Bar ile elle yap — DokunSay pulları (iki renk).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>2 mavi ile 3 kırmızı gördüm — parçalardan bütün: 5.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 190 40" width="190" height="40" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="20" cy="20" r="13" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="17.14" cy="16.62" r="3.9" fill="rgba(255,255,255,.35)"/><circle cx="53" cy="20" r="13" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="50.14" cy="16.62" r="3.9" fill="rgba(255,255,255,.35)"/><circle cx="104" cy="20" r="13" fill="#dc2626" stroke="#991b1b" stroke-width="2"/><circle cx="101.14" cy="16.62" r="3.9" fill="rgba(255,255,255,.35)"/><circle cx="137" cy="20" r="13" fill="#dc2626" stroke="#991b1b" stroke-width="2"/><circle cx="134.14" cy="16.62" r="3.9" fill="rgba(255,255,255,.35)"/><circle cx="170" cy="20" r="13" fill="#dc2626" stroke="#991b1b" stroke-width="2"/><circle cx="167.14" cy="16.62" r="3.9" fill="rgba(255,255,255,.35)"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">2 ve 3 → 5</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>İki renk pul. Önce parçaları gör, sonra hepsini söyle.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 190 40" width="190" height="40" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="20" cy="20" r="13" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="17.14" cy="16.62" r="3.9" fill="rgba(255,255,255,.35)"/><circle cx="53" cy="20" r="13" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="50.14" cy="16.62" r="3.9" fill="rgba(255,255,255,.35)"/><circle cx="104" cy="20" r="13" fill="#dc2626" stroke="#991b1b" stroke-width="2"/><circle cx="101.14" cy="16.62" r="3.9" fill="rgba(255,255,255,.35)"/><circle cx="137" cy="20" r="13" fill="#dc2626" stroke="#991b1b" stroke-width="2"/><circle cx="134.14" cy="16.62" r="3.9" fill="rgba(255,255,255,.35)"/><circle cx="170" cy="20" r="13" fill="#dc2626" stroke="#991b1b" stroke-width="2"/><circle cx="167.14" cy="16.62" r="3.9" fill="rgba(255,255,255,.35)"/></svg></div>
+    <div class="ex-a"><div class="eqrow"><span class="wbox"></span> ile <span class="wbox"></span> → <span class="wbox wbox-lg"></span></div></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Beşlik çerçevede kaç pul dolu, kaç delik boş?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 160 40" width="160" height="40" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><defs><linearGradient id="ds3a" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fde047"/><stop offset="32%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#78350f"/></linearGradient><radialGradient id="ds3h" cx=".42" cy=".36" r=".7"><stop offset="0%" stop-color="#3a3a3a"/><stop offset="100%" stop-color="#000"/></radialGradient></defs><rect x="2" y="2" width="156" height="36" rx="9" fill="url(#ds3a)" stroke="#78350f" stroke-width="2.5"/><circle cx="20" cy="20" r="10.5" fill="url(#ds3h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="20" cy="20" r="10" fill="#dc2626" stroke="#991b1b" stroke-width="2"/><circle cx="17.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="50" cy="20" r="10.5" fill="url(#ds3h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="50" cy="20" r="10" fill="#dc2626" stroke="#991b1b" stroke-width="2"/><circle cx="47.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="80" cy="20" r="10.5" fill="url(#ds3h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="80" cy="20" r="10" fill="#dc2626" stroke="#991b1b" stroke-width="2"/><circle cx="77.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="110" cy="20" r="10.5" fill="url(#ds3h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="110" cy="20" r="10" fill="#dc2626" stroke="#991b1b" stroke-width="2"/><circle cx="107.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="140" cy="20" r="10.5" fill="url(#ds3h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/></svg></div>
+    <div class="ex-a"><div class="eqrow"><span class="wbox"></span> dolu · <span class="wbox"></span> boş</div></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>5 pulu iki renge böl: kaç türlü olur?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 160 40" width="160" height="40" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><defs><linearGradient id="ds4a" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fde047"/><stop offset="32%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#78350f"/></linearGradient><radialGradient id="ds4h" cx=".42" cy=".36" r=".7"><stop offset="0%" stop-color="#3a3a3a"/><stop offset="100%" stop-color="#000"/></radialGradient></defs><rect x="2" y="2" width="156" height="36" rx="9" fill="url(#ds4a)" stroke="#78350f" stroke-width="2.5"/><circle cx="20" cy="20" r="10.5" fill="url(#ds4h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="50" cy="20" r="10.5" fill="url(#ds4h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="80" cy="20" r="10.5" fill="url(#ds4h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="110" cy="20" r="10.5" fill="url(#ds4h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="140" cy="20" r="10.5" fill="url(#ds4h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/></svg></div>
+    <div class="ex-a"><p class="ans-hint">○ 1 ve 4 · 2 ve 3 …</p></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Parçaları iki ayrı renkle belirginleştirin.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Tek renk; &quot;altıyı da kırabilir misin?&quot; diye uzatın.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> parçaları görür ama birleştirmez: “2 ile 3 gördüm” der, “beş” diyemez. <b>→ Ne yapmalı:</b> Parçaları söylediğinde siz “demek ki beş” diye kapatın, sonra ona söyletin. <span class="mis-cite">📖 Clements (1999)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> 5’i saymadan, iki parçaya ayırarak (ör. 2+3) bilir ve söylerse ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay pulları (iki renk) · beşli çerçeve · nokta kartları (gruplu 5) <a href="https://dokunsay.com/DokunSayBar/">🔗 dokunsay.com/DokunSayBar/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/sub/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#2E7D32">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">👁️ Sayılar ve İşlemler · Saymadan Anlık Bilme (Sanbil)</div>
+    <h1 class="ws-title"><span class="ws-no">8</span>Kavramsal Sanbil (7’ye kadar)</h1>
+    <div class="ws-meta">
+      <span class="pill">5–6 yaş</span>
+      <span class="pill">Düzey 8/12</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#2E7D32">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Kısa süre gösterilen 6, sonra 7 nesnelik tüm düzenlemeleri parçalardan bütüne giderek adlandırır.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Bar ile elle yap — DokunSay pulları (iki renk).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Beşlik doluydu, yanında 2 vardı: 5 ve 2 → 7.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 256 40" width="256" height="40" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="20" cy="20" r="13" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="17.14" cy="16.62" r="3.9" fill="rgba(255,255,255,.35)"/><circle cx="53" cy="20" r="13" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="50.14" cy="16.62" r="3.9" fill="rgba(255,255,255,.35)"/><circle cx="86" cy="20" r="13" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="83.14" cy="16.62" r="3.9" fill="rgba(255,255,255,.35)"/><circle cx="119" cy="20" r="13" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="116.14" cy="16.62" r="3.9" fill="rgba(255,255,255,.35)"/><circle cx="152" cy="20" r="13" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="149.14" cy="16.62" r="3.9" fill="rgba(255,255,255,.35)"/><circle cx="203" cy="20" r="13" fill="#dc2626" stroke="#991b1b" stroke-width="2"/><circle cx="200.14" cy="16.62" r="3.9" fill="rgba(255,255,255,.35)"/><circle cx="236" cy="20" r="13" fill="#dc2626" stroke="#991b1b" stroke-width="2"/><circle cx="233.14" cy="16.62" r="3.9" fill="rgba(255,255,255,.35)"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">5 ve 2 → 7</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>Beşlik çerçeve DOLU, yanında fazladan pul var. Hepsi kaç?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 256 40" width="256" height="40" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="20" cy="20" r="13" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="17.14" cy="16.62" r="3.9" fill="rgba(255,255,255,.35)"/><circle cx="53" cy="20" r="13" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="50.14" cy="16.62" r="3.9" fill="rgba(255,255,255,.35)"/><circle cx="86" cy="20" r="13" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="83.14" cy="16.62" r="3.9" fill="rgba(255,255,255,.35)"/><circle cx="119" cy="20" r="13" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="116.14" cy="16.62" r="3.9" fill="rgba(255,255,255,.35)"/><circle cx="152" cy="20" r="13" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="149.14" cy="16.62" r="3.9" fill="rgba(255,255,255,.35)"/><circle cx="203" cy="20" r="13" fill="#dc2626" stroke="#991b1b" stroke-width="2"/><circle cx="200.14" cy="16.62" r="3.9" fill="rgba(255,255,255,.35)"/><circle cx="236" cy="20" r="13" fill="#dc2626" stroke="#991b1b" stroke-width="2"/><circle cx="233.14" cy="16.62" r="3.9" fill="rgba(255,255,255,.35)"/></svg></div>
+    <div class="ex-a"><div class="eqrow">5 ve <span class="wbox"></span> → <span class="wbox wbox-lg"></span></div></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>7 pul: beşliği doldur, kalanı yaz.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 160 40" width="160" height="40" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><defs><linearGradient id="ds5a" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fde047"/><stop offset="32%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#78350f"/></linearGradient><radialGradient id="ds5h" cx=".42" cy=".36" r=".7"><stop offset="0%" stop-color="#3a3a3a"/><stop offset="100%" stop-color="#000"/></radialGradient></defs><rect x="2" y="2" width="156" height="36" rx="9" fill="url(#ds5a)" stroke="#78350f" stroke-width="2.5"/><circle cx="20" cy="20" r="10.5" fill="url(#ds5h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="20" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="17.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="50" cy="20" r="10.5" fill="url(#ds5h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="50" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="47.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="80" cy="20" r="10.5" fill="url(#ds5h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="80" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="77.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="110" cy="20" r="10.5" fill="url(#ds5h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="110" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="107.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="140" cy="20" r="10.5" fill="url(#ds5h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="140" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="137.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/></svg></div>
+    <div class="ex-a"><div class="eqrow">5 + <span class="wbox"></span> = 7</div></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>Hangi çubuk 5'ten uzun? Yanına koyup bak.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 204 76" width="204" height="76" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><defs><linearGradient id="ds6a" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fde047"/><stop offset="32%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#78350f"/></linearGradient><radialGradient id="ds6h" cx=".42" cy=".36" r=".7"><stop offset="0%" stop-color="#3a3a3a"/><stop offset="100%" stop-color="#000"/></radialGradient></defs><rect x="2" y="2" width="144" height="28" rx="8" fill="url(#ds6a)" stroke="#78350f" stroke-width="2.5"/><circle cx="18" cy="16" r="9.5" fill="url(#ds6h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="46" cy="16" r="9.5" fill="url(#ds6h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="74" cy="16" r="9.5" fill="url(#ds6h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="102" cy="16" r="9.5" fill="url(#ds6h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="130" cy="16" r="9.5" fill="url(#ds6h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><rect x="2" y="46" width="200" height="28" rx="8" fill="url(#ds6a)" stroke="#78350f" stroke-width="2.5"/><circle cx="18" cy="60" r="9.5" fill="url(#ds6h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="46" cy="60" r="9.5" fill="url(#ds6h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="74" cy="60" r="9.5" fill="url(#ds6h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="102" cy="60" r="9.5" fill="url(#ds6h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="130" cy="60" r="9.5" fill="url(#ds6h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="158" cy="60" r="9.5" fill="url(#ds6h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="186" cy="60" r="9.5" fill="url(#ds6h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/></svg></div>
+    <div class="ex-a"><p class="ans-hint">○ uzun olanı yuvarla</p></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Hep 5+ düzeni; ikinci parça ≤2.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Beşli çıpa olmadan (4+3) kırılımlar.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> 5’i çapa almadan 1’den 7’ye tek tek sayar. <b>→ Ne yapmalı:</b> Beşli çerçeve kullanın; “beş ve kaç?” diye sorun. <span class="mis-cite">📖 Clements &amp; Sarama (2009)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> 6–7’yi beşli yapıyı kullanarak (ör. 5+2) saymadan bilirse ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay pulları (iki renk) · beşli + ek kutucuklar · gruplu nokta kartları (6–7) <a href="https://dokunsay.com/DokunSayBar/">🔗 dokunsay.com/DokunSayBar/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/sub/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#2E7D32">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">👁️ Sayılar ve İşlemler · Saymadan Anlık Bilme (Sanbil)</div>
+    <h1 class="ws-title"><span class="ws-no">9</span>Kavramsal Sanbil (10’a kadar)</h1>
+    <div class="ws-meta">
+      <span class="pill">6 yaş</span>
+      <span class="pill">Düzey 9/12</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#2E7D32">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>2–10 arası sayıların kısa gösterilen çoğu düzenlemesini adlandırır (örn. 7 ile 2’yi 9 olarak görür); onluk çerçeve gibi yapıları kullanır.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Bar ile elle yap — DokunSay pulları.</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>7 dolu, 3 delik boş — 10'a 3 kalmış.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 160 70" width="160" height="70" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><defs><linearGradient id="ds7a" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fde047"/><stop offset="32%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#78350f"/></linearGradient><radialGradient id="ds7h" cx=".42" cy=".36" r=".7"><stop offset="0%" stop-color="#3a3a3a"/><stop offset="100%" stop-color="#000"/></radialGradient></defs><rect x="2" y="2" width="156" height="66" rx="9" fill="url(#ds7a)" stroke="#78350f" stroke-width="2.5"/><circle cx="20" cy="20" r="10.5" fill="url(#ds7h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="20" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="17.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="50" cy="20" r="10.5" fill="url(#ds7h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="50" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="47.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="80" cy="20" r="10.5" fill="url(#ds7h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="80" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="77.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="110" cy="20" r="10.5" fill="url(#ds7h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="110" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="107.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="140" cy="20" r="10.5" fill="url(#ds7h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="140" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="137.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="20" cy="50" r="10.5" fill="url(#ds7h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="20" cy="50" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="17.8" cy="47.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="50" cy="50" r="10.5" fill="url(#ds7h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="50" cy="50" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="47.8" cy="47.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="80" cy="50" r="10.5" fill="url(#ds7h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="110" cy="50" r="10.5" fill="url(#ds7h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="140" cy="50" r="10.5" fill="url(#ds7h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">7 dolu · 10'a 3</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex">
+    <div class="ex-q"><span class="ex-no">1</span><p>Onluk çerçevede kaç pul dolu? Kaç delik BOŞ?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 160 70" width="160" height="70" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><defs><linearGradient id="ds8a" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fde047"/><stop offset="32%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#78350f"/></linearGradient><radialGradient id="ds8h" cx=".42" cy=".36" r=".7"><stop offset="0%" stop-color="#3a3a3a"/><stop offset="100%" stop-color="#000"/></radialGradient></defs><rect x="2" y="2" width="156" height="66" rx="9" fill="url(#ds8a)" stroke="#78350f" stroke-width="2.5"/><circle cx="20" cy="20" r="10.5" fill="url(#ds8h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="20" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="17.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="50" cy="20" r="10.5" fill="url(#ds8h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="50" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="47.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="80" cy="20" r="10.5" fill="url(#ds8h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="80" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="77.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="110" cy="20" r="10.5" fill="url(#ds8h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="110" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="107.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="140" cy="20" r="10.5" fill="url(#ds8h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="140" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="137.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="20" cy="50" r="10.5" fill="url(#ds8h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="20" cy="50" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="17.8" cy="47.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="50" cy="50" r="10.5" fill="url(#ds8h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="50" cy="50" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="47.8" cy="47.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="80" cy="50" r="10.5" fill="url(#ds8h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="110" cy="50" r="10.5" fill="url(#ds8h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="140" cy="50" r="10.5" fill="url(#ds8h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/></svg></div>
+    <div class="ex-a"><div class="eqrow"><span class="wbox"></span> dolu · <span class="wbox"></span> boş</div></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>10 olması için kaç pul daha gerek?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 160 70" width="160" height="70" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><defs><linearGradient id="ds9a" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fde047"/><stop offset="32%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#78350f"/></linearGradient><radialGradient id="ds9h" cx=".42" cy=".36" r=".7"><stop offset="0%" stop-color="#3a3a3a"/><stop offset="100%" stop-color="#000"/></radialGradient></defs><rect x="2" y="2" width="156" height="66" rx="9" fill="url(#ds9a)" stroke="#78350f" stroke-width="2.5"/><circle cx="20" cy="20" r="10.5" fill="url(#ds9h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="20" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="17.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="50" cy="20" r="10.5" fill="url(#ds9h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="50" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="47.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="80" cy="20" r="10.5" fill="url(#ds9h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="80" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="77.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="110" cy="20" r="10.5" fill="url(#ds9h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="110" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="107.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="140" cy="20" r="10.5" fill="url(#ds9h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="140" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="137.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="20" cy="50" r="10.5" fill="url(#ds9h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="20" cy="50" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="17.8" cy="47.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="50" cy="50" r="10.5" fill="url(#ds9h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="80" cy="50" r="10.5" fill="url(#ds9h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="110" cy="50" r="10.5" fill="url(#ds9h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="140" cy="50" r="10.5" fill="url(#ds9h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/></svg></div>
+    <div class="ex-a"><div class="eqrow">6 + <span class="wbox"></span> = 10</div></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>Onluk çerçeveyi 5+5 olarak gör: üst sıra kaç?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 160 70" width="160" height="70" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><defs><linearGradient id="ds10a" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fde047"/><stop offset="32%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#78350f"/></linearGradient><radialGradient id="ds10h" cx=".42" cy=".36" r=".7"><stop offset="0%" stop-color="#3a3a3a"/><stop offset="100%" stop-color="#000"/></radialGradient></defs><rect x="2" y="2" width="156" height="66" rx="9" fill="url(#ds10a)" stroke="#78350f" stroke-width="2.5"/><circle cx="20" cy="20" r="10.5" fill="url(#ds10h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="20" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="17.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="50" cy="20" r="10.5" fill="url(#ds10h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="50" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="47.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="80" cy="20" r="10.5" fill="url(#ds10h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="80" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="77.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="110" cy="20" r="10.5" fill="url(#ds10h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="110" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="107.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="140" cy="20" r="10.5" fill="url(#ds10h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="140" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="137.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="20" cy="50" r="10.5" fill="url(#ds10h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="20" cy="50" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="17.8" cy="47.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="50" cy="50" r="10.5" fill="url(#ds10h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="50" cy="50" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="47.8" cy="47.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="80" cy="50" r="10.5" fill="url(#ds10h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="80" cy="50" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="77.8" cy="47.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="110" cy="50" r="10.5" fill="url(#ds10h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="110" cy="50" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="107.8" cy="47.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="140" cy="50" r="10.5" fill="url(#ds10h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="140" cy="50" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="137.8" cy="47.4" r="3" fill="rgba(255,255,255,.35)"/></svg></div>
+    <div class="ex-a"><p class="ans-hint">○ üstte 5, altta 5</p></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Çerçeveyi hep beşli iki sıra hâlinde tutun.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Çerçevesiz gruplu düzen; &quot;10’a kaç eksik?&quot; hız turu.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> her düzende aynı parçalamayı dener; uymayınca saymaya döner. <b>→ Ne yapmalı:</b> Düzene göre parça seçmeyi konuşun (“bu sefer 4 ve 4”). <span class="mis-cite">📖 Sarama &amp; Clements (2009)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> 6–10’u onluk çerçeve yapısıyla (dolu/boş) saymadan bilirse ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay pulları · onluk çerçeve (2×5) · 6–10 gruplu kartlar <a href="https://dokunsay.com/DokunSayBar/">🔗 dokunsay.com/DokunSayBar/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/sub/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#2E7D32">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">👁️ Sayılar ve İşlemler · Saymadan Anlık Bilme (Sanbil)</div>
+    <h1 class="ws-title"><span class="ws-no">10</span>Kavramsal Sanbil (20’ye kadar)</h1>
+    <div class="ws-meta">
+      <span class="pill">6–7 yaş</span>
+      <span class="pill">Düzey 10/12</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#2E7D32">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Kısa gösterilen, yapılandırılmış 10–20 arası düzenlemeleri parçadan bütüne stratejiyle adlandırır (örn. 7 ile 9’u 16 olarak görür).</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Bar ile elle yap — DokunSay pulları/çubukları.</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Bir çerçeve tam, ötekinde 6: on ve altı → 16.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 160 70" width="160" height="70" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><defs><linearGradient id="ds11a" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fde047"/><stop offset="32%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#78350f"/></linearGradient><radialGradient id="ds11h" cx=".42" cy=".36" r=".7"><stop offset="0%" stop-color="#3a3a3a"/><stop offset="100%" stop-color="#000"/></radialGradient></defs><rect x="2" y="2" width="156" height="66" rx="9" fill="url(#ds11a)" stroke="#78350f" stroke-width="2.5"/><circle cx="20" cy="20" r="10.5" fill="url(#ds11h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="20" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="17.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="50" cy="20" r="10.5" fill="url(#ds11h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="50" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="47.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="80" cy="20" r="10.5" fill="url(#ds11h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="80" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="77.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="110" cy="20" r="10.5" fill="url(#ds11h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="110" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="107.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="140" cy="20" r="10.5" fill="url(#ds11h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="140" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="137.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="20" cy="50" r="10.5" fill="url(#ds11h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="20" cy="50" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="17.8" cy="47.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="50" cy="50" r="10.5" fill="url(#ds11h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="50" cy="50" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="47.8" cy="47.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="80" cy="50" r="10.5" fill="url(#ds11h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="80" cy="50" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="77.8" cy="47.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="110" cy="50" r="10.5" fill="url(#ds11h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="110" cy="50" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="107.8" cy="47.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="140" cy="50" r="10.5" fill="url(#ds11h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="140" cy="50" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="137.8" cy="47.4" r="3" fill="rgba(255,255,255,.35)"/></svg><svg viewBox="0 0 160 70" width="160" height="70" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><defs><linearGradient id="ds12a" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fde047"/><stop offset="32%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#78350f"/></linearGradient><radialGradient id="ds12h" cx=".42" cy=".36" r=".7"><stop offset="0%" stop-color="#3a3a3a"/><stop offset="100%" stop-color="#000"/></radialGradient></defs><rect x="2" y="2" width="156" height="66" rx="9" fill="url(#ds12a)" stroke="#78350f" stroke-width="2.5"/><circle cx="20" cy="20" r="10.5" fill="url(#ds12h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="20" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="17.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="50" cy="20" r="10.5" fill="url(#ds12h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="50" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="47.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="80" cy="20" r="10.5" fill="url(#ds12h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="80" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="77.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="110" cy="20" r="10.5" fill="url(#ds12h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="110" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="107.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="140" cy="20" r="10.5" fill="url(#ds12h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="140" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="137.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="20" cy="50" r="10.5" fill="url(#ds12h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="20" cy="50" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="17.8" cy="47.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="50" cy="50" r="10.5" fill="url(#ds12h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="80" cy="50" r="10.5" fill="url(#ds12h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="110" cy="50" r="10.5" fill="url(#ds12h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="140" cy="50" r="10.5" fill="url(#ds12h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">10 ve 6 → 16</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>Bir çerçeve TAM, ötekinde birkaç pul. Hepsi kaç?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 160 70" width="160" height="70" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><defs><linearGradient id="ds13a" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fde047"/><stop offset="32%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#78350f"/></linearGradient><radialGradient id="ds13h" cx=".42" cy=".36" r=".7"><stop offset="0%" stop-color="#3a3a3a"/><stop offset="100%" stop-color="#000"/></radialGradient></defs><rect x="2" y="2" width="156" height="66" rx="9" fill="url(#ds13a)" stroke="#78350f" stroke-width="2.5"/><circle cx="20" cy="20" r="10.5" fill="url(#ds13h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="20" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="17.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="50" cy="20" r="10.5" fill="url(#ds13h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="50" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="47.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="80" cy="20" r="10.5" fill="url(#ds13h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="80" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="77.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="110" cy="20" r="10.5" fill="url(#ds13h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="110" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="107.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="140" cy="20" r="10.5" fill="url(#ds13h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="140" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="137.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="20" cy="50" r="10.5" fill="url(#ds13h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="20" cy="50" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="17.8" cy="47.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="50" cy="50" r="10.5" fill="url(#ds13h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="50" cy="50" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="47.8" cy="47.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="80" cy="50" r="10.5" fill="url(#ds13h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="80" cy="50" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="77.8" cy="47.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="110" cy="50" r="10.5" fill="url(#ds13h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="110" cy="50" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="107.8" cy="47.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="140" cy="50" r="10.5" fill="url(#ds13h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="140" cy="50" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="137.8" cy="47.4" r="3" fill="rgba(255,255,255,.35)"/></svg><svg viewBox="0 0 160 70" width="160" height="70" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><defs><linearGradient id="ds14a" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fde047"/><stop offset="32%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#78350f"/></linearGradient><radialGradient id="ds14h" cx=".42" cy=".36" r=".7"><stop offset="0%" stop-color="#3a3a3a"/><stop offset="100%" stop-color="#000"/></radialGradient></defs><rect x="2" y="2" width="156" height="66" rx="9" fill="url(#ds14a)" stroke="#78350f" stroke-width="2.5"/><circle cx="20" cy="20" r="10.5" fill="url(#ds14h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="20" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="17.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="50" cy="20" r="10.5" fill="url(#ds14h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="50" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="47.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="80" cy="20" r="10.5" fill="url(#ds14h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="80" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="77.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="110" cy="20" r="10.5" fill="url(#ds14h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="110" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="107.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="140" cy="20" r="10.5" fill="url(#ds14h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="20" cy="50" r="10.5" fill="url(#ds14h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="50" cy="50" r="10.5" fill="url(#ds14h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="80" cy="50" r="10.5" fill="url(#ds14h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="110" cy="50" r="10.5" fill="url(#ds14h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="140" cy="50" r="10.5" fill="url(#ds14h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/></svg></div>
+    <div class="ex-a"><div class="eqrow">10 ve <span class="wbox"></span> → <span class="wbox wbox-lg"></span></div></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>16 kur: kaç tam onluk, kaç tek pul?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 160 70" width="160" height="70" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><defs><linearGradient id="ds15a" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fde047"/><stop offset="32%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#78350f"/></linearGradient><radialGradient id="ds15h" cx=".42" cy=".36" r=".7"><stop offset="0%" stop-color="#3a3a3a"/><stop offset="100%" stop-color="#000"/></radialGradient></defs><rect x="2" y="2" width="156" height="66" rx="9" fill="url(#ds15a)" stroke="#78350f" stroke-width="2.5"/><circle cx="20" cy="20" r="10.5" fill="url(#ds15h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="20" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="17.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="50" cy="20" r="10.5" fill="url(#ds15h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="50" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="47.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="80" cy="20" r="10.5" fill="url(#ds15h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="80" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="77.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="110" cy="20" r="10.5" fill="url(#ds15h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="110" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="107.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="140" cy="20" r="10.5" fill="url(#ds15h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="140" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="137.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="20" cy="50" r="10.5" fill="url(#ds15h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="20" cy="50" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="17.8" cy="47.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="50" cy="50" r="10.5" fill="url(#ds15h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="50" cy="50" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="47.8" cy="47.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="80" cy="50" r="10.5" fill="url(#ds15h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="80" cy="50" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="77.8" cy="47.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="110" cy="50" r="10.5" fill="url(#ds15h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="110" cy="50" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="107.8" cy="47.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="140" cy="50" r="10.5" fill="url(#ds15h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="140" cy="50" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="137.8" cy="47.4" r="3" fill="rgba(255,255,255,.35)"/></svg><svg viewBox="0 0 160 70" width="160" height="70" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><defs><linearGradient id="ds16a" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fde047"/><stop offset="32%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#78350f"/></linearGradient><radialGradient id="ds16h" cx=".42" cy=".36" r=".7"><stop offset="0%" stop-color="#3a3a3a"/><stop offset="100%" stop-color="#000"/></radialGradient></defs><rect x="2" y="2" width="156" height="66" rx="9" fill="url(#ds16a)" stroke="#78350f" stroke-width="2.5"/><circle cx="20" cy="20" r="10.5" fill="url(#ds16h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="20" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="17.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="50" cy="20" r="10.5" fill="url(#ds16h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="50" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="47.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="80" cy="20" r="10.5" fill="url(#ds16h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="80" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="77.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="110" cy="20" r="10.5" fill="url(#ds16h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="110" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="107.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="140" cy="20" r="10.5" fill="url(#ds16h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="140" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="137.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="20" cy="50" r="10.5" fill="url(#ds16h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="20" cy="50" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="17.8" cy="47.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="50" cy="50" r="10.5" fill="url(#ds16h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="80" cy="50" r="10.5" fill="url(#ds16h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="110" cy="50" r="10.5" fill="url(#ds16h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="140" cy="50" r="10.5" fill="url(#ds16h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/></svg></div>
+    <div class="ex-a"><div class="eqrow"><span class="wbox"></span> onluk <span class="wbox"></span> birlik</div></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>"On altı" derken hangi onluğu duyuyorsun?</p></div>
+    
+    <div class="ex-a"><p class="ans-hint">○ on + altı</p></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> İlk çerçeve hep tam dolu (10) olsun.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> &quot;On yedi, ona kaç kalır yirmiye?&quot; gibi çift adımlı sorular.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> 10’u birim olarak kullanmaz; 10’un üstünü baştan sayar. <b>→ Ne yapmalı:</b> Dolu onluk çerçeveyi kapatıp “on ve kaç?” diye sorun. <span class="mis-cite">📖 Sarama &amp; Clements (2009)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> 11–20’yi &quot;bir onluk ve birlikler&quot; olarak saymadan çözerse ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay pulları/çubukları · iki onluk çerçeve · 11–20 kartları <a href="https://dokunsay.com/DokunSayBar/">🔗 dokunsay.com/DokunSayBar/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/sub/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#2E7D32">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">👁️ Sayılar ve İşlemler · Saymadan Anlık Bilme (Sanbil)</div>
+    <h1 class="ws-title"><span class="ws-no">11</span>Basamak Değeriyle Sanbil</h1>
+    <div class="ws-meta">
+      <span class="pill">7–8 yaş</span>
+      <span class="pill">Düzey 11/12</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#2E7D32">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Kısa gösterilen yapılandırılmış düzenlemeleri grupları, ritmik saymayı ve basamak değerini kullanarak adlandırır (&quot;üç onluk ve dört — otuz dört&quot;).</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Bar ile elle yap — DokunSay Basamak blokları (onluk çubuk + birlik küp).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Çubukları onluk saydım: 3 onluk 4 birlik → 34.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 107 90" width="107" height="90" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><rect x="4" y="3" width="13" height="84" rx="2.5" fill="#ea580c" stroke="#c2410c" stroke-width="1.5"/><line x1="4" y1="11.4" x2="17" y2="11.4" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="4" y1="19.8" x2="17" y2="19.8" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="4" y1="28.2" x2="17" y2="28.2" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="4" y1="36.6" x2="17" y2="36.6" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="4" y1="45" x2="17" y2="45" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="4" y1="53.4" x2="17" y2="53.4" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="4" y1="61.8" x2="17" y2="61.8" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="4" y1="70.2" x2="17" y2="70.2" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="4" y1="78.6" x2="17" y2="78.6" stroke="#fff" stroke-width="0.9" opacity=".55"/><rect x="23" y="3" width="13" height="84" rx="2.5" fill="#ea580c" stroke="#c2410c" stroke-width="1.5"/><line x1="23" y1="11.4" x2="36" y2="11.4" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="23" y1="19.8" x2="36" y2="19.8" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="23" y1="28.2" x2="36" y2="28.2" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="23" y1="36.6" x2="36" y2="36.6" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="23" y1="45" x2="36" y2="45" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="23" y1="53.4" x2="36" y2="53.4" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="23" y1="61.8" x2="36" y2="61.8" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="23" y1="70.2" x2="36" y2="70.2" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="23" y1="78.6" x2="36" y2="78.6" stroke="#fff" stroke-width="0.9" opacity=".55"/><rect x="42" y="3" width="13" height="84" rx="2.5" fill="#ea580c" stroke="#c2410c" stroke-width="1.5"/><line x1="42" y1="11.4" x2="55" y2="11.4" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="42" y1="19.8" x2="55" y2="19.8" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="42" y1="28.2" x2="55" y2="28.2" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="42" y1="36.6" x2="55" y2="36.6" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="42" y1="45" x2="55" y2="45" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="42" y1="53.4" x2="55" y2="53.4" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="42" y1="61.8" x2="55" y2="61.8" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="42" y1="70.2" x2="55" y2="70.2" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="42" y1="78.6" x2="55" y2="78.6" stroke="#fff" stroke-width="0.9" opacity=".55"/><rect x="71" y="55" width="13" height="13" rx="2" fill="#d97706" stroke="#92400e" stroke-width="1.4"/><rect x="87" y="55" width="13" height="13" rx="2" fill="#d97706" stroke="#92400e" stroke-width="1.4"/><rect x="71" y="71" width="13" height="13" rx="2" fill="#d97706" stroke="#92400e" stroke-width="1.4"/><rect x="87" y="71" width="13" height="13" rx="2" fill="#d97706" stroke="#92400e" stroke-width="1.4"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">3 onluk 4 birlik = 34</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex">
+    <div class="ex-q"><span class="ex-no">1</span><p>Onluk çubukları TEK TEK değil, ONLUK olarak say.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 107 90" width="107" height="90" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><rect x="4" y="3" width="13" height="84" rx="2.5" fill="#ea580c" stroke="#c2410c" stroke-width="1.5"/><line x1="4" y1="11.4" x2="17" y2="11.4" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="4" y1="19.8" x2="17" y2="19.8" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="4" y1="28.2" x2="17" y2="28.2" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="4" y1="36.6" x2="17" y2="36.6" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="4" y1="45" x2="17" y2="45" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="4" y1="53.4" x2="17" y2="53.4" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="4" y1="61.8" x2="17" y2="61.8" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="4" y1="70.2" x2="17" y2="70.2" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="4" y1="78.6" x2="17" y2="78.6" stroke="#fff" stroke-width="0.9" opacity=".55"/><rect x="23" y="3" width="13" height="84" rx="2.5" fill="#ea580c" stroke="#c2410c" stroke-width="1.5"/><line x1="23" y1="11.4" x2="36" y2="11.4" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="23" y1="19.8" x2="36" y2="19.8" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="23" y1="28.2" x2="36" y2="28.2" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="23" y1="36.6" x2="36" y2="36.6" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="23" y1="45" x2="36" y2="45" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="23" y1="53.4" x2="36" y2="53.4" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="23" y1="61.8" x2="36" y2="61.8" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="23" y1="70.2" x2="36" y2="70.2" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="23" y1="78.6" x2="36" y2="78.6" stroke="#fff" stroke-width="0.9" opacity=".55"/><rect x="42" y="3" width="13" height="84" rx="2.5" fill="#ea580c" stroke="#c2410c" stroke-width="1.5"/><line x1="42" y1="11.4" x2="55" y2="11.4" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="42" y1="19.8" x2="55" y2="19.8" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="42" y1="28.2" x2="55" y2="28.2" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="42" y1="36.6" x2="55" y2="36.6" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="42" y1="45" x2="55" y2="45" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="42" y1="53.4" x2="55" y2="53.4" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="42" y1="61.8" x2="55" y2="61.8" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="42" y1="70.2" x2="55" y2="70.2" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="42" y1="78.6" x2="55" y2="78.6" stroke="#fff" stroke-width="0.9" opacity=".55"/><rect x="71" y="55" width="13" height="13" rx="2" fill="#d97706" stroke="#92400e" stroke-width="1.4"/><rect x="87" y="55" width="13" height="13" rx="2" fill="#d97706" stroke="#92400e" stroke-width="1.4"/><rect x="71" y="71" width="13" height="13" rx="2" fill="#d97706" stroke="#92400e" stroke-width="1.4"/><rect x="87" y="71" width="13" height="13" rx="2" fill="#d97706" stroke="#92400e" stroke-width="1.4"/></svg></div>
+    <div class="ex-a"><div class="eqrow"><span class="wbox"></span> onluk <span class="wbox"></span> birlik = <span class="wbox wbox-lg"></span></div></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>27 pulu daha az parçayla göster: 2 onluk 7 birlik. Sayı yine kaç?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 88 90" width="88" height="90" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><rect x="4" y="3" width="13" height="84" rx="2.5" fill="#ea580c" stroke="#c2410c" stroke-width="1.5"/><line x1="4" y1="11.4" x2="17" y2="11.4" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="4" y1="19.8" x2="17" y2="19.8" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="4" y1="28.2" x2="17" y2="28.2" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="4" y1="36.6" x2="17" y2="36.6" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="4" y1="45" x2="17" y2="45" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="4" y1="53.4" x2="17" y2="53.4" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="4" y1="61.8" x2="17" y2="61.8" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="4" y1="70.2" x2="17" y2="70.2" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="4" y1="78.6" x2="17" y2="78.6" stroke="#fff" stroke-width="0.9" opacity=".55"/><rect x="23" y="3" width="13" height="84" rx="2.5" fill="#ea580c" stroke="#c2410c" stroke-width="1.5"/><line x1="23" y1="11.4" x2="36" y2="11.4" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="23" y1="19.8" x2="36" y2="19.8" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="23" y1="28.2" x2="36" y2="28.2" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="23" y1="36.6" x2="36" y2="36.6" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="23" y1="45" x2="36" y2="45" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="23" y1="53.4" x2="36" y2="53.4" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="23" y1="61.8" x2="36" y2="61.8" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="23" y1="70.2" x2="36" y2="70.2" stroke="#fff" stroke-width="0.9" opacity=".55"/><line x1="23" y1="78.6" x2="36" y2="78.6" stroke="#fff" stroke-width="0.9" opacity=".55"/><rect x="52" y="23" width="13" height="13" rx="2" fill="#d97706" stroke="#92400e" stroke-width="1.4"/><rect x="68" y="23" width="13" height="13" rx="2" fill="#d97706" stroke="#92400e" stroke-width="1.4"/><rect x="52" y="39" width="13" height="13" rx="2" fill="#d97706" stroke="#92400e" stroke-width="1.4"/><rect x="68" y="39" width="13" height="13" rx="2" fill="#d97706" stroke="#92400e" stroke-width="1.4"/><rect x="52" y="55" width="13" height="13" rx="2" fill="#d97706" stroke="#92400e" stroke-width="1.4"/><rect x="68" y="55" width="13" height="13" rx="2" fill="#d97706" stroke="#92400e" stroke-width="1.4"/><rect x="52" y="71" width="13" height="13" rx="2" fill="#d97706" stroke="#92400e" stroke-width="1.4"/></svg></div>
+    <div class="ex-a"><span class="wbox wbox-lg"></span></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>Masaya 27 pul say. Kaç onluk çubuk dolar, kaç pul artar?</p></div>
+    
+    <div class="ex-a"><div class="eqrow"><span class="wbox"></span> onluk · <span class="wbox"></span> artan</div></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Birlik sayısını 0–3’te tutun, yalnız onlukları okutun.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> 3 basamağa geçin (yüzlük levha ekleyin).</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> 3 onluk + 4’ü “üç ve dört → yedi” diye okur; onluğu birlik sayar. <b>→ Ne yapmalı:</b> Önce onluk çubukları onar saydırıp “otuz” dedirtin, sonra birlikleri ekletin. <span class="mis-cite">📖 Ross (1989)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Onluk yapıları bakışta çözüp 2 basamaklı sayıyı saymadan söylerse ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay Basamak blokları (onluk çubuk + birlik küp) · 2 basamaklı sayı kartları <a href="https://dokunsay.com/DokunSayBasamak/">🔗 dokunsay.com/DokunSayBasamak/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/sub/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#2E7D32">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">👁️ Sayılar ve İşlemler · Saymadan Anlık Bilme (Sanbil)</div>
+    <h1 class="ws-title"><span class="ws-no">12</span>Çarpımsal Düşünmeyle Sanbil</h1>
+    <div class="ws-meta">
+      <span class="pill">8–9 yaş</span>
+      <span class="pill">Düzey 12/12</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#2E7D32">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Kısa gösterilen yapılandırılmış düzenlemeleri grupları, çarpımsal düşünmeyi ve onluk tabanı kullanarak adlandırır; kaç onluk gördüğünü sözel olarak…</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Bar ile elle yap — DokunSay pulları (ızgaraya dizili).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>3 sıra, her sırada 4 — tek tek saymadım: 3 × 4 → 12.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 130 100" width="130" height="100" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><defs><linearGradient id="ds17a" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fde047"/><stop offset="32%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#78350f"/></linearGradient><radialGradient id="ds17h" cx=".42" cy=".36" r=".7"><stop offset="0%" stop-color="#3a3a3a"/><stop offset="100%" stop-color="#000"/></radialGradient></defs><rect x="2" y="2" width="126" height="96" rx="9" fill="url(#ds17a)" stroke="#78350f" stroke-width="2.5"/><circle cx="20" cy="20" r="10.5" fill="url(#ds17h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="20" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="17.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="50" cy="20" r="10.5" fill="url(#ds17h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="50" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="47.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="80" cy="20" r="10.5" fill="url(#ds17h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="80" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="77.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="110" cy="20" r="10.5" fill="url(#ds17h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="110" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="107.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="20" cy="50" r="10.5" fill="url(#ds17h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="20" cy="50" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="17.8" cy="47.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="50" cy="50" r="10.5" fill="url(#ds17h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="50" cy="50" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="47.8" cy="47.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="80" cy="50" r="10.5" fill="url(#ds17h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="80" cy="50" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="77.8" cy="47.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="110" cy="50" r="10.5" fill="url(#ds17h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="110" cy="50" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="107.8" cy="47.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="20" cy="80" r="10.5" fill="url(#ds17h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="20" cy="80" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="17.8" cy="77.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="50" cy="80" r="10.5" fill="url(#ds17h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="50" cy="80" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="47.8" cy="77.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="80" cy="80" r="10.5" fill="url(#ds17h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="80" cy="80" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="77.8" cy="77.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="110" cy="80" r="10.5" fill="url(#ds17h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="110" cy="80" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="107.8" cy="77.4" r="3" fill="rgba(255,255,255,.35)"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">3 × 4 = 12</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex">
+    <div class="ex-q"><span class="ex-no">1</span><p>Sıralar EŞİT. Tek tek sayma: kaç sıra, her sırada kaç?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 130 100" width="130" height="100" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><defs><linearGradient id="ds18a" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fde047"/><stop offset="32%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#78350f"/></linearGradient><radialGradient id="ds18h" cx=".42" cy=".36" r=".7"><stop offset="0%" stop-color="#3a3a3a"/><stop offset="100%" stop-color="#000"/></radialGradient></defs><rect x="2" y="2" width="126" height="96" rx="9" fill="url(#ds18a)" stroke="#78350f" stroke-width="2.5"/><circle cx="20" cy="20" r="10.5" fill="url(#ds18h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="20" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="17.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="50" cy="20" r="10.5" fill="url(#ds18h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="50" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="47.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="80" cy="20" r="10.5" fill="url(#ds18h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="80" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="77.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="110" cy="20" r="10.5" fill="url(#ds18h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="110" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="107.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="20" cy="50" r="10.5" fill="url(#ds18h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="20" cy="50" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="17.8" cy="47.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="50" cy="50" r="10.5" fill="url(#ds18h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="50" cy="50" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="47.8" cy="47.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="80" cy="50" r="10.5" fill="url(#ds18h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="80" cy="50" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="77.8" cy="47.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="110" cy="50" r="10.5" fill="url(#ds18h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="110" cy="50" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="107.8" cy="47.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="20" cy="80" r="10.5" fill="url(#ds18h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="20" cy="80" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="17.8" cy="77.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="50" cy="80" r="10.5" fill="url(#ds18h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="50" cy="80" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="47.8" cy="77.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="80" cy="80" r="10.5" fill="url(#ds18h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="80" cy="80" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="77.8" cy="77.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="110" cy="80" r="10.5" fill="url(#ds18h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="110" cy="80" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="107.8" cy="77.4" r="3" fill="rgba(255,255,255,.35)"/></svg></div>
+    <div class="ex-a"><div class="eqrow"><span class="wbox"></span> × <span class="wbox"></span> = <span class="wbox wbox-lg"></span></div></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>2 sıra 5'er pul mu, 5 sıra 2'şer pul mu? İkisi de kaç?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 160 70" width="160" height="70" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><defs><linearGradient id="ds19a" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fde047"/><stop offset="32%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#78350f"/></linearGradient><radialGradient id="ds19h" cx=".42" cy=".36" r=".7"><stop offset="0%" stop-color="#3a3a3a"/><stop offset="100%" stop-color="#000"/></radialGradient></defs><rect x="2" y="2" width="156" height="66" rx="9" fill="url(#ds19a)" stroke="#78350f" stroke-width="2.5"/><circle cx="20" cy="20" r="10.5" fill="url(#ds19h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="20" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="17.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="50" cy="20" r="10.5" fill="url(#ds19h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="50" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="47.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="80" cy="20" r="10.5" fill="url(#ds19h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="80" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="77.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="110" cy="20" r="10.5" fill="url(#ds19h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="110" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="107.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="140" cy="20" r="10.5" fill="url(#ds19h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="140" cy="20" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="137.8" cy="17.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="20" cy="50" r="10.5" fill="url(#ds19h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="20" cy="50" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="17.8" cy="47.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="50" cy="50" r="10.5" fill="url(#ds19h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="50" cy="50" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="47.8" cy="47.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="80" cy="50" r="10.5" fill="url(#ds19h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="80" cy="50" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="77.8" cy="47.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="110" cy="50" r="10.5" fill="url(#ds19h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="110" cy="50" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="107.8" cy="47.4" r="3" fill="rgba(255,255,255,.35)"/><circle cx="140" cy="50" r="10.5" fill="url(#ds19h)" stroke="rgba(0,0,0,.45)" stroke-width="1.5"/><circle cx="140" cy="50" r="10" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/><circle cx="137.8" cy="47.4" r="3" fill="rgba(255,255,255,.35)"/></svg></div>
+    <div class="ex-a"><div class="eqrow">2 × 5 = <span class="wbox wbox-lg"></span></div></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>12 pulu eşit sıralara diz: kaç türlü olur?</p></div>
+    
+    <div class="ex-a"><p class="ans-hint">○ 3×4 · 4×3 · 2×6 …</p></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Küçük diziler (2×2, 2×3) ve açık gösterim.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Büyük diziler (4×5), kısa gösterim, &quot;yarısı kaç?&quot; uzantısı.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> grupları çarpımsal kullanmaz; “kaç onluk?” sorusunu “kaç tane?” ile karıştırır. <b>→ Ne yapmalı:</b> Önce “kaç grup?”, sonra “her grupta kaç?” diye iki adımda sorun. <span class="mis-cite">📖 Clements &amp; Sarama (2009)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Diziyi satır × sütun çarpımsal birimle, tek tek saymadan çözerse ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay pulları (ızgaraya dizili) · dizi (array) kartları (2×3, 3×4) · kapatma kartı <a href="https://dokunsay.com/DokunSayBar/">🔗 dokunsay.com/DokunSayBar/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/sub/</span>
+    </div>
+  </div>
+</section>
+</div>
+</body>
+</html>

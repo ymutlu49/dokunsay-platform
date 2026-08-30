@@ -35,6 +35,17 @@ export default {
   cat_comparison: 'Karşılaştırma',
   cat_scenario: 'Senaryo',
   cat_misconception: 'Kavram Yanılgısı',
+  cat_independent: 'Bağımsız',
+  cat_transfer: 'Transfer',
+
+  diff_1: 'Keşif',
+  diff_2: 'Rehberli',
+  diff_3: 'Yönlendirilmiş',
+  diff_4: 'Bağımsız',
+  diff_5: 'Transfer',
+
+  act_misconception: 'Ele alınan yanılgı',
+  act_source: 'Kaynak',
 
   misconception_1: 'Eksi × eksi = eksi sanma',
   misconception_2: 'Sayı büyüklüğü yanılgısı',
@@ -58,6 +69,7 @@ export default {
   btn_close: 'Kapat',
 
   a11y_dyscalculia: 'Diskalkuli Modu',
+  a11y_dyslexia: 'Disleksi Modu',
   a11y_high_contrast: 'Yüksek Kontrast',
   a11y_tts: 'Sesli Okuma',
   a11y_sfx: 'Ses Efektleri',

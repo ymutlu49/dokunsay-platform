@@ -16,6 +16,8 @@ interface SidebarFooterProps {
   onRedo: () => void;
   onToggleLabels: () => void;
   onToggleNumberLine: () => void;
+  showSentence: boolean;
+  onToggleSentence: () => void;
   onToggleCover: () => void;
   onSave: () => void;
   onLoad: () => void;
@@ -28,7 +30,7 @@ interface SidebarFooterProps {
 export default function SidebarFooter({
   lang, palette, isDark, showLabels, showNumberLine, covered,
   canUndo, canRedo, selectedRodValue,
-  onUndo, onRedo, onToggleLabels, onToggleNumberLine,
+  onUndo, onRedo, onToggleLabels, onToggleNumberLine, showSentence, onToggleSentence,
   onToggleCover, onSave, onLoad, onExportPng, onPrint, onClear, onAbout,
 }: SidebarFooterProps) {
   const t = (k: string) => translate(k, lang);
@@ -69,10 +71,10 @@ export default function SidebarFooter({
       <div style={{ display: "flex", gap: 4 }}>
         {/* Undo/Redo */}
         <div style={{ display: "flex", gap: 1, padding: 2, borderRadius: 8, background: groupBg, border: `1px solid ${groupBorder}` }}>
-          <button title={t("undo")} onClick={onUndo} style={tb(false, { opacity: canUndo ? 1 : 0.3 })}>
+          <button title={t("undo")} onClick={onUndo} style={tb(false, { opacity: canUndo ? 1 : 0.65 })}>
             <span style={{ fontSize: 11 }}>↩</span> {t("undo")}
           </button>
-          <button title={t("redo")} onClick={onRedo} style={tb(false, { opacity: canRedo ? 1 : 0.3 })}>
+          <button title={t("redo")} onClick={onRedo} style={tb(false, { opacity: canRedo ? 1 : 0.65 })}>
             <span style={{ fontSize: 11 }}>↪</span> {t("redo")}
           </button>
         </div>
@@ -81,6 +83,11 @@ export default function SidebarFooter({
         <div style={{ display: "flex", gap: 1, padding: 2, borderRadius: 8, background: groupBg, border: `1px solid ${groupBorder}`, flex: 1 }}>
           <button title={t("labels")} onClick={onToggleLabels} style={tb(showLabels)}>
             <span style={{ fontSize: 9, fontWeight: 900, fontFamily: "monospace" }}>123</span>
+          </button>
+          {/* Sembolik + sözel cümle şeridi (CRA'nın S basamağı). Simge "=" —
+              çocuk için "eşittir" en tanıdık sembolik işaret. */}
+          <button title={t("sentenceDesc")} onClick={onToggleSentence} style={tb(showSentence)}>
+            <span style={{ fontSize: 11, fontWeight: 900, fontFamily: "monospace" }}>=</span>
           </button>
           <button title={t("nlDesc")} onClick={onToggleNumberLine} style={tb(showNumberLine)}>
             <svg width="14" height="10" viewBox="0 0 14 10" style={{ flexShrink: 0 }}>

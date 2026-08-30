@@ -1,0 +1,722 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Şekil Birleştirme (2B) — Çalışma Yaprakları · DokunSay</title>
+<meta name="description" content="Şekil Birleştirme (2B) öğrenme yörüngesi için her düzeye bir baskıya hazır çalışma yaprağı. CRA (somut→temsilî→soyut) temelli, diskalkuli-dostu. Clements &amp; Sarama.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{ --c:#7c3aed; --ink:#1f2733; --body:#39434f; --mut:#7c8aa0; --line:#e7e2d6; --paper:#fffdf7; --tint:color-mix(in srgb, var(--c) 8%, #fffdf7); }
+*{ box-sizing:border-box; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+html,body{ margin:0; background:#eceae3; font-family:'Lexend',system-ui,Segoe UI,sans-serif; color:var(--body); }
+.bar{ position:sticky; top:0; z-index:9; display:flex; gap:14px; align-items:center; justify-content:space-between;
+  background:#fff; border-bottom:1px solid #dcd8cd; padding:11px 18px; box-shadow:0 1px 6px rgba(0,0,0,.05); }
+.bar .t{ font-family:'Poppins',sans-serif; font-weight:700; color:var(--ink); font-size:15px; }
+.bar .t small{ display:block; font-weight:500; color:var(--mut); font-size:12px; }
+.bar .actions{ display:flex; gap:9px; }
+.btn{ font-family:'Poppins',sans-serif; font-weight:600; font-size:13.5px; border:0; border-radius:10px; padding:9px 15px; cursor:pointer; text-decoration:none; }
+.btn-print{ background:var(--c); color:#fff; } .btn-back{ background:#eef1f4; color:#334155; }
+.wrap{ max-width:880px; margin:18px auto 40px; padding:0 14px; }
+
+/* ── A4 çalışma yaprağı ───────────────────────────────────────────── */
+.sheet{ background:var(--paper); width:210mm; height:297mm; overflow:hidden; margin:0 auto 20px; padding:11mm 13mm 6mm;
+  border-radius:4px; box-shadow:0 6px 26px rgba(31,39,51,.13); position:relative;
+  display:flex; flex-direction:column; gap:1.8mm; }
+.lbl{ display:inline-block; font-family:'Poppins',sans-serif; font-weight:700; font-size:10.5pt; color:var(--c); letter-spacing:.2px; margin-bottom:2px; }
+
+.ws-head{ border-bottom:3px solid var(--c); padding-bottom:7px; }
+.ws-top{ display:flex; justify-content:space-between; align-items:center; font-size:10pt; color:var(--mut); }
+.ws-brand{ display:inline-flex; align-items:center; gap:7px; font-family:'Poppins',sans-serif; }
+.ws-brand b{ color:var(--ink); } .logo{ width:22px; height:22px; }
+.ws-name{ font-size:9.5pt; } .nl{ display:inline-block; width:34mm; border-bottom:1.4px dotted #b8c0cc; } .nl.sm{ width:24mm; }
+.ws-eyebrow{ font-family:'Poppins',sans-serif; font-weight:600; font-size:10pt; color:var(--c); margin-top:8px; text-transform:uppercase; letter-spacing:.4px; }
+.ws-title{ font-family:'Poppins',sans-serif; font-weight:800; font-size:18pt; line-height:1.1; color:var(--ink); margin:2px 0 6px; display:flex; align-items:baseline; gap:8px; }
+.ws-no{ background:var(--c); color:#fff; font-size:12pt; min-width:27px; height:27px; padding:0 6px; border-radius:8px; display:inline-flex; align-items:center; justify-content:center; }
+.ws-meta{ display:flex; flex-wrap:wrap; gap:7px; align-items:center; }
+.pill{ font-family:'Poppins',sans-serif; font-weight:600; font-size:9.5pt; background:#eef2f7; color:#475569; border-radius:20px; padding:4px 11px; }
+.pill.warn{ background:#fff3e2; color:#9a3412; }
+.cra{ display:inline-flex; align-items:center; gap:4px; margin-left:auto; }
+.cra-s{ font-family:'Poppins',sans-serif; font-weight:600; font-size:9pt; color:#94a3b8; background:#f1f4f8; border-radius:7px; padding:3px 9px; }
+.cra-s.on{ color:#fff; } .cra-arr{ color:#cbd5e1; font-size:10pt; }
+
+.ws-obj{ background:var(--tint); border-radius:10px; padding:7px 12px; }
+.ws-obj p{ margin:1px 0 0; font-size:11pt; line-height:1.42; color:var(--ink); }
+.ws-method .msteps{ margin:1px 0 0; padding-left:0; list-style:none; display:flex; flex-direction:column; gap:2px; counter-reset:m; }
+.ws-method .msteps li{ font-size:10pt; line-height:1.32; padding-left:26px; position:relative; }
+.ws-method .msteps li::before{ counter-increment:m; content:counter(m); position:absolute; left:0; top:0;
+  width:21px; height:21px; border-radius:50%; background:var(--c); color:#fff; font-family:'Poppins',sans-serif; font-weight:700; font-size:10pt; display:flex; align-items:center; justify-content:center; }
+.ws-method .msteps b{ color:var(--c); }
+
+.ws-egbox{ background:#f4f8f5; border:1.5px dashed color-mix(in srgb,var(--c) 45%,#cbd5e1); border-radius:10px; padding:6px 12px 7px; }
+.ws-egbox .lbl{ color:color-mix(in srgb,var(--c) 70%, #166534); }
+
+.items-grid{ display:grid; grid-template-columns:1fr 1fr; gap:5px; margin-top:2px; align-items:start; }
+.ex{ border:1.4px solid var(--line); border-radius:11px; padding:7px 10px 8px; background:#fff; break-inside:avoid; }
+.ex.wide{ grid-column:1 / -1; }
+.ex.eg{ border:0; padding:2px 0 0; background:transparent; grid-column:1 / -1; }
+.ex-q{ display:flex; gap:7px; align-items:flex-start; }
+.ex-no{ flex:0 0 auto; width:22px; height:22px; border-radius:50%; background:var(--c); color:#fff; font-family:'Poppins',sans-serif; font-weight:700; font-size:10.5pt; display:flex; align-items:center; justify-content:center; }
+.ex.eg .ex-no{ background:#fef3c7; }
+.ex-q p{ margin:1px 0 0; font-size:10.8pt; line-height:1.4; color:var(--ink); }
+.ex-v{ margin:4px 0 3px; text-align:center; } .ex-a{ margin:0; text-align:center; }
+.ex.wide .ex-v, .ex.wide .ex-a, .ex.eg .ex-v, .ex.eg .ex-a{ text-align:left; margin-left:30px; }
+
+/* SVG görseller — içsel boyut ama A4'e sığması için yükseklik sınırlı */
+.ws-svg{ max-width:100%; width:auto; height:auto; vertical-align:middle; }
+.ex-v .ws-svg{ max-height:16mm; }
+.ex-v .ws-svg.ws-tall{ max-height:17mm; }
+.ws-egbox .ex-v .ws-svg{ max-height:12mm; } .ws-egbox .ex-v .ws-svg.ws-tall{ max-height:13mm; }
+.ex-v .ws-frac{ max-height:26mm; } .ws-svg.ws-frac{ width:auto; max-height:26mm; } svg.ws-glyph{ width:12mm; height:12mm; }
+.pat-row{ display:flex; align-items:center; gap:7px; flex-wrap:wrap; }
+.pat-c svg{ width:13mm; height:13mm; } .pat-q{ width:13mm; height:13mm; border:2px dashed #b8c0cc; border-radius:8px; display:inline-flex; align-items:center; justify-content:center; font-family:'Poppins',sans-serif; font-weight:800; font-size:16pt; color:#b8c0cc; }
+
+/* Yanıt alanları */
+.wbox{ display:inline-block; width:14mm; height:14mm; border:2px solid #94a3b8; border-radius:8px; vertical-align:middle; margin:0 3px; background:#fff; }
+.wbox.wbox-lg{ width:18mm; height:14mm; border-color:var(--c); }
+.eqrow{ display:flex; align-items:center; flex-wrap:wrap; gap:5px; font-family:'Poppins',sans-serif; font-weight:600; font-size:15pt; color:var(--ink); }
+.bignum{ font-family:'Poppins',sans-serif; font-weight:700; font-size:17pt; color:var(--ink); } .bignum.sm{ font-size:14pt; padding:0 3px; }
+.seqn{ font-family:'Poppins',sans-serif; font-weight:600; font-size:14pt; } .seqsep{ color:#94a3b8; }
+.ans-hint{ margin:5px 0 0 0; font-size:10.5pt; color:var(--mut); font-style:normal; }
+.ans-shown{ font-family:'Poppins',sans-serif; font-size:14pt; color:#166534; }
+
+.ws-scaffold{ display:flex; gap:8px; flex-wrap:wrap; }
+.sc{ flex:1 1 44%; font-size:9.8pt; line-height:1.30; border-radius:9px; padding:5px 10px; }
+.sc-easy{ background:#eef4fb; } .sc-easy b{ color:#1d4ed8; }
+.sc-hard{ background:#f5f0fb; } .sc-hard b{ color:#7c3aed; }
+
+.ws-foot{ margin-top:auto; padding-top:5px; border-top:1px solid var(--line); display:flex; flex-direction:column; gap:4px; }
+.ws-check{ background:#f0fdf4; border-radius:9px; padding:5px 11px; font-size:10pt; line-height:1.35; color:#166534; display:flex; justify-content:space-between; align-items:center; gap:10px; }
+.ws-check b{ color:#15803d; } .stars{ font-size:14pt; color:#f59e0b; letter-spacing:2px; white-space:nowrap; }
+.ws-credit{ font-size:7.8pt; color:var(--mut); line-height:1.35; display:flex; flex-direction:column; gap:1px; }
+.ws-credit .mat{ color:#475569; }
+.ws-credit a{ color:#475569; }
+/* Kavram yanılgısı şeridi. Punto (8.7pt) künyeden (7.8pt) büyük ama gövde metninden
+   küçük: öğretmene yönelik ikincil bilgi, çocuğun göreviyle yarışmamalı. Yapraklar
+   milimetrik dolu olduğu için bu ölçüler A4 taşmasına karşı ölçülerek seçildi. */
+.ws-mis{ background:#fff7ed; border-left:3px solid #fb923c; border-radius:9px; padding:3px 10px; font-size:8.7pt; line-height:1.26; color:#7c2d12; }
+.ws-mis b{ color:#9a3412; font-weight:700; }
+.ws-mis .mis-cite{ color:#a16207; white-space:nowrap; }
+
+/* ── Baskı ─────────────────────────────────────────────────────────── */
+@media print{
+  @page{ size:A4; margin:0; }
+  html,body{ background:#fff; }
+  .bar,.wrap>.intro{ display:none !important; }
+  .wrap{ margin:0; padding:0; max-width:none; }
+  .sheet{ width:210mm; height:297mm; margin:0; border-radius:0; box-shadow:none; overflow:hidden; break-before:page; }
+  .sheet:first-child{ break-before:avoid; }
+}
+.intro{ background:#fff; border-radius:14px; padding:16px 20px; margin-bottom:18px; box-shadow:0 2px 10px rgba(0,0,0,.05); }
+.intro h2{ font-family:'Poppins',sans-serif; margin:0 0 5px; color:var(--ink); font-size:18px; }
+.intro p{ margin:0; font-size:13.5px; line-height:1.55; color:#5b6573; }
+</style>
+</head>
+<body>
+<div class="bar no-print">
+  <span class="t">🧱 Şekil Birleştirme (2B) — Çalışma Yaprakları<small>11 düzey · Geometri ve Uzamsal · CRA temelli</small></span>
+  <span class="actions">
+    <a class="btn btn-back" href="./">← Yörüngeye dön</a>
+    <button class="btn btn-print" onclick="window.print()">🖨️ Yazdır / PDF kaydet</button>
+  </span>
+</div>
+<div class="wrap">
+  <div class="intro no-print">
+    <h2>Şekil Birleştirme (2B) · Çalışma Yaprakları</h2>
+    <p>Her düzey için bir baskıya-hazır A4 çalışma yaprağı. Her yaprak <b>önce somut</b> (DokunSay Geo ile), <b>sonra resimle</b> (bu sayfa), <b>en sonda sembolle</b> (çocuk yazar) ilerler — diskalkuli için kanıta dayalı CRA sırası. Çocuğun bulunduğu düzeyden başlayın; ✓ölçütü karşılayınca bir sonraki yaprağa geçin. Yazdırıp tek tek kullanın ya da PDF olarak kaydedin.</p>
+  </div>
+  <section class="sheet" style="--c:#7c3aed">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🧱 Geometri ve Uzamsal · Şekil Birleştirme (2B)</div>
+    <h1 class="ws-title"><span class="ws-no">1</span>Şekillerle Tek Tek Oynayan: Temeller</h1>
+    <div class="ws-meta">
+      <span class="pill">0–3 yaş</span>
+      <span class="pill">Düzey 1/11</span>
+      
+      <span class="cra"><span class="cra-s on" style="background:#7c3aed">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Şekilleri tek tek ele alır; daha büyük bir şekil oluşturmak için birleştirmez.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Oyna</b> — DokunSay Geo ya da günlük nesnelerle birlikte oynayın — İri, kavraması kolay desen blokları (üçgen, kare, altıgen).</li><li><b>Söyle</b> — Sayıları/sözcükleri yüksek sesle ve ritimle siz söyleyin; çocuk katılsın.</li><li><b>Gözle</b> — Tepkisini gözleyin — bu yaşta yazı/çizim beklenmez, deneyim önemlidir.</li></ol>
+  </div>
+
+  
+
+  <div class="ws-items"><span class="lbl">🎲 Birlikte oyna (siz yönlendirin)</span>
+    <div class="items-grid"><div class="ex">
+    <div class="ex-q"><span class="ex-no">1</span><p>Çocuğun önüne birkaç farklı şekil koyun; serbestçe oynamasına bırakın.</p></div>
+    
+    
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Bir parçayı eline verip "Bunun kaç köşesi var?" diyerek kenarlarını birlikte parmakla izleyin.</p></div>
+    
+    
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>Şekilleri adlandırın: "Bu üçgen, bu kare" — ama henüz birleştirmeye yönlendirmeyin.</p></div>
+    
+    
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">4</span><p>Çocuk parçaları nasıl kullanıyor diye gözleyin: tek tek mi, yoksa kendiliğinden yan yana mı getiriyor?</p></div>
+    
+    
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Az sayıda (2–3) büyük, belirgin şekille çalışın; çok seçenek vermeyin.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Daha çok parça ve çeşit sunup kendiliğinden iki parçayı yan yana getirip getirmediğini gözleyin.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Şekilleri yan yana dizer ama birleştirip yeni bir bütün kurmayı denemez. <b>→ Ne yapmalı:</b> İki üçgeni birleştirip kare yapın, &quot;sen de dene&quot; deyin. <span class="mis-cite">📖 Clements, Wilson &amp; Sarama (2004)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Şekilleri ayrı ayrı, tek tek kullanıyor (henüz birleştirmiyor) ise bu düzeydedir ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 İri, kavraması kolay desen blokları (üçgen, kare, altıgen) · Birkaç büyük ahşap yapboz parçası · Düz, geniş bir oyun zemini</span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/comp2d/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#7c3aed">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🧱 Geometri ve Uzamsal · Şekil Birleştirme (2B)</div>
+    <h1 class="ws-title"><span class="ws-no">2</span>Parçaları Bir Araya Getiren</h1>
+    <div class="ws-meta">
+      <span class="pill">3–4 yaş</span>
+      <span class="pill">Düzey 2/11</span>
+      
+      <span class="cra"><span class="cra-s on" style="background:#7c3aed">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Her şeklin tek bir rol üstlendiği, şekillerin birbirine değdiği resimler yapar; TÜM parçaların tek tek çizgiyle gösterildiği basit yapbozları…</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Geo ile elle yap — Tangram ya da desen blokları (düz kenarlı).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>Bu iki parçayı birleştirince hangi şekil olur? Çiz.</p></div>
+    <div class="ex-v"><div class="pat-row"><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,50 6,50" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linejoin="round"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,50 6,50" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linejoin="round"/></svg></span></div></div>
+    
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Bu şekli iki eş parçaya ayıran çizgiyi çiz.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="6" y="6" width="44" height="44" rx="4" fill="none" stroke="#7c3aed" stroke-width="2.5"/></svg></div>
+    
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Yalnız düz, uzun kenarlı iki parçayla (iki kare) başlayın; hizalaması kolaydır.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Eğik kenarlı parçalar (üçgenler) ya da üç parçayı bir arada birleştirmesini isteyin.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Yapboz parçasını boşluğa döndürmeden bastırır; olmayınca başka parça alır. <b>→ Ne yapmalı:</b> Parçayı elinde döndürerek kenarların eşleştiği yönü buldurun. <span class="mis-cite">📖 Clements, Wilson &amp; Sarama (2004)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> İki (veya daha çok) parçayı bilinçli olarak kenar kenara dokundurup birleştirirse ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 Tangram ya da desen blokları (düz kenarlı) · Düz bir tepsi veya çerçeveli zemin (parçalar kaymasın)</span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/comp2d/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#7c3aed">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🧱 Geometri ve Uzamsal · Şekil Birleştirme (2B)</div>
+    <h1 class="ws-title"><span class="ws-no">3</span>Resim Yapan</h1>
+    <div class="ws-meta">
+      <span class="pill">4–5 yaş</span>
+      <span class="pill">Düzey 3/11</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#7c3aed">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Bir resim ögesini birkaç şekli birleştirerek yapar (iki şekil = bir kol); yeni geometrik şekli ÖNGÖRMEDEN, deneme-yanılmayla ve &quot;genel…</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Geo ile elle yap — Tangram ya da desen blokları (çeşitli).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>Bu iki parçayı birleştirince hangi şekil olur? Çiz.</p></div>
+    <div class="ex-v"><div class="pat-row"><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,50 6,50" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linejoin="round"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,50 6,50" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linejoin="round"/></svg></span></div></div>
+    
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Bu şekli iki eş parçaya ayıran çizgiyi çiz.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="6" y="6" width="44" height="44" rx="4" fill="none" stroke="#7c3aed" stroke-width="2.5"/></svg></div>
+    
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Basit bir model resim gösterip onu kopyalamasını isteyin.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Model vermeden, yalnız sözle (&quot;bir balık yap&quot;) özgün bir resim kurdurun.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Parçayı yalnız genel görünüşe göre seçer; kenar tutmayınca boşluğa zorlar. <b>→ Ne yapmalı:</b> Seçmeden önce parçanın kenarını boşluğun kenarına dayatıp karşılaştırtın. <span class="mis-cite">📖 Clements, Wilson &amp; Sarama (2004)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Birden çok şekli, her biri tek bir rol alacak biçimde tanınır bir resme dönüştürürse ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 Tangram ya da desen blokları (çeşitli) · Resim için fikir kartları (ev, çiçek, insan, kayık) · Düz oyun zemini</span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/comp2d/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#7c3aed">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🧱 Geometri ve Uzamsal · Şekil Birleştirme (2B)</div>
+    <h1 class="ws-title"><span class="ws-no">4</span>Basit Şekilleri Parçalarına Ayıran</h1>
+    <div class="ws-meta">
+      <span class="pill">4–5 yaş</span>
+      <span class="pill">Düzey 4/11</span>
+      
+      <span class="cra"><span class="cra-s on" style="background:#7c3aed">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Ayrışımı açıkça belli olan (ipucu veren) basit şekilleri parçalarına ayırır.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Geo ile elle yap — Üzeri belirgin çizgilerle bölünmüş basit şekil kartları.</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>Bu iki parçayı birleştirince hangi şekil olur? Çiz.</p></div>
+    <div class="ex-v"><div class="pat-row"><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,50 6,50" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linejoin="round"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,50 6,50" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linejoin="round"/></svg></span></div></div>
+    
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Bu şekli iki eş parçaya ayıran çizgiyi çiz.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="6" y="6" width="44" height="44" rx="4" fill="none" stroke="#7c3aed" stroke-width="2.5"/></svg></div>
+    
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Tek bir kalın çizgiyle ikiye bölünmüş şekil kullanın (ev, kare).</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Birden çok çizgili (üç-dört parçalı) şekiller ya da çizgiyi inceltip soluklaştırın.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Çizgiyle bölünmüş kareyi bile &quot;tek parça&quot; görüp içindeki üçgenleri saymaz. <b>→ Ne yapmalı:</b> Çizginin bir yanını boyatıp &quot;kaç şekil oldu?&quot; diye sorun. <span class="mis-cite">📖 Battista (2007)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Belirgin çizgili basit bir şekli, çizgiler boyunca doğru parçalara ayırırsa ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 Üzeri belirgin çizgilerle bölünmüş basit şekil kartları · Desen blokları (kartla aynı parçalara karşılık gelen) · Makas yerine çizgi-izleme için parmak/işaret</span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/comp2d/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#7c3aed">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🧱 Geometri ve Uzamsal · Şekil Birleştirme (2B)</div>
+    <h1 class="ws-title"><span class="ws-no">5</span>Şekil Oluşturan</h1>
+    <div class="ws-meta">
+      <span class="pill">4–5 yaş</span>
+      <span class="pill">Düzey 5/11</span>
+      <span class="pill warn">★ Kritik geçiş</span>
+      <span class="cra"><span class="cra-s on" style="background:#7c3aed">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Şekilleri ÖNGÖRÜYLE birleştirir (&quot;Buraya ne oturur, biliyorum!&quot;); şekli açılarına VE kenar uzunluklarına göre seçer; döndürme ve çevirmeyi amaçlı kullanır.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Geo ile elle yap — Desen blokları (üçgen, eşkenar dörtgen, yamuk, altıgen).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>Bu iki parçayı birleştirince hangi şekil olur? Çiz.</p></div>
+    <div class="ex-v"><div class="pat-row"><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,50 6,50" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linejoin="round"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,50 6,50" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linejoin="round"/></svg></span></div></div>
+    
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Bu şekli iki eş parçaya ayıran çizgiyi çiz.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="6" y="6" width="44" height="44" rx="4" fill="none" stroke="#7c3aed" stroke-width="2.5"/></svg></div>
+    
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Hedefin içine parça sınırlarını çizip ipucu verin; tek tür parçayla (yalnız üçgen) doldurtun.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Sınırsız, ipucusuz anahat; &quot;en az kaç parçayla doldurursun?&quot; ya da iki ayrı çözüm bulmasını isteyin.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Parçayı deneme-yanılmayla yerleştirir; hangisinin oturacağını önceden kestirmez. <b>→ Ne yapmalı:</b> Yerleştirmeden önce hangi parçanın oturacağını söyletip sonra denetin. <span class="mis-cite">📖 Clements, Wilson &amp; Sarama (2004)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Bir hedef şekli, parçaları koymadan önce ne sığacağını ÖNGÖREREK (rastgele denemeden) doğru parçalarla oluşturursa ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 Desen blokları (üçgen, eşkenar dörtgen, yamuk, altıgen) · Hedef şekil anahatları (altıgen, yıldız — içi boş şablonlar) · Tangram (daha ileri hedefler için)</span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/comp2d/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#7c3aed">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🧱 Geometri ve Uzamsal · Şekil Birleştirme (2B)</div>
+    <h1 class="ws-title"><span class="ws-no">6</span>Parça Değiştirerek Oluşturan</h1>
+    <div class="ws-meta">
+      <span class="pill">5–6 yaş</span>
+      <span class="pill">Düzey 6/11</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#7c3aed">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Küçük şekillerden yeni şekiller kurar; AYNI şekli farklı şekil takımlarıyla (ikame ederek) farklı yollarla oluşturur.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Geo ile elle yap — Desen blokları (üçgen, eşkenar dörtgen, yamuk, altıgen — birbirine denk gelen).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>Bu iki parçayı birleştirince hangi şekil olur? Çiz.</p></div>
+    <div class="ex-v"><div class="pat-row"><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,50 6,50" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linejoin="round"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,50 6,50" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linejoin="round"/></svg></span></div></div>
+    
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Bu şekli iki eş parçaya ayıran çizgiyi çiz.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="6" y="6" width="44" height="44" rx="4" fill="none" stroke="#7c3aed" stroke-width="2.5"/></svg></div>
+    
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Yalnız bir denklik üzerinde çalışın (2 üçgen = 1 kare); fiziksel üst üste koydurun.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Çok adımlı değiş-tokuş (altıgen → 2 yamuk → her yamuk 3 üçgen) ya da hangi takımın daha az parça kullandığını sordurun.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Altıgeni bir kez kurunca ikinci bir yolu aramaz; tek çözüm var sanır. <b>→ Ne yapmalı:</b> Aynı altıgeni &quot;bu kez üçgen kullanmadan&quot; kurdurun. <span class="mis-cite">📖 Clements, Wilson &amp; Sarama (2004)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Bir şekil grubunu, aynı yeri kaplayan eşdeğer başka bir şekille (ör. 2 üçgen ↔ 1 kare) doğru biçimde değiştirirse ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 Desen blokları (üçgen, eşkenar dörtgen, yamuk, altıgen — birbirine denk gelen) · Hedef bir şekil ya da basit bir döşeme deseni · Düz oyun zemini</span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/comp2d/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#7c3aed">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🧱 Geometri ve Uzamsal · Şekil Birleştirme (2B)</div>
+    <h1 class="ws-title"><span class="ws-no">7</span>Yardımla Şekli Parçalarına Ayıran</h1>
+    <div class="ws-meta">
+      <span class="pill">6–7 yaş</span>
+      <span class="pill">Düzey 7/11</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#7c3aed">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Görev ya da ortamın SUNDUĞU imgelem desteğiyle şekilleri parçalarına ayırır.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Geo ile elle yap — Çizgisiz bileşik şekil kartları (içinde tanıdık şekiller gizli).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>Bu iki parçayı birleştirince hangi şekil olur? Çiz.</p></div>
+    <div class="ex-v"><div class="pat-row"><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,50 6,50" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linejoin="round"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,50 6,50" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linejoin="round"/></svg></span></div></div>
+    
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Bu şekli iki eş parçaya ayıran çizgiyi çiz.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="6" y="6" width="44" height="44" rx="4" fill="none" stroke="#7c3aed" stroke-width="2.5"/></svg></div>
+    
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Az parçalı (2–3) ve parçaları belirgin/tanıdık şekiller olan bileşikler kullanın; her parçayı gösterin.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Çok parçalı, parçaları iç içe geçmiş bileşikler; yalnız tek bir başlangıç ipucu verip gerisini bırakın.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> İpucu çizgisi çekilse bile parçaları üst üste binen biçimde işaretler. <b>→ Ne yapmalı:</b> Bulduğu her parçayı ayrı renge boyatıp örtüşmeyi görünür kılın. <span class="mis-cite">📖 Battista (2007)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Bir bileşik şekli, ipucu/destekle bütünü anlamlı parçalara doğru ayrıştırırsa ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 Çizgisiz bileşik şekil kartları (içinde tanıdık şekiller gizli) · Desen blokları / tangram (ayrıştırmayı kurmak için) · Parçaları işaretlemek için silinebilir kalem ya da şeffaf örtü</span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/comp2d/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#7c3aed">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🧱 Geometri ve Uzamsal · Şekil Birleştirme (2B)</div>
+    <h1 class="ws-title"><span class="ws-no">8</span>Kurduğu Birimi Tekrarlayan</h1>
+    <div class="ws-meta">
+      <span class="pill">6–8 yaş</span>
+      <span class="pill">Düzey 8/11</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#7c3aed">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>&quot;Şekillerden yapılmış şekil&quot; birimlerini BİLEREK kurar ve çoğaltır; bunları hem birçok küçük şekil hem TEK büyük şekil olarak görür; deseni döşemeye…</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Geo ile elle yap — Desen blokları / tangram.</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>Bu iki parçayı birleştirince hangi şekil olur? Çiz.</p></div>
+    <div class="ex-v"><div class="pat-row"><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,50 6,50" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linejoin="round"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,50 6,50" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linejoin="round"/></svg></span></div></div>
+    
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Bu şekli iki eş parçaya ayıran çizgiyi çiz.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="6" y="6" width="44" height="44" rx="4" fill="none" stroke="#7c3aed" stroke-width="2.5"/></svg></div>
+    
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> İki parçalı basit bir birimle (kare + üçgen) ve düz bir şerit boyunca tekrarlatın.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Çok parçalı birim, ya da tekrarda yön/çevirme gerektiren (dönüşümlü) döşeme deseni.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Birimi çoğaltırken yönünü değiştirir; döşemede boşluk ve üst üste binme olur. <b>→ Ne yapmalı:</b> İlk birimi karton kalıba çevirip her tekrarda aynı yönde kullandırın. <span class="mis-cite">📖 Clements, Wilson &amp; Sarama (2004)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Birkaç şekilden oluşan bir bileşik birimi, onu tek bir birim gibi alıp tekrarlayarak desen/döşeme kurarsa ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 Desen blokları / tangram · Tekrarlanacak bileşik birim için bir model (kart ya da kurulu örnek) · Desen şeridi ya da geniş döşeme zemini</span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/comp2d/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#7c3aed">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🧱 Geometri ve Uzamsal · Şekil Birleştirme (2B)</div>
+    <h1 class="ws-title"><span class="ws-no">9</span>İmgelemle Şekli Parçalarına Ayıran</h1>
+    <div class="ws-meta">
+      <span class="pill">6–8 yaş</span>
+      <span class="pill">Düzey 9/11</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#7c3aed">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Şekilleri, KENDİ ürettiği imgelemle (çizgi desteği olmadan) esnek biçimde parçalarına ayırır.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Geo ile elle yap — Şekil kartları (çizgisiz, model yok).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>Bu iki parçayı birleştirince hangi şekil olur? Çiz.</p></div>
+    <div class="ex-v"><div class="pat-row"><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,50 6,50" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linejoin="round"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,50 6,50" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linejoin="round"/></svg></span></div></div>
+    
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Bu şekli iki eş parçaya ayıran çizgiyi çiz.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="6" y="6" width="44" height="44" rx="4" fill="none" stroke="#7c3aed" stroke-width="2.5"/></svg></div>
+    
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Tanıdık, az parçaya ayrılan bir şekille (kareyi iki üçgene) başlayın; tek yol kabul.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Karmaşık şekil ve &quot;en az üç farklı yol&quot; ya da yalnız sözle, hiç doğrulatmadan.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Çizgi yoksa şekli parçalara ayıramaz; &quot;içinde bir şey yok&quot; der. <b>→ Ne yapmalı:</b> Önce çizgili örneği gösterip sonra çizgisizini parmakla çizdirin. <span class="mis-cite">📖 Battista (2007)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Bir şekli model/çizgi olmadan zihninde, esnek biçimde (ve mümkünse birden çok yolla) doğru ayrıştırırsa ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 Şekil kartları (çizgisiz, model yok) · Doğrulama için desen blokları / tangram (önce zihinde, sonra elle) · Düşünmeyi kaydetmek için silinebilir kalem (ops.)</span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/comp2d/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#7c3aed">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🧱 Geometri ve Uzamsal · Şekil Birleştirme (2B)</div>
+    <h1 class="ws-title"><span class="ws-no">10</span>Birimden Birim Kuran</h1>
+    <div class="ws-meta">
+      <span class="pill">8–9 yaş</span>
+      <span class="pill">Düzey 10/11</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#7c3aed">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>BİLİNÇLE kurduğu &quot;birimlerin birimi&quot; yapılarını inşa eder ve uygular; örneğin bilinçli kurulmuş bileşik birimle döşeme (kaplama) oluşturur.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Geo ile elle yap — Bol miktarda desen bloğu (özdeş birimler kurmaya yetecek).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>Bu iki parçayı birleştirince hangi şekil olur? Çiz.</p></div>
+    <div class="ex-v"><div class="pat-row"><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,50 6,50" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linejoin="round"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,50 6,50" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linejoin="round"/></svg></span></div></div>
+    
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Bu şekli iki eş parçaya ayıran çizgiyi çiz.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="6" y="6" width="44" height="44" rx="4" fill="none" stroke="#7c3aed" stroke-width="2.5"/></svg></div>
+    
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Birimi sizinle birlikte kurun; çocuk yalnız birimleri çoğaltıp dizsin.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> İki farklı birim türünü (ör. altıgen + üçgen) birleştiren karmaşık bir döşeme kurdurun.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Bileşik birimi tek tek şekillere geri çözer; birimi bütün olarak taşımaz. <b>→ Ne yapmalı:</b> Bileşik birimi tepsiyle bütün hâlde kaydırtıp bir kerede yerleştirtin. <span class="mis-cite">📖 Clements, Wilson &amp; Sarama (2004)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Şekillerden bir birim kurup, o birimleri de bir araya getirerek (birimlerin birimleriyle) daha büyük bir bütün oluşturursa ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 Bol miktarda desen bloğu (özdeş birimler kurmaya yetecek) · Büyük bir döşeme zemini ya da çerçeve · Birim için bir model (ops.)</span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/comp2d/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#7c3aed">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🧱 Geometri ve Uzamsal · Şekil Birleştirme (2B)</div>
+    <h1 class="ws-title"><span class="ws-no">11</span>Katman Katman Parçalara Ayıran</h1>
+    <div class="ws-meta">
+      <span class="pill">8–10 yaş</span>
+      <span class="pill">Düzey 11/11</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#7c3aed">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Kendileri de ayrışım olan şekilleri PLANLI ayrışımlarla esnekçe parçalara ayırır (parçaların parçaları).</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Geo ile elle yap — Karmaşık bir döşeme/desen kartı ya da kurulu örnek.</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>Bu iki parçayı birleştirince hangi şekil olur? Çiz.</p></div>
+    <div class="ex-v"><div class="pat-row"><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,50 6,50" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linejoin="round"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,50 6,50" fill="none" stroke="#7c3aed" stroke-width="2.5" stroke-linejoin="round"/></svg></span></div></div>
+    
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Bu şekli iki eş parçaya ayıran çizgiyi çiz.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="6" y="6" width="44" height="44" rx="4" fill="none" stroke="#7c3aed" stroke-width="2.5"/></svg></div>
+    
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Tek tür üst-birimden (yalnız altıgenler) oluşan düzenli bir döşeme kullanın; üst katmanı siz işaretleyin.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Birden çok üst-birim türü içeren düzensiz bir döşeme; &quot;toplam küçük parça&quot;yı çarpımla hesaplatın.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> İlk ayrışımda durur; parçaların da parçalara ayrılabileceğini düşünmez. <b>→ Ne yapmalı:</b> Bulduğu bir parçayı gösterip &quot;bunun içinde ne var?&quot; diye sorun. <span class="mis-cite">📖 Battista (2007)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Karmaşık bir döşemeyi, önce büyük birimlere sonra onların alt-parçalarına (birimlerin birimleriyle) doğru ayrıştırırsa ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 Karmaşık bir döşeme/desen kartı ya da kurulu örnek · Desen blokları / tangram (ayrıştırmayı doğrulamak için) · Katmanları işaretlemek için iki renk kalem ya da şeffaf örtü</span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/comp2d/</span>
+    </div>
+  </div>
+</section>
+</div>
+</body>
+</html>

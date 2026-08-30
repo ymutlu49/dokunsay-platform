@@ -1,0 +1,111 @@
+/* ==========================================================
+   Her Çocuk Matematik Öğrenebilir (HÇMÖ) — AppFooter (ortak, minimal)
+   Tek satır, ince, dikkat çekmeden hizmet verir.
+   ========================================================== */
+
+.ds-appfooter {
+  width: 100%;
+  background: #fafaf7;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  padding: 8px 16px;
+  font-family: 'Nunito', system-ui, -apple-system, sans-serif;
+  font-size: 12px;
+  color: #64748b;
+  line-height: 1.4;
+}
+
+.ds-appfooter__inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.ds-appfooter__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.ds-appfooter__home {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #475569;
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  transition: color 0.15s;
+}
+
+.ds-appfooter__home svg {
+  flex: none;
+}
+
+.ds-appfooter__home:hover,
+.ds-appfooter__home:focus-visible {
+  color: var(--appshell-accent-dark, #0f172a);
+}
+
+.ds-appfooter__sep {
+  color: #cbd5e1;
+}
+
+.ds-appfooter__nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.ds-appfooter__nav a {
+  color: #64748b;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.15s;
+}
+
+.ds-appfooter__nav a:hover,
+.ds-appfooter__nav a:focus-visible {
+  color: var(--appshell-accent-dark, #0f172a);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.ds-appfooter__copy {
+  color: #94a3b8;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+/* Diskalkuli mode */
+html[data-dyscalculia="on"] .ds-appfooter {
+  font-size: 13px;
+  padding: 12px 18px;
+}
+
+/* Yüksek kontrast */
+html[data-contrast="high"] .ds-appfooter {
+  background: #fff;
+  border-top-color: #000;
+  color: #000;
+}
+html[data-contrast="high"] .ds-appfooter a { color: #000; text-decoration: underline; }
+
+/* Mobil */
+@media (max-width: 640px) {
+  .ds-appfooter {
+    padding: 8px 12px;
+    font-size: 11px;
+  }
+  .ds-appfooter__inner {
+    justify-content: center;
+    text-align: center;
+    gap: 8px;
+  }
+  .ds-appfooter__copy { display: none; }
+}

@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Ölçme: Açı ve Dönme — Çalışma Yaprakları · DokunSay</title>
+<meta name="description" content="Ölçme: Açı ve Dönme öğrenme yörüngesi için her düzeye bir baskıya hazır çalışma yaprağı. CRA (somut→temsilî→soyut) temelli, diskalkuli-dostu. Clements &amp; Sarama.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{ --c:#0d9488; --ink:#1f2733; --body:#39434f; --mut:#7c8aa0; --line:#e7e2d6; --paper:#fffdf7; --tint:color-mix(in srgb, var(--c) 8%, #fffdf7); }
+*{ box-sizing:border-box; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+html,body{ margin:0; background:#eceae3; font-family:'Lexend',system-ui,Segoe UI,sans-serif; color:var(--body); }
+.bar{ position:sticky; top:0; z-index:9; display:flex; gap:14px; align-items:center; justify-content:space-between;
+  background:#fff; border-bottom:1px solid #dcd8cd; padding:11px 18px; box-shadow:0 1px 6px rgba(0,0,0,.05); }
+.bar .t{ font-family:'Poppins',sans-serif; font-weight:700; color:var(--ink); font-size:15px; }
+.bar .t small{ display:block; font-weight:500; color:var(--mut); font-size:12px; }
+.bar .actions{ display:flex; gap:9px; }
+.btn{ font-family:'Poppins',sans-serif; font-weight:600; font-size:13.5px; border:0; border-radius:10px; padding:9px 15px; cursor:pointer; text-decoration:none; }
+.btn-print{ background:var(--c); color:#fff; } .btn-back{ background:#eef1f4; color:#334155; }
+.wrap{ max-width:880px; margin:18px auto 40px; padding:0 14px; }
+
+/* ── A4 çalışma yaprağı ───────────────────────────────────────────── */
+.sheet{ background:var(--paper); width:210mm; height:297mm; overflow:hidden; margin:0 auto 20px; padding:11mm 13mm 6mm;
+  border-radius:4px; box-shadow:0 6px 26px rgba(31,39,51,.13); position:relative;
+  display:flex; flex-direction:column; gap:1.8mm; }
+.lbl{ display:inline-block; font-family:'Poppins',sans-serif; font-weight:700; font-size:10.5pt; color:var(--c); letter-spacing:.2px; margin-bottom:2px; }
+
+.ws-head{ border-bottom:3px solid var(--c); padding-bottom:7px; }
+.ws-top{ display:flex; justify-content:space-between; align-items:center; font-size:10pt; color:var(--mut); }
+.ws-brand{ display:inline-flex; align-items:center; gap:7px; font-family:'Poppins',sans-serif; }
+.ws-brand b{ color:var(--ink); } .logo{ width:22px; height:22px; }
+.ws-name{ font-size:9.5pt; } .nl{ display:inline-block; width:34mm; border-bottom:1.4px dotted #b8c0cc; } .nl.sm{ width:24mm; }
+.ws-eyebrow{ font-family:'Poppins',sans-serif; font-weight:600; font-size:10pt; color:var(--c); margin-top:8px; text-transform:uppercase; letter-spacing:.4px; }
+.ws-title{ font-family:'Poppins',sans-serif; font-weight:800; font-size:18pt; line-height:1.1; color:var(--ink); margin:2px 0 6px; display:flex; align-items:baseline; gap:8px; }
+.ws-no{ background:var(--c); color:#fff; font-size:12pt; min-width:27px; height:27px; padding:0 6px; border-radius:8px; display:inline-flex; align-items:center; justify-content:center; }
+.ws-meta{ display:flex; flex-wrap:wrap; gap:7px; align-items:center; }
+.pill{ font-family:'Poppins',sans-serif; font-weight:600; font-size:9.5pt; background:#eef2f7; color:#475569; border-radius:20px; padding:4px 11px; }
+.pill.warn{ background:#fff3e2; color:#9a3412; }
+.cra{ display:inline-flex; align-items:center; gap:4px; margin-left:auto; }
+.cra-s{ font-family:'Poppins',sans-serif; font-weight:600; font-size:9pt; color:#94a3b8; background:#f1f4f8; border-radius:7px; padding:3px 9px; }
+.cra-s.on{ color:#fff; } .cra-arr{ color:#cbd5e1; font-size:10pt; }
+
+.ws-obj{ background:var(--tint); border-radius:10px; padding:7px 12px; }
+.ws-obj p{ margin:1px 0 0; font-size:11pt; line-height:1.42; color:var(--ink); }
+.ws-method .msteps{ margin:1px 0 0; padding-left:0; list-style:none; display:flex; flex-direction:column; gap:2px; counter-reset:m; }
+.ws-method .msteps li{ font-size:10pt; line-height:1.32; padding-left:26px; position:relative; }
+.ws-method .msteps li::before{ counter-increment:m; content:counter(m); position:absolute; left:0; top:0;
+  width:21px; height:21px; border-radius:50%; background:var(--c); color:#fff; font-family:'Poppins',sans-serif; font-weight:700; font-size:10pt; display:flex; align-items:center; justify-content:center; }
+.ws-method .msteps b{ color:var(--c); }
+
+.ws-egbox{ background:#f4f8f5; border:1.5px dashed color-mix(in srgb,var(--c) 45%,#cbd5e1); border-radius:10px; padding:6px 12px 7px; }
+.ws-egbox .lbl{ color:color-mix(in srgb,var(--c) 70%, #166534); }
+
+.items-grid{ display:grid; grid-template-columns:1fr 1fr; gap:5px; margin-top:2px; align-items:start; }
+.ex{ border:1.4px solid var(--line); border-radius:11px; padding:7px 10px 8px; background:#fff; break-inside:avoid; }
+.ex.wide{ grid-column:1 / -1; }
+.ex.eg{ border:0; padding:2px 0 0; background:transparent; grid-column:1 / -1; }
+.ex-q{ display:flex; gap:7px; align-items:flex-start; }
+.ex-no{ flex:0 0 auto; width:22px; height:22px; border-radius:50%; background:var(--c); color:#fff; font-family:'Poppins',sans-serif; font-weight:700; font-size:10.5pt; display:flex; align-items:center; justify-content:center; }
+.ex.eg .ex-no{ background:#fef3c7; }
+.ex-q p{ margin:1px 0 0; font-size:10.8pt; line-height:1.4; color:var(--ink); }
+.ex-v{ margin:4px 0 3px; text-align:center; } .ex-a{ margin:0; text-align:center; }
+.ex.wide .ex-v, .ex.wide .ex-a, .ex.eg .ex-v, .ex.eg .ex-a{ text-align:left; margin-left:30px; }
+
+/* SVG görseller — içsel boyut ama A4'e sığması için yükseklik sınırlı */
+.ws-svg{ max-width:100%; width:auto; height:auto; vertical-align:middle; }
+.ex-v .ws-svg{ max-height:16mm; }
+.ex-v .ws-svg.ws-tall{ max-height:17mm; }
+.ws-egbox .ex-v .ws-svg{ max-height:12mm; } .ws-egbox .ex-v .ws-svg.ws-tall{ max-height:13mm; }
+.ex-v .ws-frac{ max-height:26mm; } .ws-svg.ws-frac{ width:auto; max-height:26mm; } svg.ws-glyph{ width:12mm; height:12mm; }
+.pat-row{ display:flex; align-items:center; gap:7px; flex-wrap:wrap; }
+.pat-c svg{ width:13mm; height:13mm; } .pat-q{ width:13mm; height:13mm; border:2px dashed #b8c0cc; border-radius:8px; display:inline-flex; align-items:center; justify-content:center; font-family:'Poppins',sans-serif; font-weight:800; font-size:16pt; color:#b8c0cc; }
+
+/* Yanıt alanları */
+.wbox{ display:inline-block; width:14mm; height:14mm; border:2px solid #94a3b8; border-radius:8px; vertical-align:middle; margin:0 3px; background:#fff; }
+.wbox.wbox-lg{ width:18mm; height:14mm; border-color:var(--c); }
+.eqrow{ display:flex; align-items:center; flex-wrap:wrap; gap:5px; font-family:'Poppins',sans-serif; font-weight:600; font-size:15pt; color:var(--ink); }
+.bignum{ font-family:'Poppins',sans-serif; font-weight:700; font-size:17pt; color:var(--ink); } .bignum.sm{ font-size:14pt; padding:0 3px; }
+.seqn{ font-family:'Poppins',sans-serif; font-weight:600; font-size:14pt; } .seqsep{ color:#94a3b8; }
+.ans-hint{ margin:5px 0 0 0; font-size:10.5pt; color:var(--mut); font-style:normal; }
+.ans-shown{ font-family:'Poppins',sans-serif; font-size:14pt; color:#166534; }
+
+.ws-scaffold{ display:flex; gap:8px; flex-wrap:wrap; }
+.sc{ flex:1 1 44%; font-size:9.8pt; line-height:1.30; border-radius:9px; padding:5px 10px; }
+.sc-easy{ background:#eef4fb; } .sc-easy b{ color:#1d4ed8; }
+.sc-hard{ background:#f5f0fb; } .sc-hard b{ color:#7c3aed; }
+
+.ws-foot{ margin-top:auto; padding-top:5px; border-top:1px solid var(--line); display:flex; flex-direction:column; gap:4px; }
+.ws-check{ background:#f0fdf4; border-radius:9px; padding:5px 11px; font-size:10pt; line-height:1.35; color:#166534; display:flex; justify-content:space-between; align-items:center; gap:10px; }
+.ws-check b{ color:#15803d; } .stars{ font-size:14pt; color:#f59e0b; letter-spacing:2px; white-space:nowrap; }
+.ws-credit{ font-size:7.8pt; color:var(--mut); line-height:1.35; display:flex; flex-direction:column; gap:1px; }
+.ws-credit .mat{ color:#475569; }
+.ws-credit a{ color:#475569; }
+/* Kavram yanılgısı şeridi. Punto (8.7pt) künyeden (7.8pt) büyük ama gövde metninden
+   küçük: öğretmene yönelik ikincil bilgi, çocuğun göreviyle yarışmamalı. Yapraklar
+   milimetrik dolu olduğu için bu ölçüler A4 taşmasına karşı ölçülerek seçildi. */
+.ws-mis{ background:#fff7ed; border-left:3px solid #fb923c; border-radius:9px; padding:3px 10px; font-size:8.7pt; line-height:1.26; color:#7c2d12; }
+.ws-mis b{ color:#9a3412; font-weight:700; }
+.ws-mis .mis-cite{ color:#a16207; white-space:nowrap; }
+
+/* ── Baskı ─────────────────────────────────────────────────────────── */
+@media print{
+  @page{ size:A4; margin:0; }
+  html,body{ background:#fff; }
+  .bar,.wrap>.intro{ display:none !important; }
+  .wrap{ margin:0; padding:0; max-width:none; }
+  .sheet{ width:210mm; height:297mm; margin:0; border-radius:0; box-shadow:none; overflow:hidden; break-before:page; }
+  .sheet:first-child{ break-before:avoid; }
+}
+.intro{ background:#fff; border-radius:14px; padding:16px 20px; margin-bottom:18px; box-shadow:0 2px 10px rgba(0,0,0,.05); }
+.intro h2{ font-family:'Poppins',sans-serif; margin:0 0 5px; color:var(--ink); font-size:18px; }
+.intro p{ margin:0; font-size:13.5px; line-height:1.55; color:#5b6573; }
+</style>
+</head>
+<body>
+<div class="bar no-print">
+  <span class="t">📐 Ölçme: Açı ve Dönme — Çalışma Yaprakları<small>6 düzey · Ölçme · CRA temelli</small></span>
+  <span class="actions">
+    <a class="btn btn-back" href="./">← Yörüngeye dön</a>
+    <button class="btn btn-print" onclick="window.print()">🖨️ Yazdır / PDF kaydet</button>
+  </span>
+</div>
+<div class="wrap">
+  <div class="intro no-print">
+    <h2>Ölçme: Açı ve Dönme · Çalışma Yaprakları</h2>
+    <p>Her düzey için bir baskıya-hazır A4 çalışma yaprağı. Her yaprak <b>önce somut</b> (DokunSay Geo ile), <b>sonra resimle</b> (bu sayfa), <b>en sonda sembolle</b> (çocuk yazar) ilerler — diskalkuli için kanıta dayalı CRA sırası. Çocuğun bulunduğu düzeyden başlayın; ✓ölçütü karşılayınca bir sonraki yaprağa geçin. Yazdırıp tek tek kullanın ya da PDF olarak kaydedin.</p>
+  </div>
+  <section class="sheet" style="--c:#0d9488">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">📐 Ölçme · Ölçme: Açı ve Dönme</div>
+    <h1 class="ws-title"><span class="ws-no">1</span>Açı ve Dönme Duyarlılığı: Temeller</h1>
+    <div class="ws-meta">
+      <span class="pill">0–2 yaş</span>
+      <span class="pill">Düzey 1/6</span>
+      
+      <span class="cra"><span class="cra-s on" style="background:#0d9488">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Bebekler, hem nesnelerin hem de kendi bedenlerinin dönmesi biçimindeki açılara duyarlıdır.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Oyna</b> — DokunSay Geo ya da günlük nesnelerle birlikte oynayın — Menteşeli günlük nesne (kapı, kitap kapağı, oyuncak makas).</li><li><b>Söyle</b> — Sayıları/sözcükleri yüksek sesle ve ritimle siz söyleyin; çocuk katılsın.</li><li><b>Gözle</b> — Tepkisini gözleyin — bu yaşta yazı/çizim beklenmez, deneyim önemlidir.</li></ol>
+  </div>
+
+  
+
+  <div class="ws-items"><span class="lbl">🎲 Birlikte oyna (siz yönlendirin)</span>
+    <div class="items-grid"><div class="ex">
+    <div class="ex-q"><span class="ex-no">1</span><p>Kapağı/kitabı birlikte yavaşça açıp kapatın: "Bak, açılıyor… kapanıyor."</p></div>
+    
+    
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Çok açık ve az açık iki konumu gösterip "bu daha açık" deyin, çocuk baksın/dokunsun.</p></div>
+    
+    
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>Çocuğun kendi kolunu dirsekten açıp kapatmasına yardım edin: "kolun da açılıyor!"</p></div>
+    
+    
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">4</span><p>Aynı oyunu farklı nesnelerle (makas, çekmece) günün farklı anlarında yineleyin.</p></div>
+    
+    
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Farkı abartın: tam kapalı ↔ ardına dek açık iki uç konumla çalışın.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Az açık ↔ biraz daha açık gibi yakın konumları gösterip &quot;hangisi daha açık?&quot; diye sezgisini yoklayın.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Dönmeyi yalnız kendi bedeninde yaşar; nesne döndürülünce onu başka bir nesne gibi ele alır. <b>→ Ne yapmalı:</b> Oyuncağı yavaşça döndürüp 'aynı araba, döndü' diye adlandır. <span class="mis-cite">📖 Clements &amp; Sarama (2009)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Bir nesne açılıp kapanırken (açı değişirken) dikkati/bakışı belirgin değişir ya da açma-kapama hareketini taklit etmeye çalışırsa ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 Menteşeli günlük nesne (kapı, kitap kapağı, oyuncak makas) · Çocuğun kendi kolu/dirseği</span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/mang/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#0d9488">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">📐 Ölçme · Ölçme: Açı ve Dönme</div>
+    <h1 class="ws-title"><span class="ws-no">2</span>Açıyı Oyunda Sezen</h1>
+    <div class="ws-meta">
+      <span class="pill">2–4 yaş</span>
+      <span class="pill">Düzey 2/6</span>
+      
+      <span class="cra"><span class="cra-s on" style="background:#0d9488">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Günlük ortamlarda açı ölçüsüne ilişkin sezgisel fikirleri kullanır: blok inşası, yapboz yerleştirme, yürürken dönme.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Geo ile elle yap — İki düz çubuk/pipet ya da DokunSay Geo'nun menteşeli iki kolu.</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Kolların açıklığına baktım; uzunlukları değil. Geniş olan daha açık.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 272 84" width="272" height="84" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><line x1="22" y1="68" x2="82" y2="68" stroke="#0d9488" stroke-width="3.5" stroke-linecap="round"/><line x1="22" y1="68" x2="71.14912265733952" y2="33.58541381893724" stroke="#0d9488" stroke-width="3.5" stroke-linecap="round"/><circle cx="22" cy="68" r="4" fill="#0d9488"/><line x1="156" y1="68" x2="216" y2="68" stroke="#0d9488" stroke-width="3.5" stroke-linecap="round"/><line x1="156" y1="68" x2="135.47879140045987" y2="11.618442752845496" stroke="#0d9488" stroke-width="3.5" stroke-linecap="round"/><circle cx="156" cy="68" r="4" fill="#0d9488"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">geniş açı</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>Hangi açı DAHA GENİŞ (daha açık)? Onu yuvarla.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 272 84" width="272" height="84" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><line x1="22" y1="68" x2="82" y2="68" stroke="#0d9488" stroke-width="3.5" stroke-linecap="round"/><line x1="22" y1="68" x2="71.14912265733952" y2="33.58541381893724" stroke="#0d9488" stroke-width="3.5" stroke-linecap="round"/><circle cx="22" cy="68" r="4" fill="#0d9488"/><line x1="156" y1="68" x2="216" y2="68" stroke="#0d9488" stroke-width="3.5" stroke-linecap="round"/><line x1="156" y1="68" x2="135.47879140045987" y2="11.618442752845496" stroke="#0d9488" stroke-width="3.5" stroke-linecap="round"/><circle cx="156" cy="68" r="4" fill="#0d9488"/></svg></div>
+    <div class="ex-a"><p class="ans-hint">○ geniş açıyı yuvarla</p></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Bu bir dik açı (tam köşe) mı? "Evet" ya da "Hayır" yaz.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 150 86" width="150" height="86" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><path d="M 42 70 A 26 26 0 0 0 16 44" fill="none" stroke="#cbd5e1" stroke-width="2"/><line x1="16" y1="70" x2="82" y2="70" stroke="#0d9488" stroke-width="3.5" stroke-linecap="round"/><line x1="16" y1="70" x2="16.000000000000004" y2="4" stroke="#0d9488" stroke-width="3.5" stroke-linecap="round"/><circle cx="16" cy="70" r="4" fill="#0d9488"/></svg></div>
+    <div class="ex-a"><span class="wbox"></span></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Menteşeyle birleşik hazır iki kolu kullanın; çocuk yalnız açıp kapatsın.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Verilen bir örnek köşeyi (resim/model) çubuklarla benzer açıklıkta kurmasını isteyin.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Yapboz parçasını döndürmeden bastırır; uymayınca parçayı yanlış sanıp bırakır. <b>→ Ne yapmalı:</b> Parçayı elinde çevirtterek dene; 'çevir de bak' yönergesini yinele. <span class="mis-cite">📖 Mitchelmore &amp; White (2000)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> İki kolu bir noktada birleştirip bir açı (köşe) kurar ve açıklığını isteyince azaltıp çoğaltabilirse ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 İki düz çubuk/pipet ya da DokunSay Geo'nun menteşeli iki kolu · Bağlanabilir bloklar veya geçmeli parçalar · Örnek için bir resim (çatı, makas) <a href="https://dokunsay.com/Dokunsay-geo/">🔗 dokunsay.com/Dokunsay-geo/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/mang/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#0d9488">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">📐 Ölçme · Ölçme: Açı ve Dönme</div>
+    <h1 class="ws-title"><span class="ws-no">3</span>Açıyı Farkında Olmadan Kullanan</h1>
+    <div class="ws-meta">
+      <span class="pill">4–5 yaş</span>
+      <span class="pill">Düzey 3/6</span>
+      
+      <span class="cra"><span class="cra-s on" style="background:#0d9488">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Hizalama görevlerinde, blok yapılarında ve günlük bağlamlarda açıları ve örtük açı kavramlarını (paralellik, diklik) kullanır; eş üçgenlerin karşılık…</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Geo ile elle yap — DokunSay Geo ya da geçmeli yapı blokları.</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Kolların açıklığına baktım; uzunlukları değil. Geniş olan daha açık.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 272 84" width="272" height="84" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><line x1="22" y1="68" x2="82" y2="68" stroke="#0d9488" stroke-width="3.5" stroke-linecap="round"/><line x1="22" y1="68" x2="71.14912265733952" y2="33.58541381893724" stroke="#0d9488" stroke-width="3.5" stroke-linecap="round"/><circle cx="22" cy="68" r="4" fill="#0d9488"/><line x1="156" y1="68" x2="216" y2="68" stroke="#0d9488" stroke-width="3.5" stroke-linecap="round"/><line x1="156" y1="68" x2="135.47879140045987" y2="11.618442752845496" stroke="#0d9488" stroke-width="3.5" stroke-linecap="round"/><circle cx="156" cy="68" r="4" fill="#0d9488"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">geniş açı</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>Hangi açı DAHA GENİŞ (daha açık)? Onu yuvarla.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 272 84" width="272" height="84" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><line x1="22" y1="68" x2="82" y2="68" stroke="#0d9488" stroke-width="3.5" stroke-linecap="round"/><line x1="22" y1="68" x2="71.14912265733952" y2="33.58541381893724" stroke="#0d9488" stroke-width="3.5" stroke-linecap="round"/><circle cx="22" cy="68" r="4" fill="#0d9488"/><line x1="156" y1="68" x2="216" y2="68" stroke="#0d9488" stroke-width="3.5" stroke-linecap="round"/><line x1="156" y1="68" x2="135.47879140045987" y2="11.618442752845496" stroke="#0d9488" stroke-width="3.5" stroke-linecap="round"/><circle cx="156" cy="68" r="4" fill="#0d9488"/></svg></div>
+    <div class="ex-a"><p class="ans-hint">○ geniş açıyı yuvarla</p></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Bu bir dik açı (tam köşe) mı? "Evet" ya da "Hayır" yaz.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 150 86" width="150" height="86" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><path d="M 42 70 A 26 26 0 0 0 16 44" fill="none" stroke="#cbd5e1" stroke-width="2"/><line x1="16" y1="70" x2="82" y2="70" stroke="#0d9488" stroke-width="3.5" stroke-linecap="round"/><line x1="16" y1="70" x2="16.000000000000004" y2="4" stroke="#0d9488" stroke-width="3.5" stroke-linecap="round"/><circle cx="16" cy="70" r="4" fill="#0d9488"/></svg></div>
+    <div class="ex-a"><span class="wbox"></span></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Az parçalı, yalnız dik köşeli (kare) bir çerçeveyle çalışın; döndürmeyi siz başlatın.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Dik olmayan açılar (üçgen, beşgen parçalar) ekleyin; parçayı doğru açıya kendisi çevirsin.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Köşeyi açı değil 'sivri uç' sayar; kenarların açıklığına değil şeklin görünümüne bakar. <b>→ Ne yapmalı:</b> İki şeridi raptiyeyle birleştirt; köşeyi aç-kapat, açıklığı gösterttir. <span class="mis-cite">📖 Mitchelmore &amp; White (2000)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Yapı/yapboz görevinde dik köşeleri ve paralel kenarları (parçayı döndürerek) işlevsel olarak doğru kullanırsa ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay Geo ya da geçmeli yapı blokları · Çerçeveli bir yapboz (parçalar döndürülerek oturan) · Köşeleri belirgin nesneler (kitap, fayans, gönye) <a href="https://dokunsay.com/Dokunsay-geo/">🔗 dokunsay.com/Dokunsay-geo/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/mang/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#0d9488">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">📐 Ölçme · Ölçme: Açı ve Dönme</div>
+    <h1 class="ws-title"><span class="ws-no">4</span>Açı Eşleyen</h1>
+    <div class="ws-meta">
+      <span class="pill">6–7 yaş</span>
+      <span class="pill">Düzey 4/6</span>
+      <span class="pill warn">★ Kritik geçiş</span>
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#0d9488">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Açıları somut olarak eşler (birini diğerinin üzerine koyarak); belirli bağlamlarda paralel olanı olmayandan açıkça ayırt eder; açıları &quot;küçük/büyük&quot;…</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Geo ile elle yap — DokunSay Geo'nun iki menteşeli açı modeli (kolları farklı uzunlukta).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Kolların açıklığına baktım; uzunlukları değil. Geniş olan daha açık.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 272 84" width="272" height="84" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><line x1="22" y1="68" x2="82" y2="68" stroke="#0d9488" stroke-width="3.5" stroke-linecap="round"/><line x1="22" y1="68" x2="71.14912265733952" y2="33.58541381893724" stroke="#0d9488" stroke-width="3.5" stroke-linecap="round"/><circle cx="22" cy="68" r="4" fill="#0d9488"/><line x1="156" y1="68" x2="216" y2="68" stroke="#0d9488" stroke-width="3.5" stroke-linecap="round"/><line x1="156" y1="68" x2="135.47879140045987" y2="11.618442752845496" stroke="#0d9488" stroke-width="3.5" stroke-linecap="round"/><circle cx="156" cy="68" r="4" fill="#0d9488"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">geniş açı</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>Hangi açı DAHA GENİŞ (daha açık)? Onu yuvarla.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 272 84" width="272" height="84" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><line x1="22" y1="68" x2="82" y2="68" stroke="#0d9488" stroke-width="3.5" stroke-linecap="round"/><line x1="22" y1="68" x2="71.14912265733952" y2="33.58541381893724" stroke="#0d9488" stroke-width="3.5" stroke-linecap="round"/><circle cx="22" cy="68" r="4" fill="#0d9488"/><line x1="156" y1="68" x2="216" y2="68" stroke="#0d9488" stroke-width="3.5" stroke-linecap="round"/><line x1="156" y1="68" x2="135.47879140045987" y2="11.618442752845496" stroke="#0d9488" stroke-width="3.5" stroke-linecap="round"/><circle cx="156" cy="68" r="4" fill="#0d9488"/></svg></div>
+    <div class="ex-a"><p class="ans-hint">○ geniş açıyı yuvarla</p></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Bu bir dik açı (tam köşe) mı? "Evet" ya da "Hayır" yaz.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 150 86" width="150" height="86" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><path d="M 42 70 A 26 26 0 0 0 16 44" fill="none" stroke="#cbd5e1" stroke-width="2"/><line x1="16" y1="70" x2="82" y2="70" stroke="#0d9488" stroke-width="3.5" stroke-linecap="round"/><line x1="16" y1="70" x2="16.000000000000004" y2="4" stroke="#0d9488" stroke-width="3.5" stroke-linecap="round"/><circle cx="16" cy="70" r="4" fill="#0d9488"/></svg></div>
+    <div class="ex-a"><span class="wbox"></span></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Önce kolları AYNI uzunlukta açılarla eşletin; sonra tek bir kolu uzatıp &quot;yine aynı mı?&quot; diye köprü kurun.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Açıklık farkı çok küçük (ör. ince fark) ya da kollar belirgin biçimde farklı uzunlukta açılarla eşletin; üst üste koymadan, gözle eşlemeye çalıştırın.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Kenarları uzun olan açıyı daha büyük sanır. <b>→ Ne yapmalı:</b> İki açıyı üst üste bindirt; kenarları kısaltıp yeniden sordur. <span class="mis-cite">📖 Mitchelmore &amp; White (2000)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> İki açıyı üst üste bindirerek eşler ve kenar uzunluğu farklı olsa bile açının aynı/farklı olduğunu kenara aldanmadan söylerse ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay Geo'nun iki menteşeli açı modeli (kolları farklı uzunlukta) · Saydam/ince kâğıttan kesilmiş açı kopyaları (üst üste koymak için) · Kolları kısaltıp uzatmak için kesilebilir şeritler <a href="https://dokunsay.com/Dokunsay-geo/">🔗 dokunsay.com/Dokunsay-geo/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/mang/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#0d9488">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">📐 Ölçme · Ölçme: Açı ve Dönme</div>
+    <h1 class="ws-title"><span class="ws-no">5</span>Açı Büyüklüklerini Karşılaştıran</h1>
+    <div class="ws-meta">
+      <span class="pill">7–8 yaş</span>
+      <span class="pill">Düzey 5/6</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#0d9488">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Açıyı ve açı büyüklüğünü içinde bulunduğu şekilden/bağlamdan ayırt eder; açı büyüklüklerini karşılaştırır; önce dik açıları, sonra diğer eş açıları…</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Geo ile elle yap — DokunSay Geo açı modelleri (farklı açıklık ve farklı kol uzunluklarında).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Kolların açıklığına baktım; uzunlukları değil. Geniş olan daha açık.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 272 84" width="272" height="84" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><line x1="22" y1="68" x2="82" y2="68" stroke="#0d9488" stroke-width="3.5" stroke-linecap="round"/><line x1="22" y1="68" x2="71.14912265733952" y2="33.58541381893724" stroke="#0d9488" stroke-width="3.5" stroke-linecap="round"/><circle cx="22" cy="68" r="4" fill="#0d9488"/><line x1="156" y1="68" x2="216" y2="68" stroke="#0d9488" stroke-width="3.5" stroke-linecap="round"/><line x1="156" y1="68" x2="135.47879140045987" y2="11.618442752845496" stroke="#0d9488" stroke-width="3.5" stroke-linecap="round"/><circle cx="156" cy="68" r="4" fill="#0d9488"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">geniş açı</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>Hangi açı DAHA GENİŞ (daha açık)? Onu yuvarla.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 272 84" width="272" height="84" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><line x1="22" y1="68" x2="82" y2="68" stroke="#0d9488" stroke-width="3.5" stroke-linecap="round"/><line x1="22" y1="68" x2="71.14912265733952" y2="33.58541381893724" stroke="#0d9488" stroke-width="3.5" stroke-linecap="round"/><circle cx="22" cy="68" r="4" fill="#0d9488"/><line x1="156" y1="68" x2="216" y2="68" stroke="#0d9488" stroke-width="3.5" stroke-linecap="round"/><line x1="156" y1="68" x2="135.47879140045987" y2="11.618442752845496" stroke="#0d9488" stroke-width="3.5" stroke-linecap="round"/><circle cx="156" cy="68" r="4" fill="#0d9488"/></svg></div>
+    <div class="ex-a"><p class="ans-hint">○ geniş açıyı yuvarla</p></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Bu bir dik açı (tam köşe) mı? "Evet" ya da "Hayır" yaz.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 150 86" width="150" height="86" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><path d="M 42 70 A 26 26 0 0 0 16 44" fill="none" stroke="#cbd5e1" stroke-width="2"/><line x1="16" y1="70" x2="82" y2="70" stroke="#0d9488" stroke-width="3.5" stroke-linecap="round"/><line x1="16" y1="70" x2="16.000000000000004" y2="4" stroke="#0d9488" stroke-width="3.5" stroke-linecap="round"/><circle cx="16" cy="70" r="4" fill="#0d9488"/></svg></div>
+    <div class="ex-a"><span class="wbox"></span></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Açıklık farkını abartın (çok sivri ↔ ardına dek geniş); kolları aynı uzunlukta tutun.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Açıklığı yakın açıları, kasıtlı olarak ters kol uzunluklarıyla (geniş açının kolları kısa) karşılaştırtın; dik açıyı (90°) eşik alıp &quot;dar mı geniş mi?&quot; sınıflatın.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Açıyı şeklinden ayıramaz; büyük üçgenin açısını daha büyük sayar. <b>→ Ne yapmalı:</b> Küçük ve büyük üçgeni köşeden çakıştırt. <span class="mis-cite">📖 Clements &amp; Battista (1992)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Kenar uzunluğu yanıltıcı olsa bile iki açıdan daha genişini doğru seçer ve birkaç açıyı açıklığa göre sıralarsa ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay Geo açı modelleri (farklı açıklık ve farklı kol uzunluklarında) · Kıyas için bir gönye/dik köşe (90°'yi 'çeyrek dönüş' olarak) · Açıları diziye koymak için bir zemin/şerit <a href="https://dokunsay.com/Dokunsay-geo/">🔗 dokunsay.com/Dokunsay-geo/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/mang/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#0d9488">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">📐 Ölçme · Ölçme: Açı ve Dönme</div>
+    <h1 class="ws-title"><span class="ws-no">6</span>Açı Ölçen</h1>
+    <div class="ws-meta">
+      <span class="pill">8–9 yaş</span>
+      <span class="pill">Düzey 6/6</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#0d9488">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Açıyı ve açı ölçüsünü iki temel yönüyle kavrar: ortak başlangıç noktalı iki ışın VE bir ışının diğerine dönmesi (dönme miktarı); birden çok bağlamı…</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Geo ile elle yap — DokunSay Geo + açıölçer (ya da yarım daire açıölçer).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Kolların açıklığına baktım; uzunlukları değil. Geniş olan daha açık.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 272 84" width="272" height="84" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><line x1="22" y1="68" x2="82" y2="68" stroke="#0d9488" stroke-width="3.5" stroke-linecap="round"/><line x1="22" y1="68" x2="71.14912265733952" y2="33.58541381893724" stroke="#0d9488" stroke-width="3.5" stroke-linecap="round"/><circle cx="22" cy="68" r="4" fill="#0d9488"/><line x1="156" y1="68" x2="216" y2="68" stroke="#0d9488" stroke-width="3.5" stroke-linecap="round"/><line x1="156" y1="68" x2="135.47879140045987" y2="11.618442752845496" stroke="#0d9488" stroke-width="3.5" stroke-linecap="round"/><circle cx="156" cy="68" r="4" fill="#0d9488"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">geniş açı</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>Hangi açı DAHA GENİŞ (daha açık)? Onu yuvarla.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 272 84" width="272" height="84" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><line x1="22" y1="68" x2="82" y2="68" stroke="#0d9488" stroke-width="3.5" stroke-linecap="round"/><line x1="22" y1="68" x2="71.14912265733952" y2="33.58541381893724" stroke="#0d9488" stroke-width="3.5" stroke-linecap="round"/><circle cx="22" cy="68" r="4" fill="#0d9488"/><line x1="156" y1="68" x2="216" y2="68" stroke="#0d9488" stroke-width="3.5" stroke-linecap="round"/><line x1="156" y1="68" x2="135.47879140045987" y2="11.618442752845496" stroke="#0d9488" stroke-width="3.5" stroke-linecap="round"/><circle cx="156" cy="68" r="4" fill="#0d9488"/></svg></div>
+    <div class="ex-a"><p class="ans-hint">○ geniş açıyı yuvarla</p></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Bu bir dik açı (tam köşe) mı? "Evet" ya da "Hayır" yaz.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 150 86" width="150" height="86" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><path d="M 42 70 A 26 26 0 0 0 16 44" fill="none" stroke="#cbd5e1" stroke-width="2"/><line x1="16" y1="70" x2="82" y2="70" stroke="#0d9488" stroke-width="3.5" stroke-linecap="round"/><line x1="16" y1="70" x2="16.000000000000004" y2="4" stroke="#0d9488" stroke-width="3.5" stroke-linecap="round"/><circle cx="16" cy="70" r="4" fill="#0d9488"/></svg></div>
+    <div class="ex-a"><span class="wbox"></span></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Yalnız dik açı ve onun yarısı/iki katı gibi tanıdık açılarla, dereceyi gönye/katlama ile yaklaşık okutun.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Geniş (90°'den büyük) açıları doğru ölçekten okutun; verilen bir dereceyi (ör. 'bana 60°'lik açı çiz') açıölçerle kurdurun.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Açıölçeri yanlış yerleştirir: sıfır çizgisini kenara oturtmaz, iç-dış ölçeği karıştırır. <b>→ Ne yapmalı:</b> Kenarı sıfır çizgisine oturttur; önce dik açıda 90 çıkıyor mu denet. <span class="mis-cite">📖 Mitchelmore &amp; White (2000)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Açıölçeri merkez tepe noktasında ve sıfır çizgisi bir kolda olacak şekilde yerleştirip açıyı derece cinsinden doğru ölçerse (kenar uzunluğuna aldanmadan) ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay Geo + açıölçer (ya da yarım daire açıölçer) · Gönye/dik köşe (90° çıpası) · Ölçülecek hazır açılar (sivri, dik, geniş) ve kâğıt-kalem <a href="https://dokunsay.com/Dokunsay-geo/">🔗 dokunsay.com/Dokunsay-geo/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/mang/</span>
+    </div>
+  </div>
+</section>
+</div>
+</body>
+</html>

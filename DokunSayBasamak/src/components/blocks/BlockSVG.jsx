@@ -79,7 +79,7 @@ export default function BlockSVG({ type, size, showVal, colorBlind }) {
             <line x1={U*(i+1)} y1={D+1} x2={U*(i+1)} y2={D+W-1} stroke="rgba(255,255,255,.12)" strokeWidth={.3}/>
           </g>
         ))}
-        {showVal && <text x={W/2} y={D+W/2} textAnchor="middle" dominantBaseline="middle" fontSize={16} fontWeight={900} fill="rgba(255,255,255,.5)">1000</text>}
+        {showVal && <text x={W/2} y={D+W/2} textAnchor="middle" dominantBaseline="middle" fontSize={18} fontWeight={900} fill="rgba(255,255,255,.85)">1000</text>}
       </svg>
     );
   }

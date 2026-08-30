@@ -49,6 +49,37 @@ Her uygulama diskalkuli modu sağlar:
 - **Mikro-adım** (her doğru etkileşim anında kutlanır)
 - **Sözel okuma** (Web Speech API, tr-TR varsayılan, rate 0.85, pitch 1.1)
 
+#### 1.4.1 Seslendirme — TEK YOL (2026-07-19 denetimi sonrası zorunlu)
+
+**Kural: hiçbir uygulama kendi `new SpeechSynthesisUtterance` çağrısını YAPMAZ.**
+Tüm seslendirme `@shared/tts.js` üzerinden geçer, 🔊 düğmeleri `@shared/SpeakButton.jsx` ile
+çizilir. Denetimde 5 uygulamada yerel kopya bulundu ve beşi de farklı davranıyordu; sonuçları:
+
+| Bulunan kusur | Etkisi |
+|---|---|
+| Clock, Kesir, Veri `isTTSEnabled()` kontrolü yapmıyordu | **A11y panelinden sesi kapatmak bu üç uygulamada işe yaramıyordu** |
+| Clock her zaman `tr-TR` ile okuyordu | Çok dilli arayüzde ses hep Türkçe |
+| Kurmancî üç farklı şekilde ele alınıyordu (`ku` / `tr-TR` / `tr-TR`) | Basamak'ta `lang="ku"` çoğu motorda karşılıksız → sistem varsayılanına, yani rastgele bir dile düşüyordu |
+| Hız 0.8 / 0.85 / 0.92 / 0.95 | Standart 0.85 hiçbir yerde tutmuyordu |
+| Ham metin motora veriliyordu | Aşağı bak |
+
+**Kurmancî politikası:** Gerçek `ku`/`kmr` sesi kurulu DEĞİLSE seslendirme **yapılmaz** ve
+🔊 düğmesi **gizlenir**. Türkçe sesle Kurmancî okumak ("fonetik yakınlık") sistematik olarak
+yanlış telaffuz modeli öğretir. Aynı ilke SayKent'te de geçerlidir — iki proje hizalıdır.
+Basıldığında hiçbir şey olmayan düğme bırakılmaz: kullanıcı bunu "sesim kapalı" değil
+"uygulama bozuk" diye okur. Denetim: `canSpeak(lang)`.
+
+**Yazılan ≠ okunan.** Ekrandaki matematik gösterimi konuşulabilir değildir; çoğu motor
+işaretleri sessizce atar, emojinin ise ADINI okur. `toSpeech()` bu çeviriyi yapar:
+
+| Ekranda | Ham TTS'in duyurduğu | `toSpeech` sonrası |
+|---|---|---|
+| `4 × 7 fide` | "4 7 fide" (işlem kayboldu) | "4 çarpı 7 fide" |
+| `6 + 6 = ?` | "6 6" (soru kayboldu) | "6 artı 6 eşittir kaç" |
+| `1/4` | "bir bölü dört" ya da "bir dört" | **"dörtte bir"** (kesir öğretiminin dili) |
+| `Harika! 💡` | "Harika, ampul" | "Harika!" |
+| `6 – 4 – 10` | "6 eksi 4 eksi 10" | "6, 4, 10" (tire ayraçtır, çıkarma değil) |
+
 ### 1.5 Kavram Yanılgıları (Misconceptions)
 Her uygulama, konunun bilinen kavram yanılgılarına yönelik en az 3 özel etkinlik içerir. Kaynak literatürle atıflandırılmalı (örn: "Stafylidou & Vosniadou 2004").
 
@@ -63,7 +94,37 @@ Etkinlikler zorluk seviyesine göre etiketlenir:
 | 4 | Bağımsız | Öğrenci yönlendirici değil, soru çözer |
 | 5 | Transfer | Gerçek hayat senaryosu, problem kurma |
 
+#### 1.6.1 Zorluk göstergesi 5 basamağı DESTEKLEMELİ (2026-07-19 denetimi)
+
+**Bulgu:** Denetimde beş aracın da yalnız diff 1-3 içeriği vardı. Sebep pedagojik tercih
+değil, ARAYÜZ SINIRIYDI — üst basamaklar yazılamıyordu çünkü gösterilemiyorlardı:
+
+| Araç | Gösterge | diff 4 verilince |
+|---|---|---|
+| Bar | `"☆".repeat(3 - diff)` | **`repeat(-1)` → RangeError, kenar çubuğu ÇÖKER** |
+| Basamak | `diff===1?kolay:diff===2?orta:zor` | Sessizce "zor"a düşer, 4 ile 5 ayırt edilemez |
+| Kesir / Tam | `"★".repeat(diff)` | Sorunsuz çizer — burada engel YOKTU, içerik yazılmamıştı |
+
+**Kural:** Üst basamak içeriği yazmadan ÖNCE göstergeyi kontrol et ve gerekiyorsa 5'e çıkar.
+Tersini yaparsan eklediğin etkinlik uygulamayı bozar. Ayrıca "arayüz suçludur" varsayımı her
+araçta geçerli DEĞİLDİR (Kesir/Tam örneği) — her araçta ayrı ölç.
+
+**Sahte zorluk yasak:** basamak farkı GÖREV BİÇİMİNDEN gelmeli, ölçekten değil. Sayıyı
+büyütmek diff 3'ü diff 4 yapmaz. Bağımsız = ipucu yok, öğrenci çözer; Transfer = gerçek
+bağlam + kararını savunma, ya da öğrencinin kendi sorusunu KURMASI.
+
 ### 1.7 Çok Dillilik (Zorunlu En Az 3 Dil)
+
+> **1.7.1 ARAYÜZ değil, İÇERİK (2026-07-19 denetimi).** Denetimde üç araçta (Bar öncesi
+> Basamak, Clock, Tam) i18n dosyaları yalnız MENÜ/DÜĞME metinlerini çeviriyordu; etkinliklerin
+> ADI ve YÖNERGESİ sabit Türkçe yazılmıştı ve hiçbir çeviri araması yoktu. Sonuç: Kurmancî
+> seçen çocuk menüyü kendi dilinde, **çözeceği görevi Türkçe** görüyordu. Bu, standardın
+> lafzına değil ama amacına aykırıdır.
+> **Kural:** Çocuğun OKUDUĞU her dize çevrilebilir olmalıdır — etkinlik adı, yönerge, geri
+> bildirim, kategori başlığı, ekran okuyucu duyurusu dahil. Denetim yöntemi: dili değiştir ve
+> **görev metninin** değiştiğini gör; menünün değişmesi yeterli değildir.
+> **Tuzak:** alan adlarını körlemesine kopyalama — DokunSayClock'ta `k` alanı Kurmancî değil
+> **MEB kazanım kodudur** (M.1.3.3.1); Bar'ın kalıbı uygulansa kazanım eşlemeleri ezilirdi.
 - **tr** (Türkçe) — birincil
 - **ku** (Kurmancî) — diskalkuli öğrenimi için özellikle önemli (Türkiye'de ana dili Kürtçe olan öğrenciler)
 - **en** (English) — uluslararası erişim
@@ -460,7 +521,7 @@ Semver takip et: `MAJOR.MINOR.PATCH`. Büyük sürümlerde yaz.
 Tüm uygulamalarda ortak:
 
 - **Yazar:** Prof. Dr. Yılmaz Mutlu
-- **Kurum:** Jimaro / Diskalkuli Platformu
+- **Kurum:** Jimaro / Her Çocuk Matematik Öğrenebilir
 - **Yıl:** 2024-2026
 
 Kod içi `package.json` → `"author": "Prof. Dr. Yılmaz Mutlu"`.

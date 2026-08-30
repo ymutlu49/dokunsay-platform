@@ -7,7 +7,7 @@
 
 export const SHAPE_DEF = {
   eq_tri: {
-    cat: "triangle", label: "Eşkenar Üçgen", labelKu: "Sêgoşeya Wekhev", labelEn: "Equilateral Triangle",
+    cat: "triangle", label: "Eşkenar Üçgen", labelKu: "Sêgoşeya Wekhev", labelEn: "Equilateral Triangle", labelAr: "مثلث متساوي الأضلاع", labelFa: "مثلث متساوی‌الاضلاع",
     icon: "△", sides: 3, angles: [60, 60, 60], parallel: 0, rightAngles: 0, isRegular: true,
     verts: (cx, cy, s) => { const h = s * Math.sqrt(3) / 2; return [[cx, cy - h * 0.67], [cx - s / 2, cy + h * 0.33], [cx + s / 2, cy + h * 0.33]]; },
     area: s => 0.43 * s * s,
@@ -19,7 +19,7 @@ export const SHAPE_DEF = {
     ],
   },
   iso_tri: {
-    cat: "triangle", label: "İkizkenar Üçgen", labelKu: "Sêgoşeya Dukenar", labelEn: "Isosceles Triangle",
+    cat: "triangle", label: "İkizkenar Üçgen", labelKu: "Sêgoşeya Dukenar", labelEn: "Isosceles Triangle", labelAr: "مثلث متساوي الساقين", labelFa: "مثلث متساوی‌الساقین",
     icon: "△", sides: 3, angles: [70, 70, 40], parallel: 0, rightAngles: 0, isRegular: false,
     verts: (cx, cy, s) => [[cx, cy - s * 0.6], [cx - s * 0.46, cy + s * 0.38], [cx + s * 0.46, cy + s * 0.38]],
     area: s => 0.28 * s * s,
@@ -31,7 +31,7 @@ export const SHAPE_DEF = {
     ],
   },
   right_tri: {
-    cat: "triangle", label: "Dik Üçgen", labelKu: "Sêgoşeya Rastê", labelEn: "Right Triangle",
+    cat: "triangle", label: "Dik Üçgen", labelKu: "Sêgoşeya Rastê", labelEn: "Right Triangle", labelAr: "مثلث قائم الزاوية", labelFa: "مثلث قائم‌الزاویه",
     icon: "⊿", sides: 3, angles: [90, 45, 45], parallel: 0, rightAngles: 1, isRegular: false,
     verts: (cx, cy, s) => [[cx - s * 0.45, cy - s * 0.45], [cx - s * 0.45, cy + s * 0.45], [cx + s * 0.45, cy + s * 0.45]],
     area: s => 0.405 * s * s,
@@ -43,7 +43,7 @@ export const SHAPE_DEF = {
     ],
   },
   scalene_tri: {
-    cat: "triangle", label: "Çeşitkenar Üçgen", labelKu: "Sêgoşeya Cihêkînar", labelEn: "Scalene Triangle",
+    cat: "triangle", label: "Çeşitkenar Üçgen", labelKu: "Sêgoşeya Cihêkînar", labelEn: "Scalene Triangle", labelAr: "مثلث مختلف الأضلاع", labelFa: "مثلث مختلف‌الاضلاع",
     icon: "△", sides: 3, angles: [50, 70, 60], parallel: 0, rightAngles: 0, isRegular: false,
     verts: (cx, cy, s) => [[cx - s * 0.28, cy - s * 0.5], [cx - s * 0.48, cy + s * 0.42], [cx + s * 0.46, cy + s * 0.32]],
     area: s => 0.31 * s * s,
@@ -55,7 +55,7 @@ export const SHAPE_DEF = {
     ],
   },
   square: {
-    cat: "quadrilateral", label: "Kare", labelKu: "Çaryalî", labelEn: "Square",
+    cat: "quadrilateral", label: "Kare", labelKu: "Çaryalî", labelEn: "Square", labelAr: "مربّع", labelFa: "مربع",
     icon: "■", sides: 4, angles: [90, 90, 90, 90], parallel: 2, rightAngles: 4, isRegular: true,
     verts: (cx, cy, s) => { const h = s * 0.48; return [[cx - h, cy - h], [cx + h, cy - h], [cx + h, cy + h], [cx - h, cy + h]]; },
     area: s => (0.96 * s) ** 2,
@@ -63,7 +63,7 @@ export const SHAPE_DEF = {
     anglePos: () => [],
   },
   rectangle: {
-    cat: "quadrilateral", label: "Dikdörtgen", labelKu: "Çarhêla Rast", labelEn: "Rectangle",
+    cat: "quadrilateral", label: "Dikdörtgen", labelKu: "Çarhêla Rast", labelEn: "Rectangle", labelAr: "مستطيل", labelFa: "مستطیل",
     icon: "▬", sides: 4, angles: [90, 90, 90, 90], parallel: 2, rightAngles: 4, isRegular: false,
     resizable: "rect",
     verts: (cx, cy, s, ax, ay) => { const w = s * 0.65 * (ax || 1), h = s * 0.38 * (ay || 1); return [[cx - w, cy - h], [cx + w, cy - h], [cx + w, cy + h], [cx - w, cy + h]]; },
@@ -72,7 +72,7 @@ export const SHAPE_DEF = {
     anglePos: () => [],
   },
   rhombus: {
-    cat: "quadrilateral", label: "Eşkenar Dörtgen", labelKu: "Lozeng", labelEn: "Rhombus",
+    cat: "quadrilateral", label: "Eşkenar Dörtgen", labelKu: "Lozeng", labelEn: "Rhombus", labelAr: "معيّن", labelFa: "لوزی",
     icon: "◆", sides: 4, angles: [60, 120, 60, 120], parallel: 2, rightAngles: 0, isRegular: false,
     resizable: "rhombus",
     verts: (cx, cy, s, ax, ay) => { const w = s * 0.45 * (ax || 1), h = s * 0.55 * (ay || 1); return [[cx, cy - h], [cx + w, cy], [cx, cy + h], [cx - w, cy]]; },
@@ -81,7 +81,7 @@ export const SHAPE_DEF = {
     anglePos: (cx, cy, s, ax, ay) => { const w = s * 0.45 * (ax || 1), h = s * 0.55 * (ay || 1); return [{ x: cx, y: cy - h - 12, a: "?" }, { x: cx + w + 10, y: cy, a: "?" }, { x: cx, y: cy + h + 12, a: "?" }, { x: cx - w - 16, y: cy, a: "?" }]; },
   },
   parallelogram: {
-    cat: "quadrilateral", label: "Paralelkenar", labelKu: "Paralelograma", labelEn: "Parallelogram",
+    cat: "quadrilateral", label: "Paralelkenar", labelKu: "Paralelograma", labelEn: "Parallelogram", labelAr: "متوازي الأضلاع", labelFa: "متوازی‌الاضلاع",
     icon: "▱", sides: 4, angles: [60, 120, 60, 120], parallel: 2, rightAngles: 0, isRegular: false,
     resizable: "rect",
     verts: (cx, cy, s, ax, ay) => { const w = s * 0.45 * (ax || 1), h = s * 0.33 * (ay || 1), skew = s * 0.15 * (ax || 1); return [[cx - w, cy - h], [cx - w + 2 * skew, cy - h], [cx + w, cy + h], [cx + w - 2 * skew, cy + h]]; },
@@ -90,7 +90,7 @@ export const SHAPE_DEF = {
     anglePos: () => [],
   },
   trapezoid: {
-    cat: "quadrilateral", label: "Yamuk", labelKu: "Trapezoîd", labelEn: "Trapezoid",
+    cat: "quadrilateral", label: "Yamuk", labelKu: "Trapezoîd", labelEn: "Trapezoid", labelAr: "شبه منحرف", labelFa: "ذوزنقه",
     icon: "⏢", sides: 4, angles: [70, 110, 70, 110], parallel: 1, rightAngles: 0, isRegular: false,
     verts: (cx, cy, s) => [[cx - s * 0.28, cy - s * 0.33], [cx + s * 0.28, cy - s * 0.33], [cx + s * 0.48, cy + s * 0.33], [cx - s * 0.48, cy + s * 0.33]],
     area: s => 0.45 * s * s,
@@ -98,7 +98,7 @@ export const SHAPE_DEF = {
     anglePos: () => [],
   },
   kite: {
-    cat: "quadrilateral", label: "Uçurtma", labelKu: "Çargoşeya Balafirê", labelEn: "Kite",
+    cat: "quadrilateral", label: "Uçurtma", labelKu: "Çargoşeya Balafirê", labelEn: "Kite", labelAr: "طائرة ورقية", labelFa: "بادبادک",
     icon: "◇", sides: 4, angles: [72, 108, 72, 108], parallel: 0, rightAngles: 0, isRegular: false,
     verts: (cx, cy, s) => [[cx, cy - s * 0.6], [cx + s * 0.4, cy], [cx, cy + s * 0.42], [cx - s * 0.4, cy]],
     area: s => 1.2 * s * 0.8 * s / 2,
@@ -106,7 +106,7 @@ export const SHAPE_DEF = {
     anglePos: () => [],
   },
   pentagon: {
-    cat: "polygon", label: "Düzgün Beşgen", labelKu: "Pênchêla Rêkpêk", labelEn: "Regular Pentagon",
+    cat: "polygon", label: "Düzgün Beşgen", labelKu: "Pênchêla Rêkpêk", labelEn: "Regular Pentagon", labelAr: "خماسي منتظم", labelFa: "پنج‌ضلعی منتظم",
     icon: "⬠", sides: 5, angles: [108, 108, 108, 108, 108], parallel: 0, rightAngles: 0, isRegular: true,
     verts: (cx, cy, s) => Array.from({ length: 5 }, (_, i) => { const a = i * 2 * Math.PI / 5 - Math.PI / 2; return [cx + s * 0.52 * Math.cos(a), cy + s * 0.52 * Math.sin(a)]; }),
     area: s => 5 * (s * 0.52) ** 2 * Math.sin(2 * Math.PI / 5) / 2,
@@ -114,7 +114,7 @@ export const SHAPE_DEF = {
     anglePos: () => [],
   },
   hexagon: {
-    cat: "polygon", label: "Düzgün Altıgen", labelKu: "Şeşhêla Rêkpêk", labelEn: "Regular Hexagon",
+    cat: "polygon", label: "Düzgün Altıgen", labelKu: "Şeşhêla Rêkpêk", labelEn: "Regular Hexagon", labelAr: "سداسي منتظم", labelFa: "شش‌ضلعی منتظم",
     icon: "⬡", sides: 6, angles: [120, 120, 120, 120, 120, 120], parallel: 3, rightAngles: 0, isRegular: true,
     verts: (cx, cy, s) => Array.from({ length: 6 }, (_, i) => { const a = i * Math.PI / 3; return [cx + s * 0.5 * Math.cos(a), cy + s * 0.5 * Math.sin(a)]; }),
     area: s => 3 * Math.sqrt(3) / 2 * (s * 0.5) ** 2,
@@ -122,7 +122,7 @@ export const SHAPE_DEF = {
     anglePos: () => [],
   },
   octagon: {
-    cat: "polygon", label: "Düzgün Sekizgen", labelKu: "Heşthêla Rêkpêk", labelEn: "Regular Octagon",
+    cat: "polygon", label: "Düzgün Sekizgen", labelKu: "Heşthêla Rêkpêk", labelEn: "Regular Octagon", labelAr: "ثماني منتظم", labelFa: "هشت‌ضلعی منتظم",
     icon: "⏾", sides: 8, angles: [135, 135, 135, 135, 135, 135, 135, 135], parallel: 4, rightAngles: 0, isRegular: true,
     verts: (cx, cy, s) => Array.from({ length: 8 }, (_, i) => { const a = i * Math.PI / 4 + Math.PI / 8; return [cx + s * 0.5 * Math.cos(a), cy + s * 0.5 * Math.sin(a)]; }),
     area: s => 2 * (1 + Math.SQRT2) * (s * 0.5) ** 2,
@@ -130,7 +130,7 @@ export const SHAPE_DEF = {
     anglePos: () => [],
   },
   disk: {
-    cat: "circle", label: "Daire", labelKu: "Dayre", labelEn: "Disk",
+    cat: "circle", label: "Daire", labelKu: "Dayre", labelEn: "Disk", labelAr: "قرص", labelFa: "قرص",
     icon: "⬤", sides: 0, angles: [], parallel: 0, rightAngles: 0, isRegular: true,
     isFilled: true,
     verts: () => [],
@@ -140,7 +140,7 @@ export const SHAPE_DEF = {
     anglePos: () => [],
   },
   circle: {
-    cat: "circle", label: "Çember", labelKu: "Xelek", labelEn: "Circle",
+    cat: "circle", label: "Çember", labelKu: "Xelek", labelEn: "Circle", labelAr: "دائرة", labelFa: "دایره",
     icon: "◯", sides: 0, angles: [], parallel: 0, rightAngles: 0, isRegular: true,
     isFilled: false,
     verts: () => [],

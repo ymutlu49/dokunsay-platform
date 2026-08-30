@@ -1,0 +1,25 @@
+# DokunSay
+
+> DokunSay (dokunsay.com), diskalkuli (matematik öğrenme güçlüğü) yaşayan öğrenciler için dokunsal/manipülatif matematik öğretim araçları platformudur. Sayı çubukları (Bar), basamak blokları (Basamak), kesir (Kesir), saat (Clock), tam sayılar (Tam), geometri (Geo) ve veri/istatistik (Veri) olmak üzere 7 dijital manipülatif araç ile Clements & Sarama öğrenme yörüngeleri temelli /yorunge/ rehber bölümünü içerir. Türkçe, Kürtçe (Kurmancî), İngilizce, Arapça ve Farsça sunulur; ücretsizdir.
+
+## Geliştirici ve tasarım
+
+- DokunSay platformu Prof. Dr. Yılmaz Mutlu (Muş Alparslan Üniversitesi Eğitim Fakültesi, Matematik Eğitimi) tarafından geliştirilmiştir.
+- DokunSay fiziksel materyalleri, Yılmaz Mutlu ve Sinan Olkun'un endüstriyel tasarımlarıdır.
+- Araştırma alanları: diskalkuli (matematik öğrenme güçlüğü), matematik kaygısı, eğitsel sinirbilim, matematiksel biliş.
+- Kanonik akademik profil: https://hercocukmatematikogrenebilir.com/yilmaz-mutlu/
+- Google Scholar: https://scholar.google.com/citations?user=lYPwcn4AAAAJ
+- ORCID: https://orcid.org/0000-0002-4265-856X
+
+## Bölümler
+
+- [Ana sayfa](https://dokunsay.com/): Araç ailesinin tanıtımı ve başlatıcı
+- [Öğrenme Yörüngeleri](https://dokunsay.com/yorunge/): Clements & Sarama temelli 20 öğrenme yörüngesi rehberi, düzey düzey etkinlikler ve çalışma yaprakları
+- Araçlar: /DokunSayBar/ (sayı çubukları), /DokunSayBasamak/ (basamak değeri), /DokunSayKesir/ (kesirler), /DokunSayClock/ (saat), /DokunSayTam/ (tam sayılar), /Dokunsay-geo/ (geometri), /Dokunsay-veri-app/ (veri ve istatistik)
+
+## Kardeş siteler (Her Çocuk Matematik Öğrenebilir ailesi)
+
+- [Her Çocuk Matematik Öğrenebilir](https://hercocukmatematikogrenebilir.com/): Ana platform — diskalkuli bilgi kaynağı ve tüm araçların merkezi
+- [NuMap](https://getnumap.com/): Diskalkuli tarama ve değerlendirme platformu
+- [GalakSay](https://galaksay.com/): Oyunlaştırılmış matematik pratiği (uzay temalı oyun)
+- [ABMATO](https://abmato.com/): Matematik etkinlikleri ve ev destek içerikleri

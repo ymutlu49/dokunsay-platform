@@ -1,103 +1,82 @@
+import { Toolbar, ToolGroup, ToolButton, IconButton, ToolSep, ToolSpacer } from '@shared/AppToolbar.jsx';
 import { THEME } from '../../constants/theme';
 
+/**
+ * Tam alt araç çubuğu — ortak @shared/AppToolbar primitifleriyle (Bar referans).
+ * Tüm DokunSay uygulamalarında aynı görünüm/konum.
+ */
 const BottomBar = ({
   bgType, setBgType, bgColor, setBgColor,
   pages, currentPage, switchPage, addPage, deletePage,
   setShowHelp, setShowAbout, setShowTeacher,
+  zoom, setZoom,
 }) => (
-  <div style={{
-    height: 42, minHeight: 42, background: THEME.side,
-    borderTop: '1px solid ' + THEME.sideB,
-    display: 'flex', alignItems: 'center', padding: '0 20px', gap: 10,
-  }}>
+  <Toolbar>
     {/* Arka plan deseni */}
-    {[['Düz', 'plain'], ['Kareli', 'grid'], ['Noktalı', 'dot']].map(([label, value]) => (
-      <button
-        key={value}
-        onClick={() => setBgType(value)}
-        style={{
-          padding: '4px 12px', borderRadius: 8,
-          border: bgType === value ? '2px solid ' + THEME.accent : '1.5px solid rgba(0,0,0,.06)',
-          background: bgType === value ? THEME.accentL : '#fff',
-          cursor: 'pointer', fontSize: 10, fontWeight: 700,
-          color: bgType === value ? THEME.accentD : '#999',
-        }}
-      >{label}</button>
-    ))}
-
-    <div style={{ width: 1, height: 22, background: 'rgba(0,0,0,.06)' }} />
+    <ToolGroup>
+      {[['Düz', 'plain'], ['Kareli', 'grid'], ['Noktalı', 'dot']].map(([label, value]) => (
+        <ToolButton key={value} label={label} active={bgType === value} onClick={() => setBgType(value)} />
+      ))}
+    </ToolGroup>
 
     {/* Arka plan rengi */}
-    {[['Bej', THEME.bg], ['Beyaz', '#fff'], ['Krem', '#fef3c7'], ['Gri', '#f0f0f0'], ['Koyu', '#2a2a2a']].map(([, color]) => (
-      <button
-        key={color}
-        onClick={() => setBgColor(color)}
-        style={{
-          width: 22, height: 22, borderRadius: '50%',
-          border: bgColor === color ? '3px solid ' + THEME.accent : '2px solid rgba(0,0,0,.08)',
-          background: color, cursor: 'pointer',
-        }}
-      />
-    ))}
-
-    <div style={{ width: 1, height: 22, background: 'rgba(0,0,0,.06)' }} />
+    <ToolGroup>
+      {[THEME.bg, '#fff', '#fef3c7', '#f0f0f0', '#2a2a2a'].map((color) => (
+        <button
+          key={color}
+          onClick={() => setBgColor(color)}
+          aria-label="Arka plan rengi"
+          style={{
+            width: 20, height: 20, borderRadius: '50%',
+            border: bgColor === color ? '3px solid var(--appshell-accent,#22c55e)' : '2px solid rgba(0,0,0,.1)',
+            background: color, cursor: 'pointer', flexShrink: 0,
+          }}
+        />
+      ))}
+    </ToolGroup>
 
     {/* Sayfa sistemi */}
-    <div style={{ display: 'flex', gap: 3, alignItems: 'center' }}>
+    <ToolGroup>
       {pages.map((pg) => (
         <button
           key={pg.id}
           onClick={() => switchPage(pg.id)}
-          style={{
-            padding: '3px 10px', borderRadius: 6,
-            border: currentPage === pg.id ? '2px solid ' + THEME.accent : '1.5px solid rgba(0,0,0,.06)',
-            background: currentPage === pg.id ? THEME.accentL : '#fff',
-            cursor: 'pointer', fontSize: 9,
-            fontWeight: currentPage === pg.id ? 800 : 600,
-            color: currentPage === pg.id ? THEME.accentD : '#999',
-            fontFamily: 'inherit',
-          }}
+          className={'ds-toolbar__btn' + (currentPage === pg.id ? ' ds-toolbar__btn--active' : '')}
         >
           {pg.label}
           {pages.length > 1 && currentPage === pg.id && (
             <span
               onClick={(e) => { e.stopPropagation(); deletePage(pg.id); }}
-              style={{ marginLeft: 4, fontSize: 8, color: '#ccc', cursor: 'pointer' }}
-            >\×</span>
+              style={{ marginLeft: 4, fontSize: 10, opacity: 0.7, cursor: 'pointer' }}
+            >×</span>
           )}
         </button>
       ))}
-      <button
-        onClick={addPage}
-        style={{
-          width: 24, height: 24, borderRadius: 6,
-          border: '1.5px dashed rgba(0,0,0,.12)', background: '#fff',
-          cursor: 'pointer', fontSize: 13, fontWeight: 800, color: '#ccc',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-        }}
-      >+</button>
-    </div>
+      <IconButton icon="+" title="Yeni sayfa" onClick={addPage} />
+    </ToolGroup>
 
-    <div style={{ flex: 1 }} />
+    <ToolSpacer />
 
-    {/* Alt bar butonları */}
-    {[
-      { icon: '?', onClick: () => setShowHelp(true) },
-      { icon: '\ℹ', onClick: () => setShowAbout(true) },
-      { icon: '👨‍🏫', onClick: () => setShowTeacher(true) },
-    ].map(({ icon, onClick }, i) => (
-      <button
-        key={i}
-        onClick={onClick}
-        style={{
-          width: 28, height: 28, borderRadius: 8,
-          border: '1.5px solid rgba(0,0,0,.08)', background: '#fff',
-          cursor: 'pointer', fontSize: 12, color: '#999',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-        }}
-      >{icon}</button>
-    ))}
-  </div>
+    {/* Zoom */}
+    {setZoom && (
+      <ToolGroup>
+        <IconButton icon="−" title="Uzaklaştır" onClick={() => setZoom((z) => Math.max(0.5, +(z - 0.1).toFixed(1)))} />
+        <span style={{ fontSize: 11, fontWeight: 800, minWidth: 40, textAlign: 'center', color: THEME.text }}>
+          {Math.round(zoom * 100) + '%'}
+        </span>
+        <IconButton icon="+" title="Yakınlaştır" onClick={() => setZoom((z) => Math.min(2, +(z + 0.1).toFixed(1)))} />
+      </ToolGroup>
+    )}
+
+    <ToolSep />
+
+    {/* Yardımcılar */}
+    <ToolGroup>
+      <IconButton icon="?" title="Yardım" onClick={() => setShowHelp(true)} />
+      <IconButton icon="ℹ️" title="Hakkında" onClick={() => setShowAbout(true)} />
+      <IconButton icon="👨‍🏫" title="Öğretmen" onClick={() => setShowTeacher(true)} />
+    </ToolGroup>
+  </Toolbar>
 );
 
 export default BottomBar;

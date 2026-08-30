@@ -9,7 +9,7 @@ import { project3D } from '../utils/geometry.js';
 
 export const SHAPE_3D={
   cube:{
-    label:"Küp", labelKu:"Kûb", labelEn:"Cube",
+    label:"Küp", labelKu:"Kûb", labelEn:"Cube", labelAr: "مكعّب", labelFa: "مکعب",
     icon:"🎲",
     iconSvg:(c)=>(
       /* Küp — izometrik tel kafes. Üst paralelkenar + sol yüz + sağ yüz */
@@ -91,7 +91,7 @@ export const SHAPE_3D={
     },
   },
   rect_prism:{
-    label:"Dikdörtgenler Prizması", labelKu:"Prîzma Çarhêl", labelEn:"Rectangular Prism",
+    label:"Dikdörtgenler Prizması", labelKu:"Prîzma Çarhêl", labelEn:"Rectangular Prism", labelAr: "موشور مستطيلي", labelFa: "منشور مستطیلی",
     icon:"📦",
     iconSvg:(c)=>(
       /* Dikdörtgenler prizması — daha uzun, basık küp */
@@ -155,7 +155,7 @@ export const SHAPE_3D={
     },
   },
   sq_pyramid:{
-    label:"Kare Piramit", labelKu:"Pîrameda Çaryalî", labelEn:"Square Pyramid",
+    label:"Kare Piramit", labelKu:"Pîrameda Çaryalî", labelEn:"Square Pyramid", labelAr: "هرم رباعي", labelFa: "هرم مربع‌القاعده",
     icon:"🔺",
     iconSvg:(c)=>(
       /* Kare piramit — üstte tepe, altta kare taban */
@@ -225,7 +225,7 @@ export const SHAPE_3D={
     },
   },
   tri_prism:{
-    label:"Üçgen Prizma", labelKu:"Prîzma Sêgoşe", labelEn:"Triangular Prism",
+    label:"Üçgen Prizma", labelKu:"Prîzma Sêgoşe", labelEn:"Triangular Prism", labelAr: "موشور ثلاثي", labelFa: "منشور مثلثی",
     icon:"🔻",
     iconSvg:(c)=>(
       /* Üçgen prizma — yatan toblerone */
@@ -297,7 +297,7 @@ export const SHAPE_3D={
   /* ═══ ÜÇGEN PİRAMİT (TETRAHEDRON) ═══
      Eşkenar tabanlı düzgün tetrahedron. 4 eşkenar üçgen yüzü var. */
   tri_pyramid:{
-    label:"Üçgen Piramit", labelKu:"Pîrameda Sêgoşe", labelEn:"Triangular Pyramid",
+    label:"Üçgen Piramit", labelKu:"Pîrameda Sêgoşe", labelEn:"Triangular Pyramid", labelAr: "هرم ثلاثي", labelFa: "هرم مثلثی",
     icon:"🔺",
     iconSvg:(c)=>(
       /* Tetrahedron — 3 kenar apex'ten tabana */
@@ -387,7 +387,7 @@ export const SHAPE_3D={
   /* ═══ ALTIGEN PRİZMA ═══
      İki altıgen taban + 6 dikdörtgen yan yüz. */
   hex_prism:{
-    label:"Altıgen Prizma", labelKu:"Prîzma Şeşgoşe", labelEn:"Hexagonal Prism",
+    label:"Altıgen Prizma", labelKu:"Prîzma Şeşgoşe", labelEn:"Hexagonal Prism", labelAr: "موشور سداسي", labelFa: "منشور شش‌ضلعی",
     icon:"⬢",
     iconSvg:(c)=>(
       /* Altıgen prizma — üstte altıgen, yan dikey çizgiler, altta altıgen yay */
@@ -488,7 +488,7 @@ export const SHAPE_3D={
   /* ═══ SİLİNDİR ═══
      Eğri yüzey — SVG'de ellips + dikdörtgen. Açınım: dikdörtgen + 2 daire. */
   cylinder:{
-    label:"Silindir", labelKu:"Silinder", labelEn:"Cylinder",
+    label:"Silindir", labelKu:"Silinder", labelEn:"Cylinder", labelAr: "أسطوانة", labelFa: "استوانه",
     icon:"🥫",
     iconSvg:(c)=>(
       /* Silindir — üst ellips, iki yan çizgi, alt ellips */
@@ -542,7 +542,7 @@ export const SHAPE_3D={
   /* ═══ KONİ ═══
      Eğri yüzey. 2 yüz (1 daire taban + 1 eğri yan), 1 çembersel kenar, 1 köşe (apex). */
   cone:{
-    label:"Koni", labelKu:"Konî", labelEn:"Cone",
+    label:"Koni", labelKu:"Konî", labelEn:"Cone", labelAr: "مخروط", labelFa: "مخروط",
     icon:"🍦",
     iconSvg:(c)=>(
       /* Koni — apex + ellips taban + yan çizgiler */

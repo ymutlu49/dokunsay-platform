@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2B Şekiller — Öğrenme Yörüngesi · DokunSay</title>
+<meta name="description" content="2B Şekiller öğrenme yörüngesi: 22 gelişim basamağı, her birinde DokunSay etkinliği ve gözlem ölçütü. Clements &amp; Sarama çerçevesi. Şekil tanıma, kenar/köşe, özellikler.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --c:#7c3aed;
+    --amber:#2E7D32; --ink:#182219; --body:#37433c; --muted:#5f6b63; --line:#dfe7df;
+    --bg:#f3f7f1; --card:#ffffff; --maxw:1180px; --r:18px;
+    --shadow:0 10px 30px -14px rgba(24,40,25,.22);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Inter,system-ui,sans-serif;color:var(--body);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4,h5,h6{font-family:Poppins,sans-serif;color:var(--ink);line-height:1.16;letter-spacing:-.01em}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  .eyebrow{font-family:Poppins;font-weight:700;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase}
+
+
+.dsh{background:linear-gradient(135deg,#14391a 0%,#1d2b22 100%);color:#fff;padding:12px 24px;box-shadow:0 4px 10px rgba(24,40,25,.10),0 2px 4px rgba(24,40,25,.05);position:sticky;top:0;z-index:50}
+.dsh-row{display:flex;align-items:center;justify-content:space-between;gap:16px;max-width:1440px;margin:0 auto;flex-wrap:wrap}
+.dsh-brand{display:flex;align-items:center;gap:13px;text-decoration:none;color:#fff}
+.dsh-logo{width:40px;height:40px;border-radius:12px;background:#fff;display:grid;place-items:center;padding:5px;box-shadow:0 1px 4px rgba(15,23,42,.12);flex:0 0 auto}
+.dsh-logo svg{display:block;width:100%;height:100%}
+.dsh-titles{display:flex;flex-direction:column;line-height:1.12}
+.dsh-name{font-family:Poppins,system-ui,sans-serif;font-size:20px;font-weight:800;letter-spacing:.4px;color:#fff}
+.dsh-sub{font-size:11.5px;font-weight:700;opacity:.72;letter-spacing:.3px;margin-top:2px;color:#fff}
+.dsh-nav{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.dsh-pill{display:inline-flex;align-items:center;gap:6px;padding:8px 15px;border-radius:999px;font-weight:700;font-size:.86rem;font-family:inherit;line-height:1;text-decoration:none;white-space:nowrap;border:1px solid transparent;transition:filter .15s,background .15s}
+.dsh-pill:hover{filter:brightness(1.13)}
+.dsh-amber{color:#fde6c0;background:rgba(245,158,11,.18);border-color:rgba(245,158,11,.45)}
+.dsh-green{color:#d7f0d9;background:rgba(46,125,50,.22);border-color:rgba(46,125,50,.5)}
+.dsh-teal{color:#bfe8e4;background:rgba(13,148,136,.2);border-color:rgba(13,148,136,.5)}
+.dsh-pill.is-active{box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.45);filter:brightness(1.12)}
+.dsh .hcmo-auth{display:inline-flex;align-items:center;gap:6px}
+.dsh .hcmo-auth:empty{display:none}
+.dsh .hcmo-auth a{display:inline-flex;align-items:center;gap:5px;padding:8px 14px;border-radius:999px;font-weight:700;font-size:.86rem;text-decoration:none;white-space:nowrap;color:#fde6c0;background:rgba(245,158,11,.18);border:1px solid rgba(245,158,11,.45);transition:background .15s}
+.dsh .hcmo-auth a:hover{background:rgba(245,158,11,.3)}
+.dsh .hcmo-auth a#hcmo-stu{color:#cfe8ff;background:rgba(96,165,250,.16);border-color:rgba(96,165,250,.4)}
+.dsh .hcmo-auth a#hcmo-stu:hover{background:rgba(96,165,250,.28)}
+.dsh .hcmo-auth>span{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:.86rem;color:#e8eefc}
+.dsh .hcmo-auth .nm{color:#fde6c0}
+.dsh .hcmo-auth #hcmo-out{cursor:pointer;border:0;border-radius:999px;background:#f59e0b;color:#3a2606;font-weight:800;font-size:.8rem;padding:7px 13px;font-family:inherit}
+.dsh .hcmo-auth #hcmo-out:hover{filter:brightness(1.07)}
+@media (max-width:760px){.dsh{padding:10px 15px}.dsh-pill{padding:7px 11px;font-size:.8rem}.dsh-name{font-size:18px}}
+@media print{.dsh{display:none}}
+
+  .hero{background:linear-gradient(135deg,color-mix(in srgb,var(--c) 88%,#000),color-mix(in srgb,var(--c) 62%,#14391a));color:#fff;padding:30px 0 40px;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;right:-70px;top:-60px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.16),transparent 70%)}
+  .crumb{font-size:.84rem;color:rgba(255,255,255,.8);margin-bottom:16px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .crumb a{color:rgba(255,255,255,.92);text-decoration:underline;text-underline-offset:2px}
+  .hero-grid{display:flex;align-items:flex-start;gap:18px;position:relative;z-index:1}
+  .hero-ic{font-size:2.6rem;line-height:1;background:rgba(255,255,255,.16);width:74px;height:74px;border-radius:18px;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+  .hero .eyebrow{color:rgba(255,255,255,.85)}
+  .hero h1{color:#fff;font-size:clamp(1.9rem,4.4vw,2.9rem);font-weight:900;margin:6px 0 10px}
+  .hero .lede{color:rgba(255,255,255,.94);font-size:1.06rem;max-width:680px}
+  .hero .ltname{opacity:.8;font-style:italic}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px}
+  .hm{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.22);color:#fff;border-radius:999px;padding:.34em .9em;font-size:.82rem;font-weight:600;font-family:Poppins}
+  .hero-cta{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+  .btn{font-family:Poppins;font-weight:700;font-size:.9rem;border-radius:999px;padding:.6em 1.2em;cursor:pointer;border:0;display:inline-flex;align-items:center;gap:7px}
+  .btn-w{background:#fff;color:var(--ink)}.btn-w:hover{transform:translateY(-1px)}
+  .btn-o{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.4)}.btn-o:hover{background:rgba(255,255,255,.24)}
+
+  .layout{display:grid;grid-template-columns:266px 1fr;gap:34px;align-items:start;padding:34px 0 50px}
+  .side{position:sticky;top:78px}
+  .side-in{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;max-height:calc(100vh - 100px);display:flex;flex-direction:column}
+  .side-head{font-family:Poppins;font-weight:800;color:var(--ink);font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;padding:14px 16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between}
+  .side-head span{color:var(--c)}
+  .side-list{list-style:none;overflow-y:auto;padding:6px}
+  .side-list a{display:flex;gap:10px;align-items:center;padding:8px 9px;border-radius:10px;transition:background .15s}
+  .side-list a:hover{background:#f1f8f2}
+  .side-list a.act{background:color-mix(in srgb,var(--c) 12%,#fff)}
+  .s-num{flex:0 0 auto;width:24px;height:24px;border-radius:7px;background:color-mix(in srgb,var(--c) 14%,#fff);color:var(--c);font-family:Poppins;font-weight:700;font-size:.8rem;display:flex;align-items:center;justify-content:center}
+  .side-list a.act .s-num{background:var(--c);color:#fff}
+  .s-txt{display:flex;flex-direction:column;min-width:0}
+  .s-txt b{font-family:Inter;font-weight:600;font-size:.86rem;color:var(--ink);line-height:1.25}
+  .s-txt small{color:var(--muted);font-size:.72rem}
+
+  .levels{display:flex;flex-direction:column;gap:20px}
+  .level{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px 24px;scroll-margin-top:84px;position:relative}
+  .level.bn{border-color:#f3c98b;box-shadow:0 0 0 1px #f3c98b inset}
+  .level.bn::before{content:"";position:absolute;left:0;top:18px;bottom:18px;width:4px;border-radius:4px;background:linear-gradient(#f59e0b,#ea580c)}
+  .lv-top{display:flex;gap:14px;align-items:flex-start;margin-bottom:14px}
+  .lv-num{flex:0 0 auto;width:42px;height:42px;border-radius:12px;background:var(--c);color:#fff;font-family:Poppins;font-weight:800;font-size:1.25rem;display:flex;align-items:center;justify-content:center}
+  .lv-badges{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:3px}
+  .age-pill{font-family:Poppins;font-weight:700;font-size:.7rem;color:var(--c);background:color-mix(in srgb,var(--c) 12%,#fff);border-radius:999px;padding:.2em .7em}
+  .bn-pill{font-family:Poppins;font-weight:700;font-size:.7rem;color:#9a3412;background:#fff3e2;border:1px solid #f3c98b;border-radius:999px;padding:.2em .7em}
+  .lv-id h3{font-size:1.2rem;font-weight:700}
+  .lv-body{display:grid;grid-template-columns:1fr 196px;gap:20px;align-items:start}
+  .lv-main{min-width:0}
+  .lv-desc{font-size:.98rem;color:var(--body);margin-bottom:12px}
+  .lv-desc b{color:var(--ink)}
+  .note{border-radius:12px;padding:12px 15px;margin-bottom:11px}
+  .note h5{font-size:.74rem;letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px}
+  .note p{font-size:.92rem}
+  .note.how{background:#f4f8f5;border:1px solid #dcebe1}.note.how h5{color:#15803d}
+  .note.teach{background:#fff8ee;border:1px solid #f3e2c4}.note.teach h5{color:#b45309}
+  .lv-viz{background:linear-gradient(#f8fbf7,#eef5ec);border:1px solid var(--line);border-radius:14px;padding:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:sticky;top:80px}
+  .lv-viz svg{width:100%;height:auto;max-height:130px}
+  .lv-viz .viz-cap{font-size:.7rem;color:var(--muted);font-weight:600;margin-top:4px;font-family:Poppins;letter-spacing:.04em}
+  .lv-viz.emblem span{font-size:3.2rem;filter:saturate(1.05)}
+
+  .act{margin-top:14px;background:#fbfdfb;border:1px solid #e3efe5;border-radius:14px;padding:15px 17px}
+  .act-head{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+  .act-head h4{font-size:1rem;font-weight:700;color:#15803d}
+  .act-ic{font-size:1.1rem}
+  .act-sub{margin-bottom:10px}
+  .act-sub h5{font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:#64748b;margin-bottom:5px}
+  .mats{list-style:none;display:flex;flex-wrap:wrap;gap:6px}
+  .mats li{background:#eef6ef;border:1px solid #d7e9d9;color:#2f5337;border-radius:8px;padding:.22em .6em;font-size:.84rem}
+  .steps{margin:0 0 0 18px;padding:0}
+  .steps li{font-size:.92rem;margin-bottom:5px;padding-left:3px}
+  .crit{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:9px 12px;font-size:.9rem;color:#166534;margin:10px 0}
+  .crit .tick{color:#2E7D32;font-weight:800}
+  .scaf{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+  .scaf-c{border-radius:10px;padding:9px 12px;font-size:.88rem}
+  .scaf-c h6{font-size:.74rem;margin-bottom:3px;font-weight:700}
+  .scaf-c.easy{background:#f1f5f9;border:1px solid #e2e8f0}.scaf-c.easy h6{color:#475569}
+  .scaf-c.hard{background:#faf5ff;border:1px solid #e9d5ff}.scaf-c.hard h6{color:#7c3aed}
+  .obs{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:11px 14px;font-size:.92rem}
+  .obs b{color:var(--ink)}
+
+  .chips{margin-top:12px}
+  .chips-lab{font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;color:#94a3b8;font-weight:700;font-family:Poppins}
+  .chips-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+  .chip{display:inline-flex;flex-direction:column;border-radius:10px;padding:7px 11px;font-size:.8rem;border:1px solid;max-width:240px;transition:transform .14s}
+  .chip:hover{transform:translateY(-2px)}
+  .chip b{font-family:Poppins;font-weight:700;font-size:.82rem}
+  .chip span{font-size:.74rem;opacity:.85;line-height:1.3}
+  .chip-ds{background:#fff7ec;border-color:#f6dcae;color:#9a5b16}
+  .chip-gs{background:#eef2ff;border-color:#c7d2fe;color:#4338ca}
+  .chip-ab{background:#ecfdf5;border-color:#bbf7d0;color:#166534}
+  .chip-adim{background:#f8fafc;border-color:#e2e8f0;color:#64748b;cursor:default}
+
+  .lv-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:16px;padding-top:14px;border-top:1px dashed var(--line);flex-wrap:wrap}
+  .printcard{background:#fff;border:1px solid var(--line);color:var(--body);font-family:Poppins;font-weight:600;font-size:.82rem;border-radius:999px;padding:.5em 1em;cursor:pointer}
+  .printcard:hover{background:#f1f8f2;color:var(--ink)}
+  .nextlv{font-family:Poppins;font-weight:600;font-size:.86rem;color:var(--c)}
+  .nextlv b{font-weight:700}
+  .nextlv.done{color:var(--muted)}
+
+  footer{background:#14391a;color:#9db89f;padding:36px 0;margin-top:10px;font-size:.88rem}
+  footer a{color:#d8e6d8;text-decoration:underline}
+  .foot-note{max-width:760px;font-size:.82rem;color:#7f9781;margin-top:8px}
+
+  @media(max-width:980px){
+    .layout{grid-template-columns:1fr;gap:0}
+    .side{position:static;margin-bottom:20px}
+    .side-in{max-height:none}
+    .side-list{max-height:300px}
+    .lv-body{grid-template-columns:1fr}
+    .lv-viz{order:-1;flex-direction:row;gap:12px;position:static}
+    .lv-viz svg{max-height:90px;width:auto}
+    .scaf{grid-template-columns:1fr}
+    .nav-links{display:none}
+  }
+
+  /* ── Yazdırma ── */
+  @media print{
+    header,.hero-cta,.side,footer,.printcard,.nextlv,.chips{display:none!important}
+    body{background:#fff}
+    .hero{background:#fff;color:#000;padding:0 0 10px;border-bottom:2px solid #000}
+    .hero::after{display:none}.hero-ic{background:#eee}
+    .hero h1,.hero .eyebrow,.hero .lede,.crumb{color:#000}
+    .layout{display:block;padding:6px 0}
+    .levels{gap:0}
+    .level{break-inside:avoid;page-break-inside:avoid;border:1px solid #999;box-shadow:none;margin-bottom:10px}
+    .lv-viz{border:1px solid #ccc}
+    body.printing-one .level:not(.print-target){display:none!important}
+    body.printing-one .hero .lede,body.printing-one .hero-meta{display:none}
+  }
+</style>
+</head>
+<body data-key="shape2d">
+<header class="dsh"><div class="dsh-row"><a class="dsh-brand" href="/" aria-label="DokunSay ana sayfa"><span class="dsh-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" aria-hidden="true"><line x1="28" y1="27" x2="72" y2="27" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="28" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="72" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><circle cx="28" cy="27" r="21" fill="#2E7D32"/><circle cx="20.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="28" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="35.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="72" cy="27" r="21" fill="#0d9488"/><text x="72" y="32" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="14" fill="#fff">üç</text><circle cx="50" cy="73" r="21" fill="#1B5E20"/><text x="50" y="82" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="27" fill="#fff">3</text></svg></span><span class="dsh-titles"><span class="dsh-name">DokunSay</span><span class="dsh-sub">Matematik Öğretim Araçları Platformu</span></span></a><nav class="dsh-nav" aria-label="Site gezinme"><a class="dsh-pill dsh-amber is-active" href="/yorunge/" aria-current="page">🧭 Öğrenme Yörüngeleri</a><a class="dsh-pill dsh-green" href="/rehber/">📘 Müdahale Rehberi</a><a class="dsh-pill dsh-teal" href="/#tools-section">🛠️ Araçlar</a><span id="hcmoAuth" class="hcmo-auth"></span></nav></div></header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="crumb"><a href="/yorunge/">Öğrenme Yörüngeleri</a> <span>›</span> <span>Geometri ve Uzamsal</span></div>
+    <div class="hero-grid">
+      <div class="hero-ic">🔺</div>
+      <div>
+        <span class="eyebrow">Geometri ve Uzamsal</span>
+        <h1>2B Şekiller</h1>
+        <p class="lede">Şekil tanıma, kenar/köşe, özellikler. <span class="ltname">(2D Shapes)</span></p>
+        <div class="hero-meta">
+          <span class="hm">📊 22 basamak</span>
+          <span class="hm">🎂 0–12 yaş</span>
+          <span class="hm">⚠ 1 darboğaz</span>
+          <span class="hm">🎯 Profil alanı · gözlem</span>
+        </div>
+        <div class="hero-cta">
+          <a class="btn btn-w" href="calisma-yapraklari.html">✏️ Çalışma yaprakları</a>
+          <a class="btn btn-w" href="calisma-yapraklari-dokunsay.html">🧩 DokunSay materyalli yapraklar</a>
+          <a class="btn btn-o" href="etkinlik-kartlari.pdf" target="_blank" rel="noopener">⬇ Etkinlik kartları (PDF)</a>
+          <button class="btn btn-o" id="printAll" type="button">🖨️ Yazdır</button>
+          <a class="btn btn-o" href="/yorunge/">← Tüm yörüngeler</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main class="wrap">
+  <div class="layout">
+    <aside class="side">
+    <div class="side-in">
+      <div class="side-head">Düzeyler <span>22</span></div>
+      <ol class="side-list"><li><a href="#lv-0" data-i="0"><span class="s-num" style="--c:#7c3aed">1</span><span class="s-txt"><b>Benzerini Fark Eden: Temeller</b><small>0–2 yaş</small></span></a></li><li><a href="#lv-1" data-i="1"><span class="s-num" style="--c:#7c3aed">2</span><span class="s-txt"><b>Şekil Eşleyen — Aynısı, Döndürülmüşü, Büyüğü-Küçüğü</b><small>1–3 yaş</small></span></a></li><li><a href="#lv-2" data-i="2"><span class="s-num" style="--c:#7c3aed">3</span><span class="s-txt"><b>Tanıdık Şekilleri Tanıyan</b><small>2–4 yaş</small></span></a></li><li><a href="#lv-3" data-i="3"><span class="s-num" style="--c:#7c3aed">4</span><span class="s-txt"><b>Şekil Eşleyen — Yeni Şekiller ve Bileşimler</b><small>3–4 yaş</small></span></a></li><li><a href="#lv-4" data-i="4"><span class="s-num" style="--c:#7c3aed">5</span><span class="s-txt"><b>Daire, Kare ve Üçgeni Tanıyan</b><small>4–5 yaş · ⚠ darboğaz</small></span></a></li><li><a href="#lv-5" data-i="5"><span class="s-num" style="--c:#7c3aed">6</span><span class="s-txt"><b>Parçalardan &quot;Benzerini&quot; Kuran</b><small>4–5 yaş</small></span></a></li><li><a href="#lv-6" data-i="6"><span class="s-num" style="--c:#7c3aed">7</span><span class="s-txt"><b>Her Tür Dikdörtgeni Tanıyan</b><small>4–5 yaş</small></span></a></li><li><a href="#lv-7" data-i="7"><span class="s-num" style="--c:#7c3aed">8</span><span class="s-txt"><b>Kenar Tanıyan</b><small>4–5 yaş</small></span></a></li><li><a href="#lv-8" data-i="8"><span class="s-num" style="--c:#7c3aed">9</span><span class="s-txt"><b>Birçok Yönden Karşılaştıran</b><small>4–5 yaş</small></span></a></li><li><a href="#lv-9" data-i="9"><span class="s-num" style="--c:#7c3aed">10</span><span class="s-txt"><b>Köşe (Açı) Tanıyan</b><small>4–5 yaş</small></span></a></li><li><a href="#lv-10" data-i="10"><span class="s-num" style="--c:#7c3aed">11</span><span class="s-txt"><b>Daha Çok Şekil Tanıyan</b><small>5–6 yaş</small></span></a></li><li><a href="#lv-11" data-i="11"><span class="s-num" style="--c:#7c3aed">12</span><span class="s-txt"><b>Şekilleri Doğru Adlandıran</b><small>6–7 yaş</small></span></a></li><li><a href="#lv-12" data-i="12"><span class="s-num" style="--c:#7c3aed">13</span><span class="s-txt"><b>Açıyı Farklı Yerlerde Tanıyan</b><small>7–8 yaş</small></span></a></li><li><a href="#lv-13" data-i="13"><span class="s-num" style="--c:#7c3aed">14</span><span class="s-txt"><b>Şekli Parçalarıyla Tanımlayan</b><small>7–8 yaş</small></span></a></li><li><a href="#lv-14" data-i="14"><span class="s-num" style="--c:#7c3aed">15</span><span class="s-txt"><b>Üst Üste Koyup Eşliğini Gösteren</b><small>7–8 yaş</small></span></a></li><li><a href="#lv-15" data-i="15"><span class="s-num" style="--c:#7c3aed">16</span><span class="s-txt"><b>Parçalardan Şekli Tam Kuran</b><small>7–8 yaş</small></span></a></li><li><a href="#lv-16" data-i="16"><span class="s-num" style="--c:#7c3aed">17</span><span class="s-txt"><b>Açıyı Temsil Eden</b><small>8–9 yaş</small></span></a></li><li><a href="#lv-17" data-i="17"><span class="s-num" style="--c:#7c3aed">18</span><span class="s-txt"><b>Eşliği Açıklayan</b><small>8–9 yaş</small></span></a></li><li><a href="#lv-18" data-i="18"><span class="s-num" style="--c:#7c3aed">19</span><span class="s-txt"><b>Şekil Ailelerini Ayırt Eden</b><small>8–10 yaş</small></span></a></li><li><a href="#lv-19" data-i="19"><span class="s-num" style="--c:#7c3aed">20</span><span class="s-txt"><b>Özellikleriyle Tanımlayan</b><small>8–10 yaş</small></span></a></li><li><a href="#lv-20" data-i="20"><span class="s-num" style="--c:#7c3aed">21</span><span class="s-txt"><b>Özelliklere Göre Sınıflayan</b><small>8–11 yaş</small></span></a></li><li><a href="#lv-21" data-i="21"><span class="s-num" style="--c:#7c3aed">22</span><span class="s-txt"><b>Açı Kavramını Bütünleştiren</b><small>8–12 yaş</small></span></a></li></ol>
+    </div>
+  </aside>
+    <div class="levels">
+      
+  <article class="level" id="lv-0">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#7c3aed">1</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#7c3aed">0–2 yaş</span>
+          
+        </div>
+        <h3>Benzerini Fark Eden: Temeller</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Gerçek yaşam nesnelerini karşılaştırır; iki nesnenin &quot;aynı şey&quot; olup olmadığına bütünsel görünüşe bakarak karar verir. Şekil henüz ayrı bir geometrik nesne olarak ele alınmaz.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk iki nesneyi yan yana koyunca &quot;aynı&quot; ya da &quot;başka&quot; diye sezer: aynı iki bardağı eşler, içlerinden farklı olanı (bir tabak) kendiliğinden ayırır. Henüz &quot;daire/kare&quot; gibi ad yoktur; yalnız &quot;bu buna benziyor, bu benzemiyor&quot; duygusu vardır.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, tüm geometrinin işitsel-değil görsel tohumudur: çocuk biçimsel benzerliği/farklılığı saymadan, adlandırmadan sezer. Van Hiele'nin &quot;görsel düzey&quot;inden bile önceki bir basamaktır — şekil bilgisinin değil, ayırt etme dikkatinin uyanışıdır. Günlük &quot;bak, bunlar aynı / bu farklı&quot; oyunlarıyla bu sezgiyi besleyin; amaç ad öğretmek değil, &quot;benzeyen-benzemeyen&quot;e dikkati çekmektir.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay Geo şekil bloklarından 3 özdeş + 1 farklı parça</li><li>küçük bir tepsi</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>İki özdeş bloğu çocuğun önüne koyun: &quot;Bak, bunlar aynı!&quot; deyin, üst üste getirip gösterin.</li><li>Araya farklı bir blok ekleyin: &quot;Bu başka, değil mi?&quot; diye tepkisini gözleyin.</li><li>Çocuk özdeş olanları yan yana itiyor/uzatıyor mu bakın.</li><li>Günlük nesnelerle (iki kaşık + bir top) &quot;aynı/başka&quot; oyununu tekrarlayın.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Aynı ve farklı nesneleri (saymadan, adlandırmadan) sezgisel ayırt eder; benzeyeni eşler ya da farklıya tepki verirse ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Farkı abartın: aynı iki blok yanına çok farklı bir nesne (yumuşak oyuncak) koyun.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Yalnız renkçe değil biçimce yakın nesnelerle (kare ↔ dikdörtgen) ayırt ettirin.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey için ADIM etkinliği"><b>ADIM</b><span>İlgili düzey için ADIM etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#7c3aed">🔺</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="0" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-1">Sıradaki düzey · <b>Şekil Eşleyen — Aynısı, Döndürülmüşü, Büyüğü-Küçüğü</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-1">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#7c3aed">2</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#7c3aed">1–3 yaş</span>
+          
+        </div>
+        <h3>Şekil Eşleyen — Aynısı, Döndürülmüşü, Büyüğü-Küçüğü</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Tanıdık şekilleri (daire, kare, tipik üçgen) önce aynı boyut ve yönelimde, ardından farklı boyutlarda, en sonunda farklı yönelimlerde eşler.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk bir üçgeni, döndürülmüş ya da daha büyük/küçük eşiyle eşler: blok döndürülmüş dursa bile &quot;ikiz&quot;ini bulur. Şeklin duruşu (yönelim) ya da boyutu değişse de &quot;aynı şekil&quot; olduğunu görür.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Burada kritik kazanım, şeklin DURUŞTAN ve BOYUTTAN bağımsız bir kimliği olduğunu sezmektir. Birçok çocuk başta yalnız tıpatıp aynı duran/aynı boy şekli eşler; döndürülmüş ya da büyütülmüş eşi reddeder. Bu, ileride &quot;eğik üçgen de üçgendir&quot; içgörüsünün filizidir. Şekli elinde çevirerek &quot;bak, döndürdüm ama hâlâ aynı&quot; deyin; eşlemeyi yönelim/boyut değiştirerek zenginleştirin.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay Geo şekil blokları (aynı şeklin döndürülmüş + büyük/küçük eşleri)</li><li>bir eşleme tahtası/tepsi</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Bir üçgen bloğu gösterip &quot;bunun ikizini bul&quot; deyin; eşini döndürülmüş olarak karıştırın.</li><li>Çocuk bulunca bloğu çevirip üst üste getirin: &quot;tıpatıp oturdu — aynı şekil.&quot;</li><li>Aynı şeklin büyük ve küçük boyunu sunup yine eşletin.</li><li>Daire/kare/üçgenle yönelim ve boyut değişerek tekrarlayın.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Özdeş bir şekli, yönelimi (döndürülmüş) ve boyutu farklı olsa bile doğru eşlerse ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Önce yalnız boyutu değiştirin (duruş aynı kalsın); büyük ↔ küçük eşletin.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Birden çok benzer şekli (üçgen + ince üçgen) karıştırıp tam eşi seçtirin.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey için ADIM etkinliği"><b>ADIM</b><span>İlgili düzey için ADIM etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#7c3aed">🔺</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="1" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-2">Sıradaki düzey · <b>Tanıdık Şekilleri Tanıyan</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-2">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#7c3aed">3</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#7c3aed">2–4 yaş</span>
+          
+        </div>
+        <h3>Tanıdık Şekilleri Tanıyan</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Tipik daire ve kareyi, daha seyrek olarak tipik üçgeni tanır ve adlandırır. Atipik yönelimdeki bir şekli zihnindeki prototiple eşleştirmek için kartı eliyle döndürebilir.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk tipik bir daireyi, dik duran bir kareyi ve tabanı altta geniş bir üçgeni gösterince &quot;daire, kare, üçgen&quot; diye doğru adlandırır. Bunlar onun zihnindeki &quot;örnek&quot; şekillerdir; biraz farklı (uzun, eğik) bir örnek çıkarsa henüz şaşırabilir.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, Van Hiele'nin görsel (0.) düzeyinin başlangıcıdır: şekil bir BÜTÜN GÖRÜNTÜ olarak, prototipiyle tanınır — &quot;kare, kapı gibi olandır&quot;. Çocuk özelliklere (kaç kenar?) değil, genel siluete bakar. Bu doğal ve gereklidir; ama tek başına bırakılırsa &quot;yalnız tipik şekli tanıma&quot; yanılgısına dönüşür. Şimdilik adları tipik örneklerle sağlamlaştırın; atipik örnekleri bir sonraki darboğaz düzeyine bırakın.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay Geo şekil blokları (tipik daire, kare, üçgen)</li><li>şekil adı kartları/sözel etiketler</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Tipik daireyi gösterip &quot;bu ne?&quot; deyin; çocuk &quot;daire&quot; desin, parmağıyla kenarını izlesin.</li><li>Tipik kare ve üçgeni sırayla gösterip adlandırtın.</li><li>Üç şekli karıştırıp &quot;daireyi ver / kareyi ver&quot; diye seçtirin.</li><li>Çevredeki nesnelere bağlayın: &quot;tabak daireye, pencere kareye benziyor.&quot;</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Tipik daire, kare ve üçgeni gösterildiğinde doğru adlandırır ya da adı söylenince doğru olanı seçerse ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Aynı anda yalnız iki şekil sunun (daire ↔ kare); en tanıdık örnekleri kullanın.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Üç şekli birlikte sunup hızlı adlandırtın; &quot;hangisi yuvarlak, hangisi köşeli?&quot; diye sordurun.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey için ADIM etkinliği"><b>ADIM</b><span>İlgili düzey için ADIM etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#7c3aed">🔺</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="2" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-3">Sıradaki düzey · <b>Şekil Eşleyen — Yeni Şekiller ve Bileşimler</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-3">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#7c3aed">4</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#7c3aed">3–4 yaş</span>
+          
+        </div>
+        <h3>Şekil Eşleyen — Yeni Şekiller ve Bileşimler</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Daha geniş bir şekil çeşitliliğini farklı boyut ve yönelimler arasında eşler; iki şekilden oluşan bileşimleri de birbirleriyle eşleyebilir.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk yalnız tek şekilleri değil, birbirine bitişik/bileşik şekilleri (iki üçgenden oluşan bir kare, bir ev biçimi) eşler. Boyut, yönelim ve birleşim değişse de hangi parçanın hangisine denk geldiğini bulur.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Eşleme repertuarı genişler: çocuk artık daha çok şekli ve şekil BİRLEŞİMLERİNİ karşılaştırabilir. Bu, ileride şekilleri parçalardan kurmanın (kompozisyon) ve tangramın zeminidir. Bileşik şekilde &quot;hangi parça nereye?&quot; diye düşünmek, görsel analizin ilk kıvılcımıdır — henüz özellik adı (kenar/açı) yok, ama parça-bütün dikkati başlıyor. Üst üste oturtarak (çakıştırarak) eşlemeyi doğrulatın.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay Geo şekil blokları (tek + bileşik desenler)</li><li>tangram parçaları</li><li>eşleme tahtası</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>İki üçgenden bir kare kurup &quot;bunun aynısını yap&quot; deyin.</li><li>Aynı deseni farklı boyutta/yönelimde sunup eşletin.</li><li>Çocuk parçaları çakıştırarak &quot;tıpatıp oturuyor mu?&quot; diye denetlesin.</li><li>Bir &quot;ev&quot; (kare + üçgen) deseni verip parça parça eşletin.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Çeşitli boyut/yönelimdeki tek ve bileşik şekilleri, parçaları doğru denkleyerek eşlerse ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>İki parçalı basit desenler (yalnız iki üçgen) ve aynı yönelimle çalışın.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Üç-dört parçalı desenler; bir parçayı döndürmeden oturmayacak şekilde sunun.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey için ADIM etkinliği"><b>ADIM</b><span>İlgili düzey için ADIM etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#7c3aed">🔺</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="3" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-4">Sıradaki düzey · <b>Daire, Kare ve Üçgeni Tanıyan</b> →</a>
+    </div>
+  </article>
+
+  <article class="level bn" id="lv-4">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#7c3aed">5</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#7c3aed">4–5 yaş</span>
+          <span class="bn-pill">⚠ Darboğaz · kritik geçiş</span>
+        </div>
+        <h3>Daire, Kare ve Üçgeni Tanıyan</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Daha az tipik (atipik) bazı kare ve üçgenleri de tanır; bazı dikdörtgenleri tanıyabilir, eşkenar dörtgenleri ise genellikle tanımaz. Kenar ve köşeleri çoğu kez henüz ayırt etmez.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk yalnız tipik değil, ATİPİK örnekleri de tanır: çok ince ya da eğik (yana yatmış) bir üçgeni de &quot;üçgen&quot; der; uzunca ya da köşesi yukarı bakan bir kareyi yine &quot;kare&quot; diye adlandırır. Henüz oturmamışsa eğik/ince üçgeni &quot;hayır, o üçgen değil&quot; diye reddeder, yalnız çatı gibi duranı kabul eder.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu yörüngenin asıl darboğazıdır ve geometride en yaygın yanılgının (&quot;yalnız tipik/dik duran şekli tanıma&quot;) aşıldığı yerdir. Çocuk prototip görüntüden ÖZELLİĞE geçmeye başlar: &quot;üç kenarı ve üç köşesi olan her şey üçgendir — ince de olsa, eğik de olsa.&quot; Atipik örnek görünce &quot;saymadan, kenarlarına bak: kaç kenar var?&quot; diye yönlendirin. Bol bol &quot;şekil değil&quot; karşı-örnek de (yuvarlak köşeli, açık/kapanmamış figür) gösterin ki tanım keskinleşsin. Bu geçişte süreğen takılma — eğik üçgeni inatla reddetme — erken bir geometri/uzamsal güçlük işareti olabilir; ada değil, özelliğe bakma alışkanlığını kurun.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay Geo şekil blokları (ince/eğik/atipik üçgen ve kareler + bir daire)</li><li>geoboard ve lastikler</li><li>karşı-örnek kartları (köşeleri yuvarlatılmış, açık figürler)</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>İnce ve eğik bir üçgen gösterip &quot;bu üçgen mi?&quot; diye sorun; reddederse kenarlarını birlikte sayın: &quot;bir, iki, üç — üç kenar, demek üçgen.&quot;</li><li>Köşesi yukarı dönük (baklava gibi duran) kareyi gösterip &quot;yine kare: dört eşit kenar&quot; deyin.</li><li>Geoboard'da lastikle eğik bir üçgen gerdirip &quot;yatırdık ama hâlâ üçgen&quot; diye duruştan bağımsızlığı yaşatın.</li><li>Bir &quot;üçgen değil&quot; (yuvarlak köşeli ya da açık) karşı-örnek sunup &quot;neden değil?&quot; diye söyletin.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Atipik (ince/eğik/döndürülmüş) daire, kare ve üçgeni de doğru tanır; bir karşı-örneğin neden o şekil olmadığını kenar/köşeyle gerekçelendirirse ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Önce hafifçe eğik örneklerle başlayın; her tanımada kenarları birlikte sayıp ada bağlayın.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Çok ince/çok eğik örnekler ve aldatıcı karşı-örnekler (dört kenarlı ama eşit olmayan) karıştırın.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="Daire/kare/üçgeni atipik örneklerle tanıma etkinliği"><b>ADIM</b><span>Daire/kare/üçgeni atipik örneklerle tanıma etkinliği</span></span><a class="chip chip-ds" href="/Dokunsay-geo/" title="Şekil bloklarını dokunarak ayırt etme/eşleme"><b>DokunSay Geo</b><span>Şekil bloklarını dokunarak ayırt etme/eşleme</span></a><a class="chip chip-gs" href="https://galaksay.com/oyna/" title="Şekil tanıma hız oyunu"><b>GalakSay</b><span>Şekil tanıma hız oyunu</span></a></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#7c3aed">🔺</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="4" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-5">Sıradaki düzey · <b>Parçalardan &quot;Benzerini&quot; Kuran</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-5">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#7c3aed">6</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#7c3aed">4–5 yaş</span>
+          
+        </div>
+        <h3>Parçalardan &quot;Benzerini&quot; Kuran</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Kenarları temsil eden materyallerle (pipet, çubuk) hedef şekle &quot;benzeyen&quot; bir şekil kurar; doğruluk ölçütü genel görünüştür. Açıyı yalnızca &quot;sivri köşe&quot; olarak düşünür.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk çubuk parçalarından ya da tangramdan &quot;bir üçgene benzeyen şekil yap&quot; dendiğinde üç çubuğu kabaca üçgen olacak biçimde birleştirir. Sonuç tam düzgün olmasa da hedefin genel görüntüsünü (siluet) yakalar.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, tanımanın yanına ÜRETMEYİ koyar: çocuk bir şekli sıfırdan, parçalardan oluşturur — ama henüz &quot;benzeyen&quot; düzeyinde, yani kenar/açı tamlığı aranmadan. Van Hiele görsel düzeyiyle tutarlı olarak hedef, genel biçimi kurmaktır. Kurarken &quot;kaç çubuk lazım?&quot; diye sordurmak özellik farkındalığını sezdirir, ama tamlık ısrarını sonraki düzeylere bırakın. Kapalı bir figür kurmayı (uçların birleşmesi) vurgulayın.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay Geo çubuk parçaları (eşit + farklı uzunlukta)</li><li>tangram parçaları</li><li>hedef şekil kartı (üçgen/kare silueti)</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>&quot;Üçgene benzeyen bir şekil yap&quot; deyin; çocuk çubukları kabaca birleştirsin.</li><li>Uçlar açık kaldıysa &quot;köşeler birleşsin, kapansın&quot; diye yönlendirin.</li><li>&quot;Kaç çubuk kullandın?&quot; diye sorup üçü fark ettirin.</li><li>Tangramla bir kareye benzeyen şekli iki üçgenden kurdurun.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Parçalardan, hedef şekle (üçgen/kare) genel olarak benzeyen kapalı bir şekil kurarsa ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Eşit uzunlukta hazır çubuklar verip yalnız uçları birleştirmesini isteyin.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Farklı uzunlukta çubuklar ya da daha çok kenarlı hedef (dikdörtgen) verin.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey için ADIM etkinliği"><b>ADIM</b><span>İlgili düzey için ADIM etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#7c3aed">🔺</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="5" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-6">Sıradaki düzey · <b>Her Tür Dikdörtgeni Tanıyan</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-6">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#7c3aed">7</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#7c3aed">4–5 yaş</span>
+          
+        </div>
+        <h3>Her Tür Dikdörtgeni Tanıyan</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Her boyut, en-boy oranı ve yönelimdeki dikdörtgenleri tanır; uzun-ince ya da eğik duran dikdörtgenleri de sınıfa dâhil eder.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk yalnız tipik (geniş, dik duran) dikdörtgeni değil; çok uzun-ince olanı, eğik duranı ve hatta kareyi de &quot;dikdörtgen&quot; diye tanır. &quot;Hangileri dikdörtgen?&quot; sorusunda dört dik köşeli olanların hepsini seçer.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Burada şekil sınıfı tipik örnekten KAPSAYICI tanıma genişler: bir dikdörtgen, &quot;dört dik açısı (köşesi) olan, karşılıklı kenarları eşit&quot; her şeydir — uzun olsun, eğik olsun. Yaygın yanılgı, yalnız &quot;televizyon gibi&quot; oranlı olanı dikdörtgen sayıp ince/uzun ya da kare olanı dışlamaktır. Çocuğu köşelerin diklik özelliğine bakmaya yöneltin (&quot;köşeleri kapı köşesi gibi mi?&quot;). Bu, ileride &quot;kare de bir dikdörtgendir&quot; sınıf ilişkisinin tohumudur.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay Geo şekil blokları (uzun/ince/eğik dikdörtgenler + birkaç kare + bir paralelkenar)</li><li>geoboard ve lastikler</li><li>köşe denetimi için küçük bir dik açı şablonu (kart köşesi)</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Karışık dörtgenleri yayıp &quot;hangileri dikdörtgen?&quot; deyin.</li><li>Her seçtiğinin köşesini kart köşesiyle denetletin: &quot;köşe tam dik mi?&quot;</li><li>Çok uzun-ince bir dikdörtgeni gösterip &quot;bu da dikdörtgen mi?&quot; diye yoklayın.</li><li>Köşeleri dik OLMAYAN paralelkenarı sunup &quot;neden değil?&quot; diye söyletin.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Uzun, ince, eğik dikdörtgenleri (köşeleri eğik paralelkenarı dışlayarak) tutarlı tanırsa ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Yalnız belirgin dik açılı örneklerle çalışın; paralelkenarı karıştırmayın.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Kareyi ve çok ince dikdörtgeni dâhil edip &quot;kare de dikdörtgen mi?&quot; tartışmasını başlatın.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey için ADIM etkinliği"><b>ADIM</b><span>İlgili düzey için ADIM etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#7c3aed">🔺</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="6" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-7">Sıradaki düzey · <b>Kenar Tanıyan</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-7">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#7c3aed">8</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#7c3aed">4–5 yaş</span>
+          
+        </div>
+        <h3>Kenar Tanıyan</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Kenarları, kendine ait nitelikleri (uzunluk gibi) olan ayrı geometrik nesneler olarak tanır; şekli kenarları üzerinden betimlemeye başlar.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk bir şeklin kenarlarını ayrı ayrı parmağıyla gösterip &quot;bir kenar, iki kenar, üç kenar&quot; diye sayar; üçgende 3, karede 4 kenar bulur. Kenarı şeklin bir &quot;parçası&quot; (düz kenar çizgisi) olarak ayırt eder.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, Van Hiele'nin analitik (1.) düzeyine ilk somut adımdır: şekil artık bütün bir görüntü değil, sayılabilir PARÇALARDAN (kenarlardan) oluşur. Kenarları sayarken her kenarı bir kez sayma (birebir eşleme), köşeden başlayıp köşede bitirme önemlidir — yoksa çocuk bir kenarı iki kez ya da hiç saymaz. Burada henüz köşe ayrı bir kavram değildir; o, sonraki köşe-tanıyıcı düzeyde gelir. Parmakla kenar boyunca kaydırarak &quot;düz çizgi = bir kenar&quot; hissini kurun.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay Geo şekil blokları (üçgen, kare, beşgen)</li><li>geoboard (kenarları lastikle belirgin)</li><li>kenarları işaretlemek için küçük etiketler/boncuklar</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Bir üçgen verip &quot;kenarlarını göster ve say&quot; deyin; her kenara parmağı boyunca kaydırsın.</li><li>Her saydığı kenara bir etiket koysun ki iki kez saymasın.</li><li>Kareye geçip dört kenarı saydırın; &quot;kenar = düz çizgi&quot; deyin.</li><li>Geoboard'da bir şekil gerdirip kaç lastik-kenar olduğunu saydırın.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Bir şeklin kenarlarını ayrı nesneler olarak tanıyıp her birini bir kez sayarak doğru sayıyı bulursa (üçgen 3, kare 4) ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Az kenarlı şekille (üçgen) ve her kenarı işaretleyerek başlayın.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Beşgen/altıgen gibi çok kenarlı şekilleri saydırın; başlangıç köşesini işaretlemeden.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey için ADIM etkinliği"><b>ADIM</b><span>İlgili düzey için ADIM etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#7c3aed">🔺</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="7" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-8">Sıradaki düzey · <b>Birçok Yönden Karşılaştıran</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-8">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#7c3aed">9</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#7c3aed">4–5 yaş</span>
+          
+        </div>
+        <h3>Birçok Yönden Karşılaştıran</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> İki şekli bütün olarak inceleyip niteliklerindeki farklılıkları arar (kenar sayısı, büyüklük, sivri köşe); ancak bazı uzamsal ilişkileri (kenarların birbirine oranı, açıların düzeni) gözden kaçırabilir.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk iki şekli yan yana koyup özellik özellik karşılaştırır: &quot;bunun 3 kenarı var, bunun 4; bunun köşeleri sivri, bunun dik.&quot; Tek bir görünüme değil, birkaç özelliğe (kenar sayısı, köşe türü, kenar uzunluğu) bakarak benzerlik ve farkı söyler.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu düzey analitik düşünmeyi pekiştirir: karşılaştırma artık &quot;ikisi de köşeli&quot; gibi kaba değil, ÇOK ÖZELLİKLİdir. Burada sık karışıklık &quot;köşe sayısı = kenar sayısı&quot; eşitliğini fark etmeden ayrı ayrı sayma ya da bir özelliği unutmadır — karşılaştırmayı bir kontrol listesi gibi (kenar? köşe? uzunluk?) yürütmek bunu önler. Çocuğu &quot;neresi aynı, neresi farklı?&quot; diye iki yönlü düşündürün; bu, sınıflama ve tanımın zeminidir.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay Geo şekil blokları (kare ↔ üçgen, kare ↔ dikdörtgen çiftleri)</li><li>karşılaştırma için iki tepsi/halka</li><li>özellik kartları (kenar / köşe / uzunluk simgeleri)</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Kare ile üçgeni yan yana koyup &quot;neresi aynı, neresi farklı?&quot; diye sorun.</li><li>Özellik kartlarını sırayla kullanın: &quot;önce kenar sayısı… sonra köşeler… sonra kenar uzunlukları.&quot;</li><li>Kare ile dikdörtgeni karşılaştırıp &quot;çok benziyorlar — tek fark ne?&quot; dedirtin (kenar uzunlukları).</li><li>Çocuk bulgularını &quot;bunun şu var, bunun yok&quot; diye cümleyle söylesin.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> İki şekli birden çok özniteliğe (kenar sayısı, köşe türü, kenar uzunluğu) göre karşılaştırıp benzerlik ve farkları söylerse ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Çok farklı bir çift (daire ↔ kare) ve tek bir özellikten başlayın.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Çok benzer çift (kare ↔ dikdörtgen, kare ↔ baklava) verip ayırt edici özelliği buldurun.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey için ADIM etkinliği"><b>ADIM</b><span>İlgili düzey için ADIM etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#7c3aed">🔺</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="8" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-9">Sıradaki düzey · <b>Köşe (Açı) Tanıyan</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-9">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#7c3aed">10</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#7c3aed">4–5 yaş</span>
+          
+        </div>
+        <h3>Köşe (Açı) Tanıyan</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Açıları, en azından &quot;köşe&quot; olarak, ayrı geometrik nesneler biçiminde tanır; şekilleri köşe sayısıyla betimleyebilir.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk bir şeklin köşelerini parmağıyla tek tek gösterip sayar: üçgende 3, karede 4 köşe. Köşeyi, iki kenarın &quot;birleşip döndüğü&quot; sivri/keskin nokta olarak kenardan ayrı bir nesne diye tanır.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Köşe (açı), kenardan ayrı bir özellik olarak burada belirir — analitik düzeyin ikinci yapı taşı. En kritik yanılgı tam buradadır: çocuklar sık sık KENAR ile KÖŞEYİ karıştırır ya da &quot;köşe sayısı kenar sayısıyla neden aynı?&quot; bağını kuramaz. Köşeyi &quot;iki kenarın buluştuğu dönüş&quot; diye somutlaştırın; bir kenardan diğerine parmakla dönerek &quot;işte burada döndük — bu bir köşe&quot; deyin. Çokgenlerde köşe sayısı = kenar sayısı olduğunu birlikte sayıp keşfettirmek, sonraki karşılaştırma ve tanım düzeylerini güçlendirir.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay Geo şekil blokları (üçgen, kare, beşgen)</li><li>geoboard</li><li>köşeleri işaretlemek için renkli boncuk/etiket</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Bir kareyi verip &quot;köşeleri göster&quot; deyin; her köşeye (iki kenarın buluştuğu sivri noktaya) boncuk koysun.</li><li>Bir kenardan komşusuna parmakla döndürüp &quot;döndüğümüz nokta = köşe&quot; deyin.</li><li>Köşeleri ve sonra kenarları ayrı ayrı saydırıp &quot;ikisi de dört — neden?&quot; diye keşfettirin.</li><li>Üçgen ve beşgende köşe-kenar eşitliğini birlikte doğrulayın.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Bir şeklin köşelerini kenarlardan ayrı nesneler olarak tanıyıp doğru sayar; köşe ile kenarı karıştırmazsa ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Az köşeli şekille (üçgen) ve her köşeyi işaretleyerek başlayın.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Çok köşeli şekiller (beşgen/altıgen) ve içbükey bir şekil ekleyip köşeyi yine ayırt ettirin.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey için ADIM etkinliği"><b>ADIM</b><span>İlgili düzey için ADIM etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#7c3aed">🔺</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="9" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-10">Sıradaki düzey · <b>Daha Çok Şekil Tanıyan</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-10">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#7c3aed">11</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#7c3aed">5–6 yaş</span>
+          
+        </div>
+        <h3>Daha Çok Şekil Tanıyan</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Tanıdık şekillerin çoğunu ve tipik altıgen, eşkenar dörtgen ve yamukları tanıyıp adlandırır.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk daire/kare/üçgenin ötesine geçer: altıgeni, baklavayı (eşkenar dörtgen) ve yamuğu gösterince adlandırır ya da adı söylenince doğru olanı seçer. Daha az tanıdık bu şekilleri de bir bütün görüntü olarak tanır.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Şekil dağarcığı genişler; bu, hem görsel tanımayı hem de adların özelliklerle bağını besler. Baklava ile kareyi (ikisi de dört eşit kenarlı, ama köşeler farklı) ya da yamuğu (yalnız bir çift paralel kenar) ayırt ederken çocuk özelliklere dönmek zorunda kalır — bu sağlıklıdır. Adları yalnız tipik duruşta değil, döndürülmüş olarak da tanıttırın (baklava aslında &quot;yan yatmış kare değildir&quot; tartışması verimlidir). Her yeni şekli kenar/köşe sayısıyla birlikte adlandırın.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay Geo şekil blokları (altıgen, baklava/eşkenar dörtgen, yamuk + tanıdıklar)</li><li>şekil adı kartları</li><li>pattern-block (örüntü blokları) seti</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Altıgeni gösterip &quot;kaç kenarı var? — adı altıgen&quot; diye kenar sayısına bağlayın.</li><li>Baklava ile kareyi yan yana koyup &quot;ikisi de dört kenar — farkı ne?&quot; dedirtin (köşeler).</li><li>Yamuğu gösterip paralel kenar çiftini parmakla izletin.</li><li>Şekilleri döndürerek aynı adları farklı duruşta tanıttırın.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Altıgen, baklava (eşkenar dörtgen) ve yamuk gibi daha az bilinen şekilleri doğru adlandırır ya da seçerse ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Aynı anda yalnız bir yeni şekli (altıgen) tanıdıklarla karıştırın.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Üç yeni şekli birden ve döndürülmüş duruşlarda sunup adlandırtın.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey için ADIM etkinliği"><b>ADIM</b><span>İlgili düzey için ADIM etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#7c3aed">🔺</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="10" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-11">Sıradaki düzey · <b>Şekilleri Doğru Adlandıran</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-11">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#7c3aed">12</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#7c3aed">6–7 yaş</span>
+          
+        </div>
+        <h3>Şekilleri Doğru Adlandıran</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Eşkenar dörtgen, altıgen, sekizgen ve yamuk dâhil yaygın şekilleri hatasız adlandırır; ovale &quot;daire&quot; demez. Dik açıyı tanır: dikdörtgeni, dik açısı olmayan paralelkenardan ayırt eder.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk oval, yamuk, sekizgeni karıştırıp gösterince hatasız adlandırır; dik üçgeni eğik/eşkenardan, paralelkenarı dikdörtgenden özelliklerine bakarak ayırt eder. Artık şekli yalnız &quot;şuna benziyor&quot; diye değil, &quot;şu özellikleri taşıyor&quot; diye belirler.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, görselden analitiğe geçişin sağlamlaştığı düzeydir: çocuk şekilleri özellikleriyle (kenar sayısı, paralellik, açı türü) güvenle belirler. Oval ↔ daire, paralelkenar ↔ dikdörtgen gibi yakın çiftlerde ayırt edici özelliği söyleyebilmesi kazanımdır. &quot;Nasıl bildin?&quot; diye sorup gerekçeyi (&quot;köşeleri dik değil, o yüzden paralelkenar&quot;) dile döktürün. Bu, tanım yapma ve sınıf ilişkilerine (sonraki düzeyler) doğrudan hazırlıktır.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay Geo şekil blokları (oval, yamuk, sekizgen, dik üçgen, paralelkenar, dikdörtgen)</li><li>özellik kontrol kartları</li><li>geoboard</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Karışık seti yayıp her şekli sırayla adlandırtın; &quot;nasıl bildin?&quot; diye gerekçe isteyin.</li><li>Paralelkenar ile dikdörtgeni ayırt ettirin: &quot;köşeler dik mi?&quot; diye denetletin.</li><li>Dik üçgeni eşkenar üçgenden ayırın: &quot;hangi köşe kapı köşesi gibi?&quot;</li><li>Oval ile daireyi karşılaştırıp &quot;yuvarlak ama her yanı aynı mı?&quot; dedirtin.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Yakın şekilleri (oval/daire, paralelkenar/dikdörtgen, dik/eşkenar üçgen) özelliklerine dayanarak hatasız belirler ve gerekçelendirirse ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Aldatıcı çiftleri ayırıp belirgin örneklerle çalışın; gerekçeyi siz başlatın.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Çok benzer çiftleri bir arada ve döndürülmüş sunup tek ayırt edici özelliği söyletin.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey için ADIM etkinliği"><b>ADIM</b><span>İlgili düzey için ADIM etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#7c3aed">🔺</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="11" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-12">Sıradaki düzey · <b>Açıyı Farklı Yerlerde Tanıyan</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-12">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#7c3aed">13</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#7c3aed">7–8 yaş</span>
+          
+        </div>
+        <h3>Açıyı Farklı Yerlerde Tanıyan</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Açıyı farklı bağlamlarda tanır ve betimler: köşeler (&quot;daha sivri&quot;), kesişmeler (makas), daha sonra kıvrım ve eğimler. Bu bağlamları henüz birbiriyle ilişkilendiremeyebilir.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk açıyı yalnız şekil köşesinde değil; bir yol kavşağında, bir merdiven/çatı eğiminde ya da iki çubuğun açılışında da fark eder. &quot;Burada açı var mı?&quot; sorusunda iki kenarın/ışının bir noktada açı oluşturduğu her durumu gösterir.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Açı kavramı şekil köşesinden GENEL bir ilişkiye taşınır: açı, iki ışının (kenarın) bir köşede yaptığı &quot;açılma/dönme&quot; miktarıdır ve kavşak, eğim, dönüş gibi pek çok bağlamda vardır. Sık yanılgı, açıyı yalnız sivri bir köşe sanmak ya da açının büyüklüğünü kenar uzunluğuyla karıştırmaktır (uzun kenarlı açı &quot;daha büyük&quot; sanılır). Farklı bağlamlarda &quot;açıklık ne kadar?&quot; diye sordurup kenar uzunluğundan bağımsızlığını vurgulayın. Bu, ileride açı ölçmenin zeminidir.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay Geo açı çubukları (menteşeli/iki kollu)</li><li>bağlam kartları (kavşak, çatı, saat ibreleri, merdiven)</li><li>geoboard</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Menteşeli iki çubuğu açıp kapayın: &quot;açıklık değişti — bu açı.&quot;</li><li>Bağlam kartlarında &quot;burada açı var mı, nerede?&quot; diye gösterttirin (kavşak, çatı).</li><li>Aynı açıklığı kısa ve uzun kollarla yapıp &quot;açı aynı mı?&quot; dedirtin (kenar uzunluğu açıyı değiştirmez).</li><li>Geoboard'da farklı açıklıkta köşeler kurup &quot;hangisi daha geniş?&quot; diye karşılaştırtın.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Açıyı şekil köşesi dışındaki bağlamlarda (kavşak, eğim, dönüş) da tanır ve açıklığı kenar uzunluğundan bağımsız değerlendirirse ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Yalnız belirgin köşe/kavşak bağlamlarıyla başlayın; menteşeli çubukla somutlaştırın.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Çok geniş (yayık) ve çok dar açıları ile uzun/kısa kollu aldatıcı örnekleri karıştırın.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey için ADIM etkinliği"><b>ADIM</b><span>İlgili düzey için ADIM etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#7c3aed">🔺</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="12" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-13">Sıradaki düzey · <b>Şekli Parçalarıyla Tanımlayan</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-13">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#7c3aed">14</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#7c3aed">7–8 yaş</span>
+          
+        </div>
+        <h3>Şekli Parçalarıyla Tanımlayan</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Şekilleri bileşenleri (kenarlar, köşeler/açılar) üzerinden tanımlar; &quot;üç kenarı ve üç köşesi olan kapalı şekil üçgendir&quot; gibi parça temelli tanımlar kullanır.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk bir şekli &quot;parçalarına göre tarif et&quot; dendiğinde bileşenleriyle anlatır: &quot;dört kenarı var, hepsi eşit, dört köşesi dik — bu bir kare.&quot; Şekli tek bir adla değil, taşıdığı kenar ve açı özelliklerinin listesiyle belirler.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, Van Hiele analitik düzeyinin olgun hâlidir: şekil = özelliklerinin toplamı. Çocuk artık &quot;kare, köşeli olan&quot; demez; kenar sayısı, kenar eşitliği ve açı türünü ayrı ayrı söyler. Tarif ederken hem kenarları hem köşeleri eksiksiz anması (ve ikisini karıştırmaması) kazanımdır. &quot;Sadece bu özelliklerle başka şekil olur mu?&quot; diye sordurmak, tanımın yeterliliği fikrini (sonraki sınıf düzeyleri) sezdirir. Tarifi bir &quot;bilmece&quot; oyununa çevirin: özelliklerden şekli buldurun.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay Geo şekil blokları (kare, dikdörtgen, eşkenar/ikizkenar üçgen, yamuk)</li><li>özellik simge kartları (kenar/köşe/eşitlik)</li><li>perde/torba (görmeden tarif için)</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Bir şekli verip &quot;parçalarıyla anlat: kaç kenar, nasıl köşeler?&quot; deyin.</li><li>Tarifini kartlarla işaretletin (kenar sayısı + eşitlik + açı türü).</li><li>Tersine çevirin: siz özellikleri söyleyin, çocuk şekli bulsun (&quot;üç kenar, biri dik — hangisi?&quot;).</li><li>Torbadaki bir şekli yalnız dokunarak parçalarıyla tarif ettirin.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Bir şekli kenar sayısı, kenar eşitliği ve açı/köşe türü gibi bileşenleriyle eksiksiz ve karıştırmadan tarif ederse ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Az özellikli şekille (üçgen) ve özellikleri tek tek sorarak başlayın.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Tarifi yalnız sözle (blok görmeden) ya da bir özelliği eksik verip &quot;hangi şekiller olabilir?&quot; diye açımlayın.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey için ADIM etkinliği"><b>ADIM</b><span>İlgili düzey için ADIM etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#7c3aed">🔺</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="13" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-14">Sıradaki düzey · <b>Üst Üste Koyup Eşliğini Gösteren</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-14">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#7c3aed">15</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#7c3aed">7–8 yaş</span>
+          
+        </div>
+        <h3>Üst Üste Koyup Eşliğini Gösteren</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> İki şeklin eş olup olmadığını (eşlik) üst üste koyarak ya da tüm nitelikleri ve uzamsal ilişkileri karşılaştırarak belirler.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk iki şeklin &quot;tıpatıp aynı&quot; (eş/çakışık) olup olmadığını üst üste koyarak sınar: birini diğerinin üstüne kaydırıp/döndürüp tam örtüşürse &quot;aynı&quot;, bir kenar taşarsa &quot;farklı&quot; der. Denkliği gözle tahmin etmek yerine fiziksel olarak çakıştırarak doğrular.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Çakışıklık (eşlik), iki şeklin biçim ve büyüklükçe özdeş olmasıdır; bunu üst üste koyma yöntemiyle test etmek somut ve güçlüdür. Sık yanılgı, yalnız aynı ada sahip iki şekli (iki üçgen) boyut farkına rağmen &quot;aynı&quot; sanmaktır — çakıştırma bu hatayı görünür kılar. Çocuğun şekli kaydırma/döndürmeyle oturtması, ileride çakışıklığı dönüşümle TEMSİL etmenin (sonraki düzey) elle yapılan hâlidir. &quot;Tam oturdu mu, taşan var mı?&quot; diye kenar kenar denetletin.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay Geo şeffaf/üst üste konabilen şekil parçaları (eş + benzer-ama-farklı çiftler)</li><li>geoboard</li><li>ışıklı masa veya pencere camı (üst üste görmek için)</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>İki eş üçgeni verip &quot;tıpatıp aynı mı?&quot; diye sorun; üst üste koydurun.</li><li>Tam örtüşmek için birini döndürmesi/kaydırması gerekebilir — bunu yapsın.</li><li>Sonra aynı şekilli ama biraz büyük bir parça sunup çakıştırınca taşmayı gösterttirin.</li><li>Geoboard'da iki şekil kurup birini ötekinin üstüne taşıyarak denkliği sınatın.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> İki şekli üst üste koyup (gerekirse döndürerek) tam örtüşüp örtüşmediğine göre çakışık (eş) olup olmadıklarını doğru belirlerse ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Aynı yönelimdeki açık eş/farklı çiftlerle başlayın; döndürme gerektirmeyin.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Eşi yalnız döndürünce/yansıtınca oturan çiftler ve çok az farklı (1 birim) ikizler verin.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey için ADIM etkinliği"><b>ADIM</b><span>İlgili düzey için ADIM etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#7c3aed">🔺</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="14" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-15">Sıradaki düzey · <b>Parçalardan Şekli Tam Kuran</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-15">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#7c3aed">16</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#7c3aed">7–8 yaş</span>
+          
+        </div>
+        <h3>Parçalardan Şekli Tam Kuran</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Kenar parçaları ve açı bağlantılarıyla, bileşen bilgisine ve özellik ilişkilerine dayanarak tümüyle doğru bir şekil kurar (eşit kenarlar, tam kapanan köşeler, doğru açılar).</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk &quot;dört eşit kenarlı, dört dik köşeli bir şekil yap&quot; gibi bileşen bilgisiyle bir şekli TAM doğrulukta kurar: geoboard'da kenarları eşitler, köşeleri dikleştirir; &quot;benzeyen&quot; değil, ölçütleri karşılayan şekli üretir.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, kompozisyonun olgun hâlidir ve 5. düzeydeki &quot;benzeyen kurma&quot;dan ayrılır: artık hedef genel siluet değil, ÖZELLİK ölçütlerini sağlamaktır (eşit kenar, dik açı, doğru kenar sayısı). Çocuk kurarken kendi işini denetlemeli — &quot;kenarlar gerçekten eşit mi, köşeler dik mi?&quot; Bu, tanımı bir YAPIM REÇETESİ gibi kullanmaktır ve analitik düşünmenin üretime dökülmesidir. Eksik/yanlış kurarsa hangi özelliğin tutmadığını birlikte bulun.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay Geo geoboard ve lastikler</li><li>çubuk parçaları (eşit uzunlukta birimler)</li><li>yapım kartları (kenar sayısı + eşitlik + açı ölçütleri)</li><li>dik açı şablonu</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>&quot;Dört eşit kenar, dört dik köşe&quot; kartını verip geoboard'da kurdurun.</li><li>Kurduğunu denetletin: kenarları birim birim sayıp eşitliği, köşeleri şablonla dikliği doğrulasın.</li><li>&quot;Üç kenar, biri dik&quot; gibi bir dik üçgen ölçütü verin.</li><li>Yanlış kurarsa &quot;hangi özellik tutmadı?&quot; diye kendisi bulup düzeltsin.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Verilen kenar/açı ölçütlerini (eşit kenar, dik köşe, doğru kenar sayısı) sağlayacak biçimde bir şekli tam doğrulukta kurar ve kendi işini denetlerse ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Tek ölçütlü hedeflerle (yalnız &quot;üç kenar&quot;) ve geoboard ızgara desteğiyle başlayın.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Çok ölçütlü/aldatıcı hedefler (&quot;dört kenar ama köşeler dik değil&quot; = paralelkenar) verin.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey için ADIM etkinliği"><b>ADIM</b><span>İlgili düzey için ADIM etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#7c3aed">🔺</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="15" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-16">Sıradaki düzey · <b>Açıyı Temsil Eden</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-16">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#7c3aed">17</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#7c3aed">8–9 yaş</span>
+          
+        </div>
+        <h3>Açıyı Temsil Eden</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Açı bağlamlarını, referans çizgisi dâhil iki çizgiyle temsil eder; açı büyüklüğünü iki çizgi arasındaki dönme olarak anlar. Kenar uzunluğunun açıyı etkilediği türünden yanılgılar sürebilir.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk bir açıyı iki ışın (ortak köşeden çıkan iki kol) ya da bir dönme olarak çizip gösterir: &quot;buradan başladım, şu kadar döndüm.&quot; Açıyı sabit bir köşe resmi değil, açılma/dönme miktarı olarak temsil eder.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu düzeyde açı, dinamik bir kavrama dönüşür: iki ışının açıklığı VE bir dönme miktarı. Çocuğun açıyı iki ışınla çizebilmesi ve &quot;ne kadar döndüğünü&quot; gösterebilmesi, açı ölçmenin (derece) kavramsal zeminidir. Israrla düzeltilmesi gereken yanılgı, açının kollarının uzunluğunu açının büyüklüğü sanmaktır — kolları uzatıp &quot;açı değişti mi?&quot; diye sorun (değişmez). Menteşeli çubuk ve dönen ibre, dönme temsilini somutlaştırır.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay Geo menteşeli açı çubukları</li><li>dönen ibreli bir disk/saat modeli</li><li>geoboard ve lastikler</li><li>açı çizimi için kâğıt-kalem</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Menteşeli çubuğu bir köşeden açtırın: &quot;iki kol, bir köşe — bu açı.&quot;</li><li>Aynı açıyı kâğıda iki ışınla çizdirin (ortak başlangıç noktasından).</li><li>İbreyi döndürüp &quot;şu kadar döndüm&quot; diye açıyı dönme olarak gösterttirin.</li><li>Kolları uzatıp &quot;açı büyüdü mü?&quot; diye sorun (hayır — yalnız açıklık önemli).</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Bir açıyı iki ışın ve/veya bir dönme olarak doğru temsil eder; açının büyüklüğünü kol uzunluğundan bağımsız ele alırsa ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Belirgin (dik, geniş) açılarla ve menteşeli çubukla başlayın; çizimi siz modelleyin.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Çok dar/çok geniş açılar, dönme yönü (saat yönü/tersi) ve kol uzunluğu aldatmaları ekleyin.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey için ADIM etkinliği"><b>ADIM</b><span>İlgili düzey için ADIM etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#7c3aed">🔺</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="16" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-17">Sıradaki düzey · <b>Eşliği Açıklayan</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-17">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#7c3aed">18</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#7c3aed">8–9 yaş</span>
+          
+        </div>
+        <h3>Eşliği Açıklayan</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Eşliği geometrik özelliklere başvurarak ve dönüşümlerle (kaydırma, döndürme, yansıtma) açıklar; üst üste koymadan akıl yürütebilir.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk iki şeklin eş (çakışık) olduğunu artık fiziksel üst üste koymadan, DÖNÜŞÜMLE açıklar: &quot;bunu döndürürsem ötekine tam oturur&quot; ya da &quot;aynaya tutsam (yansıtsam) bu olur.&quot; Denkliği bir hareket (döndürme/yansıtma/kaydırma) dilinde temsil eder.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, 14. düzeydeki elle çakıştırmanın ZİHİNSEL/TEMSİLÎ hâlidir: eşlik, bir şekli diğerine taşıyan bir dönüşümle (öteleme, döndürme, yansıma) açıklanır. Çocuğun &quot;hangi hareket eşler?&quot; sorusuna cevap vermesi, simetri ve dönüşüm geometrisinin kapısını açar. Yaygın güçlük, yansıma (ayna) ile döndürmeyi karıştırmak ya da bir şeklin ayna görüntüsünün de &quot;eş&quot; sayılıp sayılmayacağında tereddüttür. Önce elle yapıp sonra &quot;gözünde canlandır&quot; diyerek somuttan zihinsele köprü kurun.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay Geo şekil parçaları (döndürünce/yansıyınca eşleşen çiftler)</li><li>ayna ya da şeffaf yansıtma plakası</li><li>geoboard</li><li>dönüşüm okları/kartları (döndür / yansıt / kaydır)</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Döndürülmüş iki eş şekli verip &quot;üst üste koymadan, hangi hareketle oturur?&quot; diye sorun.</li><li>Önce elle döndürüp doğrulayın, sonra &quot;hareketi&quot; kartla adlandırsın (döndürme).</li><li>Bir şeklin ayna görüntüsünü gösterip &quot;yansıma — yine eş mi?&quot; diye tartıştırın.</li><li>Geoboard'da bir şekli kaydırarak/döndürerek eşine taşıma planını önceden söyletin.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> İki eş şeklin denkliğini bir dönüşümle (döndürme/yansıma/öteleme) doğru açıklar ve uygun hareketi adlandırırsa ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Yalnız öteleme (kaydırma) ile eşleşen çiftlerle başlayın; hareketi elle gösterin.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Döndürme ve yansımayı ayırt ettirin; ayna-görüntüsü çiftlerinde &quot;eş mi, değil mi?&quot; tartıştırın.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey için ADIM etkinliği"><b>ADIM</b><span>İlgili düzey için ADIM etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#7c3aed">🔺</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="17" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-18">Sıradaki düzey · <b>Şekil Ailelerini Ayırt Eden</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-18">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#7c3aed">19</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#7c3aed">8–10 yaş</span>
+          
+        </div>
+        <h3>Şekil Ailelerini Ayırt Eden</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Şekilleri sınıf üyeliğine göre ele alır (örneğin sınıflara ayırırken); ancak üyeliği henüz özellikler üzerinden açıkça gerekçelendirmez.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk &quot;bütün kareler aynı sınıfa mı girer?&quot; türü bir soruda, boyut/yönelim ne olursa olsun ölçütü (dört eşit kenar, dört dik köşe) sağlayan her şeklin aynı sınıfa ait olduğunu söyler: &quot;büyük de küçük de, eğik de olsa hepsi kare.&quot; Sınıf üyeliğini görünüşe değil, ortak özelliklere bağlar.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, görsel düzeyden tam analitiğe geçişin meyvesidir: bir ŞEKİL SINIFI, ortak özellikleri paylaşan tüm örneklerin kümesidir — tek bir prototip değil. Çocuğun &quot;şu da kare, çünkü ölçütü sağlıyor&quot; diyebilmesi, prototip-bağımlı düşünceyi (yalnız tipik kareyi kare sanma) aşar. Bir sınıfın TÜM üyelerini (atipikler dâhil) ve bir KARŞI örneği (ölçütü sağlamayan) ayırt ettirin. Bu, bir sonraki adımda özellik-tabanlı sınıf hiyerarşisine (kare ⊂ dikdörtgen) zemin hazırlar.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay Geo şekil blokları (aynı sınıfın çok çeşitli örnekleri: küçük/büyük/eğik kareler + karşı örnekler)</li><li>sınıflama halkaları/kutuları</li><li>özellik ölçüt kartı</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Çeşitli kareleri (büyük, küçük, eğik) ve birkaç dörtgeni yayın: &quot;hepsini sınıfına ayır.&quot;</li><li>Her kareyi ölçütle (dört eşit kenar + dört dik köşe) gerekçelendirerek halkaya koysun.</li><li>Bir dikdörtgeni/baklavayı sunup &quot;bu kare sınıfına girer mi? neden?&quot; diye sorun.</li><li>&quot;Kare sınıfının tüm üyelerinde ortak olan ne?&quot; diye sınıf tanımını söyletin.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Bir şekil sınıfının üyelerini (boyut/yönelim farkına rağmen) ortak özelliklerle doğru belirler ve karşı örnekleri ölçütle dışlarsa ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Belirgin örneklerle ve tek sınıfla (yalnız kareler ↔ kare-olmayanlar) başlayın.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Birden çok sınıfı (kare/dikdörtgen/baklava) aynı anda ve aldatıcı örneklerle ayırttırın.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey için ADIM etkinliği"><b>ADIM</b><span>İlgili düzey için ADIM etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#7c3aed">🔺</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="18" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-19">Sıradaki düzey · <b>Özellikleriyle Tanımlayan</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-19">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#7c3aed">20</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#7c3aed">8–10 yaş</span>
+          
+        </div>
+        <h3>Özellikleriyle Tanımlayan</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Özellikleri açıkça kullanır (&quot;dört eşit kenar ve dört dik açı&quot;); özellikleri koruyan durum değişikliklerinde (örneğin döndürme) neyin değişmediğini — değişmezleri — görür.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk bir şeklin tek tek özelliklerini açıkça ve genel ifadeyle söyler: &quot;dikdörtgenin karşılıklı kenarları eşittir ve birbirine paraleldir; bütün köşeleri diktir.&quot; Bir örnekteki gözlemi o şekil sınıfının GENEL bir özelliği olarak dile getirir.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Burada çocuk tek bir şekilden o şeklin SINIFINA ait genellenebilir özellikleri çıkarır — &quot;bu dikdörtgende eşit&quot; değil, &quot;dikdörtgenlerde karşılıklı kenarlar eşittir.&quot; Bu, tümevarımlı genelleme ve resmî tanıma giden yoldur. Özelliği yalnız tek örnekte doğrulamak yetmez; birkaç farklı dikdörtgende sınatıp &quot;hep böyle mi?&quot; diye genellettirin. Karşılıklılık (karşılıklı kenarlar/köşeler) ve paralellik gibi ilişkisel özellikleri vurgulayın; bunlar bir sonraki özellik-sınıfı (hiyerarşi) düzeyinin yapı taşıdır.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay Geo şekil blokları (çeşitli dikdörtgen/paralelkenar/eşkenar üçgen örnekleri)</li><li>geoboard ve lastikler</li><li>özellik ifade kartları (eşit kenar / paralel / dik açı / karşılıklı)</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Bir dikdörtgen verip &quot;özelliklerini söyle&quot; deyin; karşılıklı kenar eşitliğini parmakla göstersin.</li><li>Aynı özelliği iki-üç farklı dikdörtgende sınatıp &quot;hep böyle mi?&quot; diye genellettirin.</li><li>Paralelliği geoboard'da kenarları izleterek somutlaştırın.</li><li>&quot;Eşkenar üçgenin özelliği ne?&quot; diye başka bir sınıfta da genel özellik söyletin.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Bir şekil sınıfının özelliklerini (karşılıklı kenarlar eşit/paralel, açılar dik vb.) açıkça ve birden çok örnekte genelleyerek söylerse ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Tek bir özelliğe (yalnız kenar eşitliği) odaklanıp tek örnekte doğrulatın.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>İlişkisel özellikleri (paralellik, karşılıklılık) ve birden çok sınıfı birlikte genellettirin.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey için ADIM etkinliği"><b>ADIM</b><span>İlgili düzey için ADIM etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#7c3aed">🔺</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="19" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-20">Sıradaki düzey · <b>Özelliklere Göre Sınıflayan</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-20">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#7c3aed">21</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#7c3aed">8–11 yaş</span>
+          
+        </div>
+        <h3>Özelliklere Göre Sınıflayan</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Sınıf üyeliğini, açı ölçüsü dâhil özelliklere açıkça dayandırır; şekilleri özelliklerine göre hiyerarşik olarak sınıflar (kare, özel bir dikdörtgendir).</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk &quot;kare bir dikdörtgen midir?&quot; türü bir soruda özellik-tabanlı akıl yürütür: &quot;karenin dört dik açısı ve karşılıklı eşit kenarları var — bunlar dikdörtgenin koşulları; öyleyse her kare bir dikdörtgendir.&quot; Şekilleri ad benzerliğine değil, özellik içeren-içerilen ilişkisine göre sınıflandırır.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, Van Hiele analitik düzeyinin doruğu ve resmî/çıkarımsal düzeye eşiktir: şekil sınıfları arasındaki HİYERARŞİ (kare ⊂ dikdörtgen ⊂ paralelkenar) özelliklerin kapsanmasından doğar. En inatçı yanılgı, çocukların kare ile dikdörtgeni AYRIK iki kutu sanması (&quot;kare karedir, dikdörtgen başkadır&quot;) ve bir karenin aynı anda dikdörtgen de olabileceğini reddetmesidir. Özellik listelerini karşılaştırıp &quot;karenin sahip olduğu her dikdörtgen özelliği var mı?&quot; diye yürütün; iç içe halkalarla (Venn) kapsamayı görselleştirin. &quot;Her kare dikdörtgendir ama her dikdörtgen kare değildir&quot; tek yönlülüğünü vurgulayın.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay Geo şekil blokları (kare, dikdörtgen, baklava, paralelkenar)</li><li>iç içe sınıflama halkaları (Venn)</li><li>özellik karşılaştırma kartları</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Karenin ve dikdörtgenin özellik listelerini ayrı ayrı çıkartın.</li><li>&quot;Karede, dikdörtgenin tüm özellikleri var mı?&quot; diye madde madde eşletin.</li><li>Sonucu iç içe halkalara yerleştirin: kare halkası, dikdörtgen halkasının İÇİNDE.</li><li>&quot;Her dikdörtgen kare midir?&quot; diye tersini sorup tek yönlülüğü buldurun.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Şekilleri özelliklerinin kapsanmasına göre ilişkilendirir (ör. &quot;her kare bir dikdörtgendir&quot;) ve ilişkinin tek yönlü olduğunu açıklarsa ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Tek bir ilişkiye (kare ↔ dikdörtgen) ve özellik eşlemesine odaklanın; halkalarla gösterin.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Çok katmanlı hiyerarşi (kare ⊂ dikdörtgen/baklava ⊂ paralelkenar ⊂ dörtgen) ve &quot;baklava dikdörtgen mi?&quot; gibi aldatıcı sorular ekleyin.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey için ADIM etkinliği"><b>ADIM</b><span>İlgili düzey için ADIM etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#7c3aed">🔺</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="20" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-21">Sıradaki düzey · <b>Açı Kavramını Bütünleştiren</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-21">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#7c3aed">22</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#7c3aed">8–12 yaş</span>
+          
+        </div>
+        <h3>Açı Kavramını Bütünleştiren</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Açının farklı anlamlarını (dönme, köşe, eğim) açı ölçüsü dâhil tek bir kavramda birleştirir; bağlamlar arasında açıkça ilişki kurar.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk açının üç anlamını — iki ışın arasındaki açıklık (köşe), bir dönme miktarı, ve bir eğim/yatıklık — tek bir bütün kavramda birleştirir; bir köşeyi, bir dönüşü ve bir eğimi &quot;hepsi açı&quot; diye aynı ölçüyle (derece) konuşur ve ölçüsünü tartışır.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu en üst geometri düzeyidir: açı kavramının dağınık görünümleri (köşe-açıklığı, dönme, eğim) tek bir bütünleşik fikirde sentezlenir ve ölçülebilir bir nicelik (derece) olarak ele alınır. Bu sentez genellikle güçtür çünkü üç anlam farklı bağlamlarda öğrenilir; çocuğun &quot;şu köşedeki açı, şu dönüşle aynı açıklık&quot; diyebilmesi gerçek kavramsal bütünlemedir. Bağlamlar arası eşleştirmeler kurun (saat ibresinin dönüşü = oluşan köşe = eğim); ölçüyü (kaç derece?) hep aynı dilde konuşturun. Bu düzey, çıkarımsal geometriye ve trigonometrik düşünceye köprüdür.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay Geo menteşeli açı çubukları + dönen ibreli disk + eğim modeli (rampa)</li><li>açıölçer (gönye/iletki)</li><li>bağlamlar-arası eşleştirme kartları (köşe ↔ dönme ↔ eğim)</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Aynı açıklığı üç biçimde kurdurun: menteşeli köşe, ibre dönüşü, rampa eğimi.</li><li>&quot;Üçü de aynı açı mı? Nasıl emin oldun?&quot; diye açıölçerle ölçtürüp eşitlettirin.</li><li>Bir saat ibresinin döndüğü açıyı oluşan köşeyle eşleştirin.</li><li>&quot;Bu açı kaç derece?&quot; diye her bağlamda aynı ölçü dilini kullandırın.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Açının köşe-açıklığı, dönme ve eğim anlamlarını tek bir bütünleşik kavramda birleştirir ve farklı bağlamlardaki açıları aynı ölçüyle (derece) ilişkilendirip tartışırsa ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Önce iki anlamı (köşe ↔ dönme) eşleştirin; belirgin (dik/düz) açılarla çalışın.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Üç anlamı birden, alışılmadık açılarla (geniş/çok dar) ve ölçü tahminiyle bütünlettirin.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey için ADIM etkinliği"><b>ADIM</b><span>İlgili düzey için ADIM etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#7c3aed">🔺</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="21" type="button">🖨️ Bu kartı yazdır</button>
+      <div class="nextlv done">Bu, yörüngenin son düzeyi 🎒</div>
+    </div>
+  </article>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <b style="color:#d8e6d8">Her Çocuk Matematik Öğrenebilir</b> · DokunSay — 2B Şekiller yörüngesi ·
+    <a href="/yorunge/">Tüm yörüngeler</a> · <a href="/">Araçlar</a>
+    <p class="foot-note">Düzey adları ve sıralaması Clements &amp; Sarama öğrenme yörüngeleri ([LT]², learningtrajectories.org) çerçevesinden uyarlanmıştır. Yaş bantları olasılıksal alt-sınır niteliğinde illüstratiftir; tanı eşiği değildir. Çocuğu sınıfına göre değil, bulunduğu basamağa göre destekleyin.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // Scrollspy — kenar çubuğunda etkin düzeyi vurgula
+  var links = Array.prototype.slice.call(document.querySelectorAll('.side-list a'));
+  var byId = {}; links.forEach(function(a){ byId[a.getAttribute('href').slice(1)] = a; });
+  var spy = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(e.isIntersecting){
+        links.forEach(function(l){ l.classList.remove('act'); });
+        var a = byId[e.target.id]; if(a){ a.classList.add('act');
+          // kenar çubuğunu etkin öğeye kaydır
+          var sl = a.closest('.side-list'); if(sl){ var r=a.offsetTop - sl.offsetTop; if(r<sl.scrollTop||r>sl.scrollTop+sl.clientHeight-40) sl.scrollTop=r-12; }
+        }
+      }
+    });
+  }, { rootMargin:'-45% 0px -50% 0px', threshold:0 });
+  document.querySelectorAll('.level').forEach(function(l){ spy.observe(l); });
+
+  // Tek kart yazdır
+  function printOne(i){
+    var card = document.getElementById('lv-'+i); if(!card) return;
+    document.body.classList.add('printing-one'); card.classList.add('print-target');
+    window.print();
+  }
+  window.addEventListener('afterprint', function(){
+    document.body.classList.remove('printing-one');
+    var t=document.querySelector('.print-target'); if(t) t.classList.remove('print-target');
+  });
+  document.querySelectorAll('.printcard').forEach(function(b){
+    b.addEventListener('click', function(){ printOne(b.getAttribute('data-lv')); });
+  });
+  var pa=document.getElementById('printAll'); if(pa) pa.addEventListener('click', function(){ window.print(); });
+})();
+</script>
+</body>
+</html>

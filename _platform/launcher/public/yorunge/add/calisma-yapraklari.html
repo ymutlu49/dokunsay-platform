@@ -1,0 +1,863 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Toplama ve Çıkarma — Çalışma Yaprakları · DokunSay</title>
+<meta name="description" content="Toplama ve Çıkarma öğrenme yörüngesi için her düzeye bir baskıya hazır çalışma yaprağı. CRA (somut→temsilî→soyut) temelli, diskalkuli-dostu. Clements &amp; Sarama.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{ --c:#2E7D32; --ink:#1f2733; --body:#39434f; --mut:#7c8aa0; --line:#e7e2d6; --paper:#fffdf7; --tint:color-mix(in srgb, var(--c) 8%, #fffdf7); }
+*{ box-sizing:border-box; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+html,body{ margin:0; background:#eceae3; font-family:'Lexend',system-ui,Segoe UI,sans-serif; color:var(--body); }
+.bar{ position:sticky; top:0; z-index:9; display:flex; gap:14px; align-items:center; justify-content:space-between;
+  background:#fff; border-bottom:1px solid #dcd8cd; padding:11px 18px; box-shadow:0 1px 6px rgba(0,0,0,.05); }
+.bar .t{ font-family:'Poppins',sans-serif; font-weight:700; color:var(--ink); font-size:15px; }
+.bar .t small{ display:block; font-weight:500; color:var(--mut); font-size:12px; }
+.bar .actions{ display:flex; gap:9px; }
+.btn{ font-family:'Poppins',sans-serif; font-weight:600; font-size:13.5px; border:0; border-radius:10px; padding:9px 15px; cursor:pointer; text-decoration:none; }
+.btn-print{ background:var(--c); color:#fff; } .btn-back{ background:#eef1f4; color:#334155; }
+.wrap{ max-width:880px; margin:18px auto 40px; padding:0 14px; }
+
+/* ── A4 çalışma yaprağı ───────────────────────────────────────────── */
+.sheet{ background:var(--paper); width:210mm; height:297mm; overflow:hidden; margin:0 auto 20px; padding:11mm 13mm 6mm;
+  border-radius:4px; box-shadow:0 6px 26px rgba(31,39,51,.13); position:relative;
+  display:flex; flex-direction:column; gap:1.8mm; }
+.lbl{ display:inline-block; font-family:'Poppins',sans-serif; font-weight:700; font-size:10.5pt; color:var(--c); letter-spacing:.2px; margin-bottom:2px; }
+
+.ws-head{ border-bottom:3px solid var(--c); padding-bottom:7px; }
+.ws-top{ display:flex; justify-content:space-between; align-items:center; font-size:10pt; color:var(--mut); }
+.ws-brand{ display:inline-flex; align-items:center; gap:7px; font-family:'Poppins',sans-serif; }
+.ws-brand b{ color:var(--ink); } .logo{ width:22px; height:22px; }
+.ws-name{ font-size:9.5pt; } .nl{ display:inline-block; width:34mm; border-bottom:1.4px dotted #b8c0cc; } .nl.sm{ width:24mm; }
+.ws-eyebrow{ font-family:'Poppins',sans-serif; font-weight:600; font-size:10pt; color:var(--c); margin-top:8px; text-transform:uppercase; letter-spacing:.4px; }
+.ws-title{ font-family:'Poppins',sans-serif; font-weight:800; font-size:18pt; line-height:1.1; color:var(--ink); margin:2px 0 6px; display:flex; align-items:baseline; gap:8px; }
+.ws-no{ background:var(--c); color:#fff; font-size:12pt; min-width:27px; height:27px; padding:0 6px; border-radius:8px; display:inline-flex; align-items:center; justify-content:center; }
+.ws-meta{ display:flex; flex-wrap:wrap; gap:7px; align-items:center; }
+.pill{ font-family:'Poppins',sans-serif; font-weight:600; font-size:9.5pt; background:#eef2f7; color:#475569; border-radius:20px; padding:4px 11px; }
+.pill.warn{ background:#fff3e2; color:#9a3412; }
+.cra{ display:inline-flex; align-items:center; gap:4px; margin-left:auto; }
+.cra-s{ font-family:'Poppins',sans-serif; font-weight:600; font-size:9pt; color:#94a3b8; background:#f1f4f8; border-radius:7px; padding:3px 9px; }
+.cra-s.on{ color:#fff; } .cra-arr{ color:#cbd5e1; font-size:10pt; }
+
+.ws-obj{ background:var(--tint); border-radius:10px; padding:7px 12px; }
+.ws-obj p{ margin:1px 0 0; font-size:11pt; line-height:1.42; color:var(--ink); }
+.ws-method .msteps{ margin:1px 0 0; padding-left:0; list-style:none; display:flex; flex-direction:column; gap:2px; counter-reset:m; }
+.ws-method .msteps li{ font-size:10pt; line-height:1.32; padding-left:26px; position:relative; }
+.ws-method .msteps li::before{ counter-increment:m; content:counter(m); position:absolute; left:0; top:0;
+  width:21px; height:21px; border-radius:50%; background:var(--c); color:#fff; font-family:'Poppins',sans-serif; font-weight:700; font-size:10pt; display:flex; align-items:center; justify-content:center; }
+.ws-method .msteps b{ color:var(--c); }
+
+.ws-egbox{ background:#f4f8f5; border:1.5px dashed color-mix(in srgb,var(--c) 45%,#cbd5e1); border-radius:10px; padding:6px 12px 7px; }
+.ws-egbox .lbl{ color:color-mix(in srgb,var(--c) 70%, #166534); }
+
+.items-grid{ display:grid; grid-template-columns:1fr 1fr; gap:5px; margin-top:2px; align-items:start; }
+.ex{ border:1.4px solid var(--line); border-radius:11px; padding:7px 10px 8px; background:#fff; break-inside:avoid; }
+.ex.wide{ grid-column:1 / -1; }
+.ex.eg{ border:0; padding:2px 0 0; background:transparent; grid-column:1 / -1; }
+.ex-q{ display:flex; gap:7px; align-items:flex-start; }
+.ex-no{ flex:0 0 auto; width:22px; height:22px; border-radius:50%; background:var(--c); color:#fff; font-family:'Poppins',sans-serif; font-weight:700; font-size:10.5pt; display:flex; align-items:center; justify-content:center; }
+.ex.eg .ex-no{ background:#fef3c7; }
+.ex-q p{ margin:1px 0 0; font-size:10.8pt; line-height:1.4; color:var(--ink); }
+.ex-v{ margin:4px 0 3px; text-align:center; } .ex-a{ margin:0; text-align:center; }
+.ex.wide .ex-v, .ex.wide .ex-a, .ex.eg .ex-v, .ex.eg .ex-a{ text-align:left; margin-left:30px; }
+
+/* SVG görseller — içsel boyut ama A4'e sığması için yükseklik sınırlı */
+.ws-svg{ max-width:100%; width:auto; height:auto; vertical-align:middle; }
+.ex-v .ws-svg{ max-height:16mm; }
+.ex-v .ws-svg.ws-tall{ max-height:17mm; }
+.ws-egbox .ex-v .ws-svg{ max-height:12mm; } .ws-egbox .ex-v .ws-svg.ws-tall{ max-height:13mm; }
+.ex-v .ws-frac{ max-height:26mm; } .ws-svg.ws-frac{ width:auto; max-height:26mm; } svg.ws-glyph{ width:12mm; height:12mm; }
+.pat-row{ display:flex; align-items:center; gap:7px; flex-wrap:wrap; }
+.pat-c svg{ width:13mm; height:13mm; } .pat-q{ width:13mm; height:13mm; border:2px dashed #b8c0cc; border-radius:8px; display:inline-flex; align-items:center; justify-content:center; font-family:'Poppins',sans-serif; font-weight:800; font-size:16pt; color:#b8c0cc; }
+
+/* Yanıt alanları */
+.wbox{ display:inline-block; width:14mm; height:14mm; border:2px solid #94a3b8; border-radius:8px; vertical-align:middle; margin:0 3px; background:#fff; }
+.wbox.wbox-lg{ width:18mm; height:14mm; border-color:var(--c); }
+.eqrow{ display:flex; align-items:center; flex-wrap:wrap; gap:5px; font-family:'Poppins',sans-serif; font-weight:600; font-size:15pt; color:var(--ink); }
+.bignum{ font-family:'Poppins',sans-serif; font-weight:700; font-size:17pt; color:var(--ink); } .bignum.sm{ font-size:14pt; padding:0 3px; }
+.seqn{ font-family:'Poppins',sans-serif; font-weight:600; font-size:14pt; } .seqsep{ color:#94a3b8; }
+.ans-hint{ margin:5px 0 0 0; font-size:10.5pt; color:var(--mut); font-style:normal; }
+.ans-shown{ font-family:'Poppins',sans-serif; font-size:14pt; color:#166534; }
+
+.ws-scaffold{ display:flex; gap:8px; flex-wrap:wrap; }
+.sc{ flex:1 1 44%; font-size:9.8pt; line-height:1.30; border-radius:9px; padding:5px 10px; }
+.sc-easy{ background:#eef4fb; } .sc-easy b{ color:#1d4ed8; }
+.sc-hard{ background:#f5f0fb; } .sc-hard b{ color:#7c3aed; }
+
+.ws-foot{ margin-top:auto; padding-top:5px; border-top:1px solid var(--line); display:flex; flex-direction:column; gap:4px; }
+.ws-check{ background:#f0fdf4; border-radius:9px; padding:5px 11px; font-size:10pt; line-height:1.35; color:#166534; display:flex; justify-content:space-between; align-items:center; gap:10px; }
+.ws-check b{ color:#15803d; } .stars{ font-size:14pt; color:#f59e0b; letter-spacing:2px; white-space:nowrap; }
+.ws-credit{ font-size:7.8pt; color:var(--mut); line-height:1.35; display:flex; flex-direction:column; gap:1px; }
+.ws-credit .mat{ color:#475569; }
+.ws-credit a{ color:#475569; }
+/* Kavram yanılgısı şeridi. Punto (8.7pt) künyeden (7.8pt) büyük ama gövde metninden
+   küçük: öğretmene yönelik ikincil bilgi, çocuğun göreviyle yarışmamalı. Yapraklar
+   milimetrik dolu olduğu için bu ölçüler A4 taşmasına karşı ölçülerek seçildi. */
+.ws-mis{ background:#fff7ed; border-left:3px solid #fb923c; border-radius:9px; padding:3px 10px; font-size:8.7pt; line-height:1.26; color:#7c2d12; }
+.ws-mis b{ color:#9a3412; font-weight:700; }
+.ws-mis .mis-cite{ color:#a16207; white-space:nowrap; }
+
+/* ── Baskı ─────────────────────────────────────────────────────────── */
+@media print{
+  @page{ size:A4; margin:0; }
+  html,body{ background:#fff; }
+  .bar,.wrap>.intro{ display:none !important; }
+  .wrap{ margin:0; padding:0; max-width:none; }
+  .sheet{ width:210mm; height:297mm; margin:0; border-radius:0; box-shadow:none; overflow:hidden; break-before:page; }
+  .sheet:first-child{ break-before:avoid; }
+}
+.intro{ background:#fff; border-radius:14px; padding:16px 20px; margin-bottom:18px; box-shadow:0 2px 10px rgba(0,0,0,.05); }
+.intro h2{ font-family:'Poppins',sans-serif; margin:0 0 5px; color:var(--ink); font-size:18px; }
+.intro p{ margin:0; font-size:13.5px; line-height:1.55; color:#5b6573; }
+</style>
+</head>
+<body>
+<div class="bar no-print">
+  <span class="t">➕ Toplama ve Çıkarma — Çalışma Yaprakları<small>12 düzey · Sayılar ve İşlemler · CRA temelli</small></span>
+  <span class="actions">
+    <a class="btn btn-back" href="./">← Yörüngeye dön</a>
+    <button class="btn btn-print" onclick="window.print()">🖨️ Yazdır / PDF kaydet</button>
+  </span>
+</div>
+<div class="wrap">
+  <div class="intro no-print">
+    <h2>Toplama ve Çıkarma · Çalışma Yaprakları</h2>
+    <p>Her düzey için bir baskıya-hazır A4 çalışma yaprağı. Her yaprak <b>önce somut</b> (DokunSay Bar ile), <b>sonra resimle</b> (bu sayfa), <b>en sonda sembolle</b> (çocuk yazar) ilerler — diskalkuli için kanıta dayalı CRA sırası. Çocuğun bulunduğu düzeyden başlayın; ✓ölçütü karşılayınca bir sonraki yaprağa geçin. Yazdırıp tek tek kullanın ya da PDF olarak kaydedin.</p>
+  </div>
+  <section class="sheet" style="--c:#2E7D32">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">➕ Sayılar ve İşlemler · Toplama ve Çıkarma</div>
+    <h1 class="ws-title"><span class="ws-no">1</span>Aritmetik Duyarlılığı: Temeller</h1>
+    <div class="ws-meta">
+      <span class="pill">0–1 yaş</span>
+      <span class="pill">Düzey 1/12</span>
+      
+      <span class="cra"><span class="cra-s on" style="background:#2E7D32">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Algısal grupların birleştirilmesine/ayrılmasına duyarlıdır; çok küçük koleksiyonların bir artıp eksilmesinin etkisini fark eder.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Oyna</b> — DokunSay Bar ya da günlük nesnelerle birlikte oynayın — 2–3 büyük, aynı renk DokunSay pulu.</li><li><b>Söyle</b> — Sayıları/sözcükleri yüksek sesle ve ritimle siz söyleyin; çocuk katılsın.</li><li><b>Gözle</b> — Tepkisini gözleyin — bu yaşta yazı/çizim beklenmez, deneyim önemlidir.</li></ol>
+  </div>
+
+  
+
+  <div class="ws-items"><span class="lbl">🎲 Birlikte oyna (siz yönlendirin)</span>
+    <div class="items-grid"><div class="ex">
+    <div class="ex-q"><span class="ex-no">1</span><p>Çocuğun önüne 2 pul koyup birlikte bakın.</p></div>
+    
+    
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Örtüyle kapatın, gizlice 1 pul ekleyin ya da alın, açın.</p></div>
+    
+    
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>"Bak, daha çok oldu!" / "Bir tane gitti!" deyin; bakışını, şaşkınlığını gözleyin.</p></div>
+    
+    
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">4</span><p>Bazen hiç değiştirmeyin — "aynı" durumla karşılaştırın.</p></div>
+    
+    
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Farkı abartın (1 ↔ 3).</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Yakın çokluklarla (2 ↔ 3) deneyin.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Çokluk 3’ü aşınca bebek değişimi fark etmez; büyük yığında tepkisi kaybolur ve etkinlik boşa gider. <b>→ Ne yapmalı:</b> 1–3 arası çokluklarda kalın, değişimi büyük ve yavaş yapın. <span class="mis-cite">📖 Clements &amp; Sarama (2009)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Çokluk artıp azaldığında bakışı/dikkati belirgin değişiyorsa ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 2–3 büyük, aynı renk DokunSay pulu · küçük bir örtü ya da tepsi <a href="https://dokunsay.com/DokunSayBar/">🔗 dokunsay.com/DokunSayBar/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/add/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#2E7D32">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">➕ Sayılar ve İşlemler · Toplama ve Çıkarma</div>
+    <h1 class="ws-title"><span class="ws-no">2</span>Sözsüz Toplayıp Çıkaran</h1>
+    <div class="ws-meta">
+      <span class="pill">1–2 yaş</span>
+      <span class="pill">Düzey 2/12</span>
+      
+      <span class="cra"><span class="cra-s on" style="background:#2E7D32">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Toplamı 3’ü geçmeyen çok küçük koleksiyonlarla ekleme-eksiltme yapar; yanıtı çoğu kez sözel değil, bir koleksiyon OLUŞTURARAK gösterir.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Oyna</b> — DokunSay Bar ya da günlük nesnelerle birlikte oynayın — 2–3 özdeş DokunSay pulu.</li><li><b>Söyle</b> — Sayıları/sözcükleri yüksek sesle ve ritimle siz söyleyin; çocuk katılsın.</li><li><b>Gözle</b> — Tepkisini gözleyin — bu yaşta yazı/çizim beklenmez, deneyim önemlidir.</li></ol>
+  </div>
+
+  
+
+  <div class="ws-items"><span class="lbl">🎲 Birlikte oyna (siz yönlendirin)</span>
+    <div class="items-grid"><div class="ex">
+    <div class="ex-q"><span class="ex-no">1</span><p>1 pul gösterin, örtün; "bir daha" deyip gizlice 1 ekleyin.</p></div>
+    
+    
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Örtüyü açmadan "Kaç var sence?" diye merak uyandırın, sonra açın.</p></div>
+    
+    
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>Tersini yapın: 2'yi örtüp 1'ini gizlice alın, "Bak, bir tane gitti."</p></div>
+    
+    
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">4</span><p>Çocuğun arama/işaret tepkisini gözleyin; doğruyu sözle adlandırın.</p></div>
+    
+    
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Hep 1 ↔ 2 ile, kısa saklama süresiyle çalışın.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> 2 ↔ 3'e çıkın, saklamayı biraz uzatın.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> “Kaç oldu?” sorusuna elindeki pulların hepsini uzatır; kurduğu koleksiyon sayıyı değil belirsiz bir “çokluk”u yansıtır. <b>→ Ne yapmalı:</b> 1 ↔ 2 aralığında kalın; kurduğu koleksiyonu birlikte tek tek eşleyin. <span class="mis-cite">📖 Clements &amp; Sarama (2009)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Saklı çokluk değişince (ör. 2 → 1) beklentisi bozuluyor, arıyor/şaşırıyorsa ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 2–3 özdeş DokunSay pulu · kapatma örtüsü ya da el <a href="https://dokunsay.com/DokunSayBar/">🔗 dokunsay.com/DokunSayBar/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/add/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#2E7D32">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">➕ Sayılar ve İşlemler · Toplama ve Çıkarma</div>
+    <h1 class="ws-title"><span class="ws-no">3</span>Küçük Sayılarla Toplayıp Çıkaran</h1>
+    <div class="ws-meta">
+      <span class="pill">3–4 yaş</span>
+      <span class="pill">Düzey 3/12</span>
+      
+      <span class="cra"><span class="cra-s on" style="background:#2E7D32">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Toplamı 5’i geçmeyen, sonucu bilinmeyen birleştirme ve ayırma problemlerini nesnelerle &quot;tümünü sayarak&quot; çözer.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Bar ile elle yap — DokunSay pulları.</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>2 ile 3’ü birleştirdim, saydım: hepsi <b>5</b>.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 232 48" width="232" height="48" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="21" cy="21" r="13" fill="#f59e0b"/><circle cx="55" cy="21" r="13" fill="#f59e0b"/><text x="95" y="33" font-size="30" fill="#0f172a" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="700">+</text><circle cx="135" cy="21" r="13" fill="#0d9488"/><circle cx="169" cy="21" r="13" fill="#0d9488"/><circle cx="203" cy="21" r="13" fill="#0d9488"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">2 + 3 = 5</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>Birleştir: hepsi kaç oldu? Say ve yaz.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 334 48" width="334" height="48" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="21" cy="21" r="13" fill="#f59e0b"/><circle cx="55" cy="21" r="13" fill="#f59e0b"/><circle cx="89" cy="21" r="13" fill="#f59e0b"/><circle cx="123" cy="21" r="13" fill="#f59e0b"/><text x="163" y="33" font-size="30" fill="#0f172a" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="700">+</text><circle cx="203" cy="21" r="13" fill="#0d9488"/><circle cx="237" cy="21" r="13" fill="#0d9488"/><circle cx="271" cy="21" r="13" fill="#0d9488"/><circle cx="305" cy="21" r="13" fill="#0d9488"/></svg></div>
+    <div class="ex-a"><div class="eqrow"><span class="bignum">4</span> + <span class="bignum">4</span> = <span class="wbox wbox-lg"></span></div></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Üstü çizilenleri çıkar: kaç KALDI?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 219 79" width="219" height="79" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="22" cy="22" r="13" fill="#2E7D32"/><circle cx="57" cy="22" r="13" fill="#2E7D32"/><circle cx="92" cy="22" r="13" fill="#2E7D32"/><circle cx="127" cy="22" r="13" fill="#2E7D32"/><circle cx="162" cy="22" r="13" fill="#2E7D32"/><circle cx="197" cy="22" r="13" fill="#e2e8f0"/><line x1="184" y1="9" x2="210" y2="35" stroke="#ef4444" stroke-width="2.5"/><line x1="184" y1="35" x2="210" y2="9" stroke="#ef4444" stroke-width="2.5"/><circle cx="22" cy="57" r="13" fill="#e2e8f0"/><line x1="9" y1="44" x2="35" y2="70" stroke="#ef4444" stroke-width="2.5"/><line x1="9" y1="70" x2="35" y2="44" stroke="#ef4444" stroke-width="2.5"/><circle cx="57" cy="57" r="13" fill="#e2e8f0"/><line x1="44" y1="44" x2="70" y2="70" stroke="#ef4444" stroke-width="2.5"/><line x1="44" y1="70" x2="70" y2="44" stroke="#ef4444" stroke-width="2.5"/><circle cx="92" cy="57" r="13" fill="#e2e8f0"/><line x1="79" y1="44" x2="105" y2="70" stroke="#ef4444" stroke-width="2.5"/><line x1="79" y1="70" x2="105" y2="44" stroke="#ef4444" stroke-width="2.5"/></svg></div>
+    <div class="ex-a"><div class="eqrow"><span class="bignum">9</span> − <span class="bignum">4</span> = <span class="wbox wbox-lg"></span></div></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>Sayı bağını tamamla: bütün kaç?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 230 150" width="230" height="150" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><line x1="115" y1="66" x2="51" y2="94" stroke="#cbd5e1" stroke-width="2.5"/><line x1="115" y1="66" x2="179" y2="94" stroke="#cbd5e1" stroke-width="2.5"/><circle cx="115" cy="40" r="34" fill="#fff" stroke="#94a3b8" stroke-width="2.5" stroke-dasharray="6 4"/><circle cx="51" cy="118" r="30" fill="#fff" stroke="#f59e0b" stroke-width="2.5"/><text x="51" y="129" font-size="30" fill="#0f172a" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="700">4</text><circle cx="179" cy="118" r="30" fill="#fff" stroke="#f59e0b" stroke-width="2.5"/><text x="179" y="129" font-size="30" fill="#0f172a" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="700">4</text></svg></div>
+    <div class="ex-a"><span class="wbox wbox-lg"></span></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> İşlemden hemen önce pulları birlikte sayıp kapatın.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> &quot;2 ve 1&quot; gibi sonucu 3 olan soruları yoklayın.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Birleştirdiği pulları sayarken bazılarını iki kez sayar, bazılarını atlar; birebir eşleme kopar. <b>→ Ne yapmalı:</b> Saydığı her pulu parmağıyla kenara ittirin — dokunmadan saymaya izin vermeyin. <span class="mis-cite">📖 Baroody (1987)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Toplamı 5'i geçmeyen birleştirme/ayırmayı nesnelerle tümünü sayarak doğru bulursa ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay pulları · kapatılabilir küçük tabak/kutu <a href="https://dokunsay.com/DokunSayBar/">🔗 dokunsay.com/DokunSayBar/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/add/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#2E7D32">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">➕ Sayılar ve İşlemler · Toplama ve Çıkarma</div>
+    <h1 class="ws-title"><span class="ws-no">4</span>Sonucu Bulan</h1>
+    <div class="ws-meta">
+      <span class="pill">4–5 yaş</span>
+      <span class="pill">Düzey 4/12</span>
+      <span class="pill warn">★ Kritik geçiş</span>
+      <span class="cra"><span class="cra-s on" style="background:#2E7D32">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Sonucu bilinmeyen birleştirme (&quot;3 elman vardı, 3 elma daha aldın...&quot;) ve parça-parça-bütün (&quot;6 kız, 5 erkek; toplam kaç kişi?&quot;) problemlerini…</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Bar ile elle yap — DokunSay pulları/çubukları (iki renk).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>İki grubu birleştirip saydım.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 232 48" width="232" height="48" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="21" cy="21" r="13" fill="#f59e0b"/><circle cx="55" cy="21" r="13" fill="#f59e0b"/><circle cx="89" cy="21" r="13" fill="#f59e0b"/><text x="129" y="33" font-size="30" fill="#0f172a" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="700">+</text><circle cx="169" cy="21" r="13" fill="#0d9488"/><circle cx="203" cy="21" r="13" fill="#0d9488"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">3 + 2 = 5</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex">
+    <div class="ex-q"><span class="ex-no">1</span><p>Birleştir: hepsi kaç oldu? Say ve yaz.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 198 48" width="198" height="48" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="21" cy="21" r="13" fill="#f59e0b"/><circle cx="55" cy="21" r="13" fill="#f59e0b"/><text x="95" y="33" font-size="30" fill="#0f172a" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="700">+</text><circle cx="135" cy="21" r="13" fill="#0d9488"/><circle cx="169" cy="21" r="13" fill="#0d9488"/></svg></div>
+    <div class="ex-a"><div class="eqrow"><span class="bignum">2</span> + <span class="bignum">2</span> = <span class="wbox wbox-lg"></span></div></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Üstü çizilenleri çıkar: kaç KALDI?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 184 44" width="184" height="44" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="22" cy="22" r="13" fill="#2E7D32"/><circle cx="57" cy="22" r="13" fill="#2E7D32"/><circle cx="92" cy="22" r="13" fill="#2E7D32"/><circle cx="127" cy="22" r="13" fill="#e2e8f0"/><line x1="114" y1="9" x2="140" y2="35" stroke="#ef4444" stroke-width="2.5"/><line x1="114" y1="35" x2="140" y2="9" stroke="#ef4444" stroke-width="2.5"/><circle cx="162" cy="22" r="13" fill="#e2e8f0"/><line x1="149" y1="9" x2="175" y2="35" stroke="#ef4444" stroke-width="2.5"/><line x1="149" y1="35" x2="175" y2="9" stroke="#ef4444" stroke-width="2.5"/></svg></div>
+    <div class="ex-a"><div class="eqrow"><span class="bignum">5</span> − <span class="bignum">2</span> = <span class="wbox wbox-lg"></span></div></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>Sayı bağını tamamla: bütün kaç?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 230 150" width="230" height="150" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><line x1="115" y1="66" x2="51" y2="94" stroke="#cbd5e1" stroke-width="2.5"/><line x1="115" y1="66" x2="179" y2="94" stroke="#cbd5e1" stroke-width="2.5"/><circle cx="115" cy="40" r="34" fill="#fff" stroke="#94a3b8" stroke-width="2.5" stroke-dasharray="6 4"/><circle cx="51" cy="118" r="30" fill="#fff" stroke="#f59e0b" stroke-width="2.5"/><text x="51" y="129" font-size="30" fill="#0f172a" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="700">2</text><circle cx="179" cy="118" r="30" fill="#fff" stroke="#f59e0b" stroke-width="2.5"/><text x="179" y="129" font-size="30" fill="#0f172a" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="700">2</text></svg></div>
+    <div class="ex-a"><span class="wbox wbox-lg"></span></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Sayıları küçük tutun (2+1, 3+1); pulları büyük ve ayrı renkte verin.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Bir kümeyi kapatıp &quot;üç vardı, ikiyi ekledim&quot; deyin — saymadan saklı kısmı düşünmeye zorlayın (count-on'a köprü).</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> İki kümeyi birleştirdikten sonra baştan saymayı reddeder (“zaten saymıştık”) ve kümelerden birinin sayısını yanıt verir. <b>→ Ne yapmalı:</b> Kümeleri fiilen tek tepsiye taşıtıp “şimdi hepsi kaç?” diye baştan saydırın. <span class="mis-cite">📖 Carpenter &amp; Moser (1984)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> İki kümeyi birleştirip hepsini sayarak doğru toplamı/farkı bulursa ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay pulları/çubukları (iki renk) · birleştirme tepsisi ya da çizgisi · kapatma kartı <a href="https://dokunsay.com/DokunSayBar/">🔗 dokunsay.com/DokunSayBar/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/add/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#2E7D32">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">➕ Sayılar ve İşlemler · Toplama ve Çıkarma</div>
+    <h1 class="ws-title"><span class="ws-no">5</span>İstenen Sayıya Tamamlayan</h1>
+    <div class="ws-meta">
+      <span class="pill">5 yaş</span>
+      <span class="pill">Düzey 5/12</span>
+      
+      <span class="cra"><span class="cra-s on" style="background:#2E7D32">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Bir sayıyı başka bir sayıya dönüştürmek için 1’den saymadan nesne EKLER (&quot;4’ü 6 yap&quot;); kaç eklediğini söylemesi gerekmez.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Bar ile elle yap — DokunSay pulları.</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Onluk çerçeveyi sayıp bütünü buldum.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 182 80" width="182" height="80" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><rect x="4" y="4" width="174" height="72" rx="7" fill="#fff" stroke="#94a3b8" stroke-width="2"/><line x1="40" y1="8" x2="40" y2="72" stroke="#e2e8f0" stroke-width="1.5"/><line x1="74" y1="8" x2="74" y2="72" stroke="#e2e8f0" stroke-width="1.5"/><line x1="108" y1="8" x2="108" y2="72" stroke="#e2e8f0" stroke-width="1.5"/><line x1="142" y1="8" x2="142" y2="72" stroke="#e2e8f0" stroke-width="1.5"/><line x1="8" y1="40" x2="174" y2="40" stroke="#94a3b8" stroke-width="1.5"/><circle cx="23" cy="23" r="10.799999999999999" fill="#2E7D32"/><circle cx="57" cy="23" r="10.799999999999999" fill="#2E7D32"/><circle cx="91" cy="23" r="10.799999999999999" fill="#2E7D32"/><circle cx="125" cy="23" r="10.799999999999999" fill="#2E7D32"/><circle cx="159" cy="23" r="10.799999999999999" fill="#2E7D32"/><circle cx="23" cy="57" r="10.799999999999999" fill="#2E7D32"/><circle cx="57" cy="57" r="10.799999999999999" fill="#2E7D32"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">7</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>Birleştir: hepsi kaç oldu? Say ve yaz.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 300 48" width="300" height="48" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="21" cy="21" r="13" fill="#f59e0b"/><circle cx="55" cy="21" r="13" fill="#f59e0b"/><circle cx="89" cy="21" r="13" fill="#f59e0b"/><circle cx="123" cy="21" r="13" fill="#f59e0b"/><text x="163" y="33" font-size="30" fill="#0f172a" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="700">+</text><circle cx="203" cy="21" r="13" fill="#0d9488"/><circle cx="237" cy="21" r="13" fill="#0d9488"/><circle cx="271" cy="21" r="13" fill="#0d9488"/></svg></div>
+    <div class="ex-a"><div class="eqrow"><span class="bignum">4</span> + <span class="bignum">3</span> = <span class="wbox wbox-lg"></span></div></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Üstü çizilenleri çıkar: kaç KALDI?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 219 79" width="219" height="79" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="22" cy="22" r="13" fill="#2E7D32"/><circle cx="57" cy="22" r="13" fill="#2E7D32"/><circle cx="92" cy="22" r="13" fill="#2E7D32"/><circle cx="127" cy="22" r="13" fill="#2E7D32"/><circle cx="162" cy="22" r="13" fill="#2E7D32"/><circle cx="197" cy="22" r="13" fill="#e2e8f0"/><line x1="184" y1="9" x2="210" y2="35" stroke="#ef4444" stroke-width="2.5"/><line x1="184" y1="35" x2="210" y2="9" stroke="#ef4444" stroke-width="2.5"/><circle cx="22" cy="57" r="13" fill="#e2e8f0"/><line x1="9" y1="44" x2="35" y2="70" stroke="#ef4444" stroke-width="2.5"/><line x1="9" y1="70" x2="35" y2="44" stroke="#ef4444" stroke-width="2.5"/><circle cx="57" cy="57" r="13" fill="#e2e8f0"/><line x1="44" y1="44" x2="70" y2="70" stroke="#ef4444" stroke-width="2.5"/><line x1="44" y1="70" x2="70" y2="44" stroke="#ef4444" stroke-width="2.5"/></svg></div>
+    <div class="ex-a"><div class="eqrow"><span class="bignum">8</span> − <span class="bignum">3</span> = <span class="wbox wbox-lg"></span></div></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>Eksik parçayı bul (kutuya yaz).</p></div>
+    <div class="ex-v"><svg viewBox="0 0 230 150" width="230" height="150" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><line x1="115" y1="66" x2="51" y2="94" stroke="#cbd5e1" stroke-width="2.5"/><line x1="115" y1="66" x2="179" y2="94" stroke="#cbd5e1" stroke-width="2.5"/><circle cx="115" cy="40" r="34" fill="#fff" stroke="#f59e0b" stroke-width="2.5"/><text x="115" y="51" font-size="30" fill="#0f172a" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="700">7</text><circle cx="51" cy="118" r="30" fill="#fff" stroke="#f59e0b" stroke-width="2.5"/><text x="51" y="129" font-size="30" fill="#0f172a" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="700">4</text><circle cx="179" cy="118" r="30" fill="#fff" stroke="#94a3b8" stroke-width="2.5" stroke-dasharray="6 4"/></svg></div>
+    <div class="ex-a"><div class="eqrow"><span class="bignum">4</span> + <span class="wbox"></span> = <span class="bignum">7</span></div></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Hedefi hep 10 ve çerçeveyle çalışın; başlangıcı ≥6 tutun.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Çerçevesiz sorun ya da hedefi değiştirin (&quot;4'ten 8'e kaç?&quot;).</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> “4’ü 6 yap” denince var olan 4 pulu bozup baştan 6 pul dizer — ekleme yerine yeniden kurar. <b>→ Ne yapmalı:</b> Var olan 4 pula dokunmayı yasaklayın: “bunlar duracak, yanına koyacaksın”. <span class="mis-cite">📖 Carpenter &amp; Moser (1984)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Verilen sayıyı istenen sayıya nesne ekleyerek dönüştürürse — kaç eklediğini söylemesi gerekmez ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay pulları · onluk çerçeve (2×5) · 10'a dek sayı kartları <a href="https://dokunsay.com/DokunSayBar/">🔗 dokunsay.com/DokunSayBar/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/add/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#2E7D32">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">➕ Sayılar ve İşlemler · Toplama ve Çıkarma</div>
+    <h1 class="ws-title"><span class="ws-no">6</span>Eksik Olanı Bulan</h1>
+    <div class="ws-meta">
+      <span class="pill">5–6 yaş</span>
+      <span class="pill">Düzey 6/12</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#2E7D32">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Eksik toplananı (5 + _ = 7) nesne ekleyerek, eksik eksileni (9 − _ = 3) nesne ayırarak bulur; basit durumlarda eşleştirerek karşılaştırır.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Bar ile elle yap — DokunSay pulları (iki renk).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>2 ile 3’ü birleştirdim, saydım: hepsi <b>5</b>.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 232 48" width="232" height="48" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="21" cy="21" r="13" fill="#f59e0b"/><circle cx="55" cy="21" r="13" fill="#f59e0b"/><text x="95" y="33" font-size="30" fill="#0f172a" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="700">+</text><circle cx="135" cy="21" r="13" fill="#0d9488"/><circle cx="169" cy="21" r="13" fill="#0d9488"/><circle cx="203" cy="21" r="13" fill="#0d9488"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">2 + 3 = 5</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>Birleştir: hepsi kaç oldu? Say ve yaz.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 368 82" width="368" height="82" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="21" cy="21" r="13" fill="#f59e0b"/><circle cx="55" cy="21" r="13" fill="#f59e0b"/><circle cx="89" cy="21" r="13" fill="#f59e0b"/><circle cx="123" cy="21" r="13" fill="#f59e0b"/><circle cx="157" cy="21" r="13" fill="#f59e0b"/><circle cx="21" cy="55" r="13" fill="#f59e0b"/><text x="197" y="50" font-size="30" fill="#0f172a" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="700">+</text><circle cx="237" cy="21" r="13" fill="#0d9488"/><circle cx="271" cy="21" r="13" fill="#0d9488"/><circle cx="305" cy="21" r="13" fill="#0d9488"/><circle cx="339" cy="21" r="13" fill="#0d9488"/></svg></div>
+    <div class="ex-a"><div class="eqrow"><span class="bignum">6</span> + <span class="bignum">4</span> = <span class="wbox wbox-lg"></span></div></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Üstü çizilenleri çıkar: kaç KALDI?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 219 79" width="219" height="79" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="22" cy="22" r="13" fill="#2E7D32"/><circle cx="57" cy="22" r="13" fill="#2E7D32"/><circle cx="92" cy="22" r="13" fill="#2E7D32"/><circle cx="127" cy="22" r="13" fill="#2E7D32"/><circle cx="162" cy="22" r="13" fill="#2E7D32"/><circle cx="197" cy="22" r="13" fill="#2E7D32"/><circle cx="22" cy="57" r="13" fill="#e2e8f0"/><line x1="9" y1="44" x2="35" y2="70" stroke="#ef4444" stroke-width="2.5"/><line x1="9" y1="70" x2="35" y2="44" stroke="#ef4444" stroke-width="2.5"/><circle cx="57" cy="57" r="13" fill="#e2e8f0"/><line x1="44" y1="44" x2="70" y2="70" stroke="#ef4444" stroke-width="2.5"/><line x1="44" y1="70" x2="70" y2="44" stroke="#ef4444" stroke-width="2.5"/><circle cx="92" cy="57" r="13" fill="#e2e8f0"/><line x1="79" y1="44" x2="105" y2="70" stroke="#ef4444" stroke-width="2.5"/><line x1="79" y1="70" x2="105" y2="44" stroke="#ef4444" stroke-width="2.5"/><circle cx="127" cy="57" r="13" fill="#e2e8f0"/><line x1="114" y1="44" x2="140" y2="70" stroke="#ef4444" stroke-width="2.5"/><line x1="114" y1="70" x2="140" y2="44" stroke="#ef4444" stroke-width="2.5"/></svg></div>
+    <div class="ex-a"><div class="eqrow"><span class="bignum">10</span> − <span class="bignum">4</span> = <span class="wbox wbox-lg"></span></div></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>Eksik parçayı bul (kutuya yaz).</p></div>
+    <div class="ex-v"><svg viewBox="0 0 230 150" width="230" height="150" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><line x1="115" y1="66" x2="51" y2="94" stroke="#cbd5e1" stroke-width="2.5"/><line x1="115" y1="66" x2="179" y2="94" stroke="#cbd5e1" stroke-width="2.5"/><circle cx="115" cy="40" r="34" fill="#fff" stroke="#f59e0b" stroke-width="2.5"/><text x="115" y="51" font-size="30" fill="#0f172a" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="700">10</text><circle cx="51" cy="118" r="30" fill="#fff" stroke="#f59e0b" stroke-width="2.5"/><text x="51" y="129" font-size="30" fill="#0f172a" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="700">6</text><circle cx="179" cy="118" r="30" fill="#fff" stroke="#94a3b8" stroke-width="2.5" stroke-dasharray="6 4"/></svg></div>
+    <div class="ex-a"><div class="eqrow"><span class="bignum">6</span> + <span class="wbox"></span> = <span class="bignum">10</span></div></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Değişimi küçük (1–2) tutun, başlangıcı gizlemeyin.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Başlangıcı da gizleyip yalnız değişim ve sonucu verin (&quot;_+3=8&quot;).</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> 5 + ⬚ = 7’yi görünce kutuya 12 yazar; “=” işaretini “iki sayıyı topla, sonucu yaz” komutu sanır. <b>→ Ne yapmalı:</b> “=” i “iki taraf aynı ağırlıkta” diye okutun; iki tarafı da pullarla kurdurup karşılaştırın. <span class="mis-cite">📖 Rittle-Johnson &amp; Alibali (1999)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Başlangıç ve sonuç verildiğinde bilinmeyen değişimi (ekleme/çıkarma miktarını) doğru bulursa ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay pulları (iki renk) · kapatma kartı · birleştirme tepsisi <a href="https://dokunsay.com/DokunSayBar/">🔗 dokunsay.com/DokunSayBar/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/add/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#2E7D32">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">➕ Sayılar ve İşlemler · Toplama ve Çıkarma</div>
+    <h1 class="ws-title"><span class="ws-no">7</span>Sayma Stratejileriyle Çözen</h1>
+    <div class="ws-meta">
+      <span class="pill">6 yaş</span>
+      <span class="pill">Düzey 7/12</span>
+      <span class="pill warn">★ Kritik geçiş</span>
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#2E7D32">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Birleştirme ve parça-parça-bütün problemlerini parmak örüntüleri ve/veya ÜZERİNE SAYMA ile çözer (&quot;4’ün üzerine: 5, 6, 7&quot;); eksik toplanan için…</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Bar ile elle yap — DokunSay pulları/çubukları.</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Sayı doğrusunda parmağımla ilerledim.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 460 96" width="460" height="96" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><line x1="24" y1="64" x2="436" y2="64" stroke="#64748b" stroke-width="2.5"/><polygon points="436,64 426,58 426,70" fill="#64748b"/><line x1="24" y1="57" x2="24" y2="71" stroke="#94a3b8" stroke-width="2"/><text x="24" y="94" font-size="17" fill="#334155" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="600">0</text><line x1="58.333333333333336" y1="57" x2="58.333333333333336" y2="71" stroke="#94a3b8" stroke-width="2"/><text x="58.333333333333336" y="94" font-size="17" fill="#334155" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="600">1</text><line x1="92.66666666666667" y1="57" x2="92.66666666666667" y2="71" stroke="#94a3b8" stroke-width="2"/><text x="92.66666666666667" y="94" font-size="17" fill="#334155" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="600">2</text><line x1="127" y1="57" x2="127" y2="71" stroke="#94a3b8" stroke-width="2"/><text x="127" y="94" font-size="17" fill="#334155" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="600">3</text><line x1="161.33333333333334" y1="57" x2="161.33333333333334" y2="71" stroke="#94a3b8" stroke-width="2"/><text x="161.33333333333334" y="94" font-size="17" fill="#334155" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="600">4</text><line x1="195.66666666666666" y1="57" x2="195.66666666666666" y2="71" stroke="#94a3b8" stroke-width="2"/><text x="195.66666666666666" y="94" font-size="17" fill="#334155" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="600">5</text><line x1="230" y1="57" x2="230" y2="71" stroke="#94a3b8" stroke-width="2"/><text x="230" y="94" font-size="17" fill="#334155" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="600">6</text><line x1="264.33333333333337" y1="57" x2="264.33333333333337" y2="71" stroke="#94a3b8" stroke-width="2"/><text x="264.33333333333337" y="94" font-size="17" fill="#334155" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="600">7</text><line x1="298.6666666666667" y1="57" x2="298.6666666666667" y2="71" stroke="#94a3b8" stroke-width="2"/><text x="298.6666666666667" y="94" font-size="17" fill="#334155" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="600">8</text><line x1="333" y1="57" x2="333" y2="71" stroke="#94a3b8" stroke-width="2"/><text x="333" y="94" font-size="17" fill="#334155" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="600">9</text><line x1="367.3333333333333" y1="57" x2="367.3333333333333" y2="71" stroke="#94a3b8" stroke-width="2"/><text x="367.3333333333333" y="94" font-size="17" fill="#334155" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="600">10</text><line x1="401.6666666666667" y1="57" x2="401.6666666666667" y2="71" stroke="#94a3b8" stroke-width="2"/><text x="401.6666666666667" y="94" font-size="17" fill="#334155" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="600">11</text><line x1="436" y1="57" x2="436" y2="71" stroke="#94a3b8" stroke-width="2"/><text x="436" y="94" font-size="17" fill="#334155" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="600">12</text><path d="M 195.66666666666666 60 Q 247.16666666666669 24 298.6666666666667 60" fill="none" stroke="#7c3aed" stroke-width="2.5"/><polygon points="298.6666666666667,60 291.6666666666667,50 304.6666666666667,51" fill="#7c3aed"/><circle cx="195.66666666666666" cy="64" r="6" fill="#7c3aed"/><circle cx="298.6666666666667" cy="64" r="6" fill="#f59e0b"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">5 → 8</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>Birleştir: hepsi kaç oldu? Say ve yaz.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 300 48" width="300" height="48" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="21" cy="21" r="13" fill="#f59e0b"/><circle cx="55" cy="21" r="13" fill="#f59e0b"/><circle cx="89" cy="21" r="13" fill="#f59e0b"/><circle cx="123" cy="21" r="13" fill="#f59e0b"/><circle cx="157" cy="21" r="13" fill="#f59e0b"/><text x="197" y="33" font-size="30" fill="#0f172a" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="700">+</text><circle cx="237" cy="21" r="13" fill="#0d9488"/><circle cx="271" cy="21" r="13" fill="#0d9488"/></svg></div>
+    <div class="ex-a"><div class="eqrow"><span class="bignum">5</span> + <span class="bignum">2</span> = <span class="wbox wbox-lg"></span></div></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Üstü çizilenleri çıkar: kaç KALDI?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 219 79" width="219" height="79" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="22" cy="22" r="13" fill="#2E7D32"/><circle cx="57" cy="22" r="13" fill="#2E7D32"/><circle cx="92" cy="22" r="13" fill="#2E7D32"/><circle cx="127" cy="22" r="13" fill="#2E7D32"/><circle cx="162" cy="22" r="13" fill="#2E7D32"/><circle cx="197" cy="22" r="13" fill="#2E7D32"/><circle cx="22" cy="57" r="13" fill="#e2e8f0"/><line x1="9" y1="44" x2="35" y2="70" stroke="#ef4444" stroke-width="2.5"/><line x1="9" y1="70" x2="35" y2="44" stroke="#ef4444" stroke-width="2.5"/><circle cx="57" cy="57" r="13" fill="#e2e8f0"/><line x1="44" y1="44" x2="70" y2="70" stroke="#ef4444" stroke-width="2.5"/><line x1="44" y1="70" x2="70" y2="44" stroke="#ef4444" stroke-width="2.5"/></svg></div>
+    <div class="ex-a"><div class="eqrow"><span class="bignum">8</span> − <span class="bignum">2</span> = <span class="wbox wbox-lg"></span></div></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>Eksik parçayı bul (kutuya yaz).</p></div>
+    <div class="ex-v"><svg viewBox="0 0 230 150" width="230" height="150" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><line x1="115" y1="66" x2="51" y2="94" stroke="#cbd5e1" stroke-width="2.5"/><line x1="115" y1="66" x2="179" y2="94" stroke="#cbd5e1" stroke-width="2.5"/><circle cx="115" cy="40" r="34" fill="#fff" stroke="#f59e0b" stroke-width="2.5"/><text x="115" y="51" font-size="30" fill="#0f172a" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="700">7</text><circle cx="51" cy="118" r="30" fill="#fff" stroke="#f59e0b" stroke-width="2.5"/><text x="51" y="129" font-size="30" fill="#0f172a" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="700">5</text><circle cx="179" cy="118" r="30" fill="#fff" stroke="#94a3b8" stroke-width="2.5" stroke-dasharray="6 4"/></svg></div>
+    <div class="ex-a"><div class="eqrow"><span class="bignum">5</span> + <span class="wbox"></span> = <span class="bignum">7</span></div></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Üstüne eklenen sayı ≤3 olsun; her adımı parmakla işaretletin.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> İki sayı da büyükse (6+5), önce büyüğü seçtirin; sayı doğrusunu kaldırıp zihinden saydırın.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Üzerine sayarken ilk sayıyı da sayar (“4 üzerine: 4, 5, 6”) ve sonucu bir eksik söyler. <b>→ Ne yapmalı:</b> İlk sayıyı yumrukta “cepte” tutturun; yalnız eklenenleri parmakla saydırın. <span class="mis-cite">📖 Carpenter &amp; Moser (1984)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Baştan saymadan, büyük sayıdan ileri (ya da geri) sayarak sonuca ulaşırsa ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay pulları/çubukları · 0–20 sayı doğrusu (ya da DokunSay çubuğu) · parmaklar <a href="https://dokunsay.com/DokunSayBar/">🔗 dokunsay.com/DokunSayBar/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/add/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#2E7D32">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">➕ Sayılar ve İşlemler · Toplama ve Çıkarma</div>
+    <h1 class="ws-title"><span class="ws-no">8</span>Parça-Bütün İlişkisi Kuran</h1>
+    <div class="ws-meta">
+      <span class="pill">6–7 yaş</span>
+      <span class="pill">Düzey 8/12</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#2E7D32">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Başlangıç düzeyinde parça-bütün anlayışı: önceki tüm problem türlerini esnek stratejilerle çözer; bazı kombinasyonları ezbere bilir (5+5=10)…</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Bar ile elle yap — DokunSay pulları (iki renk).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Onluk çerçeveyi sayıp bütünü buldum.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 182 80" width="182" height="80" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><rect x="4" y="4" width="174" height="72" rx="7" fill="#fff" stroke="#94a3b8" stroke-width="2"/><line x1="40" y1="8" x2="40" y2="72" stroke="#e2e8f0" stroke-width="1.5"/><line x1="74" y1="8" x2="74" y2="72" stroke="#e2e8f0" stroke-width="1.5"/><line x1="108" y1="8" x2="108" y2="72" stroke="#e2e8f0" stroke-width="1.5"/><line x1="142" y1="8" x2="142" y2="72" stroke="#e2e8f0" stroke-width="1.5"/><line x1="8" y1="40" x2="174" y2="40" stroke="#94a3b8" stroke-width="1.5"/><circle cx="23" cy="23" r="10.799999999999999" fill="#2E7D32"/><circle cx="57" cy="23" r="10.799999999999999" fill="#2E7D32"/><circle cx="91" cy="23" r="10.799999999999999" fill="#2E7D32"/><circle cx="125" cy="23" r="10.799999999999999" fill="#2E7D32"/><circle cx="159" cy="23" r="10.799999999999999" fill="#2E7D32"/><circle cx="23" cy="57" r="10.799999999999999" fill="#2E7D32"/><circle cx="57" cy="57" r="10.799999999999999" fill="#2E7D32"/><circle cx="91" cy="57" r="10.799999999999999" fill="#2E7D32"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">8</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>Birleştir: hepsi kaç oldu? Say ve yaz.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 334 82" width="334" height="82" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="21" cy="21" r="13" fill="#f59e0b"/><circle cx="55" cy="21" r="13" fill="#f59e0b"/><circle cx="89" cy="21" r="13" fill="#f59e0b"/><circle cx="123" cy="21" r="13" fill="#f59e0b"/><circle cx="157" cy="21" r="13" fill="#f59e0b"/><circle cx="21" cy="55" r="13" fill="#f59e0b"/><circle cx="55" cy="55" r="13" fill="#f59e0b"/><text x="197" y="50" font-size="30" fill="#0f172a" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="700">+</text><circle cx="237" cy="21" r="13" fill="#0d9488"/><circle cx="271" cy="21" r="13" fill="#0d9488"/><circle cx="305" cy="21" r="13" fill="#0d9488"/></svg></div>
+    <div class="ex-a"><div class="eqrow"><span class="bignum">7</span> + <span class="bignum">3</span> = <span class="wbox wbox-lg"></span></div></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Üstü çizilenleri çıkar: kaç KALDI?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 219 79" width="219" height="79" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="22" cy="22" r="13" fill="#2E7D32"/><circle cx="57" cy="22" r="13" fill="#2E7D32"/><circle cx="92" cy="22" r="13" fill="#2E7D32"/><circle cx="127" cy="22" r="13" fill="#2E7D32"/><circle cx="162" cy="22" r="13" fill="#2E7D32"/><circle cx="197" cy="22" r="13" fill="#2E7D32"/><circle cx="22" cy="57" r="13" fill="#2E7D32"/><circle cx="57" cy="57" r="13" fill="#e2e8f0"/><line x1="44" y1="44" x2="70" y2="70" stroke="#ef4444" stroke-width="2.5"/><line x1="44" y1="70" x2="70" y2="44" stroke="#ef4444" stroke-width="2.5"/><circle cx="92" cy="57" r="13" fill="#e2e8f0"/><line x1="79" y1="44" x2="105" y2="70" stroke="#ef4444" stroke-width="2.5"/><line x1="79" y1="70" x2="105" y2="44" stroke="#ef4444" stroke-width="2.5"/><circle cx="127" cy="57" r="13" fill="#e2e8f0"/><line x1="114" y1="44" x2="140" y2="70" stroke="#ef4444" stroke-width="2.5"/><line x1="114" y1="70" x2="140" y2="44" stroke="#ef4444" stroke-width="2.5"/></svg></div>
+    <div class="ex-a"><div class="eqrow"><span class="bignum">10</span> − <span class="bignum">3</span> = <span class="wbox wbox-lg"></span></div></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>Eksik parçayı bul (kutuya yaz).</p></div>
+    <div class="ex-v"><svg viewBox="0 0 230 150" width="230" height="150" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><line x1="115" y1="66" x2="51" y2="94" stroke="#cbd5e1" stroke-width="2.5"/><line x1="115" y1="66" x2="179" y2="94" stroke="#cbd5e1" stroke-width="2.5"/><circle cx="115" cy="40" r="34" fill="#fff" stroke="#f59e0b" stroke-width="2.5"/><text x="115" y="51" font-size="30" fill="#0f172a" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="700">10</text><circle cx="51" cy="118" r="30" fill="#fff" stroke="#f59e0b" stroke-width="2.5"/><text x="51" y="129" font-size="30" fill="#0f172a" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="700">7</text><circle cx="179" cy="118" r="30" fill="#fff" stroke="#94a3b8" stroke-width="2.5" stroke-dasharray="6 4"/></svg></div>
+    <div class="ex-a"><div class="eqrow"><span class="bignum">7</span> + <span class="wbox"></span> = <span class="bignum">10</span></div></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Ezbere bildiği çiftlerden (5+5, 2+2) başlayın; sayıları 10'u aşmayan problemler kurun.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Başlangıcı bilinmeyen problemleri (_ + 3 = 8) artırın; denediği sayıyı sözle gerekçelendirsin.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> 3 + 4 = 7’yi ezbere bilir ama 7 − 4 sorulunca baştan saymaya döner; toplama ile çıkarmayı ilişkisiz iki işlem sanır. <b>→ Ne yapmalı:</b> Aynı üç sayıyla dört işlemi (3+4, 4+3, 7−4, 7−3) tek tezgâhta arka arkaya kurdurun. <span class="mis-cite">📖 Baroody (1987)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Bazı kombinasyonları ezbere kullanır (5+5=10), problemleri esnek stratejilerle, başlangıcı bilinmeyeni deneme-yanılmayla çözerse ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay pulları (iki renk) · onluk çerçeve (2×5) · parça-bütün kutusu/çizgisi <a href="https://dokunsay.com/DokunSayBar/">🔗 dokunsay.com/DokunSayBar/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/add/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#2E7D32">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">➕ Sayılar ve İşlemler · Toplama ve Çıkarma</div>
+    <h1 class="ws-title"><span class="ws-no">9</span>Parçayı ve Bütünü Birlikte Düşünen</h1>
+    <div class="ws-meta">
+      <span class="pill">7–8 yaş</span>
+      <span class="pill">Düzey 9/12</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#2E7D32">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Parçayı ve bütünü AYNI ANDA zihninde tutar; başlangıcı bilinmeyen problemleri (_ + 4 = 9) sayma stratejileriyle çözer.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Bar ile elle yap — DokunSay pulları (iki renk).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Saymadan, bir bakışta gördüm.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 521 44" width="521" height="44" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="22" cy="22" r="13" fill="#f59e0b"/><circle cx="57" cy="22" r="13" fill="#f59e0b"/><circle cx="92" cy="22" r="13" fill="#f59e0b"/><circle cx="127" cy="22" r="13" fill="#f59e0b"/><circle cx="162" cy="22" r="13" fill="#f59e0b"/><circle cx="197" cy="22" r="13" fill="#f59e0b"/><circle cx="254" cy="22" r="13" fill="#0d9488"/><circle cx="289" cy="22" r="13" fill="#0d9488"/><circle cx="324" cy="22" r="13" fill="#0d9488"/><circle cx="359" cy="22" r="13" fill="#0d9488"/><circle cx="394" cy="22" r="13" fill="#0d9488"/><circle cx="429" cy="22" r="13" fill="#0d9488"/><circle cx="464" cy="22" r="13" fill="#0d9488"/><circle cx="499" cy="22" r="13" fill="#0d9488"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">14</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>Birleştir: hepsi kaç oldu? Say ve yaz.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 368 82" width="368" height="82" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="21" cy="21" r="13" fill="#f59e0b"/><circle cx="55" cy="21" r="13" fill="#f59e0b"/><circle cx="89" cy="21" r="13" fill="#f59e0b"/><circle cx="123" cy="21" r="13" fill="#f59e0b"/><circle cx="157" cy="21" r="13" fill="#f59e0b"/><circle cx="21" cy="55" r="13" fill="#f59e0b"/><circle cx="55" cy="55" r="13" fill="#f59e0b"/><circle cx="89" cy="55" r="13" fill="#f59e0b"/><circle cx="123" cy="55" r="13" fill="#f59e0b"/><text x="197" y="50" font-size="30" fill="#0f172a" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="700">+</text><circle cx="237" cy="21" r="13" fill="#0d9488"/><circle cx="271" cy="21" r="13" fill="#0d9488"/><circle cx="305" cy="21" r="13" fill="#0d9488"/><circle cx="339" cy="21" r="13" fill="#0d9488"/></svg></div>
+    <div class="ex-a"><div class="eqrow"><span class="bignum">9</span> + <span class="bignum">4</span> = <span class="wbox wbox-lg"></span></div></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Üstü çizilenleri çıkar: kaç KALDI?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 219 79" width="219" height="79" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="22" cy="22" r="13" fill="#2E7D32"/><circle cx="57" cy="22" r="13" fill="#2E7D32"/><circle cx="92" cy="22" r="13" fill="#2E7D32"/><circle cx="127" cy="22" r="13" fill="#2E7D32"/><circle cx="162" cy="22" r="13" fill="#2E7D32"/><circle cx="197" cy="22" r="13" fill="#2E7D32"/><circle cx="22" cy="57" r="13" fill="#e2e8f0"/><line x1="9" y1="44" x2="35" y2="70" stroke="#ef4444" stroke-width="2.5"/><line x1="9" y1="70" x2="35" y2="44" stroke="#ef4444" stroke-width="2.5"/><circle cx="57" cy="57" r="13" fill="#e2e8f0"/><line x1="44" y1="44" x2="70" y2="70" stroke="#ef4444" stroke-width="2.5"/><line x1="44" y1="70" x2="70" y2="44" stroke="#ef4444" stroke-width="2.5"/><circle cx="92" cy="57" r="13" fill="#e2e8f0"/><line x1="79" y1="44" x2="105" y2="70" stroke="#ef4444" stroke-width="2.5"/><line x1="79" y1="70" x2="105" y2="44" stroke="#ef4444" stroke-width="2.5"/><circle cx="127" cy="57" r="13" fill="#e2e8f0"/><line x1="114" y1="44" x2="140" y2="70" stroke="#ef4444" stroke-width="2.5"/><line x1="114" y1="70" x2="140" y2="44" stroke="#ef4444" stroke-width="2.5"/></svg></div>
+    <div class="ex-a"><div class="eqrow"><span class="bignum">10</span> − <span class="bignum">4</span> = <span class="wbox wbox-lg"></span></div></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>Eksik parçayı bul (kutuya yaz).</p></div>
+    <div class="ex-v"><svg viewBox="0 0 230 150" width="230" height="150" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><line x1="115" y1="66" x2="51" y2="94" stroke="#cbd5e1" stroke-width="2.5"/><line x1="115" y1="66" x2="179" y2="94" stroke="#cbd5e1" stroke-width="2.5"/><circle cx="115" cy="40" r="34" fill="#fff" stroke="#f59e0b" stroke-width="2.5"/><text x="115" y="51" font-size="30" fill="#0f172a" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="700">13</text><circle cx="51" cy="118" r="30" fill="#fff" stroke="#f59e0b" stroke-width="2.5"/><text x="51" y="129" font-size="30" fill="#0f172a" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="700">9</text><circle cx="179" cy="118" r="30" fill="#fff" stroke="#94a3b8" stroke-width="2.5" stroke-dasharray="6 4"/></svg></div>
+    <div class="ex-a"><div class="eqrow"><span class="bignum">9</span> + <span class="wbox"></span> = <span class="bignum">13</span></div></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> İkiz olgulara yakın işlemler (6+7, 8+9) verin.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Gömülü olgu açık değilken &quot;içinde ne saklı?&quot; diye kendisi bulsun.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Başlangıcı bilinmeyen problemde (⬚ + 4 = 9) verilen iki sayıyı toplar (13) ya da problemi modelleyemeyip durur. <b>→ Ne yapmalı:</b> Önce bütünü (9) somut kurdurun, sonra bilinen parçayı (4) ayırttırın; kalan kendiliğinden görünsün. <span class="mis-cite">📖 Carpenter &amp; Moser (1984)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Bir işlemin içindeki tanıdık (gömülü) olguyu kullanarak sonuca ulaşırsa ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay pulları (iki renk) · onluk çerçeve · olgu kartları (5+3, 6+6 vb.) <a href="https://dokunsay.com/DokunSayBar/">🔗 dokunsay.com/DokunSayBar/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/add/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#2E7D32">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">➕ Sayılar ve İşlemler · Toplama ve Çıkarma</div>
+    <h1 class="ws-title"><span class="ws-no">10</span>Bildiklerinden Türeten</h1>
+    <div class="ws-meta">
+      <span class="pill">8 yaş</span>
+      <span class="pill">Düzey 10/12</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#2E7D32">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Esnek stratejiler ve TÜRETİLMİŞ kombinasyonlar kullanır (&quot;7+7=14, öyleyse 7+8=15&quot;); 10’a Tamamlayıp Bozma stratejisini uygular; bir toplamın içinde 3…</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Bar ile elle yap — DokunSay pulları.</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>İki grubu birleştirip saydım.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 402 82" width="402" height="82" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="21" cy="21" r="13" fill="#f59e0b"/><circle cx="55" cy="21" r="13" fill="#f59e0b"/><circle cx="89" cy="21" r="13" fill="#f59e0b"/><circle cx="123" cy="21" r="13" fill="#f59e0b"/><circle cx="157" cy="21" r="13" fill="#f59e0b"/><circle cx="21" cy="55" r="13" fill="#f59e0b"/><text x="197" y="50" font-size="30" fill="#0f172a" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="700">+</text><circle cx="237" cy="21" r="13" fill="#0d9488"/><circle cx="271" cy="21" r="13" fill="#0d9488"/><circle cx="305" cy="21" r="13" fill="#0d9488"/><circle cx="339" cy="21" r="13" fill="#0d9488"/><circle cx="373" cy="21" r="13" fill="#0d9488"/><circle cx="237" cy="55" r="13" fill="#0d9488"/><circle cx="271" cy="55" r="13" fill="#0d9488"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">6 + 7 = 13</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>Birleştir: hepsi kaç oldu? Say ve yaz.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 300 82" width="300" height="82" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="21" cy="21" r="13" fill="#f59e0b"/><circle cx="55" cy="21" r="13" fill="#f59e0b"/><circle cx="89" cy="21" r="13" fill="#f59e0b"/><circle cx="123" cy="21" r="13" fill="#f59e0b"/><circle cx="157" cy="21" r="13" fill="#f59e0b"/><circle cx="21" cy="55" r="13" fill="#f59e0b"/><circle cx="55" cy="55" r="13" fill="#f59e0b"/><circle cx="89" cy="55" r="13" fill="#f59e0b"/><circle cx="123" cy="55" r="13" fill="#f59e0b"/><text x="197" y="50" font-size="30" fill="#0f172a" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="700">+</text><circle cx="237" cy="21" r="13" fill="#0d9488"/><circle cx="271" cy="21" r="13" fill="#0d9488"/></svg></div>
+    <div class="ex-a"><div class="eqrow"><span class="bignum">9</span> + <span class="bignum">2</span> = <span class="wbox wbox-lg"></span></div></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Üstü çizilenleri çıkar: kaç KALDI?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 219 79" width="219" height="79" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="22" cy="22" r="13" fill="#2E7D32"/><circle cx="57" cy="22" r="13" fill="#2E7D32"/><circle cx="92" cy="22" r="13" fill="#2E7D32"/><circle cx="127" cy="22" r="13" fill="#2E7D32"/><circle cx="162" cy="22" r="13" fill="#2E7D32"/><circle cx="197" cy="22" r="13" fill="#2E7D32"/><circle cx="22" cy="57" r="13" fill="#2E7D32"/><circle cx="57" cy="57" r="13" fill="#2E7D32"/><circle cx="92" cy="57" r="13" fill="#e2e8f0"/><line x1="79" y1="44" x2="105" y2="70" stroke="#ef4444" stroke-width="2.5"/><line x1="79" y1="70" x2="105" y2="44" stroke="#ef4444" stroke-width="2.5"/><circle cx="127" cy="57" r="13" fill="#e2e8f0"/><line x1="114" y1="44" x2="140" y2="70" stroke="#ef4444" stroke-width="2.5"/><line x1="114" y1="70" x2="140" y2="44" stroke="#ef4444" stroke-width="2.5"/></svg></div>
+    <div class="ex-a"><div class="eqrow"><span class="bignum">10</span> − <span class="bignum">2</span> = <span class="wbox wbox-lg"></span></div></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>Eksik parçayı bul (kutuya yaz).</p></div>
+    <div class="ex-v"><svg viewBox="0 0 230 150" width="230" height="150" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><line x1="115" y1="66" x2="51" y2="94" stroke="#cbd5e1" stroke-width="2.5"/><line x1="115" y1="66" x2="179" y2="94" stroke="#cbd5e1" stroke-width="2.5"/><circle cx="115" cy="40" r="34" fill="#fff" stroke="#f59e0b" stroke-width="2.5"/><text x="115" y="51" font-size="30" fill="#0f172a" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="700">11</text><circle cx="51" cy="118" r="30" fill="#fff" stroke="#f59e0b" stroke-width="2.5"/><text x="51" y="129" font-size="30" fill="#0f172a" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="700">9</text><circle cx="179" cy="118" r="30" fill="#fff" stroke="#94a3b8" stroke-width="2.5" stroke-dasharray="6 4"/></svg></div>
+    <div class="ex-a"><div class="eqrow"><span class="bignum">9</span> + <span class="wbox"></span> = <span class="bignum">11</span></div></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Yalnız ±1 türetmeler ve ikiz komşuları (7+8, 5+6).</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> İki adımlı türetme (6+8 = 6+6+2) ve çıkarmaya taşıma.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> 8 + 5’te 8’i 10’a tamamlar ama 5’ten aldığı 2’yi geri düşmez; “10 + 5 = 15” der. <b>→ Ne yapmalı:</b> 5’i fiilen 2 ve 3’e ayırttırın; taşınan 2 pulu eliyle götürsün, kalan 3 ortada dursun. <span class="mis-cite">📖 Fuson (1992)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Bilinen bir olgudan (ikiz, 10, ±1/±2) komşu sonucu türetir ya da 10'a tamamlayıp bozarak çözerse ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay pulları · ikiz/10-olgu kartları · boş sayı doğrusu (kâğıt) <a href="https://dokunsay.com/DokunSayBar/">🔗 dokunsay.com/DokunSayBar/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/add/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#2E7D32">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">➕ Sayılar ve İşlemler · Toplama ve Çıkarma</div>
+    <h1 class="ws-title"><span class="ws-no">11</span>Her Tür Problemi Çözen</h1>
+    <div class="ws-meta">
+      <span class="pill">8–9 yaş</span>
+      <span class="pill">Düzey 11/12</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#2E7D32">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>TÜM problem türlerini esnek stratejiler ve bilinen kombinasyonlarla çözer; çok basamaklıda onlukları ve birlikleri artırarak ilerler.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Bar ile elle yap — DokunSay pulları/çubukları.</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Sayı doğrusunda parmağımla ilerledim.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 460 96" width="460" height="96" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><line x1="24" y1="64" x2="436" y2="64" stroke="#64748b" stroke-width="2.5"/><polygon points="436,64 426,58 426,70" fill="#64748b"/><line x1="24" y1="57" x2="24" y2="71" stroke="#94a3b8" stroke-width="2"/><text x="24" y="94" font-size="17" fill="#334155" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="600">0</text><line x1="48.23529411764706" y1="57" x2="48.23529411764706" y2="71" stroke="#94a3b8" stroke-width="2"/><text x="48.23529411764706" y="94" font-size="17" fill="#334155" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="600">1</text><line x1="72.47058823529412" y1="57" x2="72.47058823529412" y2="71" stroke="#94a3b8" stroke-width="2"/><text x="72.47058823529412" y="94" font-size="17" fill="#334155" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="600">2</text><line x1="96.70588235294117" y1="57" x2="96.70588235294117" y2="71" stroke="#94a3b8" stroke-width="2"/><text x="96.70588235294117" y="94" font-size="17" fill="#334155" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="600">3</text><line x1="120.94117647058823" y1="57" x2="120.94117647058823" y2="71" stroke="#94a3b8" stroke-width="2"/><text x="120.94117647058823" y="94" font-size="17" fill="#334155" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="600">4</text><line x1="145.1764705882353" y1="57" x2="145.1764705882353" y2="71" stroke="#94a3b8" stroke-width="2"/><text x="145.1764705882353" y="94" font-size="17" fill="#334155" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="600">5</text><line x1="169.41176470588235" y1="57" x2="169.41176470588235" y2="71" stroke="#94a3b8" stroke-width="2"/><text x="169.41176470588235" y="94" font-size="17" fill="#334155" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="600">6</text><line x1="193.64705882352942" y1="57" x2="193.64705882352942" y2="71" stroke="#94a3b8" stroke-width="2"/><text x="193.64705882352942" y="94" font-size="17" fill="#334155" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="600">7</text><line x1="217.88235294117646" y1="57" x2="217.88235294117646" y2="71" stroke="#94a3b8" stroke-width="2"/><text x="217.88235294117646" y="94" font-size="17" fill="#334155" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="600">8</text><line x1="242.11764705882354" y1="57" x2="242.11764705882354" y2="71" stroke="#94a3b8" stroke-width="2"/><text x="242.11764705882354" y="94" font-size="17" fill="#334155" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="600">9</text><line x1="266.3529411764706" y1="57" x2="266.3529411764706" y2="71" stroke="#94a3b8" stroke-width="2"/><text x="266.3529411764706" y="94" font-size="17" fill="#334155" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="600">10</text><line x1="290.5882352941176" y1="57" x2="290.5882352941176" y2="71" stroke="#94a3b8" stroke-width="2"/><text x="290.5882352941176" y="94" font-size="17" fill="#334155" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="600">11</text><line x1="314.8235294117647" y1="57" x2="314.8235294117647" y2="71" stroke="#94a3b8" stroke-width="2"/><text x="314.8235294117647" y="94" font-size="17" fill="#334155" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="600">12</text><line x1="339.05882352941177" y1="57" x2="339.05882352941177" y2="71" stroke="#94a3b8" stroke-width="2"/><text x="339.05882352941177" y="94" font-size="17" fill="#334155" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="600">13</text><line x1="363.29411764705884" y1="57" x2="363.29411764705884" y2="71" stroke="#94a3b8" stroke-width="2"/><text x="363.29411764705884" y="94" font-size="17" fill="#334155" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="600">14</text><line x1="387.52941176470586" y1="57" x2="387.52941176470586" y2="71" stroke="#94a3b8" stroke-width="2"/><text x="387.52941176470586" y="94" font-size="17" fill="#334155" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="600">15</text><line x1="411.7647058823529" y1="57" x2="411.7647058823529" y2="71" stroke="#94a3b8" stroke-width="2"/><text x="411.7647058823529" y="94" font-size="17" fill="#334155" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="600">16</text><line x1="436" y1="57" x2="436" y2="71" stroke="#94a3b8" stroke-width="2"/><text x="436" y="94" font-size="17" fill="#334155" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="600">17</text><path d="M 193.64705882352942 60 Q 266.3529411764706 24 339.05882352941177 60" fill="none" stroke="#7c3aed" stroke-width="2.5"/><polygon points="339.05882352941177,60 332.05882352941177,50 345.05882352941177,51" fill="#7c3aed"/><circle cx="193.64705882352942" cy="64" r="6" fill="#7c3aed"/><circle cx="339.05882352941177" cy="64" r="6" fill="#f59e0b"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">7 → 13</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>Birleştir: hepsi kaç oldu? Say ve yaz.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 334 82" width="334" height="82" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="21" cy="21" r="13" fill="#f59e0b"/><circle cx="55" cy="21" r="13" fill="#f59e0b"/><circle cx="89" cy="21" r="13" fill="#f59e0b"/><circle cx="123" cy="21" r="13" fill="#f59e0b"/><circle cx="157" cy="21" r="13" fill="#f59e0b"/><circle cx="21" cy="55" r="13" fill="#f59e0b"/><circle cx="55" cy="55" r="13" fill="#f59e0b"/><circle cx="89" cy="55" r="13" fill="#f59e0b"/><circle cx="123" cy="55" r="13" fill="#f59e0b"/><text x="197" y="50" font-size="30" fill="#0f172a" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="700">+</text><circle cx="237" cy="21" r="13" fill="#0d9488"/><circle cx="271" cy="21" r="13" fill="#0d9488"/><circle cx="305" cy="21" r="13" fill="#0d9488"/></svg></div>
+    <div class="ex-a"><div class="eqrow"><span class="bignum">9</span> + <span class="bignum">3</span> = <span class="wbox wbox-lg"></span></div></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Üstü çizilenleri çıkar: kaç KALDI?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 219 79" width="219" height="79" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="22" cy="22" r="13" fill="#2E7D32"/><circle cx="57" cy="22" r="13" fill="#2E7D32"/><circle cx="92" cy="22" r="13" fill="#2E7D32"/><circle cx="127" cy="22" r="13" fill="#2E7D32"/><circle cx="162" cy="22" r="13" fill="#2E7D32"/><circle cx="197" cy="22" r="13" fill="#2E7D32"/><circle cx="22" cy="57" r="13" fill="#2E7D32"/><circle cx="57" cy="57" r="13" fill="#e2e8f0"/><line x1="44" y1="44" x2="70" y2="70" stroke="#ef4444" stroke-width="2.5"/><line x1="44" y1="70" x2="70" y2="44" stroke="#ef4444" stroke-width="2.5"/><circle cx="92" cy="57" r="13" fill="#e2e8f0"/><line x1="79" y1="44" x2="105" y2="70" stroke="#ef4444" stroke-width="2.5"/><line x1="79" y1="70" x2="105" y2="44" stroke="#ef4444" stroke-width="2.5"/><circle cx="127" cy="57" r="13" fill="#e2e8f0"/><line x1="114" y1="44" x2="140" y2="70" stroke="#ef4444" stroke-width="2.5"/><line x1="114" y1="70" x2="140" y2="44" stroke="#ef4444" stroke-width="2.5"/></svg></div>
+    <div class="ex-a"><div class="eqrow"><span class="bignum">10</span> − <span class="bignum">3</span> = <span class="wbox wbox-lg"></span></div></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>Eksik parçayı bul (kutuya yaz).</p></div>
+    <div class="ex-v"><svg viewBox="0 0 230 150" width="230" height="150" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><line x1="115" y1="66" x2="51" y2="94" stroke="#cbd5e1" stroke-width="2.5"/><line x1="115" y1="66" x2="179" y2="94" stroke="#cbd5e1" stroke-width="2.5"/><circle cx="115" cy="40" r="34" fill="#fff" stroke="#f59e0b" stroke-width="2.5"/><text x="115" y="51" font-size="30" fill="#0f172a" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="700">12</text><circle cx="51" cy="118" r="30" fill="#fff" stroke="#f59e0b" stroke-width="2.5"/><text x="51" y="129" font-size="30" fill="#0f172a" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="700">9</text><circle cx="179" cy="118" r="30" fill="#fff" stroke="#94a3b8" stroke-width="2.5" stroke-dasharray="6 4"/></svg></div>
+    <div class="ex-a"><div class="eqrow"><span class="bignum">9</span> + <span class="wbox"></span> = <span class="bignum">12</span></div></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Tek adıma indirin, sayıları ≤10 tutun, hikâyeyi pullarla birlikte kurun.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Başlangıcın bilinmediği (&quot;_−5+3=6&quot;) ya da fazladan bilgili problemler.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Basamak yetmeyince küçük rakamı büyükten çıkarır (52 − 27 → 35). <b>→ Ne yapmalı:</b> Bir onluğu fiilen 10 birliğe bozdurun, sonra yazdırın. <span class="mis-cite">📖 Brown &amp; VanLehn (1980)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Çok adımlı problemi doğru işlemler ve uygun stratejiyle, planlı biçimde çözerse ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay pulları/çubukları · boş sayı doğrusu (kâğıt) · problem kartları <a href="https://dokunsay.com/DokunSayBar/">🔗 dokunsay.com/DokunSayBar/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/add/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#2E7D32">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">➕ Sayılar ve İşlemler · Toplama ve Çıkarma</div>
+    <h1 class="ws-title"><span class="ws-no">12</span>Çok Basamaklı Toplayıp Çıkaran</h1>
+    <div class="ws-meta">
+      <span class="pill">9–10 yaş</span>
+      <span class="pill">Düzey 12/12</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#2E7D32">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Onlukların bileşimini (bozma/birleştirme dâhil) ve önceki tüm stratejileri kullanarak çok basamaklı toplama-çıkarma problemlerini çözer.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Bar ile elle yap — DokunSay Basamak blokları (onluk çubuk + birlik küp).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Önce onlukları, sonra birlikleri saydım.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 180 112" width="180" height="112" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><rect x="6" y="8" width="18" height="96" rx="3" fill="#0d9488"/><line x1="6" y1="17.6" x2="24" y2="17.6" stroke="#fff" stroke-width="1" opacity=".5"/><line x1="6" y1="27.2" x2="24" y2="27.2" stroke="#fff" stroke-width="1" opacity=".5"/><line x1="6" y1="36.8" x2="24" y2="36.8" stroke="#fff" stroke-width="1" opacity=".5"/><line x1="6" y1="46.4" x2="24" y2="46.4" stroke="#fff" stroke-width="1" opacity=".5"/><line x1="6" y1="56" x2="24" y2="56" stroke="#fff" stroke-width="1" opacity=".5"/><line x1="6" y1="65.6" x2="24" y2="65.6" stroke="#fff" stroke-width="1" opacity=".5"/><line x1="6" y1="75.2" x2="24" y2="75.2" stroke="#fff" stroke-width="1" opacity=".5"/><line x1="6" y1="84.8" x2="24" y2="84.8" stroke="#fff" stroke-width="1" opacity=".5"/><line x1="6" y1="94.4" x2="24" y2="94.4" stroke="#fff" stroke-width="1" opacity=".5"/><rect x="32" y="8" width="18" height="96" rx="3" fill="#0d9488"/><line x1="32" y1="17.6" x2="50" y2="17.6" stroke="#fff" stroke-width="1" opacity=".5"/><line x1="32" y1="27.2" x2="50" y2="27.2" stroke="#fff" stroke-width="1" opacity=".5"/><line x1="32" y1="36.8" x2="50" y2="36.8" stroke="#fff" stroke-width="1" opacity=".5"/><line x1="32" y1="46.4" x2="50" y2="46.4" stroke="#fff" stroke-width="1" opacity=".5"/><line x1="32" y1="56" x2="50" y2="56" stroke="#fff" stroke-width="1" opacity=".5"/><line x1="32" y1="65.6" x2="50" y2="65.6" stroke="#fff" stroke-width="1" opacity=".5"/><line x1="32" y1="75.2" x2="50" y2="75.2" stroke="#fff" stroke-width="1" opacity=".5"/><line x1="32" y1="84.8" x2="50" y2="84.8" stroke="#fff" stroke-width="1" opacity=".5"/><line x1="32" y1="94.4" x2="50" y2="94.4" stroke="#fff" stroke-width="1" opacity=".5"/><rect x="58" y="8" width="18" height="96" rx="3" fill="#0d9488"/><line x1="58" y1="17.6" x2="76" y2="17.6" stroke="#fff" stroke-width="1" opacity=".5"/><line x1="58" y1="27.2" x2="76" y2="27.2" stroke="#fff" stroke-width="1" opacity=".5"/><line x1="58" y1="36.8" x2="76" y2="36.8" stroke="#fff" stroke-width="1" opacity=".5"/><line x1="58" y1="46.4" x2="76" y2="46.4" stroke="#fff" stroke-width="1" opacity=".5"/><line x1="58" y1="56" x2="76" y2="56" stroke="#fff" stroke-width="1" opacity=".5"/><line x1="58" y1="65.6" x2="76" y2="65.6" stroke="#fff" stroke-width="1" opacity=".5"/><line x1="58" y1="75.2" x2="76" y2="75.2" stroke="#fff" stroke-width="1" opacity=".5"/><line x1="58" y1="84.8" x2="76" y2="84.8" stroke="#fff" stroke-width="1" opacity=".5"/><line x1="58" y1="94.4" x2="76" y2="94.4" stroke="#fff" stroke-width="1" opacity=".5"/><rect x="84" y="8" width="18" height="96" rx="3" fill="#0d9488"/><line x1="84" y1="17.6" x2="102" y2="17.6" stroke="#fff" stroke-width="1" opacity=".5"/><line x1="84" y1="27.2" x2="102" y2="27.2" stroke="#fff" stroke-width="1" opacity=".5"/><line x1="84" y1="36.8" x2="102" y2="36.8" stroke="#fff" stroke-width="1" opacity=".5"/><line x1="84" y1="46.4" x2="102" y2="46.4" stroke="#fff" stroke-width="1" opacity=".5"/><line x1="84" y1="56" x2="102" y2="56" stroke="#fff" stroke-width="1" opacity=".5"/><line x1="84" y1="65.6" x2="102" y2="65.6" stroke="#fff" stroke-width="1" opacity=".5"/><line x1="84" y1="75.2" x2="102" y2="75.2" stroke="#fff" stroke-width="1" opacity=".5"/><line x1="84" y1="84.8" x2="102" y2="84.8" stroke="#fff" stroke-width="1" opacity=".5"/><line x1="84" y1="94.4" x2="102" y2="94.4" stroke="#fff" stroke-width="1" opacity=".5"/><rect x="122" y="12" width="18" height="18" rx="3" fill="#f59e0b"/><rect x="145" y="12" width="18" height="18" rx="3" fill="#f59e0b"/><rect x="122" y="35" width="18" height="18" rx="3" fill="#f59e0b"/><rect x="145" y="35" width="18" height="18" rx="3" fill="#f59e0b"/><rect x="122" y="58" width="18" height="18" rx="3" fill="#f59e0b"/><rect x="145" y="58" width="18" height="18" rx="3" fill="#f59e0b"/><rect x="122" y="81" width="18" height="18" rx="3" fill="#f59e0b"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">47</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>Birleştir: hepsi kaç oldu? Say ve yaz.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 368 82" width="368" height="82" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="21" cy="21" r="13" fill="#f59e0b"/><circle cx="55" cy="21" r="13" fill="#f59e0b"/><circle cx="89" cy="21" r="13" fill="#f59e0b"/><circle cx="123" cy="21" r="13" fill="#f59e0b"/><circle cx="157" cy="21" r="13" fill="#f59e0b"/><circle cx="21" cy="55" r="13" fill="#f59e0b"/><circle cx="55" cy="55" r="13" fill="#f59e0b"/><circle cx="89" cy="55" r="13" fill="#f59e0b"/><circle cx="123" cy="55" r="13" fill="#f59e0b"/><text x="197" y="50" font-size="30" fill="#0f172a" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="700">+</text><circle cx="237" cy="21" r="13" fill="#0d9488"/><circle cx="271" cy="21" r="13" fill="#0d9488"/><circle cx="305" cy="21" r="13" fill="#0d9488"/><circle cx="339" cy="21" r="13" fill="#0d9488"/></svg></div>
+    <div class="ex-a"><div class="eqrow"><span class="bignum">9</span> + <span class="bignum">4</span> = <span class="wbox wbox-lg"></span></div></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Üstü çizilenleri çıkar: kaç KALDI?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 219 79" width="219" height="79" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="22" cy="22" r="13" fill="#2E7D32"/><circle cx="57" cy="22" r="13" fill="#2E7D32"/><circle cx="92" cy="22" r="13" fill="#2E7D32"/><circle cx="127" cy="22" r="13" fill="#2E7D32"/><circle cx="162" cy="22" r="13" fill="#2E7D32"/><circle cx="197" cy="22" r="13" fill="#2E7D32"/><circle cx="22" cy="57" r="13" fill="#e2e8f0"/><line x1="9" y1="44" x2="35" y2="70" stroke="#ef4444" stroke-width="2.5"/><line x1="9" y1="70" x2="35" y2="44" stroke="#ef4444" stroke-width="2.5"/><circle cx="57" cy="57" r="13" fill="#e2e8f0"/><line x1="44" y1="44" x2="70" y2="70" stroke="#ef4444" stroke-width="2.5"/><line x1="44" y1="70" x2="70" y2="44" stroke="#ef4444" stroke-width="2.5"/><circle cx="92" cy="57" r="13" fill="#e2e8f0"/><line x1="79" y1="44" x2="105" y2="70" stroke="#ef4444" stroke-width="2.5"/><line x1="79" y1="70" x2="105" y2="44" stroke="#ef4444" stroke-width="2.5"/><circle cx="127" cy="57" r="13" fill="#e2e8f0"/><line x1="114" y1="44" x2="140" y2="70" stroke="#ef4444" stroke-width="2.5"/><line x1="114" y1="70" x2="140" y2="44" stroke="#ef4444" stroke-width="2.5"/></svg></div>
+    <div class="ex-a"><div class="eqrow"><span class="bignum">10</span> − <span class="bignum">4</span> = <span class="wbox wbox-lg"></span></div></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>Eksik parçayı bul (kutuya yaz).</p></div>
+    <div class="ex-v"><svg viewBox="0 0 230 150" width="230" height="150" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><line x1="115" y1="66" x2="51" y2="94" stroke="#cbd5e1" stroke-width="2.5"/><line x1="115" y1="66" x2="179" y2="94" stroke="#cbd5e1" stroke-width="2.5"/><circle cx="115" cy="40" r="34" fill="#fff" stroke="#f59e0b" stroke-width="2.5"/><text x="115" y="51" font-size="30" fill="#0f172a" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="700">13</text><circle cx="51" cy="118" r="30" fill="#fff" stroke="#f59e0b" stroke-width="2.5"/><text x="51" y="129" font-size="30" fill="#0f172a" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="700">9</text><circle cx="179" cy="118" r="30" fill="#fff" stroke="#94a3b8" stroke-width="2.5" stroke-dasharray="6 4"/></svg></div>
+    <div class="ex-a"><div class="eqrow"><span class="bignum">9</span> + <span class="wbox"></span> = <span class="bignum">13</span></div></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Elde/bozma gerektirmeyen işlemler (23+45, 68−27) ile başlayın.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Üç basamağa geçin ya da arka arkaya bozmalı çıkarma (300−168).</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Elde 1'i onluğa taşımak yerine 15'in tamamını yazar (47 + 38 → 715). <b>→ Ne yapmalı:</b> 10 birlik dolunca 1 onluğa TAKAS ettirin. <span class="mis-cite">📖 Fuson (1992)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Eldeli toplama ve onluk-bozmalı çıkarmayı basamak değerine uygun, doğru yürütürse ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay Basamak blokları (onluk çubuk + birlik küp) · onluk-birlik değiş-tokuş tepsisi · 2 basamaklı işlem kartları <a href="https://dokunsay.com/DokunSayBasamak/">🔗 dokunsay.com/DokunSayBasamak/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/add/</span>
+    </div>
+  </div>
+</section>
+</div>
+</body>
+</html>

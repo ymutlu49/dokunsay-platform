@@ -1,0 +1,377 @@
+<!--
+  Anasayfa hero + trust + 4-adım yolculuk + diğer bölümler.
+
+  Bu dosya, /diskalkuli.com/ anasayfasındaki Custom HTML bloğunun içeriğini taşır.
+  Mevcut durumda WP'de bu içerik bir <script> içinde gömülü JavaScript değişkeni
+  (`var html = "..."`) olarak tanımlı; sayfa yüklenirken DOM'a inject ediliyor.
+
+  Önerilen iki yöntem:
+    A) Mevcut <script> bloğunu olduğu gibi bırak — değiştirilmesi gereken metinleri
+       JS string içinde tek tek bul ve değiştir (Find & Replace).
+    B) JS injection'ı kaldır, doğrudan Custom HTML bloğu olarak bu dosyanın içeriğini
+       yapıştır. Bu daha temiz, daha hızlı, SEO için daha iyi (server-rendered).
+
+  Yapılan değişiklikler (v2 — 2026-05-02):
+    1) Hero p.lead: "20 yıllık akademik çalışmasına" → "15 yıllık akademik birikime"
+    2) Hero p.lead: "4 dilde" → "5 dilde" (memory standardı: TR/KU/EN/AR/FA)
+    3) Trust strip subtitle: "20+ yıl" → "15+ yıl"
+    4) Trust stats 4. madde: "TR·EN·KU" → "TR·KU·EN·AR·FA Çok dilli destek"
+    5) Adım 2 Numap açıklama: "48–96 ay" → "okul öncesinden ilkokul 4. sınıfa (48–119 ay)"
+    6) Hero p.lead daha akademik tona uyarlama (alanyazına dayalı)
+-->
+
+<div id="dk-home-sections">
+<style>
+/* === Tema logo renkleri === */
+:root {
+  --dkl-pink: #ec4899; --dkl-pink-d: #be185d;
+  --dkl-orange: #f97316; --dkl-orange-d: #c2410c;
+  --dkl-yellow: #ffc221; --dkl-yellow-d: #e6a800;
+  --dkl-blue: #0071dc; --dkl-blue-d: #005bb3;
+  --dkl-navy: #031f42;
+}
+#dk-home-sections{font-family:'Inter',system-ui,-apple-system,sans-serif;color:var(--dkl-navy)}
+#dk-home-sections *{box-sizing:border-box}
+.dkh-wrap{max-width:1200px;margin:0 auto;padding:0 20px}
+
+/* === HERO — 4 işlem ikonu animasyonlu === */
+.dkh-hero{position:relative;background:linear-gradient(180deg,#f9fbff 0%,#e8f2fc 100%);padding:68px 0 60px;overflow:hidden;border-bottom:1px solid rgba(0,0,0,.05)}
+.dkh-hero::before{content:"";position:absolute;inset:0;background:radial-gradient(1200px 600px at 10% 10%, rgba(236,72,153,.08), transparent 50%), radial-gradient(1000px 600px at 90% 90%, rgba(0,113,220,.08), transparent 50%);pointer-events:none}
+.dkh-hero-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:48px;align-items:center;position:relative;z-index:1}
+@media(max-width:900px){.dkh-hero-grid{grid-template-columns:1fr;gap:24px}}
+.dkh-hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid rgba(0,113,220,.2);padding:6px 14px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--dkl-blue);margin-bottom:16px;box-shadow:0 2px 10px rgba(3,31,66,.04)}
+.dkh-hero-eyebrow .dot{width:8px;height:8px;border-radius:50%;background:#10b981;box-shadow:0 0 0 4px rgba(16,185,129,.15);animation:dkh-pulse 2s infinite}
+@keyframes dkh-pulse{0%,100%{opacity:1}50%{opacity:.5}}
+.dkh-hero h1{font-size:clamp(32px,4.5vw,56px);font-weight:800;line-height:1.08;letter-spacing:-.025em;margin:0 0 18px;color:var(--dkl-navy)}
+.dkh-hero h1 .pink{background:linear-gradient(135deg,var(--dkl-pink),var(--dkl-pink-d));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+.dkh-hero h1 .orange{background:linear-gradient(135deg,var(--dkl-orange),var(--dkl-orange-d));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+.dkh-hero h1 .yellow{background:linear-gradient(135deg,var(--dkl-yellow),var(--dkl-yellow-d));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+.dkh-hero h1 .blue{background:linear-gradient(135deg,var(--dkl-blue),var(--dkl-blue-d));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+.dkh-hero p.lead{font-size:clamp(15px,1.3vw,18px);line-height:1.65;color:#4a5568;margin:0 0 24px;max-width:600px}
+.dkh-hero-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:24px}
+.dkh-btn{display:inline-flex;align-items:center;gap:8px;padding:13px 24px;border-radius:999px;font-weight:700;font-size:15px;text-decoration:none;transition:all .22s cubic-bezier(.16,1,.3,1);border:2px solid transparent}
+.dkh-btn-primary{background:var(--dkl-blue);color:#fff;box-shadow:0 8px 20px rgba(0,113,220,.28)}
+.dkh-btn-primary:hover{background:var(--dkl-blue-d);transform:translateY(-2px);box-shadow:0 14px 30px rgba(0,113,220,.38);color:#fff}
+.dkh-btn-ghost{background:#fff;color:var(--dkl-navy);border-color:rgba(3,31,66,.12)}
+.dkh-btn-ghost:hover{border-color:var(--dkl-pink);color:var(--dkl-pink);transform:translateY(-2px)}
+.dkh-hero-meta{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:#6a7390}
+.dkh-hero-meta span{display:inline-flex;align-items:center;gap:6px}
+.dkh-hero-meta strong{color:var(--dkl-navy);font-weight:700}
+
+/* 4-op dekoratif görsel */
+.dkh-hero-visual{position:relative;aspect-ratio:1/1;max-width:460px;justify-self:center;width:100%}
+.dkh-op{position:absolute;display:grid;place-items:center;border-radius:24px;color:#fff;font-weight:800;font-size:64px;box-shadow:0 20px 50px rgba(0,0,0,.15);animation:dkh-float 6s ease-in-out infinite}
+.dkh-op-plus{top:0;left:0;width:44%;height:44%;background:linear-gradient(135deg,var(--dkl-pink),var(--dkl-pink-d));animation-delay:0s}
+.dkh-op-minus{top:0;right:0;width:44%;height:44%;background:linear-gradient(135deg,var(--dkl-orange),var(--dkl-orange-d));animation-delay:1.5s}
+.dkh-op-times{bottom:0;left:0;width:44%;height:44%;background:linear-gradient(135deg,var(--dkl-yellow),var(--dkl-yellow-d));color:var(--dkl-navy);animation-delay:3s}
+.dkh-op-div{bottom:0;right:0;width:44%;height:44%;background:linear-gradient(135deg,var(--dkl-blue),var(--dkl-blue-d));animation-delay:4.5s}
+@keyframes dkh-float{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-10px) rotate(1deg)}}
+
+/* === 4-ADIM YOLCULUK === */
+.dkh-journey{background:#fff;padding:72px 0 68px;position:relative}
+.dkh-journey::after{content:"";position:absolute;bottom:0;left:0;right:0;height:6px;background:var(--dk-logo-gradient,linear-gradient(90deg,var(--dkl-pink),var(--dkl-orange),var(--dkl-yellow),var(--dkl-blue)))}
+.dkh-section-head{text-align:center;margin:0 auto 40px;max-width:700px}
+.dkh-section-eyebrow{display:inline-block;padding:5px 14px;border-radius:999px;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px}
+.dkh-section-eyebrow.ey-pink{background:rgba(236,72,153,.1);color:var(--dkl-pink-d);border:1px solid rgba(236,72,153,.25)}
+.dkh-section-eyebrow.ey-orange{background:rgba(249,115,22,.1);color:var(--dkl-orange-d);border:1px solid rgba(249,115,22,.25)}
+.dkh-section-eyebrow.ey-yellow{background:rgba(255,194,33,.15);color:#b8860b;border:1px solid rgba(255,194,33,.35)}
+.dkh-section-eyebrow.ey-blue{background:rgba(0,113,220,.1);color:var(--dkl-blue);border:1px solid rgba(0,113,220,.2)}
+.dkh-section-head h2{font-size:clamp(26px,3vw,36px);font-weight:800;letter-spacing:-.02em;margin:0 0 12px}
+.dkh-section-head p.lead{font-size:16px;color:#6a7390;line-height:1.65;margin:0 auto;max-width:620px}
+.dkh-journey-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:40px}
+@media(max-width:900px){.dkh-journey-steps{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:500px){.dkh-journey-steps{grid-template-columns:1fr}}
+.dkh-js{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:18px;padding:28px 22px;text-align:center;transition:all .35s cubic-bezier(.16,1,.3,1);position:relative;overflow:hidden}
+.dkh-js::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;opacity:0;transition:opacity .25s}
+.dkh-js:hover{transform:translateY(-6px);box-shadow:0 24px 48px rgba(3,31,66,.10)}
+.dkh-js:hover::before{opacity:1}
+.dkh-js-1:hover{border-color:var(--dkl-pink)}
+.dkh-js-1:hover::before{background:var(--dkl-pink)}
+.dkh-js-2:hover{border-color:var(--dkl-orange)}
+.dkh-js-2:hover::before{background:var(--dkl-orange)}
+.dkh-js-3:hover{border-color:var(--dkl-yellow)}
+.dkh-js-3:hover::before{background:var(--dkl-yellow)}
+.dkh-js-4:hover{border-color:var(--dkl-blue)}
+.dkh-js-4:hover::before{background:var(--dkl-blue)}
+.dkh-js-icon{width:62px;height:62px;border-radius:18px;display:inline-grid;place-items:center;font-size:30px;margin-bottom:14px;color:#fff;font-weight:800}
+.dkh-js-1 .dkh-js-icon{background:linear-gradient(135deg,var(--dkl-pink),var(--dkl-pink-d));box-shadow:0 8px 20px rgba(236,72,153,.3)}
+.dkh-js-2 .dkh-js-icon{background:linear-gradient(135deg,var(--dkl-orange),var(--dkl-orange-d));box-shadow:0 8px 20px rgba(249,115,22,.3)}
+.dkh-js-3 .dkh-js-icon{background:linear-gradient(135deg,var(--dkl-yellow),var(--dkl-yellow-d));color:var(--dkl-navy);box-shadow:0 8px 20px rgba(255,194,33,.3)}
+.dkh-js-4 .dkh-js-icon{background:linear-gradient(135deg,var(--dkl-blue),var(--dkl-blue-d));box-shadow:0 8px 20px rgba(0,113,220,.3)}
+.dkh-js-step{font-size:11px;font-weight:700;color:#94a3b8;letter-spacing:.14em;text-transform:uppercase;margin-bottom:4px}
+.dkh-js h3{font-size:19px;font-weight:800;margin:0 0 8px;color:var(--dkl-navy)}
+.dkh-js p{font-size:14px;color:#64748b;line-height:1.6;margin:0 0 14px}
+.dkh-js a{display:inline-flex;align-items:center;gap:4px;font-size:13px;font-weight:700;text-decoration:none;padding:7px 14px;border-radius:8px;transition:all .2s}
+.dkh-js-1 a{color:var(--dkl-pink);background:rgba(236,72,153,.08)}
+.dkh-js-1 a:hover{background:var(--dkl-pink);color:#fff}
+.dkh-js-2 a{color:var(--dkl-orange);background:rgba(249,115,22,.08)}
+.dkh-js-2 a:hover{background:var(--dkl-orange);color:#fff}
+.dkh-js-3 a{color:#b8860b;background:rgba(255,194,33,.12)}
+.dkh-js-3 a:hover{background:var(--dkl-yellow);color:var(--dkl-navy)}
+.dkh-js-4 a{color:var(--dkl-blue);background:rgba(0,113,220,.08)}
+.dkh-js-4 a:hover{background:var(--dkl-blue);color:#fff}
+
+/* === TRUST STRIP === */
+.dkh-trust{background:linear-gradient(135deg,var(--dkl-navy),#0a2e5c);color:#fff;padding:48px 0;position:relative;overflow:hidden}
+.dkh-trust::before{content:"";position:absolute;top:-50%;right:-10%;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(255,194,33,.15),transparent 70%)}
+.dkh-trust .dkh-wrap{position:relative;z-index:1;display:grid;grid-template-columns:1fr 2fr;gap:40px;align-items:center}
+@media(max-width:860px){.dkh-trust .dkh-wrap{grid-template-columns:1fr}}
+.dkh-trust-author{display:flex;align-items:center;gap:16px}
+.dkh-trust-avatar{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--dkl-yellow),var(--dkl-orange));color:var(--dkl-navy);display:grid;place-items:center;font-weight:800;font-size:24px;flex-shrink:0;box-shadow:0 8px 20px rgba(255,194,33,.25)}
+.dkh-trust-name{font-weight:800;font-size:17px;color:#fff}
+.dkh-trust-title{color:rgba(255,255,255,.75);font-size:13px;margin-top:2px}
+.dkh-trust-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+@media(max-width:600px){.dkh-trust-stats{grid-template-columns:repeat(2,1fr)}}
+.dkh-trust-stat{text-align:center}
+.dkh-trust-num{font-size:clamp(22px,2.5vw,30px);font-weight:800;line-height:1;color:var(--dkl-yellow)}
+.dkh-trust-lbl{font-size:11px;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:.1em;margin-top:6px;font-weight:500}
+
+/* === PROBLEM/ÇÖZÜM === */
+.dkh-problem{background:#f9fafb;padding:72px 0}
+.dkh-problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+@media(max-width:900px){.dkh-problem-grid{grid-template-columns:1fr}}
+.dkh-problem-facts{display:flex;flex-direction:column;gap:14px;margin:20px 0}
+.dkh-problem-fact{background:#fff;border-left:4px solid var(--dkl-pink);padding:16px 20px;border-radius:0 12px 12px 0;box-shadow:0 2px 10px rgba(3,31,66,.04)}
+.dkh-problem-fact:nth-child(2){border-left-color:var(--dkl-orange)}
+.dkh-problem-fact:nth-child(3){border-left-color:var(--dkl-yellow)}
+.dkh-problem-fact:nth-child(4){border-left-color:var(--dkl-blue)}
+.dkh-problem-fact strong{display:block;font-size:22px;color:var(--dkl-navy);font-weight:800;margin-bottom:4px}
+.dkh-problem-fact span{font-size:14px;color:#6a7390;line-height:1.55}
+.dkh-problem-note{background:#fff;border-radius:16px;padding:32px;box-shadow:0 4px 24px rgba(3,31,66,.06);position:relative;overflow:hidden}
+.dkh-problem-note::before{content:"";position:absolute;top:0;left:0;width:100%;height:4px;background:var(--dk-logo-gradient,linear-gradient(90deg,#ec4899,#f97316,#ffc221,#0071dc))}
+.dkh-problem-note h3{font-size:20px;font-weight:800;margin:12px 0 10px;color:var(--dkl-navy)}
+.dkh-problem-note p{font-size:14px;color:#64748b;line-height:1.7;margin:0 0 16px}
+.dkh-problem-note .badge{display:inline-block;padding:5px 12px;border-radius:999px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:rgba(0,113,220,.08);color:var(--dkl-blue);border:1px solid rgba(0,113,220,.2)}
+
+/* === PERSONA CARDS === */
+.dkh-persona{background:#fff;padding:72px 0}
+.dkh-persona-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px;margin-top:36px}
+.dkh-pcard{position:relative;background:#fff;border:1.5px solid rgba(0,0,0,.06);border-radius:20px;padding:32px 28px;text-decoration:none;color:inherit;transition:all .3s cubic-bezier(.16,1,.3,1);overflow:hidden}
+.dkh-pcard::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;opacity:0;transition:opacity .25s}
+.dkh-pcard:hover{transform:translateY(-4px);box-shadow:0 24px 48px rgba(3,31,66,.1)}
+.dkh-pcard:hover::before{opacity:1}
+.dkh-pcard.is-parent:hover{border-color:var(--dkl-pink)}
+.dkh-pcard.is-parent:hover::before{background:var(--dkl-pink)}
+.dkh-pcard.is-teacher:hover{border-color:var(--dkl-orange)}
+.dkh-pcard.is-teacher:hover::before{background:var(--dkl-orange)}
+.dkh-pcard.is-inst:hover{border-color:var(--dkl-blue)}
+.dkh-pcard.is-inst:hover::before{background:var(--dkl-blue)}
+.dkh-pcard-icon{width:60px;height:60px;border-radius:16px;display:grid;place-items:center;font-size:30px;margin-bottom:16px}
+.dkh-pcard.is-parent .dkh-pcard-icon{background:rgba(236,72,153,.12);color:var(--dkl-pink)}
+.dkh-pcard.is-teacher .dkh-pcard-icon{background:rgba(249,115,22,.12);color:var(--dkl-orange)}
+.dkh-pcard.is-inst .dkh-pcard-icon{background:rgba(0,113,220,.1);color:var(--dkl-blue)}
+.dkh-pcard h3{font-size:21px;font-weight:800;margin:0 0 8px;color:var(--dkl-navy)}
+.dkh-pcard p{font-size:14px;color:#64748b;line-height:1.6;margin:0 0 18px}
+.dkh-pcard-cta{display:inline-flex;align-items:center;gap:4px;font-size:14px;font-weight:700;transition:gap .2s}
+.dkh-pcard:hover .dkh-pcard-cta{gap:10px}
+.dkh-pcard.is-parent .dkh-pcard-cta{color:var(--dkl-pink)}
+.dkh-pcard.is-teacher .dkh-pcard-cta{color:var(--dkl-orange)}
+.dkh-pcard.is-inst .dkh-pcard-cta{color:var(--dkl-blue)}
+
+/* === TOOLS SHOWCASE === */
+.dkh-tools{background:#f9fafb;padding:72px 0}
+.dkh-tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:36px}
+.dkh-tool{background:#fff;border-radius:14px;padding:20px 18px;text-decoration:none;color:inherit;border:1.5px solid rgba(0,0,0,.05);transition:all .25s;display:flex;flex-direction:column;gap:8px}
+.dkh-tool:hover{transform:translateY(-3px);border-color:var(--_c,var(--dkl-blue));box-shadow:0 18px 36px rgba(3,31,66,.08)}
+.dkh-tool-ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:22px;background:var(--_cbg,rgba(0,113,220,.1));color:var(--_c,var(--dkl-blue))}
+.dkh-tool h4{font-size:15px;font-weight:800;margin:4px 0 2px;color:var(--dkl-navy)}
+.dkh-tool span{font-size:12px;color:#64748b}
+.dkh-tools-more{display:flex;justify-content:center;margin-top:28px}
+.dkh-tools-more a{color:var(--dkl-blue);font-weight:700;font-size:15px;padding:12px 28px;border-radius:999px;background:#fff;border:1.5px solid var(--dkl-blue);text-decoration:none;transition:all .2s}
+.dkh-tools-more a:hover{background:var(--dkl-blue);color:#fff;transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,113,220,.25)}
+
+/* === CTA === */
+.dkh-cta{background:linear-gradient(135deg,var(--dkl-blue) 0%,#005bb3 50%,var(--dkl-navy) 100%);color:#fff;padding:72px 0;position:relative;overflow:hidden}
+.dkh-cta::before{content:"";position:absolute;top:-120px;right:-80px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(255,194,33,.20),transparent 70%)}
+.dkh-cta::after{content:"";position:absolute;bottom:-120px;left:-80px;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(236,72,153,.18),transparent 70%)}
+.dkh-cta .dkh-wrap{position:relative;z-index:1;text-align:center}
+.dkh-cta h2{font-size:clamp(28px,3.4vw,42px);font-weight:800;line-height:1.15;letter-spacing:-.02em;margin:0 0 14px;color:#fff}
+.dkh-cta p{font-size:clamp(15px,1.2vw,17px);color:rgba(255,255,255,.9);max-width:620px;margin:0 auto 26px;line-height:1.65}
+.dkh-cta-btns{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.dkh-cta-primary{background:var(--dkl-yellow);color:var(--dkl-navy);padding:14px 30px;border-radius:999px;font-weight:800;font-size:16px;text-decoration:none;transition:all .22s;display:inline-flex;align-items:center;gap:8px;box-shadow:0 10px 24px rgba(255,194,33,.35)}
+.dkh-cta-primary:hover{background:#fff;color:var(--dkl-navy);transform:translateY(-2px);box-shadow:0 16px 32px rgba(255,255,255,.25)}
+.dkh-cta-ghost{background:rgba(255,255,255,.1);color:#fff;padding:14px 30px;border-radius:999px;font-weight:700;font-size:16px;text-decoration:none;border:1.5px solid rgba(255,255,255,.3);transition:all .22s;display:inline-flex;align-items:center;gap:8px}
+.dkh-cta-ghost:hover{background:rgba(255,255,255,.2);border-color:#fff;transform:translateY(-2px)}
+</style>
+
+<!-- HERO -->
+<section class="dkh-hero">
+  <div class="dkh-wrap">
+    <div class="dkh-hero-grid">
+      <div>
+        <span class="dkh-hero-eyebrow"><span class="dot"></span>Türkiye normlarına göre standardize</span>
+        <h1>
+          <span class="pink">Toplayın</span>, <span class="orange">ayırın</span>,<br>
+          <span class="yellow">çoğaltın</span>, <span class="blue">çözümleyin</span>
+        </h1>
+        <p class="lead">Akademik birikim ve uluslararası alanyazına dayalı, diskalkuli (matematik öğrenme güçlüğü) için tanılamadan müdahaleye kadar uzanan bütüncül dijital platform. <strong>5 dilde</strong> · <strong>bilimsel</strong> · <strong>kurulum gerektirmez</strong>.</p>
+        <div class="dkh-hero-ctas">
+          <a class="dkh-btn dkh-btn-primary" href="/platform/numap.html">15 dk'da Numap ile tara →</a>
+          <a class="dkh-btn dkh-btn-ghost" href="/diskalkuli-nedir/">Önce öğreneyim</a>
+        </div>
+        <div class="dkh-hero-meta">
+          <span>✓ <strong>Ücretsiz temel batarya</strong></span>
+          <span>✓ <strong>Kayıt gerektirmez</strong></span>
+          <span>✓ <strong>Tarayıcıda çalışır</strong></span>
+        </div>
+      </div>
+      <div class="dkh-hero-visual" aria-hidden="true">
+        <div class="dkh-op dkh-op-plus">+</div>
+        <div class="dkh-op dkh-op-minus">−</div>
+        <div class="dkh-op dkh-op-times">×</div>
+        <div class="dkh-op dkh-op-div">÷</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+<section class="dkh-trust">
+  <div class="dkh-wrap">
+    <div class="dkh-trust-author">
+      <div class="dkh-trust-avatar">YM</div>
+      <div>
+        <div class="dkh-trust-name">Prof. Dr. Yılmaz Mutlu</div>
+        <div class="dkh-trust-title">Diskalkuli alanında 15+ yıl akademik araştırma · Muş Alparslan Üniversitesi</div>
+      </div>
+    </div>
+    <div class="dkh-trust-stats">
+      <div class="dkh-trust-stat"><div class="dkh-trust-num">A1–A11</div><div class="dkh-trust-lbl">Tanılama bataryası</div></div>
+      <div class="dkh-trust-stat"><div class="dkh-trust-num">59+</div><div class="dkh-trust-lbl">Müdahale modülü</div></div>
+      <div class="dkh-trust-stat"><div class="dkh-trust-num">7</div><div class="dkh-trust-lbl">DokunSay aracı</div></div>
+      <div class="dkh-trust-stat"><div class="dkh-trust-num">5</div><div class="dkh-trust-lbl">Dil · TR/KU/EN/AR/FA</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM / SCIENTIFIC CONTEXT -->
+<section class="dkh-problem">
+  <div class="dkh-wrap">
+    <div class="dkh-section-head">
+      <span class="dkh-section-eyebrow ey-orange">Neden Önemli?</span>
+      <h2>Diskalkuli <span style="color:var(--dkl-orange)">görünmez</span>, ama gerçek.</h2>
+      <p class="lead">Matematikle zorlanan bir çocuk "tembel" değildir. Diskalkuli, beynin sayıyı işleyiş biçimine ilişkin bir nörogelişimsel farklılıktır — erken tespit ve hedefli müdahaleyle büyük ölçüde telafi edilebilir.</p>
+    </div>
+    <div class="dkh-problem-grid">
+      <div class="dkh-problem-facts">
+        <div class="dkh-problem-fact"><strong>%3–7</strong><span>Okul çağı çocuklarında diskalkuli yaygınlığı (Kucian &amp; von Aster, 2015)</span></div>
+        <div class="dkh-problem-fact"><strong>~20'de 1</strong><span>Her sınıfta en az bir diskalkuli şüpheli öğrencinin bulunma olasılığı</span></div>
+        <div class="dkh-problem-fact"><strong>4–6 yıl</strong><span>Tanısız kalan çocuğun akranlarına göre matematiksel gecikmesi</span></div>
+        <div class="dkh-problem-fact"><strong>6–12 ay</strong><span>Hedefli, sistematik müdahalede kalıcı dönüşüm için tipik süre</span></div>
+      </div>
+      <div class="dkh-problem-note">
+        <span class="badge">Bilimsel Temel</span>
+        <h3>Van Hiele · Bruner · Piaget · CRA · Dienes · GAISE</h3>
+        <p>Tüm araçlar uluslararası kabul görmüş pedagojik çerçevelere dayalıdır: somut–yarı somut–soyut (CRA), düzeyli geometri (Van Hiele), temsil kuramı (Bruner), bilişsel gelişim (Piaget), istatistiksel anlayış (GAISE). DSM-5 "Özel Öğrenme Bozukluğu" sınıflamasıyla uyumlu değerlendirme protokolü.</p>
+        <a href="/diskalkuli-nedir/" style="color:var(--dkl-blue);font-weight:700;text-decoration:none;font-size:14px">Bilimsel rehberi oku →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4-STEP JOURNEY with logo colors -->
+<section class="dkh-journey">
+  <div class="dkh-wrap">
+    <div class="dkh-section-head">
+      <span class="dkh-section-eyebrow ey-yellow">Bilimsel Yolculuk · 4 Adım</span>
+      <h2>Bilgilen → Tara → Müdahale Et → Pekiştir</h2>
+      <p class="lead">Her adım, logodaki dört işlem gibi, bir öncekinin üzerine inşa edilir. Amaç: çocuğun matematikle güvenli bir ilişki kurması.</p>
+    </div>
+    <div class="dkh-journey-steps">
+      <div class="dkh-js dkh-js-1">
+        <div class="dkh-js-icon">+</div>
+        <div class="dkh-js-step">Adım 1</div>
+        <h3>Bilgilen</h3>
+        <p>Diskalkulinin bilimsel tanımı, gelişimsel işaretleri ve eşgörü durumlarını içeren akademik rehber.</p>
+        <a href="/diskalkuli-nedir/">Rehberi oku →</a>
+      </div>
+      <div class="dkh-js dkh-js-2">
+        <div class="dkh-js-icon">−</div>
+        <div class="dkh-js-step">Adım 2</div>
+        <h3>Tara</h3>
+        <p>Numap ile okul öncesinden ilkokul 4. sınıfa (48–119 ay) A1–A11 bataryasıyla bilimsel değerlendirme.</p>
+        <a href="/platform/numap.html">Numap'ı aç →</a>
+      </div>
+      <div class="dkh-js dkh-js-3">
+        <div class="dkh-js-icon">×</div>
+        <div class="dkh-js-step">Adım 3</div>
+        <h3>Müdahale Et</h3>
+        <p>Galaksay'ın 59+ oyunlaştırılmış modülü ve DokunSay'ın 7 öğretim aracıyla bireyselleştirilmiş destek.</p>
+        <a href="/platform/galaksay.html">Galaksay'ı aç →</a>
+      </div>
+      <div class="dkh-js dkh-js-4">
+        <div class="dkh-js-icon">÷</div>
+        <div class="dkh-js-step">Adım 4</div>
+        <h3>Pekiştir</h3>
+        <p>Patentli DokunSay materyal setleri ve kaynak kitaplarla sınıf-içi ve ev-içi pekiştirme.</p>
+        <a href="/shop/">Mağazaya git →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PERSONAS -->
+<section class="dkh-persona">
+  <div class="dkh-wrap">
+    <div class="dkh-section-head">
+      <span class="dkh-section-eyebrow ey-pink">Buraya Hangi Soruyla Geldiniz?</span>
+      <h2>Size özel hazırlanmış rehber</h2>
+      <p class="lead">Hangisisiniz? Profilinize uygun yolculuk sayfasına gidin.</p>
+    </div>
+    <div class="dkh-persona-grid">
+      <a class="dkh-pcard is-parent" href="/ebeveynler/">
+        <div class="dkh-pcard-icon">👨‍👩‍👧</div>
+        <h3>Ebeveynim</h3>
+        <p>Çocuğumda diskalkuli şüphesi var. Bilimsel taramayla değerlendirip uygun materyallerle destek olmak istiyorum.</p>
+        <span class="dkh-pcard-cta">Ebeveyn rehberine git <span aria-hidden="true">→</span></span>
+      </a>
+      <a class="dkh-pcard is-teacher" href="/ogretmenler/">
+        <div class="dkh-pcard-icon">🧑‍🏫</div>
+        <h3>Öğretmenim</h3>
+        <p>Sınıfımda diskalkuli şüphesi taşıyan öğrenciler var. Sistematik tarama, farklılaştırılmış öğretim ve müdahaleye yanıt (RTI) yaklaşımları arıyorum.</p>
+        <span class="dkh-pcard-cta">Öğretmen rehberine git <span aria-hidden="true">→</span></span>
+      </a>
+      <a class="dkh-pcard is-inst" href="/iletisim/">
+        <div class="dkh-pcard-icon">🏫</div>
+        <h3>Kurum / Uzmanım</h3>
+        <p>Rehberlik araştırma merkezi (RAM), özel eğitim kurumu veya klinik için kurumsal lisans, uygulayıcı paneli ve raporlama arıyorum.</p>
+        <span class="dkh-pcard-cta">Kurumsal teklif al <span aria-hidden="true">→</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS SHOWCASE -->
+<section class="dkh-tools">
+  <div class="dkh-wrap">
+    <div class="dkh-section-head">
+      <span class="dkh-section-eyebrow ey-orange">7 DokunSay Aracı</span>
+      <h2>Tarayıcıda çalışan, kurulum gerektirmeyen öğretim araçları</h2>
+      <p class="lead">Her araç farklı bir matematiksel konuya ve pedagojik çerçeveye dayalı. Pedagojik müfredat sırasına göre düzenlenmiştir.</p>
+    </div>
+    <div class="dkh-tools-grid">
+      <a class="dkh-tool" href="/araclar/sayi-cubuklari/" style="--_c:#F59E0B;--_cbg:rgba(245,158,11,.12)"><div class="dkh-tool-ic">🧮</div><h4>Sayı Çubukları</h4><span>5–10 yaş · CRA + Bruner</span></a>
+      <a class="dkh-tool" href="/araclar/geometri/" style="--_c:#EF4444;--_cbg:rgba(239,68,68,.12)"><div class="dkh-tool-ic">🔺</div><h4>Geometri</h4><span>5–14 yaş · Van Hiele</span></a>
+      <a class="dkh-tool" href="/araclar/saat/" style="--_c:#3B82F6;--_cbg:rgba(59,130,246,.12)"><div class="dkh-tool-ic">🕐</div><h4>Saat</h4><span>6–9 yaş · Piaget</span></a>
+      <a class="dkh-tool" href="/araclar/basamak-degeri/" style="--_c:#8B5CF6;--_cbg:rgba(139,92,246,.12)"><div class="dkh-tool-ic">🔢</div><h4>Basamak Değeri</h4><span>6–10 yaş · Bloom + Dienes</span></a>
+      <a class="dkh-tool" href="/araclar/kesirler/" style="--_c:#EC4899;--_cbg:rgba(236,72,153,.12)"><div class="dkh-tool-ic">🍕</div><h4>Kesirler</h4><span>6–10 yaş · CRA + MEB</span></a>
+      <a class="dkh-tool" href="/araclar/istatistik/" style="--_c:#06B6D4;--_cbg:rgba(6,182,212,.12)"><div class="dkh-tool-ic">📊</div><h4>İstatistik &amp; Veri</h4><span>7–15 yaş · Curcio + GAISE</span></a>
+      <a class="dkh-tool" href="/araclar/tam-sayilar/" style="--_c:#10B981;--_cbg:rgba(16,185,129,.12)"><div class="dkh-tool-ic">±</div><h4>Tam Sayılar</h4><span>10–13 yaş · Sıfır Çifti</span></a>
+    </div>
+    <div class="dkh-tools-more"><a href="/araclar/">Tüm araçları keşfet →</a></div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="dkh-cta">
+  <div class="dkh-wrap">
+    <h2>Çocuğunuzu ya da öğrencinizi 15 dakikada bilimsel olarak tarayın</h2>
+    <p>Numap A1–A11 bataryası, okul öncesinden ilkokul 4. sınıfa (48–119 ay / 4–10 yaş) Türkiye normlarına göre standardize edilmiş otomatik risk etiketi sunar. Hiçbir kayıt zorunluluğu olmadan, tarayıcınızda başlayın.</p>
+    <div class="dkh-cta-btns">
+      <a class="dkh-cta-primary" href="/platform/numap.html">Numap ile Tara →</a>
+      <a class="dkh-cta-ghost" href="/diskalkuli-nedir/">Önce Öğrenmek İstiyorum</a>
+    </div>
+  </div>
+</section>
+
+</div>

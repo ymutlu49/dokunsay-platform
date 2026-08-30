@@ -35,6 +35,17 @@ export default {
   cat_comparison: 'المقارنة',
   cat_scenario: 'السيناريو',
   cat_misconception: 'المفهوم الخاطئ',
+  cat_independent: 'مستقل',
+  cat_transfer: 'نقل',
+
+  diff_1: 'استكشاف',
+  diff_2: 'موجّه بإرشاد',
+  diff_3: 'موجّه',
+  diff_4: 'مستقل',
+  diff_5: 'نقل',
+
+  act_misconception: 'المفهوم الخاطئ المستهدَف',
+  act_source: 'المصدر',
 
   misconception_1: 'اعتقاد أن سالب × سالب = سالب',
   misconception_2: 'خطأ تقدير حجم العدد',
@@ -58,6 +69,7 @@ export default {
   btn_close: 'إغلاق',
 
   a11y_dyscalculia: 'وضع عُسر الحساب',
+  a11y_dyslexia: 'وضع عُسر القراءة',
   a11y_high_contrast: 'تباين عالٍ',
   a11y_tts: 'القراءة الصوتية',
   a11y_sfx: 'المؤثرات الصوتية',

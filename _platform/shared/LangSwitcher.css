@@ -7,40 +7,40 @@
 .ds-lang-switcher {
   display: inline-flex;
   gap: 1px;
-  background: rgba(255, 255, 255, 0.10);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 7px;
   padding: 2px;
   -webkit-tap-highlight-color: transparent;
 }
 
 .ds-lang-switcher__btn {
-  padding: 4px 10px;
-  border-radius: 6px;
+  padding: 2px 7px;
+  border-radius: 5px;
   background: transparent;
   border: 0;
   font-family: 'Nunito', system-ui, -apple-system, sans-serif;
   font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.8px;
-  color: rgba(255, 255, 255, 0.70);
+  font-weight: 900;
+  letter-spacing: 1px;
+  color: #ffffff;
   cursor: pointer;
   transition: all 0.15s;
-  min-height: 28px;
-  min-width: 32px;
+  min-height: 22px;
+  min-width: 26px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .ds-lang-switcher__btn:hover:not(.ds-lang-switcher__btn--active) {
-  background: rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.18);
   color: #fff;
 }
 
 .ds-lang-switcher__btn--active {
-  background: rgba(255, 255, 255, 0.96);
-  color: #2d2418;
+  background: #ffffff;
+  color: #1e293b;
 }
 
 .ds-lang-switcher__btn:focus-visible {
@@ -50,8 +50,8 @@
 
 /* Diskalkuli modu: daha büyük */
 html[data-dyscalculia="on"] .ds-lang-switcher__btn {
-  min-height: 40px;
-  min-width: 40px;
+  min-height: 32px;
+  min-width: 32px;
   font-size: 12px;
 }
 
@@ -67,5 +67,5 @@ html[data-contrast="high"] .ds-lang-switcher__btn--active {
 
 /* Mobil */
 @media (max-width: 560px) {
-  .ds-lang-switcher__btn { padding: 3px 8px; font-size: 10px; min-width: 28px; }
+  .ds-lang-switcher__btn { padding: 2px 6px; font-size: 10px; min-width: 24px; min-height: 20px; }
 }

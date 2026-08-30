@@ -1,4 +1,14 @@
+/** Kod tarafında TANINAN diller — araç kartlarının metadata'sı bu dillerde. */
 export const LANGS = ['tr', 'ku', 'en', 'ar', 'fa'];
+
+/**
+ * Dil seçicide SUNULAN diller — 2026-07-19 kararı (kullanıcı).
+ * AR ve FA gizlendi: içerik/çeviri kalitesi uzman denetiminden geçmedi. Çeviriler ve
+ * araç kartı metadata'sı SİLİNMEDİ, yalnız sunulmuyor. Aynı karar 7 aracın tamamında
+ * geçerli (bkz. _platform/shared/LangSwitcher.jsx).
+ * GERİ AÇMAK İÇİN: bu diziye 'ar'/'fa' ekle — etiketler ve bayraklar hazır.
+ */
+export const VISIBLE_LANGS = ['tr', 'ku', 'en'];
 
 export const LANG_LABELS = {
   tr: 'Türkçe',
@@ -20,11 +30,30 @@ export const STRINGS = {
   tr: {
     platform_title: 'DokunSay',
     platform_subtitle: 'Matematik Öğretim Araçları Platformu',
+    zihinden_nav: 'Zihinden Aritmetik',
     platform_tagline:
-      'Her yaştaki öğrenci için somut, görsel, sezgisel matematik — dokunmatik manipülatiflerle 7 uygulama, 5 dilde.',
+      'Her yaştaki öğrenci için somut, görsel, sezgisel matematik — sanal ve somut araçlar, öğrenme yörüngeleri ve kanıt-temelli müdahale rehberiyle, 5 dilde.',
     platform_hero_cta: 'Araçları Keşfet',
+    trajectories_nav: 'Öğrenme Yörüngeleri',
+    trajectories_desc: 'Çocuğu sınıfına göre değil, bulunduğu seviyeye göre destekleyin — 20 alanda gelişim basamakları, her birinde DokunSay etkinlikleri. Clements & Sarama.',
+    traj_scope: '20 yörünge · 224 basamak · 5 öğrenme alanı',
+    traj_h_age: 'Yaşa göre keşfet',
+    traj_h_lvl: 'Bireysel düzey takibi',
+    traj_h_tool: 'Her basamağa bir araç',
+    traj_explore: 'Yörüngeleri keşfet',
+    rehber_nav: 'Müdahale Rehberi',
+    rehber_scope: '10 kanıt-temelli yöntem',
+    rehber_desc: 'Diskalkuli ve matematik güçlüğü için en etkili 10 öğretim yöntemi — IES/WWC ve meta-analizlere dayalı, her birinin sınıfta nasıl uygulandığı örneklerle anlatılır.',
+    rehber_explore: 'Rehberi aç',
+    set_nav: 'Noktalı Sayı Çubukları',
+    set_scope: 'Somut materyal · Yeşil Düzey',
+    set_desc: 'Sayıları hem görerek hem dokunarak öğreten somut sayı-çubuğu seti — 1–10 noktalı çubuklar, pullar ve çerçevelerle erken matematik.',
+    set_explore: 'Seti incele',
     open_tool: 'Aç',
     all_tools: 'Tüm Araçlar',
+    tools_section_title: 'Sanal ve Somut Araçlar',
+    tools_section_sub: 'Dokunmatik dijital uygulamalar ve somut materyal seti — birlikte, 5 dilde.',
+    tools_nav: 'Araçlar',
     by_category: 'Konu Kategorileri',
     by_age: 'Yaş Grubu',
     age_all: 'Tüm Yaşlar',
@@ -39,7 +68,7 @@ export const STRINGS = {
     author: 'Prof. Dr. Yılmaz Mutlu',
     about: 'DokunSay Hakkında',
     about_body:
-      'DokunSay, 5-15 yaş arası her seviyedeki öğrenci için tasarlanmış kapsamlı matematik öğretim materyalleri ailesidir. Yedi uygulama, matematik müfredatının çekirdeğini kapsar: sayı & işlem, kesir, tam sayı, saat, geometri ve veri okuryazarlığı. Her araç Somut → Yarı Soyut → Soyut (CRA) geçişini destekler; araştırma-temelli pedagojik çerçeveler (Van Hiele, Curcio, Bloom, Piaget) üzerine inşa edilmiştir. Diskalkuli öğrenme güçlüğü olan çocuklara özel destek özellikleri (büyük dokunmatik hedefler, renk körü paleti, sesli okuma, yüksek kontrast) her araçta mevcuttur.',
+      'DokunSay, 5-15 yaş arası her seviyedeki öğrenci için tasarlanmış kapsamlı matematik öğretim materyalleri ailesidir. Sekiz uygulama, matematik müfredatının çekirdeğini kapsar: sayı & işlem, kesir, tam sayı, saat, geometri ve veri okuryazarlığı. Her araç Somut → Yarı Soyut → Soyut (CRA) geçişini destekler; araştırma-temelli pedagojik çerçeveler (Van Hiele, Curcio, Bloom, Piaget) üzerine inşa edilmiştir. Diskalkuli öğrenme güçlüğü olan çocuklara özel destek özellikleri (büyük dokunmatik hedefler, renk körü paleti, sesli okuma, yüksek kontrast) her araçta mevcuttur.',
     why_title: 'Neden DokunSay?',
     why_subtitle: 'Her çocuk için tasarlandı, her öğretmen için hazır.',
     feature_research_title: 'Araştırma Temelli',
@@ -54,7 +83,7 @@ export const STRINGS = {
     feature_manipulative_title: 'Manipülatif Odaklı',
     feature_manipulative_body:
       'Soyut sembollere geçmeden önce somut nesnelerle etkileşim. Dokunarak öğrenme.',
-    stats_tools: 'Öğretim Aracı',
+    stats_tools: 'Sanal + Somut Araç',
     stats_languages: 'Dil',
     stats_activities: 'Etkinlik',
     stats_frameworks: 'Pedagoji',
@@ -77,9 +106,17 @@ export const STRINGS = {
   ku: {
     platform_title: 'DokunSay',
     platform_subtitle: 'Amûrên Fêrkirina Matematîkê',
+    zihinden_nav: 'Hesabkirina bi Mejî',
     platform_tagline:
-      'Matematîka bi destan, dîtbar û zindî — ji bo her xwendekarî, li her astê. Heft amûr, bi pênc zimanan.',
+      'Matematîka bi destan, dîtbar û zindî — ji bo her xwendekarî, li her astê. Heşt amûr, bi pênc zimanan.',
     platform_hero_cta: 'Amûran Bibîne',
+    trajectories_nav: 'Hêlên Fêrbûnê',
+    trajectories_desc: 'Zarokî ne li gor pola wî, li gor asta wî ya niha piştgirî bike — di 20 warî de pêngavên geşedanê û çalakiyên DokunSay. Clements & Sarama.',
+    traj_scope: '20 hêl · 224 pêngav · 5 warê fêrbûnê',
+    traj_h_age: 'Li gor temenî bigere',
+    traj_h_lvl: 'Şopandina asta kesane',
+    traj_h_tool: 'Ji bo her pêngavê amûrek',
+    traj_explore: 'Hêlên fêrbûnê keşf bike',
     open_tool: 'Veke',
     all_tools: 'Hemû Amûr',
     by_category: 'Li Gor Mijarê',
@@ -96,7 +133,7 @@ export const STRINGS = {
     author: 'Prof. Dr. Yılmaz Mutlu',
     about: 'Derbarê DokunSay',
     about_body:
-      'DokunSay malbateke amûrên dîjîtal ên fêrkirina matematîkê ye, ji bo xwendekarên di temenê 5 heta 15 salî de. Heft amûr naveroka bingehîn a matematîkê vedihewînin: hejmar û kirarî, parjimar, hejmarên tam, saet, cîyometrî û xwendewariya daneyan. Her amûr li ser rêbaza Konkret → Nîv-konkret → Abstrakt (CRA) hatiye avakirin û ji çarçoveyên pedagojîk ên lêkolînî (Van Hiele, Curcio, Bloom, Piaget) sûd werdigire. Taybetmendiyên piştgirî yên ji bo xwendekarên bi diskalkuliyê — hedefên mezin ên destlêdanê, paleta ji bo koriya rengan, xwendina bi dengî, kontrasta bilind — di her amûrê de cih digirin.',
+      'DokunSay malbateke amûrên dîjîtal ên fêrkirina matematîkê ye, ji bo xwendekarên di temenê 5 heta 15 salî de. Heşt amûr naveroka bingehîn a matematîkê vedihewînin: hejmar û kirarî, parjimar, hejmarên tam, saet, cîyometrî û xwendewariya daneyan. Her amûr li ser rêbaza Konkret → Nîv-konkret → Abstrakt (CRA) hatiye avakirin û ji çarçoveyên pedagojîk ên lêkolînî (Van Hiele, Curcio, Bloom, Piaget) sûd werdigire. Taybetmendiyên piştgirî yên ji bo xwendekarên bi diskalkuliyê — hedefên mezin ên destlêdanê, paleta ji bo koriya rengan, xwendina bi dengî, kontrasta bilind — di her amûrê de cih digirin.',
     why_title: 'Çima DokunSay?',
     why_subtitle: 'Ji bo her zarokî hatiye amadekirin, ji bo her mamosteyî amade ye.',
     feature_research_title: 'Lêkolînî',
@@ -134,9 +171,17 @@ export const STRINGS = {
   en: {
     platform_title: 'DokunSay',
     platform_subtitle: 'Math Teaching Tools Platform',
+    zihinden_nav: 'Mental Arithmetic',
     platform_tagline:
       'Hands-on, visual, intuitive math for every student — 7 apps with touch-first manipulatives, in 5 languages.',
     platform_hero_cta: 'Explore the Tools',
+    trajectories_nav: 'Learning Trajectories',
+    trajectories_desc: 'Support each child by their level, not their grade — developmental steps across 20 domains, each with DokunSay activities. Clements & Sarama.',
+    traj_scope: '20 trajectories · 224 levels · 5 learning areas',
+    traj_h_age: 'Browse by age',
+    traj_h_lvl: 'Individual level tracking',
+    traj_h_tool: 'A tool for every level',
+    traj_explore: 'Explore trajectories',
     open_tool: 'Open',
     all_tools: 'All Tools',
     by_category: 'Topic Categories',
@@ -153,7 +198,7 @@ export const STRINGS = {
     author: 'Prof. Yılmaz Mutlu, PhD',
     about: 'About DokunSay',
     about_body:
-      'DokunSay is a comprehensive family of math teaching materials designed for students ages 5-15 across all levels. Seven apps cover the core math curriculum: number & operation, fractions, integers, time, geometry and data literacy. Each tool supports the Concrete → Representational → Abstract (CRA) progression and is built on research-based pedagogical frameworks (Van Hiele, Curcio, Bloom, Piaget). Special support features for children with dyscalculia (large touch targets, colorblind palette, text-to-speech, high contrast) are available in every tool.',
+      'DokunSay is a comprehensive family of math teaching materials designed for students ages 5-15 across all levels. Eight apps cover the core math curriculum: number & operation, fractions, integers, time, geometry and data literacy. Each tool supports the Concrete → Representational → Abstract (CRA) progression and is built on research-based pedagogical frameworks (Van Hiele, Curcio, Bloom, Piaget). Special support features for children with dyscalculia (large touch targets, colorblind palette, text-to-speech, high contrast) are available in every tool.',
     why_title: 'Why DokunSay?',
     why_subtitle: 'Designed for every child, ready for every teacher.',
     feature_research_title: 'Research-Based',
@@ -168,7 +213,7 @@ export const STRINGS = {
     feature_manipulative_title: 'Manipulative-First',
     feature_manipulative_body:
       'Hands-on interaction with concrete objects before abstract symbols. Learn by touch.',
-    stats_tools: 'Teaching Tools',
+    stats_tools: 'Virtual + Concrete Tools',
     stats_languages: 'Languages',
     stats_activities: 'Activities',
     stats_frameworks: 'Frameworks',
@@ -191,9 +236,17 @@ export const STRINGS = {
   ar: {
     platform_title: 'دكن‑ساي',
     platform_subtitle: 'منصّة أدوات تعليم الرياضيات',
+    zihinden_nav: 'الحساب الذهني',
     platform_tagline:
-      'رياضيات ملموسة ومرئية وحدسية لكلّ طالب — سبع أدوات باللمس الأول، بخمس لغات.',
+      'رياضيات ملموسة ومرئية وحدسية لكلّ طالب — ثماني أدوات باللمس الأول، بخمس لغات.',
     platform_hero_cta: 'استكشف الأدوات',
+    trajectories_nav: 'مسارات التعلّم',
+    trajectories_desc: 'ادعم كلّ طفل حسب مستواه لا حسب صفّه — خطوات نمائية في ٢٠ مجالاً، مع أنشطة دكن‑ساي في كلٍّ منها. Clements & Sarama.',
+    traj_scope: '٢٠ مساراً · ٢٢٤ خطوة · ٥ مجالات تعلّم',
+    traj_h_age: 'تصفّح حسب العمر',
+    traj_h_lvl: 'تتبّع المستوى الفردي',
+    traj_h_tool: 'أداة لكلّ خطوة',
+    traj_explore: 'استكشف المسارات',
     open_tool: 'افتح',
     all_tools: 'كلّ الأدوات',
     by_category: 'فئات الموضوعات',
@@ -210,7 +263,7 @@ export const STRINGS = {
     author: 'أ.د. يلماز موتلو',
     about: 'حول دكن‑ساي',
     about_body:
-      'دكن‑ساي عائلة شاملة من المواد التعليمية الرياضية، مصمّمة للطلاب من سن ٥ إلى ١٥ على جميع المراحل. سبع أدوات تغطّي نواة منهاج الرياضيات: العدد والعمليات، الكسور، الأعداد الصحيحة، الوقت، الهندسة، والقراءة البيانية. تدعم كلّ أداة التدرّج من المحسوس إلى شبه المحسوس إلى المجرّد (CRA)، وتستند إلى أُطر تربوية معتمدة (Van Hiele, Curcio, Bloom, Piaget). خصائص دعم خاصّة لطلاب عُسر الحساب (هدف لمسي كبير، لوحة ألوان لعمى الألوان، قراءة صوتية، تباين عالٍ) متوفّرة في كلّ الأدوات.',
+      'دكن‑ساي عائلة شاملة من المواد التعليمية الرياضية، مصمّمة للطلاب من سن ٥ إلى ١٥ على جميع المراحل. ثماني أدوات تغطّي نواة منهاج الرياضيات: العدد والعمليات، الكسور، الأعداد الصحيحة، الوقت، الهندسة، والقراءة البيانية. تدعم كلّ أداة التدرّج من المحسوس إلى شبه المحسوس إلى المجرّد (CRA)، وتستند إلى أُطر تربوية معتمدة (Van Hiele, Curcio, Bloom, Piaget). خصائص دعم خاصّة لطلاب عُسر الحساب (هدف لمسي كبير، لوحة ألوان لعمى الألوان، قراءة صوتية، تباين عالٍ) متوفّرة في كلّ الأدوات.',
     why_title: 'لماذا دكن‑ساي؟',
     why_subtitle: 'مصمَّمة لكلّ طفل، جاهزة لكلّ معلّم.',
     feature_research_title: 'قائمة على البحث',
@@ -248,9 +301,17 @@ export const STRINGS = {
   fa: {
     platform_title: 'دکن‑سای',
     platform_subtitle: 'پلتفرم ابزارهای آموزش ریاضی',
+    zihinden_nav: 'حساب ذهنی',
     platform_tagline:
-      'ریاضی عینی، دیداری و شهودی برای هر دانش‌آموز — هفت برنامۀ لمس‌محور، به پنج زبان.',
+      'ریاضی عینی، دیداری و شهودی برای هر دانش‌آموز — هشت برنامۀ لمس‌محور، به پنج زبان.',
     platform_hero_cta: 'ابزارها را کاوش کن',
+    trajectories_nav: 'مسیرهای یادگیری',
+    trajectories_desc: 'از هر کودک بر اساس سطحش حمایت کن، نه پایه‌اش — پله‌های رشد در ۲۰ حوزه، هر کدام با فعالیت‌های دکن‑سای. Clements & Sarama.',
+    traj_scope: '۲۰ مسیر · ۲۲۴ پله · ۵ حوزهٔ یادگیری',
+    traj_h_age: 'مرور بر اساس سن',
+    traj_h_lvl: 'پیگیری سطح فردی',
+    traj_h_tool: 'ابزاری برای هر پله',
+    traj_explore: 'کاوش مسیرها',
     open_tool: 'باز کن',
     all_tools: 'همۀ ابزارها',
     by_category: 'دسته‌بندی موضوعی',
@@ -267,7 +328,7 @@ export const STRINGS = {
     author: 'پروفسور ییلماز موتلو',
     about: 'دربارۀ دکن‑سای',
     about_body:
-      'دکن‑سای خانوادۀ جامعی از ابزارهای آموزشی ریاضی است که برای دانش‌آموزان ۵ تا ۱۵ ساله در همۀ سطوح طراحی شده. هفت برنامه هستۀ برنامۀ درسی ریاضی را پوشش می‌دهند: عدد و عملیات، کسرها، اعداد صحیح، زمان، هندسه و سواد داده. هر ابزار از گذار عینی ← نیمه‌عینی ← انتزاعی (CRA) پشتیبانی می‌کند و بر چارچوب‌های آموزشی پژوهش‌بنیان (Van Hiele, Curcio, Bloom, Piaget) استوار است. امکانات ویژه برای دانش‌آموزان دیسکالکولی (هدف لمسی بزرگ، پالت کوررنگی، خواندن صوتی، تضاد بالا) در همۀ ابزارها موجود است.',
+      'دکن‑سای خانوادۀ جامعی از ابزارهای آموزشی ریاضی است که برای دانش‌آموزان ۵ تا ۱۵ ساله در همۀ سطوح طراحی شده. هشت برنامه هستۀ برنامۀ درسی ریاضی را پوشش می‌دهند: عدد و عملیات، کسرها، اعداد صحیح، زمان، هندسه و سواد داده. هر ابزار از گذار عینی ← نیمه‌عینی ← انتزاعی (CRA) پشتیبانی می‌کند و بر چارچوب‌های آموزشی پژوهش‌بنیان (Van Hiele, Curcio, Bloom, Piaget) استوار است. امکانات ویژه برای دانش‌آموزان دیسکالکولی (هدف لمسی بزرگ، پالت کوررنگی، خواندن صوتی، تضاد بالا) در همۀ ابزارها موجود است.',
     why_title: 'چرا دکن‑سای؟',
     why_subtitle: 'برای هر کودک طراحی شده، برای هر معلم آماده.',
     feature_research_title: 'پژوهش‌بنیان',

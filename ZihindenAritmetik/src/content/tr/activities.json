@@ -1,0 +1,2557 @@
+{
+ "sections": [
+  {
+   "id": 1,
+   "title": "Saymadan Anlık Bilme (Sanbil)",
+   "bookChapter": 4,
+   "intro": "Bu bölümdeki etkinliklerin ortak amacı, çocuğun küçük kümeleri saymadan bilmesi ve nasıl gördüğünü anlatabilmesidir. Sayı söylemek yeterli değildir; asıl veri \"nasıl gördün?\" sorusuna verilen yanıttır. Algısal aralık (1–4) eğitimle genişlemez; genişleyen, kavramsal Sanbil'dir — çocuğun büyük kümeyi tanıdığı parçalara ayırabilmesi. Bu ayrımı bilmeyen bir öğretmen, genişlemeyecek bir şeyi genişletmeye çalışır."
+  },
+  {
+   "id": 2,
+   "title": "Parmakla Saymadan Geçiş",
+   "bookChapter": 5,
+   "intro": "Parmak yasaklanmaz. Amaç, parmağı teker teker sayma aracı olmaktan çıkarıp kalıp gösterme aracına dönüştürmektir. Ölçüt parmağın kullanılıp kullanılmaması değil, verimliliktir. Bu bölümdeki her etkinlik bir sayı işine eşlik eder: parmak çalışması tek başına aktarım üretmez, sayısal etkinliğe eşlik ettiğinde üretir."
+  },
+  {
+   "id": 3,
+   "title": "Basamak Değeri ve Temel Gerçekler",
+   "bookChapter": 6,
+   "intro": "İki iş bir arada yürür: sayının kaç onluk ve kaç birlik olduğunu görmek ve tek basamaklı gerçekleri otomatikleştirmek. İkisi birbirini besler — 7 + 8'i bilen çocuk 70 + 80'i ancak onluk kavrayışı varsa kurabilir. Yüzlük tablo bu bölümde araç olarak girer; değeri, satır ve sütun hareketinin onluk yapıyı görünür kılmasıdır."
+  },
+  {
+   "id": 4,
+   "title": "Toplama Stratejileri",
+   "bookChapter": 7,
+   "intro": "Buradan itibaren etkinliklerin ortak sorusu değişir: artık \"kaç eder\" değil, \"hangi yol bu sayılara uyar\" sorulur. Her kart tek bir stratejiyi çalıştırır ama hiçbiri \"bugün şu stratejiyi kullanacağız\" diye başlamaz — çocuk sayılara bakar, yolu kendisi seçer, sonra yola ad konur. Strateji adlarının Türkçe alanyazındaki karşılıkları için Ek B.2'ye bakabilirsiniz."
+  },
+  {
+   "id": 5,
+   "title": "Çıkarma Stratejileri",
+   "bookChapter": 8,
+   "intro": "Çıkarmanın en sık atlanan yanı, tek bir işlem olmamasıdır: ayırma, tamamlama ve fark aynı sembolün altında durur. Bu bölümün ilk kartı bu üç anlamı ayırır; gerisi ona dayanır. Toplamadan taşınan en yaygın hata parçalamayı çıkarmada da varsaymaktır — onluk bozma gerektiğinde parçalama tökezler, atlama tökezlemez."
+  },
+  {
+   "id": 6,
+   "title": "Çarpma Stratejileri",
+   "bookChapter": 9,
+   "intro": "Çarpmanın zihinden yapılabilmesi için önce çarpımsal bakış kurulmalıdır: kaç grup ve her grupta kaç — iki birimin aynı anda tutulması. Dizi modeli bu bölümün omurgasıdır. Dizi kâğıda çizildi diye iş bitmez; \"kaç satır, her satırda kaç\" sorusu sorulmadıkça çocuk satırları bağımsız nesneler olarak görmeyi sürdürebilir."
+  },
+  {
+   "id": 7,
+   "title": "Bölme Stratejileri",
+   "bookChapter": 10,
+   "intro": "Bölme zihinden yapılırken neredeyse her zaman çarpmadan geçer: 56 ÷ 8 sorusu \"8 kere kaç 56 eder\" sorusuna çevrilir. Bu yüzden bölme etkinlikleri çarpma gerçeklerinden ayrı düşünülemez. Bölmenin iki anlamı — paylaştırma ve gruplama — ilk kartın konusudur; çocukların baskın örtük modeli paylaştırmadır ve gruplama ayrıca çalışılmadıkça kendiliğinden gelmez."
+  },
+  {
+   "id": 8,
+   "title": "Tahmin",
+   "bookChapter": 11,
+   "intro": "Tahmin, kesin sonucun yuvarlanmış hâli değildir; kesin sonucun hiç hesaplanmadığı ayrı bir iştir. Sınıftaki en yaygın sapma budur: öğrenci işlemi yapar, sonra yuvarlar. Bu bölümdeki etkinliklerin ortak kuralı, tahmin sorulduğunda kesin sonuca giden yolun kapalı tutulmasıdır — süre kısıtı bunu sağlar."
+  },
+  {
+   "id": 9,
+   "title": "Sayı Konuşmaları ve Sayı Dizileri",
+   "bookChapter": 12,
+   "intro": "Sayı dizisi, art arda sorulan üç dört işlemden oluşur; ilk işlemler bir ilişkiyi görünür kılar, son işlem o ilişkinin uygulanmasını ister ve öğretmen tarafından çözülmez. Kanıt uyarısını hatırlatmakta yarar var: sayı konuşmalarının etkililiği hakkındaki alanyazın incedir (Bölüm 12); rutin gerekçesiyle kullanılır, kanıtlanmış yöntem diye sunulmaz."
+  }
+ ],
+ "cards": [
+  {
+   "id": "1.1",
+   "section": 1,
+   "order": 1,
+   "title": "Şipşak kart",
+   "duration": "3–5 dk",
+   "minMinutes": 3,
+   "maxMinutes": 5,
+   "bookRef": "Kitap Bölüm 4, §4.9",
+   "bookChapter": 4,
+   "material": "Ek A.1 nokta kartları",
+   "why": "Çocuğun küçük kümeyi saymadan bilip bilmediğini bir saniyede ölçer. Asıl hedef sayı değil, sayının nasıl görüldüğüdür: aynı kart için üç ayrı anlatım duymak, kavramsal Sanbil'in sınıfta göründüğü andır.",
+   "figure": "figures/etkinlik/kart-1-1.webp",
+   "figureCaption": "Şekil 1.1 · Aynı kart, farklı görme yolları. Yanıt geldikten hemen sonra \"nasıl gördün?\" sorulur.",
+   "prep": [
+    "Beş nokta kartı seçin (2, 3, 4, 5 ve 6). Kartları sınıfın göreceği yükseklikte tutun."
+   ],
+   "steps": [
+    "Kartı bir saniye gösterip kapatın. Süre kritiktir: uzun tutmak saymaya izin verir ve etkinliğin amacını ortadan kaldırır.",
+    "Kaç olduğunu sorun; yanıt gelince hemen \"nasıl gördün?\" diye devam edin.",
+    "Aynı kart için birkaç çocuğun farklı görüşünü alın; hiçbirini düzeltmeyin."
+   ],
+   "ask": [
+    "Kaç nokta gördün?",
+    "Nasıl gördün? Saydın mı, bir anda mı bildin?",
+    "Arkadaşın başka türlü görmüş; ikisi de olur mu?"
+   ],
+   "support": [
+    "Kartı bir saniye daha gösterin, ama sayı sormadan: \"Şimdi sadece bak.\"",
+    "Daha küçük bir kartla geri dönün (üç ya da dört noktalı).",
+    "Kartı açık bırakıp \"parmağınla göster, kaç kümede duruyor?\" diye sorun.",
+    "Kümeyi siz ayırın: \"Şurada iki, şurada iki. Toplam kaç?\""
+   ],
+   "extension": [
+    "Aynı kartı iki saniye gösterip \"kaç tane daha olsaydı on olurdu?\" diye sorun; Sanbil'i onun tümleyenlerine bağlar."
+   ],
+   "profiles": {
+    "Diskalkuli": "Aralık 1–3; kart açık bırakılabilir.",
+    "Düşük": "1–5; her kartta \"nasıl gördün\" sorulur.",
+    "Ortalama": "1–6; iki farklı düzen art arda.",
+    "Yüksek": "6–10; çocuk kendi kartını çizip düzenini anlatır."
+   },
+   "criterion": "Üç ve dört noktalı kartları saymadan söylüyor ve nasıl gördüğünü en az bir kez kendi cümlesiyle anlatabiliyor."
+  },
+  {
+   "id": "1.2",
+   "section": 1,
+   "order": 2,
+   "title": "Aynı sayı, başka düzen",
+   "duration": "5 dk",
+   "minMinutes": 5,
+   "maxMinutes": 5,
+   "bookRef": "Kitap Bölüm 4, §4.4",
+   "bookChapter": 4,
+   "material": "Ek A.1",
+   "why": "Sayının zorluğunun düzenden geldiğini gösterir. Aynı altı, zar düzeninde bir anda bilinir, rastgele dağıldığında sayılır. Çocuk bunu fark ettiğinde kendi çizimlerini de düzenlemeye başlar.",
+   "figure": "figures/etkinlik/kart-1-2.webp",
+   "figureCaption": "Şekil 1.2 · Üçü de altı. Tanıdık düzen, yapısı görünen düzen, rastgele düzen.",
+   "prep": [
+    "Altı sayısını üç düzende hazırlayın: zar düzeni, iki üçlü sıra, rastgele dağılım."
+   ],
+   "steps": [
+    "Üç kartı sırayla gösterip her birinde kaç olduğunu sorun.",
+    "Üçünün de altı olduğu anlaşıldığında kartları yan yana koyun.",
+    "Hangisinin kolay olduğunu ve neden kolay olduğunu tartıştırın."
+   ],
+   "ask": [
+    "Üçü de altı; hangisi en kolaydı?",
+    "Zar düzenini neden bir anda bildin?",
+    "Rastgele olanı nasıl saydın — bir düzen kurdun mu?"
+   ],
+   "support": [
+    "Yalnızca zar düzenini gösterip \"bunu nereden biliyorsun?\" diye sorun.",
+    "Rastgele karta bakarken çocuğa parmağıyla küme ayırtın.",
+    "Aynı altıyı onluk çerçeveye yerleştirip karşılaştırın."
+   ],
+   "extension": [],
+   "profiles": {
+    "Diskalkuli": "Tek düzen (zar); karşılaştırma yapılmaz.",
+    "Düşük": "İki düzen: zar ve ikili sıra.",
+    "Ortalama": "Üç düzen; \"neden kolay\" beklenir.",
+    "Yüksek": "Kendi düzenini kurar ve gerekçelendirir."
+   },
+   "criterion": "Üç düzenin de aynı sayı olduğunu kabul ediyor ve tanıdık düzenin neden kolay olduğunu örüntüye dayanarak açıklıyor."
+  },
+  {
+   "id": "1.3",
+   "section": 1,
+   "order": 3,
+   "title": "Eksik olan",
+   "duration": "4 dk",
+   "minMinutes": 4,
+   "maxMinutes": 4,
+   "bookRef": "Kitap Bölüm 4, §4.5",
+   "bookChapter": 4,
+   "material": "Ek A.3 onluk çerçeve",
+   "why": "Onluk çerçevenin asıl işi budur: doluyu gören çocuk boşu saymadan bilir. Bu, onun tümleyenlerini kurar ve yedinci bölümdeki köprülemenin ön koşuludur.",
+   "figure": "figures/etkinlik/kart-1-3.webp",
+   "figureCaption": "Şekil 1.3 · Yedi dolu, üç boş. Çerçevenin beşli yapısı boşu saymayı gereksiz kılar.",
+   "prep": [
+    "Onluk çerçeveyi yedi dolu olacak biçimde hazırlayın; üstünü kapatacak bir kâğıt bulundurun."
+   ],
+   "steps": [
+    "Çerçeveyi bir saniye gösterip kapatın.",
+    "Kaç dolu olduğunu değil, kaç boş kaldığını sorun.",
+    "Yanıt geldikten sonra çerçeveyi açıp birlikte kontrol edin."
+   ],
+   "ask": [
+    "Kaç kutu boş kaldı?",
+    "Bunu nereden bildin — boşları mı saydın, doluları mı?",
+    "Yedi ile üç birlikte kaç eder?"
+   ],
+   "support": [
+    "Çerçeveyi açık bırakıp boşları göstertin.",
+    "Beş sayısıyla başlayın: \"Beş dolu, kaç boş?\"",
+    "Üst sıranın hep beş olduğunu hatırlatın.",
+    "Boş kutuları siz sayın, çocuk tekrarlasın."
+   ],
+   "extension": [],
+   "profiles": {
+    "Diskalkuli": "Yalnızca 5 ve 10; çerçeve açık kalır.",
+    "Düşük": "5, 8, 10; kapatma süresi iki saniye.",
+    "Ortalama": "Bütün sayılar; bir saniye.",
+    "Yüksek": "Yirmilik çerçeve (iki onluk)."
+   },
+   "criterion": "Onluk çerçevede doluyu görüp boşu saymadan söylüyor; onun tümleyenlerini biliyor demektir."
+  },
+  {
+   "id": "1.4",
+   "section": 1,
+   "order": 4,
+   "title": "Kaç ve kaç?",
+   "duration": "5 dk",
+   "minMinutes": 5,
+   "maxMinutes": 5,
+   "bookRef": "Kitap Bölüm 4, §4.7",
+   "bookChapter": 4,
+   "material": "Yedi düğme ya da kapak",
+   "why": "Parça-bütün ilişkisini kurar: bütünü ve bir parçayı bilen çocuk ötekini saymadan bulur. Bu ilişki kurulmadan çıkarmanın tamamlama anlamı (Bölüm 8) anlaşılmaz.",
+   "figure": "figures/etkinlik/kart-1-4.webp",
+   "figureCaption": "Şekil 1.4 · Yedi, iki avuçta üç ayrı biçimde bölünebilir. Bütün sabit, parçalar değişir.",
+   "prep": [
+    "Yedi küçük nesne ve iki avuç. Nesne sayısını sınıfın düzeyine göre 5–10 arası seçin."
+   ],
+   "steps": [
+    "Yedi düğmeyi çocuğa gösterip birlikte sayın.",
+    "Elleri arkanızda ikiye bölün, bir avucu açın: \"Burada dört var.\"",
+    "Diğer avuçta kaç olduğunu sorun; açıp kontrol edin.",
+    "Aynı yediyi başka türlü bölüp tekrarlayın."
+   ],
+   "ask": [
+    "Öbür elimde kaç var?",
+    "Nasıl buldun?",
+    "Yediyi başka nasıl ikiye bölebiliriz?"
+   ],
+   "support": [
+    "İki avucu da açıp birlikte sayın, sonra biri kapatılır.",
+    "Sayıyı beşe indirin.",
+    "Nesneleri onluk çerçeveye dizip bölmeyi görünür kılın.",
+    "Bölmeyi siz söyleyin, çocuk yalnızca doğrulasın."
+   ],
+   "extension": [
+    "Aynı işi onla yapın ve bütün bölmeleri yazdırın; onun tümleyenlerinin listesi çıkar."
+   ],
+   "profiles": {
+    "Diskalkuli": "5 nesne; iki avuç da açık başlar.",
+    "Düşük": "5–7 nesne; tek bölme denenir.",
+    "Ortalama": "7–10; iki üç farklı bölme aranır.",
+    "Yüksek": "10; bütün bölmeleri listelemesi istenir."
+   },
+   "criterion": "Bütünü bilirken parçalardan birinden ötekini saymadan buluyor."
+  },
+  {
+   "id": "1.5",
+   "section": 1,
+   "order": 5,
+   "title": "Kendi kartını çiz",
+   "duration": "6 dk",
+   "minMinutes": 6,
+   "maxMinutes": 6,
+   "bookRef": "Kitap Bölüm 4, §4.4",
+   "bookChapter": 4,
+   "material": "Boş kâğıt",
+   "why": "Çocuğun düzen hakkında öğrendiğini üretime çevirir. Bir düzeni savunabilmek, onu tanımaktan bir adım ileridir; kavramsal Sanbil'in en açık göstergesidir.",
+   "figure": "figures/etkinlik/kart-1-5.webp",
+   "figureCaption": "Şekil 1.5 · Aynı sekiz, iki ayrı düzende. Soldaki bir anda görülür, sağdaki sayılır.",
+   "prep": [
+    "Her çocuğa bir kâğıt. Tahtaya bir sayı yazın: sekiz."
+   ],
+   "steps": [
+    "Çocuklardan sekizi bir anda görülecek biçimde çizmelerini isteyin.",
+    "Çizimler bitince birkaçını sınıfa gösterin.",
+    "Hangi çizimin daha kolay okunduğunu ve nedenini konuşturun."
+   ],
+   "ask": [
+    "Sekizini nasıl düzenledin?",
+    "Bu düzen bir anda görülüyor mu, yoksa saymak gerekiyor mu?",
+    "Arkadaşının düzeniyle seninki arasında ne fark var?"
+   ],
+   "support": [
+    "Sayıyı altıya indirin.",
+    "Onluk çerçeveyi örnek olarak gösterin.",
+    "\"İki gruba ayırırsan nasıl olur?\" diye yönlendirin."
+   ],
+   "extension": [],
+   "profiles": {
+    "Diskalkuli": "Sayı 4–5; çerçeve şablonu verilir.",
+    "Düşük": "Sayı 6; iki grup önerilir.",
+    "Ortalama": "Sayı 8; gerekçe istenir.",
+    "Yüksek": "Sayı 12–15; iki farklı düzen ve karşılaştırma."
+   },
+   "criterion": "Çizdiği düzeni gerekçelendirebiliyor: neden bu biçimde grupladığını söyleyebiliyor."
+  },
+  {
+   "id": "1.6",
+   "section": 1,
+   "order": 6,
+   "title": "Kaçı gizli?",
+   "duration": "5 dk",
+   "minMinutes": 5,
+   "maxMinutes": 5,
+   "bookRef": "Kitap Bölüm 4, §4.7",
+   "bookChapter": 4,
+   "material": "Örtü kâğıdı",
+   "why": "Parça-bütünü tersine çalıştırır: bütün ve bir parça bilinirken öteki parça aranır. Bu, 1.4'teki \"kaç ve kaç\" etkinliğinin görsel ve sınıfça yapılan hâlidir; onun tümleyenlerini doğrudan besler.",
+   "figure": "figures/etkinlik/kart-1-6.webp",
+   "figureCaption": "Şekil 1.6 · Toplam önce söylenir, sonra bir bölüm örtülür. Gizli sayı tümleyenden bulunur.",
+   "prep": [
+    "Tahtaya sekiz nokta çizin ve kesip yapıştırabileceğiniz bir örtü hazırlayın (renkli kâğıt, mıknatıs)."
+   ],
+   "steps": [
+    "Önce bütün noktaları gösterip toplamı birlikte söyleyin: sekiz.",
+    "Örtüyü koyun; bir bölüm gizlensin.",
+    "\"Kaçı örtünün altında?\" diye sorun ve nasıl bulduğunu isteyin.",
+    "Örtüyü kaldırıp kontrol edin, sonra örtüyü başka yere koyup tekrarlayın."
+   ],
+   "ask": [
+    "Görünen kaç tane?",
+    "Örtünün altında kaç olmalı? Nasıl buldun?",
+    "Saymadan bilebildin mi?"
+   ],
+   "support": [
+    "Örtüyü kaldırıp birlikte sayın, sonra yeniden koyun.",
+    "Toplamı beşe indirin.",
+    "Noktaları onluk çerçeveye dizin; gizli bölüm çerçevede sayılır.",
+    "Görünen sayıyı siz söyleyin: \"Beş görünüyor, toplam sekiz. Gizli kaç?\""
+   ],
+   "extension": [
+    "Toplamı söylemeden başlayın: \"Beş görünüyor, üç gizli. Toplam kaç?\" Aynı ilişki ters yönde çalışır."
+   ],
+   "profiles": {
+    "Diskalkuli": "Toplam 5; örtü küçük tutulur.",
+    "Düşük": "Toplam 8; örtü tek grup gizler.",
+    "Ortalama": "Toplam 10; iki ayrı örtü.",
+    "Yüksek": "Toplam 20; iki örtü, ikisi de bilinmez."
+   },
+   "criterion": "Gizli sayıyı tümleyenden buluyor; örtüyü kaldırıp saymaya ihtiyaç duymuyor."
+  },
+  {
+   "id": "1.7",
+   "section": 1,
+   "order": 7,
+   "title": "Hangisi farklı?",
+   "duration": "6 dk",
+   "minMinutes": 6,
+   "maxMinutes": 6,
+   "bookRef": "Kitap Bölüm 4, §4.4",
+   "bookChapter": 4,
+   "material": "Dört nokta kartı",
+   "why": "Gerekçelendirmeyi doğru yanıttan önce koyar. Rutinin tasarım kuralı şudur: her seçenek için savunulabilir bir gerekçe bulunmalıdır; aksi hâlde çocuk tek doğru cevabı arar ve tartışma kapanır (Danielson, 2016).",
+   "figure": "figures/etkinlik/kart-1-7.webp",
+   "figureCaption": "Şekil 1.7 · Dört düzen. Dördü de \"farklı olan\" seçilebilir; önemli olan gerekçedir.",
+   "prep": [
+    "Dört nokta kartı seçin ya da şekildeki dörtlüyü tahtaya çizin. Her kartın ötekilerden ayrıldığı bir özellik olduğundan emin olun."
+   ],
+   "steps": [
+    "Dördünü birden gösterin.",
+    "\"Hangisi farklı?\" diye sorun. Doğru cevap aramadığınızı söyleyin.",
+    "Her yanıtta \"neden?\" diye devam edin.",
+    "Kapanışta özetleyin: \"Düzene bakarsan A, sayıya bakarsan D farklı.\""
+   ],
+   "ask": [
+    "Hangisi farklı?",
+    "Onu farklı yapan ne?",
+    "Başka birini seçen var mı? O neden farklı?"
+   ],
+   "support": [
+    "İki kartla başlayın: \"Bu ikisi nasıl farklı?\"",
+    "Bir özelliği siz adlandırın: \"Kaç nokta var, ona bakalım.\"",
+    "Kartları tek tek gösterip özelliklerini listeletin.",
+    "Bir gerekçeyi siz söyleyin, çocuk ikincisini bulsun."
+   ],
+   "extension": [],
+   "profiles": {
+    "Diskalkuli": "İki kart; tek özellik (sayı).",
+    "Düşük": "Dört kart; tek gerekçe yeterli.",
+    "Ortalama": "Dört kart; iki farklı gerekçe beklenir.",
+    "Yüksek": "Çocuk kendi dörtlüsünü kurar ve dördünü de savunur."
+   },
+   "criterion": "En az bir seçim için gerekçe üretiyor ve başkasının farklı gerekçesini geçerli sayabiliyor."
+  },
+  {
+   "id": "2.1",
+   "section": 2,
+   "order": 1,
+   "title": "Tek hamlede göster",
+   "duration": "3 dk",
+   "minMinutes": 3,
+   "maxMinutes": 3,
+   "bookRef": "Kitap Bölüm 5, §5.10",
+   "bookChapter": 5,
+   "material": "—",
+   "why": "Beş çıpasını kurar. Yediyi teker teker açan çocuk yedi hamle yapar; \"bir el ve iki\" diyen çocuk bir hamle yapar. Fark hızda değil, sayıyı bütün olarak görmededir.",
+   "figure": "figures/etkinlik/kart-2-1.webp",
+   "figureCaption": "Şekil 2.1 · Aynı yedi, iki ayrı gösterme yolu. Beş çıpası hamle sayısını yediden bire indirir.",
+   "prep": [
+    "Yalnızca eller. Sınıfı ikişerli eşleştirin."
+   ],
+   "steps": [
+    "Bir sayı söyleyin: yedi.",
+    "Çocuklar sayıyı tek hamlede göstermeye çalışır; teker teker açmak sayılmaz.",
+    "Eşler birbirinin elini kontrol eder.",
+    "Hızı yavaş yavaş artırın."
+   ],
+   "ask": [
+    "Yediyi gösterirken hangi eli önce açtın?",
+    "Beşi bir elde tutmak işi kolaylaştırdı mı?",
+    "Sekizi göstermenin kaç yolu var?"
+   ],
+   "support": [
+    "Beşle başlayın: \"Bir el dolu.\"",
+    "Altı için \"bir el ve bir parmak\" kalıbını siz gösterin.",
+    "Çocuk teker teker açıyorsa durdurup \"bir seferde\" deyin.",
+    "Eşiyle karşılıklı çalıştırın."
+   ],
+   "extension": [],
+   "profiles": {
+    "Diskalkuli": "1–5; beşli kalıp kurulana kadar burada kalınır.",
+    "Düşük": "1–8; beş çıpası her seferinde adlandırılır.",
+    "Ortalama": "1–10; hız beklenir.",
+    "Yüksek": "İki elle 10'un üstü: \"On üçü nasıl gösterirsin?\""
+   },
+   "criterion": "Altı ile on arasındaki sayıları beşi bir el kabul ederek tek hamlede gösteriyor."
+  },
+  {
+   "id": "2.2",
+   "section": 2,
+   "order": 2,
+   "title": "Onun tümleyeni",
+   "duration": "4 dk",
+   "minMinutes": 4,
+   "maxMinutes": 4,
+   "bookRef": "Kitap Bölüm 5, §5.10",
+   "bookChapter": 5,
+   "material": "—",
+   "why": "Onun tümleyenlerini elde kurar. Açık parmakları bilen çocuk kapalıları saymadan bilmelidir; bu, onluk çerçevedeki aynı işin elle yapılan hâlidir ve köprülemenin ön koşuludur.",
+   "figure": "figures/etkinlik/kart-2-2.webp",
+   "figureCaption": "Şekil 2.2 · Yedi açık, üç kapalı. Kapalıları saymadan bilmek hedeftir.",
+   "prep": [
+    "Eller. Onun tümleyenleri hedeflenir."
+   ],
+   "steps": [
+    "Yedi parmak gösterip \"kaç parmağım kapalı?\" diye sorun.",
+    "Yanıt geldikten sonra kapalıları birlikte kontrol edin.",
+    "Sırayı çevirin: çocuk gösterir, siz söylersiniz.",
+    "Kapalı parmakları görünmez kılın (elleri arkaya alın) ve tekrarlayın."
+   ],
+   "ask": [
+    "Kaç parmak kapalı?",
+    "Yedi ve üç birlikte kaç eder?",
+    "Kapalıları saymadan bilebilir misin?"
+   ],
+   "support": [
+    "Kapalı parmakları gösterip saydırın.",
+    "Beş ile başlayın.",
+    "Onluk çerçeveyle aynı işi yapın, sonra ele dönün.",
+    "Tümleyen çiftini siz söyleyin, çocuk tekrarlasın."
+   ],
+   "extension": [],
+   "profiles": {
+    "Diskalkuli": "Yalnızca 5 ve 10 çiftleri; eller görünür.",
+    "Düşük": "Bütün çiftler; eller görünür.",
+    "Ortalama": "Eller arkaya alınır.",
+    "Yüksek": "Yirminin tümleyenleri (iki çocuk, dört el)."
+   },
+   "criterion": "Onun tümleyenlerini (7+3, 8+2, 6+4) saymadan söylüyor."
+  },
+  {
+   "id": "2.3",
+   "section": 2,
+   "order": 3,
+   "title": "Parmaksız tekrar",
+   "duration": "4 dk",
+   "minMinutes": 4,
+   "maxMinutes": 4,
+   "bookRef": "Kitap Bölüm 5, §5.8",
+   "bookChapter": 5,
+   "material": "Ek A.4 boş sayı doğrusu",
+   "why": "İçselleşmenin başladığı yer burasıdır. Parmağı yasaklamak yerine, parmakla bulunan yolu sözelleştirmek hedeflenir. Yolu anlatabilen çocuk bir sonraki sefer parmaksız yürütebilir.",
+   "figure": "figures/etkinlik/kart-2-3.webp",
+   "figureCaption": "Şekil 2.3 · Parmakla kurulan 8 + 6, sayı doğrusunda aynı iki adım olarak görünür.",
+   "prep": [
+    "Beş işlemlik kısa bir liste hazırlayın (8+6, 7+5, 9+4, 6+7, 8+7)."
+   ],
+   "steps": [
+    "Çocuk işlemi parmakla çözer; engellemeyin.",
+    "Doğru sonuca ulaşınca aynı işlemi hemen parmaksız tekrar isteyin.",
+    "\"Az önce nasıl yaptın, aynısını aklından yap\" deyin.",
+    "İkinci turda süre tutmayın."
+   ],
+   "ask": [
+    "Az önce parmağınla ne yaptın?",
+    "Şimdi aynı yolu aklından anlatabilir misin?",
+    "Hangi adımda parmağa ihtiyacın oldu?"
+   ],
+   "support": [
+    "Yalnızca ilk adımı parmaksız isteyin, gerisi parmakla kalsın.",
+    "Ara sonucu siz söyleyin: \"Sekizden ona iki; şimdi ne kaldı?\"",
+    "Sayı aralığını küçültün (toplam 10'un altında).",
+    "İşlemi boş sayı doğrusunda çizdirin; parmağın yerine kalem geçsin."
+   ],
+   "extension": [],
+   "profiles": {
+    "Diskalkuli": "İkinci tur istenmez; parmak serbest kalır.",
+    "Düşük": "İkinci turda ilk adım parmaksız.",
+    "Ortalama": "İkinci tur tamamen parmaksız.",
+    "Yüksek": "Tek turda parmaksız; yol adlandırılır."
+   },
+   "criterion": "Parmakla bulduğu yolu sözel olarak tekrar edebiliyor."
+  },
+  {
+   "id": "2.4",
+   "section": 2,
+   "order": 4,
+   "title": "Gizli el",
+   "duration": "3 dk",
+   "minMinutes": 3,
+   "maxMinutes": 3,
+   "bookRef": "Kitap Bölüm 5, §5.9",
+   "bookChapter": 5,
+   "material": "—",
+   "why": "Parmak gnozisini çalıştırır. Kitabın açıkça belirttiği gibi bu bir matematik ölçütü değildir ve tek başına matematik başarısını artırmaz; parmağın sayı aracı olarak kullanılabilmesinin ön koşuludur. Bu yüzden hep bir sayı işine eşlik eder.",
+   "figure": "figures/etkinlik/kart-2-4.webp",
+   "figureCaption": "Şekil 2.4 · Çocuk gözlerini kapatır, dokunulan parmağı söyler. Etkinlik tek başına yapılmaz.",
+   "prep": [
+    "Çocuk gözlerini kapatır. Etkinliği hemen ardından bir sayı işiyle birleştirin."
+   ],
+   "steps": [
+    "Çocuk gözlerini kapatır; bir parmağına hafifçe dokunun.",
+    "Hangi parmak olduğunu söylemesini isteyin.",
+    "Doğru bilince o parmakla bir sayı gösterttirin: \"O parmak kaçıncı?\"",
+    "Beş denemeden fazla sürdürmeyin."
+   ],
+   "ask": [
+    "Hangi parmağına dokundum?",
+    "O parmak soldan kaçıncı?",
+    "O parmakla birlikte kaç parmak açarsın?"
+   ],
+   "support": [
+    "Baş ve serçeyle başlayın; ayırt etmesi en kolay ikisi.",
+    "Gözler açıkken bir tur yapın.",
+    "İki parmağa birden dokunup \"hangileri?\" diye sorun.",
+    "Parmakları önceden birlikte adlandırın."
+   ],
+   "extension": [],
+   "profiles": {
+    "Diskalkuli": "Yalnızca baş ve serçe; gözler açık başlar.",
+    "Düşük": "Üç parmak; gözler kapalı.",
+    "Ortalama": "Beş parmak; sıra sorusu eklenir.",
+    "Yüksek": "İki el; \"sağ elin üçüncüsü\" gibi çift ölçüt."
+   },
+   "criterion": "Beş parmağını görmeden ayırt edebiliyor. Bu bir matematik ölçütü değil, ön koşuldur."
+  },
+  {
+   "id": "2.5",
+   "section": 2,
+   "order": 5,
+   "title": "Elden çerçeveye",
+   "duration": "4 dk",
+   "minMinutes": 4,
+   "maxMinutes": 4,
+   "bookRef": "Kitap Bölüm 5, §5.5",
+   "bookChapter": 5,
+   "material": "Ek A.3 onluk çerçeve",
+   "why": "Parmak kalıbı ile onluk çerçevenin aynı beşli yapıyı taşıdığını gösterir. İki aracı birbirine bağlayan çocuk, parmağı bırakırken çerçeveye tutunur; geçiş boşlukta kalmaz.",
+   "figure": "figures/etkinlik/kart-2-5.webp",
+   "figureCaption": "Şekil 2.5 · Yedi parmakta ve yedi çerçevede aynı yapı: bir tam beş ve iki.",
+   "prep": [
+    "Her çocukta bir onluk çerçeve ve iki el."
+   ],
+   "steps": [
+    "Bir sayı söyleyin: yedi. Çocuk önce parmakla gösterir.",
+    "Sonra aynı sayıyı çerçevede kurar.",
+    "İki gösterimi yan yana koyup neyin aynı olduğunu sorun.",
+    "Birkaç sayıyla tekrarlayın; her seferinde iki araç arasında geçiş yapın."
+   ],
+   "ask": [
+    "Parmakta beş nerede? Çerçevede beş nerede?",
+    "İkisinde de kaç tane fazladan var?",
+    "Hangisi sana daha kolay geldi?"
+   ],
+   "support": [
+    "Yalnızca beşle çalışın: bir el, bir tam sıra.",
+    "Çerçeveyi siz doldurun, çocuk parmakla eşlesin.",
+    "Sayıyı altıya indirin.",
+    "Üst sıranın hep beş olduğunu birlikte adlandırın."
+   ],
+   "extension": [],
+   "profiles": {
+    "Diskalkuli": "1–5; yalnızca üst sıra.",
+    "Düşük": "6–10; iki araç yan yana.",
+    "Ortalama": "6–10; çocuk geçişi kendi yapar.",
+    "Yüksek": "11–20; iki çerçeve, iki çocuğun elleri."
+   },
+   "criterion": "Aynı sayıyı iki araçta kurabiliyor ve beşli yapının ikisinde de aynı olduğunu söyleyebiliyor."
+  },
+  {
+   "id": "3.1",
+   "section": 3,
+   "order": 1,
+   "title": "Kaç onluk, kaç birlik?",
+   "duration": "4 dk",
+   "minMinutes": 4,
+   "maxMinutes": 4,
+   "bookRef": "Kitap Bölüm 6, §6.8",
+   "bookChapter": 6,
+   "material": "Ek A.5 yüzlük tablo",
+   "why": "Basamak değerini sayarak değil, tablonun yapısından okutur. Satır saymak, onluğun on birlik olduğunu görünür kılar; bu, altıncı bölümdeki kavramsal eşiğin somut karşılığıdır.",
+   "figure": "figures/etkinlik/kart-3-1.webp",
+   "figureCaption": "Şekil 3.1 · 47'ye giderken dört tam satır geçilir. Satır = onluk.",
+   "prep": [
+    "Yüzlük tabloyu duvara asın ya da her sıraya bir kopya dağıtın."
+   ],
+   "steps": [
+    "Bir sayı söyleyin: 47.",
+    "Çocuk tabloda sayıyı bulur ve kaç tam satır geçildiğini söyler.",
+    "\"Dört tam satır ve yedi adım\" ifadesini birlikte kurun.",
+    "Sayıyı değiştirip birkaç kez tekrarlayın."
+   ],
+   "ask": [
+    "Kaç tam satır geçtin?",
+    "Bir satır kaç sayı içeriyor?",
+    "O hâlde 47 kaç onluk ve kaç birlik?"
+   ],
+   "support": [
+    "Satırları birlikte sayın, parmakla izletin.",
+    "Sayıyı 20'nin altına indirin.",
+    "Tabloda 10, 20, 30'u renkle işaretletin.",
+    "Onluk taban bloklarıyla aynı sayıyı kurdurun, tabloyla eşleştirin."
+   ],
+   "extension": [],
+   "profiles": {
+    "Diskalkuli": "0–30 aralığı; bloklarla birlikte.",
+    "Düşük": "0–100; satır sayma yardımıyla.",
+    "Ortalama": "0–100; doğrudan söylenir.",
+    "Yüksek": "Üç basamak: \"347 kaç yüzlük, kaç onluk?\""
+   },
+   "criterion": "Sayıyı onluk ve birlik olarak ayırıyor ve rakamın yerinin değeri belirlediğini söyleyebiliyor."
+  },
+  {
+   "id": "3.2",
+   "section": 3,
+   "order": 2,
+   "title": "Yüzlük tabloda hareket",
+   "duration": "6 dk",
+   "minMinutes": 6,
+   "maxMinutes": 6,
+   "bookRef": "Kitap Bölüm 6, §6.8",
+   "bookChapter": 6,
+   "material": "Ek A.5 yüzlük tablo",
+   "why": "Atlama stratejisinin görsel temelini kurar. On eklemenin birler basamağını değiştirmediğini tabloda gören çocuk bunu sayı doğrusuna taşıyabilir.",
+   "figure": "figures/etkinlik/kart-3-2.webp",
+   "figureCaption": "Şekil 3.2 · 34'ten dört hareket. Renkler soldaki tabloda hedef kareyi gösterir.",
+   "prep": [
+    "Her çocuğa bir yüzlük tablo ve bir işaretleyici (fasulye, düğme)."
+   ],
+   "steps": [
+    "İşaretleyiciyi 34'e koydurun.",
+    "\"On ekle\" deyin ve nereye gittiğini sorun — bir satır aşağı.",
+    "\"On çıkar\" ile yukarı, \"bir ekle\" ile sağa, \"bir çıkar\" ile sola hareketleri kurun.",
+    "Sonra komutları zincirleyin: \"20 ekle, 3 çıkar.\""
+   ],
+   "ask": [
+    "On eklemek tabloda neden aşağı inmek demek?",
+    "Yirmi eklemek kaç satır?",
+    "Satır sonuna geldiğinde ne oluyor?"
+   ],
+   "support": [
+    "Tek hareketle kalın: yalnızca \"on ekle\".",
+    "Hareketi siz yapın, çocuk sonucu okusun.",
+    "Sayıyı satır başına alın (31, 41) — kenar geçişini erteleyin.",
+    "Boş sayı doğrusunda aynı hareketi çizdirin."
+   ],
+   "extension": [],
+   "profiles": {
+    "Diskalkuli": "Yalnızca +10 / −10; satır başlarında.",
+    "Düşük": "+10, −10, +1, −1 ayrı ayrı.",
+    "Ortalama": "Zincirleme komutlar (+20, −3).",
+    "Yüksek": "Üç adımlı zincir; sonra tablosuz tekrar."
+   },
+   "criterion": "On eklemenin birler basamağını değiştirmediğini kendi cümlesiyle söylüyor."
+  },
+  {
+   "id": "3.3",
+   "section": 3,
+   "order": 3,
+   "title": "Aynı gerçek, üç boy",
+   "duration": "4 dk",
+   "minMinutes": 4,
+   "maxMinutes": 4,
+   "bookRef": "Kitap Bölüm 6, §6.1",
+   "bookChapter": 6,
+   "material": "—",
+   "why": "Bilinen bir gerçeğin onluklara ve yüzlüklere taşınabildiğini gösterir; aynı zamanda zorluğun tam olarak nerede başladığını ortaya çıkarır: 70 + 80'de on onluk yüze çevrilmelidir.",
+   "figure": "figures/etkinlik/kart-3-3.webp",
+   "figureCaption": "Şekil 3.3 · Tek bir gerçek, üç basamak boyunda. Çeviri adımı yalnızca onluklarda gerekir.",
+   "prep": [
+    "Üç basamaklı bir dizi hazırlayın: 6 + 3, 60 + 30, 600 + 300."
+   ],
+   "steps": [
+    "Üç işlemi art arda sorun, arada açıklama yapmayın.",
+    "Üçü de yanıtlandıktan sonra üçünü yan yana yazın.",
+    "Aradaki ilişkiyi çocuğa buldurtun.",
+    "Sonra 70 + 80'i sorun; tökezleme burada başlar."
+   ],
+   "ask": [
+    "İkinci işlemi nasıl bu kadar hızlı buldun?",
+    "6 + 3 ile 60 + 30 arasında ne ilişki var?",
+    "Peki 70 + 80 neden biraz daha zor?"
+   ],
+   "support": [
+    "Onlukları nesne olarak adlandırın: \"6 onluk + 3 onluk.\"",
+    "Bloklarla gösterin.",
+    "Sonucu onluk cinsinden söyletin: \"On beş onluk. Bu kaç eder?\"",
+    "Yüzlü basamağı bu tur atlayın."
+   ],
+   "extension": [],
+   "profiles": {
+    "Diskalkuli": "İki boy: 6+3 ve 60+30; bloklarla.",
+    "Düşük": "Üç boy; çeviri adımı adlandırılır.",
+    "Ortalama": "70 + 80 örneği eklenir.",
+    "Yüksek": "Ondalık boy: 0,6 + 0,3."
+   },
+   "criterion": "Onluklarla işlemin aynı gerçek olduğunu görüyor ve on onluğu geçtiğinde çevirme gerektiğini fark ediyor."
+  },
+  {
+   "id": "3.4",
+   "section": 3,
+   "order": 4,
+   "title": "Bunu biliyor muyum?",
+   "duration": "5 dk",
+   "minMinutes": 5,
+   "maxMinutes": 5,
+   "bookRef": "Kitap Bölüm 6, §6.11",
+   "bookChapter": 6,
+   "material": "Gerçek kartları",
+   "why": "Otomatikleşmenin kendisini değil, çocuğun kendi bildiğinin farkındalığını ölçer. Hangi gerçeği bilmediğini bilen çocuk, hangi stratejiye ihtiyacı olduğunu da bilir. Bu bir hız yarışı değildir; sınıfa öyle tanıtılmaz.",
+   "figure": "figures/etkinlik/kart-3-4.webp",
+   "figureCaption": "Şekil 3.4 · İki kutu. Ayırmayı çocuk yapar; öğretmen doğru-yanlış demez.",
+   "prep": [
+    "Yirmi toplama gerçeği kartı ve iki kutu (ya da masada iki alan)."
+   ],
+   "steps": [
+    "Kartı gösterin. Çocuk üç saniyede söyleyebiliyorsa biliyorum, söyleyemiyorsa yol gerek kutusuna ayırır.",
+    "Ayırma işini çocuk kendisi yapar; siz doğru/yanlış demezsiniz.",
+    "İkinci kutudaki kartlar için hangi stratejinin işe yarayacağını konuşun.",
+    "Kartları saklayın; iki hafta sonra tekrarlayın."
+   ],
+   "ask": [
+    "Bu kartı nereye koydun, neden?",
+    "\"Yol gerek\" kutusundakiler için hangi stratejiyi kullanabilirsin?",
+    "İki hafta önceki kutunla bugünkü arasında ne değişti?"
+   ],
+   "support": [
+    "Kart sayısını ona indirin.",
+    "Süreyi beş saniyeye çıkarın.",
+    "Yalnızca ikilemeler ve onun tümleyenleriyle çalışın.",
+    "İlk beş kartta ayırmayı birlikte yapın."
+   ],
+   "extension": [],
+   "profiles": {
+    "Diskalkuli": "10 kart, süre yok; \"biliyorum / bakmam gerek\".",
+    "Düşük": "15 kart, beş saniye.",
+    "Ortalama": "20 kart, üç saniye.",
+    "Yüksek": "Her \"yol gerek\" kartına strateji adı yazılır."
+   },
+   "criterion": "Çocuk kendi bildiği ve bilmediği gerçekleri ayırt edebiliyor."
+  },
+  {
+   "id": "3.5",
+   "section": 3,
+   "order": 5,
+   "title": "Bildiğinden bilinmeyene",
+   "duration": "5 dk",
+   "minMinutes": 5,
+   "maxMinutes": 5,
+   "bookRef": "Kitap Bölüm 6, §6.4",
+   "bookChapter": 6,
+   "material": "—",
+   "why": "Baroody'nin akıl yürütme evresini doğrudan çalıştırır: gerçekler tek tek ezberlenmez, bilinen bir çıpadan türetilir. Ezberlenecek yükün neden sanıldığından küçük olduğu burada görülür.",
+   "figure": "figures/etkinlik/kart-3-5.webp",
+   "figureCaption": "Şekil 3.5 · Tek bir çıpadan dört gerçek türetilir. Ok, uzaklığın bir ya da iki adım olduğunu gösterir.",
+   "prep": [
+    "Tahtaya bilinen bir gerçek yazın: 5 + 5 = 10."
+   ],
+   "steps": [
+    "\"Bunu biliyorsun. Peki 5 + 6?\" diye sorun.",
+    "Türetme yolunu çocuğa anlattırın: \"Bir fazla, o hâlde 11.\"",
+    "Aynı çıpadan üç dört gerçek daha türettirin.",
+    "Türetilen gerçekleri tahtaya bir ağaç gibi bağlayın."
+   ],
+   "ask": [
+    "Hangi gerçeği kullandın?",
+    "Ne kadar uzaklaştın — bir mi, iki mi?",
+    "Aynı çıpadan başka hangi gerçeklere gidebilirsin?"
+   ],
+   "support": [
+    "Çıpayı görünür kılın: iki elle beş beş gösterin.",
+    "Yalnızca bir adım uzaklıkla çalışın.",
+    "Ara adımı söyleyin: \"5 + 5 on; bir tane daha eklersek?\"",
+    "Onluk çerçevede fazlalığı ekletin."
+   ],
+   "extension": [],
+   "profiles": {
+    "Diskalkuli": "Tek çıpa (5+5), tek adım.",
+    "Düşük": "İki çıpa (5+5, 10), tek adım.",
+    "Ortalama": "İkilemeler çıpası; iki adıma kadar.",
+    "Yüksek": "Çocuk kendi çıpasını seçer ve gerekçelendirir."
+   },
+   "criterion": "Bilinen bir gerçekten bilinmeyeni türetiyor ve hangi gerçeği kullandığını söyleyebiliyor."
+  },
+  {
+   "id": "3.6",
+   "section": 3,
+   "order": 6,
+   "title": "Strateji avı",
+   "duration": "6 dk",
+   "minMinutes": 6,
+   "maxMinutes": 6,
+   "bookRef": "Kitap Bölüm 6, §6.4",
+   "bookChapter": 6,
+   "material": "İşlem listesi",
+   "why": "Esnekliğin doğrudan ölçüsüdür: çocuk işlemleri çözmeden, yalnızca sayılara bakarak gruplayabiliyor mu? Üçüncü bölümdeki Emir'in eksikliği tam olarak budur. Ölçütü öğretmen vermez; verirse etkinliğin işi ortadan kalkar.",
+   "figure": "figures/etkinlik/kart-3-6.webp",
+   "figureCaption": "Şekil 3.6 · Aynı liste, üç ayrı ölçütle gruplanabilir. Ad, gruplama bittikten sonra konur.",
+   "prep": [
+    "Bir gerçek listesi hazırlayın (12–15 işlem, farklı strateji ailelerinden)."
+   ],
+   "steps": [
+    "Listeyi dağıtın. Çocuklar işlemleri çözmez, yalnızca gruplar.",
+    "Gruplama ölçütünü siz vermeyin; çocuk kendi ölçütünü kurar.",
+    "Gruplar bitince ölçütleri sınıfa anlattırın.",
+    "Ortak çıkan grupları adlandırın: \"buna ikilemeler diyoruz.\""
+   ],
+   "ask": [
+    "Bu ikisini neden aynı gruba koydun?",
+    "Grubundaki işlemlerin ortak yanı ne?",
+    "Bir işlem iki gruba birden girebilir mi?"
+   ],
+   "support": [
+    "Liste sayısını sekize indirin.",
+    "İki grup kutusu verin ve adlarını siz koyun.",
+    "İlk üç işlemi birlikte gruplayın.",
+    "Yalnızca \"kolay / zor\" ayrımıyla başlatın."
+   ],
+   "extension": [
+    "Aynı listeyi iki hafta sonra tekrar verin ve ilk gruplamayla karşılaştırın; ölçütün değişmesi gelişmenin işaretidir."
+   ],
+   "profiles": {
+    "Diskalkuli": "8 işlem, iki adlandırılmış kutu.",
+    "Düşük": "10 işlem, kutu adları verilmez.",
+    "Ortalama": "15 işlem; gerekçe yazılı istenir.",
+    "Yüksek": "Çocuk kendi grup adlarını icat eder ve savunur."
+   },
+   "criterion": "Çözmeden sayılara bakarak gruplayabiliyor."
+  },
+  {
+   "id": "3.7",
+   "section": 3,
+   "order": 7,
+   "title": "Hangisi farklı? — sayılarla",
+   "duration": "6 dk",
+   "minMinutes": 6,
+   "maxMinutes": 6,
+   "bookRef": "Kitap Bölüm 6, §6.2",
+   "bookChapter": 6,
+   "material": "—",
+   "why": "Sanbil bölümündeki aynı rutini sayı yapısına taşır. Çocuk rakamlara değil, sayının onluk-birlik yapısına bakmayı öğrenir; 48 ile 84'ün aynı rakamları taşıdığı hâlde aynı sayı olmadığı burada görünür.",
+   "figure": "figures/etkinlik/kart-3-7.webp",
+   "figureCaption": "Şekil 3.7 · Dört sayı. Her biri için farklı bir gerekçe kurulabilir.",
+   "prep": [
+    "Dört sayı seçin; her birinin ötekilerden ayrıldığı bir özellik olsun (48, 35, 84, 45)."
+   ],
+   "steps": [
+    "Dört sayıyı tahtaya yazın.",
+    "\"Hangisi farklı?\" diye sorun; doğru cevap aramadığınızı söyleyin.",
+    "Her yanıtta gerekçe isteyin: tek/çift, onluk sayısı, beşin katı, rakamlar.",
+    "Kapanışta 48 ile 84'ü karşılaştırın: aynı rakamlar, farklı değerler."
+   ],
+   "ask": [
+    "Hangisi farklı, neden?",
+    "48 ile 84'ün nesi aynı, nesi farklı?",
+    "Aynı rakamlarla iki farklı sayı nasıl olabiliyor?"
+   ],
+   "support": [
+    "İki sayıyla başlayın (48 ve 84).",
+    "Bir özelliği siz adlandırın: \"Kaç onluk var?\"",
+    "Sayıları bloklarla kurdurun.",
+    "Yüzlük tabloda dördünü işaretletin."
+   ],
+   "extension": [],
+   "profiles": {
+    "Diskalkuli": "İki sayı; yalnızca onluk sayısı.",
+    "Düşük": "Dört sayı; tek gerekçe.",
+    "Ortalama": "Dört sayı; iki gerekçe beklenir.",
+    "Yüksek": "Çocuk kendi dörtlüsünü kurar (üç basamaklı da olabilir)."
+   },
+   "criterion": "Gerekçesini sayının yapısına dayandırıyor: onluk sayısı, tek-çift, katları."
+  },
+  {
+   "id": "3.8",
+   "section": 3,
+   "order": 8,
+   "title": "Aynı ama farklı",
+   "duration": "5 dk",
+   "minMinutes": 5,
+   "maxMinutes": 5,
+   "bookRef": "Kitap Bölüm 6, §6.2",
+   "bookChapter": 6,
+   "material": "Onluk bloklar",
+   "why": "İki soruyu birlikte sorar: nesi aynı, nesi farklı? Benzerliği görmek kadar farkı adlandırmak da gerekir. Basamak değerinde bu, aynı rakamların farklı değerler taşıdığını fark etmenin en doğrudan yoludur (Looney, 2023).",
+   "figure": "figures/etkinlik/kart-3-8.webp",
+   "figureCaption": "Şekil 3.8 · 47 ile 74. Aynı rakamlar, farklı değerler; fark 27'dir.",
+   "prep": [
+    "47 ve 74'ü onluk bloklarla kurabileceğiniz kadar blok hazırlayın."
+   ],
+   "steps": [
+    "İki sayıyı yan yana yazın: 47 ve 74.",
+    "\"Nesi aynı?\" diye sorun; sonra \"nesi farklı?\"",
+    "İkisini bloklarla kurdurun ve karşılaştırın.",
+    "Farkı hesaplattırın (27) ve bunun rastlantı olmadığını söyleyin."
+   ],
+   "ask": [
+    "İkisinin nesi aynı?",
+    "Nesi farklı?",
+    "Hangisi büyük? Nereden anladın?"
+   ],
+   "support": [
+    "Yalnızca \"nesi aynı\" sorusuyla kalın.",
+    "Blokları siz kurun, çocuk saysın.",
+    "Sayıları küçültün (23 ve 32).",
+    "Onlukları ve birlikleri ayrı ayrı saydırın."
+   ],
+   "extension": [],
+   "profiles": {
+    "Diskalkuli": "23 ve 32; bloklarla.",
+    "Düşük": "47 ve 74; bloklarla.",
+    "Ortalama": "47 ve 74; blok olmadan, fark hesaplanır.",
+    "Yüksek": "Üç basamaklı: 147 ve 174 ve 417."
+   },
+   "criterion": "Aynı rakamların yerine göre farklı değer taşıdığını söyleyebiliyor."
+  },
+  {
+   "id": "4.1",
+   "section": 4,
+   "order": 1,
+   "title": "Önce onluğa",
+   "duration": "5 dk",
+   "minMinutes": 5,
+   "maxMinutes": 5,
+   "bookRef": "Kitap Bölüm 7, §7.4",
+   "bookChapter": 7,
+   "material": "Ek A.3, Ek A.4",
+   "why": "Onluğa köprüleme, toplamanın en çok işe yarayan stratejisidir ve doğrudan onun tümleyenlerine dayanır. Çocuk toplananı onluğu tamamlayacak biçimde bölebiliyorsa strateji kurulmuş demektir.",
+   "figure": "figures/etkinlik/kart-4-1.webp",
+   "figureCaption": "Şekil 4.1 · 8 + 6. Altı ikiye bölünür: önce onluğa, sonra kalan. Aynı yol çerçevede ve sayı doğrusunda.",
+   "prep": [
+    "Beş işlem hazırlayın; hepsinde bir toplanan 8 ya da 9 olsun (8+6, 9+4, 48+5, 39+6, 28+7)."
+   ],
+   "steps": [
+    "İlk işlemi yazın, çözmelerini isteyin.",
+    "Bir çocuğun yolunu boş sayı doğrusunda çizdirin: önce onluğa, sonra kalan.",
+    "İkinci işlemde \"aynı yolu deneyelim\" deyin.",
+    "Beşinci işlemden sonra yola ad koyun: onluğa köprüleme."
+   ],
+   "ask": [
+    "Sekizden ona kaç lazım?",
+    "Altıyı ikiye böldün; geriye kaç kaldı?",
+    "Bu yol hangi sayılarda işe yarar?"
+   ],
+   "support": [
+    "Onluk çerçeveyle çalışın; onu tamamlayanı görsün.",
+    "Tümleyeni siz söyleyin: \"Sekizden ona iki. Şimdi ne kaldı?\"",
+    "Sayı doğrusunda iki sıçramayı siz çizin, çocuk okusun.",
+    "Toplananı beşe indirin (8+5), sonra geri dönün."
+   ],
+   "extension": [],
+   "profiles": {
+    "Diskalkuli": "Tek işlem, çerçeveyle; 20'nin altında.",
+    "Düşük": "Üç işlem; sayı doğrusu açık kalır.",
+    "Ortalama": "Beş işlem; iki basamaklı örnek eklenir.",
+    "Yüksek": "348 + 5 gibi üç basamaklı; yol sözel anlatılır."
+   },
+   "criterion": "Toplananı onluğu tamamlayacak biçimde bölüyor ve neden böyle böldüğünü söyleyebiliyor."
+  },
+  {
+   "id": "4.2",
+   "section": 4,
+   "order": 2,
+   "title": "Hangi yol daha kolay?",
+   "duration": "6 dk",
+   "minMinutes": 6,
+   "maxMinutes": 6,
+   "bookRef": "Kitap Bölüm 7, §7.3",
+   "bookChapter": 7,
+   "material": "—",
+   "why": "Bu kart strateji öğretmez; strateji seçimini öğretir. Üçüncü bölümdeki Emir'in hatası yol bilmemek değil, sayılara hiç bakmamaktı. Çözmeden önce bakmayı alışkanlık hâline getirir.",
+   "figure": "figures/etkinlik/kart-4-2.webp",
+   "figureCaption": "Şekil 4.2 · Birbirine benzeyen iki işlem, iki ayrı yol çağırır. Yolu sayılar seçtirir.",
+   "prep": [
+    "Üç işlem çifti hazırlayın: (52+39 · 47+38), (25+75 · 26+37), (8+7 · 30+40)."
+   ],
+   "steps": [
+    "Her çiftin ikisini birden tahtaya yazın.",
+    "Çözmeden önce \"bu ikisi aynı yolla mı çözülür?\" diye sorun.",
+    "Sonra çözdürün ve yolların gerçekten ayrıştığını gösterin.",
+    "Her çift için iki yolu adlandırın."
+   ],
+   "ask": [
+    "İki işlem arasında ne fark var?",
+    "39'u görünce aklına ne geldi?",
+    "Aynı yolu ikisine de uygularsan ne olur?"
+   ],
+   "support": [
+    "Tek işlemle kalın; ikinciyi sonraya bırakın.",
+    "Sayılardaki özelliği siz işaret edin: \"39, 40'a ne kadar yakın?\"",
+    "İki yolu da siz çözüp farkı gösterin, çocuk hangisinin kısa olduğunu söylesin.",
+    "Yalnızca \"kolay/zor\" ayrımı isteyin, ad aramayın."
+   ],
+   "extension": [],
+   "profiles": {
+    "Diskalkuli": "Tek çift; fark öğretmence söylenir.",
+    "Düşük": "İki çift; fark çocuktan beklenir.",
+    "Ortalama": "Üç çift; ad koyma istenir.",
+    "Yüksek": "Çocuk kendi çiftini kurar: \"telafi işine yarayan bir işlem yaz.\""
+   },
+   "criterion": "Çözmeden önce sayılara bakıp yol seçtiğini gösteriyor."
+  },
+  {
+   "id": "4.3",
+   "section": 4,
+   "order": 3,
+   "title": "Dost sayı avı",
+   "duration": "4 dk",
+   "minMinutes": 4,
+   "maxMinutes": 4,
+   "bookRef": "Kitap Bölüm 7, §7.6",
+   "bookChapter": 7,
+   "material": "Sayı kartları",
+   "why": "Değişme ve birleşme özelliğini kural olarak değil, işi kolaylaştıran bir araç olarak kurar. Üç toplananlı bir işlemde sırayı değiştirmenin serbest olduğunu çocuğun kendisi keşfeder.",
+   "figure": "figures/etkinlik/kart-4-3.webp",
+   "figureCaption": "Şekil 4.3 · 25 ile 75 önce toplanır: yüz eder. Sıra değişir, toplam değişmez.",
+   "prep": [
+    "On sayı kartı hazırlayın: 25, 75, 40, 60, 18, 82, 35, 65, 12, 88."
+   ],
+   "steps": [
+    "Kartları dağıtın ya da tahtaya dizin.",
+    "\"Birlikte yüz eden çiftleri bulun\" deyin.",
+    "Çiftler bulunduktan sonra üç sayılık bir toplam yazın: 25 + 47 + 75.",
+    "Sıralamayı değiştirmenin serbest olduğunu çocuğa buldurtun."
+   ],
+   "ask": [
+    "Bu ikisi neden birbirine dost?",
+    "Üç sayıyı hangi sırayla toplarsın?",
+    "Sırayı değiştirmek sonucu değiştirir mi?"
+   ],
+   "support": [
+    "Onu tamamlayan çiftlerle başlayın (3–7, 4–6).",
+    "Kartları yarıya indirin.",
+    "Bir çifti siz eşleştirip örnek verin.",
+    "Yüzlük tabloda çiftleri işaretletin."
+   ],
+   "extension": [],
+   "profiles": {
+    "Diskalkuli": "Onun tümleyenleri; kart sayısı altı.",
+    "Düşük": "Yüzün tümleyenleri; on kart.",
+    "Ortalama": "Üç sayılık toplamlar eklenir.",
+    "Yüksek": "Dört sayılık toplam; en verimli sıralama gerekçelendirilir."
+   },
+   "criterion": "Toplananları yeniden sıralayarak işi kolaylaştırıyor ve bunun sonucu değiştirmediğini biliyor."
+  },
+  {
+   "id": "4.4",
+   "section": 4,
+   "order": 4,
+   "title": "Yuvarla ve geri al",
+   "duration": "5 dk",
+   "minMinutes": 5,
+   "maxMinutes": 5,
+   "bookRef": "Kitap Bölüm 7, §7.8",
+   "bookChapter": 7,
+   "material": "Ek A.4",
+   "why": "Telafinin tek kritik adımı geri almadır; en yaygın hata da bu adımın unutulmasıdır. Sayı doğrusunda ileri sıçrama ve geri adım birlikte çizildiğinde hata görünür hâle gelir.",
+   "figure": "figures/etkinlik/kart-4-4.webp",
+   "figureCaption": "Şekil 4.4 · 52 + 39. Kırk eklenir, sonra fazladan eklenen bir geri alınır.",
+   "prep": [
+    "Dört işlem: 52+39, 46+19, 63+29, 74+99."
+   ],
+   "steps": [
+    "İlk işlemi yazın. \"39 hangi sayıya çok yakın?\" diye sorun.",
+    "40 ile çözdürün, sonra fazladan eklenen 1'i geri aldırın.",
+    "Sayı doğrusunda ileri sıçrama ve geri adımı çizdirin.",
+    "Son işlemde 99'u kullanın; telafinin en görünür olduğu yerdir."
+   ],
+   "ask": [
+    "Kaç fazla ekledin?",
+    "Onu ne yapman gerekiyor?",
+    "Çıkarmada da aynı şey olur mu?"
+   ],
+   "support": [
+    "Yalnızca 9 ile çalışın (bir geri).",
+    "Geri alma adımını siz hatırlatın.",
+    "Sayı doğrusunda fazlalığı kırmızıyla işaretletin.",
+    "İşlemi nesneyle kurun: bir fazla verip geri alın."
+   ],
+   "extension": [],
+   "profiles": {
+    "Diskalkuli": "Yalnızca +9; sayı doğrusu açık.",
+    "Düşük": "+9 ve +19.",
+    "Ortalama": "+29, +99 dahil.",
+    "Yüksek": "Çıkarmada telafi denenir: 52 − 39 (yön tersine döner)."
+   },
+   "criterion": "Neyi neden değiştirdiğini adlandırabiliyor: \"bir fazla ekledim, bir geri aldım.\""
+  },
+  {
+   "id": "4.5",
+   "section": 4,
+   "order": 5,
+   "title": "Üç öğrenci, üç yol",
+   "duration": "8 dk",
+   "minMinutes": 8,
+   "maxMinutes": 8,
+   "bookRef": "Kitap Bölüm 7, §7.10",
+   "bookChapter": 7,
+   "material": "Tahta",
+   "why": "Aynı doğru sonuca giden farklı yolları yan yana koyar. Doğru cevap tek başına hiçbir şey söylemez; yolları karşılaştırmak, esnekliğin sınıfta konuşulabilir hâle geldiği andır (Bölüm 3).",
+   "figure": "figures/etkinlik/kart-4-5.webp",
+   "figureCaption": "Şekil 4.5 · 47 + 38 için üç öğrenci çözümü. Üçü de doğru; üçü de ayrı yol.",
+   "prep": [
+    "Üç çözümü tahtaya öğrenci el yazısı gibi yazın. Kimin doğru olduğunu söylemeyin."
+   ],
+   "steps": [
+    "Şekildeki üç çözümü tahtaya yazın.",
+    "\"Üçü de 85 buldu. Yolları aynı mı?\" diye sorun.",
+    "Her yolu bir çocuğa anlattırın ve adlandırın.",
+    "\"Sayılar 47 + 39 olsaydı hangisi daha kolay olurdu?\" diye bitirin."
+   ],
+   "ask": [
+    "A ile B arasındaki fark ne?",
+    "C ne yapmış — neden 2 çıkarmış?",
+    "Hangi yol senin yolun, neden?"
+   ],
+   "support": [
+    "Yalnızca A ve B'yi karşılaştırın.",
+    "Her yolu boş sayı doğrusunda çizdirin.",
+    "Yolları siz adlandırın, çocuk eşleştirsin.",
+    "Sayıları küçültüp (17 + 18) aynı üç yolu tekrar kurun."
+   ],
+   "extension": [],
+   "profiles": {
+    "Diskalkuli": "Tek yol (B) izlenir ve tekrarlanır.",
+    "Düşük": "İki yol karşılaştırılır.",
+    "Ortalama": "Üç yol; adlandırma beklenir.",
+    "Yüksek": "Dördüncü yolu çocuk yazar ve savunur."
+   },
+   "criterion": "Aynı sonuca giden farklı yolları ayırt edip adlandırıyor ve sayılara göre hangisinin daha uygun olduğunu tartışabiliyor."
+  },
+  {
+   "id": "4.6",
+   "section": 4,
+   "order": 6,
+   "title": "Hangisini tercih edersin?",
+   "duration": "6 dk",
+   "minMinutes": 6,
+   "maxMinutes": 6,
+   "bookRef": "Kitap Bölüm 7, §7.3",
+   "bookChapter": 7,
+   "material": "—",
+   "why": "Seçimi serbest, gerekçeyi zorunlu kılar. Çocuk hangi işlemi tercih ettiğini değil, neden tercih ettiğini savunur; bu, strateji seçiminin sınıfta konuşulabilir hâle gelmesidir (Stevens, t.y.).",
+   "figure": "figures/etkinlik/kart-4-6.webp",
+   "figureCaption": "Şekil 4.6 · İki işlem. Biri telafiye açık, öteki değil. Seçim gerekçeyle yapılır.",
+   "prep": [
+    "İki işlem seçin; biri bir stratejiye açıkça uygun olsun (199 + 156 · 173 + 148)."
+   ],
+   "steps": [
+    "İkisini birden yazıp \"hangisini zihinden çözmeyi tercih edersin?\" diye sorun.",
+    "Yanıtı çözmeden önce isteyin.",
+    "Her yanıtta gerekçe isteyin: hangi sayı hangi yolu çağırdı?",
+    "Sonra ikisini de çözdürüp gerekçeleri sınayın."
+   ],
+   "ask": [
+    "Hangisini seçtin, neden?",
+    "199'u görünce aklına ne geldi?",
+    "Seçmediğin işlemi nasıl çözerdin?"
+   ],
+   "support": [
+    "Sayıları küçültün (19 + 15 · 17 + 14).",
+    "Bir işlemin özelliğini siz işaret edin.",
+    "İkisini de çözdürüp hangisinin kısa sürdüğünü saydırın.",
+    "Yalnızca \"kolay/zor\" ayrımı isteyin."
+   ],
+   "extension": [],
+   "profiles": {
+    "Diskalkuli": "İki basamaklı, tek özellik; gerekçe öğretmence söylenir.",
+    "Düşük": "İki basamaklı; gerekçe çocuktan.",
+    "Ortalama": "Üç basamaklı; iki gerekçe karşılaştırılır.",
+    "Yüksek": "Çocuk kendi çiftini kurar: biri telafiye açık, öteki değil."
+   },
+   "criterion": "Seçimini sayıların özelliğine dayandırıyor; \"daha kolay\" demekle yetinmiyor."
+  },
+  {
+   "id": "4.7",
+   "section": 4,
+   "order": 7,
+   "title": "Aynı ama farklı — toplamada",
+   "duration": "5 dk",
+   "minMinutes": 5,
+   "maxMinutes": 5,
+   "bookRef": "Kitap Bölüm 7, §7.2",
+   "bookChapter": 7,
+   "material": "—",
+   "why": "Bir gerçeğin onluklara taşınmasını karşılaştırma yoluyla kurar. Aynı gerçek, farklı birim: 8 + 7 birlikle, 80 + 70 onlukla. Zorluk on beş onluğu \"yüz elli\" diye söylemektedir; bu adım adlandırılmazsa görünmez.",
+   "figure": "figures/etkinlik/kart-4-7.webp",
+   "figureCaption": "Şekil 4.7 · Aynı gerçek, iki birim. Çeviri adımı yalnızca sağdakinde gerekir.",
+   "prep": [
+    "İki işlemi yan yana yazın: 8 + 7 ve 80 + 70."
+   ],
+   "steps": [
+    "İkisini birden gösterin.",
+    "\"Nesi aynı?\" diye sorun; sonra \"nesi farklı?\"",
+    "Sağdakinin sonucunu onluk cinsinden söyletin: on beş onluk.",
+    "Sonra \"on beş onluk kaç eder?\" diye devam edin."
+   ],
+   "ask": [
+    "İkisinin nesi aynı?",
+    "Sağdaki neden biraz daha zor?",
+    "On beş onluk kaç eder? Bunu nasıl söylüyoruz?"
+   ],
+   "support": [
+    "Onlukları bloklarla kurdurun.",
+    "Sonucu siz onluk cinsinden söyleyin, çocuk çevirsin.",
+    "Küçük çiftle başlayın (3 + 4 ve 30 + 40 — çeviri gerekmez).",
+    "Yüzlük tabloda 150'yi buldurun."
+   ],
+   "extension": [],
+   "profiles": {
+    "Diskalkuli": "Çeviri gerektirmeyen çift (3+4, 30+40).",
+    "Düşük": "8+7 ve 80+70; onluk cinsinden söyletilir.",
+    "Ortalama": "Üç boy: 8+7, 80+70, 800+700.",
+    "Yüksek": "Ondalık boy: 0,8 + 0,7."
+   },
+   "criterion": "Onluk toplamayı aynı gerçekten türetiyor ve on onluğu geçtiğinde çevirme gerektiğini adlandırıyor."
+  },
+  {
+   "id": "5.1",
+   "section": 5,
+   "order": 1,
+   "title": "Aynı işlem, üç soru",
+   "duration": "6 dk",
+   "minMinutes": 6,
+   "maxMinutes": 6,
+   "bookRef": "Kitap Bölüm 8, §8.2",
+   "bookChapter": 8,
+   "material": "—",
+   "why": "Çocuğun çıkarmada hangi yolu seçeceğini hikâye belirler. Ayırma geriye saydırır, tamamlama ileriye. Üç anlamı ayırt etmeyen çocuk her çıkarmada geriye sayar ve 62 − 59 gibi işlemlerde gereksiz yere zorlanır.",
+   "figure": "figures/etkinlik/kart-5-1.webp",
+   "figureCaption": "Şekil 5.1 · Tek bir işlem, üç ayrı hikâye, üç ayrı yön.",
+   "prep": [
+    "Tahtaya tek bir işlem yazın: 62 − 45."
+   ],
+   "steps": [
+    "Şekildeki üç hikâyeyi sırayla anlatın; hepsi aynı işleme çıkar.",
+    "Her hikâyede çocuğun aklına gelen ilk yolu sorun.",
+    "Üç hikâyenin farklı yollar çağırdığını gösterin.",
+    "Aynı sembolün üç durumu anlattığını birlikte söyleyin."
+   ],
+   "ask": [
+    "Hangi hikâyede geriye saymak istedin?",
+    "Hangisinde ileriye doğru saydın?",
+    "Üçü de aynı sonucu verdi mi?"
+   ],
+   "support": [
+    "Yalnızca ayırma ile tamamlamayı karşılaştırın.",
+    "Sayıları küçültün (12 − 8).",
+    "Her hikâyeyi nesneyle canlandırın.",
+    "Boş sayı doğrusunda iki yönü de siz çizin."
+   ],
+   "extension": [],
+   "profiles": {
+    "Diskalkuli": "Tek anlam (ayırma) çalışılır.",
+    "Düşük": "Ayırma ve tamamlama.",
+    "Ortalama": "Üç anlam; hangi yolun çağrıldığı tartışılır.",
+    "Yüksek": "Çocuk üçüncü hikâyeyi kendisi yazar."
+   },
+   "criterion": "Aynı sembolün farklı durumları anlattığını görüyor ve duruma göre yön değiştirebiliyor."
+  },
+  {
+   "id": "5.2",
+   "section": 5,
+   "order": 2,
+   "title": "Yakın mı, uzak mı?",
+   "duration": "5 dk",
+   "minMinutes": 5,
+   "maxMinutes": 5,
+   "bookRef": "Kitap Bölüm 8, §8.5",
+   "bookChapter": 8,
+   "material": "Ek A.4",
+   "why": "Dolaylı toplamanın kullanım koşulunu kurar. İki sayı birbirine yakınsa ileri saymak birkaç saniye sürer; uzaksa anlamsızlaşır. Karar çözmeden önce verilir; bu kart o kararı çalıştırır.",
+   "figure": "figures/etkinlik/kart-5-2.webp",
+   "figureCaption": "Şekil 5.2 · Yakın sayılarda ileri say, uzak sayılarda atla. Karar sayılara bakılarak verilir.",
+   "prep": [
+    "İki işlem yazın: 62 − 59 ve 62 − 17."
+   ],
+   "steps": [
+    "İkisini birden gösterip \"aynı yolla mı çözülür?\" diye sorun.",
+    "62 − 59'u 59'dan 62'ye sayarak çözdürün; sayı doğrusunda üç küçük adım.",
+    "62 − 17'de saymanın anlamsızlaştığını gösterin; atlamaya geçin.",
+    "Kuralı çocuğa kurdurtun: sayılar yakınsa ileri say, uzaksa atla."
+   ],
+   "ask": [
+    "59 ile 62 arasında kaç var?",
+    "17 için de saymak ister misin? Neden istemezsin?",
+    "Bir işleme bakınca yakın mı uzak mı olduğunu nasıl anlarsın?"
+   ],
+   "support": [
+    "Yalnızca yakın olan çiftle çalışın.",
+    "Sayı doğrusunda iki sayıyı işaretletip aradaki boşluğu gösterin.",
+    "Aradaki farkı siz sayın, çocuk tekrarlasın.",
+    "Yüzlük tabloda iki sayıyı buldurup uzaklığı gösterin."
+   ],
+   "extension": [],
+   "profiles": {
+    "Diskalkuli": "Yalnızca yakın çiftler (fark ≤ 3).",
+    "Düşük": "Yakın ve uzak; karar öğretmence hatırlatılır.",
+    "Ortalama": "Karar çocuğa bırakılır.",
+    "Yüksek": "Üç basamaklı: 402 − 398 · 402 − 175."
+   },
+   "criterion": "Çözmeden önce iki sayının uzaklığına bakıp yol seçiyor."
+  },
+  {
+   "id": "5.3",
+   "section": 5,
+   "order": 3,
+   "title": "Sabit fark",
+   "duration": "5 dk",
+   "minMinutes": 5,
+   "maxMinutes": 5,
+   "bookRef": "Kitap Bölüm 8, §8.7",
+   "bookChapter": 8,
+   "material": "Ek A.4",
+   "why": "Farkın, iki sayı birlikte kaydırıldığında değişmediğini gösterir. Bu, çıkarmanın en zarif stratejisidir ve onluk bozmayı tümüyle ortadan kaldırır: 63 − 28 yerine 65 − 30 hesaplanır.",
+   "figure": "figures/etkinlik/kart-5-3.webp",
+   "figureCaption": "Şekil 5.3 · İki sayı da iki artırılır; aralarındaki uzaklık değişmez.",
+   "prep": [
+    "Dört işlem: 63 − 28, 71 − 36, 82 − 47, 55 − 19."
+   ],
+   "steps": [
+    "İlk işlemi yazın. \"İkisine de 2 eklersek ne olur?\" diye sorun.",
+    "65 − 30'u çözdürün ve sonucun değişmediğini fark ettirin.",
+    "Sayı doğrusunda iki sayının birlikte kaydığını çizdirin.",
+    "Sonraki işlemlerde kaydırma miktarını çocuk seçsin."
+   ],
+   "ask": [
+    "İkisine de aynı sayıyı eklersek fark neden değişmez?",
+    "Kaç eklemek işi en çok kolaylaştırır?",
+    "Çıkarsak da olur mu?"
+   ],
+   "support": [
+    "Küçük sayılarla gösterin: 7 − 3 ve 8 − 4.",
+    "Sayı doğrusunda iki oku birlikte kaydırın.",
+    "Kaydırma miktarını siz söyleyin.",
+    "Nesneyle kurun: iki gruba da birer ekleyip farkı sayın."
+   ],
+   "extension": [],
+   "profiles": {
+    "Diskalkuli": "Bu strateji ertelenir; atlama ile kalınır.",
+    "Düşük": "Küçük sayılarla tanıtılır (7−3 → 8−4).",
+    "Ortalama": "İki basamaklı işlemlerde kullanılır.",
+    "Yüksek": "Kaydırma miktarı gerekçelendirilir; en verimlisi savunulur."
+   },
+   "criterion": "İki sayıyı birlikte kaydırdığında farkın değişmediğini biliyor ve bunu işi kolaylaştırmak için kullanıyor."
+  },
+  {
+   "id": "5.4",
+   "section": 5,
+   "order": 4,
+   "title": "Parçalama nerede tökezler?",
+   "duration": "6 dk",
+   "minMinutes": 6,
+   "maxMinutes": 6,
+   "bookRef": "Kitap Bölüm 8, §8.3",
+   "bookChapter": 8,
+   "material": "—",
+   "why": "Bir stratejinin sınırını göstermek, stratejiyi öğretmenin parçasıdır. Parçalama toplamada güvenlidir, çıkarmada onluk bozma gerektiğinde tıkanır. Tıkanmayı gizlemek yerine göstermek, çocuğun varsayılan yolunu değiştirir.",
+   "figure": "figures/etkinlik/kart-5-4.webp",
+   "figureCaption": "Şekil 5.4 · Aynı yol, iki işlem. Sağdaki işlemde birlikler yetmez ve parçalama tıkanır.",
+   "prep": [
+    "İki işlem: 68 − 34 ve 62 − 38. Birincisinde onluk bozma yok, ikincisinde var."
+   ],
+   "steps": [
+    "İlk işlemi parçalayarak çözdürün: 60−30=30, 8−4=4, toplam 34. Sorunsuz.",
+    "İkinciyi aynı yolla denetin: 60−30=30, 2−8=? Burada tıkanır.",
+    "Tıkanmayı gizlemeyin; \"burada ne oldu?\" diye sorun.",
+    "Atlama ile aynı işlemi çözdürüp iki yolu karşılaştırın."
+   ],
+   "ask": [
+    "İkinci işlemde neden takıldın?",
+    "2'den 8 çıkar mı?",
+    "Atlama neden burada tökezlemiyor?"
+   ],
+   "support": [
+    "İlk işlemle yetinin; ikinciyi sonraya bırakın.",
+    "Tıkanma noktasını siz adlandırın: \"birlikler yetmiyor.\"",
+    "Atlama yolunu siz çizin, çocuk okusun.",
+    "Onluk bloklarla bozma işlemini fiziksel olarak yaptırın."
+   ],
+   "extension": [],
+   "profiles": {
+    "Diskalkuli": "Yalnızca bozma gerektirmeyen işlemler; atlama tek yol.",
+    "Düşük": "İki işlem karşılaştırılır; atlama varsayılan olur.",
+    "Ortalama": "Karşılaştırma ve gerekçe.",
+    "Yüksek": "Parçalamayı düzelterek kullanmayı dener (negatif ara sonuç)."
+   },
+   "criterion": "Parçalamanın çıkarmada her zaman güvenli olmadığını biliyor ve varsayılan yolu atlama olarak seçiyor."
+  },
+  {
+   "id": "5.5",
+   "section": 5,
+   "order": 5,
+   "title": "Üç öğrenci, üç yol",
+   "duration": "8 dk",
+   "minMinutes": 8,
+   "maxMinutes": 8,
+   "bookRef": "Kitap Bölüm 8, §8.9",
+   "bookChapter": 8,
+   "material": "Tahta",
+   "why": "Hata çözümlemesi, doğru çözümü göstermekten daha çok öğretir. B'nin hatası rastgele değil: birlikleri ters çıkarmak, çıkarmanın en yaygın ve en sistematik hatasıdır (Bölüm 8, Tablo 8.4). Çocuk hatayı bulduğunda kendi hatasını da tanır.",
+   "figure": "figures/etkinlik/kart-5-5.webp",
+   "figureCaption": "Şekil 5.5 · 62 − 38 için üç çözüm. B yanlıştır; hatası birlikleri ters çıkarmaktır.",
+   "prep": [
+    "Üç çözümü tahtaya öğrenci el yazısı gibi yazın. B yanlıştır; bunu söylemeyin."
+   ],
+   "steps": [
+    "Şekildeki üç çözümü tahtaya yazın.",
+    "\"Üçü aynı sonucu vermedi. Hangisi yanlış ve nerede yanlış?\" diye sorun.",
+    "B'nin hatasını çocuklara buldurtun: birlikleri ters çıkarmış.",
+    "C'nin dolaylı toplama olduğunu adlandırın."
+   ],
+   "ask": [
+    "B nerede yanlış yaptı?",
+    "Neden 8 − 2 yazmış olabilir?",
+    "C ileri mi gitmiş geri mi? Bu neden işe yarıyor?"
+   ],
+   "support": [
+    "Yalnızca A ve B'yi karşılaştırın.",
+    "B'yi sayı doğrusunda çizdirin; hata görünür olur.",
+    "Doğru sonucu önce buldurun, sonra B'ye dönün.",
+    "Hatanın yerini siz işaret edin, çocuk nedenini söylesin."
+   ],
+   "extension": [],
+   "profiles": {
+    "Diskalkuli": "Tek doğru yol (A) izlenir; hata çözümlemesi yapılmaz.",
+    "Düşük": "A ve B; hata öğretmen yardımıyla bulunur.",
+    "Ortalama": "Üç yol; hata çocuklarca bulunur.",
+    "Yüksek": "Çocuk B'nin hatasını yapan birine ne söyleyeceğini yazar."
+   },
+   "criterion": "Bir hatanın nerede ve neden olduğunu gösterebiliyor."
+  },
+  {
+   "id": "5.6",
+   "section": 5,
+   "order": 6,
+   "title": "Sayı doğrusunda fark",
+   "duration": "5 dk",
+   "minMinutes": 5,
+   "maxMinutes": 5,
+   "bookRef": "Kitap Bölüm 8, §8.5",
+   "bookChapter": 8,
+   "material": "Ek A.4",
+   "why": "Farkın uzaklık olduğunu görünür kılar. Sayılar büyüdüğü hâlde fark aynı kalabilir; bunu gören çocuk 80 − 74 için geriye saymaya kalkmaz, aradaki uzaklığı okur.",
+   "figure": "figures/etkinlik/kart-5-6.webp",
+   "figureCaption": "Şekil 5.6 · İki çiftin de farkı 6. Sayılar büyük olsa da uzaklık aynıdır.",
+   "prep": [
+    "İki çıkarma yazın: 20 − 14 ve 80 − 74."
+   ],
+   "steps": [
+    "İkisini birden gösterip \"hangisi daha zor?\" diye sorun.",
+    "İkisini boş sayı doğrusunda çizdirin.",
+    "Farkların aynı olduğunu fark ettirin.",
+    "\"Sayı büyüdü ama fark büyümedi\" cümlesini birlikte kurun."
+   ],
+   "ask": [
+    "İki çiftin farkı ne?",
+    "Sayılar büyüdü; fark neden büyümedi?",
+    "Doğruda hangi uzunluk farkı gösteriyor?"
+   ],
+   "support": [
+    "Tek çiftle çalışın.",
+    "Doğruyu siz çizin, çocuk uzaklığı saysın.",
+    "Sayıları 20'nin altına indirin (8 − 5 ve 18 − 15).",
+    "Yüzlük tabloda iki çifti işaretletin."
+   ],
+   "extension": [],
+   "profiles": {
+    "Diskalkuli": "Tek çift, 20'nin altında.",
+    "Düşük": "İki çift; doğru açık kalır.",
+    "Ortalama": "İki çift; doğru olmadan.",
+    "Yüksek": "Üç basamak: 120 − 114 ve 820 − 814."
+   },
+   "criterion": "Farkı uzaklık olarak görüyor; sayıların büyüklüğünün farkı değiştirmediğini söyleyebiliyor."
+  },
+  {
+   "id": "5.7",
+   "section": 5,
+   "order": 7,
+   "title": "Hangisini tercih edersin? — çıkarmada",
+   "duration": "6 dk",
+   "minMinutes": 6,
+   "maxMinutes": 6,
+   "bookRef": "Kitap Bölüm 8, §8.5",
+   "bookChapter": 8,
+   "material": "—",
+   "why": "Yazılı algoritma iki işlemi de aynı biçimde çözer; zihinden hesap çözmez. Bu kart, çocuğun çözmeden önce sayılara bakmasını çıkarmada da alışkanlık hâline getirir.",
+   "figure": "figures/etkinlik/kart-5-7.webp",
+   "figureCaption": "Şekil 5.7 · 301 − 298 yakın, 301 − 176 uzak. İki ayrı yol çağırır.",
+   "prep": [
+    "İki çıkarma seçin: 301 − 298 ve 301 − 176."
+   ],
+   "steps": [
+    "İkisini birden yazıp \"hangisini tercih edersin?\" diye sorun.",
+    "Yanıtı çözmeden önce isteyin.",
+    "Gerekçeyi isteyin: sayılar yakın mı, uzak mı?",
+    "Sonra ikisini de çözdürüp yolların ayrıştığını gösterin."
+   ],
+   "ask": [
+    "Hangisini seçtin, neden?",
+    "298 ile 301 arasında kaç var?",
+    "Yazılı işlem yapsaydın ikisi arasında fark olur muydu?"
+   ],
+   "support": [
+    "Sayıları küçültün (31 − 28 · 31 − 16).",
+    "İlk işlemi siz sayı doğrusunda çizin.",
+    "Aradaki uzaklığı siz söyleyin.",
+    "Yalnızca \"yakın mı uzak mı\" sorusuyla kalın."
+   ],
+   "extension": [],
+   "profiles": {
+    "Diskalkuli": "İki basamaklı; karar öğretmence hatırlatılır.",
+    "Düşük": "İki basamaklı; karar çocuktan.",
+    "Ortalama": "Üç basamaklı; iki gerekçe.",
+    "Yüksek": "Çocuk kendi çiftini kurar."
+   },
+   "criterion": "Yolu sayılara bakarak seçiyor ve yazılı algoritmanın bu ayrımı yapmadığını fark ediyor."
+  },
+  {
+   "id": "6.1",
+   "section": 6,
+   "order": 1,
+   "title": "Kaç satır, her satırda kaç?",
+   "duration": "5 dk",
+   "minMinutes": 5,
+   "maxMinutes": 5,
+   "bookRef": "Kitap Bölüm 9, §9.3",
+   "bookChapter": 9,
+   "material": "Kareli kâğıt",
+   "why": "Diziyi yapılandırılmış bir bütün olarak görmeyi kurar. Aynı dizi çeyrek tur döndürüldüğünde kare sayısı değişmez; değişme özelliği burada gösterilir, ezberletilmez.",
+   "figure": "figures/etkinlik/kart-6-1.webp",
+   "figureCaption": "Şekil 6.1 · 4 × 6 döndürülünce 6 × 4 olur. Kare sayısı aynı kalır.",
+   "prep": [
+    "Kareli kâğıt ve kalem. Tahtaya bir çarpım yazın: 4 × 6."
+   ],
+   "steps": [
+    "Çocuklardan 4 × 6'yı kareli kâğıda dikdörtgen olarak çizmelerini isteyin.",
+    "Çizim bitince \"kaç satır, her satırda kaç?\" diye sorun.",
+    "Kâğıdı çeyrek tur döndürtün: aynı dikdörtgen 6 × 4 olur.",
+    "Toplam kare sayısının değişmediğini çocuğa söyletin."
+   ],
+   "ask": [
+    "Kaç satır var, her satırda kaç kare?",
+    "Kâğıdı döndürünce ne değişti, ne değişmedi?",
+    "4 × 6 ile 6 × 4 aynı mı? Neden?"
+   ],
+   "support": [
+    "Dikdörtgeni siz çizin, çocuk satırları saysın.",
+    "Satırları renklendirtin.",
+    "Sayıları küçültün (2 × 5).",
+    "Nesnelerle sıralar kurdurun, sonra kâğıda geçin."
+   ],
+   "extension": [],
+   "profiles": {
+    "Diskalkuli": "2 × 5 gibi küçük diziler; nesneyle.",
+    "Düşük": "4 × 6; döndürme gösterilir.",
+    "Ortalama": "Döndürme çocuğa buldurulur.",
+    "Yüksek": "7 × 8; dizi iki parçaya ayrılarak çözülür."
+   },
+   "criterion": "Diziyi yapılandırılmış bir bütün olarak görüyor: satır ve sütun sayısını söyleyip toplamı tek tek saymadan bulabiliyor."
+  },
+  {
+   "id": "6.2",
+   "section": 6,
+   "order": 2,
+   "title": "Diziyi böl",
+   "duration": "6 dk",
+   "minMinutes": 6,
+   "maxMinutes": 6,
+   "bookRef": "Kitap Bölüm 9, §9.3",
+   "bookChapter": 9,
+   "material": "Kareli kâğıt",
+   "why": "Dağılma özelliğinin sınıftaki ilk somut hâlidir. Bilmediği çarpımı bildiği çarpımlardan kuran çocuk, çarpım tablosunun ezberlenecek yükünü kendisi azaltır.",
+   "figure": "figures/etkinlik/kart-6-2.webp",
+   "figureCaption": "Şekil 6.2 · 7 × 6 dizisi beşten bölünür: 5 × 6 ve 2 × 6. Toplamları bütünü verir.",
+   "prep": [
+    "7 × 6 dizisi çizili bir kâğıt ve makas (ya da kalemle çizgi)."
+   ],
+   "steps": [
+    "Çocuk 7 × 6'yı bilmiyorsa diziyi bildiği yerden böler: 5 × 6 ve 2 × 6.",
+    "İki parçayı ayrı ayrı hesaplattırıp toplattırın.",
+    "Bölme yerini değiştirtin (4 × 6 ve 3 × 6) ve sonucun aynı çıktığını gösterin.",
+    "Bu yolun adını koyun: kısmi çarpımlar."
+   ],
+   "ask": [
+    "Diziyi nereden böldün, neden orayı seçtin?",
+    "İki parçanın toplamı neden bütünü veriyor?",
+    "Başka bir yerden bölsen sonuç değişir mi?"
+   ],
+   "support": [
+    "Bölme yerini siz gösterin (beşten).",
+    "Parçaları ayrı ayrı çizdirip yan yana koyun.",
+    "Yalnızca beşli bölmeyle çalışın.",
+    "Bölmeyi fiziksel yapın: kâğıdı gerçekten kesin."
+   ],
+   "extension": [],
+   "profiles": {
+    "Diskalkuli": "5 × 6 gibi tek parça; bölme yapılmaz.",
+    "Düşük": "Beşten bölme; tek yol.",
+    "Ortalama": "İki farklı bölme karşılaştırılır.",
+    "Yüksek": "6 × 14 gibi iki basamaklı: 6 × 10 ve 6 × 4."
+   },
+   "criterion": "Bilmediği çarpımı bildiği çarpımlardan kuruyor."
+  },
+  {
+   "id": "6.3",
+   "section": 6,
+   "order": 3,
+   "title": "İkile ve yarıla",
+   "duration": "5 dk",
+   "minMinutes": 5,
+   "maxMinutes": 5,
+   "bookRef": "Kitap Bölüm 9, §9.7",
+   "bookChapter": 9,
+   "material": "Kareli kâğıt",
+   "why": "Stratejinin neden işe yaradığını dizide gösterir: bir kenar yarılanıp öteki ikilendiğinde dikdörtgenin alanı değişmez. Aynı kart stratejinin sınırını da gösterir; 7 × 6 için 14 × 3 daha kolay değildir.",
+   "figure": "figures/etkinlik/kart-6-3.webp",
+   "figureCaption": "Şekil 6.3 · 24 × 5 ile 12 × 10 aynı alanı kaplar. Yarılama ve ikileme birbirini dengeler.",
+   "prep": [
+    "Dört işlem: 24 × 5, 16 × 25, 14 × 5, 7 × 6."
+   ],
+   "steps": [
+    "24 × 5'i yazın. \"Bir çarpanı yarılayıp ötekini ikilersek?\" diye sorun.",
+    "12 × 10 = 120 sonucuna gidin.",
+    "Dizide neden işe yaradığını gösterin: dikdörtgenin alanı değişmez.",
+    "Son işlemde sınırı gösterin: 7 × 6 için 14 × 3 daha kolay değildir."
+   ],
+   "ask": [
+    "Hangi çarpanı yarıladın, neden onu seçtin?",
+    "Alan neden değişmedi?",
+    "Bu yol her işlemde işe yarar mı?"
+   ],
+   "support": [
+    "Yalnızca 5 ile biten çarpanlarda çalışın.",
+    "Dizide yarılamayı ve ikilemeyi siz çizin.",
+    "Adımı ikiye bölün: önce yarıla, sonra ikile.",
+    "İki katını almayı ayrı çalıştırın (çift sayılarla)."
+   ],
+   "extension": [],
+   "profiles": {
+    "Diskalkuli": "Bu strateji ertelenir; tekrarlı toplama sürer.",
+    "Düşük": "Yalnızca ×5 işlemleri.",
+    "Ortalama": "×5, ×25, ×50.",
+    "Yüksek": "Ardışık ikileme: 16 × 25 → 8 × 50 → 4 × 100."
+   },
+   "criterion": "Stratejinin nerede işe yaradığını ve nerede yaramadığını söyleyebiliyor."
+  },
+  {
+   "id": "6.4",
+   "section": 6,
+   "order": 4,
+   "title": "Sekiz aile",
+   "duration": "6 dk",
+   "minMinutes": 6,
+   "maxMinutes": 6,
+   "bookRef": "Kitap Bölüm 9, §9.5",
+   "bookChapter": 9,
+   "material": "Boş çarpım ızgarası",
+   "why": "Ezberlenecek yükün sanıldığından küçük olduğunu çocuğa gösterir. Kalan gerçekler dolu hücrelerden türetilebilir.",
+   "figure": "figures/etkinlik/kart-6-4.webp",
+   "figureCaption": "Şekil 6.4 · Yeşil hücreler kolay aileler. Kırmızı kalan gerçekler azdır ve yeşillerden türetilir.",
+   "prep": [
+    "10 × 10'luk boş çarpım ızgarası çıkarın."
+   ],
+   "steps": [
+    "Çocuklardan bildikleri çarpımları ızgaraya doldurmalarını isteyin.",
+    "Dolan hücrelerin nasıl kümelendiğini gösterin: sıfırlar, birler, ikiler, beşler, onlar, ikilemeler.",
+    "Kalan boş hücreleri sayıp türetme yollarını konuşun."
+   ],
+   "ask": [
+    "Hangi aileler tamamen dolu?",
+    "Kaç hücre boş kaldı?",
+    "Boş kalan bir hücreyi hangi dolu hücreden türetebilirsin?"
+   ],
+   "support": [
+    "Yalnızca 1, 2, 5 ve 10 satırlarını doldurtun.",
+    "Aileleri siz adlandırın ve renklendirin.",
+    "Bir boş hücreyi birlikte türetin.",
+    "Izgarayı 5 × 5'e küçültün."
+   ],
+   "extension": [],
+   "profiles": {
+    "Diskalkuli": "1, 2, 5, 10 satırları; ızgara yarım.",
+    "Düşük": "Altı aile; boş hücre sayısı konuşulur.",
+    "Ortalama": "Sekiz aile; türetme yolları adlandırılır.",
+    "Yüksek": "Çocuk kendi türetme haritasını çizer."
+   },
+   "criterion": "Ezberlenecek yükün sanıldığı kadar büyük olmadığını görüyor ve boş hücreleri dolu olanlardan türetebiliyor."
+  },
+  {
+   "id": "6.5",
+   "section": 6,
+   "order": 5,
+   "title": "Üç öğrenci, üç yol",
+   "duration": "8 dk",
+   "minMinutes": 8,
+   "maxMinutes": 8,
+   "bookRef": "Kitap Bölüm 9, §9.10",
+   "bookChapter": 9,
+   "material": "Tahta",
+   "why": "İkileme–yarılamanın dengeli olması gerektiğini bir hata üzerinden kurar. İki çarpanı birden ikilemek alanı dörde katlar; bu hata dizide gösterildiğinde bir daha yapılmaz.",
+   "figure": "figures/etkinlik/kart-6-5.webp",
+   "figureCaption": "Şekil 6.5 · 16 × 25 için üç çözüm. C iki kenarı birden ikilemiş; sonuç dört katı.",
+   "prep": [
+    "Üç çözümü tahtaya yazın. C yanlıştır: çocuk her iki çarpanı da ikilemiş."
+   ],
+   "steps": [
+    "Şekildeki üç çözümü tahtaya yazın.",
+    "\"Üçü aynı sonucu vermedi. C ne yapmış?\" diye sorun.",
+    "C'nin hatasını dizide gösterin: iki kenarı da ikilemek alanı dörde katlar.",
+    "A ve B'yi adlandırın: kısmi çarpımlar · ikileme–yarılama."
+   ],
+   "ask": [
+    "C neden dört katını buldu?",
+    "Dizide iki kenarı birden ikilersek ne olur?",
+    "A ile B'den hangisi daha az adım?"
+   ],
+   "support": [
+    "Yalnızca A ve B'yi karşılaştırın.",
+    "C'nin hatasını dizide siz çizin.",
+    "Sayıları küçültün (4 × 5) ve aynı hatayı gösterin.",
+    "Doğru sonucu önce buldurun."
+   ],
+   "extension": [],
+   "profiles": {
+    "Diskalkuli": "Tek yol (A) izlenir.",
+    "Düşük": "A ve B karşılaştırılır.",
+    "Ortalama": "Üç yol; hata bulunur ve adlandırılır.",
+    "Yüksek": "Çocuk C'yi düzelten bir açıklama yazar."
+   },
+   "criterion": "İkileme–yarılamanın dengeli olması gerektiğini biliyor: bir çarpan ikilenirse öteki yarılanır."
+  },
+  {
+   "id": "6.6",
+   "section": 6,
+   "order": 6,
+   "title": "Dokuzlar",
+   "duration": "5 dk",
+   "minMinutes": 5,
+   "maxMinutes": 5,
+   "bookRef": "Kitap Bölüm 9, §9.6",
+   "bookChapter": 9,
+   "material": "Kareli kâğıt",
+   "why": "Dokuzlar ailesini ezberden çıkarıp onlardan türetmeye taşır. 7 × 9, 7 × 10'dan bir grup eksiktir; dizide bu, son sütunun çıkarılmasıdır. Parmak hilesi öğretmeye gerek kalmaz.",
+   "figure": "figures/etkinlik/kart-6-6.webp",
+   "figureCaption": "Şekil 6.6 · 7 × 10 dizisinden son sütun çıkarılır: 70 − 7 = 63.",
+   "prep": [
+    "Kareli kâğıt. Tahtaya 7 × 10 dizisi çizin."
+   ],
+   "steps": [
+    "7 × 10'u birlikte hesaplayın: 70.",
+    "Son sütunu çizgiyle ayırın. \"7 × 9 için ne yapmalıyız?\" diye sorun.",
+    "Bir sütun (yedi kare) çıkarıldığını gösterin: 70 − 7 = 63.",
+    "Aynı yolu 6 × 9, 8 × 9 için tekrarlayın."
+   ],
+   "ask": [
+    "7 × 10 kaç?",
+    "7 × 9 için kaç tane eksiliyor?",
+    "8 × 9'u aynı yolla nasıl bulursun?"
+   ],
+   "support": [
+    "Diziyi siz çizip son sütunu birlikte sayın.",
+    "Çarpanı küçültün (3 × 9).",
+    "Ondan çıkarma adımını siz söyleyin.",
+    "Onlar çarpımını hatırlatın: \"Önce 3 × 10 kaç?\""
+   ],
+   "extension": [],
+   "profiles": {
+    "Diskalkuli": "3 × 9, 4 × 9; dizi görünür.",
+    "Düşük": "Bütün dokuzlar; dizi açık kalır.",
+    "Ortalama": "Dizi olmadan; sözel türetme.",
+    "Yüksek": "9 × 12, 9 × 15 gibi genişletme."
+   },
+   "criterion": "Dokuzları onlardan bir grup eksilterek buluyor ve neden böyle olduğunu gösterebiliyor."
+  },
+  {
+   "id": "6.7",
+   "section": 6,
+   "order": 7,
+   "title": "Hangisi farklı? — çarpımlar",
+   "duration": "6 dk",
+   "minMinutes": 6,
+   "maxMinutes": 6,
+   "bookRef": "Kitap Bölüm 9, §9.5",
+   "bookChapter": 9,
+   "material": "—",
+   "why": "Çarpımlara ve çarpanlara ayrı ayrı bakmayı öğretir. Üç işlem aynı çarpımı verirken dördüncüsü hem sonuç hem yapı bakımından ayrılır; çocuk hangi ölçütü kullandığını söylemek zorunda kalır.",
+   "figure": "figures/etkinlik/kart-6-7.webp",
+   "figureCaption": "Şekil 6.7 · Dört çarpım. Üçünün sonucu aynı; ayrım ölçüte göre değişir.",
+   "prep": [
+    "Dört çarpım seçin: 6 × 4, 8 × 3, 12 × 2, 5 × 5."
+   ],
+   "steps": [
+    "Dördünü birden yazın.",
+    "\"Hangisi farklı?\" diye sorun; gerekçe isteyin.",
+    "Çarpımları hesaplattırın; üçünün aynı çıktığını gösterin.",
+    "Çarpanlara da baktırın: tek/çift, iki basamaklı, kare sayı."
+   ],
+   "ask": [
+    "Hangisi farklı, neden?",
+    "Sonuçlara mı çarpanlara mı baktın?",
+    "Başka bir ölçüt bulabilir misin?"
+   ],
+   "support": [
+    "Yalnızca çarpımları hesaplattırın.",
+    "İkisini karşılaştırın (6 × 4 ve 5 × 5).",
+    "Bir ölçütü siz adlandırın: \"Çarpanlardan biri tek mi?\"",
+    "Dizileri çizdirip biçimlerini karşılaştırın."
+   ],
+   "extension": [],
+   "profiles": {
+    "Diskalkuli": "İki çarpım; yalnızca sonuç.",
+    "Düşük": "Dört çarpım; tek gerekçe.",
+    "Ortalama": "Dört çarpım; iki gerekçe (sonuç ve çarpan).",
+    "Yüksek": "Çocuk kendi dörtlüsünü kurar."
+   },
+   "criterion": "Ölçütünü söyleyebiliyor: sonuca mı, çarpanlara mı, yapıya mı baktığını adlandırıyor."
+  },
+  {
+   "id": "7.1",
+   "section": 7,
+   "order": 1,
+   "title": "İki soru, bir işlem",
+   "duration": "6 dk",
+   "minMinutes": 6,
+   "maxMinutes": 6,
+   "bookRef": "Kitap Bölüm 10, §10.2",
+   "bookChapter": 10,
+   "material": "24 nesne, 4 kap",
+   "why": "Çocukların baskın örtük modeli paylaştırmadır; gruplama anlamı kendiliğinden gelmez ve ayrıca kurulmalıdır. İki anlamı ayırt etmeyen çocuk, \"kaç grup\" soran problemlerde tıkanır.",
+   "figure": "figures/etkinlik/kart-7-1.webp",
+   "figureCaption": "Şekil 7.1 · Aynı işlem, iki ayrı soru. Solda grup büyüklüğü, sağda grup sayısı aranır.",
+   "prep": [
+    "Yirmi dört düğme, kapak ya da benzeri nesne; dört küçük kap."
+   ],
+   "steps": [
+    "Paylaştırma: \"24 düğmeyi 4 kaba eşit paylaştır.\" Çocuk dağıtır.",
+    "Gruplama: \"24 düğmeyi 4'erli gruplara ayır.\" Çocuk gruplar.",
+    "İki işi yan yana koyup \"ikisi de 24 ÷ 4 mü?\" diye sorun.",
+    "Bulunanın ne olduğunu ayırt ettirin: biri grup büyüklüğü, öteki grup sayısı."
+   ],
+   "ask": [
+    "Birinci işte neyi buldun — kaç kap mı, kaçar tane mi?",
+    "İkincide ne buldun?",
+    "İkisi de 24 ÷ 4 ise sonuç neden aynı çıktı?"
+   ],
+   "support": [
+    "Yalnızca paylaştırmayla çalışın.",
+    "Sayıyı 12'ye indirin.",
+    "İki işi ayrı günlerde yapın.",
+    "Grupları siz kurun, çocuk saysın."
+   ],
+   "extension": [],
+   "profiles": {
+    "Diskalkuli": "Yalnızca paylaştırma; nesneyle.",
+    "Düşük": "İki anlam; ayrı ayrı, nesneyle.",
+    "Ortalama": "İki anlam yan yana; ayrım sözelleşir.",
+    "Yüksek": "Çocuk her anlam için bir problem yazar."
+   },
+   "criterion": "Aynı işlemin iki farklı soruya yanıt verdiğini biliyor."
+  },
+  {
+   "id": "7.2",
+   "section": 7,
+   "order": 2,
+   "title": "Gerçek ailesi",
+   "duration": "5 dk",
+   "minMinutes": 5,
+   "maxMinutes": 5,
+   "bookRef": "Kitap Bölüm 10, §10.3",
+   "bookChapter": 10,
+   "material": "Ek A.6 gerçek ailesi kartı",
+   "why": "Ters ilişkiyi doğrudan çalıştırır. Dört cümleyi dört ayrı bilgi gibi ezberleyen çocuk her birini ayrı ayrı öğrenmek zorunda kalır; tek bir ilişki gören çocuk birini bilirse dördünü de bilir.",
+   "figure": "figures/etkinlik/kart-7-2.webp",
+   "figureCaption": "Şekil 7.2 · 6, 7, 42 üçlüsünden dört cümle. Dört ayrı bilgi değil, tek ilişkinin dört yüzü.",
+   "prep": [
+    "Tahtaya bir sayı üçlüsü yazın: 6, 7, 42."
+   ],
+   "steps": [
+    "Bu üçlüyle kurulabilecek bütün cümleleri yazdırın.",
+    "Dördü de çıkınca tek bir ilişki olduğunu gösterin.",
+    "Sonra bir gerçeği eksik verin: 8, 9, ___ ve 4, ___, 28.",
+    "Eksiği bulmanın ters ilişkiyi çalıştırdığını söyleyin."
+   ],
+   "ask": [
+    "Kaç cümle kurabildin?",
+    "42 ÷ 6'yı bulurken hangi çarpımı düşündün?",
+    "Eksik sayıyı nasıl buldun?"
+   ],
+   "support": [
+    "Yalnızca iki çarpma cümlesini isteyin.",
+    "Üçlüyü diziyle gösterin.",
+    "İlk bölme cümlesini siz yazın.",
+    "Üçlüyü küçültün (2, 5, 10)."
+   ],
+   "extension": [],
+   "profiles": {
+    "Diskalkuli": "İki cümle (çarpma); dizi görünür.",
+    "Düşük": "Dört cümle; üçlü verilir.",
+    "Ortalama": "Eksik üçlüler eklenir.",
+    "Yüksek": "Çocuk kendi üçlüsünü kurar ve eksiltir."
+   },
+   "criterion": "Dört cümleyi dört ayrı bilgi olarak değil, tek bir ilişkinin dört yüzü olarak görüyor."
+  },
+  {
+   "id": "7.3",
+   "section": 7,
+   "order": 3,
+   "title": "Yarıla, yarıla",
+   "duration": "4 dk",
+   "minMinutes": 4,
+   "maxMinutes": 4,
+   "bookRef": "Kitap Bölüm 10, §10.6",
+   "bookChapter": 10,
+   "material": "—",
+   "why": "Dörde ve sekize bölmeyi ardışık yarılamaya çevirir. Çocuk kaç adım gerektiğini önceden söyleyebiliyorsa yapıyı kurmuş demektir; aynı kart stratejinin sınırını da gösterir (üçe bölmede işlemez).",
+   "figure": "figures/etkinlik/kart-7-3.webp",
+   "figureCaption": "Şekil 7.3 · 48 üç kez yarılanır. Dörde bölmek iki, sekize bölmek üç yarılamadır.",
+   "prep": [
+    "Dört işlem: 48 ÷ 4, 72 ÷ 8, 96 ÷ 8, 120 ÷ 8."
+   ],
+   "steps": [
+    "48 ÷ 4'ü yazın. \"Önce ikiye bölsek, sonra yine ikiye?\" diye sorun.",
+    "48 → 24 → 12 adımlarını izletin.",
+    "Dörde bölmenin iki kez yarılamak olduğunu söyletin.",
+    "Sekize bölmede üç kez yarılandığını buldurtun."
+   ],
+   "ask": [
+    "Kaç kez yarıladın?",
+    "Dörde bölmek neden iki yarılama?",
+    "Sekize bölmek kaç yarılama olur?"
+   ],
+   "support": [
+    "Yalnızca ikiye bölmeyle çalışın.",
+    "Sayıyı 20'nin altına indirin.",
+    "Yarılamayı nesneyle yaptırın.",
+    "Ara sonucu siz söyleyin."
+   ],
+   "extension": [],
+   "profiles": {
+    "Diskalkuli": "Yalnızca ikiye bölme; nesneyle.",
+    "Düşük": "İki kez yarılama (÷4).",
+    "Ortalama": "Üç kez yarılama (÷8).",
+    "Yüksek": "Yarılamanın işlemediği bölen bulunur (÷3, ÷5, ÷7)."
+   },
+   "criterion": "Dörde ve sekize bölmeyi ardışık yarılama olarak yapabiliyor ve kaç adım gerektiğini önceden söyleyebiliyor."
+  },
+  {
+   "id": "7.4",
+   "section": 7,
+   "order": 4,
+   "title": "Kalanla ne yapılır?",
+   "duration": "7 dk",
+   "minMinutes": 7,
+   "maxMinutes": 7,
+   "bookRef": "Kitap Bölüm 10, §10.5",
+   "bookChapter": 10,
+   "material": "—",
+   "why": "Bölme öğretiminin en sık atlanan ve en çok hata üreten noktasıdır. İşlem aynıyken yanıt üç ayrı çıkabilir; kalanı yorumlayan şey sorunun kendisidir. Bunu görmeyen çocuk her kalanı aynı biçimde işler.",
+   "figure": "figures/etkinlik/kart-7-4.webp",
+   "figureCaption": "Şekil 7.4 · 29 ÷ 5 · Aynı işlem, üç ayrı yanıt. Kalanı soru yorumlar.",
+   "prep": [
+    "Tek bir bağlam hazırlayın: 29 çocuk, 5 kişilik araçlar."
+   ],
+   "steps": [
+    "Şekildeki üç soruyu sırayla sorun.",
+    "Üç yanıtın farklı olduğunu (5, 6, 4) gösterin.",
+    "İşlemin aynı olduğunu vurgulayın: 29 ÷ 5.",
+    "Kalanın soruya göre yorumlandığını söyletin."
+   ],
+   "ask": [
+    "İşlem aynıyken yanıtlar neden farklı?",
+    "Kalan 4 hangi soruda cevabın kendisi oldu?",
+    "Hangi soruda kalanı yukarı yuvarladın?"
+   ],
+   "support": [
+    "Tek soruyla başlayın (kaç dolar).",
+    "Durumu nesneyle canlandırın.",
+    "Sayıları küçültün (13 çocuk, 4 kişilik).",
+    "Üç soruyu ayrı ayrı ve arayla sorun."
+   ],
+   "extension": [
+    "Aynı bağlamı kesirle sürdürün: \"Kalan dört çocuk için ne yaparsınız?\" Kalanın bir kesre dönüştüğü durumlar on birinci bölüme köprü kurar."
+   ],
+   "profiles": {
+    "Diskalkuli": "Tek yorum (kaç dolar); nesneyle.",
+    "Düşük": "İki yorum.",
+    "Ortalama": "Üç yorum; ayrım sözelleşir.",
+    "Yüksek": "Çocuk kalanın yok sayıldığı bir durum yazar."
+   },
+   "criterion": "Aynı işlemin kalanını bağlama göre yorumluyor."
+  },
+  {
+   "id": "7.5",
+   "section": 7,
+   "order": 5,
+   "title": "Kısmi bölümler",
+   "duration": "6 dk",
+   "minMinutes": 6,
+   "maxMinutes": 6,
+   "bookRef": "Kitap Bölüm 10, §10.7",
+   "bookChapter": 10,
+   "material": "—",
+   "why": "Büyük bölmeleri bilinen katlardan kurar. Çocuk 144 ÷ 6'yı bilmiyor olabilir ama 10 × 6'yı bilir; oradan başlayıp kalanı azaltmak, uzun bölme algoritmasının kavramsal karşılığıdır.",
+   "figure": "figures/etkinlik/kart-7-5.webp",
+   "figureCaption": "Şekil 7.5 · 144 ÷ 6. Bilinen katlar çıkarılır, bölümler toplanır.",
+   "prep": [
+    "Tahtaya 144 ÷ 6 yazın. Çocukların 10 × 6'yı bildiğinden emin olun."
+   ],
+   "steps": [
+    "\"6'nın bildiğin bir katı var mı?\" diye sorun — 10 × 6 = 60.",
+    "60'ı çıkarttırın: 144 − 60 = 84. Bir kez daha: 84 − 60 = 24.",
+    "Kalan 24 için 4 × 6'yı buldurtun.",
+    "Bölümleri toplattırın: 10 + 10 + 4 = 24."
+   ],
+   "ask": [
+    "Hangi katı kullandın, neden onu seçtin?",
+    "Kaç kaldı?",
+    "Bölümleri neden topluyoruz?"
+   ],
+   "support": [
+    "Yalnızca 10 × 6 adımıyla başlayın.",
+    "Sayıyı küçültün (72 ÷ 6).",
+    "Kalanı siz hesaplayın.",
+    "Adımları bir tabloya yazdırın; toplamayı sonda yapın."
+   ],
+   "extension": [],
+   "profiles": {
+    "Diskalkuli": "72 ÷ 6; tek adım (10 × 6, sonra kalan).",
+    "Düşük": "144 ÷ 6; adımlar birlikte.",
+    "Ortalama": "144 ÷ 6; çocuk katı kendi seçer.",
+    "Yüksek": "20 × 6 gibi daha büyük katlarla adım sayısını azaltır."
+   },
+   "criterion": "Bölmeyi bilinen katlardan kuruyor ve bölümleri toplamanın neden doğru sonucu verdiğini söyleyebiliyor."
+  },
+  {
+   "id": "7.6",
+   "section": 7,
+   "order": 6,
+   "title": "Çöken kural",
+   "duration": "5 dk",
+   "minMinutes": 5,
+   "maxMinutes": 5,
+   "bookRef": "Kitap Bölüm 10, §10.9",
+   "bookChapter": 10,
+   "material": "—",
+   "why": "\"Sıfırı sil\" kuralı tam sayılarda çalışır, ondalıklarda çöker. Kuralı yasaklamak yerine nerede çöktüğünü göstermek, çocuğun kuralı kendi eliyle bırakmasını sağlar. Karp ve arkadaşlarının \"süresi dolan kurallar\" listesinin başında bu vardır.",
+   "figure": "figures/etkinlik/kart-7-6.webp",
+   "figureCaption": "Şekil 7.6 · 450 ÷ 10 için kural işler; 45 ÷ 10 için silinecek sıfır yoktur.",
+   "prep": [
+    "İki işlem yazın: 450 ÷ 10 ve 45 ÷ 10."
+   ],
+   "steps": [
+    "İlk işlemi sorun; çoğu çocuk \"sıfırı sil\" diyecektir.",
+    "İkinci işlemi sorun: silinecek sıfır yoktur.",
+    "\"Peki gerçekte ne oluyor?\" diye sorun ve rakamların kaydığını gösterin.",
+    "Doğru anlatımı birlikte kurun: rakamlar bir basamak sağa kayar."
+   ],
+   "ask": [
+    "İlk işlemi nasıl yaptın?",
+    "İkincide neden takıldın?",
+    "Virgül mü kayıyor, rakamlar mı?"
+   ],
+   "support": [
+    "Yalnızca ilk işlemle kalın; ikincisini sonraya bırakın.",
+    "Basamak tablosunda rakamları elle kaydırtın.",
+    "Yüzlük tabloda 45'in onda birini aratmayın; bloklarla gösterin.",
+    "Sonucu siz söyleyin, çocuk nedenini açıklasın."
+   ],
+   "extension": [],
+   "profiles": {
+    "Diskalkuli": "Yalnızca tam sayılar; kural sınanmaz.",
+    "Düşük": "İki örnek; çöküş gösterilir.",
+    "Ortalama": "Doğru anlatım çocuktan beklenir.",
+    "Yüksek": "Yüze bölme ve 4,5 ÷ 10 eklenir."
+   },
+   "criterion": "Kuralın nerede çöktüğünü gösterebiliyor ve yerine basamak kaymasını koyabiliyor."
+  },
+  {
+   "id": "8.1",
+   "section": 8,
+   "order": 1,
+   "title": "On saniye",
+   "duration": "4 dk",
+   "minMinutes": 4,
+   "maxMinutes": 4,
+   "bookRef": "Kitap Bölüm 11, §11.2",
+   "bookChapter": 11,
+   "material": "—",
+   "why": "Süre kısıtı, kesin hesabı fiilen imkânsız kılar; böylece çocuk tahmin etmek zorunda kalır. Kısıt kaldırıldığında çoğu öğrenci işlemi yapıp yuvarlamaya döner, ki bu tahmin değildir.",
+   "figure": "figures/etkinlik/kart-8-1.webp",
+   "figureCaption": "Şekil 8.1 · 47 + 52. Sayılar değiştirilir, sonra toplanır. Kesin sonuç hiç hesaplanmaz.",
+   "prep": [
+    "Beş işlem hazırlayın: 47+52, 198+205, 31×4, 612−289, 78÷8."
+   ],
+   "steps": [
+    "İşlemi gösterip on saniye verin. Süre bitince kapatın.",
+    "Kesin sonuç istemediğinizi baştan söyleyin: \"yaklaşık kaç?\"",
+    "Yanıtları tahtaya yazın ve aralığı gösterin.",
+    "Kesin sonucu sonra hesaplatıp tahminlerle karşılaştırın."
+   ],
+   "ask": [
+    "Sayıları nasıl değiştirdin?",
+    "Tahminin gerçek sonuçtan büyük mü küçük mü çıktı? Neden?",
+    "Daha yakın tahmin için ne yapardın?"
+   ],
+   "support": [
+    "Süreyi on beş saniyeye çıkarın.",
+    "Yalnızca toplama işlemleriyle çalışın.",
+    "Yuvarlamayı siz yapın, çocuk toplasın.",
+    "\"Yüzden büyük mü küçük mü?\" gibi ikili soruyla başlayın."
+   ],
+   "extension": [],
+   "profiles": {
+    "Diskalkuli": "İkili soru (büyük mü küçük mü); süre yok.",
+    "Düşük": "İki işlem; on beş saniye.",
+    "Ortalama": "Beş işlem; on saniye.",
+    "Yüksek": "Tahminin yönü (fazla/eksik) gerekçelendirilir."
+   },
+   "criterion": "Kesin sonucu hesaplamadan makul bir aralık söylüyor ve sayıları neden öyle değiştirdiğini anlatabiliyor."
+  },
+  {
+   "id": "8.2",
+   "section": 8,
+   "order": 2,
+   "title": "Fazla mı, eksik mi?",
+   "duration": "5 dk",
+   "minMinutes": 5,
+   "maxMinutes": 5,
+   "bookRef": "Kitap Bölüm 11, §11.4",
+   "bookChapter": 11,
+   "material": "—",
+   "why": "İyi tahmincilerin üçüncü işi budur: sapmanın yönünü önceden bilmek. İki sayı da yukarı yuvarlanmışsa tahmin fazladır; bu kart o çıkarımı doğrudan çalıştırır.",
+   "figure": "figures/etkinlik/kart-8-2.webp",
+   "figureCaption": "Şekil 8.2 · Yuvarlama yönü, tahmini hangi yöne kaydırır? Üç durum ve sonuçları.",
+   "prep": [
+    "Dört işlem ve birer tahmin: 47+52 ≈ 100, 198+205 ≈ 400, 31×4 ≈ 120, 612−289 ≈ 300."
+   ],
+   "steps": [
+    "Her tahmini gösterip \"gerçek sonuç bundan büyük mü, küçük mü?\" diye sorun.",
+    "Yanıtın gerekçesini isteyin: hangi sayı yukarı, hangisi aşağı yuvarlandı?",
+    "Sonra kesin sonucu hesaplattırıp yönü kontrol ettirin.",
+    "Yuvarlama yönünün sonucu nasıl kaydırdığını tabloya yazın."
+   ],
+   "ask": [
+    "47'yi 50 yaptın; bu tahmini artırdı mı azalttı mı?",
+    "İki sayı da yukarı yuvarlandıysa sonuç ne olur?",
+    "Biri yukarı biri aşağıysa ne olur?"
+   ],
+   "support": [
+    "Tek işlemle ve tek yuvarlamayla çalışın.",
+    "Sayı doğrusunda yuvarlamayı gösterin.",
+    "Yönü siz söyleyin, çocuk nedenini bulsun.",
+    "Yalnızca yukarı yuvarlanan örneklerle başlayın."
+   ],
+   "extension": [],
+   "profiles": {
+    "Diskalkuli": "Tek işlem; yön öğretmence söylenir.",
+    "Düşük": "İki işlem; yön çocuktan.",
+    "Ortalama": "Dört işlem; iki sayının birlikte etkisi.",
+    "Yüksek": "Çocuk tahminini bilerek fazla ya da eksik kurar."
+   },
+   "criterion": "Tahminin gerçek sonuçtan hangi yönde saptığını önceden söyleyebiliyor."
+  },
+  {
+   "id": "8.3",
+   "section": 8,
+   "order": 3,
+   "title": "Yüzde on çıpası",
+   "duration": "6 dk",
+   "minMinutes": 6,
+   "maxMinutes": 6,
+   "bookRef": "Kitap Bölüm 11, §11.11",
+   "bookChapter": 11,
+   "material": "—",
+   "why": "Yüzde hesabını ezberlenmiş kurallardan kurtarır: bütün oranlar tek bir çıpadan kurulur. Yüzde onu bilen çocuk, yarılama ve ikilemeyle gerisini türetir; bu, dokuzuncu bölümdeki türetme mantığının yüzdedeki karşılığıdır.",
+   "figure": "figures/etkinlik/kart-8-3.webp",
+   "figureCaption": "Şekil 8.3 · Yüzde on çıpasından dört oran türetilir. Ezber yok, türetme var.",
+   "prep": [
+    "Bir tutar seçin: 240 lira. Tahtaya yalnızca bunu yazın."
+   ],
+   "steps": [
+    "\"Yüzde onu kaç?\" diye sorun — 24. Bu tek çıpadır.",
+    "Yüzde beşi yarılamayla, yüzde yirmiyi ikilemeyle buldurtun.",
+    "Yüzde on beşi iki parçadan kurdurtun (10 + 5).",
+    "Farklı tutarlarla tekrarlayın."
+   ],
+   "ask": [
+    "Yüzde onu nasıl buldun?",
+    "Yüzde beş için ne yaptın?",
+    "Yüzde otuz beşi hangi parçalardan kurarsın?"
+   ],
+   "support": [
+    "Yalnızca yüzde onla kalın.",
+    "Tutarı yuvarlak seçin (100, 200).",
+    "Yarılamayı ayrı çalıştırın.",
+    "Parçaları siz söyleyin, çocuk toplasın."
+   ],
+   "extension": [],
+   "profiles": {
+    "Diskalkuli": "Yalnızca yüzde 10; yuvarlak tutar.",
+    "Düşük": "Yüzde 10 ve 20.",
+    "Ortalama": "Yüzde 5, 15, 20, 30.",
+    "Yüksek": "Yüzde 12,5 gibi kesirli oranlar."
+   },
+   "criterion": "Bütün yüzdeleri tek bir çıpadan kuruyor ve ezberlenmiş kural kullanmıyor."
+  },
+  {
+   "id": "8.4",
+   "section": 8,
+   "order": 4,
+   "title": "Sayı doğrusuna yerleştirme",
+   "duration": "5 dk",
+   "minMinutes": 5,
+   "maxMinutes": 5,
+   "bookRef": "Kitap Bölüm 11, §11.5",
+   "bookChapter": 11,
+   "material": "Ek A.4",
+   "why": "Sayı doğrusu tahmini, sonraki matematik başarısını yordayan ölçümlerden biridir (Bölüm 11). Aynı sayının aralık değişince nereye düştüğünü görmek, çocuğun büyüklük temsilini doğrudan çalıştırır.",
+   "figure": "figures/etkinlik/kart-8-4.webp",
+   "figureCaption": "Şekil 8.4 · 37, iki ayrı aralıkta. Aralık on kat büyüyünce işaret sola kayar.",
+   "prep": [
+    "Uçları işaretli iki doğru çizin: 0–100 ve 0–1000. Ara işaret koymayın."
+   ],
+   "steps": [
+    "Birinci doğruyu gösterip \"37 nereye gelir?\" diye sorun; işaretlettirin.",
+    "İkinci doğruda aynı sayıyı işaretlettirin.",
+    "İki işaretin farklı yerlere düştüğünü fark ettirin.",
+    "\"Neden sola kaydı?\" diye sorun."
+   ],
+   "ask": [
+    "37 yarımdan büyük mü küçük mü?",
+    "İkinci doğruda neden daha sola geldi?",
+    "500 nereye gelir? 50 nereye gelir?"
+   ],
+   "support": [
+    "Ortayı (50) siz işaretleyin.",
+    "Aralığı 0–20'ye indirin.",
+    "Önce uçlara yakın sayılarla çalışın (5, 95).",
+    "Yüzlük tabloda sayıyı buldurup doğruya taşıtın."
+   ],
+   "extension": [],
+   "profiles": {
+    "Diskalkuli": "0–20; orta işaretli.",
+    "Düşük": "0–100; orta işaretli.",
+    "Ortalama": "0–100 ve 0–1000; işaretsiz.",
+    "Yüksek": "0–1 aralığında kesirler yerleştirilir."
+   },
+   "criterion": "İşaretini ölçüt noktalarına göre koyuyor: \"yarımdan az\", \"çeyreğe yakın\" diyebiliyor."
+  },
+  {
+   "id": "8.5",
+   "section": 8,
+   "order": 5,
+   "title": "Tahmin bilmecesi",
+   "duration": "7 dk",
+   "minMinutes": 7,
+   "maxMinutes": 7,
+   "bookRef": "Kitap Bölüm 11, §11.3",
+   "bookChapter": 11,
+   "material": "Kavanoz ve nesne",
+   "why": "Tahminin bir aralık olduğunu ve ipuçlarıyla daraldığını öğretir. Çocuk kesin sayıyı bulmak zorunda değildir; makul aralığı savunmak yeterlidir. Bu, tahmini \"yanlış cevap\" korkusundan kurtarır.",
+   "figure": "figures/etkinlik/kart-8-5.webp",
+   "figureCaption": "Şekil 8.5 · Her ipucu aralığı daraltır. Kesin sayı sonda bile gerekmez.",
+   "prep": [
+    "Şeffaf bir kaba nesne koyun (bilye, fasulye). Sayıyı yalnızca siz bilin."
+   ],
+   "steps": [
+    "Kabı gösterip herkesten bir tahmin alın; hepsini tahtaya yazın.",
+    "Birinci ipucunu verin: \"Ellidan çok.\" Aralığı birlikte daraltın.",
+    "İkinci ve üçüncü ipuçlarını sırayla verin.",
+    "Sonunda sayın; kimin aralığı doğruydu diye bakın, kim en yakın değil."
+   ],
+   "ask": [
+    "İlk tahminini neye dayandırdın?",
+    "Bu ipucu hangi tahminleri eledi?",
+    "Şimdi aralığın ne oldu?"
+   ],
+   "support": [
+    "Nesne sayısını 20'nin altında tutun.",
+    "İlk aralığı siz verin: \"On ile otuz arasında.\"",
+    "İpuçlarını daha keskin yapın.",
+    "Bir avuç gösterip onu ölçüt olarak kullandırın."
+   ],
+   "extension": [],
+   "profiles": {
+    "Diskalkuli": "20'ye kadar; iki ipucu.",
+    "Düşük": "100'e kadar; üç ipucu.",
+    "Ortalama": "200'e kadar; üç ipucu, aralık savunulur.",
+    "Yüksek": "Çocuk kendi bilmecesini kurar ve ipuçlarını yazar."
+   },
+   "criterion": "Tahminini bir aralık olarak veriyor ve her ipucundan sonra aralığı daraltabiliyor."
+  },
+  {
+   "id": "8.6",
+   "section": 8,
+   "order": 6,
+   "title": "Kesirlerde üç çıpa",
+   "duration": "6 dk",
+   "minMinutes": 6,
+   "maxMinutes": 6,
+   "bookRef": "Kitap Bölüm 11, §11.8",
+   "bookChapter": 11,
+   "material": "Ek A.4",
+   "why": "Kesir tahmininin çıpası üç sayıdır: sıfır, yarım ve bir. Başarılı öğrenciler kesirleri bu ölçüt noktalarına göre düşünür (Bölüm 11). Payda-pay hesabı yapmadan büyüklük kestirmek buradan gelir.",
+   "figure": "figures/etkinlik/kart-8-6.webp",
+   "figureCaption": "Şekil 8.6 · Her kesir üç çıpaya göre yerleştirilir: sıfıra mı, yarıma mı, bire mi yakın?",
+   "prep": [
+    "0 ile 1 arası bir doğru çizin; yalnızca uçları ve ortayı işaretleyin."
+   ],
+   "steps": [
+    "Bir kesir söyleyin: 1/8. \"Sıfıra mı, yarıma mı, bire mi yakın?\" diye sorun.",
+    "İşaretlettirin ve gerekçe isteyin.",
+    "3/5 ve 7/8 ile tekrarlayın.",
+    "Hesap yaptırmayın; ölçüte göre karar verdirin."
+   ],
+   "ask": [
+    "Bu kesir yarımdan büyük mü küçük mü? Nereden bildin?",
+    "Payı paydanın yarısıyla karşılaştırdın mı?",
+    "Bire yakın olması ne demek?"
+   ],
+   "support": [
+    "Yalnızca yarımla karşılaştırın.",
+    "Kesri şeritte gösterin.",
+    "Paydayı sabit tutun (hepsi sekizde birler).",
+    "Ortayı siz işaretleyin ve \"bundan büyük mü?\" diye sorun."
+   ],
+   "extension": [],
+   "profiles": {
+    "Diskalkuli": "Yalnızca 1/2 ile karşılaştırma; şeritle.",
+    "Düşük": "Üç çıpa; şeritle.",
+    "Ortalama": "Üç çıpa; şeritsiz.",
+    "Yüksek": "İki kesri birbiriyle karşılaştırma (3/5 ve 5/8)."
+   },
+   "criterion": "Kesri hesaplamadan, ölçüt noktalarına göre yerleştirebiliyor."
+  },
+  {
+   "id": "8.7",
+   "section": 8,
+   "order": 7,
+   "title": "Hangisi büyük?",
+   "duration": "6 dk",
+   "minMinutes": 6,
+   "maxMinutes": 6,
+   "bookRef": "Kitap Bölüm 11, §11.7",
+   "bookChapter": 11,
+   "material": "Kesir şeritleri",
+   "why": "Doğal sayı yanlılığının en yaygın hâlini doğrudan hedef alır: 8 > 5 olduğu için 1/8 > 1/5 sanılır. Yanlılık ilkokulda başlar ve liseye kadar sürer (Bölüm 11); erken ve görsel olarak karşılanması gerekir.",
+   "figure": "figures/etkinlik/kart-8-7.webp",
+   "figureCaption": "Şekil 8.7 · Aynı bütün, iki ayrı bölünme. Payda büyüdükçe parça küçülür.",
+   "prep": [
+    "Aynı uzunlukta iki kâğıt şerit; birini beşe, ötekini sekize böldürün."
+   ],
+   "steps": [
+    "\"1/5 mi büyük, 1/8 mi?\" diye sorun; yanıtları yorumsuz yazın.",
+    "İki şeridi kestirip üst üste koydurun.",
+    "Hangisinin uzun olduğunu gösterin.",
+    "Kuralı çocuğa kurdurtun: payda büyüdükçe parça küçülür."
+   ],
+   "ask": [
+    "Hangisi büyük çıktı? Beklediğin bu muydu?",
+    "Bütün ikisinde de aynı mıydı?",
+    "Payda büyüyünce parçaya ne oluyor?"
+   ],
+   "support": [
+    "1/2 ile 1/4 gibi daha uzak bir çiftle başlayın.",
+    "Şeritleri siz kesip üst üste koyun.",
+    "Bütünün aynı olduğunu vurgulayın.",
+    "Pastayı ikiye ve sekize bölmeyi anlattırın."
+   ],
+   "extension": [],
+   "profiles": {
+    "Diskalkuli": "1/2 ve 1/4; şeritle.",
+    "Düşük": "1/5 ve 1/8; şeritle.",
+    "Ortalama": "Şeritsiz; gerekçe istenir.",
+    "Yüksek": "Payı sabit olmayan çiftler: 2/3 ve 3/5."
+   },
+   "criterion": "Payda büyüdükçe parçanın küçüldüğünü söyleyebiliyor ve bunu bütünün aynı olmasına bağlıyor."
+  },
+  {
+   "id": "8.8",
+   "section": 8,
+   "order": 8,
+   "title": "İki çöken kural",
+   "duration": "6 dk",
+   "minMinutes": 6,
+   "maxMinutes": 6,
+   "bookRef": "Kitap Bölüm 11, §11.10",
+   "bookChapter": 11,
+   "material": "Ek A.4",
+   "why": "Ondalık karşılaştırmada iki karşıt kural dolaşır ve ikisi de yanlıştır. Hatalar rastgele değil, içeriden tutarlıdır (Bölüm 11); kuralı çürütmek düzeltmekten etkilidir.",
+   "figure": "figures/etkinlik/kart-8-8.webp",
+   "figureCaption": "Şekil 8.8 · İki kural ve karşı örnekleri. Sayı doğrusu ikisini de gereksiz kılar.",
+   "prep": [
+    "İki karşılaştırma yazın: 0,25 ile 0,7 · 0,3 ile 0,45."
+   ],
+   "steps": [
+    "Birinci çifti sorun; \"uzun olan büyüktür\" diyen çıkacaktır.",
+    "İkinci çifti sorun; bu kez aynı kural ters sonuç verir.",
+    "İki kuralı da tahtaya yazıp karşı örneklerini gösterin.",
+    "Sayı doğrusunda ikisini de yerleştirtin."
+   ],
+   "ask": [
+    "Hangisi büyük? Nereden bildin?",
+    "Kuralın öbür örnekte de işe yaradı mı?",
+    "Doğruda hangisi daha sağda?"
+   ],
+   "support": [
+    "Ondalıkları kesre çevirtin (0,3 = üç onda bir).",
+    "Basamak tablosuna yazdırın.",
+    "Sonuna sıfır ekletin: 0,30 ile 0,45.",
+    "Doğruda yalnızca birini siz işaretleyin."
+   ],
+   "extension": [],
+   "profiles": {
+    "Diskalkuli": "Onda birlikler; doğru açık.",
+    "Düşük": "İki basamağa kadar; doğru açık.",
+    "Ortalama": "Doğru olmadan; gerekçe istenir.",
+    "Yüksek": "Üç basamak ve 0,999 gibi uç örnekler."
+   },
+   "criterion": "İki kuralın da çürüdüğünü gösterebiliyor ve karşılaştırmayı basamak değerine ya da doğruya dayandırıyor."
+  },
+  {
+   "id": "9.1",
+   "section": 9,
+   "order": 1,
+   "title": "Diziyi yürütmek",
+   "duration": "10 dk",
+   "minMinutes": 10,
+   "maxMinutes": 10,
+   "bookRef": "Kitap Bölüm 12, §12.4",
+   "bookChapter": 12,
+   "material": "Tahta",
+   "why": "Rutinin kendisini kurar. Dizinin bütün işi son işlemdedir: çocuk önceki üçünden yararlanabiliyorsa ilişki taşınmış demektir. Öğretmen son işlemi çözerse dizi bir gösteriye dönüşür.",
+   "figure": "figures/etkinlik/kart-9-1.webp",
+   "figureCaption": "Şekil 9.1 · Dört adımlı bir dizi. Son işlem çocuğa bırakılır; dizinin sınavı odur.",
+   "prep": [
+    "Diziyi tahtaya önceden yazmayın; işlemler tek tek açılır. Başparmak işareti kuralını sınıfa önceden anlatın."
+   ],
+   "steps": [
+    "İlk işlemi yazın. Çocuklar hazır olunca göğüs hizasında başparmak kaldırır; el kaldırma yoktur.",
+    "Yeterli sayıda başparmak görününce yanıtları hepsini yazın — yanlışlar dahil, yorum yapmadan.",
+    "Bir çocuğa yolunu anlattırın; siz yeniden ifade edin, sonra tahtaya yazın.",
+    "Son işlemi açın ve çözmeden bırakın: \"Bunu kim denemek ister?\""
+   ],
+   "ask": [
+    "Bu işlem bir öncekine benziyor mu?",
+    "Az önceki yol burada da işe yarar mı?",
+    "Kim başka bir yol kullandı?"
+   ],
+   "support": [
+    "Bir önceki işlemi tahtada açık bırakın.",
+    "\"Az önce sekizden ona gitmiştin; burada da olur mu?\" diye bağ kurun.",
+    "Ara sonucu siz yazın, gerisini çocuk kursun.",
+    "Diziyi üç işleme indirin."
+   ],
+   "extension": [],
+   "profiles": {
+    "Diskalkuli": "İlk iki işlemde katkı beklenir; son işlem serbesttir.",
+    "Düşük": "Yol anlatması istenir, ad koyma beklenmez.",
+    "Ortalama": "Yolu adlandırması beklenir.",
+    "Yüksek": "Son işlemde bir sonraki adımı kendisi kurar."
+   },
+   "criterion": "Bir işlemden ötekine ilişki taşıyor: \"az önceki gibi\" diyebiliyor ve neyin aynı olduğunu gösterebiliyor."
+  },
+  {
+   "id": "9.2",
+   "section": 9,
+   "order": 2,
+   "title": "Kendi dizini kur",
+   "duration": "8 dk",
+   "minMinutes": 8,
+   "maxMinutes": 8,
+   "bookRef": "Kitap Bölüm 12, §12.4",
+   "bookChapter": 12,
+   "material": "Kâğıt",
+   "why": "Dizinin art arda gelen işlemler değil, bağlantılı işlemler olduğunu anlamanın en açık göstergesi, kendi dizisini kurabilmektir. Rastgele bir liste yazan çocuk rutinin mantığını henüz kavramamıştır.",
+   "figure": "figures/etkinlik/kart-9-2.webp",
+   "figureCaption": "Şekil 9.2 · Solda bağlantılı dizi, sağda rastgele liste. Fark, adımların birbirine yaslanmasıdır.",
+   "prep": [
+    "Çocuklara bir strateji adı verin: onluğa köprüleme."
+   ],
+   "steps": [
+    "Üç işlemlik bir dizi kurmalarını isteyin; sonuncusu diğer ikisinden türesin.",
+    "Diziler bitince birkaçını tahtaya alın ve sınıfa çözdürün.",
+    "Dizinin işe yarayıp yaramadığını yazan çocuğa değerlendirtin.",
+    "İyi dizinin ölçütünü birlikte koyun: son işlem öncekilere yaslanmalı."
+   ],
+   "ask": [
+    "Son işlemin öncekilerle nasıl bağlantılı?",
+    "Bir işlemi çıkarsan dizi bozulur mu?",
+    "Sıralamayı değiştirsen ne olur?"
+   ],
+   "support": [
+    "İki işlemlik dizi isteyin.",
+    "İlk işlemi siz verin.",
+    "Hazır bir diziyi model olarak gösterin.",
+    "Stratejiyi daraltın: yalnızca ikilemeler."
+   ],
+   "extension": [],
+   "profiles": {
+    "Diskalkuli": "İki işlem; ilki verilir.",
+    "Düşük": "Üç işlem; strateji verilir.",
+    "Ortalama": "Üç işlem; strateji çocuk tarafından seçilir.",
+    "Yüksek": "Dört işlem; dizinin gerekçesi yazılı istenir."
+   },
+   "criterion": "Dizinin bağlantılı işlemlerden oluştuğunu anlıyor ve kurduğu dizide son işlemin öncekilere yaslandığını gösterebiliyor."
+  },
+  {
+   "id": "9.3",
+   "section": 9,
+   "order": 3,
+   "title": "Haftayı dağarcıkla kurmak",
+   "duration": "planlama",
+   "minMinutes": null,
+   "maxMinutes": null,
+   "bookRef": "Kitap Bölüm 13, §13.3–13.4",
+   "bookChapter": 13,
+   "material": "Ek C takvimi",
+   "why": "Rutin dağarcığı bir liste değil, haftaya yayılan bir plandır. Aynı rutini her gün tekrarlamak harmanlamayı ortadan kaldırır; kitabın 13. bölümündeki iki ilke — harmanlama ve aralıklı tekrar — ancak dönüşümlü bir haftada işler.",
+   "figure": "figures/etkinlik/kart-9-3.webp",
+   "figureCaption": "Şekil 9.3 · Beş gün, beş ayrı rutin. Aynı konu art arda iki gün gelmez.",
+   "prep": [
+    "Bu kart sınıfta değil, planlama masasında kullanılır. Haftalık ders programınızı önünüze alın."
+   ],
+   "steps": [
+    "Haftanın beş gününe beş ayrı rutin yerleştirin; aynı rutini iki kez koymayın.",
+    "Her rutine bir konu bağlayın ve konuların art arda gelmediğinden emin olun.",
+    "Süreyi yazın: her rutin on dakikayı geçmez.",
+    "İki hafta sonra sırayı değiştirin; aynı konu farklı güne düşsün."
+   ],
+   "ask": [
+    "Bu hafta hangi konu iki kez geldi?",
+    "Geçen haftanın konusu bu hafta hangi gün dönüyor?",
+    "Hangi rutin sınıfın en çok zorlandığı beceriyi çalıştırıyor?"
+   ],
+   "support": [
+    "Üç günle başlayın; haftanın tamamını doldurmayın.",
+    "Yalnızca iki rutin kullanın ve dönüşümlü uygulayın.",
+    "Ek C'deki hazır on haftalık takvimi olduğu gibi izleyin.",
+    "İlk iki hafta yalnızca sayı konuşması yapın; norm kurulsun."
+   ],
+   "extension": [],
+   "profiles": {
+    "Diskalkuli": "Aynı rutin haftada iki kez döner; tanıdıklık öncelenir.",
+    "Düşük": "Üç rutin dönüşümlü.",
+    "Ortalama": "Beş rutin, beş gün.",
+    "Yüksek": "Öğrenciler rutini yönetmeye başlar; biri diziyi kendisi kurar."
+   },
+   "criterion": "Haftalık planda aynı konu art arda iki gün gelmiyor ve her rutin on dakikayla sınırlı kalıyor."
+  }
+ ]
+}

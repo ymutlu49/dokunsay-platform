@@ -116,6 +116,11 @@ export interface Template {
   dar?: string;
   dfa?: string;
   it: TemplateItem[];
+  /** Hedeflenen KAVRAM YANILGISI etiketi (STANDARDS.md §1.5). Yalnız yanılgı etkinliklerinde
+      doldurulur; öğretmen panelinde ve raporda "bu madde neyi ölçüyor" sorusunu yanıtlar. */
+  mis?: string;
+  /** Yanılgının LİTERATÜR kaynağı — §1.5 atıf zorunluluğu ("Piaget 1965" gibi). */
+  src?: string;
 }
 
 /* ===== Activity ===== */

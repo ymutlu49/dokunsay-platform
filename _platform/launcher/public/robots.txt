@@ -1,0 +1,41 @@
+# dokunsay.com — DokunSay Matematik Öğretim Araçları (Her Çocuk Matematik Öğrenebilir ailesi)
+# Tüm arama motorları ve yapay zekâ botlarına açık.
+
+User-agent: *
+Allow: /
+
+# Yapay zekâ / LLM botları — açıkça izinli
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+# LLM bilgi dosyası
+# https://dokunsay.com/llms.txt
+
+Sitemap: https://dokunsay.com/sitemap.xml

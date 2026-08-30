@@ -38,7 +38,7 @@ export default function PageNavigator({
           background: currentPage > 0 ? (isDark ? "rgba(255,255,255,.1)" : "rgba(0,0,0,.06)") : "transparent",
           color: palette.tx,
           fontSize: 16, fontWeight: 900,
-          opacity: currentPage === 0 ? 0.2 : 0.8,
+          opacity: currentPage === 0 ? 0.55 : 0.9,
           display: "flex", alignItems: "center", justifyContent: "center",
           transition: "all .15s",
         }}
@@ -90,7 +90,7 @@ export default function PageNavigator({
           background: currentPage < pages.length - 1 ? (isDark ? "rgba(255,255,255,.1)" : "rgba(0,0,0,.06)") : "transparent",
           color: palette.tx,
           fontSize: 16, fontWeight: 900,
-          opacity: currentPage === pages.length - 1 ? 0.2 : 0.8,
+          opacity: currentPage === pages.length - 1 ? 0.55 : 0.9,
           display: "flex", alignItems: "center", justifyContent: "center",
           transition: "all .15s",
         }}
@@ -104,7 +104,7 @@ export default function PageNavigator({
       {/* Add page */}
       <button
         onClick={onAddPage}
-        title={lang === "tr" ? "Yeni sayfa" : lang === "ku" ? "Rûpela nû" : "New page"}
+        title={t("newPage")}
         style={{
           width: 28, height: 28, borderRadius: 7, border: "none", cursor: "pointer",
           background: "rgba(34,197,94,.2)", color: "#16a34a",
@@ -120,7 +120,7 @@ export default function PageNavigator({
       {pages.length > 1 && (
         <button
           onClick={() => onDeletePage(currentPage)}
-          title={lang === "tr" ? "Sayfayı sil" : lang === "ku" ? "Rûpelê jê bibe" : "Delete page"}
+          title={t("deletePage")}
           style={{
             width: 28, height: 28, borderRadius: 7, border: "none", cursor: "pointer",
             background: "rgba(239,68,68,.12)", color: "#dc2626",

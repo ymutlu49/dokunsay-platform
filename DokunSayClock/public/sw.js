@@ -1,4 +1,9 @@
-const CACHE_VERSION = "dokun-say-clock-v1";
+// SÜRÜM YÜKSELTMESİ ŞART: activate kancası yalnız ADI TUTMAYAN önbellekleri siler.
+// Sürüm sabit kalırsa daha önce siteyi açmış kullanıcılar ESKİ paketi görmeye devam eder.
+// v1 → v2 (2026-07-19): AR/FA dilleri seçiciden gizlendi; sürüm yükseltilmezse mevcut
+// kullanıcıların dil seçicisinde o iki dil durmaya devam ederdi. (Bu, denetim sırasında
+// dev sunucuda da beni yanılttı: değişiklik doğruydu, servis çalışanı bayat paket sunuyordu.)
+const CACHE_VERSION = "dokun-say-clock-v2";
 const ASSETS_CACHE = `${CACHE_VERSION}-assets`;
 
 const PRECACHE_URLS = ["/DokunSayClock/"];

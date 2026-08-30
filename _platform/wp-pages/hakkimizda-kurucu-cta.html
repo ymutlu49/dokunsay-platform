@@ -1,0 +1,36 @@
+<!--
+  Hakkımızda sayfasına eklenecek "Kurucu" CTA kartı.
+
+  WordPress'te /hakkimizda/ sayfasının içerik kutusunun ALTINA bu HTML'i yapıştır.
+  (Mevcut "Diskalkuli Akademi, 2020 yılında kurulan..." paragrafı korunur.)
+
+  Amaç: Kullanıcıyı kurucu Prof. Dr. Yılmaz Mutlu'nun akademik profil sayfasına yönlendirmek.
+-->
+<style>
+.dk-fdr{max-width:980px;margin:32px auto;padding:0 20px;font-family:'Inter',sans-serif}
+.dk-fdr-card{background:linear-gradient(135deg,#fff 0%,#f0f7ff 100%);border:1px solid rgba(0,113,220,.18);border-radius:18px;padding:28px;display:grid;grid-template-columns:120px 1fr auto;gap:20px;align-items:center;box-shadow:0 6px 24px rgba(3,31,66,.06);text-decoration:none;color:#031f42;transition:all .25s}
+.dk-fdr-card:hover{transform:translateY(-2px);box-shadow:0 12px 36px rgba(3,31,66,.12);border-color:rgba(0,113,220,.4)}
+.dk-fdr-photo{width:120px;height:120px;border-radius:50%;background:#cbd5e1 center/cover no-repeat;border:3px solid #fff;box-shadow:0 4px 14px rgba(3,31,66,.15)}
+.dk-fdr-text h3{font-size:20px;font-weight:800;color:#031f42;margin:0 0 4px;letter-spacing:-.01em}
+.dk-fdr-text .role{font-size:12px;font-weight:700;color:#0071dc;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;display:block}
+.dk-fdr-text p{font-size:14px;color:#4a5568;margin:0;line-height:1.6}
+.dk-fdr-arrow{font-size:20px;color:#0071dc;font-weight:800}
+
+@media (max-width:680px){
+  .dk-fdr-card{grid-template-columns:1fr;text-align:center;gap:14px}
+  .dk-fdr-photo{margin:0 auto}
+  .dk-fdr-arrow{display:none}
+}
+</style>
+
+<div class="dk-fdr">
+  <a class="dk-fdr-card" href="/yilmaz-mutlu/">
+    <div class="dk-fdr-photo" style="background-image:url('/wp-content/uploads/yilmaz-mutlu.jpg')" aria-hidden="true"></div>
+    <div class="dk-fdr-text">
+      <span class="role">Kurucu · Akademik Profil</span>
+      <h3>Prof. Dr. Yılmaz Mutlu</h3>
+      <p>Muş Alparslan Üniversitesi · Diskalkuli alanında 30+ yayın, patent ve DokunSay matematik öğretim materyallerinin tasarımcısı. Akademik özgeçmişin tamamı için tıklayın.</p>
+    </div>
+    <div class="dk-fdr-arrow" aria-hidden="true">→</div>
+  </a>
+</div>

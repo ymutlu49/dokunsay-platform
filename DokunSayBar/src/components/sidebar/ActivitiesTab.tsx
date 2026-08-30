@@ -1,6 +1,7 @@
 import type { Language, ThemePalette, Template, ProgressMap } from "../../types";
 import { translate, getTemplateName } from "../../services/i18nService";
 import { ACTIVITY_TEMPLATES, ACTIVITY_CATEGORIES } from "../../data/templates";
+import { canSpeak } from "@shared/tts.js";
 
 interface ActivitiesTabProps {
   lang: Language;
@@ -98,8 +99,19 @@ export default function ActivitiesTab({
                   <span style={{ flex: 1, opacity: isDone ? 0.7 : 1 }}>
                     {getTemplateName(tp, lang)}
                   </span>
-                  <span style={{ fontSize: 7, color: "#d97706", flexShrink: 0, letterSpacing: -1 }}>
-                    {"★".repeat(tp.diff || 1) + "☆".repeat(3 - (tp.diff || 1))}
+                  {/* Zorluk göstergesi 5 BASAMAKLI (STANDARDS.md §1.6: Keşif → Rehberli →
+                      Yönlendirilmiş → Bağımsız → Transfer). Önceden 3'e sabitti ve
+                      "☆".repeat(3 - diff) yazıyordu: diff 4-5 bir etkinlik eklendiği anda
+                      repeat(-1) RangeError fırlatıp kenar çubuğunu çökertirdi. Üst iki
+                      basamağın hiç yazılmamış olmasının sebebi büyük olasılıkla buydu. */}
+                  <span
+                    style={{ fontSize: 7, color: "#d97706", flexShrink: 0, letterSpacing: -1 }}
+                    title={`Zorluk ${Math.min(5, Math.max(1, tp.diff || 1))}/5`}
+                  >
+                    {(() => {
+                      const d = Math.min(5, Math.max(1, tp.diff || 1));
+                      return "★".repeat(d) + "☆".repeat(5 - d);
+                    })()}
                   </span>
                 </button>
               );
@@ -132,10 +144,39 @@ export default function ActivitiesTab({
           <div style={{ fontSize: 8, fontWeight: 800, color: "#d97706", marginBottom: 4 }}>
             {activeTpl.i + " " + getTemplateName(activeTpl, lang)}
           </div>
+
+          {/* KAVRAM YANILGISI KÜNYESİ — yalnız ÖĞRETMEN MODUNDA (STANDARDS.md §1.5).
+              Öğrenciye gösterilmez: "bu etkinlik senin yanılgını hedefliyor" demek çocuğu
+              etiketler ve görevin tanısal değerini bozar. Öğretmen ise maddenin NEYİ ölçtüğünü
+              ve hangi literatüre dayandığını görebilmelidir — atıf zorunluluğunun amacı budur. */}
+          {teacherMode && activeTpl.mis && (
+            <div style={{
+              marginBottom: 5, padding: "4px 5px", borderRadius: 6,
+              background: "rgba(124,58,237,.10)", border: "1px solid rgba(124,58,237,.25)",
+            }}>
+              <div style={{ fontSize: 7, fontWeight: 800, color: "#7c3aed", letterSpacing: .3 }}>
+                {"🎯 HEDEFLENEN YANILGI"}
+              </div>
+              <div style={{ fontSize: 8, fontWeight: 700, color: palette.tx, marginTop: 1 }}>
+                {activeTpl.mis}
+              </div>
+              {activeTpl.src && (
+                <div style={{ fontSize: 7, color: palette.tx, opacity: .65, marginTop: 1, fontStyle: "italic" }}>
+                  {"📖 " + activeTpl.src}
+                </div>
+              )}
+            </div>
+          )}
+
           <div style={{ display: "flex", gap: 3 }}>
-            <button onClick={onSpeakInstruction} style={buttonStyle(false, palette, { flex: 1, fontSize: 8 })}>
-              {"🔊 " + t("read")}
-            </button>
+            {/* canSpeak: Kurmancî'de gerçek ku/kmr sesi yoksa okuma yapılmıyor (2026-07-19
+                kararı) — düğmeyi bırakmak, basınca hiçbir şey olmadığı için "uygulama bozuk"
+                izlenimi verirdi. */}
+            {canSpeak(lang) && (
+              <button onClick={onSpeakInstruction} style={buttonStyle(false, palette, { flex: 1, fontSize: 8 })}>
+                {"🔊 " + t("read")}
+              </button>
+            )}
             {activeTpl.chk !== "none" && (
               <button
                 onClick={onCheckActivity}

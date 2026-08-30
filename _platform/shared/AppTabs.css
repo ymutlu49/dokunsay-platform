@@ -1,0 +1,171 @@
+/**
+ * DokunSay Platform — Ortak Sekme Şeridi stilleri
+ *
+ * Renkler AppShell'in accent CSS değişkenlerinden gelir
+ * (--appshell-accent / -dark / -soft / -softer). Diskalkuli modu
+ * (<html data-dyscalculia="true">) sekmeleri otomatik büyütür.
+ */
+
+.ds-tabs {
+  display: flex;
+  align-items: stretch;
+  gap: 2px;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+/* Yatay sekmeler (az sayıda sekme: 2–4) */
+.ds-tabs--pills {
+  flex-direction: row;
+  flex-wrap: wrap;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Dikey liste (çok sayıda sekme: 5+) */
+.ds-tabs--list {
+  flex-direction: column;
+  gap: 3px;
+  padding: 4px;
+}
+
+.ds-tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px 10px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 800;
+  color: #78716c;
+  border-radius: 8px;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ds-tabs--pills .ds-tab {
+  flex: 1 1 auto;
+  min-width: 60px;
+  border-radius: 0;
+  border-bottom: 3px solid transparent;
+  padding-bottom: 7px;
+}
+
+.ds-tabs--list .ds-tab {
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.ds-tab:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.ds-tab:focus-visible {
+  outline: 2px solid var(--appshell-accent, #f59e0b);
+  outline-offset: -2px;
+}
+
+.ds-tab--active {
+  color: var(--appshell-accent-dark, #b45309);
+}
+
+.ds-tabs--pills .ds-tab--active {
+  border-bottom-color: var(--appshell-accent, #f59e0b);
+}
+
+.ds-tabs--list .ds-tab--active {
+  background: var(--appshell-accent-softer, rgba(245, 158, 11, 0.14));
+}
+
+/* Kompakt: ikon ÜSTTE, etiket altta — dar alanda çok sekme (örn. Geo 7 sekme) */
+.ds-tabs--compact {
+  flex-wrap: wrap;
+}
+.ds-tabs--compact .ds-tab {
+  flex-direction: column;
+  gap: 2px;
+  padding: 6px 3px;
+  min-width: 58px;
+  border-radius: 8px 8px 0 0;
+}
+.ds-tabs--compact .ds-tab__icon {
+  font-size: 16px;
+}
+.ds-tabs--compact .ds-tab__label {
+  font-size: 10px;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+html[data-dyscalculia="true"] .ds-tabs--compact .ds-tab__label {
+  font-size: 11px;
+}
+
+.ds-tab__icon {
+  font-size: 17px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.ds-tab__label {
+  font-size: 12px;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+}
+
+.ds-tab__badge {
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: 8px;
+  background: var(--appshell-accent, #f59e0b);
+  color: #fff;
+  font-size: 9px;
+  font-weight: 900;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Karanlık mod */
+.ds-tabs--dark.ds-tabs--pills {
+  border-bottom-color: rgba(255, 255, 255, 0.12);
+}
+.ds-tabs--dark .ds-tab {
+  color: rgba(255, 255, 255, 0.6);
+}
+.ds-tabs--dark .ds-tab:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+.ds-tabs--dark .ds-tab--active {
+  color: #fff;
+}
+
+/* Diskalkuli modu — daha büyük dokunma hedefleri ve okunur metin */
+html[data-dyscalculia="true"] .ds-tab {
+  padding: 12px 12px;
+  font-size: 13px;
+}
+html[data-dyscalculia="true"] .ds-tabs--pills .ds-tab {
+  padding-bottom: 9px;
+}
+html[data-dyscalculia="true"] .ds-tab__icon {
+  font-size: 20px;
+}
+html[data-dyscalculia="true"] .ds-tab__label {
+  font-size: 13px;
+}
+
+/* Hareketi azalt */
+html[data-reduce-motion="true"] .ds-tab {
+  transition: none;
+}
+
+/* RTL (ar/fa) — liste hizalaması */
+html[dir="rtl"] .ds-tabs--list .ds-tab {
+  justify-content: flex-start;
+}

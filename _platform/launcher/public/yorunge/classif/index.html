@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sınıflama ve Veri Analizi — Öğrenme Yörüngesi · DokunSay</title>
+<meta name="description" content="Sınıflama ve Veri Analizi öğrenme yörüngesi: 11 gelişim basamağı, her birinde DokunSay etkinliği ve gözlem ölçütü. Clements &amp; Sarama çerçevesi. Gruplama, veri okuma, grafik.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --c:#2563eb;
+    --amber:#2E7D32; --ink:#182219; --body:#37433c; --muted:#5f6b63; --line:#dfe7df;
+    --bg:#f3f7f1; --card:#ffffff; --maxw:1180px; --r:18px;
+    --shadow:0 10px 30px -14px rgba(24,40,25,.22);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Inter,system-ui,sans-serif;color:var(--body);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4,h5,h6{font-family:Poppins,sans-serif;color:var(--ink);line-height:1.16;letter-spacing:-.01em}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  .eyebrow{font-family:Poppins;font-weight:700;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase}
+
+
+.dsh{background:linear-gradient(135deg,#14391a 0%,#1d2b22 100%);color:#fff;padding:12px 24px;box-shadow:0 4px 10px rgba(24,40,25,.10),0 2px 4px rgba(24,40,25,.05);position:sticky;top:0;z-index:50}
+.dsh-row{display:flex;align-items:center;justify-content:space-between;gap:16px;max-width:1440px;margin:0 auto;flex-wrap:wrap}
+.dsh-brand{display:flex;align-items:center;gap:13px;text-decoration:none;color:#fff}
+.dsh-logo{width:40px;height:40px;border-radius:12px;background:#fff;display:grid;place-items:center;padding:5px;box-shadow:0 1px 4px rgba(15,23,42,.12);flex:0 0 auto}
+.dsh-logo svg{display:block;width:100%;height:100%}
+.dsh-titles{display:flex;flex-direction:column;line-height:1.12}
+.dsh-name{font-family:Poppins,system-ui,sans-serif;font-size:20px;font-weight:800;letter-spacing:.4px;color:#fff}
+.dsh-sub{font-size:11.5px;font-weight:700;opacity:.72;letter-spacing:.3px;margin-top:2px;color:#fff}
+.dsh-nav{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.dsh-pill{display:inline-flex;align-items:center;gap:6px;padding:8px 15px;border-radius:999px;font-weight:700;font-size:.86rem;font-family:inherit;line-height:1;text-decoration:none;white-space:nowrap;border:1px solid transparent;transition:filter .15s,background .15s}
+.dsh-pill:hover{filter:brightness(1.13)}
+.dsh-amber{color:#fde6c0;background:rgba(245,158,11,.18);border-color:rgba(245,158,11,.45)}
+.dsh-green{color:#d7f0d9;background:rgba(46,125,50,.22);border-color:rgba(46,125,50,.5)}
+.dsh-teal{color:#bfe8e4;background:rgba(13,148,136,.2);border-color:rgba(13,148,136,.5)}
+.dsh-pill.is-active{box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.45);filter:brightness(1.12)}
+.dsh .hcmo-auth{display:inline-flex;align-items:center;gap:6px}
+.dsh .hcmo-auth:empty{display:none}
+.dsh .hcmo-auth a{display:inline-flex;align-items:center;gap:5px;padding:8px 14px;border-radius:999px;font-weight:700;font-size:.86rem;text-decoration:none;white-space:nowrap;color:#fde6c0;background:rgba(245,158,11,.18);border:1px solid rgba(245,158,11,.45);transition:background .15s}
+.dsh .hcmo-auth a:hover{background:rgba(245,158,11,.3)}
+.dsh .hcmo-auth a#hcmo-stu{color:#cfe8ff;background:rgba(96,165,250,.16);border-color:rgba(96,165,250,.4)}
+.dsh .hcmo-auth a#hcmo-stu:hover{background:rgba(96,165,250,.28)}
+.dsh .hcmo-auth>span{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:.86rem;color:#e8eefc}
+.dsh .hcmo-auth .nm{color:#fde6c0}
+.dsh .hcmo-auth #hcmo-out{cursor:pointer;border:0;border-radius:999px;background:#f59e0b;color:#3a2606;font-weight:800;font-size:.8rem;padding:7px 13px;font-family:inherit}
+.dsh .hcmo-auth #hcmo-out:hover{filter:brightness(1.07)}
+@media (max-width:760px){.dsh{padding:10px 15px}.dsh-pill{padding:7px 11px;font-size:.8rem}.dsh-name{font-size:18px}}
+@media print{.dsh{display:none}}
+
+  .hero{background:linear-gradient(135deg,color-mix(in srgb,var(--c) 88%,#000),color-mix(in srgb,var(--c) 62%,#14391a));color:#fff;padding:30px 0 40px;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;right:-70px;top:-60px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.16),transparent 70%)}
+  .crumb{font-size:.84rem;color:rgba(255,255,255,.8);margin-bottom:16px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .crumb a{color:rgba(255,255,255,.92);text-decoration:underline;text-underline-offset:2px}
+  .hero-grid{display:flex;align-items:flex-start;gap:18px;position:relative;z-index:1}
+  .hero-ic{font-size:2.6rem;line-height:1;background:rgba(255,255,255,.16);width:74px;height:74px;border-radius:18px;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+  .hero .eyebrow{color:rgba(255,255,255,.85)}
+  .hero h1{color:#fff;font-size:clamp(1.9rem,4.4vw,2.9rem);font-weight:900;margin:6px 0 10px}
+  .hero .lede{color:rgba(255,255,255,.94);font-size:1.06rem;max-width:680px}
+  .hero .ltname{opacity:.8;font-style:italic}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px}
+  .hm{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.22);color:#fff;border-radius:999px;padding:.34em .9em;font-size:.82rem;font-weight:600;font-family:Poppins}
+  .hero-cta{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+  .btn{font-family:Poppins;font-weight:700;font-size:.9rem;border-radius:999px;padding:.6em 1.2em;cursor:pointer;border:0;display:inline-flex;align-items:center;gap:7px}
+  .btn-w{background:#fff;color:var(--ink)}.btn-w:hover{transform:translateY(-1px)}
+  .btn-o{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.4)}.btn-o:hover{background:rgba(255,255,255,.24)}
+
+  .layout{display:grid;grid-template-columns:266px 1fr;gap:34px;align-items:start;padding:34px 0 50px}
+  .side{position:sticky;top:78px}
+  .side-in{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;max-height:calc(100vh - 100px);display:flex;flex-direction:column}
+  .side-head{font-family:Poppins;font-weight:800;color:var(--ink);font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;padding:14px 16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between}
+  .side-head span{color:var(--c)}
+  .side-list{list-style:none;overflow-y:auto;padding:6px}
+  .side-list a{display:flex;gap:10px;align-items:center;padding:8px 9px;border-radius:10px;transition:background .15s}
+  .side-list a:hover{background:#f1f8f2}
+  .side-list a.act{background:color-mix(in srgb,var(--c) 12%,#fff)}
+  .s-num{flex:0 0 auto;width:24px;height:24px;border-radius:7px;background:color-mix(in srgb,var(--c) 14%,#fff);color:var(--c);font-family:Poppins;font-weight:700;font-size:.8rem;display:flex;align-items:center;justify-content:center}
+  .side-list a.act .s-num{background:var(--c);color:#fff}
+  .s-txt{display:flex;flex-direction:column;min-width:0}
+  .s-txt b{font-family:Inter;font-weight:600;font-size:.86rem;color:var(--ink);line-height:1.25}
+  .s-txt small{color:var(--muted);font-size:.72rem}
+
+  .levels{display:flex;flex-direction:column;gap:20px}
+  .level{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px 24px;scroll-margin-top:84px;position:relative}
+  .level.bn{border-color:#f3c98b;box-shadow:0 0 0 1px #f3c98b inset}
+  .level.bn::before{content:"";position:absolute;left:0;top:18px;bottom:18px;width:4px;border-radius:4px;background:linear-gradient(#f59e0b,#ea580c)}
+  .lv-top{display:flex;gap:14px;align-items:flex-start;margin-bottom:14px}
+  .lv-num{flex:0 0 auto;width:42px;height:42px;border-radius:12px;background:var(--c);color:#fff;font-family:Poppins;font-weight:800;font-size:1.25rem;display:flex;align-items:center;justify-content:center}
+  .lv-badges{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:3px}
+  .age-pill{font-family:Poppins;font-weight:700;font-size:.7rem;color:var(--c);background:color-mix(in srgb,var(--c) 12%,#fff);border-radius:999px;padding:.2em .7em}
+  .bn-pill{font-family:Poppins;font-weight:700;font-size:.7rem;color:#9a3412;background:#fff3e2;border:1px solid #f3c98b;border-radius:999px;padding:.2em .7em}
+  .lv-id h3{font-size:1.2rem;font-weight:700}
+  .lv-body{display:grid;grid-template-columns:1fr 196px;gap:20px;align-items:start}
+  .lv-main{min-width:0}
+  .lv-desc{font-size:.98rem;color:var(--body);margin-bottom:12px}
+  .lv-desc b{color:var(--ink)}
+  .note{border-radius:12px;padding:12px 15px;margin-bottom:11px}
+  .note h5{font-size:.74rem;letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px}
+  .note p{font-size:.92rem}
+  .note.how{background:#f4f8f5;border:1px solid #dcebe1}.note.how h5{color:#15803d}
+  .note.teach{background:#fff8ee;border:1px solid #f3e2c4}.note.teach h5{color:#b45309}
+  .lv-viz{background:linear-gradient(#f8fbf7,#eef5ec);border:1px solid var(--line);border-radius:14px;padding:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:sticky;top:80px}
+  .lv-viz svg{width:100%;height:auto;max-height:130px}
+  .lv-viz .viz-cap{font-size:.7rem;color:var(--muted);font-weight:600;margin-top:4px;font-family:Poppins;letter-spacing:.04em}
+  .lv-viz.emblem span{font-size:3.2rem;filter:saturate(1.05)}
+
+  .act{margin-top:14px;background:#fbfdfb;border:1px solid #e3efe5;border-radius:14px;padding:15px 17px}
+  .act-head{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+  .act-head h4{font-size:1rem;font-weight:700;color:#15803d}
+  .act-ic{font-size:1.1rem}
+  .act-sub{margin-bottom:10px}
+  .act-sub h5{font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:#64748b;margin-bottom:5px}
+  .mats{list-style:none;display:flex;flex-wrap:wrap;gap:6px}
+  .mats li{background:#eef6ef;border:1px solid #d7e9d9;color:#2f5337;border-radius:8px;padding:.22em .6em;font-size:.84rem}
+  .steps{margin:0 0 0 18px;padding:0}
+  .steps li{font-size:.92rem;margin-bottom:5px;padding-left:3px}
+  .crit{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:9px 12px;font-size:.9rem;color:#166534;margin:10px 0}
+  .crit .tick{color:#2E7D32;font-weight:800}
+  .scaf{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+  .scaf-c{border-radius:10px;padding:9px 12px;font-size:.88rem}
+  .scaf-c h6{font-size:.74rem;margin-bottom:3px;font-weight:700}
+  .scaf-c.easy{background:#f1f5f9;border:1px solid #e2e8f0}.scaf-c.easy h6{color:#475569}
+  .scaf-c.hard{background:#faf5ff;border:1px solid #e9d5ff}.scaf-c.hard h6{color:#7c3aed}
+  .obs{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:11px 14px;font-size:.92rem}
+  .obs b{color:var(--ink)}
+
+  .chips{margin-top:12px}
+  .chips-lab{font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;color:#94a3b8;font-weight:700;font-family:Poppins}
+  .chips-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+  .chip{display:inline-flex;flex-direction:column;border-radius:10px;padding:7px 11px;font-size:.8rem;border:1px solid;max-width:240px;transition:transform .14s}
+  .chip:hover{transform:translateY(-2px)}
+  .chip b{font-family:Poppins;font-weight:700;font-size:.82rem}
+  .chip span{font-size:.74rem;opacity:.85;line-height:1.3}
+  .chip-ds{background:#fff7ec;border-color:#f6dcae;color:#9a5b16}
+  .chip-gs{background:#eef2ff;border-color:#c7d2fe;color:#4338ca}
+  .chip-ab{background:#ecfdf5;border-color:#bbf7d0;color:#166534}
+  .chip-adim{background:#f8fafc;border-color:#e2e8f0;color:#64748b;cursor:default}
+
+  .lv-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:16px;padding-top:14px;border-top:1px dashed var(--line);flex-wrap:wrap}
+  .printcard{background:#fff;border:1px solid var(--line);color:var(--body);font-family:Poppins;font-weight:600;font-size:.82rem;border-radius:999px;padding:.5em 1em;cursor:pointer}
+  .printcard:hover{background:#f1f8f2;color:var(--ink)}
+  .nextlv{font-family:Poppins;font-weight:600;font-size:.86rem;color:var(--c)}
+  .nextlv b{font-weight:700}
+  .nextlv.done{color:var(--muted)}
+
+  footer{background:#14391a;color:#9db89f;padding:36px 0;margin-top:10px;font-size:.88rem}
+  footer a{color:#d8e6d8;text-decoration:underline}
+  .foot-note{max-width:760px;font-size:.82rem;color:#7f9781;margin-top:8px}
+
+  @media(max-width:980px){
+    .layout{grid-template-columns:1fr;gap:0}
+    .side{position:static;margin-bottom:20px}
+    .side-in{max-height:none}
+    .side-list{max-height:300px}
+    .lv-body{grid-template-columns:1fr}
+    .lv-viz{order:-1;flex-direction:row;gap:12px;position:static}
+    .lv-viz svg{max-height:90px;width:auto}
+    .scaf{grid-template-columns:1fr}
+    .nav-links{display:none}
+  }
+
+  /* ── Yazdırma ── */
+  @media print{
+    header,.hero-cta,.side,footer,.printcard,.nextlv,.chips{display:none!important}
+    body{background:#fff}
+    .hero{background:#fff;color:#000;padding:0 0 10px;border-bottom:2px solid #000}
+    .hero::after{display:none}.hero-ic{background:#eee}
+    .hero h1,.hero .eyebrow,.hero .lede,.crumb{color:#000}
+    .layout{display:block;padding:6px 0}
+    .levels{gap:0}
+    .level{break-inside:avoid;page-break-inside:avoid;border:1px solid #999;box-shadow:none;margin-bottom:10px}
+    .lv-viz{border:1px solid #ccc}
+    body.printing-one .level:not(.print-target){display:none!important}
+    body.printing-one .hero .lede,body.printing-one .hero-meta{display:none}
+  }
+</style>
+</head>
+<body data-key="classif">
+<header class="dsh"><div class="dsh-row"><a class="dsh-brand" href="/" aria-label="DokunSay ana sayfa"><span class="dsh-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" aria-hidden="true"><line x1="28" y1="27" x2="72" y2="27" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="28" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="72" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><circle cx="28" cy="27" r="21" fill="#2E7D32"/><circle cx="20.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="28" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="35.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="72" cy="27" r="21" fill="#0d9488"/><text x="72" y="32" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="14" fill="#fff">üç</text><circle cx="50" cy="73" r="21" fill="#1B5E20"/><text x="50" y="82" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="27" fill="#fff">3</text></svg></span><span class="dsh-titles"><span class="dsh-name">DokunSay</span><span class="dsh-sub">Matematik Öğretim Araçları Platformu</span></span></a><nav class="dsh-nav" aria-label="Site gezinme"><a class="dsh-pill dsh-amber is-active" href="/yorunge/" aria-current="page">🧭 Öğrenme Yörüngeleri</a><a class="dsh-pill dsh-green" href="/rehber/">📘 Müdahale Rehberi</a><a class="dsh-pill dsh-teal" href="/#tools-section">🛠️ Araçlar</a><span id="hcmoAuth" class="hcmo-auth"></span></nav></div></header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="crumb"><a href="/yorunge/">Öğrenme Yörüngeleri</a> <span>›</span> <span>Veri ve Sınıflama</span></div>
+    <div class="hero-grid">
+      <div class="hero-ic">📊</div>
+      <div>
+        <span class="eyebrow">Veri ve Sınıflama</span>
+        <h1>Sınıflama ve Veri Analizi</h1>
+        <p class="lede">Gruplama, veri okuma, grafik. <span class="ltname">(Classification &amp; Data)</span></p>
+        <div class="hero-meta">
+          <span class="hm">📊 11 basamak</span>
+          <span class="hm">🎂 0–11 yaş</span>
+          <span class="hm">⚠ 1 darboğaz</span>
+          <span class="hm">🎯 Profil alanı · gözlem</span>
+        </div>
+        <div class="hero-cta">
+          <a class="btn btn-w" href="calisma-yapraklari.html">✏️ Çalışma yaprakları</a>
+          <a class="btn btn-w" href="calisma-yapraklari-dokunsay.html">🧩 DokunSay materyalli yapraklar</a>
+          <a class="btn btn-o" href="etkinlik-kartlari.pdf" target="_blank" rel="noopener">⬇ Etkinlik kartları (PDF)</a>
+          <button class="btn btn-o" id="printAll" type="button">🖨️ Yazdır</button>
+          <a class="btn btn-o" href="/yorunge/">← Tüm yörüngeler</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main class="wrap">
+  <div class="layout">
+    <aside class="side">
+    <div class="side-in">
+      <div class="side-head">Düzeyler <span>11</span></div>
+      <ol class="side-list"><li><a href="#lv-0" data-i="0"><span class="s-num" style="--c:#2563eb">1</span><span class="s-txt"><b>Benzerlik Sezgisi: Temeller</b><small>0–3 yaş</small></span></a></li><li><a href="#lv-1" data-i="1"><span class="s-num" style="--c:#2563eb">2</span><span class="s-txt"><b>Benzer/Farklı Grup Oluşturan</b><small>2–3 yaş</small></span></a></li><li><a href="#lv-2" data-i="2"><span class="s-num" style="--c:#2563eb">3</span><span class="s-txt"><b>Basit Gruplayan</b><small>3–4 yaş</small></span></a></li><li><a href="#lv-3" data-i="3"><span class="s-num" style="--c:#2563eb">4</span><span class="s-txt"><b>Benzer Özelliklere Göre Gruplayan</b><small>5–6 yaş · ⚠ darboğaz</small></span></a></li><li><a href="#lv-4" data-i="4"><span class="s-num" style="--c:#2563eb">5</span><span class="s-txt"><b>Tutarlı ve Esnek Sınıflayan</b><small>6–7 yaş</small></span></a></li><li><a href="#lv-5" data-i="5"><span class="s-num" style="--c:#2563eb">6</span><span class="s-txt"><b>Tek Tek Verileri Okuyan</b><small>7–8 yaş</small></span></a></li><li><a href="#lv-6" data-i="6"><span class="s-num" style="--c:#2563eb">7</span><span class="s-txt"><b>Veriyi Sınıflayan</b><small>8–9 yaş</small></span></a></li><li><a href="#lv-7" data-i="7"><span class="s-num" style="--c:#2563eb">8</span><span class="s-txt"><b>Çoklu Özelliğe Göre Sınıflayan</b><small>8–9 yaş</small></span></a></li><li><a href="#lv-8" data-i="8"><span class="s-num" style="--c:#2563eb">9</span><span class="s-txt"><b>Veriye Bütün Olarak Bakan</b><small>8–10 yaş</small></span></a></li><li><a href="#lv-9" data-i="9"><span class="s-num" style="--c:#2563eb">10</span><span class="s-txt"><b>Hiyerarşik Sınıflayan</b><small>8–10 yaş</small></span></a></li><li><a href="#lv-10" data-i="10"><span class="s-num" style="--c:#2563eb">11</span><span class="s-txt"><b>Veriyi Temsil Eden</b><small>8–11 yaş</small></span></a></li></ol>
+    </div>
+  </aside>
+    <div class="levels">
+      
+  <article class="level" id="lv-0">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#2563eb">1</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#2563eb">0–3 yaş</span>
+          
+        </div>
+        <h3>Benzerlik Sezgisi: Temeller</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Nesne ve durumları sezgisel olarak &quot;benzer&quot; diye tanır (yaşamın ilk haftalarından itibaren). Yaklaşık 6 ayda farklı nesneleri, 12 ay civarında benzer nesneleri bir araya getirmeye başlar.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk oyuncak kutusunu karıştırırken aynı renk ya da aynı biçimdeki nesnelere yönelir: iki özdeş arabayı yan yana getirir ya da bir bloğu eşine değdirir. Henüz &quot;benzer&quot; diye adlandıramaz ama benzeyenleri sezgisel olarak buluşturur; &quot;bu da onun gibi&quot; duygusunu yaşar.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, sınıflamanın dile dökülmemiş ilk tohumudur: çocuk henüz ölçüt seçemez ama benzerliği ve farklılığı &quot;hisseder&quot;. Amaç gruplamak değil, benzeyen-benzemeyen karşıtlığına dikkati uyandırmaktır. Özdeş nesne çiftlerini (iki aynı pul, iki aynı kaşık) yan yana göstererek &quot;bak, bunlar aynı!&quot; deyin; sonraki tüm sınıflama ve veri düşüncesi bu örtük benzerlik sezgisine yaslanır.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>özdeş çiftler hâlinde DokunSay pulları (aynı renkten ikişer)</li><li>bir tepsi ya da örtü</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Birkaç özdeş çifti (iki sarı, iki mavi pul) çocuğun önüne karışık koyun.</li><li>Bir sarıyı eline alıp ötekinin yanına götürün: &quot;Bak, bu da sarı, aynı!&quot; deyin.</li><li>Çocuğun benzeyene uzanmasını, eşini buluşturmasını ya da bakışını gözleyin.</li><li>Bazen çok farklı bir nesne (büyük kaşık) ekleyip &quot;bu farklı&quot; tepkisini yoklayın.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Benzeyen nesnelere yönelir, eşini buluşturur ya da benzerliğe belirgin tepki verirse ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Yalnız iki çok belirgin renk kullanın; çifti siz birlikte buluşturun.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Benzerliği inceltin (aynı renk, farklı biçim) ve &quot;hangisi ona benziyor?&quot; diye sezdirin.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey için ADIM etkinliği"><b>ADIM</b><span>İlgili düzey için ADIM etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#2563eb">📊</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="0" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-1">Sıradaki düzey · <b>Benzer/Farklı Grup Oluşturan</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-1">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#2563eb">2</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#2563eb">2–3 yaş</span>
+          
+        </div>
+        <h3>Benzer/Farklı Grup Oluşturan</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Yaklaşık 18 ayda özdeş nesnelerden kümeler oluşturur (diğerleri farklıdır); 2 yaş civarında bazı özelliklere göre sezgisel benzerlik gruplaması yapar — gruplama karışık ve tutarsız olabilir.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>&quot;Benzeyenleri bir araya koy&quot; dediğinizde çocuk karışık nesneleri kabaca ayırır: kırmızıları bir yana, mavileri bir yana ya da topları bir öbeğe toplar. Ölçütü kendisi seçer ve bu ölçüt oyun ortasında değişebilir (önce renge, sonra biçime kayabilir).</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Tanımaktan YAPMAYA geçiş: çocuk artık benzerliği yalnız sezmiyor, benzeyenleri elleriyle bir araya getiriyor. Bu düzeyde ölçütün tutarlı olması beklenmez — bugün renge, az sonra biçime göre öbekleyebilir; bu gelişimsel olarak normaldir. Çocuğun seçtiği ölçütü adlandırın (&quot;bunları renklerine göre topladın&quot;) ki ayrım bilinçli bir ada kavuşsun. Henüz &quot;verilen&quot; bir ölçüte uyması istenmez — kendi grubunu kendi mantığıyla kurar.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>iki renk ve iki biçimde karışık DokunSay pulları</li><li>ayırmak için iki-üç küçük tabak ya da sınıflama halkası</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Karışık pulları ortaya koyun: &quot;Benzeyenleri bir araya koy.&quot;</li><li>Çocuk öbeklerini kursun; siz karışmadan gözleyin (ölçütü o seçsin).</li><li>Bitince &quot;bunları neye göre ayırdın?&quot; diye sorup seçtiği ölçütü adlandırın.</li><li>&quot;Başka türlü de ayırabilir misin?&quot; diye ikinci bir gruplamayı davet edin.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Karışık nesneleri kendi seçtiği bir ölçüte göre benzer/farklı öbeklere ayırırsa ✓ (ölçüt tutarlı olmak zorunda değil)</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Yalnız iki belirgin renk verin; &quot;sarılar buraya, maviler buraya&quot; diye modelleyin.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Üç özellik (renk + biçim + boy) karıştırın; çocuk kendi ölçütünü açıklasın.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey için ADIM etkinliği"><b>ADIM</b><span>İlgili düzey için ADIM etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#2563eb">📊</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="1" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-2">Sıradaki düzey · <b>Basit Gruplayan</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-2">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#2563eb">3</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#2563eb">3–4 yaş</span>
+          
+        </div>
+        <h3>Basit Gruplayan</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Yetişkin desteğiyle, sözel kurala göre gruplama yapar (&quot;Kırmızılar bu kutuya&quot; gibi yönergeleri izler). Hatalı yapılmış basit bir gruplamayı düzeltebilir.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>&quot;Bunları renklerine göre ayır&quot; dediğinizde çocuk TEK bir özelliği (rengi) seçip tüm nesneleri ona göre öbekler: kırmızılar bir halkaya, maviler ötekine. Bir oyun boyunca aynı ölçüde tutarlı kalır; biçim ya da boy değişse bile rengi temel alır.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Burada sınıflama gerçek bir ölçüte oturur: çocuk artık tek bir özelliği bilinçle seçip onu tüm kümeye tutarlı uygular. Ölçütü genellikle KENDİSİ belirler — &quot;renge göre&quot; dediğinizde renge göre ayırır, ama hangi rengin hangi grup olacağına kendi karar verebilir. Bu, verilen bir kategoriye tutarlı uyma darboğazının (sonraki düzey) hazırlığıdır. Bir ölçütü bitirip ikinciye geçmek için &quot;şimdi de biçime göre dene&quot; diyerek esnekliği tohumlayın.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay pulları (iki-üç renk, aynı biçim)</li><li>her renk için bir sınıflama halkası ya da tabak</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Karışık pulları koyun: &quot;Bunları renklerine göre ayır.&quot;</li><li>Çocuk her rengi ayrı halkaya öbeklesin; siz &quot;bu halkada hangi renk var?&quot; diye adlandırtın.</li><li>Bir pulu yanlış halkaya koyarsa &quot;bu halkada hepsi ne renk olmalı?&quot; diye düşündürün.</li><li>Sonra &quot;şimdi biçimlerine göre ayır&quot; deyip aynı tutarlılığı yeni ölçütte yoklayın.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Tek bir özelliğe (renk ya da biçim) göre tüm nesneleri tutarlı öbeklere ayırırsa ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Yalnız iki renk, az sayıda pul; her halkaya bir örnek koyarak başlayın.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Üç-dört renk ya da rengi bir oyun, biçimi sonraki oyun ölçüt yaparak art arda sınıflatın.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey için ADIM etkinliği"><b>ADIM</b><span>İlgili düzey için ADIM etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#2563eb">📊</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="2" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-3">Sıradaki düzey · <b>Benzer Özelliklere Göre Gruplayan</b> →</a>
+    </div>
+  </article>
+
+  <article class="level bn" id="lv-3">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#2563eb">4</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#2563eb">5–6 yaş</span>
+          <span class="bn-pill">⚠ Darboğaz · kritik geçiş</span>
+        </div>
+        <h3>Benzer Özelliklere Göre Gruplayan</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Açık bir özelliğe göre gruplar; ancak gruplama sırasında özellik değiştirebilir (renkle başlayıp şekle kayma). Sonuç yetişkin gruplamasına benzeyebilir; dayanağı genel benzerlik olabilir.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>&quot;Hepsi kırmızı olanları bul&quot; gibi VERİLEN bir özelliğe göre, dikkatini dağıtan başka özellikler arasından (büyük-küçük, yuvarlak-köşeli) yalnız kırmızıları tutarlı seçer. Henüz oturmamışsa ölçüt ortada kayar: birkaç kırmızıyı alır, sonra hoşuna giden bir maviyi de katar ya da &quot;kırmızı&quot;yı bırakıp biçime göre toplamaya başlar.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu yörüngenin ilk gerçek darboğazıdır: çocuğun KENDİ seçtiği değil, DIŞARIDAN VERİLEN bir ölçüte tüm küme boyunca tutarlı bağlı kalması gerekir. En sık güçlük, dikkat dağıtıcı özelliklerin (boy, biçim) çocuğu ölçütten saptırması — yani &quot;kırmızı&quot; kuralını unutup başka bir benzerliğe kaymasıdır. Bu tutarlılıktaki süreğen güçlük, matematik öğrenme güçlüğü (diskalkuli) ve yürütücü-işlev açısından dikkat edilesi bir işaret olabilir; çünkü verilen bir kuralı bellekte tutup karışık girdiye uygulamak, hem veri analizinin hem kural-temelli akıl yürütmenin önkoşuludur. Ölçütü sürekli sesli hatırlatın (&quot;yalnız KIRMIZI; bu kırmızı mı?&quot;), seçim alanını bir sınıflama halkasıyla çevreleyin ki &quot;içeri giren&quot; ölçütü taşısın; her nesne için &quot;bu kurala uyuyor mu?&quot; diye tek tek denetletin.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay pulları (renk + biçim + boy karışık — dikkat dağıtıcılı)</li><li>verilen ölçüt için bir sınıflama halkası/Venn çemberi</li><li>ölçütü gösteren bir örnek/kart (kırmızı pul)</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Karışık pulları yayın, ölçütü bir örnekle gösterin: &quot;Hepsi kırmızı olanları şu halkaya topla.&quot;</li><li>Her pulu eline alınca &quot;bu kırmızı mı?&quot; diye sordurup yalnız uyanı halkaya aldırın.</li><li>Hoşuna giden ama kırmızı olmayan bir pulu katarsa durdurup &quot;kuralımız neydi? bu kırmızı mı?&quot; diye geri döndürün.</li><li>Bitince halka içini tek tek denetletin (&quot;hepsi kırmızı mı?&quot;) ve dışarıda kalan bir kırmızı varsa buldurun.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Verilen bir özelliğe (ör. kırmızı) göre, dikkat dağıtıcılar arasından tüm küme boyunca tutarlı, eksiksiz seçim yaparsa ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Dikkat dağıtıcıyı azaltın (yalnız renk değişsin, biçim/boy aynı olsun); ölçüt örneğini halkanın yanında tutun.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Ölçütü olumsuzla (&quot;kırmızı OLMAYANLARI bul&quot;) ya da daha incelikli bir özellik (&quot;köşeli olanlar&quot;) verin.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="Verilen tek özelliğe göre tutarlı sınıflama etkinliği"><b>ADIM</b><span>Verilen tek özelliğe göre tutarlı sınıflama etkinliği</span></span><a class="chip chip-ds" href="/Dokunsay-veri-app/" title="Sınıflama halkalarıyla özelliğe göre gruplama"><b>DokunSay Veri</b><span>Sınıflama halkalarıyla özelliğe göre gruplama</span></a><a class="chip chip-ab" href="https://abmato.com/" title="Özellik kartlarıyla sınıflama"><b>ABMATO</b><span>Özellik kartlarıyla sınıflama</span></a></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#2563eb">📊</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="3" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-4">Sıradaki düzey · <b>Tutarlı ve Esnek Sınıflayan</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-4">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#2563eb">5</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#2563eb">6–7 yaş</span>
+          
+        </div>
+        <h3>Tutarlı ve Esnek Sınıflayan</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Verilen ya da kendi belirlediği tek bir özelliğe göre tutarlı ve eksiksiz sınıflar; ardından aynı nesneleri farklı bir özelliğe göre yeniden sınıflayabilir. &quot;Bazı&quot; ve &quot;hepsi&quot; sözcüklerini kullanır.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Bir kümeyi renge göre ayırdıktan sonra &quot;şimdi de şekline göre ayır&quot; dediğinizde, çocuk önceki ölçütü bırakıp aynı nesneleri YENİ bir ölçüte göre baştan öbekler — üstelik bunu zorlanmadan, eski gruplamaya saplanmadan yapar. Aynı nesnelerin birden çok yolla sınıflanabileceğini kavrar: &quot;bunlar hem renkli hem yuvarlak, ikisinden de ayrılabilir.&quot;</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Esnek sınıflama, tutarlı sınıflamanın bir üst basamağıdır: çocuk yalnız bir ölçüde sadık kalmakla kalmaz, İSTENDİĞİNDE ölçütü değiştirip aynı kümeyi yeniden düzenleyebilir (zihinsel esneklik / yürütücü işlev). Sık görülen takılma, ilk gruplamaya &quot;yapışmak&quot; — yeni ölçüt verildiğinde eski öbekleri korumaya çalışmaktır. Aynı nesneleri önce renge, sonra biçime, sonra boya göre ayırtarak &quot;bir şey birden çok türlü gruplanabilir&quot; içgörüsünü pekiştirin; &quot;bu sefer neye göre ayırıyoruz?&quot; diye ölçüt geçişini her seferinde dile döktürün. Bu, çoklu özellik ve hiyerarşik sınıflamanın (ileri düzeyler) zeminidir.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay pulları (renk + biçim + boy birlikte değişen)</li><li>sınıflama halkaları (ölçüt başına bir-iki)</li><li>ölçütü işaretleyen kartlar (renk / biçim / boy)</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Önce renge göre ayırtın; bitince &quot;şimdi her şeyi karıştır, bu sefer ŞEKLİNE göre ayır.&quot;</li><li>Eski öbeklere dönmeye çalışırsa &quot;artık kuralımız renk değil, biçim&quot; diye geçişi vurgulayın.</li><li>Üçüncü tur boya göre ayırtın; her turda &quot;bu sefer neye göre?&quot; diye ölçütü söyletin.</li><li>&quot;Aynı pulları kaç farklı yolla ayırabildik?&quot; diye esnekliği fark ettirin.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Verildiğinde ölçütü (renk→biçim→boy) değiştirerek aynı kümeyi tutarlı biçimde yeniden sınıflarsa ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Yalnız iki ölçüt (renk ↔ biçim) arasında geçiş yaptırın; her geçişte ölçüt kartını gösterin.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Çocuğa ölçütü kendisi seçtirip &quot;başka hangi yolla ayırabilirsin?&quot; diye üç-dört farklı sınıflama buldurun.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey için ADIM etkinliği"><b>ADIM</b><span>İlgili düzey için ADIM etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#2563eb">📊</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="4" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-5">Sıradaki düzey · <b>Tek Tek Verileri Okuyan</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-5">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#2563eb">6</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#2563eb">7–8 yaş</span>
+          
+        </div>
+        <h3>Tek Tek Verileri Okuyan</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Bir değeri tekil bir vakayla ilişkilendirir (&quot;Ali’nin kulesi 5 küp&quot;); sayısal veriyi en büyük/en küçük vakayı bulmak için kullanır. (Bu düzeyden önce veri, çocuk için yalnızca yaşantının &quot;hatırası&quot;dır.)</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Halkalara ayrılmış bir nesne grubunu ya da basit bir resim grafiğini gösterip &quot;En çok hangisinden var?&quot; dediğinizde çocuk grupları karşılaştırıp doğru yanıtı verir: &quot;en çok mavi var, en az sarı.&quot; Hazır düzenlenmiş bir veri durumunu OKUR — gruplar arası çoklukları görüp &quot;daha çok / daha az / eşit&quot; diye yorumlar.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Burada sınıflama VERİ OKUMAYA bağlanır: çocuk artık yalnız öbek kurmuyor, kurulmuş öbekleri bir bilgi kaynağı gibi okuyor (&quot;hangisi daha çok?&quot;). Bu, veri analizinin ilk adımıdır — düzenlenmiş veriden anlam çıkarmak. Nesne öbeklerini tek tek saydırmak yerine, eşit aralıklı dizip uzunlukları karşılaştırtın (resim grafiği mantığı); böylece &quot;daha uzun sıra = daha çok&quot; görsel sezgisi yerleşir. &quot;En çok, en az, kaç fazla?&quot; sorularıyla veriyi konuşturun. Bu, verinin toplanması ve grafiklenmesine (ileri düzeyler) köprüdür.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay Veri: önceden öbeklenmiş pullar ya da basit bir resim grafiği</li><li>eşit aralıklı dizmek için bir taban/ızgara</li><li>karşılaştırma için sınıflama halkaları</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Üç renk pulu eşit aralıkla ayrı sıralar hâlinde dizin (resim grafiği gibi).</li><li>&quot;En çok hangisinden var? En az hangisinden?&quot; diye sorun; sıraları uzunluktan okutun.</li><li>&quot;Maviden kaç fazla var sarıya göre?&quot; diye iki grubu karşılaştırtın.</li><li>İki grup eşitse &quot;bunlar eşit mi?&quot; diye &quot;eşit&quot; durumunu da fark ettirin.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Hazır düzenlenmiş bir veri durumunu okuyup en çok/en az olanı ve gruplar arası farkı doğru söylerse ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>İki grupla ve belirgin farkla başlayın; sıraları yan yana hizalayın.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Dört-beş grup, yakın çokluklar ya da &quot;toplam kaç nesne var?&quot; diye birleştirtin.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey için ADIM etkinliği"><b>ADIM</b><span>İlgili düzey için ADIM etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#2563eb">📊</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="5" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-6">Sıradaki düzey · <b>Veriyi Sınıflayan</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-6">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#2563eb">7</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#2563eb">8–9 yaş</span>
+          
+        </div>
+        <h3>Veriyi Sınıflayan</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Benzer değerli vakaları aynı kategori olarak ele alır; kategori sıklıklarını karşılaştırır (en çok / en az tercih edilen vaka türü). İki basit grafiği görsel olarak karşılaştırabilir.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk karışık nesneleri kendisi sınıflara ayırır VE her gruptaki sayıyı söyler: &quot;kırmızılardan 5, mavilerden 3, sarılardan 2 tane var.&quot; Yani sınıflamayı sayısal veriye dönüştürür — yalnız öbekleri kurmaz, her öbeği niceler ve &quot;hangi grup kaç&quot; tablosunu üretir.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu düzeyde sınıflama ile sayma birleşir: çocuk grupları kurup her birinin çokluğunu belirleyerek HAM VERİ üretir. Bu, betimsel veri analizinin çekirdeğidir — &quot;neye göre ayırdık&quot; (kategori) + &quot;her kategoride kaç var&quot; (frekans). Her grubu saydırıp sayısını bir etikete/çeteleye yazdırın ki kategori-sayı eşlemesi somutlaşsın. &quot;En kalabalık grup hangisi, neden?&quot; diye veriyi yorumlatın. Bu, veri toplama ve grafikleme düzeylerinin doğrudan temelidir; &quot;=&quot; değil ama &quot;kaç&quot; ilişkisini sınıf yapısına bağlar.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay Veri: karışık pullar (üç-dört kategori)</li><li>her grup için sınıflama halkası</li><li>grup sayılarını yazmak için çetele/etiket kartları</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Karışık pulları çocuğa sınıflatın (ör. renge göre üç-dört grup).</li><li>Her grubu tek tek saydırıp sayısını bir etikete/çeteleye yazdırın.</li><li>&quot;Hangi gruptan en çok var? Hangisinden en az?&quot; diye veriyi okutun.</li><li>Bir-iki pulu başka gruba taşıyıp &quot;şimdi sayılar nasıl değişti?&quot; diye güncelletin.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Nesneleri kendi sınıflandırıp her gruptaki çokluğu sayar ve kategori–sayı eşlemesini söyler/yazarsa ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Üç grupla ve küçük sayılarla; her grubu siz birlikte saydırın.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Daha çok kategori ya da iki ölçütle (renk + biçim) ayırıp her alt grubu saydırın.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey için ADIM etkinliği"><b>ADIM</b><span>İlgili düzey için ADIM etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#2563eb">📊</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="6" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-7">Sıradaki düzey · <b>Çoklu Özelliğe Göre Sınıflayan</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-7">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#2563eb">8</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#2563eb">8–9 yaş</span>
+          
+        </div>
+        <h3>Çoklu Özelliğe Göre Sınıflayan</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Nesneleri tek bir sınıflamada birden fazla özelliği birlikte gözeterek sınıflar (örn. hem renk hem boyut: &quot;büyük kırmızılar&quot;).</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>&quot;Hem kırmızı HEM yuvarlak olanları bul&quot; dediğinizde çocuk İKİ özelliği birden gözeterek seçer: yalnız kırmızı yuvarlakları alır, kırmızı ama köşeli ya da yuvarlak ama mavi olanları dışarıda bırakır. İki ölçütün KESİŞİMİNİ kurar; &quot;ikisi de doğru olmalı&quot; mantığını uygular.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Çoklu özellik sınıflaması, tek ölçütten iki ölçütün AYNI ANDA tutulmasına geçiştir — bu, mantıksal &quot;ve&quot; (kesişim) düşüncesidir ve yürütücü-işlev yükü yüksektir. Sık yanılgı, çocuğun tek ölçüde gevşemesi: &quot;kırmızı&quot; olan her şeyi (yuvarlak olmasa da) ya da &quot;yuvarlak&quot; olan her şeyi almasıdır. İki çemberli bir Venn düzeni bu kesişimi görselleştirir: bir çember &quot;kırmızılar&quot;, öteki &quot;yuvarlaklar&quot;, ortak alan &quot;hem-hem&quot;. Çocuğa her nesne için &quot;kırmızı MI? yuvarlak MI? ikisi de mi?&quot; diye iki ayrı denetim yaptırın. Bu, hiyerarşik sınıflama ve çok değişkenli veri okumanın hazırlığıdır.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay Veri: renk × biçim çaprazlanmış pullar (kırmızı/mavi × yuvarlak/köşeli)</li><li>iki çemberli Venn düzeni (kesişimli)</li><li>iki ölçütü gösteren kartlar (kırmızı + yuvarlak)</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>İki ölçütü kartla gösterin: &quot;Hem kırmızı HEM yuvarlak olanları ortak alana koy.&quot;</li><li>Her pulu &quot;kırmızı mı? yuvarlak mı?&quot; diye iki kez denetletip yalnız ikisini de sağlayanı kesişime aldırın.</li><li>Yalnız kırmızı (köşeli) olanları &quot;kırmızı&quot; çemberinin tek tarafına, yalnız yuvarlak (mavi) olanları öteki tarafa koydurun.</li><li>Bitince &quot;ortadakilerin hepsi hem kırmızı hem yuvarlak mı?&quot; diye kesişimi denetletin.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> İki özelliğin kesişimine (hem kırmızı hem yuvarlak) göre, tek ölçüde gevşemeden doğru seçim yaparsa ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Önce iki ölçütü ayrı ayrı uygulatın (önce kırmızılar, sonra onlardan yuvarlaklar); Venn yerine art arda eleme.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Üç özellik (kırmızı + yuvarlak + büyük) ya da &quot;kırmızı AMA yuvarlak OLMAYANLAR&quot; gibi karışık ölçüt.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey için ADIM etkinliği"><b>ADIM</b><span>İlgili düzey için ADIM etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#2563eb">📊</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="7" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-8">Sıradaki düzey · <b>Veriye Bütün Olarak Bakan</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-8">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#2563eb">9</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#2563eb">8–10 yaş</span>
+          
+        </div>
+        <h3>Veriye Bütün Olarak Bakan</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Soyut özelliklere göre (işlev/kavram) sınıflar; veri kümesine bütün olarak bakar: göreli sıklık, verinin &quot;biçimi&quot;, merkez. Beklenti (ortalama/olasılık) ve değişkenlik (&quot;yayılım&quot;) sezgisi başlar; modu (en sık değeri) ve aralıkları görür.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk bir soruyu (ör. &quot;sınıfta en sevilen renk hangisi?&quot;) yanıtlamak için arkadaşlarından veri TOPLAR: herkese sorar, her yanıtı bir çeteleyle işaretler ve sonunda &quot;maviyi 6 kişi, kırmızıyı 4 kişi sevmiş&quot; diye özetler. Veriyi yalnız okumakla kalmaz, kendisi üretir, kaydeder ve toplar.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu düzeyde çocuk veri döngüsünün üretim ucuna geçer: bir soru belirleyip yanıtları sistemli toplamak ve çeteleyle kaydetmek (her yanıt = bir işaret, beşli demetlerle gruplama). Sık güçlük, kaydı kaçırmak ya da aynı yanıtı iki kez saymaktır — her yanıt verildiği anda işaretlenmelidir. Çeteleyi beşli demetler (üst-üste dört + çapraz) hâlinde tutturun ki sayım kolaylaşsın; topladıktan sonra &quot;toplam kaç kişiye sorduk?&quot; diye doğrulatın. Bu, anlamlı bir soruyu veriyle yanıtlamanın ilk tam deneyimidir ve grafiklemenin (sonraki düzey) hammaddesini kurar.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay Veri: çetele/işaret tutmak için bir tablo</li><li>kategori başlıkları (renk/seçenek kartları)</li><li>toplanan veriyi somutlamak için pul demetleri</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Birlikte bir soru seçin: &quot;En sevilen renk hangisi?&quot; Seçenekleri tabloya başlık yapın.</li><li>Çocuk herkese tek tek sorsun; her yanıtı o anda ilgili sütuna çeteleyle işaretlesin.</li><li>Çeteleyi beşli demetlerle tutturun; bittiğinde her kategoriyi saydırın.</li><li>&quot;Toplam kaç kişiye sorduk? En çok hangi yanıt çıktı?&quot; diye veriyi özetletin.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Bir soruya yönelik veriyi sistemli toplar, çeteleyle kaydeder ve kategori sayılarını doğru özetlerse ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Az kişiyle ve iki-üç seçenekle; her işareti siz birlikte koydurun.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Daha çok seçenek/kişi, çeteleyi beşli demetlere göre saydırma ya da iki soruyu birlikte toplatma.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey için ADIM etkinliği"><b>ADIM</b><span>İlgili düzey için ADIM etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#2563eb">📊</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="8" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-9">Sıradaki düzey · <b>Hiyerarşik Sınıflayan</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-9">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#2563eb">10</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#2563eb">8–10 yaş</span>
+          
+        </div>
+        <h3>Hiyerarşik Sınıflayan</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Kategorileri ve alt kategorileri hiyerarşik kapsayıcılıkla sınıflar (sınıf kapsayıcılığı); birden çok adlandırılmış/ilişkili özelliği kullanır ve bir nesnenin birden fazla gruba ait olabileceğini anlar.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>&quot;Bütün kareler dikdörtgen midir?&quot; gibi bir kapsama sorusuna çocuk doğru yanıt verir ve gerekçelendirir: &quot;evet, çünkü karenin de dört dik açısı var, o da bir dikdörtgendir — ama her dikdörtgen kare değil.&quot; Bir sınıfın başka bir sınıfın İÇİNDE olabileceğini (alt-sınıf / üst-sınıf) kavrar; &quot;köpekler de hayvandır&quot; türü kapsama ilişkisini kurar.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Hiyerarşik sınıflama (sınıf-içinde-sınıf) bilişsel olarak zorlu bir adımdır: çocuğun bir nesneyi aynı anda hem dar bir sınıfın (kare) hem geniş bir sınıfın (dikdörtgen) üyesi olarak tutması gerekir — Piaget'nin klasik &quot;sınıf-kapsama&quot; görevi. Sık yanılgı, alt ve üst sınıfı karşıt sanmaktır: &quot;kare ayrı, dikdörtgen ayrı.&quot; İç içe sınıflama halkalarıyla (büyük halka = dikdörtgenler, içindeki küçük halka = kareler) kapsamayı görselleştirin; &quot;bütün kareler büyük halkanın da içinde mi?&quot; diye sordurun. &quot;Bütün A'lar B midir? Bütün B'ler A mıdır?&quot; çiftini ayrı ayrı yoklatın. Bu, mantıksal kapsama ve ileri geometrik sınıflamanın temelidir.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay Veri: iç içe yerleştirilebilen sınıflama halkaları (büyük halka içinde küçük halka)</li><li>alt/üst sınıf örnekleri (kare ve diğer dikdörtgen kartları; ya da hayvan/köpek kartları)</li><li>kapsamayı gösteren bir Venn/şema</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Büyük halkayı &quot;dikdörtgenler&quot;, içindeki küçük halkayı &quot;kareler&quot; diye etiketleyin.</li><li>Kareleri küçük halkaya, kare-olmayan dikdörtgenleri yalnız büyük halkaya yerleştirtin.</li><li>&quot;Bütün kareler büyük halkanın içinde mi (dikdörtgen mi)?&quot; diye kapsamayı denetletin.</li><li>Tersini yoklatın: &quot;Bütün dikdörtgenler kare midir?&quot; — &quot;hayır&quot; gerekçesini söyletin.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Bir sınıfın başka sınıfı kapsadığını (ör. tüm kareler dikdörtgendir, tersi değil) kavrar ve gerekçelendirirse ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Tanıdık günlük kapsamayla başlayın (&quot;köpekler de hayvan mı?&quot;); iç içe halkalarla somutlaştırın.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Üç katlı kapsama (kare ⊂ dikdörtgen ⊂ dörtgen) ya da &quot;bazı / bütün / hiçbir&quot; ayrımlarını yoklayın.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey için ADIM etkinliği"><b>ADIM</b><span>İlgili düzey için ADIM etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#2563eb">📊</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="9" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-10">Sıradaki düzey · <b>Veriyi Temsil Eden</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-10">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#2563eb">11</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#2563eb">8–11 yaş</span>
+          
+        </div>
+        <h3>Veriyi Temsil Eden</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Grafiklerin &quot;merkezini&quot; ve değişkenliğini/yayılımını gözetir; aynı büyüklükteki veri kümelerinin grafiklerini doğru karşılaştırır.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk topladığı veriyi bir SÜTUN ya da RESİM grafiğine döker: her kategori için doğru yükseklikte sütun çizer/dizer, eksenleri etiketler ve grafiği okur (&quot;en uzun sütun mavi, demek en çok mavi seçilmiş&quot;). Ham çeteleyi görsel bir temsile çevirir ve temsilden geri anlam çıkarır.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu yörüngenin doruğudur: veri döngüsünün tamamlanması — soru → toplama → sınıflama → TEMSİL → yorum. Çocuk sayısal veriyi, çoklukları görsel uzunluğa eşleyen bir grafiğe (her birim = bir kutu/pul) çevirir. Kritik incelik, eşit aralık ve ortak taban çizgisidir: sütunlar aynı yerden başlamazsa karşılaştırma yanıltır. DokunSay Veri ızgarasında her yanıtı bir kutuya koydurarak &quot;birim = bir oy&quot; temsilini kurun; grafiği bitince mutlaka GERİ okutun (&quot;grafiğe bakınca en çok/en az ne, kaç fark var?&quot;). Burada sınıflama, sayma ve görsel temsil tam anlamıyla veri okuryazarlığında birleşir.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay Veri: sütun grafiği ızgarası (ortak tabanlı kutular)</li><li>kategori etiketleri ve birim kutuları/pullar</li><li>toplanmış veri (önceki çetele)</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Önceki çeteleyi alın: &quot;Her oyu bir kutuya koyalım — kaç oy varsa o kadar kutu.&quot;</li><li>Her kategoriyi ortak taban çizgisinden başlatıp doğru yüksekliğe dizdirin; eksenleri etiketletin.</li><li>&quot;En uzun sütun hangisi? En kısa? Aralarında kaç fark var?&quot; diye grafiği geri okutun.</li><li>&quot;Grafik bize ne söylüyor?&quot; diye veriden bir sonuç cümlesi kurdurun.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Topladığı veriyi ortak tabanlı, eşit aralıklı bir sütun/resim grafiğiyle doğru temsil eder ve grafiği geri okursa ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>İki-üç kategori, küçük sayılar; sütunları birim kutularla (her oy = bir kutu) kurdurun.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Daha çok kategori, ölçek (her kutu = 2 oy) ya da iki grafiği karşılaştırıp &quot;hangisinde daha çok?&quot; diye yorumlatma.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey için ADIM etkinliği"><b>ADIM</b><span>İlgili düzey için ADIM etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#2563eb">📊</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="10" type="button">🖨️ Bu kartı yazdır</button>
+      <div class="nextlv done">Bu, yörüngenin son düzeyi 🎒</div>
+    </div>
+  </article>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <b style="color:#d8e6d8">Her Çocuk Matematik Öğrenebilir</b> · DokunSay — Sınıflama ve Veri Analizi yörüngesi ·
+    <a href="/yorunge/">Tüm yörüngeler</a> · <a href="/">Araçlar</a>
+    <p class="foot-note">Düzey adları ve sıralaması Clements &amp; Sarama öğrenme yörüngeleri ([LT]², learningtrajectories.org) çerçevesinden uyarlanmıştır. Yaş bantları olasılıksal alt-sınır niteliğinde illüstratiftir; tanı eşiği değildir. Çocuğu sınıfına göre değil, bulunduğu basamağa göre destekleyin.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // Scrollspy — kenar çubuğunda etkin düzeyi vurgula
+  var links = Array.prototype.slice.call(document.querySelectorAll('.side-list a'));
+  var byId = {}; links.forEach(function(a){ byId[a.getAttribute('href').slice(1)] = a; });
+  var spy = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(e.isIntersecting){
+        links.forEach(function(l){ l.classList.remove('act'); });
+        var a = byId[e.target.id]; if(a){ a.classList.add('act');
+          // kenar çubuğunu etkin öğeye kaydır
+          var sl = a.closest('.side-list'); if(sl){ var r=a.offsetTop - sl.offsetTop; if(r<sl.scrollTop||r>sl.scrollTop+sl.clientHeight-40) sl.scrollTop=r-12; }
+        }
+      }
+    });
+  }, { rootMargin:'-45% 0px -50% 0px', threshold:0 });
+  document.querySelectorAll('.level').forEach(function(l){ spy.observe(l); });
+
+  // Tek kart yazdır
+  function printOne(i){
+    var card = document.getElementById('lv-'+i); if(!card) return;
+    document.body.classList.add('printing-one'); card.classList.add('print-target');
+    window.print();
+  }
+  window.addEventListener('afterprint', function(){
+    document.body.classList.remove('printing-one');
+    var t=document.querySelector('.print-target'); if(t) t.classList.remove('print-target');
+  });
+  document.querySelectorAll('.printcard').forEach(function(b){
+    b.addEventListener('click', function(){ printOne(b.getAttribute('data-lv')); });
+  });
+  var pa=document.getElementById('printAll'); if(pa) pa.addEventListener('click', function(){ window.print(); });
+})();
+</script>
+</body>
+</html>

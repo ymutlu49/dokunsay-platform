@@ -1,0 +1,50 @@
+{
+  "_aciklama": [
+    "Etkinlik adlarının tek kaynağı. İki yerde kullanılır:",
+    "  · extract_content.py  — uygulamanın gösterdiği ad",
+    "  · kitapta_adlandir.py — kitabın .docx dosyalarındaki ad",
+    "",
+    "Aşağıdaki adlar 30.08.2026'da kitapta da uygulandı, yani kitapla uygulama",
+    "aynı adı söylüyor ve kart ekranında 'Kitapta: ...' satırı çıkmıyor.",
+    "Liste yine de duruyor: kitap yeniden üretilirse adlar buradan geri gelir.",
+    "",
+    "Buraya yeni bir ad yazılıp kitapta uygulanmazsa, uygulama yeni adı",
+    "gösterir ve kitaptaki özgün ad bookTitle'da saklanarak kartta gösterilir."
+  ],
+
+  "cards": {
+    "1.1": {
+      "title": "Şipşak kart",
+      "_neden": "Yazar tercihi. 'Şimşek' karta ait bir nitelik gibi okunuyordu; 'şipşak' gösterimin hızını anlatır."
+    },
+    "1.6": {
+      "title": "Kaçı gizli?",
+      "_neden": "Başlıktaki 'Splat!' İngilizce bir marka adıydı; sorunun kendisi Türkçe ve daha anlaşılır. Wyborney künyesi kitapçığın Kaynaklar notunda duruyor."
+    },
+    "2.2": {
+      "title": "Onun tümleyeni",
+      "_neden": "'Tümleyen' tek başına neyin tümleyeni olduğunu söylemiyordu; kartın kendi gerekçesi 'onun tümleyenleri' diyor. Üç dilli sözlükteki 'Tümleyen (onun) / complement of ten' girdisiyle de uyumlu."
+    },
+    "3.4": {
+      "title": "Bunu biliyor muyum?",
+      "_neden": "Kartın gerekçesi 'bu bir hız yarışı değildir' diyor; 'Üç saniye kuralı' başlığı tersini çağrıştırıyordu."
+    },
+    "4.5": {
+      "title": "Üç öğrenci, üç yol",
+      "_neden": "'Öğrenci çalışması çözümlemesi' ağır bir başlıktı; etkinliğin işi aynı sonuca giden yolları yan yana koymak."
+    },
+    "5.5": { "title": "Üç öğrenci, üç yol" },
+    "6.5": { "title": "Üç öğrenci, üç yol" }
+  },
+
+  "sections": {},
+
+  "_geri_alinan": [
+    {
+      "kart": "6.4",
+      "onerilen": "Sekiz gerçek ailesi",
+      "korunan": "Sekiz aile",
+      "neden": "'Sekiz aile' kitabın kendi terimidir: Bölüm 9'da Tablo 9.1'in adı 'Sekiz aile ve her birinin düşünme yolu', farklılaştırma matrisinde de 'Sekiz aile' ve 'Sekiz aile + genişletme' satırları geçer. Adı değiştirmek kitabın terminolojisinden sapmak olurdu."
+    }
+  ]
+}

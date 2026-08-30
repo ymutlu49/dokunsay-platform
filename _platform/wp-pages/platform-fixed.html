@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="meta.title">Diskalkuli — Tanılamadan Müdahaleye Bütüncül Platform</title>
+  <meta name="description" data-i18n-attr="content:meta.description" content="Diskalkuli taraması, değerlendirmesi ve eğitsel müdahalesi için bilimsel temelli dijital platform.">
+  <meta name="theme-color" content="#4f46e5">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/app-shell.css?v=20260502-3">
+  <link rel="stylesheet" href="css/style.css?v=20260502-2">
+  <link rel="stylesheet" href="css/diskalkuli-theme.css?v=20260421-2">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Diskalkuli Platformu — Tanılamadan Müdahaleye">
+  <meta property="og:description" content="Tanılamadan müdahaleye bütüncül bir diskalkuli platformu. Numap ile tanıla, Galaksay ile geliştir.">
+  <meta property="og:url" content="https://diskalkuli.com/platform/">
+  <meta property="og:image" content="https://diskalkuli.com/platform/assets/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:site_name" content="Diskalkuli">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Diskalkuli Platformu">
+  <meta name="twitter:description" content="Tanılamadan müdahaleye bütüncül bir diskalkuli platformu.">
+  <meta name="twitter:image" content="https://diskalkuli.com/platform/assets/og-image.svg">
+  <link rel="canonical" href="https://diskalkuli.com/platform/">
+
+  <!-- ========== INLINE STYLES — diğer sayfalarla uyumlu .dk-p-* sistemi (indigo tema) ========== -->
+  <style>
+  .dk-p-hero{background:linear-gradient(180deg,#fff 0%,#eef2ff 100%);padding:56px 20px;text-align:center;border-bottom:1px solid rgba(0,0,0,.06);font-family:'Inter',sans-serif}
+  .dk-p-hero .wrap{max-width:840px;margin:0 auto}
+  .dk-p-eyebrow{display:inline-block;background:#4f46e522;color:#4f46e5;padding:6px 14px;border-radius:20px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px;border:1px solid #4f46e544}
+  .dk-p-hero h1{font-size:clamp(28px,3.6vw,42px);font-weight:800;color:#031f42;margin:0 0 14px;letter-spacing:-.02em;line-height:1.2}
+  .dk-p-hero h1 .grad{background:linear-gradient(135deg,#4f46e5,#3730a3);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .dk-p-hero p{font-size:clamp(15px,1.2vw,17px);color:#4a5568;margin:0 auto;max-width:720px;line-height:1.7}
+  .dk-p-section{padding:48px 20px;font-family:'Inter',sans-serif}
+  .dk-p-section .wrap{max-width:1100px;margin:0 auto}
+  .dk-p-section h2{font-size:clamp(22px,2.3vw,28px);font-weight:800;color:#031f42;margin:0 0 14px;letter-spacing:-.01em;text-align:center;display:flex;align-items:center;justify-content:center;gap:10px}
+  .dk-p-section h2::before{content:"";width:4px;height:24px;background:#4f46e5;border-radius:3px}
+  .dk-p-section .sub{text-align:center;color:#6a7390;max-width:680px;margin:0 auto 32px;font-size:15px;line-height:1.65}
+  .dk-p-section p{color:#4a5568;font-size:15px;line-height:1.75;margin:0 0 14px}
+
+  .dk-p-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+  .dk-p-step{background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:14px;padding:26px 24px;transition:all .3s cubic-bezier(0.16,1,0.3,1);position:relative;overflow:hidden}
+  .dk-p-step:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(3,31,66,.08);border-color:#4f46e5}
+  .dk-p-step-num{width:42px;height:42px;border-radius:50%;background:#4f46e5;color:#fff;display:inline-grid;place-items:center;font-weight:800;font-size:18px;margin-bottom:14px}
+  .dk-p-step h3{font-size:17px;font-weight:800;margin:0 0 8px;color:#031f42}
+  .dk-p-step p{font-size:14px;color:#6a7390;line-height:1.65;margin:0 0 14px}
+  .dk-p-step a{font-size:13px;font-weight:700;color:#4f46e5;text-decoration:none;display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:8px;background:#4f46e510;transition:all .2s}
+  .dk-p-step a:hover{background:#4f46e5;color:#fff}
+
+  .dk-p-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:6px}
+  .dk-p-card{background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:12px;padding:20px 22px}
+  .dk-p-card h4{font-size:15px;font-weight:700;margin:0 0 8px;color:#031f42}
+  .dk-p-card p{font-size:13.5px;color:#4a5568;margin:0;line-height:1.6}
+
+  .dk-p-app-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px;margin-top:6px}
+  .dk-p-app{background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:16px;padding:32px 28px;transition:all .3s cubic-bezier(0.16,1,0.3,1);position:relative;overflow:hidden;display:flex;flex-direction:column}
+  .dk-p-app:hover{transform:translateY(-4px);box-shadow:0 20px 48px rgba(3,31,66,.10)}
+  .dk-p-app.numap{border-top:4px solid #0071dc}
+  .dk-p-app.galaksay{border-top:4px solid #4f46e5}
+  .dk-p-app-icon{font-size:42px;margin-bottom:14px;line-height:1}
+  .dk-p-app-tag{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:4px 10px;border-radius:8px;margin-bottom:12px;width:fit-content}
+  .dk-p-app.numap .dk-p-app-tag{background:#0071dc15;color:#0071dc}
+  .dk-p-app.galaksay .dk-p-app-tag{background:#4f46e515;color:#4f46e5}
+  .dk-p-app h3{font-size:24px;font-weight:800;margin:0 0 12px;color:#031f42;letter-spacing:-.01em}
+  .dk-p-app .app-desc{font-size:14px;color:#4a5568;line-height:1.7;margin:0 0 20px;flex:1}
+  .dk-p-app-features{list-style:none;padding:0;margin:0 0 20px;display:flex;flex-wrap:wrap;gap:6px}
+  .dk-p-app-features li{font-size:11px;font-weight:600;color:#4a5568;background:#f3f4f6;padding:5px 10px;border-radius:8px}
+  .dk-p-app-cta{display:inline-flex;align-items:center;gap:6px;padding:12px 22px;border-radius:10px;font-weight:700;font-size:14px;text-decoration:none;color:#fff;transition:all .2s;width:fit-content}
+  .dk-p-app.numap .dk-p-app-cta{background:linear-gradient(135deg,#0071dc,#005bb3)}
+  .dk-p-app.galaksay .dk-p-app-cta{background:linear-gradient(135deg,#4f46e5,#3730a3)}
+  .dk-p-app-cta:hover{transform:translateX(2px);box-shadow:0 8px 24px rgba(0,0,0,.18)}
+
+  .dk-p-tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-top:6px}
+  .dk-p-tool{background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:12px;padding:18px 16px;text-decoration:none;color:#031f42;text-align:center;transition:all .25s;display:flex;flex-direction:column;gap:8px;border-left:3px solid var(--c,#F59E0B)}
+  .dk-p-tool:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(3,31,66,.07);border-color:var(--c,#F59E0B)}
+  .dk-p-tool-icon{font-size:30px;line-height:1}
+  .dk-p-tool h4{font-size:14px;font-weight:700;margin:0;color:#031f42;line-height:1.3}
+  .dk-p-tool p{font-size:12px;color:#6a7390;margin:0;line-height:1.4}
+
+  .dk-p-callout{background:#eef2ff;border:1px solid #4f46e544;border-left:4px solid #4f46e5;border-radius:12px;padding:20px 24px;margin:22px auto;max-width:820px}
+  .dk-p-callout strong{color:#3730a3;display:block;margin-bottom:6px;font-size:14px;letter-spacing:.04em}
+  .dk-p-callout p{margin:0;color:#374151;font-size:14px;line-height:1.65}
+
+  .dk-p-cta{background:linear-gradient(135deg,#4f46e5 0%,#3730a3 100%);color:#fff;padding:46px 32px;border-radius:16px;text-align:center;margin:28px 0;position:relative;overflow:hidden}
+  .dk-p-cta::before{content:"";position:absolute;top:-50%;right:-10%;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.15),transparent 70%)}
+  .dk-p-cta h2{color:#fff !important;margin:0 0 10px;position:relative;text-align:center;justify-content:center}
+  .dk-p-cta h2::before{display:none}
+  .dk-p-cta p{color:rgba(255,255,255,.92);margin:0 0 22px;max-width:580px;margin-left:auto;margin-right:auto;position:relative;font-size:15px;line-height:1.65}
+  .dk-p-cta-btns{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;position:relative;z-index:1}
+  .dk-p-cta-btn{display:inline-flex;align-items:center;gap:6px;padding:12px 26px;border-radius:10px;font-weight:700;font-size:14px;text-decoration:none;transition:all .2s}
+  .dk-p-cta-btn.primary{background:#fff;color:#4f46e5}
+  .dk-p-cta-btn.ghost{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.4)}
+  .dk-p-cta-btn:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(0,0,0,.18)}
+
+  .dk-p-shop{background:linear-gradient(135deg,#fef3c7 0%,#fed7aa 100%);border-radius:16px;padding:28px 32px;display:flex;align-items:center;gap:24px;margin-top:6px}
+  .dk-p-shop-icon{font-size:48px;line-height:1;flex-shrink:0}
+  .dk-p-shop-content{flex:1}
+  .dk-p-shop h3{margin:0 0 4px;font-size:18px;font-weight:800;color:#92400e}
+  .dk-p-shop p{margin:0;color:#78350f;font-size:14px;line-height:1.55}
+  .dk-p-shop a{flex-shrink:0;background:#92400e;color:#fff;padding:12px 22px;border-radius:10px;font-weight:700;font-size:13px;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:all .2s}
+  .dk-p-shop a:hover{background:#78350f}
+  @media(max-width:680px){.dk-p-shop{flex-direction:column;text-align:center}}
+  </style>
+</head>
+<body>
+
+  <!-- ========== HERO ========== -->
+  <header class="dk-p-hero">
+    <div class="wrap">
+      <span class="dk-p-eyebrow" data-i18n="hero.eyebrow">Tanılamadan Müdahaleye</span>
+      <h1>Diskalkuli için <span class="grad">bütüncül dijital platform</span></h1>
+      <p data-i18n="hero.subtitle">Bilimsel tanılama, oyunlaştırılmış müdahale ve sınıf-içi öğretim araçlarını tek bir ekosistemde buluşturan, alanyazına dayalı dijital platform.</p>
+    </div>
+  </header>
+
+  <!-- ========== WORKFLOW ========== -->
+  <section class="dk-p-section" style="background:#fff" id="workflow">
+    <div class="wrap">
+      <h2 data-i18n="workflow.title">Üç adımlı bütüncül süreç</h2>
+      <p class="sub" data-i18n="workflow.subtitle">Bilimsel tanılama ile başlar, kişiselleştirilmiş müdahale ile devam eder, ilerleme takibi ile tamamlanır.</p>
+      <div class="dk-p-steps">
+        <div class="dk-p-step">
+          <div class="dk-p-step-num">1</div>
+          <h3 data-i18n="workflow.step1_title">Tanıla</h3>
+          <p data-i18n="workflow.step1_desc">Numap ile okul öncesinden ilkokul 4. sınıfa kadar (48–119 ay / 4–10 yaş) çocukların sayısal yeteneklerini A1–A11 test bataryası üzerinden bilimsel olarak değerlendir.</p>
+          <a href="numap.html" data-i18n="workflow.step1_cta">Numap'a git →</a>
+        </div>
+        <div class="dk-p-step">
+          <div class="dk-p-step-num">2</div>
+          <h3 data-i18n="workflow.step2_title">Müdahale Et</h3>
+          <p data-i18n="workflow.step2_desc">Galaksay'ın 59+ oyunlaştırılmış modülü ile tanılamada tespit edilen gelişim alanlarını destekle.</p>
+          <a href="galaksay.html" data-i18n="workflow.step2_cta">Galaksay'a git →</a>
+        </div>
+        <div class="dk-p-step">
+          <div class="dk-p-step-num">3</div>
+          <h3 data-i18n="workflow.step3_title">İzle ve Raporla</h3>
+          <p data-i18n="workflow.step3_desc">Performans verileri, psikometrik analizler ve klinik raporlarla gelişimi yakından takip et.</p>
+          <a href="numap.html#reports" data-i18n="workflow.step3_cta">Raporlama →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== APPS — Numap & Galaksay ========== -->
+  <section class="dk-p-section" style="background:#f9fafb" id="apps">
+    <div class="wrap">
+      <h2 data-i18n="apps.title">Birbirini tamamlayan iki bilimsel araç</h2>
+      <p class="sub" data-i18n="apps.subtitle">Numap tanılama sürecini yönetir; Galaksay ise öğrenme sürecinin oyunlaştırılmış kalbidir. Birlikte çocukların sayısal gelişimini uçtan uca destekler.</p>
+
+      <div class="dk-p-app-grid">
+        <article class="dk-p-app numap">
+          <div class="dk-p-app-icon">📊</div>
+          <span class="dk-p-app-tag" data-i18n="numap_card.tag">Tanılama</span>
+          <h3 data-i18n="numap_card.title">Numap</h3>
+          <p class="app-desc" data-i18n="numap_card.desc">Okul öncesinden ilkokul 4. sınıfa kadar (48–119 ay / 4–10 yaş) çocuklarda diskalkuli riskini bilimsel olarak tarayan, değerlendiren ve raporlayan klinik platform. A1–A11 tanılama ve B1–B9 müdahale bataryaları, milisaniye hassasiyetinde tepki süresi ölçümü, psikometrik endeksler (d-prime, Flanker, IES) ve otomatik klinik rapor üretimi.</p>
+          <ul class="dk-p-app-features">
+            <li data-i18n="numap_card.feature_1">A1–A11 Tanılama</li>
+            <li data-i18n="numap_card.feature_2">B1–B9 Müdahale</li>
+            <li data-i18n="numap_card.feature_3">Tepki Süresi</li>
+            <li data-i18n="numap_card.feature_4">Psikometri</li>
+            <li data-i18n="numap_card.feature_5">PWA + Android</li>
+            <li data-i18n="numap_card.feature_6">Offline</li>
+          </ul>
+          <a href="numap.html" class="dk-p-app-cta">
+            <span data-i18n="numap_card.cta_open">Numap'ı Aç</span>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </article>
+
+        <article class="dk-p-app galaksay">
+          <div class="dk-p-app-icon">🚀</div>
+          <span class="dk-p-app-tag" data-i18n="galaksay_card.tag">Müdahale</span>
+          <h3 data-i18n="galaksay_card.title">Galaksay</h3>
+          <p class="app-desc" data-i18n="galaksay_card.desc">"Sayılar Evrenin Dilidir" temalı, uzay serüvenine dönüşmüş bir sayı öğrenme evreni. 3–8 yaş çocuklar için 59+ oyunlaştırılmış modül, DokunSay pedagojik çerçevesi, uyarlanabilir zorluk ve üçlü kodlama (somut–resimsel–simgesel) ile sayısal düşünmeyi geliştirir.</p>
+          <ul class="dk-p-app-features">
+            <li data-i18n="galaksay_card.feature_1">59+ Oyun Modülü</li>
+            <li data-i18n="galaksay_card.feature_2">Uyarlanabilir Zorluk</li>
+            <li data-i18n="galaksay_card.feature_3">DokunSay Pedagojisi</li>
+            <li data-i18n="galaksay_card.feature_4">5 Seviye İpucu</li>
+            <li data-i18n="galaksay_card.feature_5">TR • EN • KU</li>
+            <li data-i18n="galaksay_card.feature_6">Risk Bazlı</li>
+          </ul>
+          <a href="galaksay.html" class="dk-p-app-cta">
+            <span data-i18n="galaksay_card.cta_open">Galaksay'a Başla</span>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== DOKUNSAY TOOLS ========== -->
+  <section class="dk-p-section" style="background:#fff" id="dokunsay">
+    <div class="wrap">
+      <h2>7 İnteraktif Öğretim Aracı</h2>
+      <p class="sub">Diskalkuli öğrencileri için araştırmaya dayalı, çok dilli matematik öğretim araçları ailesi. Tüm araçlar web tabanlı, kurulum gerektirmez. Pedagojik müfredat sırasına göre düzenlenmiştir.</p>
+
+      <div class="dk-p-tools">
+        <a href="/dokunsay/DokunSayBar/" target="_blank" rel="noopener" class="dk-p-tool" style="--c:#F59E0B">
+          <div class="dk-p-tool-icon">🧮</div>
+          <h4>DokunSay Sayı Çubukları</h4>
+          <p>CRA + Bruner · 5–10 yaş</p>
+        </a>
+        <a href="/dokunsay/Dokunsay-geo/" target="_blank" rel="noopener" class="dk-p-tool" style="--c:#EF4444">
+          <div class="dk-p-tool-icon">🔺</div>
+          <h4>DokunSay Geometri</h4>
+          <p>Van Hiele · 5–14 yaş</p>
+        </a>
+        <a href="/dokunsay/DokunSayClock/" target="_blank" rel="noopener" class="dk-p-tool" style="--c:#3B82F6">
+          <div class="dk-p-tool-icon">🕐</div>
+          <h4>DokunSay Saat</h4>
+          <p>Piaget · 6–9 yaş</p>
+        </a>
+        <a href="/dokunsay/DokunSayBasamak/" target="_blank" rel="noopener" class="dk-p-tool" style="--c:#8B5CF6">
+          <div class="dk-p-tool-icon">🔢</div>
+          <h4>DokunSay Basamak Değeri</h4>
+          <p>Bloom + Dienes · 6–10 yaş</p>
+        </a>
+        <a href="/dokunsay/DokunSayKesir/" target="_blank" rel="noopener" class="dk-p-tool" style="--c:#EC4899">
+          <div class="dk-p-tool-icon">🍕</div>
+          <h4>DokunSay Kesirler</h4>
+          <p>CRA + MEB · 6–10 yaş</p>
+        </a>
+        <a href="/dokunsay/Dokunsay-veri-app/" target="_blank" rel="noopener" class="dk-p-tool" style="--c:#06B6D4">
+          <div class="dk-p-tool-icon">📊</div>
+          <h4>DokunSay İstatistik</h4>
+          <p>Curcio + GAISE · 7–15 yaş</p>
+        </a>
+        <a href="/dokunsay/DokunSayTam/" target="_blank" rel="noopener" class="dk-p-tool" style="--c:#10B981">
+          <div class="dk-p-tool-icon">➕➖</div>
+          <h4>DokunSay Tam Sayılar</h4>
+          <p>Sıfır Çifti · 10–13 yaş</p>
+        </a>
+      </div>
+
+      <div class="dk-p-callout">
+        <strong>Tüm araçlar 5 dilde</strong>
+        <p>Türkçe, Kurmancî (Kürtçe), İngilizce, Arapça ve Farsça destekli. Tarayıcıda çalışır; kurulum, kayıt veya bekleyiş yok.</p>
+      </div>
+
+      <div style="text-align:center;margin-top:24px">
+        <a href="https://diskalkuli.com/araclar/" target="_parent" class="dk-p-cta-btn primary" style="background:linear-gradient(135deg,#F59E0B,#EF4444);color:#fff">
+          Tüm DokunSay Araçlarını İncele
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== VALUES ========== -->
+  <section class="dk-p-section" style="background:#f9fafb" id="values">
+    <div class="wrap">
+      <h2 data-i18n="about.title">Diskalkuli Platformu</h2>
+      <p class="sub" data-i18n="about.subtitle">Türkiye'den bilimsel temelli, tanılamadan müdahaleye uzanan bütüncül bir çözüm.</p>
+
+      <div class="dk-p-cards">
+        <div class="dk-p-card">
+          <h4 data-i18n="about.v1_title">🔬 Bilimsellik</h4>
+          <p data-i18n="about.v1_desc">Her tasarım kararı uluslararası alanyazına ve Türkiye örneklemine dayanır. Norm tabloları, ölçek geliştirme ve psikometrik analizler kanıt temellidir.</p>
+        </div>
+        <div class="dk-p-card">
+          <h4 data-i18n="about.v2_title">🌍 Erişilebilirlik</h4>
+          <p data-i18n="about.v2_desc">Çoklu dil desteği, offline çalışma, mobil ve tablet uyumu ile her ebeveynin ve öğretmenin ulaşabileceği çözümler.</p>
+        </div>
+        <div class="dk-p-card">
+          <h4 data-i18n="about.v3_title">🔗 Bütüncüllük</h4>
+          <p data-i18n="about.v3_desc">Tanılamadan müdahaleye ve gelişim takibine uzanan kesintisiz bir dijital ekosistem. Veriler birbirini besler.</p>
+        </div>
+        <div class="dk-p-card">
+          <h4 data-i18n="about.v4_title">🌟 Çocuk Odaklılık</h4>
+          <p data-i18n="about.v4_desc">Eğlenceli, güven verici ve baskı yaratmayan öğrenme deneyimleri. Hata yapma korkusunu düşüren pedagojik tasarım.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SHOP BANNER ========== -->
+  <section class="dk-p-section" style="background:#fff">
+    <div class="wrap">
+      <div class="dk-p-shop">
+        <div class="dk-p-shop-icon">📚</div>
+        <div class="dk-p-shop-content">
+          <h3 data-i18n="shop.title">DokunSay Materyalleri ve Kaynak Kitaplar</h3>
+          <p data-i18n="shop.desc">Sınıfta ve evde kullanabileceğiniz fiziksel öğretim materyalleri ve diskalkuli kaynak kitapları için mağazamızı ziyaret edin.</p>
+        </div>
+        <a href="https://diskalkuli.com/shop/" target="_parent">
+          <span data-i18n="shop.button">Mağazaya Git</span>
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA ========== -->
+  <section class="dk-p-section" style="background:#fff">
+    <div class="wrap">
+      <div class="dk-p-cta">
+        <h2 data-i18n="cta_block.title">Çocuğunuzun sayısal gelişimi için hazır mısınız?</h2>
+        <p data-i18n="cta_block.subtitle">Önce tanılayın, sonra desteğe başlayın. Numap ve Galaksay her zaman yanınızda.</p>
+        <div class="dk-p-cta-btns">
+          <a href="numap.html" class="dk-p-cta-btn primary">
+            <span data-i18n="cta_block.cta_numap">Numap ile Tanıla</span>
+          </a>
+          <a href="galaksay.html" class="dk-p-cta-btn ghost">
+            <span data-i18n="cta_block.cta_galaksay">Galaksay ile Başla</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand-col">
+          <div class="footer-brand">
+            <span class="nav-logo">D</span>
+            <span>Diskalkuli</span>
+          </div>
+          <p class="footer-about" data-i18n="footer.about">
+            Diskalkuli taraması, değerlendirmesi ve eğitsel müdahalesi için bilimsel temelli bir platform.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h5 data-i18n="footer.col_apps">Uygulamalar</h5>
+          <ul>
+            <li><a href="numap.html" data-i18n="nav.numap">Numap</a></li>
+            <li><a href="galaksay.html" data-i18n="nav.galaksay">Galaksay</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5 data-i18n="footer.col_platform">Platform</h5>
+          <ul>
+            <li><a href="index.html" data-i18n="footer.link_home">Ana Sayfa</a></li>
+            <li><a href="index.html#workflow" data-i18n="footer.link_approach">Yaklaşımımız</a></li>
+            <li><a href="hakkinda.html" data-i18n="nav.about">Hakkında</a></li>
+            <li><a href="iletisim.html" data-i18n="nav.contact">İletişim</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5 data-i18n="footer.col_main">Ana Site</h5>
+          <ul>
+            <li><a href="https://diskalkuli.com" data-i18n="footer.link_main_home">diskalkuli.com</a></li>
+            <li><a href="https://diskalkuli.com/shop/" data-i18n="footer.link_shop">Mağaza</a></li>
+            <li><a href="https://diskalkuli.com/product-category/kitaplar/" data-i18n="footer.link_books">Kitaplar</a></li>
+            <li><a href="https://diskalkuli.com/product/dokunsay-noktali-sayi-cubuklari/" data-i18n="footer.link_dokunsay">DokunSay Ürünleri</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span data-i18n="footer.copyright">© 2026 Diskalkuli Platformu. Tüm hakları saklıdır.</span>
+        <span data-i18n="footer.tagline">Tanılamadan müdahaleye, bilimle.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/i18n.js?v=20260421-2"></script>
+  <script src="js/main.js?v=20260421-2"></script>
+  <script src="js/app-shell.js?v=20260422-1"></script>
+</body>
+</html>

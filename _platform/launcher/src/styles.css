@@ -4,26 +4,30 @@
    ========================================================= */
 
 :root {
-  /* Layered neutral palette */
-  --bg: #f5f0e3;
-  --bg-soft: #faf6ea;
-  --panel: #fffdf7;
-  --panel-alt: #faf6ed;
-  --sidebar: #f5efdf;
+  /* Layered neutral palette — HÇMÖ yeşil aile (tek elden) */
+  --bg: #f3f7f1;
+  --bg-soft: #f8fbf7;
+  --panel: #ffffff;
+  --panel-alt: #f5faf4;
+  --sidebar: #eef4ec;
   --surface-raised: #ffffff;
 
-  /* Text */
-  --text: #2d2418;
-  --text-soft: #574a33;
-  --text-muted: #8a7c60;
+  /* Text — nötr koyu yeşil-gri */
+  --text: #182219;
+  --text-soft: #37433c;
+  --text-muted: #5f6b63;
   --text-inverse: #ffffff;
 
-  /* Accent system */
-  --accent: #c97d16;
-  --accent-bright: #f59e0b;
-  --accent-dark: #78461a;
-  --accent-soft: #fef3c7;
-  --accent-softer: #fffaf0;
+  /* Accent system — HÇMÖ yeşili #2E7D32 (birincil) */
+  --accent: #2e7d32;
+  --accent-bright: #43a047;
+  --accent-dark: #1b5e20;
+  --accent-soft: #e8f5e9;
+  --accent-softer: #f1f8f2;
+
+  /* İkincil nüans — sıcak amber (DokunSay kimliğine selam) */
+  --accent-warm: #c97d16;
+  --accent-warm-soft: #fef3c7;
 
   /* Semantic */
   --positive: #16a34a;
@@ -32,17 +36,17 @@
   --neutral: #7c3aed;
 
   /* Borders & surfaces */
-  --border: #e7dcc0;
-  --border-soft: #efe8d0;
-  --border-strong: #c4b587;
+  --border: #dfe7df;
+  --border-soft: #ebf1ea;
+  --border-strong: #b6c8b6;
 
-  /* Shadows — layered */
-  --shadow-xs: 0 1px 2px rgba(45, 36, 24, 0.05);
-  --shadow-sm: 0 2px 4px rgba(45, 36, 24, 0.06), 0 1px 2px rgba(45, 36, 24, 0.04);
-  --shadow-md: 0 4px 10px rgba(45, 36, 24, 0.08), 0 2px 4px rgba(45, 36, 24, 0.05);
-  --shadow-lg: 0 10px 25px rgba(45, 36, 24, 0.10), 0 4px 10px rgba(45, 36, 24, 0.06);
-  --shadow-xl: 0 20px 50px rgba(45, 36, 24, 0.15), 0 8px 20px rgba(45, 36, 24, 0.08);
-  --shadow-focus: 0 0 0 3px rgba(201, 125, 22, 0.30);
+  /* Shadows — yeşil-gri */
+  --shadow-xs: 0 1px 2px rgba(24, 40, 25, 0.05);
+  --shadow-sm: 0 2px 4px rgba(24, 40, 25, 0.06), 0 1px 2px rgba(24, 40, 25, 0.04);
+  --shadow-md: 0 4px 10px rgba(24, 40, 25, 0.08), 0 2px 4px rgba(24, 40, 25, 0.05);
+  --shadow-lg: 0 10px 25px rgba(24, 40, 25, 0.10), 0 4px 10px rgba(24, 40, 25, 0.06);
+  --shadow-xl: 0 20px 50px rgba(24, 40, 25, 0.15), 0 8px 20px rgba(24, 40, 25, 0.08);
+  --shadow-focus: 0 0 0 3px rgba(46, 125, 50, 0.30);
 
   /* Radius */
   --radius-xs: 4px;
@@ -54,9 +58,9 @@
   --radius-pill: 9999px;
 
   /* Gradient backdrops */
-  --grad-header: linear-gradient(135deg, #1a1410 0%, #2d2418 100%);
-  --grad-accent: linear-gradient(135deg, #f59e0b 0%, #c97d16 100%);
-  --grad-warm: linear-gradient(180deg, #f5f0e3 0%, #fdf9ed 100%);
+  --grad-header: linear-gradient(135deg, #14391a 0%, #1d2b22 100%);
+  --grad-accent: linear-gradient(135deg, #43a047 0%, #2e7d32 100%);
+  --grad-warm: linear-gradient(180deg, #f3f7f1 0%, #eaf4ea 100%);
 }
 
 *, *::before, *::after {
@@ -127,18 +131,19 @@ a { color: inherit; text-decoration: none; }
   gap: 14px;
 }
 
+/* HÇMÖ ortak Üçlü Kod işareti: düz dolgu, temiz açık yüzey (gradyan/gölge yok) */
 .brand-logo {
   width: 48px;
   height: 48px;
   border-radius: var(--radius-lg);
-  background: var(--grad-accent);
+  background: #ffffff;
   display: grid;
   place-items: center;
-  box-shadow: 0 4px 16px rgba(245, 158, 11, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25);
-  color: #fff;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.12);
+  padding: 6px;
 }
 
-.brand-logo svg { display: block; }
+.brand-logo svg { display: block; width: 100%; height: 100%; }
 
 .brand h1 {
   margin: 0;
@@ -161,6 +166,38 @@ a { color: inherit; text-decoration: none; }
   gap: 8px;
   align-items: center;
   flex-wrap: wrap;
+}
+
+/* Kimlik yuvası — numap-gate.js giriş rozetini/davetini buraya koyar.
+   Statik olduğu için (index.html) kapı betiği onu her zaman bulur; rozet
+   sayfaya sabitlenmez, üst şeritte akışta durur ve menünün üstüne binmez. */
+.numap-yuvasi:empty { display: none; }
+
+.numap-yuvasi {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 7px 16px calc(7px + env(safe-area-inset-top, 0px));
+  background: #0f2a17;
+  color: #e8f3ea;
+  font-weight: 700;
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+
+.numap-yuvasi .nm { color: #7fdca0; }
+
+.numap-yuvasi button,
+.numap-yuvasi a {
+  cursor: pointer;
+  border: 0;
+  border-radius: 999px;
+  background: #2E7D32;
+  color: #fff;
+  font: 700 12px inherit;
+  padding: 6px 12px;
+  text-decoration: none;
 }
 
 /* Dil seçici — kompakt, profesyonel (3-harf kodu) */
@@ -226,7 +263,7 @@ a { color: inherit; text-decoration: none; }
 .hero-orb-1 {
   width: 340px;
   height: 340px;
-  background: #f59e0b;
+  background: #14b8a6;
   top: -80px;
   left: -60px;
 }
@@ -243,7 +280,7 @@ a { color: inherit; text-decoration: none; }
 .hero-orb-3 {
   width: 260px;
   height: 260px;
-  background: #8b5cf6;
+  background: #84cc16;
   bottom: -80px;
   left: 40%;
   opacity: 0.28;
@@ -273,22 +310,27 @@ a { color: inherit; text-decoration: none; }
 
 .hero h2 {
   margin: 0 0 18px;
-  font-size: clamp(36px, 6vw, 64px);
+  font-size: clamp(2.15rem, 1.4rem + 3.2vw, 3.6rem);
   font-weight: 900;
   letter-spacing: -1px;
-  line-height: 1.0;
+  line-height: 1.04;
   color: var(--text);
-  background: linear-gradient(135deg, #2d2418 20%, #78461a 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+}
+/* ABMATO hero stili — marka gradyanı + altında fosforlu şerit (amber) */
+.hero h2 .hero-hl {
+  color: #182219;
+  background-image: linear-gradient(transparent 60%, rgba(67, 160, 71, .32) 60%, rgba(67, 160, 71, .32) 92%, transparent 92%);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  padding: 0 .06em;
+  border-radius: 4px;
 }
 
 .hero-lead {
   margin: 0 auto 34px;
   max-width: 680px;
-  font-size: clamp(16px, 1.6vw, 19px);
-  line-height: 1.55;
+  font-size: clamp(1.06rem, 1rem + .5vw, 1.3rem);
+  line-height: 1.6;
   color: var(--text-soft);
   font-weight: 600;
 }
@@ -301,13 +343,13 @@ a { color: inherit; text-decoration: none; }
   font-size: 16px;
   font-weight: 800;
   letter-spacing: 0.3px;
-  box-shadow: 0 8px 20px rgba(245, 158, 11, 0.30), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 20px rgba(46, 125, 50, 0.30), inset 0 1px 0 rgba(255, 255, 255, 0.25);
   transition: transform 0.15s, box-shadow 0.15s, filter 0.15s;
 }
 
 .hero-cta:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 28px rgba(245, 158, 11, 0.40), inset 0 1px 0 rgba(255, 255, 255, 0.30);
+  box-shadow: 0 12px 28px rgba(46, 125, 50, 0.40), inset 0 1px 0 rgba(255, 255, 255, 0.30);
   filter: brightness(1.05);
 }
 
@@ -845,6 +887,15 @@ a { color: inherit; text-decoration: none; }
 .footer-meta {
   opacity: 0.70;
 }
+
+.footer-meta .footer-author {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px dotted rgba(255, 255, 255, 0.45);
+  transition: color 0.15s;
+}
+
+.footer-meta .footer-author:hover { color: var(--accent-bright); }
 
 .footer-links {
   display: flex;

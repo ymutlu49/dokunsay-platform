@@ -1,0 +1,199 @@
+<!--
+  /ebeveynler/ — Akademik dilde yeniden yazılmış sürüm.
+
+  Değişiklikler:
+  • Hero: Sloganik dilden ("tembellik değil") akademik tona geçiş
+  • Eklenen bölümler: aile rolü (literatür temelli), gözlem stratejileri,
+    aile-okul iş birliği, evde günlük matematik pratikleri
+  • Akademik referanslar (Mazzocco & Thompson, Kucian & von Aster, vb.)
+  • Numap kapsamı 48-119 ay / 4-10 yaş güncellendi
+  • Anonim "Ayşe K." alıntısı kaldırıldı (akademik tonla uyumsuz)
+  • Hiçbir bireysel isim anılmıyor
+
+  WP'de /ebeveynler/ sayfasının Custom HTML bloğuna yapıştır.
+-->
+<style>
+.dk-p-hero{background:linear-gradient(180deg,#fff 0%,#fdf2f8 100%);padding:56px 20px;text-align:center;border-bottom:1px solid rgba(0,0,0,.06);font-family:'Inter',sans-serif}
+.dk-p-hero .wrap{max-width:800px;margin:0 auto}
+.dk-p-eyebrow{display:inline-block;background:#ec489922;color:#ec4899;padding:6px 14px;border-radius:20px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px;border:1px solid #ec489944}
+.dk-p-hero h1{font-size:clamp(26px,3.6vw,38px);font-weight:800;color:#031f42;margin:0 0 14px;letter-spacing:-.02em;line-height:1.2}
+.dk-p-hero p{font-size:clamp(15px,1.2vw,17px);color:#4a5568;margin:0 auto;max-width:680px;line-height:1.7}
+.dk-p-section{padding:48px 20px;font-family:'Inter',sans-serif}
+.dk-p-section .wrap{max-width:1100px;margin:0 auto}
+.dk-p-section h2{font-size:clamp(22px,2.3vw,28px);font-weight:800;color:#031f42;margin:0 0 14px;letter-spacing:-.01em;text-align:center;display:flex;align-items:center;justify-content:center;gap:10px}
+.dk-p-section h2::before{content:"";width:4px;height:24px;background:#ec4899;border-radius:3px}
+.dk-p-section .sub{text-align:center;color:#6a7390;max-width:680px;margin:0 auto 32px;font-size:15px;line-height:1.65}
+.dk-p-section p{color:#4a5568;font-size:15px;line-height:1.75;margin:0 0 14px}
+
+.dk-p-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.dk-p-step{background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:14px;padding:26px 24px;transition:all .3s cubic-bezier(0.16,1,0.3,1);position:relative;overflow:hidden}
+.dk-p-step:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(3,31,66,.08);border-color:#ec4899}
+.dk-p-step-num{width:42px;height:42px;border-radius:50%;background:#ec4899;color:#fff;display:inline-grid;place-items:center;font-weight:800;font-size:18px;margin-bottom:14px}
+.dk-p-step h3{font-size:18px;font-weight:800;margin:0 0 8px;color:#031f42}
+.dk-p-step p{font-size:14px;color:#6a7390;line-height:1.65;margin:0 0 14px}
+.dk-p-step a{font-size:13px;font-weight:700;color:#ec4899;text-decoration:none;display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:8px;background:#ec489910;transition:all .2s}
+.dk-p-step a:hover{background:#ec4899;color:#fff}
+
+.dk-p-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:6px}
+.dk-p-card{background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:12px;padding:20px 22px}
+.dk-p-card h4{font-size:15px;font-weight:700;margin:0 0 8px;color:#031f42}
+.dk-p-card p{font-size:13.5px;color:#4a5568;margin:0;line-height:1.6}
+
+.dk-p-prose{max-width:780px;margin:0 auto}
+.dk-p-prose p{font-size:15px;color:#4a5568;line-height:1.78;margin:0 0 16px}
+.dk-p-prose h3{font-size:18px;font-weight:700;color:#031f42;margin:24px 0 8px}
+.dk-p-prose ul{padding-left:22px;margin:8px 0 16px}
+.dk-p-prose li{font-size:15px;color:#4a5568;line-height:1.7;margin-bottom:8px}
+.dk-p-cite{display:inline-block;background:rgba(236,72,153,.1);color:#be185d;font-size:12px;padding:1px 7px;border-radius:6px;font-weight:600;margin:0 2px;white-space:nowrap}
+
+.dk-p-cta{background:linear-gradient(135deg,#ec4899 0%,#be185d 100%);color:#fff;padding:46px 32px;border-radius:16px;text-align:center;margin:28px 0;position:relative;overflow:hidden}
+.dk-p-cta::before{content:"";position:absolute;top:-50%;right:-10%;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.15),transparent 70%)}
+.dk-p-cta h2{color:#fff !important;margin:0 0 10px;position:relative;text-align:center;justify-content:center}
+.dk-p-cta h2::before{display:none}
+.dk-p-cta p{color:rgba(255,255,255,.92);margin:0 0 22px;max-width:580px;margin-left:auto;margin-right:auto;position:relative;font-size:15px;line-height:1.65}
+.dk-p-cta-btns{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;position:relative}
+
+.dk-p-callout{background:#fefbe9;border:1px solid #ffc221;border-left:4px solid #ffc221;border-radius:12px;padding:20px 24px;margin:22px auto;max-width:780px}
+.dk-p-callout strong{color:#92400e;display:block;margin-bottom:6px;font-size:14px;letter-spacing:.04em}
+.dk-p-callout p{margin:0;color:#374151;font-size:14px;line-height:1.65}
+</style>
+
+<header class="dk-p-hero">
+  <div class="wrap">
+    <span class="dk-p-eyebrow">Ebeveynler için akademik rehber</span>
+    <h1>Çocuğunuzun matematikteki güçlüğü neyle ilgili olabilir?</h1>
+    <p>Okul çağı çocuklarının yaklaşık %3–7'sinde matematik öğrenme güçlüğü (diskalkuli) gözlenir <span class="dk-p-cite">Kucian &amp; von Aster, 2015</span>. Belirtiler çoğu zaman "yetersiz çalışma" olarak yorumlansa da, alanyazın bu güçlüklerin sayı işleme devrelerindeki nörobilişsel farklılıklarla ilişkili olduğunu göstermektedir <span class="dk-p-cite">Butterworth ve ark., 2011</span>. Bu rehber, ebeveynlere bilimsel temelli gözlem, değerlendirme ve destek yolları sunar.</p>
+  </div>
+</header>
+
+<section class="dk-p-section" style="background:#fff">
+  <div class="wrap">
+    <h2>Üç adımlık aile yolculuğu</h2>
+    <p class="sub">Alanyazın temelli bir çerçeve: önce anlama, sonra bilimsel değerlendirme, ardından sistematik destek. Aile-okul iş birliği bu sürecin kritik bileşenidir <span class="dk-p-cite">Mazzocco &amp; Thompson, 2005</span>.</p>
+    <div class="dk-p-steps">
+      <div class="dk-p-step">
+        <div class="dk-p-step-num">1</div>
+        <h3>Önce anlayın</h3>
+        <p>Diskalkulinin tanımı, gelişimsel işaretleri ve eşgörü durumlarını içeren akademik rehberi inceleyin. Doğru bilgi, ailelerin yaşadığı belirsizliği ve kaygıyı önemli ölçüde azaltır.</p>
+        <a href="/diskalkuli-nedir/">Diskalkuli Nedir? rehberini oku →</a>
+      </div>
+      <div class="dk-p-step">
+        <div class="dk-p-step-num">2</div>
+        <h3>Bilimsel değerlendirme yapın</h3>
+        <p>Numap dijital değerlendirme platformu, A1–A11 alt-test bataryası üzerinden okul öncesinden ilkokul 4. sınıfa kadar (48–119 ay / 4–10 yaş) Türkiye normlarına göre risk düzeyi tahmini sunar.</p>
+        <a href="/platform/numap.html">Numap ile değerlendir →</a>
+      </div>
+      <div class="dk-p-step">
+        <div class="dk-p-step-num">3</div>
+        <h3>Sistematik destek sağlayın</h3>
+        <p>Müdahale aşamasında oyunlaştırılmış Galaksay modülleri ve sınıf/ev içi DokunSay araçları kısa süreli, düzenli ve aşamalı pratik için tasarlanmıştır.</p>
+        <a href="/araclar/">DokunSay araçlarını keşfet →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dk-p-section" style="background:#f9fafb">
+  <div class="wrap">
+    <h2>Aile rolü: gözlemden destek vermeye</h2>
+    <div class="dk-p-prose">
+      <p>Diskalkulili çocuklarda aile çevresinin niteliği, akademik gelişimi anlamlı ölçüde etkileyen değişkenlerden biridir <span class="dk-p-cite">Shalev, 2004</span>. Düşük sosyoekonomik koşullar veya sınırlı eğitim materyallerine erişim, klinik tablonun maskelenmesine ya da derinleşmesine yol açabilir <span class="dk-p-cite">Price &amp; Ansari, 2013</span>. Tersine, bilinçli aile katılımı ve okul-ev iş birliği, çocuğun matematikle kurduğu ilişkiyi olumlu yönde dönüştürmektedir <span class="dk-p-cite">Mazzocco &amp; Thompson, 2005</span>.</p>
+
+      <h3>Gözlem temelli yaklaşım</h3>
+      <p>Erken işaretler genellikle ev ortamında, oyun ve günlük yaşam etkinlikleri sırasında belirir. Ailelerin sistematik gözlem yapması — bir günlük tutması veya kontrol listeleri kullanması — tanılama sürecini hızlandırır <span class="dk-p-cite">Kaufmann ve ark., 2013</span>. Aşağıdaki sorular gözleme rehber olabilir:</p>
+      <ul>
+        <li>Çocuk küçük kümeleri (1–4 nesne) anında tanıyabiliyor mu?</li>
+        <li>"Daha çok / daha az" karşılaştırmalarında tutarlı yanıt veriyor mu?</li>
+        <li>Sayma işleminde nesneleri atlama veya tekrar sayma sıklığı nedir?</li>
+        <li>Saat, para, ölçü gibi günlük nicelik kavramlarında zorluk yaşıyor mu?</li>
+        <li>Matematik içeren etkinlik öncesi/sırasında fizyolojik kaygı tepkileri (karın ağrısı, ağlama) gösteriyor mu? <span class="dk-p-cite">Mammarella ve ark., 2015</span></li>
+      </ul>
+
+      <h3>Damgalamadan kaçınma</h3>
+      <p>Alanyazın, çocuğun kapasitesinin "tembellik" veya "ilgisizlik" olarak yorumlanmasının matematik kaygısını derinleştirdiğini ortaya koymaktadır <span class="dk-p-cite">Rubinsten &amp; Tannock, 2010</span>. Diskalkuli, zekâ düzeyinden bağımsız, sayı işleme süreçlerine özgü bir farklılıktır <span class="dk-p-cite">Butterworth ve ark., 2011</span>. Ailenin tutumu — başarısızlığı kişisel bir eksiklik olarak değil, üzerine çalışılabilir bir alan olarak çerçevelemesi — çocuğun öğrenmeye yönelik motivasyonunu korur <span class="dk-p-cite">Beilock &amp; Maloney, 2015</span>.</p>
+
+      <h3>Evde günlük matematik pratikleri</h3>
+      <p>Kısa süreli ve düzenli ev içi matematik etkinlikleri, sınıf desteğinin etkisini güçlendirir <span class="dk-p-cite">Geary ve ark., 2004</span>. Önerilen ilkeler:</p>
+      <ul>
+        <li><strong>Süre yerine düzenlilik.</strong> Günlük 10–20 dakika, haftada birkaç saatlik tek seferlik çalışmadan daha etkilidir.</li>
+        <li><strong>Somut materyalden başlama.</strong> Sayı çubukları, pullar, ölçü kapları gibi nesneler kavramı bedenleştirir; bu, somut–yarı somut–soyut (CRA) öğretim yaklaşımının temelidir <span class="dk-p-cite">Powell ve ark., 2020</span>.</li>
+        <li><strong>Hata kabulü.</strong> Hatayı düzeltici bir yorum yerine birlikte keşfedilecek bir bilgi olarak ele almak, kaygı düzeyini düşürür <span class="dk-p-cite">Beilock &amp; Maloney, 2015</span>.</li>
+        <li><strong>Günlük yaşam bağlamı.</strong> Alışverişte para üstü, mutfakta ölçü, oyunda zaman gibi otantik bağlamlar matematiksel düşünmenin transferini destekler.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="dk-p-section" style="background:#fff">
+  <div class="wrap">
+    <h2>Aile-okul iş birliği</h2>
+    <div class="dk-p-cards">
+      <div class="dk-p-card">
+        <h4>Düzenli iletişim</h4>
+        <p>Sınıf öğretmeni ve rehber öğretmenle haftalık ya da iki haftalık görüşmeler; gözlemlerin karşılıklı paylaşılması.</p>
+      </div>
+      <div class="dk-p-card">
+        <h4>Ortak hedefler</h4>
+        <p>Okuldaki destek planı ile ev pratikleri aynı kazanımları hedeflemeli; çelişen yöntemler çocuğu zorlar.</p>
+      </div>
+      <div class="dk-p-card">
+        <h4>Veri temelli izleme</h4>
+        <p>Numap raporları aile ve öğretmenle paylaşılarak gelişim verisi üzerinden ortak karar verilebilir.</p>
+      </div>
+      <div class="dk-p-card">
+        <h4>Uzman desteği</h4>
+        <p>Şüphe sürdüğünde rehberlik araştırma merkezleri (RAM), eğitim psikoloğu veya çocuk gelişim uzmanı ile yönlendirme alın.</p>
+      </div>
+      <div class="dk-p-card">
+        <h4>Kardeş ve aile dinamiği</h4>
+        <p>Diskalkulili çocuğun kardeşleriyle karşılaştırılması, kaygıyı derinleştirir. Bireysel ilerleme ön plana alınmalıdır.</p>
+      </div>
+      <div class="dk-p-card">
+        <h4>Sürekli gelişim</h4>
+        <p>Tek seferlik müdahale yerine 6–12 aylık sistematik destek, kalıcı dönüşüm için zemin oluşturur <span class="dk-p-cite">Kaufmann ve ark., 2013</span>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dk-p-section" style="background:#f9fafb">
+  <div class="wrap">
+    <h2>Sıkça karşılaşılan sorular</h2>
+    <div class="dk-p-cards">
+      <div class="dk-p-card">
+        <h4>Çocuğum sadece matematikten korkuyor olabilir mi?</h4>
+        <p>Matematik kaygısı ile diskalkuli farklı kavramlardır ancak birbirini besler. Bilimsel değerlendirme, kaygı odaklı bir tabloyla nörogelişimsel bir farklılığı ayırt edebilir <span class="dk-p-cite">Mammarella ve ark., 2015</span>.</p>
+      </div>
+      <div class="dk-p-card">
+        <h4>Ne zaman uzman desteği almalıyım?</h4>
+        <p>Belirtiler en az 6 ay süreyle ve yaşıt ortalamasının belirgin altında kalıyorsa, kapsamlı bir değerlendirme önerilir <span class="dk-p-cite">APA, 2013</span>.</p>
+      </div>
+      <div class="dk-p-card">
+        <h4>Numap'ı evde mi kullanmalıyım?</h4>
+        <p>Numap, sessiz ve dikkat dağıtmayan bir ortamda, bir yetişkin gözetiminde uygulanmalıdır. Sonuç raporu okul rehberlik servisi veya çocuk gelişim uzmanıyla birlikte yorumlanmalıdır.</p>
+      </div>
+      <div class="dk-p-card">
+        <h4>Çocuğumun zekâsında bir sorun mu var?</h4>
+        <p>Hayır. Diskalkuli, zekâ düzeyinden bağımsız bir öğrenme güçlüğüdür. Ortalama veya üzeri zekâ düzeyine sahip çocuklarda da görülebilir <span class="dk-p-cite">APA, 2013</span>.</p>
+      </div>
+    </div>
+
+    <div class="dk-p-callout">
+      <strong>Önemli not</strong>
+      <p>Bu sayfadaki tüm bilgiler eğitim ve farkındalık amaçlıdır. Klinik tanı için her zaman bir uzmana (çocuk ve ergen ruh sağlığı, çocuk gelişim, eğitim psikolojisi) başvurulmalıdır.</p>
+    </div>
+  </div>
+</section>
+
+<section class="dk-p-section" style="background:#fff">
+  <div class="wrap">
+    <div class="dk-p-cta">
+      <h2>Şüpheyi bilime dönüştürün</h2>
+      <p>Çocuğunuzu okul öncesinden ilkokul 4. sınıfa kadar (48–119 ay / 4–10 yaş) Numap A1–A11 bataryası ile yaklaşık 15 dakikada bilimsel olarak değerlendirin.</p>
+      <div class="dk-p-cta-btns">
+        <a class="dk-btn dk-btn--secondary dk-btn--lg" href="/platform/numap.html">Numap ile Değerlendir →</a>
+        <a class="dk-btn dk-btn--ghost dk-btn--lg" href="/diskalkuli-nedir/" style="background:rgba(255,255,255,.15);color:#fff;border-color:rgba(255,255,255,.4)">Önce Bilgi Edinmek İstiyorum</a>
+      </div>
+    </div>
+  </div>
+</section>

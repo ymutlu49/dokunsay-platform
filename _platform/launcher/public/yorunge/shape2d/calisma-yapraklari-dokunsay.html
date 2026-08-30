@@ -1,0 +1,1469 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>2B Şekiller — Çalışma Yaprakları · DokunSay</title>
+<meta name="description" content="2B Şekiller öğrenme yörüngesi için her düzeye bir baskıya hazır çalışma yaprağı. CRA (somut→temsilî→soyut) temelli, diskalkuli-dostu. Clements &amp; Sarama.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{ --c:#7c3aed; --ink:#1f2733; --body:#39434f; --mut:#7c8aa0; --line:#e7e2d6; --paper:#fffdf7; --tint:color-mix(in srgb, var(--c) 8%, #fffdf7); }
+*{ box-sizing:border-box; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+html,body{ margin:0; background:#eceae3; font-family:'Lexend',system-ui,Segoe UI,sans-serif; color:var(--body); }
+.bar{ position:sticky; top:0; z-index:9; display:flex; gap:14px; align-items:center; justify-content:space-between;
+  background:#fff; border-bottom:1px solid #dcd8cd; padding:11px 18px; box-shadow:0 1px 6px rgba(0,0,0,.05); }
+.bar .t{ font-family:'Poppins',sans-serif; font-weight:700; color:var(--ink); font-size:15px; }
+.bar .t small{ display:block; font-weight:500; color:var(--mut); font-size:12px; }
+.bar .actions{ display:flex; gap:9px; }
+.btn{ font-family:'Poppins',sans-serif; font-weight:600; font-size:13.5px; border:0; border-radius:10px; padding:9px 15px; cursor:pointer; text-decoration:none; }
+.btn-print{ background:var(--c); color:#fff; } .btn-back{ background:#eef1f4; color:#334155; }
+.wrap{ max-width:880px; margin:18px auto 40px; padding:0 14px; }
+
+/* ── A4 çalışma yaprağı ───────────────────────────────────────────── */
+.sheet{ background:var(--paper); width:210mm; height:297mm; overflow:hidden; margin:0 auto 20px; padding:11mm 13mm 6mm;
+  border-radius:4px; box-shadow:0 6px 26px rgba(31,39,51,.13); position:relative;
+  display:flex; flex-direction:column; gap:1.8mm; }
+.lbl{ display:inline-block; font-family:'Poppins',sans-serif; font-weight:700; font-size:10.5pt; color:var(--c); letter-spacing:.2px; margin-bottom:2px; }
+
+.ws-head{ border-bottom:3px solid var(--c); padding-bottom:7px; }
+.ws-top{ display:flex; justify-content:space-between; align-items:center; font-size:10pt; color:var(--mut); }
+.ws-brand{ display:inline-flex; align-items:center; gap:7px; font-family:'Poppins',sans-serif; }
+.ws-brand b{ color:var(--ink); } .logo{ width:22px; height:22px; }
+.ws-name{ font-size:9.5pt; } .nl{ display:inline-block; width:34mm; border-bottom:1.4px dotted #b8c0cc; } .nl.sm{ width:24mm; }
+.ws-eyebrow{ font-family:'Poppins',sans-serif; font-weight:600; font-size:10pt; color:var(--c); margin-top:8px; text-transform:uppercase; letter-spacing:.4px; }
+.ws-title{ font-family:'Poppins',sans-serif; font-weight:800; font-size:18pt; line-height:1.1; color:var(--ink); margin:2px 0 6px; display:flex; align-items:baseline; gap:8px; }
+.ws-no{ background:var(--c); color:#fff; font-size:12pt; min-width:27px; height:27px; padding:0 6px; border-radius:8px; display:inline-flex; align-items:center; justify-content:center; }
+.ws-meta{ display:flex; flex-wrap:wrap; gap:7px; align-items:center; }
+.pill{ font-family:'Poppins',sans-serif; font-weight:600; font-size:9.5pt; background:#eef2f7; color:#475569; border-radius:20px; padding:4px 11px; }
+.pill.warn{ background:#fff3e2; color:#9a3412; }
+.cra{ display:inline-flex; align-items:center; gap:4px; margin-left:auto; }
+.cra-s{ font-family:'Poppins',sans-serif; font-weight:600; font-size:9pt; color:#94a3b8; background:#f1f4f8; border-radius:7px; padding:3px 9px; }
+.cra-s.on{ color:#fff; } .cra-arr{ color:#cbd5e1; font-size:10pt; }
+
+.ws-obj{ background:var(--tint); border-radius:10px; padding:7px 12px; }
+.ws-obj p{ margin:1px 0 0; font-size:11pt; line-height:1.42; color:var(--ink); }
+.ws-method .msteps{ margin:1px 0 0; padding-left:0; list-style:none; display:flex; flex-direction:column; gap:2px; counter-reset:m; }
+.ws-method .msteps li{ font-size:10pt; line-height:1.32; padding-left:26px; position:relative; }
+.ws-method .msteps li::before{ counter-increment:m; content:counter(m); position:absolute; left:0; top:0;
+  width:21px; height:21px; border-radius:50%; background:var(--c); color:#fff; font-family:'Poppins',sans-serif; font-weight:700; font-size:10pt; display:flex; align-items:center; justify-content:center; }
+.ws-method .msteps b{ color:var(--c); }
+
+.ws-egbox{ background:#f4f8f5; border:1.5px dashed color-mix(in srgb,var(--c) 45%,#cbd5e1); border-radius:10px; padding:6px 12px 7px; }
+.ws-egbox .lbl{ color:color-mix(in srgb,var(--c) 70%, #166534); }
+
+.items-grid{ display:grid; grid-template-columns:1fr 1fr; gap:5px; margin-top:2px; align-items:start; }
+.ex{ border:1.4px solid var(--line); border-radius:11px; padding:7px 10px 8px; background:#fff; break-inside:avoid; }
+.ex.wide{ grid-column:1 / -1; }
+.ex.eg{ border:0; padding:2px 0 0; background:transparent; grid-column:1 / -1; }
+.ex-q{ display:flex; gap:7px; align-items:flex-start; }
+.ex-no{ flex:0 0 auto; width:22px; height:22px; border-radius:50%; background:var(--c); color:#fff; font-family:'Poppins',sans-serif; font-weight:700; font-size:10.5pt; display:flex; align-items:center; justify-content:center; }
+.ex.eg .ex-no{ background:#fef3c7; }
+.ex-q p{ margin:1px 0 0; font-size:10.8pt; line-height:1.4; color:var(--ink); }
+.ex-v{ margin:4px 0 3px; text-align:center; } .ex-a{ margin:0; text-align:center; }
+.ex.wide .ex-v, .ex.wide .ex-a, .ex.eg .ex-v, .ex.eg .ex-a{ text-align:left; margin-left:30px; }
+
+/* SVG görseller — içsel boyut ama A4'e sığması için yükseklik sınırlı */
+.ws-svg{ max-width:100%; width:auto; height:auto; vertical-align:middle; }
+.ex-v .ws-svg{ max-height:16mm; }
+.ex-v .ws-svg.ws-tall{ max-height:17mm; }
+.ws-egbox .ex-v .ws-svg{ max-height:12mm; } .ws-egbox .ex-v .ws-svg.ws-tall{ max-height:13mm; }
+.ex-v .ws-frac{ max-height:26mm; } .ws-svg.ws-frac{ width:auto; max-height:26mm; } svg.ws-glyph{ width:12mm; height:12mm; }
+.pat-row{ display:flex; align-items:center; gap:7px; flex-wrap:wrap; }
+.pat-c svg{ width:13mm; height:13mm; } .pat-q{ width:13mm; height:13mm; border:2px dashed #b8c0cc; border-radius:8px; display:inline-flex; align-items:center; justify-content:center; font-family:'Poppins',sans-serif; font-weight:800; font-size:16pt; color:#b8c0cc; }
+
+/* Yanıt alanları */
+.wbox{ display:inline-block; width:14mm; height:14mm; border:2px solid #94a3b8; border-radius:8px; vertical-align:middle; margin:0 3px; background:#fff; }
+.wbox.wbox-lg{ width:18mm; height:14mm; border-color:var(--c); }
+.eqrow{ display:flex; align-items:center; flex-wrap:wrap; gap:5px; font-family:'Poppins',sans-serif; font-weight:600; font-size:15pt; color:var(--ink); }
+.bignum{ font-family:'Poppins',sans-serif; font-weight:700; font-size:17pt; color:var(--ink); } .bignum.sm{ font-size:14pt; padding:0 3px; }
+.seqn{ font-family:'Poppins',sans-serif; font-weight:600; font-size:14pt; } .seqsep{ color:#94a3b8; }
+.ans-hint{ margin:5px 0 0 0; font-size:10.5pt; color:var(--mut); font-style:normal; }
+.ans-shown{ font-family:'Poppins',sans-serif; font-size:14pt; color:#166534; }
+
+.ws-scaffold{ display:flex; gap:8px; flex-wrap:wrap; }
+.sc{ flex:1 1 44%; font-size:9.8pt; line-height:1.30; border-radius:9px; padding:5px 10px; }
+.sc-easy{ background:#eef4fb; } .sc-easy b{ color:#1d4ed8; }
+.sc-hard{ background:#f5f0fb; } .sc-hard b{ color:#7c3aed; }
+
+.ws-foot{ margin-top:auto; padding-top:5px; border-top:1px solid var(--line); display:flex; flex-direction:column; gap:4px; }
+.ws-check{ background:#f0fdf4; border-radius:9px; padding:5px 11px; font-size:10pt; line-height:1.35; color:#166534; display:flex; justify-content:space-between; align-items:center; gap:10px; }
+.ws-check b{ color:#15803d; } .stars{ font-size:14pt; color:#f59e0b; letter-spacing:2px; white-space:nowrap; }
+.ws-credit{ font-size:7.8pt; color:var(--mut); line-height:1.35; display:flex; flex-direction:column; gap:1px; }
+.ws-credit .mat{ color:#475569; }
+.ws-credit a{ color:#475569; }
+/* Kavram yanılgısı şeridi. Punto (8.7pt) künyeden (7.8pt) büyük ama gövde metninden
+   küçük: öğretmene yönelik ikincil bilgi, çocuğun göreviyle yarışmamalı. Yapraklar
+   milimetrik dolu olduğu için bu ölçüler A4 taşmasına karşı ölçülerek seçildi. */
+.ws-mis{ background:#fff7ed; border-left:3px solid #fb923c; border-radius:9px; padding:3px 10px; font-size:8.7pt; line-height:1.26; color:#7c2d12; }
+.ws-mis b{ color:#9a3412; font-weight:700; }
+.ws-mis .mis-cite{ color:#a16207; white-space:nowrap; }
+
+/* ── Baskı ─────────────────────────────────────────────────────────── */
+@media print{
+  @page{ size:A4; margin:0; }
+  html,body{ background:#fff; }
+  .bar,.wrap>.intro{ display:none !important; }
+  .wrap{ margin:0; padding:0; max-width:none; }
+  .sheet{ width:210mm; height:297mm; margin:0; border-radius:0; box-shadow:none; overflow:hidden; break-before:page; }
+  .sheet:first-child{ break-before:avoid; }
+}
+.intro{ background:#fff; border-radius:14px; padding:16px 20px; margin-bottom:18px; box-shadow:0 2px 10px rgba(0,0,0,.05); }
+.intro h2{ font-family:'Poppins',sans-serif; margin:0 0 5px; color:var(--ink); font-size:18px; }
+.intro p{ margin:0; font-size:13.5px; line-height:1.55; color:#5b6573; }
+</style>
+</head>
+<body>
+<div class="bar no-print">
+  <span class="t">🔷 2B Şekiller — Çalışma Yaprakları<small>22 düzey · Geometri ve Uzamsal · CRA temelli · DokunSay materyalleriyle</small></span>
+  <span class="actions">
+    <a class="btn btn-back" href="./">← Yörüngeye dön</a>
+    <button class="btn btn-print" onclick="window.print()">🖨️ Yazdır / PDF kaydet</button>
+  </span>
+</div>
+<div class="wrap">
+  <div class="intro no-print">
+    <h2>2B Şekiller · Çalışma Yaprakları · DokunSay materyalleriyle</h2>
+    <p>Her düzey için bir baskıya-hazır A4 çalışma yaprağı — <b>tüm görseller gerçek DokunSay Geo materyalinin çizimleridir</b> (sayı çubuğu + pul, onluk kart, Basamak blokları, Kesir, Geo). Çocuk önce <b>somut araçla</b> yapar, sonra <b>sayfadaki aynı materyalin çiziminde</b> gösterir, en sonda <b>sembolü yazar</b> — sayfa ile araç birebir örtüşür. Çocuğun düzeyinden başlayın; ✓ölçütü karşılayınca sonraki yaprağa geçin.</p>
+  </div>
+  <section class="sheet" style="--c:#7c3aed">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🔷 Geometri ve Uzamsal · 2B Şekiller</div>
+    <h1 class="ws-title"><span class="ws-no">1</span>Benzerini Fark Eden: Temeller</h1>
+    <div class="ws-meta">
+      <span class="pill">0–2 yaş</span>
+      <span class="pill">Düzey 1/22</span>
+      
+      <span class="cra"><span class="cra-s on" style="background:#7c3aed">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Gerçek yaşam nesnelerini karşılaştırır; iki nesnenin &quot;aynı şey&quot; olup olmadığına bütünsel görünüşe bakarak karar verir.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Oyna</b> — DokunSay Geo ya da günlük nesnelerle birlikte oynayın — DokunSay Geo şekil bloklarından 3 özdeş + 1 farklı parça.</li><li><b>Söyle</b> — Sayıları/sözcükleri yüksek sesle ve ritimle siz söyleyin; çocuk katılsın.</li><li><b>Gözle</b> — Tepkisini gözleyin — bu yaşta yazı/çizim beklenmez, deneyim önemlidir.</li></ol>
+  </div>
+
+  
+
+  <div class="ws-items"><span class="lbl">🎲 Birlikte oyna (siz yönlendirin)</span>
+    <div class="items-grid"><div class="ex">
+    <div class="ex-q"><span class="ex-no">1</span><p>İki özdeş bloğu çocuğun önüne koyun: "Bak, bunlar aynı!" deyin, üst üste getirip gösterin.</p></div>
+    
+    
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Araya farklı bir blok ekleyin: "Bu başka, değil mi?" diye tepkisini gözleyin.</p></div>
+    
+    
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>Çocuk özdeş olanları yan yana itiyor/uzatıyor mu bakın.</p></div>
+    
+    
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">4</span><p>Günlük nesnelerle (iki kaşık + bir top) "aynı/başka" oyununu tekrarlayın.</p></div>
+    
+    
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Farkı abartın: aynı iki blok yanına çok farklı bir nesne (yumuşak oyuncak) koyun.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Yalnız renkçe değil biçimce yakın nesnelerle (kare ↔ dikdörtgen) ayırt ettirin.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> İki nesneyi rengi ya da büyüklüğü aynı diye &quot;aynı şey&quot; sayar. <b>→ Ne yapmalı:</b> Aynı biçimde iki farklı renk nesne verip &quot;biçimi aynı mı?&quot; diye sorun. <span class="mis-cite">📖 van Hiele (1986)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Aynı ve farklı nesneleri (saymadan, adlandırmadan) sezgisel ayırt eder; benzeyeni eşler ya da farklıya tepki verirse ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay Geo şekil bloklarından 3 özdeş + 1 farklı parça · küçük bir tepsi <a href="https://dokunsay.com/Dokunsay-geo/">🔗 dokunsay.com/Dokunsay-geo/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/shape2d/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#7c3aed">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🔷 Geometri ve Uzamsal · 2B Şekiller</div>
+    <h1 class="ws-title"><span class="ws-no">2</span>Şekil Eşleyen — Aynısı, Döndürülmüşü, Büyüğü-Küçüğü</h1>
+    <div class="ws-meta">
+      <span class="pill">1–3 yaş</span>
+      <span class="pill">Düzey 2/22</span>
+      
+      <span class="cra"><span class="cra-s on" style="background:#7c3aed">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Tanıdık şekilleri (daire, kare, tipik üçgen) önce aynı boyut ve yönelimde, ardından farklı boyutlarda, en sonunda farklı yönelimlerde eşler.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Oyna</b> — DokunSay Geo ya da günlük nesnelerle birlikte oynayın — DokunSay Geo şekil blokları (aynı şeklin döndürülmüş + büyük/küçük eşleri).</li><li><b>Söyle</b> — Sayıları/sözcükleri yüksek sesle ve ritimle siz söyleyin; çocuk katılsın.</li><li><b>Gözle</b> — Tepkisini gözleyin — bu yaşta yazı/çizim beklenmez, deneyim önemlidir.</li></ol>
+  </div>
+
+  
+
+  <div class="ws-items"><span class="lbl">🎲 Birlikte oyna (siz yönlendirin)</span>
+    <div class="items-grid"><div class="ex">
+    <div class="ex-q"><span class="ex-no">1</span><p>Bir üçgen bloğu gösterip "bunun ikizini bul" deyin; eşini döndürülmüş olarak karıştırın.</p></div>
+    
+    
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Çocuk bulunca bloğu çevirip üst üste getirin: "tıpatıp oturdu — aynı şekil."</p></div>
+    
+    
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>Aynı şeklin büyük ve küçük boyunu sunup yine eşletin.</p></div>
+    
+    
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">4</span><p>Daire/kare/üçgenle yönelim ve boyut değişerek tekrarlayın.</p></div>
+    
+    
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Önce yalnız boyutu değiştirin (duruş aynı kalsın); büyük ↔ küçük eşletin.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Birden çok benzer şekli (üçgen + ince üçgen) karıştırıp tam eşi seçtirin.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Aynı şeklin büyüğüyle küçüğünü eşleştirmez; yalnız birebir aynı boyu eşler. <b>→ Ne yapmalı:</b> Aynı şeklin üç boyunu üst üste bindirip kenarları izletin. <span class="mis-cite">📖 Clements &amp; Sarama (2009)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Özdeş bir şekli, yönelimi (döndürülmüş) ve boyutu farklı olsa bile doğru eşlerse ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay Geo şekil blokları (aynı şeklin döndürülmüş + büyük/küçük eşleri) · bir eşleme tahtası/tepsi <a href="https://dokunsay.com/Dokunsay-geo/">🔗 dokunsay.com/Dokunsay-geo/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/shape2d/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#7c3aed">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🔷 Geometri ve Uzamsal · 2B Şekiller</div>
+    <h1 class="ws-title"><span class="ws-no">3</span>Tanıdık Şekilleri Tanıyan</h1>
+    <div class="ws-meta">
+      <span class="pill">2–4 yaş</span>
+      <span class="pill">Düzey 3/22</span>
+      
+      <span class="cra"><span class="cra-s on" style="background:#7c3aed">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Tipik daire ve kareyi, daha seyrek olarak tipik üçgeni tanır ve adlandırır.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Geo ile elle yap — DokunSay Geo şekil blokları (tipik daire, kare, üçgen).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Baktım ve adını söyledim: daire.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="#10b981" stroke="#065f46" stroke-width="2.6"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">daire</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex">
+    <div class="ex-q"><span class="ex-no">1</span><p>Bu şeklin adı ne? Yaz.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="#10b981" stroke="#065f46" stroke-width="2.6"/></svg></div>
+    <div class="ex-a"><span class="wbox"></span></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>3 çubuğu uç uca birleştir. Kurduğun şeklin adı ne?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 100 36" width="100" height="36" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><defs><linearGradient id="ds100a" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fde047"/><stop offset="32%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#78350f"/></linearGradient><radialGradient id="ds100h" cx=".42" cy=".36" r=".7"><stop offset="0%" stop-color="#3a3a3a"/><stop offset="100%" stop-color="#000"/></radialGradient></defs><rect x="2" y="2" width="96" height="32" rx="9" fill="url(#ds100a)" stroke="#78350f" stroke-width="2.5"/><circle cx="20" cy="18" r="10.5" fill="url(#ds100h)" stroke="rgba(0,0,0,.5)" stroke-width="1.5"/><circle cx="50" cy="18" r="10.5" fill="url(#ds100h)" stroke="rgba(0,0,0,.5)" stroke-width="1.5"/><circle cx="80" cy="18" r="10.5" fill="url(#ds100h)" stroke="rgba(0,0,0,.5)" stroke-width="1.5"/></svg></div>
+    <div class="ex-a"><span class="wbox"></span></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>Masadan bir kare bul, adını yüksek sesle söyle.</p></div>
+    
+    <div class="ex-a"><p class="ans-hint">○ kare</p></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Aynı anda yalnız iki şekil sunun (daire ↔ kare); en tanıdık örnekleri kullanın.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Üç şekli birlikte sunup hızlı adlandırtın; &quot;hangisi yuvarlak, hangisi köşeli?&quot; diye sordurun.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Ucu yukarı bakmayan üçgene &quot;üçgen değil&quot; der. <b>→ Ne yapmalı:</b> Bir üçgen kartı çocuğun elinde yavaşça döndürüp adını tekrarlatın. <span class="mis-cite">📖 Vinner &amp; Hershkowitz (1980)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Tipik daire, kare ve üçgeni gösterildiğinde doğru adlandırır ya da adı söylenince doğru olanı seçerse ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay Geo şekil blokları (tipik daire, kare, üçgen) · şekil adı kartları/sözel etiketler <a href="https://dokunsay.com/Dokunsay-geo/">🔗 dokunsay.com/Dokunsay-geo/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/shape2d/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#7c3aed">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🔷 Geometri ve Uzamsal · 2B Şekiller</div>
+    <h1 class="ws-title"><span class="ws-no">4</span>Şekil Eşleyen — Yeni Şekiller ve Bileşimler</h1>
+    <div class="ws-meta">
+      <span class="pill">3–4 yaş</span>
+      <span class="pill">Düzey 4/22</span>
+      
+      <span class="cra"><span class="cra-s on" style="background:#7c3aed">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Daha geniş bir şekil çeşitliliğini farklı boyut ve yönelimler arasında eşler; iki şekilden oluşan bileşimleri de birbirleriyle eşleyebilir.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Geo ile elle yap — DokunSay Geo şekil blokları (tek + bileşik desenler).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>İkiliyi eşledim: üçgen ile kare, aynı sırayla.</p></div>
+    <div class="ex-v"><div class="pat-row"><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,49 6,49" fill="#fffdf7" stroke="#b45309" stroke-width="2.6" stroke-linejoin="round"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="6" y="6" width="44" height="44" rx="3" fill="#fffdf7" stroke="#1e40af" stroke-width="2.6"/></svg></span></div></div>
+    <div class="ex-a"><b class="ans-shown">üçgen + kare</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>İki şekil birleşmiş. Aynı ikiliyi bir daha kur.</p></div>
+    <div class="ex-v"><div class="pat-row"><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,49 6,49" fill="#fffdf7" stroke="#b45309" stroke-width="2.6" stroke-linejoin="round"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="6" y="6" width="44" height="44" rx="3" fill="#fffdf7" stroke="#1e40af" stroke-width="2.6"/></svg></span></div></div>
+    <div class="ex-a"><p class="ans-hint">○ üçgen ve kare</p></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>4 çubukla kare, yanına 3 çubukla üçgen: "ev" oldu mu?</p></div>
+    
+    <div class="ex-a"><p class="ans-hint">○ kare + üçgen</p></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> İki parçalı basit desenler (yalnız iki üçgen) ve aynı yönelimle çalışın.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Üç-dört parçalı desenler; bir parçayı döndürmeden oturmayacak şekilde sunun.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> İki şekilden kurulu bileşimi tek şekil sanıp eşini yalnız görünüşe göre seçer. <b>→ Ne yapmalı:</b> Bileşimi parçalarına ayırıp &quot;kaç parça?&quot; diye sorduktan sonra eşletin. <span class="mis-cite">📖 Clements &amp; Sarama (2009)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Çeşitli boyut/yönelimdeki tek ve bileşik şekilleri, parçaları doğru denkleyerek eşlerse ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay Geo şekil blokları (tek + bileşik desenler) · tangram parçaları · eşleme tahtası <a href="https://dokunsay.com/Dokunsay-geo/">🔗 dokunsay.com/Dokunsay-geo/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/shape2d/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#7c3aed">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🔷 Geometri ve Uzamsal · 2B Şekiller</div>
+    <h1 class="ws-title"><span class="ws-no">5</span>Daire, Kare ve Üçgeni Tanıyan</h1>
+    <div class="ws-meta">
+      <span class="pill">4–5 yaş</span>
+      <span class="pill">Düzey 5/22</span>
+      <span class="pill warn">★ Kritik geçiş</span>
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#7c3aed">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Daha az tipik (atipik) bazı kare ve üçgenleri de tanır; bazı dikdörtgenleri tanıyabilir, eşkenar dörtgenleri ise genellikle tanımaz.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Geo ile elle yap — DokunSay Geo şekil blokları (ince/eğik/atipik üçgen ve kareler + bir daire).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Bu üçgen değil: kenarı yok, yuvarlak.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="#10b981" stroke="#065f46" stroke-width="2.6"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">üçgen değil</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>Hangisi üçgen DEĞİL? Üstünü çiz.</p></div>
+    <div class="ex-v"><div class="pat-row"><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,49 6,49" fill="#fffdf7" stroke="#b45309" stroke-width="2.6" stroke-linejoin="round"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="#fffdf7" stroke="#065f46" stroke-width="2.6"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,49 6,49" fill="#fffdf7" stroke="#b45309" stroke-width="2.6" stroke-linejoin="round"/></svg></span></div></div>
+    <div class="ex-a"><p class="ans-hint">○ daire</p></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>3 çubuğu kapatmadan bırak. Bu üçgen mi? Neden?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 100 36" width="100" height="36" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><defs><linearGradient id="ds101a" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fde047"/><stop offset="32%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#78350f"/></linearGradient><radialGradient id="ds101h" cx=".42" cy=".36" r=".7"><stop offset="0%" stop-color="#3a3a3a"/><stop offset="100%" stop-color="#000"/></radialGradient></defs><rect x="2" y="2" width="96" height="32" rx="9" fill="url(#ds101a)" stroke="#78350f" stroke-width="2.5"/><circle cx="20" cy="18" r="10.5" fill="url(#ds101h)" stroke="rgba(0,0,0,.5)" stroke-width="1.5"/><circle cx="50" cy="18" r="10.5" fill="url(#ds101h)" stroke="rgba(0,0,0,.5)" stroke-width="1.5"/><circle cx="80" cy="18" r="10.5" fill="url(#ds101h)" stroke="rgba(0,0,0,.5)" stroke-width="1.5"/></svg></div>
+    <div class="ex-a"><p class="ans-hint">○ kapalı değil — üçgen değil</p></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>Çok ince, yatık bir üçgen kur. Hâlâ üçgen mi?</p></div>
+    
+    <div class="ex-a"><p class="ans-hint">○ evet — 3 kenarı var</p></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Önce hafifçe eğik örneklerle başlayın; her tanımada kenarları birlikte sayıp ada bağlayın.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Çok ince/çok eğik örnekler ve aldatıcı karşı-örnekler (dört kenarlı ama eşit olmayan) karıştırın.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Eğik duran kareye &quot;baklava&quot; deyip kare saymaz. <b>→ Ne yapmalı:</b> Kareyi 45° döndürüp kenarlarını ölçtürün, adının değişmediğini söyletin. <span class="mis-cite">📖 Burger &amp; Shaughnessy (1986)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Atipik (ince/eğik/döndürülmüş) daire, kare ve üçgeni de doğru tanır; bir karşı-örneğin neden o şekil olmadığını kenar/köşeyle gerekçelendirirse ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay Geo şekil blokları (ince/eğik/atipik üçgen ve kareler + bir daire) · geoboard ve lastikler · karşı-örnek kartları (köşeleri yuvarlatılmış, açık figürler) <a href="https://dokunsay.com/Dokunsay-geo/">🔗 dokunsay.com/Dokunsay-geo/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/shape2d/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#7c3aed">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🔷 Geometri ve Uzamsal · 2B Şekiller</div>
+    <h1 class="ws-title"><span class="ws-no">6</span>Parçalardan &quot;Benzerini&quot; Kuran</h1>
+    <div class="ws-meta">
+      <span class="pill">4–5 yaş</span>
+      <span class="pill">Düzey 6/22</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#7c3aed">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Kenarları temsil eden materyallerle (pipet, çubuk) hedef şekle &quot;benzeyen&quot; bir şekil kurar; doğruluk ölçütü genel görünüştür.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Geo ile elle yap — DokunSay Geo çubuk parçaları (eşit + farklı uzunlukta).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>3 çubuğu birleştirdim, üçgene benzedi. Köşeler biraz açık.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 100 36" width="100" height="36" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><defs><linearGradient id="ds102a" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fde047"/><stop offset="32%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#78350f"/></linearGradient><radialGradient id="ds102h" cx=".42" cy=".36" r=".7"><stop offset="0%" stop-color="#3a3a3a"/><stop offset="100%" stop-color="#000"/></radialGradient></defs><rect x="2" y="2" width="96" height="32" rx="9" fill="url(#ds102a)" stroke="#78350f" stroke-width="2.5"/><circle cx="20" cy="18" r="10.5" fill="url(#ds102h)" stroke="rgba(0,0,0,.5)" stroke-width="1.5"/><circle cx="50" cy="18" r="10.5" fill="url(#ds102h)" stroke="rgba(0,0,0,.5)" stroke-width="1.5"/><circle cx="80" cy="18" r="10.5" fill="url(#ds102h)" stroke="rgba(0,0,0,.5)" stroke-width="1.5"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">üçgene benzer</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex">
+    <div class="ex-q"><span class="ex-no">1</span><p>3 çubuk al, üçgene BENZEYEN bir şekil kur.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 100 36" width="100" height="36" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><defs><linearGradient id="ds103a" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fde047"/><stop offset="32%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#78350f"/></linearGradient><radialGradient id="ds103h" cx=".42" cy=".36" r=".7"><stop offset="0%" stop-color="#3a3a3a"/><stop offset="100%" stop-color="#000"/></radialGradient></defs><rect x="2" y="2" width="96" height="32" rx="9" fill="url(#ds103a)" stroke="#78350f" stroke-width="2.5"/><circle cx="20" cy="18" r="10.5" fill="url(#ds103h)" stroke="rgba(0,0,0,.5)" stroke-width="1.5"/><circle cx="50" cy="18" r="10.5" fill="url(#ds103h)" stroke="rgba(0,0,0,.5)" stroke-width="1.5"/><circle cx="80" cy="18" r="10.5" fill="url(#ds103h)" stroke="rgba(0,0,0,.5)" stroke-width="1.5"/></svg></div>
+    <div class="ex-a"><p class="ans-hint">○ köşeler tam kapanmasa da olur</p></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Köşeleri birer pulla işaretle. Kaç pul koydun?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 106 40" width="106" height="40" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="20" cy="20" r="13" fill="#dc2626" stroke="#991b1b" stroke-width="2"/><circle cx="17.14" cy="16.62" r="3.9" fill="rgba(255,255,255,.35)"/><circle cx="53" cy="20" r="13" fill="#dc2626" stroke="#991b1b" stroke-width="2"/><circle cx="50.14" cy="16.62" r="3.9" fill="rgba(255,255,255,.35)"/><circle cx="86" cy="20" r="13" fill="#dc2626" stroke="#991b1b" stroke-width="2"/><circle cx="83.14" cy="16.62" r="3.9" fill="rgba(255,255,255,.35)"/></svg></div>
+    <div class="ex-a"><span class="wbox"></span></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>4 çubukla dörtgene benzeyen bir şekil kur, çiz.</p></div>
+    
+    <div class="ex-a"><p class="ans-hint">○ 4 kenar</p></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Eşit uzunlukta hazır çubuklar verip yalnız uçları birleştirmesini isteyin.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Farklı uzunlukta çubuklar ya da daha çok kenarlı hedef (dikdörtgen) verin.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Pipetlerle kurduğu şekilde köşeleri kapatmaz; boşluk kalsa da &quot;oldu&quot; der. <b>→ Ne yapmalı:</b> Kurduğu şekli parmakla izletin; boşlukta durup birleştirtin. <span class="mis-cite">📖 Clements &amp; Battista (1992)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Parçalardan, hedef şekle (üçgen/kare) genel olarak benzeyen kapalı bir şekil kurarsa ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay Geo çubuk parçaları (eşit + farklı uzunlukta) · tangram parçaları · hedef şekil kartı (üçgen/kare silueti) <a href="https://dokunsay.com/Dokunsay-geo/">🔗 dokunsay.com/Dokunsay-geo/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/shape2d/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#7c3aed">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🔷 Geometri ve Uzamsal · 2B Şekiller</div>
+    <h1 class="ws-title"><span class="ws-no">7</span>Her Tür Dikdörtgeni Tanıyan</h1>
+    <div class="ws-meta">
+      <span class="pill">4–5 yaş</span>
+      <span class="pill">Düzey 7/22</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#7c3aed">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Her boyut, en-boy oranı ve yönelimdeki dikdörtgenleri tanır; uzun-ince ya da eğik duran dikdörtgenleri de sınıfa dâhil eder.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Geo ile elle yap — DokunSay Geo şekil blokları (uzun/ince/eğik dikdörtgenler + birkaç kare + bir paralelkenar).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Uzun-ince olan da dikdörtgen — sınıfa girer.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="4" y="13" width="48" height="30" rx="3" fill="#3b82f6" stroke="#1e40af" stroke-width="2.6"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">dikdörtgen</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>Hangileri dikdörtgen? Hepsini işaretle.</p></div>
+    <div class="ex-v"><div class="pat-row"><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="4" y="13" width="48" height="30" rx="3" fill="#fffdf7" stroke="#1e40af" stroke-width="2.6"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="6" y="6" width="44" height="44" rx="3" fill="#fffdf7" stroke="#1e40af" stroke-width="2.6"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,49 6,49" fill="#fffdf7" stroke="#b45309" stroke-width="2.6" stroke-linejoin="round"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="4" y="13" width="48" height="30" rx="3" fill="#fffdf7" stroke="#1e40af" stroke-width="2.6"/></svg></span></div></div>
+    <div class="ex-a"><p class="ans-hint">○ dikdörtgen ve kare</p></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>2 uzun 2 kısa çubukla dörtgen kur. Dikdörtgen mi?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 176 76" width="176" height="76" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><defs><linearGradient id="ds104a" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fde047"/><stop offset="32%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#78350f"/></linearGradient><radialGradient id="ds104h" cx=".42" cy=".36" r=".7"><stop offset="0%" stop-color="#3a3a3a"/><stop offset="100%" stop-color="#000"/></radialGradient></defs><rect x="2" y="2" width="172" height="28" rx="8" fill="url(#ds104a)" stroke="#78350f" stroke-width="2.5"/><circle cx="18" cy="16" r="9.5" fill="url(#ds104h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="46" cy="16" r="9.5" fill="url(#ds104h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="74" cy="16" r="9.5" fill="url(#ds104h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="102" cy="16" r="9.5" fill="url(#ds104h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="130" cy="16" r="9.5" fill="url(#ds104h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="158" cy="16" r="9.5" fill="url(#ds104h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><rect x="2" y="46" width="60" height="28" rx="8" fill="url(#ds104a)" stroke="#78350f" stroke-width="2.5"/><circle cx="18" cy="60" r="9.5" fill="url(#ds104h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="46" cy="60" r="9.5" fill="url(#ds104h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/></svg></div>
+    <div class="ex-a"><p class="ans-hint">○ evet — uzun-ince de dikdörtgen</p></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>Dikdörtgeni EĞİK duracak biçimde kur. Adı değişti mi?</p></div>
+    
+    <div class="ex-a"><p class="ans-hint">○ değişmez</p></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Yalnız belirgin dik açılı örneklerle çalışın; paralelkenarı karıştırmayın.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Kareyi ve çok ince dikdörtgeni dâhil edip &quot;kare de dikdörtgen mi?&quot; tartışmasını başlatın.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Uzun-ince dikdörtgeni &quot;çubuk&quot; sayar; yalnız kareye yakın olana dikdörtgen der. <b>→ Ne yapmalı:</b> En-boy oranı giderek artan dikdörtgen dizisini sırayla adlandırtın. <span class="mis-cite">📖 Clements &amp; Sarama (2009)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Uzun, ince, eğik dikdörtgenleri (köşeleri eğik paralelkenarı dışlayarak) tutarlı tanırsa ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay Geo şekil blokları (uzun/ince/eğik dikdörtgenler + birkaç kare + bir paralelkenar) · geoboard ve lastikler · köşe denetimi için küçük bir dik açı şablonu (kart köşesi) <a href="https://dokunsay.com/Dokunsay-geo/">🔗 dokunsay.com/Dokunsay-geo/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/shape2d/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#7c3aed">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🔷 Geometri ve Uzamsal · 2B Şekiller</div>
+    <h1 class="ws-title"><span class="ws-no">8</span>Kenar Tanıyan</h1>
+    <div class="ws-meta">
+      <span class="pill">4–5 yaş</span>
+      <span class="pill">Düzey 8/22</span>
+      
+      <span class="cra"><span class="cra-s on" style="background:#7c3aed">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Kenarları, kendine ait nitelikleri (uzunluk gibi) olan ayrı geometrik nesneler olarak tanır; şekli kenarları üzerinden betimlemeye başlar.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Geo ile elle yap — DokunSay Geo şekil blokları (üçgen, kare, beşgen).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Kenarı çubukla ölçtüm: 4 delik uzunluğunda.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 220 54" width="220" height="54" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><defs><linearGradient id="ds105a" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fde047"/><stop offset="32%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#78350f"/></linearGradient><radialGradient id="ds105h" cx=".42" cy=".36" r=".7"><stop offset="0%" stop-color="#3a3a3a"/><stop offset="100%" stop-color="#000"/></radialGradient></defs><rect x="5" y="3" width="120" height="18" rx="4" fill="#0d9488" stroke="#0f766e" stroke-width="2"/><rect x="2" y="26" width="216" height="24" rx="5" fill="url(#ds105a)" stroke="#78350f" stroke-width="2"/><line x1="5" y1="26" x2="5" y2="50" stroke="#78350f" stroke-width="1.3" opacity=".7"/><text x="20" y="46" font-size="10" fill="#5b2c06" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="700">1</text><line x1="35" y1="26" x2="35" y2="50" stroke="#78350f" stroke-width="1.3" opacity=".7"/><text x="50" y="46" font-size="10" fill="#5b2c06" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="700">2</text><line x1="65" y1="26" x2="65" y2="50" stroke="#78350f" stroke-width="1.3" opacity=".7"/><text x="80" y="46" font-size="10" fill="#5b2c06" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="700">3</text><line x1="95" y1="26" x2="95" y2="50" stroke="#78350f" stroke-width="1.3" opacity=".7"/><text x="110" y="46" font-size="10" fill="#5b2c06" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="700">4</text><line x1="125" y1="26" x2="125" y2="50" stroke="#78350f" stroke-width="1.3" opacity=".7"/><text x="140" y="46" font-size="10" fill="#5b2c06" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="700">5</text><line x1="155" y1="26" x2="155" y2="50" stroke="#78350f" stroke-width="1.3" opacity=".7"/><text x="170" y="46" font-size="10" fill="#5b2c06" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="700">6</text><line x1="185" y1="26" x2="185" y2="50" stroke="#78350f" stroke-width="1.3" opacity=".7"/><text x="200" y="46" font-size="10" fill="#5b2c06" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="700">7</text><line x1="215" y1="26" x2="215" y2="50" stroke="#78350f" stroke-width="1.3" opacity=".7"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">4 birim</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex">
+    <div class="ex-q"><span class="ex-no">1</span><p>Şeklin her kenarını bir çubukla ölç. Kaç delik çıktı?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 220 54" width="220" height="54" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><defs><linearGradient id="ds106a" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fde047"/><stop offset="32%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#78350f"/></linearGradient><radialGradient id="ds106h" cx=".42" cy=".36" r=".7"><stop offset="0%" stop-color="#3a3a3a"/><stop offset="100%" stop-color="#000"/></radialGradient></defs><rect x="5" y="3" width="120" height="18" rx="4" fill="#0d9488" stroke="#0f766e" stroke-width="2"/><rect x="2" y="26" width="216" height="24" rx="5" fill="url(#ds106a)" stroke="#78350f" stroke-width="2"/><line x1="5" y1="26" x2="5" y2="50" stroke="#78350f" stroke-width="1.3" opacity=".7"/><text x="20" y="46" font-size="10" fill="#5b2c06" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="700">1</text><line x1="35" y1="26" x2="35" y2="50" stroke="#78350f" stroke-width="1.3" opacity=".7"/><text x="50" y="46" font-size="10" fill="#5b2c06" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="700">2</text><line x1="65" y1="26" x2="65" y2="50" stroke="#78350f" stroke-width="1.3" opacity=".7"/><text x="80" y="46" font-size="10" fill="#5b2c06" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="700">3</text><line x1="95" y1="26" x2="95" y2="50" stroke="#78350f" stroke-width="1.3" opacity=".7"/><text x="110" y="46" font-size="10" fill="#5b2c06" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="700">4</text><line x1="125" y1="26" x2="125" y2="50" stroke="#78350f" stroke-width="1.3" opacity=".7"/><text x="140" y="46" font-size="10" fill="#5b2c06" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="700">5</text><line x1="155" y1="26" x2="155" y2="50" stroke="#78350f" stroke-width="1.3" opacity=".7"/><text x="170" y="46" font-size="10" fill="#5b2c06" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="700">6</text><line x1="185" y1="26" x2="185" y2="50" stroke="#78350f" stroke-width="1.3" opacity=".7"/><text x="200" y="46" font-size="10" fill="#5b2c06" text-anchor="middle" font-family="Poppins,sans-serif" font-weight="700">7</text><line x1="215" y1="26" x2="215" y2="50" stroke="#78350f" stroke-width="1.3" opacity=".7"/></svg></div>
+    <div class="ex-a"><span class="wbox"></span></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Karşılıklı kenarları eşit mi? Çubukları yan yana koy.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 148 76" width="148" height="76" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><defs><linearGradient id="ds107a" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fde047"/><stop offset="32%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#78350f"/></linearGradient><radialGradient id="ds107h" cx=".42" cy=".36" r=".7"><stop offset="0%" stop-color="#3a3a3a"/><stop offset="100%" stop-color="#000"/></radialGradient></defs><rect x="2" y="2" width="144" height="28" rx="8" fill="url(#ds107a)" stroke="#78350f" stroke-width="2.5"/><circle cx="18" cy="16" r="9.5" fill="url(#ds107h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="46" cy="16" r="9.5" fill="url(#ds107h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="74" cy="16" r="9.5" fill="url(#ds107h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="102" cy="16" r="9.5" fill="url(#ds107h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="130" cy="16" r="9.5" fill="url(#ds107h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><rect x="2" y="46" width="144" height="28" rx="8" fill="url(#ds107a)" stroke="#78350f" stroke-width="2.5"/><circle cx="18" cy="60" r="9.5" fill="url(#ds107h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="46" cy="60" r="9.5" fill="url(#ds107h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="74" cy="60" r="9.5" fill="url(#ds107h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="102" cy="60" r="9.5" fill="url(#ds107h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="130" cy="60" r="9.5" fill="url(#ds107h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/></svg></div>
+    <div class="ex-a"><p class="ans-hint">○ eşit</p></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>Kenarları eşit olan üçgen kur: 3 tane aynı çubuk.</p></div>
+    
+    <div class="ex-a"><p class="ans-hint">○ eşkenar</p></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Az kenarlı şekille (üçgen) ve her kenarı işaretleyerek başlayın.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Beşgen/altıgen gibi çok kenarlı şekilleri saydırın; başlangıç köşesini işaretlemeden.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Kenar sayarken köşeden başlayıp bir kenarı iki kez sayar. <b>→ Ne yapmalı:</b> Bir köşeye çıkartma yapıştırıp oradan tek yönde saydırın. <span class="mis-cite">📖 Clements &amp; Battista (1992)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Bir şeklin kenarlarını ayrı nesneler olarak tanıyıp her birini bir kez sayarak doğru sayıyı bulursa (üçgen 3, kare 4) ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay Geo şekil blokları (üçgen, kare, beşgen) · geoboard (kenarları lastikle belirgin) · kenarları işaretlemek için küçük etiketler/boncuklar <a href="https://dokunsay.com/Dokunsay-geo/">🔗 dokunsay.com/Dokunsay-geo/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/shape2d/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#7c3aed">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🔷 Geometri ve Uzamsal · 2B Şekiller</div>
+    <h1 class="ws-title"><span class="ws-no">9</span>Birçok Yönden Karşılaştıran</h1>
+    <div class="ws-meta">
+      <span class="pill">4–5 yaş</span>
+      <span class="pill">Düzey 9/22</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#7c3aed">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>İki şekli bütün olarak inceleyip niteliklerindeki farklılıkları arar (kenar sayısı, büyüklük, sivri köşe); ancak bazı uzamsal ilişkileri…</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Geo ile elle yap — DokunSay Geo şekil blokları (kare ↔ üçgen, kare ↔ dikdörtgen çiftleri).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Üçgenin 3, beşgenin 5 kenarı var — kenar sayısı farklı.</p></div>
+    <div class="ex-v"><div class="pat-row"><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,49 6,49" fill="#fffdf7" stroke="#b45309" stroke-width="2.6" stroke-linejoin="round"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 49,22.400000000000002 44.800000000000004,49 11.200000000000001,49 7,22.400000000000002" fill="#fffdf7" stroke="#5b21b6" stroke-width="2.6" stroke-linejoin="round"/></svg></span></div></div>
+    <div class="ex-a"><b class="ans-shown">3 kenar / 5 kenar</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>Kenarları çubukla ölç, köşeleri pulla say: fark nerede?</p></div>
+    <div class="ex-v"><div class="pat-row"><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,49 6,49" fill="#fffdf7" stroke="#b45309" stroke-width="2.6" stroke-linejoin="round"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 49,22.400000000000002 44.800000000000004,49 11.200000000000001,49 7,22.400000000000002" fill="#fffdf7" stroke="#5b21b6" stroke-width="2.6" stroke-linejoin="round"/></svg></span></div></div>
+    <div class="ex-a"><div class="eqrow">kenar <span class="wbox"></span> / <span class="wbox"></span></div></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Çubuklarla iki dörtgen kur. Farkları nerede?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 204 76" width="204" height="76" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><defs><linearGradient id="ds108a" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fde047"/><stop offset="32%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#78350f"/></linearGradient><radialGradient id="ds108h" cx=".42" cy=".36" r=".7"><stop offset="0%" stop-color="#3a3a3a"/><stop offset="100%" stop-color="#000"/></radialGradient></defs><rect x="2" y="2" width="116" height="28" rx="8" fill="url(#ds108a)" stroke="#78350f" stroke-width="2.5"/><circle cx="18" cy="16" r="9.5" fill="url(#ds108h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="46" cy="16" r="9.5" fill="url(#ds108h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="74" cy="16" r="9.5" fill="url(#ds108h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="102" cy="16" r="9.5" fill="url(#ds108h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><rect x="2" y="46" width="200" height="28" rx="8" fill="url(#ds108a)" stroke="#78350f" stroke-width="2.5"/><circle cx="18" cy="60" r="9.5" fill="url(#ds108h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="46" cy="60" r="9.5" fill="url(#ds108h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="74" cy="60" r="9.5" fill="url(#ds108h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="102" cy="60" r="9.5" fill="url(#ds108h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="130" cy="60" r="9.5" fill="url(#ds108h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="158" cy="60" r="9.5" fill="url(#ds108h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="186" cy="60" r="9.5" fill="url(#ds108h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/></svg></div>
+    <div class="ex-a"><p class="ans-hint">○ kenar uzunlukları</p></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>"İkisi de dörtgen ama aynı değil." Bir fark söyle.</p></div>
+    
+    <div class="ex-a"><p class="ans-hint">○ kenar oranı ya da köşe açıklığı</p></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Çok farklı bir çift (daire ↔ kare) ve tek bir özellikten başlayın.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Çok benzer çift (kare ↔ dikdörtgen, kare ↔ baklava) verip ayırt edici özelliği buldurun.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> İki şekli yalnız kenar sayısına bakıp &quot;aynı&quot; der; kenar oranını gözden kaçırır. <b>→ Ne yapmalı:</b> Kare ile uzun dikdörtgeni yan yana koyup kenarları çubukla ölçtürün. <span class="mis-cite">📖 Burger &amp; Shaughnessy (1986)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> İki şekli birden çok özniteliğe (kenar sayısı, köşe türü, kenar uzunluğu) göre karşılaştırıp benzerlik ve farkları söylerse ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay Geo şekil blokları (kare ↔ üçgen, kare ↔ dikdörtgen çiftleri) · karşılaştırma için iki tepsi/halka · özellik kartları (kenar / köşe / uzunluk simgeleri) <a href="https://dokunsay.com/Dokunsay-geo/">🔗 dokunsay.com/Dokunsay-geo/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/shape2d/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#7c3aed">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🔷 Geometri ve Uzamsal · 2B Şekiller</div>
+    <h1 class="ws-title"><span class="ws-no">10</span>Köşe (Açı) Tanıyan</h1>
+    <div class="ws-meta">
+      <span class="pill">4–5 yaş</span>
+      <span class="pill">Düzey 10/22</span>
+      
+      <span class="cra"><span class="cra-s on" style="background:#7c3aed">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Açıları, en azından &quot;köşe&quot; olarak, ayrı geometrik nesneler biçiminde tanır; şekilleri köşe sayısıyla betimleyebilir.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Geo ile elle yap — DokunSay Geo şekil blokları (üçgen, kare, beşgen).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Her köşeye bir pul koydum: 5 pul, demek 5 köşe.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 172 40" width="172" height="40" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="20" cy="20" r="13" fill="#eab308" stroke="#a16207" stroke-width="2"/><circle cx="17.14" cy="16.62" r="3.9" fill="rgba(255,255,255,.35)"/><circle cx="53" cy="20" r="13" fill="#eab308" stroke="#a16207" stroke-width="2"/><circle cx="50.14" cy="16.62" r="3.9" fill="rgba(255,255,255,.35)"/><circle cx="86" cy="20" r="13" fill="#eab308" stroke="#a16207" stroke-width="2"/><circle cx="83.14" cy="16.62" r="3.9" fill="rgba(255,255,255,.35)"/><circle cx="119" cy="20" r="13" fill="#eab308" stroke="#a16207" stroke-width="2"/><circle cx="116.14" cy="16.62" r="3.9" fill="rgba(255,255,255,.35)"/><circle cx="152" cy="20" r="13" fill="#eab308" stroke="#a16207" stroke-width="2"/><circle cx="149.14" cy="16.62" r="3.9" fill="rgba(255,255,255,.35)"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">5 köşe</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex">
+    <div class="ex-q"><span class="ex-no">1</span><p>Her köşeye bir pul koy. Kaç pul gerekti?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 49,22.400000000000002 44.800000000000004,49 11.200000000000001,49 7,22.400000000000002" fill="#8b5cf6" stroke="#5b21b6" stroke-width="2.6" stroke-linejoin="round"/></svg></div>
+    <div class="ex-a"><span class="wbox"></span></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>4 pul koyup aralarını çubukla bağla. Kaç köşe var?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 73 73" width="73" height="73" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="20" cy="20" r="13" fill="#eab308" stroke="#a16207" stroke-width="2"/><circle cx="17.14" cy="16.62" r="3.9" fill="rgba(255,255,255,.35)"/><circle cx="53" cy="20" r="13" fill="#eab308" stroke="#a16207" stroke-width="2"/><circle cx="50.14" cy="16.62" r="3.9" fill="rgba(255,255,255,.35)"/><circle cx="20" cy="53" r="13" fill="#eab308" stroke="#a16207" stroke-width="2"/><circle cx="17.14" cy="49.62" r="3.9" fill="rgba(255,255,255,.35)"/><circle cx="53" cy="53" r="13" fill="#eab308" stroke="#a16207" stroke-width="2"/><circle cx="50.14" cy="49.62" r="3.9" fill="rgba(255,255,255,.35)"/></svg></div>
+    <div class="ex-a"><span class="wbox"></span></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>Köşe sayısı ile kenar sayısı aynı mı? Say ve karşılaştır.</p></div>
+    
+    <div class="ex-a"><p class="ans-hint">○ aynı</p></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Az köşeli şekille (üçgen) ve her köşeyi işaretleyerek başlayın.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Çok köşeli şekiller (beşgen/altıgen) ve içbükey bir şekil ekleyip köşeyi yine ayırt ettirin.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Köşeyi noktadan çok &quot;sivrilik&quot; sanır; geniş köşeleri saymayı atlar. <b>→ Ne yapmalı:</b> Her köşeye pul koydurup pulları saydırın. <span class="mis-cite">📖 Clements &amp; Battista (1992)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Bir şeklin köşelerini kenarlardan ayrı nesneler olarak tanıyıp doğru sayar; köşe ile kenarı karıştırmazsa ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay Geo şekil blokları (üçgen, kare, beşgen) · geoboard · köşeleri işaretlemek için renkli boncuk/etiket <a href="https://dokunsay.com/Dokunsay-geo/">🔗 dokunsay.com/Dokunsay-geo/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/shape2d/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#7c3aed">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🔷 Geometri ve Uzamsal · 2B Şekiller</div>
+    <h1 class="ws-title"><span class="ws-no">11</span>Daha Çok Şekil Tanıyan</h1>
+    <div class="ws-meta">
+      <span class="pill">5–6 yaş</span>
+      <span class="pill">Düzey 11/22</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#7c3aed">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Tanıdık şekillerin çoğunu ve tipik altıgen, eşkenar dörtgen ve yamukları tanıyıp adlandırır.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Geo ile elle yap — DokunSay Geo şekil blokları (altıgen, baklava/eşkenar dörtgen, yamuk + tanıdıklar).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Kenarları saydım: 6 — adı altıgen.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 48,16.8 48,39.199999999999996 28,50 8,39.199999999999996 8,16.8" fill="#8b5cf6" stroke="#5b21b6" stroke-width="2.6" stroke-linejoin="round"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">altıgen</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex">
+    <div class="ex-q"><span class="ex-no">1</span><p>Kenarları say, adını kurala göre yaz.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 48,16.8 48,39.199999999999996 28,50 8,39.199999999999996 8,16.8" fill="#8b5cf6" stroke="#5b21b6" stroke-width="2.6" stroke-linejoin="round"/></svg></div>
+    <div class="ex-a"><span class="wbox"></span></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>5 çubukla bir şekil kur. Adı ne olur?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 100 36" width="100" height="36" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><defs><linearGradient id="ds109a" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fde047"/><stop offset="32%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#78350f"/></linearGradient><radialGradient id="ds109h" cx=".42" cy=".36" r=".7"><stop offset="0%" stop-color="#3a3a3a"/><stop offset="100%" stop-color="#000"/></radialGradient></defs><rect x="2" y="2" width="96" height="32" rx="9" fill="url(#ds109a)" stroke="#78350f" stroke-width="2.5"/><circle cx="20" cy="18" r="10.5" fill="url(#ds109h)" stroke="rgba(0,0,0,.5)" stroke-width="1.5"/><circle cx="50" cy="18" r="10.5" fill="url(#ds109h)" stroke="rgba(0,0,0,.5)" stroke-width="1.5"/><circle cx="80" cy="18" r="10.5" fill="url(#ds109h)" stroke="rgba(0,0,0,.5)" stroke-width="1.5"/></svg></div>
+    <div class="ex-a"><span class="wbox"></span></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>Baklava (eşkenar dörtgen) kaç kenarlı? Adı neden dörtgen?</p></div>
+    
+    <div class="ex-a"><p class="ans-hint">○ 4 kenar</p></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Aynı anda yalnız bir yeni şekli (altıgen) tanıdıklarla karıştırın.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Üç yeni şekli birden ve döndürülmüş duruşlarda sunup adlandırtın.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Düzgün olmayan altıgeni ya da yamuğu &quot;bozuk şekil&quot; sayıp adlandırmaz. <b>→ Ne yapmalı:</b> Düzgün ve düzensiz altıgeni yan yana koyup ikisinin de kenarını saydırın. <span class="mis-cite">📖 Fisher, Hirsh-Pasek ve ark. (2013)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Altıgen, baklava (eşkenar dörtgen) ve yamuk gibi daha az bilinen şekilleri doğru adlandırır ya da seçerse ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay Geo şekil blokları (altıgen, baklava/eşkenar dörtgen, yamuk + tanıdıklar) · şekil adı kartları · pattern-block (örüntü blokları) seti <a href="https://dokunsay.com/Dokunsay-geo/">🔗 dokunsay.com/Dokunsay-geo/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/shape2d/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#7c3aed">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🔷 Geometri ve Uzamsal · 2B Şekiller</div>
+    <h1 class="ws-title"><span class="ws-no">12</span>Şekilleri Doğru Adlandıran</h1>
+    <div class="ws-meta">
+      <span class="pill">6–7 yaş</span>
+      <span class="pill">Düzey 12/22</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#7c3aed">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Eşkenar dörtgen, altıgen, sekizgen ve yamuk dâhil yaygın şekilleri hatasız adlandırır; ovale &quot;daire&quot; demez.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Geo ile elle yap — DokunSay Geo şekil blokları (oval, yamuk, sekizgen, dik üçgen, paralelkenar, dikdörtgen).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Kart köşesini tuttum: tam oturdu, dik açı.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="4" y="13" width="48" height="30" rx="3" fill="#3b82f6" stroke="#1e40af" stroke-width="2.6"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">dik açı</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex">
+    <div class="ex-q"><span class="ex-no">1</span><p>Köşeye kart köşesini tut: dik açı mı? İşaretle.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="4" y="13" width="48" height="30" rx="3" fill="#3b82f6" stroke="#1e40af" stroke-width="2.6"/></svg></div>
+    <div class="ex-a"><p class="ans-hint">○ dört köşesi de dik</p></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>İki çubuğu köşe yap, kart köşesiyle sına. Dik mi?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 150 84" width="150" height="84" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><line x1="16" y1="68" x2="80" y2="68" stroke="#14b8a6" stroke-width="4" stroke-linecap="round"/><line x1="16" y1="68" x2="61.254833995939045" y2="22.745166004060962" stroke="#14b8a6" stroke-width="4" stroke-linecap="round"/><circle cx="16" cy="68" r="4.5" fill="#0f766e"/></svg></div>
+    <div class="ex-a"><p class="ans-hint">○ dik değil — daha dar</p></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>Oval ile daireyi ayır: hangisi her yönde eşit?</p></div>
+    
+    <div class="ex-a"><p class="ans-hint">○ daire</p></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Aldatıcı çiftleri ayırıp belirgin örneklerle çalışın; gerekçeyi siz başlatın.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Çok benzer çiftleri bir arada ve döndürülmüş sunup tek ayırt edici özelliği söyletin.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Ovale &quot;daire&quot;, dik açısı olmayan paralelkenara &quot;dikdörtgen&quot; der. <b>→ Ne yapmalı:</b> Köşeye kâğıt köşesi dayatıp dik olup olmadığını denetletin. <span class="mis-cite">📖 Vinner &amp; Hershkowitz (1980)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Yakın şekilleri (oval/daire, paralelkenar/dikdörtgen, dik/eşkenar üçgen) özelliklerine dayanarak hatasız belirler ve gerekçelendirirse ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay Geo şekil blokları (oval, yamuk, sekizgen, dik üçgen, paralelkenar, dikdörtgen) · özellik kontrol kartları · geoboard <a href="https://dokunsay.com/Dokunsay-geo/">🔗 dokunsay.com/Dokunsay-geo/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/shape2d/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#7c3aed">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🔷 Geometri ve Uzamsal · 2B Şekiller</div>
+    <h1 class="ws-title"><span class="ws-no">13</span>Açıyı Farklı Yerlerde Tanıyan</h1>
+    <div class="ws-meta">
+      <span class="pill">7–8 yaş</span>
+      <span class="pill">Düzey 13/22</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#7c3aed">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Açıyı farklı bağlamlarda tanır ve betimler: köşeler (&quot;daha sivri&quot;), kesişmeler (makas), daha sonra kıvrım ve eğimler.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Geo ile elle yap — DokunSay Geo açı çubukları (menteşeli/iki kollu).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Çubukları makas gibi kesiştirdim: kesişme yerinde de açı var.</p></div>
+    
+    <div class="ex-a"><b class="ans-shown">kesişmede açı</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex">
+    <div class="ex-q"><span class="ex-no">1</span><p>İki çubuğu makas gibi kesiştir. Kesişme yerinde açı var mı?</p></div>
+    
+    <div class="ex-a"><p class="ans-hint">○ kesişmede de açı var</p></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Çubuğu eğ: rampa yaptın. Bu eğimde açı var mı?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 150 84" width="150" height="84" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><line x1="16" y1="68" x2="80" y2="68" stroke="#14b8a6" stroke-width="4" stroke-linecap="round"/><line x1="16" y1="68" x2="76.14032773029814" y2="46.110710827157206" stroke="#14b8a6" stroke-width="4" stroke-linecap="round"/><circle cx="16" cy="68" r="4.5" fill="#0f766e"/></svg></div>
+    <div class="ex-a"><p class="ans-hint">○ var</p></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>Çubuğu tutup odada üç açı bul: köşe, kesişme, eğim.</p></div>
+    
+    <div class="ex-a"><p class="ans-hint">○ kapı köşesi, makas, merdiven</p></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Yalnız belirgin köşe/kavşak bağlamlarıyla başlayın; menteşeli çubukla somutlaştırın.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Çok geniş (yayık) ve çok dar açıları ile uzun/kısa kollu aldatıcı örnekleri karıştırın.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Açıyı yalnız şekil köşesinde görür; makasın açıklığını açı saymaz. <b>→ Ne yapmalı:</b> Makas, kapı ve saat kollarını açtırıp her birinde açıyı gösterin. <span class="mis-cite">📖 Clements &amp; Battista (1992)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Açıyı şekil köşesi dışındaki bağlamlarda (kavşak, eğim, dönüş) da tanır ve açıklığı kenar uzunluğundan bağımsız değerlendirirse ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay Geo açı çubukları (menteşeli/iki kollu) · bağlam kartları (kavşak, çatı, saat ibreleri, merdiven) · geoboard <a href="https://dokunsay.com/Dokunsay-geo/">🔗 dokunsay.com/Dokunsay-geo/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/shape2d/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#7c3aed">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🔷 Geometri ve Uzamsal · 2B Şekiller</div>
+    <h1 class="ws-title"><span class="ws-no">14</span>Şekli Parçalarıyla Tanımlayan</h1>
+    <div class="ws-meta">
+      <span class="pill">7–8 yaş</span>
+      <span class="pill">Düzey 14/22</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#7c3aed">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Şekilleri bileşenleri (kenarlar, köşeler/açılar) üzerinden tanımlar; &quot;üç kenarı ve üç köşesi olan kapalı şekil üçgendir&quot; gibi parça temelli tanımlar…</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Geo ile elle yap — DokunSay Geo şekil blokları (kare, dikdörtgen, eşkenar/ikizkenar üçgen, yamuk).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Parçalarıyla tarif ettim: 5 kenar, 5 köşe, kapalı.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 49,22.400000000000002 44.800000000000004,49 11.200000000000001,49 7,22.400000000000002" fill="#8b5cf6" stroke="#5b21b6" stroke-width="2.6" stroke-linejoin="round"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">5 kenar · 5 köşe</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex">
+    <div class="ex-q"><span class="ex-no">1</span><p>Bu şekli parçalarıyla tarif et: kaç kenar, kaç köşe?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 49,22.400000000000002 44.800000000000004,49 11.200000000000001,49 7,22.400000000000002" fill="#8b5cf6" stroke="#5b21b6" stroke-width="2.6" stroke-linejoin="round"/></svg></div>
+    <div class="ex-a"><div class="eqrow"><span class="wbox"></span> kenar · <span class="wbox"></span> köşe</div></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>"3 kenarı, 3 köşesi olan kapalı şekil" — çubukla kur.</p></div>
+    
+    <div class="ex-a"><p class="ans-hint">○ üçgen</p></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>Arkadaşına şekli SÖYLEYEREK kurdur; sen bakma.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 130 36" width="130" height="36" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><defs><linearGradient id="ds110a" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fde047"/><stop offset="32%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#78350f"/></linearGradient><radialGradient id="ds110h" cx=".42" cy=".36" r=".7"><stop offset="0%" stop-color="#3a3a3a"/><stop offset="100%" stop-color="#000"/></radialGradient></defs><rect x="2" y="2" width="126" height="32" rx="9" fill="url(#ds110a)" stroke="#78350f" stroke-width="2.5"/><circle cx="20" cy="18" r="10.5" fill="url(#ds110h)" stroke="rgba(0,0,0,.5)" stroke-width="1.5"/><circle cx="50" cy="18" r="10.5" fill="url(#ds110h)" stroke="rgba(0,0,0,.5)" stroke-width="1.5"/><circle cx="80" cy="18" r="10.5" fill="url(#ds110h)" stroke="rgba(0,0,0,.5)" stroke-width="1.5"/><circle cx="110" cy="18" r="10.5" fill="url(#ds110h)" stroke="rgba(0,0,0,.5)" stroke-width="1.5"/></svg></div>
+    <div class="ex-a"><p class="ans-hint">○ yalnız kenar-köşe dili</p></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Az özellikli şekille (üçgen) ve özellikleri tek tek sorarak başlayın.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Tarifi yalnız sözle (blok görmeden) ya da bir özelliği eksik verip &quot;hangi şekiller olabilir?&quot; diye açımlayın.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> &quot;Üç kenarı var&quot; der ama kenarları birleşmeyen açık şekli de üçgen sayar. <b>→ Ne yapmalı:</b> Bir kenarı ayrık üç çubuk gösterip &quot;kapandı mı?&quot; diye sorun. <span class="mis-cite">📖 Fuys, Geddes &amp; Tischler (1988)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Bir şekli kenar sayısı, kenar eşitliği ve açı/köşe türü gibi bileşenleriyle eksiksiz ve karıştırmadan tarif ederse ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay Geo şekil blokları (kare, dikdörtgen, eşkenar/ikizkenar üçgen, yamuk) · özellik simge kartları (kenar/köşe/eşitlik) · perde/torba (görmeden tarif için) <a href="https://dokunsay.com/Dokunsay-geo/">🔗 dokunsay.com/Dokunsay-geo/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/shape2d/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#7c3aed">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🔷 Geometri ve Uzamsal · 2B Şekiller</div>
+    <h1 class="ws-title"><span class="ws-no">15</span>Üst Üste Koyup Eşliğini Gösteren</h1>
+    <div class="ws-meta">
+      <span class="pill">7–8 yaş</span>
+      <span class="pill">Düzey 15/22</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#7c3aed">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>İki şeklin eş olup olmadığını (eşlik) üst üste koyarak ya da tüm nitelikleri ve uzamsal ilişkileri karşılaştırarak belirler.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Geo ile elle yap — DokunSay Geo şeffaf/üst üste konabilen şekil parçaları (eş + benzer-ama-farklı çiftler).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>İkisini üst üste koydum, taşan yer yok: eş.</p></div>
+    <div class="ex-v"><div class="pat-row"><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="6" y="6" width="44" height="44" rx="3" fill="#fffdf7" stroke="#1e40af" stroke-width="2.6"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="6" y="6" width="44" height="44" rx="3" fill="#fffdf7" stroke="#1e40af" stroke-width="2.6"/></svg></span></div></div>
+    <div class="ex-a"><b class="ans-shown">eş</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>İki şekli üst üste koy. Tıpatıp aynı mı?</p></div>
+    <div class="ex-v"><div class="pat-row"><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="6" y="6" width="44" height="44" rx="3" fill="#fffdf7" stroke="#1e40af" stroke-width="2.6"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="6" y="6" width="44" height="44" rx="3" fill="#fffdf7" stroke="#1e40af" stroke-width="2.6"/></svg></span></div></div>
+    <div class="ex-a"><p class="ans-hint">○ eş</p></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>İki çubuk kareyi üst üste koy: taşan yer var mı?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 120 76" width="120" height="76" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><defs><linearGradient id="ds111a" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fde047"/><stop offset="32%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#78350f"/></linearGradient><radialGradient id="ds111h" cx=".42" cy=".36" r=".7"><stop offset="0%" stop-color="#3a3a3a"/><stop offset="100%" stop-color="#000"/></radialGradient></defs><rect x="2" y="2" width="116" height="28" rx="8" fill="url(#ds111a)" stroke="#78350f" stroke-width="2.5"/><circle cx="18" cy="16" r="9.5" fill="url(#ds111h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="46" cy="16" r="9.5" fill="url(#ds111h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="74" cy="16" r="9.5" fill="url(#ds111h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="102" cy="16" r="9.5" fill="url(#ds111h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><rect x="2" y="46" width="116" height="28" rx="8" fill="url(#ds111a)" stroke="#78350f" stroke-width="2.5"/><circle cx="18" cy="60" r="9.5" fill="url(#ds111h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="46" cy="60" r="9.5" fill="url(#ds111h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="74" cy="60" r="9.5" fill="url(#ds111h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="102" cy="60" r="9.5" fill="url(#ds111h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/></svg></div>
+    <div class="ex-a"><p class="ans-hint">○ yok — eş</p></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>Bir kenarı 1 delik uzat. Hâlâ eş mi?</p></div>
+    
+    <div class="ex-a"><p class="ans-hint">○ değil</p></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Aynı yönelimdeki açık eş/farklı çiftlerle başlayın; döndürme gerektirmeyin.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Eşi yalnız döndürünce/yansıtınca oturan çiftler ve çok az farklı (1 birim) ikizler verin.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Eş şekilleri farklı yöndeyken üst üste koymadan &quot;eş değil&quot; der. <b>→ Ne yapmalı:</b> Şeffaf kopyayı döndürerek şeklin üstüne oturtturun. <span class="mis-cite">📖 Fuys, Geddes &amp; Tischler (1988)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> İki şekli üst üste koyup (gerekirse döndürerek) tam örtüşüp örtüşmediğine göre çakışık (eş) olup olmadıklarını doğru belirlerse ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay Geo şeffaf/üst üste konabilen şekil parçaları (eş + benzer-ama-farklı çiftler) · geoboard · ışıklı masa veya pencere camı (üst üste görmek için) <a href="https://dokunsay.com/Dokunsay-geo/">🔗 dokunsay.com/Dokunsay-geo/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/shape2d/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#7c3aed">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🔷 Geometri ve Uzamsal · 2B Şekiller</div>
+    <h1 class="ws-title"><span class="ws-no">16</span>Parçalardan Şekli Tam Kuran</h1>
+    <div class="ws-meta">
+      <span class="pill">7–8 yaş</span>
+      <span class="pill">Düzey 16/22</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#7c3aed">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Kenar parçaları ve açı bağlantılarıyla, bileşen bilgisine ve özellik ilişkilerine dayanarak tümüyle doğru bir şekil kurar…</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Geo ile elle yap — DokunSay Geo geoboard ve lastikler.</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>4 eşit çubuk, köşeler tam kapandı: doğru kare.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 130 36" width="130" height="36" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><defs><linearGradient id="ds112a" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fde047"/><stop offset="32%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#78350f"/></linearGradient><radialGradient id="ds112h" cx=".42" cy=".36" r=".7"><stop offset="0%" stop-color="#3a3a3a"/><stop offset="100%" stop-color="#000"/></radialGradient></defs><rect x="2" y="2" width="126" height="32" rx="9" fill="url(#ds112a)" stroke="#78350f" stroke-width="2.5"/><circle cx="20" cy="18" r="10.5" fill="url(#ds112h)" stroke="rgba(0,0,0,.5)" stroke-width="1.5"/><circle cx="50" cy="18" r="10.5" fill="url(#ds112h)" stroke="rgba(0,0,0,.5)" stroke-width="1.5"/><circle cx="80" cy="18" r="10.5" fill="url(#ds112h)" stroke="rgba(0,0,0,.5)" stroke-width="1.5"/><circle cx="110" cy="18" r="10.5" fill="url(#ds112h)" stroke="rgba(0,0,0,.5)" stroke-width="1.5"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">4 eşit kenar</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex">
+    <div class="ex-q"><span class="ex-no">1</span><p>4 EŞİT çubukla kare kur: köşeler tam kapansın.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 130 36" width="130" height="36" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><defs><linearGradient id="ds113a" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fde047"/><stop offset="32%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#78350f"/></linearGradient><radialGradient id="ds113h" cx=".42" cy=".36" r=".7"><stop offset="0%" stop-color="#3a3a3a"/><stop offset="100%" stop-color="#000"/></radialGradient></defs><rect x="2" y="2" width="126" height="32" rx="9" fill="url(#ds113a)" stroke="#78350f" stroke-width="2.5"/><circle cx="20" cy="18" r="10.5" fill="url(#ds113h)" stroke="rgba(0,0,0,.5)" stroke-width="1.5"/><circle cx="50" cy="18" r="10.5" fill="url(#ds113h)" stroke="rgba(0,0,0,.5)" stroke-width="1.5"/><circle cx="80" cy="18" r="10.5" fill="url(#ds113h)" stroke="rgba(0,0,0,.5)" stroke-width="1.5"/><circle cx="110" cy="18" r="10.5" fill="url(#ds113h)" stroke="rgba(0,0,0,.5)" stroke-width="1.5"/></svg></div>
+    <div class="ex-a"><p class="ans-hint">○ 4 eşit kenar</p></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Köşelere pul koy, hiç boşluk kalmasın.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 139 40" width="139" height="40" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><circle cx="20" cy="20" r="13" fill="#22c55e" stroke="#15803d" stroke-width="2"/><circle cx="17.14" cy="16.62" r="3.9" fill="rgba(255,255,255,.35)"/><circle cx="53" cy="20" r="13" fill="#22c55e" stroke="#15803d" stroke-width="2"/><circle cx="50.14" cy="16.62" r="3.9" fill="rgba(255,255,255,.35)"/><circle cx="86" cy="20" r="13" fill="#22c55e" stroke="#15803d" stroke-width="2"/><circle cx="83.14" cy="16.62" r="3.9" fill="rgba(255,255,255,.35)"/><circle cx="119" cy="20" r="13" fill="#22c55e" stroke="#15803d" stroke-width="2"/><circle cx="116.14" cy="16.62" r="3.9" fill="rgba(255,255,255,.35)"/></svg></div>
+    <div class="ex-a"><p class="ans-hint">○ kapalı şekil</p></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>İkizkenar üçgen kur: 2 eşit, 1 farklı çubuk.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 148 76" width="148" height="76" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><defs><linearGradient id="ds114a" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fde047"/><stop offset="32%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#78350f"/></linearGradient><radialGradient id="ds114h" cx=".42" cy=".36" r=".7"><stop offset="0%" stop-color="#3a3a3a"/><stop offset="100%" stop-color="#000"/></radialGradient></defs><rect x="2" y="2" width="144" height="28" rx="8" fill="url(#ds114a)" stroke="#78350f" stroke-width="2.5"/><circle cx="18" cy="16" r="9.5" fill="url(#ds114h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="46" cy="16" r="9.5" fill="url(#ds114h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="74" cy="16" r="9.5" fill="url(#ds114h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="102" cy="16" r="9.5" fill="url(#ds114h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="130" cy="16" r="9.5" fill="url(#ds114h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><rect x="2" y="46" width="144" height="28" rx="8" fill="url(#ds114a)" stroke="#78350f" stroke-width="2.5"/><circle cx="18" cy="60" r="9.5" fill="url(#ds114h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="46" cy="60" r="9.5" fill="url(#ds114h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="74" cy="60" r="9.5" fill="url(#ds114h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="102" cy="60" r="9.5" fill="url(#ds114h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="130" cy="60" r="9.5" fill="url(#ds114h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/></svg></div>
+    <div class="ex-a"><p class="ans-hint">○ taban farklı</p></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Tek ölçütlü hedeflerle (yalnız &quot;üç kenar&quot;) ve geoboard ızgara desteğiyle başlayın.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Çok ölçütlü/aldatıcı hedefler (&quot;dört kenar ama köşeler dik değil&quot; = paralelkenar) verin.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Kenarları eşit yapar ama açıları serbest bırakır; kare yerine eşkenar dörtgen kurar. <b>→ Ne yapmalı:</b> Kâğıt köşesini her köşeye dayatıp dik açıyı denetletin. <span class="mis-cite">📖 Clements &amp; Battista (1992)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Verilen kenar/açı ölçütlerini (eşit kenar, dik köşe, doğru kenar sayısı) sağlayacak biçimde bir şekli tam doğrulukta kurar ve kendi işini denetlerse ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay Geo geoboard ve lastikler · çubuk parçaları (eşit uzunlukta birimler) · yapım kartları (kenar sayısı + eşitlik + açı ölçütleri) · dik açı şablonu <a href="https://dokunsay.com/Dokunsay-geo/">🔗 dokunsay.com/Dokunsay-geo/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/shape2d/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#7c3aed">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🔷 Geometri ve Uzamsal · 2B Şekiller</div>
+    <h1 class="ws-title"><span class="ws-no">17</span>Açıyı Temsil Eden</h1>
+    <div class="ws-meta">
+      <span class="pill">8–9 yaş</span>
+      <span class="pill">Düzey 17/22</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#7c3aed">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Açı bağlamlarını, referans çizgisi dâhil iki çizgiyle temsil eder; açı büyüklüğünü iki çizgi arasındaki dönme olarak anlar.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Geo ile elle yap — DokunSay Geo menteşeli açı çubukları.</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Kollar uzun ama açıklık aynı — açı değişmedi.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 150 84" width="150" height="84" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><line x1="16" y1="68" x2="52" y2="68" stroke="#14b8a6" stroke-width="4" stroke-linecap="round"/><line x1="16" y1="68" x2="41.45584412271572" y2="42.54415587728429" stroke="#14b8a6" stroke-width="4" stroke-linecap="round"/><circle cx="16" cy="68" r="4.5" fill="#0f766e"/></svg><svg viewBox="0 0 150 84" width="150" height="84" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><line x1="16" y1="68" x2="90" y2="68" stroke="#14b8a6" stroke-width="4" stroke-linecap="round"/><line x1="16" y1="68" x2="68.32590180780451" y2="15.674098192195487" stroke="#14b8a6" stroke-width="4" stroke-linecap="round"/><circle cx="16" cy="68" r="4.5" fill="#0f766e"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">açı aynı</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>İki çubuğu köşeden birleştir, birini döndür. Açı büyüdü mü?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 272 84" width="272" height="84" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><line x1="20" y1="68" x2="78" y2="68" stroke="#14b8a6" stroke-width="4" stroke-linecap="round"/><line x1="20" y1="68" x2="70.22947341949745" y2="39" stroke="#14b8a6" stroke-width="4" stroke-linecap="round"/><circle cx="20" cy="68" r="4.5" fill="#0f766e"/><line x1="154" y1="68" x2="212" y2="68" stroke="#14b8a6" stroke-width="4" stroke-linecap="round"/><line x1="154" y1="68" x2="164.07159430468195" y2="10.881150325291934" stroke="#14b8a6" stroke-width="4" stroke-linecap="round"/><circle cx="154" cy="68" r="4.5" fill="#0f766e"/></svg></div>
+    <div class="ex-a"><p class="ans-hint">○ döndükçe büyür</p></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Aynı açıklık, ama kollar UZUN. Açı büyüdü mü?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 150 84" width="150" height="84" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><line x1="16" y1="68" x2="50" y2="68" stroke="#14b8a6" stroke-width="4" stroke-linecap="round"/><line x1="16" y1="68" x2="40.04163056034262" y2="43.95836943965739" stroke="#14b8a6" stroke-width="4" stroke-linecap="round"/><circle cx="16" cy="68" r="4.5" fill="#0f766e"/></svg><svg viewBox="0 0 150 84" width="150" height="84" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><line x1="16" y1="68" x2="94" y2="68" stroke="#14b8a6" stroke-width="4" stroke-linecap="round"/><line x1="16" y1="68" x2="71.15432893255071" y2="12.845671067449295" stroke="#14b8a6" stroke-width="4" stroke-linecap="round"/><circle cx="16" cy="68" r="4.5" fill="#0f766e"/></svg></div>
+    <div class="ex-a"><p class="ans-hint">○ hayır — uzunluk açıyı değiştirmez</p></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>Açıyı çiz: bir sabit çizgi, bir dönen çizgi.</p></div>
+    
+    <div class="ex-a"><p class="ans-hint">○ iki ışın + dönme</p></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Belirgin (dik, geniş) açılarla ve menteşeli çubukla başlayın; çizimi siz modelleyin.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Çok dar/çok geniş açılar, dönme yönü (saat yönü/tersi) ve kol uzunluğu aldatmaları ekleyin.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Kolları uzun olan açıyı &quot;daha büyük açı&quot; sayar. <b>→ Ne yapmalı:</b> Aynı açının kollarını kısaltıp açıklığın değişmediğini gösterin. <span class="mis-cite">📖 Clements &amp; Battista (1992)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Bir açıyı iki ışın ve/veya bir dönme olarak doğru temsil eder; açının büyüklüğünü kol uzunluğundan bağımsız ele alırsa ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay Geo menteşeli açı çubukları · dönen ibreli bir disk/saat modeli · geoboard ve lastikler · açı çizimi için kâğıt-kalem <a href="https://dokunsay.com/Dokunsay-geo/">🔗 dokunsay.com/Dokunsay-geo/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/shape2d/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#7c3aed">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🔷 Geometri ve Uzamsal · 2B Şekiller</div>
+    <h1 class="ws-title"><span class="ws-no">18</span>Eşliği Açıklayan</h1>
+    <div class="ws-meta">
+      <span class="pill">8–9 yaş</span>
+      <span class="pill">Düzey 18/22</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#7c3aed">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Eşliği geometrik özelliklere başvurarak ve dönüşümlerle (kaydırma, döndürme, yansıtma) açıklar; üst üste koymadan akıl yürütebilir.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Geo ile elle yap — DokunSay Geo şekil parçaları (döndürünce/yansıyınca eşleşen çiftler).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Üst üste koymadım: döndürünce çakışacağını gördüm.</p></div>
+    <div class="ex-v"><div class="pat-row"><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,49 6,49" fill="#fffdf7" stroke="#b45309" stroke-width="2.6" stroke-linejoin="round"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,49 6,49" fill="#fffdf7" stroke="#b45309" stroke-width="2.6" stroke-linejoin="round"/></svg></span></div></div>
+    <div class="ex-a"><b class="ans-shown">döndürme ile eş</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>Üst üste koymadan söyle: eş mi? Nasıl anladın?</p></div>
+    <div class="ex-v"><div class="pat-row"><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,49 6,49" fill="#fffdf7" stroke="#b45309" stroke-width="2.6" stroke-linejoin="round"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,49 6,49" fill="#fffdf7" stroke="#b45309" stroke-width="2.6" stroke-linejoin="round"/></svg></span></div></div>
+    <div class="ex-a"><p class="ans-hint">○ döndürünce çakışır</p></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Çubuklardan kurduğun şekle aynada bak: yansıması eş mi?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 92 76" width="92" height="76" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><defs><linearGradient id="ds115a" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fde047"/><stop offset="32%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#78350f"/></linearGradient><radialGradient id="ds115h" cx=".42" cy=".36" r=".7"><stop offset="0%" stop-color="#3a3a3a"/><stop offset="100%" stop-color="#000"/></radialGradient></defs><rect x="2" y="2" width="88" height="28" rx="8" fill="url(#ds115a)" stroke="#78350f" stroke-width="2.5"/><circle cx="18" cy="16" r="9.5" fill="url(#ds115h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="46" cy="16" r="9.5" fill="url(#ds115h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="74" cy="16" r="9.5" fill="url(#ds115h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><rect x="2" y="46" width="88" height="28" rx="8" fill="url(#ds115a)" stroke="#78350f" stroke-width="2.5"/><circle cx="18" cy="60" r="9.5" fill="url(#ds115h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="46" cy="60" r="9.5" fill="url(#ds115h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="74" cy="60" r="9.5" fill="url(#ds115h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/></svg></div>
+    <div class="ex-a"><p class="ans-hint">○ eş — yansıma</p></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>"Kaydırdım, döndürdüm, üst üste geldi." Hangi dönüşüm?</p></div>
+    
+    <div class="ex-a"><p class="ans-hint">○ kaydırma + döndürme</p></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Yalnız öteleme (kaydırma) ile eşleşen çiftlerle başlayın; hareketi elle gösterin.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Döndürme ve yansımayı ayırt ettirin; ayna-görüntüsü çiftlerinde &quot;eş mi, değil mi?&quot; tartıştırın.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Yansıtılmış (ayna) eşi &quot;başka şekil&quot; sayar; yalnız döndürmeyi eşlik sayar. <b>→ Ne yapmalı:</b> Şeffaf kopyayı ters çevirip oturttuktan sonra hareketi adlandırtın. <span class="mis-cite">📖 van Hiele (1986)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> İki eş şeklin denkliğini bir dönüşümle (döndürme/yansıma/öteleme) doğru açıklar ve uygun hareketi adlandırırsa ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay Geo şekil parçaları (döndürünce/yansıyınca eşleşen çiftler) · ayna ya da şeffaf yansıtma plakası · geoboard · dönüşüm okları/kartları (döndür / yansıt / kaydır) <a href="https://dokunsay.com/Dokunsay-geo/">🔗 dokunsay.com/Dokunsay-geo/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/shape2d/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#7c3aed">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🔷 Geometri ve Uzamsal · 2B Şekiller</div>
+    <h1 class="ws-title"><span class="ws-no">19</span>Şekil Ailelerini Ayırt Eden</h1>
+    <div class="ws-meta">
+      <span class="pill">8–10 yaş</span>
+      <span class="pill">Düzey 19/22</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#7c3aed">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Şekilleri sınıf üyeliğine göre ele alır (örneğin sınıflara ayırırken); ancak üyeliği henüz özellikler üzerinden açıkça gerekçelendirmez.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Geo ile elle yap — DokunSay Geo şekil blokları (aynı sınıfın çok çeşitli örnekleri: küçük/büyük/eğik kareler + karşı örnekler).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>İki aileye ayırdım: dörtgenler ve üçgenler.</p></div>
+    <div class="ex-v"><div class="pat-row"><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="6" y="6" width="44" height="44" rx="3" fill="#fffdf7" stroke="#1e40af" stroke-width="2.6"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,49 6,49" fill="#fffdf7" stroke="#b45309" stroke-width="2.6" stroke-linejoin="round"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="4" y="13" width="48" height="30" rx="3" fill="#fffdf7" stroke="#1e40af" stroke-width="2.6"/></svg></span></div></div>
+    <div class="ex-a"><b class="ans-shown">dörtgen · üçgen</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>Bu şekilleri iki aileye ayır.</p></div>
+    <div class="ex-v"><div class="pat-row"><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="6" y="6" width="44" height="44" rx="3" fill="#fffdf7" stroke="#1e40af" stroke-width="2.6"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,49 6,49" fill="#fffdf7" stroke="#b45309" stroke-width="2.6" stroke-linejoin="round"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="4" y="13" width="48" height="30" rx="3" fill="#fffdf7" stroke="#1e40af" stroke-width="2.6"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,49 6,49" fill="#fffdf7" stroke="#b45309" stroke-width="2.6" stroke-linejoin="round"/></svg></span></div></div>
+    <div class="ex-a"><p class="ans-hint">○ dörtgenler · üçgenler</p></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Çubuk sayısına göre kur ve ayır: 3 çubuk / 4 çubuk.</p></div>
+    
+    <div class="ex-a"><p class="ans-hint">○ üçgen ailesi · dörtgen ailesi</p></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>Kurduğun şekli hangi aileye koyarsın?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 130 36" width="130" height="36" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><defs><linearGradient id="ds116a" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fde047"/><stop offset="32%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#78350f"/></linearGradient><radialGradient id="ds116h" cx=".42" cy=".36" r=".7"><stop offset="0%" stop-color="#3a3a3a"/><stop offset="100%" stop-color="#000"/></radialGradient></defs><rect x="2" y="2" width="126" height="32" rx="9" fill="url(#ds116a)" stroke="#78350f" stroke-width="2.5"/><circle cx="20" cy="18" r="10.5" fill="url(#ds116h)" stroke="rgba(0,0,0,.5)" stroke-width="1.5"/><circle cx="50" cy="18" r="10.5" fill="url(#ds116h)" stroke="rgba(0,0,0,.5)" stroke-width="1.5"/><circle cx="80" cy="18" r="10.5" fill="url(#ds116h)" stroke="rgba(0,0,0,.5)" stroke-width="1.5"/><circle cx="110" cy="18" r="10.5" fill="url(#ds116h)" stroke="rgba(0,0,0,.5)" stroke-width="1.5"/></svg></div>
+    <div class="ex-a"><p class="ans-hint">○ dörtgen</p></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Belirgin örneklerle ve tek sınıfla (yalnız kareler ↔ kare-olmayanlar) başlayın.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Birden çok sınıfı (kare/dikdörtgen/baklava) aynı anda ve aldatıcı örneklerle ayırttırın.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Şekilleri doğru gruplar ama gerekçe olarak yalnız &quot;birbirine benziyor&quot; der. <b>→ Ne yapmalı:</b> Her grup için &quot;hangi özellik ortak?&quot; diye sorup yanıtı yazdırın. <span class="mis-cite">📖 Burger &amp; Shaughnessy (1986)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Bir şekil sınıfının üyelerini (boyut/yönelim farkına rağmen) ortak özelliklerle doğru belirler ve karşı örnekleri ölçütle dışlarsa ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay Geo şekil blokları (aynı sınıfın çok çeşitli örnekleri: küçük/büyük/eğik kareler + karşı örnekler) · sınıflama halkaları/kutuları · özellik ölçüt kartı <a href="https://dokunsay.com/Dokunsay-geo/">🔗 dokunsay.com/Dokunsay-geo/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/shape2d/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#7c3aed">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🔷 Geometri ve Uzamsal · 2B Şekiller</div>
+    <h1 class="ws-title"><span class="ws-no">20</span>Özellikleriyle Tanımlayan</h1>
+    <div class="ws-meta">
+      <span class="pill">8–10 yaş</span>
+      <span class="pill">Düzey 20/22</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#7c3aed">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Özellikleri açıkça kullanır (&quot;dört eşit kenar ve dört dik açı&quot;); özellikleri koruyan durum değişikliklerinde (örneğin döndürme) neyin değişmediğini…</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Geo ile elle yap — DokunSay Geo şekil blokları (çeşitli dikdörtgen/paralelkenar/eşkenar üçgen örnekleri).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Özelliğini yazdım: 4 eşit kenar, 4 dik açı. Döndürünce değişmedi.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="6" y="6" width="44" height="44" rx="3" fill="#3b82f6" stroke="#1e40af" stroke-width="2.6"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">4 eşit kenar · 4 dik açı</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex">
+    <div class="ex-q"><span class="ex-no">1</span><p>Bu şeklin özelliğini yaz: kenarlar ve açılar nasıl?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="6" y="6" width="44" height="44" rx="3" fill="#3b82f6" stroke="#1e40af" stroke-width="2.6"/></svg></div>
+    <div class="ex-a"><p class="ans-hint">○ 4 eşit kenar, 4 dik açı</p></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Kareyi döndür. Hangi özellik DEĞİŞMEDİ?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,5 51,28 28,51 5,28" fill="#3b82f6" stroke="#1e40af" stroke-width="2.6" stroke-linejoin="round"/></svg></div>
+    <div class="ex-a"><p class="ans-hint">○ kenarlar hâlâ eşit</p></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>Çubukla ölçüp doğrula: karşılıklı kenarlar eşit mi?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 176 76" width="176" height="76" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><defs><linearGradient id="ds117a" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fde047"/><stop offset="32%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#78350f"/></linearGradient><radialGradient id="ds117h" cx=".42" cy=".36" r=".7"><stop offset="0%" stop-color="#3a3a3a"/><stop offset="100%" stop-color="#000"/></radialGradient></defs><rect x="2" y="2" width="172" height="28" rx="8" fill="url(#ds117a)" stroke="#78350f" stroke-width="2.5"/><circle cx="18" cy="16" r="9.5" fill="url(#ds117h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="46" cy="16" r="9.5" fill="url(#ds117h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="74" cy="16" r="9.5" fill="url(#ds117h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="102" cy="16" r="9.5" fill="url(#ds117h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="130" cy="16" r="9.5" fill="url(#ds117h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="158" cy="16" r="9.5" fill="url(#ds117h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><rect x="2" y="46" width="172" height="28" rx="8" fill="url(#ds117a)" stroke="#78350f" stroke-width="2.5"/><circle cx="18" cy="60" r="9.5" fill="url(#ds117h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="46" cy="60" r="9.5" fill="url(#ds117h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="74" cy="60" r="9.5" fill="url(#ds117h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="102" cy="60" r="9.5" fill="url(#ds117h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="130" cy="60" r="9.5" fill="url(#ds117h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/><circle cx="158" cy="60" r="9.5" fill="url(#ds117h)" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/></svg></div>
+    <div class="ex-a"><p class="ans-hint">○ eşit</p></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Tek bir özelliğe (yalnız kenar eşitliği) odaklanıp tek örnekte doğrulatın.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> İlişkisel özellikleri (paralellik, karşılıklılık) ve birden çok sınıfı birlikte genellettirin.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Kareyi döndürünce &quot;artık kare değil&quot; der; özelliklerin korunduğunu görmez. <b>→ Ne yapmalı:</b> Döndürürken kenarları ve dik açıları her durakta ölçtürün. <span class="mis-cite">📖 van Hiele (1986)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Bir şekil sınıfının özelliklerini (karşılıklı kenarlar eşit/paralel, açılar dik vb.) açıkça ve birden çok örnekte genelleyerek söylerse ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay Geo şekil blokları (çeşitli dikdörtgen/paralelkenar/eşkenar üçgen örnekleri) · geoboard ve lastikler · özellik ifade kartları (eşit kenar / paralel / dik açı / karşılıklı) <a href="https://dokunsay.com/Dokunsay-geo/">🔗 dokunsay.com/Dokunsay-geo/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/shape2d/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#7c3aed">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🔷 Geometri ve Uzamsal · 2B Şekiller</div>
+    <h1 class="ws-title"><span class="ws-no">21</span>Özelliklere Göre Sınıflayan</h1>
+    <div class="ws-meta">
+      <span class="pill">8–11 yaş</span>
+      <span class="pill">Düzey 21/22</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#7c3aed">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Sınıf üyeliğini, açı ölçüsü dâhil özelliklere açıkça dayandırır; şekilleri özelliklerine göre hiyerarşik olarak sınıflar (kare, özel bir dikdörtgendir).</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Geo ile elle yap — DokunSay Geo şekil blokları (kare, dikdörtgen, baklava, paralelkenar).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Karenin 4 dik açısı var, o yüzden kare de bir dikdörtgendir.</p></div>
+    <div class="ex-v"><div class="pat-row"><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="6" y="6" width="44" height="44" rx="3" fill="#fffdf7" stroke="#1e40af" stroke-width="2.6"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="4" y="13" width="48" height="30" rx="3" fill="#fffdf7" stroke="#1e40af" stroke-width="2.6"/></svg></span></div></div>
+    <div class="ex-a"><b class="ans-shown">kare ⊂ dikdörtgen</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>Kare de dikdörtgen midir? Özelliklerini yaz, karar ver.</p></div>
+    <div class="ex-v"><div class="pat-row"><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="6" y="6" width="44" height="44" rx="3" fill="#fffdf7" stroke="#1e40af" stroke-width="2.6"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="4" y="13" width="48" height="30" rx="3" fill="#fffdf7" stroke="#1e40af" stroke-width="2.6"/></svg></span></div></div>
+    <div class="ex-a"><p class="ans-hint">○ evet — 4 dik açısı var</p></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>4 eşit çubukla kur. Bu hem kare hem dikdörtgen mi?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 130 36" width="130" height="36" class="ws-svg " xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><defs><linearGradient id="ds118a" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fde047"/><stop offset="32%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#78350f"/></linearGradient><radialGradient id="ds118h" cx=".42" cy=".36" r=".7"><stop offset="0%" stop-color="#3a3a3a"/><stop offset="100%" stop-color="#000"/></radialGradient></defs><rect x="2" y="2" width="126" height="32" rx="9" fill="url(#ds118a)" stroke="#78350f" stroke-width="2.5"/><circle cx="20" cy="18" r="10.5" fill="url(#ds118h)" stroke="rgba(0,0,0,.5)" stroke-width="1.5"/><circle cx="50" cy="18" r="10.5" fill="url(#ds118h)" stroke="rgba(0,0,0,.5)" stroke-width="1.5"/><circle cx="80" cy="18" r="10.5" fill="url(#ds118h)" stroke="rgba(0,0,0,.5)" stroke-width="1.5"/><circle cx="110" cy="18" r="10.5" fill="url(#ds118h)" stroke="rgba(0,0,0,.5)" stroke-width="1.5"/></svg></div>
+    <div class="ex-a"><p class="ans-hint">○ ikisi de</p></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>Her dikdörtgen kare midir? Çubukla karşı örnek kur.</p></div>
+    
+    <div class="ex-a"><p class="ans-hint">○ hayır — 2 uzun 2 kısa</p></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Tek bir ilişkiye (kare ↔ dikdörtgen) ve özellik eşlemesine odaklanın; halkalarla gösterin.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Çok katmanlı hiyerarşi (kare ⊂ dikdörtgen/baklava ⊂ paralelkenar ⊂ dörtgen) ve &quot;baklava dikdörtgen mi?&quot; gibi aldatıcı sorular ekleyin.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> &quot;Kare de dikdörtgendir&quot; önermesini reddeder; sınıfları ayrık kutular sanır. <b>→ Ne yapmalı:</b> Dikdörtgen tanımını okutup kareyi madde madde denetletin. <span class="mis-cite">📖 Burger &amp; Shaughnessy (1986)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Şekilleri özelliklerinin kapsanmasına göre ilişkilendirir (ör. &quot;her kare bir dikdörtgendir&quot;) ve ilişkinin tek yönlü olduğunu açıklarsa ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay Geo şekil blokları (kare, dikdörtgen, baklava, paralelkenar) · iç içe sınıflama halkaları (Venn) · özellik karşılaştırma kartları <a href="https://dokunsay.com/Dokunsay-geo/">🔗 dokunsay.com/Dokunsay-geo/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/shape2d/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#7c3aed">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🔷 Geometri ve Uzamsal · 2B Şekiller</div>
+    <h1 class="ws-title"><span class="ws-no">22</span>Açı Kavramını Bütünleştiren</h1>
+    <div class="ws-meta">
+      <span class="pill">8–12 yaş</span>
+      <span class="pill">Düzey 22/22</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#7c3aed">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Açının farklı anlamlarını (dönme, köşe, eğim) açı ölçüsü dâhil tek bir kavramda birleştirir; bağlamlar arasında açıkça ilişki kurar.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Geo ile elle yap — DokunSay Geo menteşeli açı çubukları + dönen ibreli disk + eğim modeli (rampa).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Çeyrek tur döndürdüm: 90 derece. Köşe de eğim de aynı şey.</p></div>
+    <div class="ex-v"><svg viewBox="0 0 150 84" width="150" height="84" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><line x1="16" y1="68" x2="80" y2="68" stroke="#14b8a6" stroke-width="4" stroke-linecap="round"/><line x1="16" y1="68" x2="16.000000000000004" y2="4" stroke="#14b8a6" stroke-width="4" stroke-linecap="round"/><circle cx="16" cy="68" r="4.5" fill="#0f766e"/></svg></div>
+    <div class="ex-a"><b class="ans-shown">90°</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex">
+    <div class="ex-q"><span class="ex-no">1</span><p>Çubuklarla üç açı kur: köşe, kesişme, eğim. Ortak yanı ne?</p></div>
+    
+    <div class="ex-a"><p class="ans-hint">○ hepsi iki çizgi arası dönme</p></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Çubuk kolu çeyrek tur döndür. Kaç derece oldu?</p></div>
+    <div class="ex-v"><svg viewBox="0 0 150 84" width="150" height="84" class="ws-svg ws-tall" xmlns="http://www.w3.org/2000/svg" role="img" preserveAspectRatio="xMidYMid meet"><line x1="16" y1="68" x2="80" y2="68" stroke="#14b8a6" stroke-width="4" stroke-linecap="round"/><line x1="16" y1="68" x2="16.000000000000004" y2="4" stroke="#14b8a6" stroke-width="4" stroke-linecap="round"/><circle cx="16" cy="68" r="4.5" fill="#0f766e"/></svg></div>
+    <div class="ex-a"><span class="wbox"></span></div>
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>Dik açının yarısı kaç derece? Çubukla göster.</p></div>
+    
+    <div class="ex-a"><p class="ans-hint">○ 45</p></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Önce iki anlamı (köşe ↔ dönme) eşleştirin; belirgin (dik/düz) açılarla çalışın.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Üç anlamı birden, alışılmadık açılarla (geniş/çok dar) ve ölçü tahminiyle bütünlettirin.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Dönme açısıyla köşe açısını ayrı şeyler sayar; eğimi açıyla ilişkilendirmez. <b>→ Ne yapmalı:</b> Aynı açıyı dönme, köşe ve rampa eğimi olarak üç kez gösterin. <span class="mis-cite">📖 Clements &amp; Battista (1992)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Açının köşe-açıklığı, dönme ve eğim anlamlarını tek bir bütünleşik kavramda birleştirir ve farklı bağlamlardaki açıları aynı ölçüyle (derece) ilişkilendirip tartışırsa ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay Geo menteşeli açı çubukları + dönen ibreli disk + eğim modeli (rampa) · açıölçer (gönye/iletki) · bağlamlar-arası eşleştirme kartları (köşe ↔ dönme ↔ eğim) <a href="https://dokunsay.com/Dokunsay-geo/">🔗 dokunsay.com/Dokunsay-geo/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/shape2d/</span>
+    </div>
+  </div>
+</section>
+</div>
+</body>
+</html>

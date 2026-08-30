@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ölçme: Hacim — Öğrenme Yörüngesi · DokunSay</title>
+<meta name="description" content="Ölçme: Hacim öğrenme yörüngesi: 8 gelişim basamağı, her birinde DokunSay etkinliği ve gözlem ölçütü. Clements &amp; Sarama çerçevesi. Kapları doldurma, 3B birim.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --c:#0d9488;
+    --amber:#2E7D32; --ink:#182219; --body:#37433c; --muted:#5f6b63; --line:#dfe7df;
+    --bg:#f3f7f1; --card:#ffffff; --maxw:1180px; --r:18px;
+    --shadow:0 10px 30px -14px rgba(24,40,25,.22);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Inter,system-ui,sans-serif;color:var(--body);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4,h5,h6{font-family:Poppins,sans-serif;color:var(--ink);line-height:1.16;letter-spacing:-.01em}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  .eyebrow{font-family:Poppins;font-weight:700;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase}
+
+
+.dsh{background:linear-gradient(135deg,#14391a 0%,#1d2b22 100%);color:#fff;padding:12px 24px;box-shadow:0 4px 10px rgba(24,40,25,.10),0 2px 4px rgba(24,40,25,.05);position:sticky;top:0;z-index:50}
+.dsh-row{display:flex;align-items:center;justify-content:space-between;gap:16px;max-width:1440px;margin:0 auto;flex-wrap:wrap}
+.dsh-brand{display:flex;align-items:center;gap:13px;text-decoration:none;color:#fff}
+.dsh-logo{width:40px;height:40px;border-radius:12px;background:#fff;display:grid;place-items:center;padding:5px;box-shadow:0 1px 4px rgba(15,23,42,.12);flex:0 0 auto}
+.dsh-logo svg{display:block;width:100%;height:100%}
+.dsh-titles{display:flex;flex-direction:column;line-height:1.12}
+.dsh-name{font-family:Poppins,system-ui,sans-serif;font-size:20px;font-weight:800;letter-spacing:.4px;color:#fff}
+.dsh-sub{font-size:11.5px;font-weight:700;opacity:.72;letter-spacing:.3px;margin-top:2px;color:#fff}
+.dsh-nav{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.dsh-pill{display:inline-flex;align-items:center;gap:6px;padding:8px 15px;border-radius:999px;font-weight:700;font-size:.86rem;font-family:inherit;line-height:1;text-decoration:none;white-space:nowrap;border:1px solid transparent;transition:filter .15s,background .15s}
+.dsh-pill:hover{filter:brightness(1.13)}
+.dsh-amber{color:#fde6c0;background:rgba(245,158,11,.18);border-color:rgba(245,158,11,.45)}
+.dsh-green{color:#d7f0d9;background:rgba(46,125,50,.22);border-color:rgba(46,125,50,.5)}
+.dsh-teal{color:#bfe8e4;background:rgba(13,148,136,.2);border-color:rgba(13,148,136,.5)}
+.dsh-pill.is-active{box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.45);filter:brightness(1.12)}
+.dsh .hcmo-auth{display:inline-flex;align-items:center;gap:6px}
+.dsh .hcmo-auth:empty{display:none}
+.dsh .hcmo-auth a{display:inline-flex;align-items:center;gap:5px;padding:8px 14px;border-radius:999px;font-weight:700;font-size:.86rem;text-decoration:none;white-space:nowrap;color:#fde6c0;background:rgba(245,158,11,.18);border:1px solid rgba(245,158,11,.45);transition:background .15s}
+.dsh .hcmo-auth a:hover{background:rgba(245,158,11,.3)}
+.dsh .hcmo-auth a#hcmo-stu{color:#cfe8ff;background:rgba(96,165,250,.16);border-color:rgba(96,165,250,.4)}
+.dsh .hcmo-auth a#hcmo-stu:hover{background:rgba(96,165,250,.28)}
+.dsh .hcmo-auth>span{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:.86rem;color:#e8eefc}
+.dsh .hcmo-auth .nm{color:#fde6c0}
+.dsh .hcmo-auth #hcmo-out{cursor:pointer;border:0;border-radius:999px;background:#f59e0b;color:#3a2606;font-weight:800;font-size:.8rem;padding:7px 13px;font-family:inherit}
+.dsh .hcmo-auth #hcmo-out:hover{filter:brightness(1.07)}
+@media (max-width:760px){.dsh{padding:10px 15px}.dsh-pill{padding:7px 11px;font-size:.8rem}.dsh-name{font-size:18px}}
+@media print{.dsh{display:none}}
+
+  .hero{background:linear-gradient(135deg,color-mix(in srgb,var(--c) 88%,#000),color-mix(in srgb,var(--c) 62%,#14391a));color:#fff;padding:30px 0 40px;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;right:-70px;top:-60px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.16),transparent 70%)}
+  .crumb{font-size:.84rem;color:rgba(255,255,255,.8);margin-bottom:16px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .crumb a{color:rgba(255,255,255,.92);text-decoration:underline;text-underline-offset:2px}
+  .hero-grid{display:flex;align-items:flex-start;gap:18px;position:relative;z-index:1}
+  .hero-ic{font-size:2.6rem;line-height:1;background:rgba(255,255,255,.16);width:74px;height:74px;border-radius:18px;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+  .hero .eyebrow{color:rgba(255,255,255,.85)}
+  .hero h1{color:#fff;font-size:clamp(1.9rem,4.4vw,2.9rem);font-weight:900;margin:6px 0 10px}
+  .hero .lede{color:rgba(255,255,255,.94);font-size:1.06rem;max-width:680px}
+  .hero .ltname{opacity:.8;font-style:italic}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px}
+  .hm{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.22);color:#fff;border-radius:999px;padding:.34em .9em;font-size:.82rem;font-weight:600;font-family:Poppins}
+  .hero-cta{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+  .btn{font-family:Poppins;font-weight:700;font-size:.9rem;border-radius:999px;padding:.6em 1.2em;cursor:pointer;border:0;display:inline-flex;align-items:center;gap:7px}
+  .btn-w{background:#fff;color:var(--ink)}.btn-w:hover{transform:translateY(-1px)}
+  .btn-o{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.4)}.btn-o:hover{background:rgba(255,255,255,.24)}
+
+  .layout{display:grid;grid-template-columns:266px 1fr;gap:34px;align-items:start;padding:34px 0 50px}
+  .side{position:sticky;top:78px}
+  .side-in{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;max-height:calc(100vh - 100px);display:flex;flex-direction:column}
+  .side-head{font-family:Poppins;font-weight:800;color:var(--ink);font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;padding:14px 16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between}
+  .side-head span{color:var(--c)}
+  .side-list{list-style:none;overflow-y:auto;padding:6px}
+  .side-list a{display:flex;gap:10px;align-items:center;padding:8px 9px;border-radius:10px;transition:background .15s}
+  .side-list a:hover{background:#f1f8f2}
+  .side-list a.act{background:color-mix(in srgb,var(--c) 12%,#fff)}
+  .s-num{flex:0 0 auto;width:24px;height:24px;border-radius:7px;background:color-mix(in srgb,var(--c) 14%,#fff);color:var(--c);font-family:Poppins;font-weight:700;font-size:.8rem;display:flex;align-items:center;justify-content:center}
+  .side-list a.act .s-num{background:var(--c);color:#fff}
+  .s-txt{display:flex;flex-direction:column;min-width:0}
+  .s-txt b{font-family:Inter;font-weight:600;font-size:.86rem;color:var(--ink);line-height:1.25}
+  .s-txt small{color:var(--muted);font-size:.72rem}
+
+  .levels{display:flex;flex-direction:column;gap:20px}
+  .level{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px 24px;scroll-margin-top:84px;position:relative}
+  .level.bn{border-color:#f3c98b;box-shadow:0 0 0 1px #f3c98b inset}
+  .level.bn::before{content:"";position:absolute;left:0;top:18px;bottom:18px;width:4px;border-radius:4px;background:linear-gradient(#f59e0b,#ea580c)}
+  .lv-top{display:flex;gap:14px;align-items:flex-start;margin-bottom:14px}
+  .lv-num{flex:0 0 auto;width:42px;height:42px;border-radius:12px;background:var(--c);color:#fff;font-family:Poppins;font-weight:800;font-size:1.25rem;display:flex;align-items:center;justify-content:center}
+  .lv-badges{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:3px}
+  .age-pill{font-family:Poppins;font-weight:700;font-size:.7rem;color:var(--c);background:color-mix(in srgb,var(--c) 12%,#fff);border-radius:999px;padding:.2em .7em}
+  .bn-pill{font-family:Poppins;font-weight:700;font-size:.7rem;color:#9a3412;background:#fff3e2;border:1px solid #f3c98b;border-radius:999px;padding:.2em .7em}
+  .lv-id h3{font-size:1.2rem;font-weight:700}
+  .lv-body{display:grid;grid-template-columns:1fr 196px;gap:20px;align-items:start}
+  .lv-main{min-width:0}
+  .lv-desc{font-size:.98rem;color:var(--body);margin-bottom:12px}
+  .lv-desc b{color:var(--ink)}
+  .note{border-radius:12px;padding:12px 15px;margin-bottom:11px}
+  .note h5{font-size:.74rem;letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px}
+  .note p{font-size:.92rem}
+  .note.how{background:#f4f8f5;border:1px solid #dcebe1}.note.how h5{color:#15803d}
+  .note.teach{background:#fff8ee;border:1px solid #f3e2c4}.note.teach h5{color:#b45309}
+  .lv-viz{background:linear-gradient(#f8fbf7,#eef5ec);border:1px solid var(--line);border-radius:14px;padding:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:sticky;top:80px}
+  .lv-viz svg{width:100%;height:auto;max-height:130px}
+  .lv-viz .viz-cap{font-size:.7rem;color:var(--muted);font-weight:600;margin-top:4px;font-family:Poppins;letter-spacing:.04em}
+  .lv-viz.emblem span{font-size:3.2rem;filter:saturate(1.05)}
+
+  .act{margin-top:14px;background:#fbfdfb;border:1px solid #e3efe5;border-radius:14px;padding:15px 17px}
+  .act-head{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+  .act-head h4{font-size:1rem;font-weight:700;color:#15803d}
+  .act-ic{font-size:1.1rem}
+  .act-sub{margin-bottom:10px}
+  .act-sub h5{font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:#64748b;margin-bottom:5px}
+  .mats{list-style:none;display:flex;flex-wrap:wrap;gap:6px}
+  .mats li{background:#eef6ef;border:1px solid #d7e9d9;color:#2f5337;border-radius:8px;padding:.22em .6em;font-size:.84rem}
+  .steps{margin:0 0 0 18px;padding:0}
+  .steps li{font-size:.92rem;margin-bottom:5px;padding-left:3px}
+  .crit{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:9px 12px;font-size:.9rem;color:#166534;margin:10px 0}
+  .crit .tick{color:#2E7D32;font-weight:800}
+  .scaf{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+  .scaf-c{border-radius:10px;padding:9px 12px;font-size:.88rem}
+  .scaf-c h6{font-size:.74rem;margin-bottom:3px;font-weight:700}
+  .scaf-c.easy{background:#f1f5f9;border:1px solid #e2e8f0}.scaf-c.easy h6{color:#475569}
+  .scaf-c.hard{background:#faf5ff;border:1px solid #e9d5ff}.scaf-c.hard h6{color:#7c3aed}
+  .obs{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:11px 14px;font-size:.92rem}
+  .obs b{color:var(--ink)}
+
+  .chips{margin-top:12px}
+  .chips-lab{font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;color:#94a3b8;font-weight:700;font-family:Poppins}
+  .chips-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+  .chip{display:inline-flex;flex-direction:column;border-radius:10px;padding:7px 11px;font-size:.8rem;border:1px solid;max-width:240px;transition:transform .14s}
+  .chip:hover{transform:translateY(-2px)}
+  .chip b{font-family:Poppins;font-weight:700;font-size:.82rem}
+  .chip span{font-size:.74rem;opacity:.85;line-height:1.3}
+  .chip-ds{background:#fff7ec;border-color:#f6dcae;color:#9a5b16}
+  .chip-gs{background:#eef2ff;border-color:#c7d2fe;color:#4338ca}
+  .chip-ab{background:#ecfdf5;border-color:#bbf7d0;color:#166534}
+  .chip-adim{background:#f8fafc;border-color:#e2e8f0;color:#64748b;cursor:default}
+
+  .lv-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:16px;padding-top:14px;border-top:1px dashed var(--line);flex-wrap:wrap}
+  .printcard{background:#fff;border:1px solid var(--line);color:var(--body);font-family:Poppins;font-weight:600;font-size:.82rem;border-radius:999px;padding:.5em 1em;cursor:pointer}
+  .printcard:hover{background:#f1f8f2;color:var(--ink)}
+  .nextlv{font-family:Poppins;font-weight:600;font-size:.86rem;color:var(--c)}
+  .nextlv b{font-weight:700}
+  .nextlv.done{color:var(--muted)}
+
+  footer{background:#14391a;color:#9db89f;padding:36px 0;margin-top:10px;font-size:.88rem}
+  footer a{color:#d8e6d8;text-decoration:underline}
+  .foot-note{max-width:760px;font-size:.82rem;color:#7f9781;margin-top:8px}
+
+  @media(max-width:980px){
+    .layout{grid-template-columns:1fr;gap:0}
+    .side{position:static;margin-bottom:20px}
+    .side-in{max-height:none}
+    .side-list{max-height:300px}
+    .lv-body{grid-template-columns:1fr}
+    .lv-viz{order:-1;flex-direction:row;gap:12px;position:static}
+    .lv-viz svg{max-height:90px;width:auto}
+    .scaf{grid-template-columns:1fr}
+    .nav-links{display:none}
+  }
+
+  /* ── Yazdırma ── */
+  @media print{
+    header,.hero-cta,.side,footer,.printcard,.nextlv,.chips{display:none!important}
+    body{background:#fff}
+    .hero{background:#fff;color:#000;padding:0 0 10px;border-bottom:2px solid #000}
+    .hero::after{display:none}.hero-ic{background:#eee}
+    .hero h1,.hero .eyebrow,.hero .lede,.crumb{color:#000}
+    .layout{display:block;padding:6px 0}
+    .levels{gap:0}
+    .level{break-inside:avoid;page-break-inside:avoid;border:1px solid #999;box-shadow:none;margin-bottom:10px}
+    .lv-viz{border:1px solid #ccc}
+    body.printing-one .level:not(.print-target){display:none!important}
+    body.printing-one .hero .lede,body.printing-one .hero-meta{display:none}
+  }
+</style>
+</head>
+<body data-key="mvol">
+<header class="dsh"><div class="dsh-row"><a class="dsh-brand" href="/" aria-label="DokunSay ana sayfa"><span class="dsh-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" aria-hidden="true"><line x1="28" y1="27" x2="72" y2="27" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="28" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="72" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><circle cx="28" cy="27" r="21" fill="#2E7D32"/><circle cx="20.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="28" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="35.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="72" cy="27" r="21" fill="#0d9488"/><text x="72" y="32" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="14" fill="#fff">üç</text><circle cx="50" cy="73" r="21" fill="#1B5E20"/><text x="50" y="82" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="27" fill="#fff">3</text></svg></span><span class="dsh-titles"><span class="dsh-name">DokunSay</span><span class="dsh-sub">Matematik Öğretim Araçları Platformu</span></span></a><nav class="dsh-nav" aria-label="Site gezinme"><a class="dsh-pill dsh-amber is-active" href="/yorunge/" aria-current="page">🧭 Öğrenme Yörüngeleri</a><a class="dsh-pill dsh-green" href="/rehber/">📘 Müdahale Rehberi</a><a class="dsh-pill dsh-teal" href="/#tools-section">🛠️ Araçlar</a><span id="hcmoAuth" class="hcmo-auth"></span></nav></div></header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="crumb"><a href="/yorunge/">Öğrenme Yörüngeleri</a> <span>›</span> <span>Ölçme</span></div>
+    <div class="hero-grid">
+      <div class="hero-ic">🧪</div>
+      <div>
+        <span class="eyebrow">Ölçme</span>
+        <h1>Ölçme: Hacim</h1>
+        <p class="lede">Kapları doldurma, 3B birim. <span class="ltname">(Volume Measurement)</span></p>
+        <div class="hero-meta">
+          <span class="hm">📊 8 basamak</span>
+          <span class="hm">🎂 0–10 yaş</span>
+          <span class="hm">⚠ 2 darboğaz</span>
+          <span class="hm">🎯 Profil alanı · gözlem</span>
+        </div>
+        <div class="hero-cta">
+          <a class="btn btn-w" href="calisma-yapraklari.html">✏️ Çalışma yaprakları</a>
+          <a class="btn btn-w" href="calisma-yapraklari-dokunsay.html">🧩 DokunSay materyalli yapraklar</a>
+          <a class="btn btn-o" href="etkinlik-kartlari.pdf" target="_blank" rel="noopener">⬇ Etkinlik kartları (PDF)</a>
+          <button class="btn btn-o" id="printAll" type="button">🖨️ Yazdır</button>
+          <a class="btn btn-o" href="/yorunge/">← Tüm yörüngeler</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main class="wrap">
+  <div class="layout">
+    <aside class="side">
+    <div class="side-in">
+      <div class="side-head">Düzeyler <span>8</span></div>
+      <ol class="side-list"><li><a href="#lv-0" data-i="0"><span class="s-num" style="--c:#0d9488">1</span><span class="s-txt"><b>Hacim Duyarlılığı: Temeller</b><small>0–2 yaş</small></span></a></li><li><a href="#lv-1" data-i="1"><span class="s-num" style="--c:#0d9488">2</span><span class="s-txt"><b>Hacmi Fark Eden</b><small>1–3 yaş</small></span></a></li><li><a href="#lv-2" data-i="2"><span class="s-num" style="--c:#0d9488">3</span><span class="s-txt"><b>Hacim Dolduran</b><small>3–4 yaş</small></span></a></li><li><a href="#lv-3" data-i="3"><span class="s-num" style="--c:#0d9488">4</span><span class="s-txt"><b>Hacmi Saymaya Başlayan</b><small>5–6 yaş · ⚠ darboğaz</small></span></a></li><li><a href="#lv-4" data-i="4"><span class="s-num" style="--c:#0d9488">5</span><span class="s-txt"><b>Birim Kabı Tekrarlayarak Ölçen</b><small>7–8 yaş</small></span></a></li><li><a href="#lv-5" data-i="5"><span class="s-num" style="--c:#0d9488">6</span><span class="s-txt"><b>Küp Sıralarını Birim Görmeye Başlayan</b><small>7–9 yaş</small></span></a></li><li><a href="#lv-6" data-i="6"><span class="s-num" style="--c:#0d9488">7</span><span class="s-txt"><b>Katman Katman Sayan</b><small>8–9 yaş · ⚠ darboğaz</small></span></a></li><li><a href="#lv-7" data-i="7"><span class="s-num" style="--c:#0d9488">8</span><span class="s-txt"><b>Hacmi Çarparak Bulan</b><small>8–10 yaş</small></span></a></li></ol>
+    </div>
+  </aside>
+    <div class="levels">
+      
+  <article class="level" id="lv-0">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#0d9488">1</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#0d9488">0–2 yaş</span>
+          
+        </div>
+        <h3>Hacim Duyarlılığı: Temeller</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> İlk yıldan itibaren hacme/miktara duyarlıdır; ancak hacmi genel &quot;büyük–küçük&quot; algısından ayrı bir nitelik olarak tanımayabilir.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Bebek/küçük çocuk bir bardağı suyla, bir kovayı kumla doldurup boşaltmaktan bıkmaz; küçük kabı büyük kabın içine sokar, dolu bir kabı eline alınca &quot;ağır/dolu&quot;, boş kabı &quot;hafif/boş&quot; diye sezer. Henüz &quot;daha çok alır&quot; diyemez ama bir kabın &quot;ne kadar aldığını&quot; doldurup boşaltarak yaşar.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, hacim/kapasite sezgisinin en erken tohumudur: çocuk miktarı adlandırmadan, tamamen DOLDURUP BOŞALTARAK ve kaba dokunarak tanır. Sık bir yetişkin alışkanlığı, su/kum oyununu &quot;sadece dağıtıyor&quot; diye geçiştirmektir — oysa bir kabı tekrar tekrar doldurmak, taşırmak, başka kaba aktarmak sonraki tüm hacim ölçmenin somut zeminidir. Adlandırmaya değil, bol bol doldur-boşalt deneyimine alan açın; siz &quot;doldu!&quot;, &quot;taştı!&quot;, &quot;hâlâ yer var&quot; gibi sözlerle yaşantıyı besleyin.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>su veya kuru malzeme (kum, pirinç, mercimek) için bir leğen</li><li>farklı boyutta birkaç kap, bardak, kova / DokunSay Geo kapları</li><li>aktarmak için küçük bir bardak ya da kepçe</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Çocuğa bir bardak ve bir kova verin: &quot;Hadi dolduralım!&quot; deyip birlikte doldurun.</li><li>Dolu kabı boşaltıp &quot;bitti, boş!&quot;; yeniden doldurup &quot;doldu!&quot; diye yaşantıyı adlandırın.</li><li>Küçük bardakla büyük kaba aktartın; taşınca &quot;taştı!&quot; deyin.</li><li>Dolu ve boş kabı birlikte elinde tartıtıp &quot;bu dolu, bu boş&quot; diye sezdirin.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Kapları doldurup boşaltarak, aktararak &quot;dolu/boş&quot; ya da &quot;ne kadar aldığını&quot; sezgisel fark ederse ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Tek bir bardak ve tek bir kapla, yalnız doldur-boşalt yaptırın; siz hareketi modelleyin.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Birkaç kabı karıştırıp &quot;hangisi daha çok doldu?&quot; gibi sezgiye dayalı küçük gözlemler sorun.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey için ADIM etkinliği"><b>ADIM</b><span>İlgili düzey için ADIM etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#0d9488">🧪</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="0" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-1">Sıradaki düzey · <b>Hacmi Fark Eden</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-1">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#0d9488">2</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#0d9488">1–3 yaş</span>
+          
+        </div>
+        <h3>Hacmi Fark Eden</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Kapasiteyi/hacmi bir nitelik olarak ayırt etmeye başlar; çok bloğu &quot;büyük&quot;, az bloğu &quot;küçük&quot; ile ilişkilendirir.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>İki kabı gösterip &quot;Hangisi daha çok su/kum alır?&quot; dediğinizde çoğu zaman daha büyük/geniş kabı seçer; &quot;çok&quot;, &quot;az&quot;, &quot;dolu&quot;, &quot;taşar&quot; sözcüklerini kapasiteyi anlatmak için kullanır. Hacmi artık yalnız yaşamakla kalmaz, kaplar arasında bir NİCELİK olarak karşılaştırır.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Burada hacim sezgisi dile değer: &quot;ne kadar alır&quot; karşılaştırılabilir bir nicelik olur. Çocuk çoğunlukla algıya (boy/genişlik) dayanır — uzun ince bir kabı her zaman &quot;daha çok&quot; sanabilir; bu normaldir, henüz ölçmüyor, gözüyle yargılıyor. Yargısını sınamak için iki kabı gerçekten doldurup birinden ötekine aktarın: &quot;Bakalım, taştı mı, yoksa yer mi kaldı?&quot; Böylece nicelik sözcükleri (çok/az/daha çok) somut bir doldurma deneyimine bağlanır.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>belirgin biçimde farklı kapasitede iki kap (geniş alçak ↔ dar yüksek) / DokunSay Geo kapları</li><li>su veya kuru malzeme</li><li>aktarma için kepçe/bardak</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>İki kabı yan yana koyun: &quot;Sence hangisi daha çok alır?&quot; diye tahmin ettirin.</li><li>Birini ağzına dek doldurup ötekine aktarın; &quot;taştı mı, yer mi kaldı?&quot; diye baktırın.</li><li>Sonucu adlandırın: &quot;Demek bu kap daha çok alıyormuş.&quot;</li><li>Kapları değiştirip &quot;şimdi hangisi daha çok?&quot; diye yineleyin.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> İki kabı karşılaştırıp &quot;hangisi daha çok alır?&quot; sorusuna kapasiteyi bir nicelik olarak (çok/az) yanıtlarsa ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Kapasite farkı çok belirgin olsun (küçük bardak ↔ büyük kova); tahmini aktararak hemen doğrulayın.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Aynı miktarı alan ama farklı biçimli iki kapla (yanıltıcı: dar-uzun ↔ geniş-alçak) yoklayın.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey için ADIM etkinliği"><b>ADIM</b><span>İlgili düzey için ADIM etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#0d9488">🧪</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="1" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-2">Sıradaki düzey · <b>Hacim Dolduran</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-2">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#0d9488">3</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#0d9488">3–4 yaş</span>
+          
+        </div>
+        <h3>Hacim Dolduran</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> İki kabı, birini diğerine boşaltarak karşılaştırır; bir kabı küçük bir kapla doldurup kepçe sayısını sayar (henüz hatalı olabilir); küpleri kutuya doldurur, giderek düzenli yerleştirir; üçüncü bir kap aracılığıyla geçişli karşılaştırma yapabilir.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk küçük bir bardakla büyük bir kabı, kepçe kepçe boşaltarak doldurur; ya da küçük küpleri bir kutunun içine, boşluk kalmasın diye yan yana ve sıkışık yerleştirir. Henüz &quot;kaç bardak&quot; saymaz ama kabın içini bir birimle DOLDURMAYI ve küpleri PAKETLEMEYİ becerir.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, hacmi ölçmenin ilk eylemli adımıdır: iç hacmi bir birimle (bardak dolusu ya da küp) doldurmak/paketlemek. Sık bir kısıt, çocuğun küpleri gelişigüzel atması ve aralarında boşluk bırakmasıdır — bu, ileride &quot;kaç küp sığar&quot; saymasını bozar. Boşluksuz, hizalı paketlemeyi modelleyin: &quot;Aralarında boşluk kalmasın, sımsıkı dizelim.&quot; Doldururken kullandığınız birimi (hep AYNI bardak) sabit tutun; birim değişirse karşılaştırma anlamını yitirir.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>doldurulacak bir kutu/kap + onu dolduracak özdeş küçük küpler / DokunSay Geo küpleri</li><li>ya da büyük bir kap + tek bir küçük ölçü bardağı</li><li>su/kum (bardakla doldurma için)</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Boş kutuyu ve bir avuç özdeş küpü gösterin: &quot;Bu kutuyu küplerle dolduralım.&quot;</li><li>İlk sırayı boşluksuz, hizalı dizmesini modelleyin: &quot;sımsıkı, aralık yok.&quot;</li><li>Çocuk tabandan başlayıp boşlukları doldurarak kutuyu paketlesin.</li><li>Bardakla doldurma türünde: hep aynı bardakla büyük kabı kepçe kepçe doldurtun.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Bir kabı tek tip birimle (bardak ya da küp) boşluk bırakmadan doldurur/paketlerse ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Küçük, tabanı tek sıra alan bir kutu; iri küpler kullanın, ilk sırayı siz birlikte dizin.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Daha büyük/derin kutu; &quot;hiç boşluk kalmadı mı?&quot; diye sıkışık paketlemeyi denetletin.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey için ADIM etkinliği"><b>ADIM</b><span>İlgili düzey için ADIM etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#0d9488">🧪</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="2" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-3">Sıradaki düzey · <b>Hacmi Saymaya Başlayan</b> →</a>
+    </div>
+  </article>
+
+  <article class="level bn" id="lv-3">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#0d9488">4</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#0d9488">5–6 yaş</span>
+          <span class="bn-pill">⚠ Darboğaz · kritik geçiş</span>
+        </div>
+        <h3>Hacmi Saymaya Başlayan</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Küplerin uzayı doldurmasına ilişkin kısmi anlayış geliştirir; gereken kepçe sayısını tahmin eder; dolu ve boş kısımlara birlikte dikkat eder; &quot;yarısı dolu&quot; durumunu tanır; kutuyu düzenli paketleyip küpleri teker teker sayar; üç boyutu açıkça fark eder.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Çocuğa &quot;Bu kutuya kaç küp sığar?&quot; dediğinizde küpleri yerleştirip SAYAR ve bir sayı söyler. Henüz oturmamışsa yalnız görünen tabandaki ya da bir yüzdeki küpleri sayar, kutu yarı doluyken &quot;doldu&quot; sanır; küpleri üst üste katlayarak kabın derinliğini (üçüncü boyutu) hesaba katmayı unutur.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Burası yörüngenin ilk gerçek darboğazıdır: doldurmayı NİCELEME. Çocuk artık yalnız doldurmamalı, &quot;kaç birim&quot; diye saymalı VE kabın üç boyutlu (en–boy–yükseklik/derinlik) olduğunu kavramalıdır. En sık ve en inatçı yanılgı, bir kabı tek bir yüzeyle (yalnız taban ya da ön yüz) eşitleyip içini/derinliğini görmemektir — kutu yarı doluyken &quot;doldu&quot; demek bunun işaretidir. Mutlaka katmanları üst üste koydurun ve &quot;daha yukarı yer var mı?&quot; diye derinliği sorgulatın; yarı dolu bir kutuyu gösterip &quot;bu dolu mu, daha kaç küp sığar?&quot; diye fark ettirin. Hıza değil, üç boyutu birden hesaba katma alışkanlığına odaklanın.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>şeffaf ya da açık bir kutu + onu tam dolduracak özdeş küpler / DokunSay Geo küpleri</li><li>yarı doldurulup gösterilecek bir örnek kutu</li><li>saydıkça ayırmak için küçük bir tepsi</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Yarı dolu bir kutu gösterin: &quot;Bu kutu doldu mu? Daha kaç küp sığar?&quot; diye derinliği sorgulatın.</li><li>Çocuk kutuyu üst üste katmanlar hâlinde doldursun; her küpü sayarak koysun.</li><li>&quot;Daha yukarı yer var mı?&quot; diye sorup en üst katmana kadar doldurtun.</li><li>Toplam kaç küp sığdığını söyletin; &quot;kutu üç boyutlu — taban değil, içi dolduruldu&quot; deyin.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Bir kaba kaç birim sığdığını sayarak niceler VE kabın üç boyutunu (yalnız tabanı değil, derinliği de) hesaba katarsa ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Tabanı tek sıra (ör. 1×3) alan sığ bir kutu; tek katmanla başlayıp &quot;şimdi üstüne bir kat daha&quot; deyin.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Derin bir kutu; yarı doluyken &quot;doldu mu?&quot; diye yoklayın ya da &quot;sığacak küp sayısını yerleştirmeden tahmin et&quot; deyin.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="Kutuya küp paketleyip sayma; yarı-dolu farkındalığı etkinliği"><b>ADIM</b><span>Kutuya küp paketleyip sayma; yarı-dolu farkındalığı etkinliği</span></span><a class="chip chip-ds" href="/Dokunsay-geo/" title="Küpleri kaba yerleştirip doldurmayı niceleme"><b>DokunSay Geo</b><span>Küpleri kaba yerleştirip doldurmayı niceleme</span></a></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#0d9488">🧪</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="3" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-4">Sıradaki düzey · <b>Birim Kabı Tekrarlayarak Ölçen</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-4">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#0d9488">5</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#0d9488">7–8 yaş</span>
+          
+        </div>
+        <h3>Birim Kabı Tekrarlayarak Ölçen</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Basit birimlerle doldurup doğru sayar; birim büyüklüğü ile sayısı arasındaki ilişkiyi açıkça kurar (büyük birimden daha az gerekir); 1:2 oranlı birimler arasında dönüşüm yapar.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk elinde tek bir ölçü kabı (ya da tek bir küp) ile bir kabı ölçer: aynı birimi tekrar tekrar doldurup boşaltarak &quot;bir, iki, üç… bu kova altı bardak alıyor&quot; der. Birimin hep AYNI kalması gerektiğini bilir; sayarken kaç kez doldurduğunu takip eder.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, hacimde birim tekrarı (iteration) ilkesidir: tek bir birimi üst üste kullanarak ölçmek — uzunlukta tek bir cetvel-biriminin tekrarlanmasının hacim karşılığı. Çocuk artık her seferinde yeni bir kap kullanmaz; tek birimi yineler ve kaç yinelediğini sayar. Sık yanılgı, doldururken birimi tam doldurmamak ya da yarım dökmektir — &quot;her seferinde ağzına kadar, eksiksiz&quot; deyin. Hangi birimi kullandığınızı vurgulayın: &quot;Bu kova 6 BARDAK&quot;; birim değişirse sayı da değişir (&quot;6 bardak ama 12 küçük fincan&quot;) — bunu fark ettirmek ölçü birimi kavramını güçlendirir.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>ölçülecek bir kova/büyük kap</li><li>tek bir ölçü birimi: aynı bardak ya da tek bir küp / DokunSay Geo birimi</li><li>kaç kez doldurulduğunu işaretlemek için sayma çetelesi/parmaklar</li><li>su veya kum</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Büyük kabı ve tek bir bardağı gösterin: &quot;Yalnız bu bardakla ölçeceğiz.&quot;</li><li>Bardağı ağzına dek doldurup kaba boşaltın; her seferinde &quot;bir… iki… üç…&quot; sayın.</li><li>Kova dolana dek aynı bardağı yineleyin; toplam kaç bardak olduğunu söyletin.</li><li>Aynı kovayı daha küçük bir birimle yeniden ölçtürün: &quot;Neden sayı değişti?&quot; diye birimi konuşun.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Tek bir birimi tekrarlayarak bir kabı ölçer, kaç kez yinelediğini doğru sayar ve birimi sabit tutarsa ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Az yineleme gereken kap (3–4 bardak); siz birlikte sayıp çeteleyi tutun.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Çok yineleme (8+) gereken kap ya da &quot;kova kaç bardak alır, ölçmeden tahmin et&quot; deyip sonra doğrulatın.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey için ADIM etkinliği"><b>ADIM</b><span>İlgili düzey için ADIM etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#0d9488">🧪</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="4" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-5">Sıradaki düzey · <b>Küp Sıralarını Birim Görmeye Başlayan</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-5">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#0d9488">6</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#0d9488">7–9 yaş</span>
+          
+        </div>
+        <h3>Küp Sıralarını Birim Görmeye Başlayan</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Küpleri kübik hacim birimleriyle ilişkilendirir; bileşik birimleri (1×1×n sıra/sütunlar) zihinde canlandırıp kullanır; paketlerken içte kalan (görünmeyen) küpleri hesaba katar; yarısı dolu kutuyu tanır, kalan sıraları zihinde tamamlar.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Küplerle dolu bir kutuda &quot;Bir katmanda (bir katta) kaç küp var?&quot; dediğinizde tabandaki küpleri satır-sütun olarak görüp sayar: &quot;Üç sıra, her sırada dört — bir katta on iki.&quot; Kutunun küplerden KATMANLAR hâlinde oluştuğunu sezmeye başlar; tek tek dağınık değil, düzenli bir yapı görür.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu düzeyde çocuk kutunun içini DİZİ/KATMAN olarak görmeye başlar: bir katman, satır × sütun düzeninde bir kareler-dizisidir. Bu, çarpımsal hacmin (taban dizisi × yükseklik) algısal tohumudur. Henüz tüm kutuyu tek seferde çarpımsal düşünemeyebilir, ama &quot;bir katmanı&quot; bir birim olarak görmesi kritik bir adımdır. Bir katmanı elle gösterip &quot;işte bu bir kat&quot; deyin; satır ve sütunları parmakla saydırın. &quot;Kaç sıra, her sırada kaç?&quot; sorusuyla katmanı diziye bağlayın — bu, sonraki katman-yapılandırma darboğazına hazırlıktır.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>sığ, açık bir kutu + tek bir katmanı dolduracak özdeş küpler / DokunSay Geo küpleri</li><li>katmanı ayrı gösterebilmek için düz bir tepsi/zemin</li><li>satır-sütunu işaretlemek için renkli ayraç (ops.)</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Kutunun tabanını küplerle tek katman dolu hâle getirin: &quot;Bu bir kat.&quot;</li><li>&quot;Kaç sıra var? Her sırada kaç küp?&quot; diye satır ve sütunu ayrı saydırın.</li><li>&quot;Bir katta toplam kaç küp?&quot; diye katmanı bir bütün olarak söyletin (ör. 3×4 = 12).</li><li>Bir katmanı tepsiye alıp &quot;işte tam bir kat&quot;; sonra &quot;üstüne bir kat daha gelse?&quot; diye sezdirin.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Bir kutuda bir katmanın satır-sütun yapısını görüp &quot;bir katta kaç küp&quot; olduğunu (dizi olarak) söylerse ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Küçük taban (2×3); satır ve sütunu siz parmakla gösterip birlikte sayın.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Daha büyük taban (4×5) ya da &quot;iki kat olsa toplam kaç?&quot; diye katman fikrini bir adım uzatın.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey için ADIM etkinliği"><b>ADIM</b><span>İlgili düzey için ADIM etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#0d9488">🧪</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="5" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-6">Sıradaki düzey · <b>Katman Katman Sayan</b> →</a>
+    </div>
+  </article>
+
+  <article class="level bn" id="lv-6">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#0d9488">7</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#0d9488">8–9 yaş</span>
+          <span class="bn-pill">⚠ Darboğaz · kritik geçiş</span>
+        </div>
+        <h3>Katman Katman Sayan</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Doldurma, paketleme ve inşa etmeyi eşgüdümler; bir katmandaki küpleri sayar ya da hesaplar, sonra katmanları toplar ya da ritmik sayar; çarpmaya geçmeye başlar (bir katman × katman sayısı).</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Bir kutuyu &quot;her katta 6 küp var, 3 kat — toplam kaç?&quot; diye katman katman örgütleyip sayar: bir katmanı (satır × sütun) bulur, sonra kat sayısıyla yineler. En kritik yer, GÖRÜNMEYEN iç ve alt küpleri de hesaba katmaktır — yalnız dıştan görünen yüzleri değil, kutunun içini doldura küpleri kapsar.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Burası yörüngenin ikinci ve en kritik darboğazıdır: 3B yapıyı satır-sütun-KATMAN olarak örgütleme. En sık ve en inatçı yanılgı, yalnız GÖRÜNEN küpleri saymaktır — çocuk dış yüzlerdeki küpleri sayıp gizli (içteki, alttaki) küpleri unutur; bir katmanı görüp katların altına/içine bakmaz. Bu, hacmi yüzey-sayımıyla karıştırmaktır. Çözüm: önce TEK bir katmanı sağlam saydırın (satır × sütun), sonra &quot;kaç kat var?&quot; diye yükseliği ayrı saydırıp katmanı tekrarlatın. Bir katı sökerek altındaki gizli küpleri gösterin: &quot;Bunlar da var, görünmüyorlar ama oradalar.&quot; Şeffaf kutu ya da katmanları ayrılabilir bir model gizli küpleri görünür kılar. &quot;Görünmeyenleri de say&quot; cümlesi bu düzeyin anahtarıdır.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>katmanları ayrılabilen ya da şeffaf bir kutu + onu tam dolduracak özdeş küpler / DokunSay Geo küpleri</li><li>bir katmanı ayrı tutmak için düz tepsi</li><li>kat sayısını işaretlemek için çetele/parmaklar</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Kutunun bir katmanını saydırın: &quot;Bir katta kaç küp? — 3 sıra, her sırada 6, eder 18.&quot;</li><li>&quot;Kutuda kaç kat var?&quot; diye yükseliği ayrı saydırın (ör. 3 kat).</li><li>Bir katı söküp altındakini gösterin: &quot;Bak, bunlar görünmüyordu ama buradalar — onları da sayacağız.&quot;</li><li>&quot;Her kat 18, 3 kat — toplam kaç?&quot; diye katmanı kat sayısınca tekrarlatıp gizli küpler dahil toplatın.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Bir katmanı satır-sütun olarak bulup kat sayısınca tekrarlayarak, GÖRÜNMEYEN (iç/alt) küpler dahil 3B toplamı doğru kurarsa ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Az katlı (2 kat) ve küçük tabanlı (2×3) kutu; her katı sökerek gizli küpleri tek tek görünür kılın.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Daha büyük/yüksek kutu; yalnız en alt katı gösterip &quot;görünmeyen üst katları da sen kur&quot; deyin ya da gizli küp sayısını ayrıca sordurun.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="Katman-satır-sütun yapısıyla hacmi yapılandırma etkinliği"><b>ADIM</b><span>Katman-satır-sütun yapısıyla hacmi yapılandırma etkinliği</span></span><a class="chip chip-ds" href="/Dokunsay-geo/" title="Küpleri katman katman dizip sayma"><b>DokunSay Geo</b><span>Küpleri katman katman dizip sayma</span></a><a class="chip chip-ab" href="https://abmato.com/" title="3B dizi hacim kartları"><b>ABMATO</b><span>3B dizi hacim kartları</span></a></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#0d9488">🧪</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="6" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-7">Sıradaki düzey · <b>Hacmi Çarparak Bulan</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-7">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#0d9488">8</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#0d9488">8–10 yaş</span>
+          
+        </div>
+        <h3>Hacmi Çarparak Bulan</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Dikdörtgenler prizmasının hacim formülünü soyut düzeyde kavrar; çarpımsal karşılaştırmalar yapar; hacmi, yapı kurmadan ya da çizmeden boyutlardan hesaplar ve çarpmanın hacmi neden ölçtüğünü açıklar.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>Çocuğa bir kutunun yalnız boyut sayılarını (&quot;en 4, boy 3, yükseklik 2&quot;) verip — küpleri çizmeden ya da yerleştirmeden — &quot;kaç küp sığar?&quot; dediğinizde &quot;4 çarpı 3, on iki; çarpı 2 kat, yirmi dört&quot; diye çarpımsal hesaplar. Hacmi artık tek tek saymadan, en × boy × yükseklik dizisi olarak yapılandırır.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, yörüngenin doruğudur: hacmi tamamen ÇARPIMSAL 3B dizi olarak görme. Çocuk artık küpleri görmeye/saymaya ihtiyaç duymaz; üç boyut sayısını alıp &quot;taban dizisi (en × boy) × yükseklik (kat)&quot; diye işler — bu, hacim formülünün (V = en × boy × yükseklik) kavramsal temelidir. Önceki darboğazda kazanılan &quot;görünmeyen küpler de var&quot; içgörüsü burada soyut güvene dönüşür: çocuk göremediği küpleri çarpımla &quot;bilir&quot;. Boyutları değiştirip (&quot;yükseklik 2 yerine 4 olsa?&quot;) çarpanın etkisini sorgulatın; ara sıra somut bir kutuyla doğrulatın ki çarpımsal yapı anlamlı kalsın, kuru bir formül olmasın.</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>yalnız boyutları yazılı sayı kartları (en–boy–yükseklik) / DokunSay Geo &quot;gizli kutu&quot; kartları</li><li>ara sıra doğrulama için gerçek bir kutu + küpler</li><li>çarpımı yazmak için kâğıt/kalem</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Boyut kartı verin: &quot;En 4, boy 3, yükseklik 2 — kaç küp sığar? Yerleştirmeden bul.&quot;</li><li>Çocuk &quot;taban 4×3=12, sonra ×2 kat = 24&quot; diye çarpımsal hesaplasın.</li><li>Bir boyutu değiştirin (&quot;yükseklik 4 olsa?&quot;) ve sonucun nasıl katlandığını söyletin.</li><li>Ara sıra gerçek bir kutuyla doğrulatın: &quot;Hesabın tuttu mu?&quot;</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Yalnız boyut sayılarından (çizmeden/yerleştirmeden) hacmi en × boy × yükseklik çarpımıyla doğru bulursa ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Küçük boyutlar (2×2×2) ve bir doğrulayıcı somut kutuyla; önce tabanı, sonra kat çarpımını ayrı yaptırın.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Büyük boyutlar (5×4×3) yalnız zihinden ya da &quot;hacmi aynı kalacak başka bir kutu (en–boy–yükseklik) söyle&quot; diye tersine kurdurma.</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey için ADIM etkinliği"><b>ADIM</b><span>İlgili düzey için ADIM etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#0d9488">🧪</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="7" type="button">🖨️ Bu kartı yazdır</button>
+      <div class="nextlv done">Bu, yörüngenin son düzeyi 🎒</div>
+    </div>
+  </article>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <b style="color:#d8e6d8">Her Çocuk Matematik Öğrenebilir</b> · DokunSay — Ölçme: Hacim yörüngesi ·
+    <a href="/yorunge/">Tüm yörüngeler</a> · <a href="/">Araçlar</a>
+    <p class="foot-note">Düzey adları ve sıralaması Clements &amp; Sarama öğrenme yörüngeleri ([LT]², learningtrajectories.org) çerçevesinden uyarlanmıştır. Yaş bantları olasılıksal alt-sınır niteliğinde illüstratiftir; tanı eşiği değildir. Çocuğu sınıfına göre değil, bulunduğu basamağa göre destekleyin.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // Scrollspy — kenar çubuğunda etkin düzeyi vurgula
+  var links = Array.prototype.slice.call(document.querySelectorAll('.side-list a'));
+  var byId = {}; links.forEach(function(a){ byId[a.getAttribute('href').slice(1)] = a; });
+  var spy = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(e.isIntersecting){
+        links.forEach(function(l){ l.classList.remove('act'); });
+        var a = byId[e.target.id]; if(a){ a.classList.add('act');
+          // kenar çubuğunu etkin öğeye kaydır
+          var sl = a.closest('.side-list'); if(sl){ var r=a.offsetTop - sl.offsetTop; if(r<sl.scrollTop||r>sl.scrollTop+sl.clientHeight-40) sl.scrollTop=r-12; }
+        }
+      }
+    });
+  }, { rootMargin:'-45% 0px -50% 0px', threshold:0 });
+  document.querySelectorAll('.level').forEach(function(l){ spy.observe(l); });
+
+  // Tek kart yazdır
+  function printOne(i){
+    var card = document.getElementById('lv-'+i); if(!card) return;
+    document.body.classList.add('printing-one'); card.classList.add('print-target');
+    window.print();
+  }
+  window.addEventListener('afterprint', function(){
+    document.body.classList.remove('printing-one');
+    var t=document.querySelector('.print-target'); if(t) t.classList.remove('print-target');
+  });
+  document.querySelectorAll('.printcard').forEach(function(b){
+    b.addEventListener('click', function(){ printOne(b.getAttribute('data-lv')); });
+  });
+  var pa=document.getElementById('printAll'); if(pa) pa.addEventListener('click', function(){ window.print(); });
+})();
+</script>
+</body>
+</html>

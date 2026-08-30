@@ -1,0 +1,730 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Sınıflama ve Veri Analizi — Çalışma Yaprakları · DokunSay</title>
+<meta name="description" content="Sınıflama ve Veri Analizi öğrenme yörüngesi için her düzeye bir baskıya hazır çalışma yaprağı. CRA (somut→temsilî→soyut) temelli, diskalkuli-dostu. Clements &amp; Sarama.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{ --c:#2563eb; --ink:#1f2733; --body:#39434f; --mut:#7c8aa0; --line:#e7e2d6; --paper:#fffdf7; --tint:color-mix(in srgb, var(--c) 8%, #fffdf7); }
+*{ box-sizing:border-box; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+html,body{ margin:0; background:#eceae3; font-family:'Lexend',system-ui,Segoe UI,sans-serif; color:var(--body); }
+.bar{ position:sticky; top:0; z-index:9; display:flex; gap:14px; align-items:center; justify-content:space-between;
+  background:#fff; border-bottom:1px solid #dcd8cd; padding:11px 18px; box-shadow:0 1px 6px rgba(0,0,0,.05); }
+.bar .t{ font-family:'Poppins',sans-serif; font-weight:700; color:var(--ink); font-size:15px; }
+.bar .t small{ display:block; font-weight:500; color:var(--mut); font-size:12px; }
+.bar .actions{ display:flex; gap:9px; }
+.btn{ font-family:'Poppins',sans-serif; font-weight:600; font-size:13.5px; border:0; border-radius:10px; padding:9px 15px; cursor:pointer; text-decoration:none; }
+.btn-print{ background:var(--c); color:#fff; } .btn-back{ background:#eef1f4; color:#334155; }
+.wrap{ max-width:880px; margin:18px auto 40px; padding:0 14px; }
+
+/* ── A4 çalışma yaprağı ───────────────────────────────────────────── */
+.sheet{ background:var(--paper); width:210mm; height:297mm; overflow:hidden; margin:0 auto 20px; padding:11mm 13mm 6mm;
+  border-radius:4px; box-shadow:0 6px 26px rgba(31,39,51,.13); position:relative;
+  display:flex; flex-direction:column; gap:1.8mm; }
+.lbl{ display:inline-block; font-family:'Poppins',sans-serif; font-weight:700; font-size:10.5pt; color:var(--c); letter-spacing:.2px; margin-bottom:2px; }
+
+.ws-head{ border-bottom:3px solid var(--c); padding-bottom:7px; }
+.ws-top{ display:flex; justify-content:space-between; align-items:center; font-size:10pt; color:var(--mut); }
+.ws-brand{ display:inline-flex; align-items:center; gap:7px; font-family:'Poppins',sans-serif; }
+.ws-brand b{ color:var(--ink); } .logo{ width:22px; height:22px; }
+.ws-name{ font-size:9.5pt; } .nl{ display:inline-block; width:34mm; border-bottom:1.4px dotted #b8c0cc; } .nl.sm{ width:24mm; }
+.ws-eyebrow{ font-family:'Poppins',sans-serif; font-weight:600; font-size:10pt; color:var(--c); margin-top:8px; text-transform:uppercase; letter-spacing:.4px; }
+.ws-title{ font-family:'Poppins',sans-serif; font-weight:800; font-size:18pt; line-height:1.1; color:var(--ink); margin:2px 0 6px; display:flex; align-items:baseline; gap:8px; }
+.ws-no{ background:var(--c); color:#fff; font-size:12pt; min-width:27px; height:27px; padding:0 6px; border-radius:8px; display:inline-flex; align-items:center; justify-content:center; }
+.ws-meta{ display:flex; flex-wrap:wrap; gap:7px; align-items:center; }
+.pill{ font-family:'Poppins',sans-serif; font-weight:600; font-size:9.5pt; background:#eef2f7; color:#475569; border-radius:20px; padding:4px 11px; }
+.pill.warn{ background:#fff3e2; color:#9a3412; }
+.cra{ display:inline-flex; align-items:center; gap:4px; margin-left:auto; }
+.cra-s{ font-family:'Poppins',sans-serif; font-weight:600; font-size:9pt; color:#94a3b8; background:#f1f4f8; border-radius:7px; padding:3px 9px; }
+.cra-s.on{ color:#fff; } .cra-arr{ color:#cbd5e1; font-size:10pt; }
+
+.ws-obj{ background:var(--tint); border-radius:10px; padding:7px 12px; }
+.ws-obj p{ margin:1px 0 0; font-size:11pt; line-height:1.42; color:var(--ink); }
+.ws-method .msteps{ margin:1px 0 0; padding-left:0; list-style:none; display:flex; flex-direction:column; gap:2px; counter-reset:m; }
+.ws-method .msteps li{ font-size:10pt; line-height:1.32; padding-left:26px; position:relative; }
+.ws-method .msteps li::before{ counter-increment:m; content:counter(m); position:absolute; left:0; top:0;
+  width:21px; height:21px; border-radius:50%; background:var(--c); color:#fff; font-family:'Poppins',sans-serif; font-weight:700; font-size:10pt; display:flex; align-items:center; justify-content:center; }
+.ws-method .msteps b{ color:var(--c); }
+
+.ws-egbox{ background:#f4f8f5; border:1.5px dashed color-mix(in srgb,var(--c) 45%,#cbd5e1); border-radius:10px; padding:6px 12px 7px; }
+.ws-egbox .lbl{ color:color-mix(in srgb,var(--c) 70%, #166534); }
+
+.items-grid{ display:grid; grid-template-columns:1fr 1fr; gap:5px; margin-top:2px; align-items:start; }
+.ex{ border:1.4px solid var(--line); border-radius:11px; padding:7px 10px 8px; background:#fff; break-inside:avoid; }
+.ex.wide{ grid-column:1 / -1; }
+.ex.eg{ border:0; padding:2px 0 0; background:transparent; grid-column:1 / -1; }
+.ex-q{ display:flex; gap:7px; align-items:flex-start; }
+.ex-no{ flex:0 0 auto; width:22px; height:22px; border-radius:50%; background:var(--c); color:#fff; font-family:'Poppins',sans-serif; font-weight:700; font-size:10.5pt; display:flex; align-items:center; justify-content:center; }
+.ex.eg .ex-no{ background:#fef3c7; }
+.ex-q p{ margin:1px 0 0; font-size:10.8pt; line-height:1.4; color:var(--ink); }
+.ex-v{ margin:4px 0 3px; text-align:center; } .ex-a{ margin:0; text-align:center; }
+.ex.wide .ex-v, .ex.wide .ex-a, .ex.eg .ex-v, .ex.eg .ex-a{ text-align:left; margin-left:30px; }
+
+/* SVG görseller — içsel boyut ama A4'e sığması için yükseklik sınırlı */
+.ws-svg{ max-width:100%; width:auto; height:auto; vertical-align:middle; }
+.ex-v .ws-svg{ max-height:16mm; }
+.ex-v .ws-svg.ws-tall{ max-height:17mm; }
+.ws-egbox .ex-v .ws-svg{ max-height:12mm; } .ws-egbox .ex-v .ws-svg.ws-tall{ max-height:13mm; }
+.ex-v .ws-frac{ max-height:26mm; } .ws-svg.ws-frac{ width:auto; max-height:26mm; } svg.ws-glyph{ width:12mm; height:12mm; }
+.pat-row{ display:flex; align-items:center; gap:7px; flex-wrap:wrap; }
+.pat-c svg{ width:13mm; height:13mm; } .pat-q{ width:13mm; height:13mm; border:2px dashed #b8c0cc; border-radius:8px; display:inline-flex; align-items:center; justify-content:center; font-family:'Poppins',sans-serif; font-weight:800; font-size:16pt; color:#b8c0cc; }
+
+/* Yanıt alanları */
+.wbox{ display:inline-block; width:14mm; height:14mm; border:2px solid #94a3b8; border-radius:8px; vertical-align:middle; margin:0 3px; background:#fff; }
+.wbox.wbox-lg{ width:18mm; height:14mm; border-color:var(--c); }
+.eqrow{ display:flex; align-items:center; flex-wrap:wrap; gap:5px; font-family:'Poppins',sans-serif; font-weight:600; font-size:15pt; color:var(--ink); }
+.bignum{ font-family:'Poppins',sans-serif; font-weight:700; font-size:17pt; color:var(--ink); } .bignum.sm{ font-size:14pt; padding:0 3px; }
+.seqn{ font-family:'Poppins',sans-serif; font-weight:600; font-size:14pt; } .seqsep{ color:#94a3b8; }
+.ans-hint{ margin:5px 0 0 0; font-size:10.5pt; color:var(--mut); font-style:normal; }
+.ans-shown{ font-family:'Poppins',sans-serif; font-size:14pt; color:#166534; }
+
+.ws-scaffold{ display:flex; gap:8px; flex-wrap:wrap; }
+.sc{ flex:1 1 44%; font-size:9.8pt; line-height:1.30; border-radius:9px; padding:5px 10px; }
+.sc-easy{ background:#eef4fb; } .sc-easy b{ color:#1d4ed8; }
+.sc-hard{ background:#f5f0fb; } .sc-hard b{ color:#7c3aed; }
+
+.ws-foot{ margin-top:auto; padding-top:5px; border-top:1px solid var(--line); display:flex; flex-direction:column; gap:4px; }
+.ws-check{ background:#f0fdf4; border-radius:9px; padding:5px 11px; font-size:10pt; line-height:1.35; color:#166534; display:flex; justify-content:space-between; align-items:center; gap:10px; }
+.ws-check b{ color:#15803d; } .stars{ font-size:14pt; color:#f59e0b; letter-spacing:2px; white-space:nowrap; }
+.ws-credit{ font-size:7.8pt; color:var(--mut); line-height:1.35; display:flex; flex-direction:column; gap:1px; }
+.ws-credit .mat{ color:#475569; }
+.ws-credit a{ color:#475569; }
+/* Kavram yanılgısı şeridi. Punto (8.7pt) künyeden (7.8pt) büyük ama gövde metninden
+   küçük: öğretmene yönelik ikincil bilgi, çocuğun göreviyle yarışmamalı. Yapraklar
+   milimetrik dolu olduğu için bu ölçüler A4 taşmasına karşı ölçülerek seçildi. */
+.ws-mis{ background:#fff7ed; border-left:3px solid #fb923c; border-radius:9px; padding:3px 10px; font-size:8.7pt; line-height:1.26; color:#7c2d12; }
+.ws-mis b{ color:#9a3412; font-weight:700; }
+.ws-mis .mis-cite{ color:#a16207; white-space:nowrap; }
+
+/* ── Baskı ─────────────────────────────────────────────────────────── */
+@media print{
+  @page{ size:A4; margin:0; }
+  html,body{ background:#fff; }
+  .bar,.wrap>.intro{ display:none !important; }
+  .wrap{ margin:0; padding:0; max-width:none; }
+  .sheet{ width:210mm; height:297mm; margin:0; border-radius:0; box-shadow:none; overflow:hidden; break-before:page; }
+  .sheet:first-child{ break-before:avoid; }
+}
+.intro{ background:#fff; border-radius:14px; padding:16px 20px; margin-bottom:18px; box-shadow:0 2px 10px rgba(0,0,0,.05); }
+.intro h2{ font-family:'Poppins',sans-serif; margin:0 0 5px; color:var(--ink); font-size:18px; }
+.intro p{ margin:0; font-size:13.5px; line-height:1.55; color:#5b6573; }
+</style>
+</head>
+<body>
+<div class="bar no-print">
+  <span class="t">🗂️ Sınıflama ve Veri Analizi — Çalışma Yaprakları<small>11 düzey · Veri ve Sınıflama · CRA temelli</small></span>
+  <span class="actions">
+    <a class="btn btn-back" href="./">← Yörüngeye dön</a>
+    <button class="btn btn-print" onclick="window.print()">🖨️ Yazdır / PDF kaydet</button>
+  </span>
+</div>
+<div class="wrap">
+  <div class="intro no-print">
+    <h2>Sınıflama ve Veri Analizi · Çalışma Yaprakları</h2>
+    <p>Her düzey için bir baskıya-hazır A4 çalışma yaprağı. Her yaprak <b>önce somut</b> (DokunSay Veri ile), <b>sonra resimle</b> (bu sayfa), <b>en sonda sembolle</b> (çocuk yazar) ilerler — diskalkuli için kanıta dayalı CRA sırası. Çocuğun bulunduğu düzeyden başlayın; ✓ölçütü karşılayınca bir sonraki yaprağa geçin. Yazdırıp tek tek kullanın ya da PDF olarak kaydedin.</p>
+  </div>
+  <section class="sheet" style="--c:#2563eb">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🗂️ Veri ve Sınıflama · Sınıflama ve Veri Analizi</div>
+    <h1 class="ws-title"><span class="ws-no">1</span>Benzerlik Sezgisi: Temeller</h1>
+    <div class="ws-meta">
+      <span class="pill">0–3 yaş</span>
+      <span class="pill">Düzey 1/11</span>
+      
+      <span class="cra"><span class="cra-s on" style="background:#2563eb">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Nesne ve durumları sezgisel olarak &quot;benzer&quot; diye tanır (yaşamın ilk haftalarından itibaren).</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Oyna</b> — DokunSay Veri ya da günlük nesnelerle birlikte oynayın — özdeş çiftler hâlinde DokunSay pulları (aynı renkten ikişer).</li><li><b>Söyle</b> — Sayıları/sözcükleri yüksek sesle ve ritimle siz söyleyin; çocuk katılsın.</li><li><b>Gözle</b> — Tepkisini gözleyin — bu yaşta yazı/çizim beklenmez, deneyim önemlidir.</li></ol>
+  </div>
+
+  
+
+  <div class="ws-items"><span class="lbl">🎲 Birlikte oyna (siz yönlendirin)</span>
+    <div class="items-grid"><div class="ex">
+    <div class="ex-q"><span class="ex-no">1</span><p>Birkaç özdeş çifti (iki sarı, iki mavi pul) çocuğun önüne karışık koyun.</p></div>
+    
+    
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Bir sarıyı eline alıp ötekinin yanına götürün: "Bak, bu da sarı, aynı!" deyin.</p></div>
+    
+    
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>Çocuğun benzeyene uzanmasını, eşini buluşturmasını ya da bakışını gözleyin.</p></div>
+    
+    
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">4</span><p>Bazen çok farklı bir nesne (büyük kaşık) ekleyip "bu farklı" tepkisini yoklayın.</p></div>
+    
+    
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Yalnız iki çok belirgin renk kullanın; çifti siz birlikte buluşturun.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Benzerliği inceltin (aynı renk, farklı biçim) ve &quot;hangisi ona benziyor?&quot; diye sezdirin.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Benzerliği yalnız özdeşlikle kurar; rengi farklı aynı oyuncağı 'başka şey' sayar. <b>→ Ne yapmalı:</b> İki oyuncağı yan yana koyup 'ikisi de araba' diye ortak adı söyle. <span class="mis-cite">📖 Inhelder &amp; Piaget (1964)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Benzeyen nesnelere yönelir, eşini buluşturur ya da benzerliğe belirgin tepki verirse ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 özdeş çiftler hâlinde DokunSay pulları (aynı renkten ikişer) · bir tepsi ya da örtü <a href="https://dokunsay.com/Dokunsay-veri-app/">🔗 dokunsay.com/Dokunsay-veri-app/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/classif/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#2563eb">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🗂️ Veri ve Sınıflama · Sınıflama ve Veri Analizi</div>
+    <h1 class="ws-title"><span class="ws-no">2</span>Benzer/Farklı Grup Oluşturan</h1>
+    <div class="ws-meta">
+      <span class="pill">2–3 yaş</span>
+      <span class="pill">Düzey 2/11</span>
+      
+      <span class="cra"><span class="cra-s on" style="background:#2563eb">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Yaklaşık 18 ayda özdeş nesnelerden kümeler oluşturur (diğerleri farklıdır); 2 yaş civarında bazı özelliklere göre sezgisel benzerlik gruplaması yapar…</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Oyna</b> — DokunSay Veri ya da günlük nesnelerle birlikte oynayın — iki renk ve iki biçimde karışık DokunSay pulları.</li><li><b>Söyle</b> — Sayıları/sözcükleri yüksek sesle ve ritimle siz söyleyin; çocuk katılsın.</li><li><b>Gözle</b> — Tepkisini gözleyin — bu yaşta yazı/çizim beklenmez, deneyim önemlidir.</li></ol>
+  </div>
+
+  
+
+  <div class="ws-items"><span class="lbl">🎲 Birlikte oyna (siz yönlendirin)</span>
+    <div class="items-grid"><div class="ex">
+    <div class="ex-q"><span class="ex-no">1</span><p>Karışık pulları ortaya koyun: "Benzeyenleri bir araya koy."</p></div>
+    
+    
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">2</span><p>Çocuk öbeklerini kursun; siz karışmadan gözleyin (ölçütü o seçsin).</p></div>
+    
+    
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">3</span><p>Bitince "bunları neye göre ayırdın?" diye sorup seçtiği ölçütü adlandırın.</p></div>
+    
+    
+  </div><div class="ex">
+    <div class="ex-q"><span class="ex-no">4</span><p>"Başka türlü de ayırabilir misin?" diye ikinci bir gruplamayı davet edin.</p></div>
+    
+    
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Yalnız iki belirgin renk verin; &quot;sarılar buraya, maviler buraya&quot; diye modelleyin.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Üç özellik (renk + biçim + boy) karıştırın; çocuk kendi ölçütünü açıklasın.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Grup kurmak yerine nesnelerle dizi ya da resim yapar (grafik toplama). <b>→ Ne yapmalı:</b> Kutuya 'aynı olanları' koydurt; ilk iki nesneyi sen eşleyerek başlat. <span class="mis-cite">📖 Inhelder &amp; Piaget (1964)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Karışık nesneleri kendi seçtiği bir ölçüte göre benzer/farklı öbeklere ayırırsa ✓ (ölçüt tutarlı olmak zorunda değil)
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 iki renk ve iki biçimde karışık DokunSay pulları · ayırmak için iki-üç küçük tabak ya da sınıflama halkası <a href="https://dokunsay.com/Dokunsay-veri-app/">🔗 dokunsay.com/Dokunsay-veri-app/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/classif/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#2563eb">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🗂️ Veri ve Sınıflama · Sınıflama ve Veri Analizi</div>
+    <h1 class="ws-title"><span class="ws-no">3</span>Basit Gruplayan</h1>
+    <div class="ws-meta">
+      <span class="pill">3–4 yaş</span>
+      <span class="pill">Düzey 3/11</span>
+      
+      <span class="cra"><span class="cra-s on" style="background:#2563eb">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Yetişkin desteğiyle, sözel kurala göre gruplama yapar (&quot;Kırmızılar bu kutuya&quot; gibi yönergeleri izler).</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Veri ile elle yap — DokunSay pulları (iki-üç renk, aynı biçim).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Daireleri bir araya topladım — aynı şekiller bir grup.</p></div>
+    <div class="ex-v"><div class="pat-row"><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span></div></div>
+    <div class="ex-a"><b class="ans-shown">daireler grubu</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>Aynı gruba ait olanları yuvarla (eşle).</p></div>
+    <div class="ex-v"><div class="pat-row"><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="6" y="6" width="44" height="44" rx="4" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,50 6,50" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linejoin="round"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="6" y="6" width="44" height="44" rx="4" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span></div></div>
+    <div class="ex-a"><p class="ans-hint">○ aynı şekilleri grupla</p></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Yalnız iki renk, az sayıda pul; her halkaya bir örnek koyarak başlayın.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Üç-dört renk ya da rengi bir oyun, biçimi sonraki oyun ölçüt yaparak art arda sınıflatın.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Kurala değil ilk nesneye bakar; ona benzeyen her şeyi aynı kutuya koyar. <b>→ Ne yapmalı:</b> Kuralı her nesnede yinelet: 'Bu kırmızı mı?' diye tek tek sordur. <span class="mis-cite">📖 Inhelder &amp; Piaget (1964)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Tek bir özelliğe (renk ya da biçim) göre tüm nesneleri tutarlı öbeklere ayırırsa ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay pulları (iki-üç renk, aynı biçim) · her renk için bir sınıflama halkası ya da tabak <a href="https://dokunsay.com/Dokunsay-veri-app/">🔗 dokunsay.com/Dokunsay-veri-app/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/classif/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#2563eb">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🗂️ Veri ve Sınıflama · Sınıflama ve Veri Analizi</div>
+    <h1 class="ws-title"><span class="ws-no">4</span>Benzer Özelliklere Göre Gruplayan</h1>
+    <div class="ws-meta">
+      <span class="pill">5–6 yaş</span>
+      <span class="pill">Düzey 4/11</span>
+      <span class="pill warn">★ Kritik geçiş</span>
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#2563eb">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Açık bir özelliğe göre gruplar; ancak gruplama sırasında özellik değiştirebilir (renkle başlayıp şekle kayma).</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Veri ile elle yap — DokunSay pulları (renk + biçim + boy karışık — dikkat dağıtıcılı).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Daireleri bir araya topladım — aynı şekiller bir grup.</p></div>
+    <div class="ex-v"><div class="pat-row"><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span></div></div>
+    <div class="ex-a"><b class="ans-shown">daireler grubu</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>Aynı gruba ait olanları yuvarla (eşle).</p></div>
+    <div class="ex-v"><div class="pat-row"><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="6" y="6" width="44" height="44" rx="4" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,50 6,50" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linejoin="round"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="6" y="6" width="44" height="44" rx="4" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span></div></div>
+    <div class="ex-a"><p class="ans-hint">○ aynı şekilleri grupla</p></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Dikkat dağıtıcıyı azaltın (yalnız renk değişsin, biçim/boy aynı olsun); ölçüt örneğini halkanın yanında tutun.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Ölçütü olumsuzla (&quot;kırmızı OLMAYANLARI bul&quot;) ya da daha incelikli bir özellik (&quot;köşeli olanlar&quot;) verin.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Gruplama ortasında ölçüt kaydırır: renkle başlar, şekle geçer, karışık yığın kalır. <b>→ Ne yapmalı:</b> Ölçütü bir karta çizip masaya koy; kayınca kartı gösterip geri döndür. <span class="mis-cite">📖 Inhelder &amp; Piaget (1964)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Verilen bir özelliğe (ör. kırmızı) göre, dikkat dağıtıcılar arasından tüm küme boyunca tutarlı, eksiksiz seçim yaparsa ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay pulları (renk + biçim + boy karışık — dikkat dağıtıcılı) · verilen ölçüt için bir sınıflama halkası/Venn çemberi · ölçütü gösteren bir örnek/kart (kırmızı pul) <a href="https://dokunsay.com/Dokunsay-veri-app/">🔗 dokunsay.com/Dokunsay-veri-app/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/classif/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#2563eb">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🗂️ Veri ve Sınıflama · Sınıflama ve Veri Analizi</div>
+    <h1 class="ws-title"><span class="ws-no">5</span>Tutarlı ve Esnek Sınıflayan</h1>
+    <div class="ws-meta">
+      <span class="pill">6–7 yaş</span>
+      <span class="pill">Düzey 5/11</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#2563eb">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Verilen ya da kendi belirlediği tek bir özelliğe göre tutarlı ve eksiksiz sınıflar; ardından aynı nesneleri farklı bir özelliğe göre yeniden…</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Veri ile elle yap — DokunSay pulları (renk + biçim + boy birlikte değişen).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Daireleri bir araya topladım — aynı şekiller bir grup.</p></div>
+    <div class="ex-v"><div class="pat-row"><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span></div></div>
+    <div class="ex-a"><b class="ans-shown">daireler grubu</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>Aynı gruba ait olanları yuvarla (eşle).</p></div>
+    <div class="ex-v"><div class="pat-row"><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="6" y="6" width="44" height="44" rx="4" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,50 6,50" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linejoin="round"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="6" y="6" width="44" height="44" rx="4" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span></div></div>
+    <div class="ex-a"><p class="ans-hint">○ aynı şekilleri grupla</p></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Yalnız iki ölçüt (renk ↔ biçim) arasında geçiş yaptırın; her geçişte ölçüt kartını gösterin.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Çocuğa ölçütü kendisi seçtirip &quot;başka hangi yolla ayırabilirsin?&quot; diye üç-dört farklı sınıflama buldurun.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Bir ölçütle sınıfladıktan sonra aynı nesneleri başka ölçütle yeniden ayıramaz. <b>→ Ne yapmalı:</b> Aynı takımı önce renge, sonra 'şimdi şekle göre' diye yeniden ayırt. <span class="mis-cite">📖 Clements &amp; Sarama (2009)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Verildiğinde ölçütü (renk→biçim→boy) değiştirerek aynı kümeyi tutarlı biçimde yeniden sınıflarsa ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay pulları (renk + biçim + boy birlikte değişen) · sınıflama halkaları (ölçüt başına bir-iki) · ölçütü işaretleyen kartlar (renk / biçim / boy) <a href="https://dokunsay.com/Dokunsay-veri-app/">🔗 dokunsay.com/Dokunsay-veri-app/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/classif/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#2563eb">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🗂️ Veri ve Sınıflama · Sınıflama ve Veri Analizi</div>
+    <h1 class="ws-title"><span class="ws-no">6</span>Tek Tek Verileri Okuyan</h1>
+    <div class="ws-meta">
+      <span class="pill">7–8 yaş</span>
+      <span class="pill">Düzey 6/11</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#2563eb">Temsilî</span><span class="cra-arr">→</span><span class="cra-s">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Bir değeri tekil bir vakayla ilişkilendirir (&quot;Ali’nin kulesi 5 küp&quot;); sayısal veriyi en büyük/en küçük vakayı bulmak için kullanır.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Veri ile elle yap — DokunSay Veri: önceden öbeklenmiş pullar ya da basit bir resim grafiği.</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Daireleri bir araya topladım — aynı şekiller bir grup.</p></div>
+    <div class="ex-v"><div class="pat-row"><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span></div></div>
+    <div class="ex-a"><b class="ans-shown">daireler grubu</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>Aynı gruba ait olanları yuvarla (eşle).</p></div>
+    <div class="ex-v"><div class="pat-row"><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="6" y="6" width="44" height="44" rx="4" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,50 6,50" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linejoin="round"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="6" y="6" width="44" height="44" rx="4" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span></div></div>
+    <div class="ex-a"><p class="ans-hint">○ aynı şekilleri grupla</p></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> İki grupla ve belirgin farkla başlayın; sıraları yan yana hizalayın.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Dört-beş grup, yakın çokluklar ya da &quot;toplam kaç nesne var?&quot; diye birleştirtin.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Grafikte çubuğun değerini okumaz, çubukları sayar; 'kaç küp' yerine kaç kişi der. <b>→ Ne yapmalı:</b> Parmağını çubuğun tepesinden eksene kaydırttırıp değeri okuttur. <span class="mis-cite">📖 Curcio (1987)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Hazır düzenlenmiş bir veri durumunu okuyup en çok/en az olanı ve gruplar arası farkı doğru söylerse ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay Veri: önceden öbeklenmiş pullar ya da basit bir resim grafiği · eşit aralıklı dizmek için bir taban/ızgara · karşılaştırma için sınıflama halkaları <a href="https://dokunsay.com/Dokunsay-veri-app/">🔗 dokunsay.com/Dokunsay-veri-app/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/classif/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#2563eb">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🗂️ Veri ve Sınıflama · Sınıflama ve Veri Analizi</div>
+    <h1 class="ws-title"><span class="ws-no">7</span>Veriyi Sınıflayan</h1>
+    <div class="ws-meta">
+      <span class="pill">8–9 yaş</span>
+      <span class="pill">Düzey 7/11</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#2563eb">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Benzer değerli vakaları aynı kategori olarak ele alır; kategori sıklıklarını karşılaştırır (en çok / en az tercih edilen vaka türü).</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Veri ile elle yap — DokunSay Veri: karışık pullar (üç-dört kategori).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Daireleri bir araya topladım — aynı şekiller bir grup.</p></div>
+    <div class="ex-v"><div class="pat-row"><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span></div></div>
+    <div class="ex-a"><b class="ans-shown">daireler grubu</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>Aynı gruba ait olanları yuvarla (eşle).</p></div>
+    <div class="ex-v"><div class="pat-row"><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="6" y="6" width="44" height="44" rx="4" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,50 6,50" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linejoin="round"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="6" y="6" width="44" height="44" rx="4" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span></div></div>
+    <div class="ex-a"><p class="ans-hint">○ aynı şekilleri grupla</p></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Üç grupla ve küçük sayılarla; her grubu siz birlikte saydırın.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Daha çok kategori ya da iki ölçütle (renk + biçim) ayırıp her alt grubu saydırın.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Sıklık yerine kategori sayısını karşılaştırır; 'en çok' için en uzun etikete bakar. <b>→ Ne yapmalı:</b> Her kategorinin nesnelerini alt alta dizdirip sayıları yazdır. <span class="mis-cite">📖 Konold &amp; Higgins (2003)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Nesneleri kendi sınıflandırıp her gruptaki çokluğu sayar ve kategori–sayı eşlemesini söyler/yazarsa ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay Veri: karışık pullar (üç-dört kategori) · her grup için sınıflama halkası · grup sayılarını yazmak için çetele/etiket kartları <a href="https://dokunsay.com/Dokunsay-veri-app/">🔗 dokunsay.com/Dokunsay-veri-app/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/classif/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#2563eb">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🗂️ Veri ve Sınıflama · Sınıflama ve Veri Analizi</div>
+    <h1 class="ws-title"><span class="ws-no">8</span>Çoklu Özelliğe Göre Sınıflayan</h1>
+    <div class="ws-meta">
+      <span class="pill">8–9 yaş</span>
+      <span class="pill">Düzey 8/11</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#2563eb">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Nesneleri tek bir sınıflamada birden fazla özelliği birlikte gözeterek sınıflar (örn. hem renk hem boyut: &quot;büyük kırmızılar&quot;).</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Veri ile elle yap — DokunSay Veri: renk × biçim çaprazlanmış pullar (kırmızı/mavi × yuvarlak/köşeli).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Daireleri bir araya topladım — aynı şekiller bir grup.</p></div>
+    <div class="ex-v"><div class="pat-row"><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span></div></div>
+    <div class="ex-a"><b class="ans-shown">daireler grubu</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>Aynı gruba ait olanları yuvarla (eşle).</p></div>
+    <div class="ex-v"><div class="pat-row"><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="6" y="6" width="44" height="44" rx="4" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,50 6,50" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linejoin="round"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="6" y="6" width="44" height="44" rx="4" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span></div></div>
+    <div class="ex-a"><p class="ans-hint">○ aynı şekilleri grupla</p></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Önce iki ölçütü ayrı ayrı uygulatın (önce kırmızılar, sonra onlardan yuvarlaklar); Venn yerine art arda eleme.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Üç özellik (kırmızı + yuvarlak + büyük) ya da &quot;kırmızı AMA yuvarlak OLMAYANLAR&quot; gibi karışık ölçüt.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> İki özelliği aynı anda tutamaz; 'büyük kırmızılar' yerine tüm kırmızıları toplar. <b>→ Ne yapmalı:</b> İki ölçütü ayrı kartlara çizip ikisini birden sağlayanı seçtir. <span class="mis-cite">📖 Inhelder &amp; Piaget (1964)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> İki özelliğin kesişimine (hem kırmızı hem yuvarlak) göre, tek ölçüde gevşemeden doğru seçim yaparsa ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay Veri: renk × biçim çaprazlanmış pullar (kırmızı/mavi × yuvarlak/köşeli) · iki çemberli Venn düzeni (kesişimli) · iki ölçütü gösteren kartlar (kırmızı + yuvarlak) <a href="https://dokunsay.com/Dokunsay-veri-app/">🔗 dokunsay.com/Dokunsay-veri-app/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/classif/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#2563eb">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🗂️ Veri ve Sınıflama · Sınıflama ve Veri Analizi</div>
+    <h1 class="ws-title"><span class="ws-no">9</span>Veriye Bütün Olarak Bakan</h1>
+    <div class="ws-meta">
+      <span class="pill">8–10 yaş</span>
+      <span class="pill">Düzey 9/11</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#2563eb">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Soyut özelliklere göre (işlev/kavram) sınıflar; veri kümesine bütün olarak bakar: göreli sıklık, verinin &quot;biçimi&quot;, merkez.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Veri ile elle yap — DokunSay Veri: çetele/işaret tutmak için bir tablo.</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Daireleri bir araya topladım — aynı şekiller bir grup.</p></div>
+    <div class="ex-v"><div class="pat-row"><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span></div></div>
+    <div class="ex-a"><b class="ans-shown">daireler grubu</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>Aynı gruba ait olanları yuvarla (eşle).</p></div>
+    <div class="ex-v"><div class="pat-row"><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="6" y="6" width="44" height="44" rx="4" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,50 6,50" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linejoin="round"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="6" y="6" width="44" height="44" rx="4" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span></div></div>
+    <div class="ex-a"><p class="ans-hint">○ aynı şekilleri grupla</p></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Az kişiyle ve iki-üç seçenekle; her işareti siz birlikte koydurun.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Daha çok seçenek/kişi, çeteleyi beşli demetlere göre saydırma ya da iki soruyu birlikte toplatma.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Veriye vaka vaka bakar; 'çoğunlukla kaç' sorusuna tek bir çocuğun değerini söyler. <b>→ Ne yapmalı:</b> Değerleri sıraya dizdirip ortadakini ve yığılma yerini işaretlet. <span class="mis-cite">📖 Konold &amp; Higgins (2003)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Bir soruya yönelik veriyi sistemli toplar, çeteleyle kaydeder ve kategori sayılarını doğru özetlerse ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay Veri: çetele/işaret tutmak için bir tablo · kategori başlıkları (renk/seçenek kartları) · toplanan veriyi somutlamak için pul demetleri <a href="https://dokunsay.com/Dokunsay-veri-app/">🔗 dokunsay.com/Dokunsay-veri-app/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/classif/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#2563eb">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🗂️ Veri ve Sınıflama · Sınıflama ve Veri Analizi</div>
+    <h1 class="ws-title"><span class="ws-no">10</span>Hiyerarşik Sınıflayan</h1>
+    <div class="ws-meta">
+      <span class="pill">8–10 yaş</span>
+      <span class="pill">Düzey 10/11</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#2563eb">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Kategorileri ve alt kategorileri hiyerarşik kapsayıcılıkla sınıflar (sınıf kapsayıcılığı); birden çok adlandırılmış/ilişkili özelliği kullanır ve bir…</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Veri ile elle yap — DokunSay Veri: iç içe yerleştirilebilen sınıflama halkaları (büyük halka içinde küçük halka).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Daireleri bir araya topladım — aynı şekiller bir grup.</p></div>
+    <div class="ex-v"><div class="pat-row"><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span></div></div>
+    <div class="ex-a"><b class="ans-shown">daireler grubu</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>Aynı gruba ait olanları yuvarla (eşle).</p></div>
+    <div class="ex-v"><div class="pat-row"><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="6" y="6" width="44" height="44" rx="4" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,50 6,50" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linejoin="round"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="6" y="6" width="44" height="44" rx="4" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span></div></div>
+    <div class="ex-a"><p class="ans-hint">○ aynı şekilleri grupla</p></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> Tanıdık günlük kapsamayla başlayın (&quot;köpekler de hayvan mı?&quot;); iç içe halkalarla somutlaştırın.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Üç katlı kapsama (kare ⊂ dikdörtgen ⊂ dörtgen) ya da &quot;bazı / bütün / hiçbir&quot; ayrımlarını yoklayın.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> Sınıf kapsayıcılığını kuramaz: 7 papatya 3 gül varken 'papatya mı çok, çiçek mi' sorusuna papatya der. <b>→ Ne yapmalı:</b> Tüm çiçekleri bir çembere al, papatyaları içine; ikisini saydır. <span class="mis-cite">📖 Inhelder &amp; Piaget (1964)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Bir sınıfın başka sınıfı kapsadığını (ör. tüm kareler dikdörtgendir, tersi değil) kavrar ve gerekçelendirirse ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay Veri: iç içe yerleştirilebilen sınıflama halkaları (büyük halka içinde küçük halka) · alt/üst sınıf örnekleri (kare ve diğer dikdörtgen kartları; ya da hayvan/köpek kartları) · kapsamayı gösteren bir Venn/şema <a href="https://dokunsay.com/Dokunsay-veri-app/">🔗 dokunsay.com/Dokunsay-veri-app/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/classif/</span>
+    </div>
+  </div>
+</section>
+<section class="sheet" style="--c:#2563eb">
+  <header class="ws-head">
+    <div class="ws-top">
+      <span class="ws-brand"><svg viewBox="0 0 32 32" class="logo" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#f59e0b"/><circle cx="9" cy="16" r="3.4" fill="#fff"/><circle cx="16" cy="16" r="3.4" fill="#fff"/><circle cx="23" cy="16" r="3.4" fill="#fff"/></svg><b>DokunSay</b> · Çalışma Yaprağı</span>
+      <span class="ws-name">Ad: <span class="nl"></span>　Tarih: <span class="nl sm"></span></span>
+    </div>
+    <div class="ws-eyebrow">🗂️ Veri ve Sınıflama · Sınıflama ve Veri Analizi</div>
+    <h1 class="ws-title"><span class="ws-no">11</span>Veriyi Temsil Eden</h1>
+    <div class="ws-meta">
+      <span class="pill">8–11 yaş</span>
+      <span class="pill">Düzey 11/11</span>
+      
+      <span class="cra"><span class="cra-s">Somut</span><span class="cra-arr">→</span><span class="cra-s">Temsilî</span><span class="cra-arr">→</span><span class="cra-s on" style="background:#2563eb">Soyut</span></span>
+    </div>
+  </header>
+
+  <div class="ws-obj"><span class="lbl">🎯 Hedef</span><p>Grafiklerin &quot;merkezini&quot; ve değişkenliğini/yayılımını gözetir; aynı büyüklükteki veri kümelerinin grafiklerini doğru karşılaştırır.</p></div>
+
+  <div class="ws-method">
+    <span class="lbl">🧭 Nasıl çalışılır</span>
+    <ol class="msteps"><li><b>Somut</b> — Önce DokunSay Veri ile elle yap — DokunSay Veri: sütun grafiği ızgarası (ortak tabanlı kutular).</li><li><b>Temsilî</b> — Sonra bu sayfadaki resimlerle göster: say, çiz, eşle, yuvarla.</li><li><b>Soyut</b> — En sonda sayıyı/işareti kendin yaz.</li></ol>
+  </div>
+
+  <div class="ws-egbox"><span class="lbl">👀 Örnek</span><div class="ex eg">
+    <div class="ex-q"><span class="ex-no">👀</span><p>Daireleri bir araya topladım — aynı şekiller bir grup.</p></div>
+    <div class="ex-v"><div class="pat-row"><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span></div></div>
+    <div class="ex-a"><b class="ans-shown">daireler grubu</b></div>
+  </div></div>
+
+  <div class="ws-items"><span class="lbl">✏️ Alıştırmalar</span>
+    <div class="items-grid"><div class="ex wide">
+    <div class="ex-q"><span class="ex-no">1</span><p>Aynı gruba ait olanları yuvarla (eşle).</p></div>
+    <div class="ex-v"><div class="pat-row"><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="6" y="6" width="44" height="44" rx="4" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><polygon points="28,6 50,50 6,50" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linejoin="round"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="6" y="6" width="44" height="44" rx="4" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span><span class="pat-c"><svg viewBox="0 0 56 56" class="ws-glyph" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="28" cy="28" r="22" fill="none" stroke="#2563eb" stroke-width="2.5"/></svg></span></div></div>
+    <div class="ex-a"><p class="ans-hint">○ aynı şekilleri grupla</p></div>
+  </div></div>
+  </div>
+
+  <div class="ws-scaffold">
+    <div class="sc sc-easy"><b>↓ Zorlanırsa</b> İki-üç kategori, küçük sayılar; sütunları birim kutularla (her oy = bir kutu) kurdurun.</div>
+    <div class="sc sc-hard"><b>↑ Kolay gelirse</b> Daha çok kategori, ölçek (her kutu = 2 oy) ya da iki grafiği karşılaştırıp &quot;hangisinde daha çok?&quot; diye yorumlatma.</div>
+  </div>
+
+  <div class="ws-mis"><b>⚠️ Sık yapılan hata:</b> İki grafiği yalnız en yüksek çubuğa bakarak karşılaştırır; yayılımı göz ardı eder. <b>→ Ne yapmalı:</b> İki grafikte de en küçük-en büyük aralığını işaretletip karşılaştırt. <span class="mis-cite">📖 Watson (2006)</span></div>
+
+  <div class="ws-foot">
+    <div class="ws-check"><b>✓ Başardım:</b> Topladığı veriyi ortak tabanlı, eşit aralıklı bir sütun/resim grafiğiyle doğru temsil eder ve grafiği geri okursa ✓
+      <span class="stars" title="Kendini değerlendir">☆ ☆ ☆</span></div>
+    <div class="ws-credit">
+      <span class="mat">🧰 DokunSay Veri: sütun grafiği ızgarası (ortak tabanlı kutular) · kategori etiketleri ve birim kutuları/pullar · toplanmış veri (önceki çetele) <a href="https://dokunsay.com/Dokunsay-veri-app/">🔗 dokunsay.com/Dokunsay-veri-app/</a></span>
+      <span>Prof. Dr. Yılmaz Mutlu · Her Çocuk Matematik Öğrenebilir · Clements &amp; Sarama · dokunsay.com/yorunge/classif/</span>
+    </div>
+  </div>
+</section>
+</div>
+</body>
+</html>

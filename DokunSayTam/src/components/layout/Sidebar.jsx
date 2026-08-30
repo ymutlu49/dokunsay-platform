@@ -1,23 +1,25 @@
-import Logo from '../common/Logo';
 import MaterialsTab from '../sidebar/MaterialsTab';
 import ActivitiesTab from '../sidebar/ActivitiesTab';
 import GamesTab from '../sidebar/GamesTab';
 import FeaturesTab from '../sidebar/FeaturesTab';
 import { THEME } from '../../constants/theme';
+import { AppTabs } from '@shared/AppTabs.jsx';
+import { t } from '../../i18n/index.js';
 
-const TAB_ICONS = [
-  ['📦', 'mat'],
-  ['📋', 'act'],
-  ['🎮', 'game'],
-  ['\⚙\️', 'feat'],
+// Kanonik DokunSay sekmeleri (ikon + i18n anahtarı) — tüm uygulamalarla tutarlı.
+const TABS = [
+  { id: 'mat', icon: '📦', key: 'menu_materials' },
+  { id: 'act', icon: '📋', key: 'menu_activities' },
+  { id: 'game', icon: '🎮', key: 'menu_games' },
+  { id: 'feat', icon: '⚙️', key: 'menu_features' },
 ];
 
 const Sidebar = ({
-  collapsed, setCollapsed, activeTab, setActiveTab,
+  collapsed, setCollapsed, activeTab, setActiveTab, lang = 'tr',
   materialsProps, activitiesProps, gamesProps, featuresProps,
 }) => (
   <div style={{
-    width: collapsed ? 52 : 270, minWidth: collapsed ? 52 : 270,
+    width: collapsed ? 52 : 220, minWidth: collapsed ? 52 : 220,
     background: 'linear-gradient(180deg,' + THEME.side + ',#f3ede0)',
     borderRight: '1px solid ' + THEME.sideB,
     display: 'flex', flexDirection: 'column',
@@ -25,46 +27,38 @@ const Sidebar = ({
   }}>
     {!collapsed ? (
       <div style={{ display: 'flex', flexDirection: 'column', flex: 1, overflow: 'hidden' }}>
-        {/* Üst bar */}
-        <div style={{ padding: '10px 14px 6px', display: 'flex', alignItems: 'center', gap: 8, borderBottom: '1px solid rgba(0,0,0,.05)' }}>
-          <Logo size={28} />
-          <div style={{ flex: 1 }}>
-            <div style={{ fontSize: 14, fontWeight: 900, color: THEME.text }}>DokunSay Tam Sayılar</div>
-          </div>
-          <button onClick={() => setCollapsed(true)} style={{
+        {/* Üst bar — başlık AppShell topbar'ında, burada sadece collapse butonu */}
+        <div style={{ padding: '6px 10px', display: 'flex', alignItems: 'center', justifyContent: 'flex-end', borderBottom: '1px solid rgba(0,0,0,.05)' }}>
+          <button onClick={() => setCollapsed(true)} aria-label="Daralt" style={{
             background: 'rgba(0,0,0,.04)', border: 'none', cursor: 'pointer',
-            fontSize: 14, color: '#bbb', width: 28, height: 28, borderRadius: 8,
+            fontSize: 13, color: '#888', width: 26, height: 26, borderRadius: 7,
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-          }}>{'\◀'}</button>
+          }}>{'◀'}</button>
         </div>
 
-        {/* Tab butonları */}
-        <div style={{ display: 'flex', padding: '6px 10px', gap: 3, background: 'rgba(0,0,0,.02)' }}>
-          {TAB_ICONS.map(([icon, tab]) => (
-            <button key={tab} onClick={() => setActiveTab(tab)} style={{
-              flex: 1, padding: '7px 0', border: 'none', borderRadius: 8,
-              background: activeTab === tab ? '#fff' : 'transparent',
-              cursor: 'pointer', fontSize: 13, fontWeight: 800,
-              color: activeTab === tab ? THEME.text : '#aaa',
-              fontFamily: 'inherit',
-              boxShadow: activeTab === tab ? '0 1px 4px rgba(0,0,0,.06)' : 'none',
-            }}>{icon}</button>
-          ))}
+        {/* Tab şeridi — ortak AppTabs (ikon + etiket, 5 dil) */}
+        <div style={{ padding: '4px 8px', background: 'rgba(0,0,0,.02)' }}>
+          <AppTabs
+            tabs={TABS.map((tb) => ({ id: tb.id, icon: tb.icon, label: t(lang, tb.key) }))}
+            active={activeTab}
+            onChange={setActiveTab}
+            variant="pills"
+          />
         </div>
 
         {/* Tab içeriği */}
         {activeTab === 'mat' && <MaterialsTab {...materialsProps} />}
-        {activeTab === 'act' && <ActivitiesTab {...activitiesProps} />}
+        {activeTab === 'act' && <ActivitiesTab {...activitiesProps} lang={lang} />}
         {activeTab === 'game' && <GamesTab {...gamesProps} />}
         {activeTab === 'feat' && <FeaturesTab {...featuresProps} />}
       </div>
     ) : (
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, padding: '12px 0' }}>
-        {TAB_ICONS.map(([icon, tab], i) => (
-          <button key={i} onClick={() => { setCollapsed(false); setActiveTab(tab); }} style={{
+        {TABS.map((tb) => (
+          <button key={tb.id} onClick={() => { setCollapsed(false); setActiveTab(tb.id); }} title={t(lang, tb.key)} style={{
             padding: '8px 12px', borderRadius: 8, border: '1px solid ' + THEME.sideB,
             background: '#fff', cursor: 'pointer', fontSize: 18,
-          }}>{icon}</button>
+          }}>{tb.icon}</button>
         ))}
       </div>
     )}

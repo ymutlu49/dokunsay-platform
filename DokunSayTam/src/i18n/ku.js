@@ -42,6 +42,17 @@ export default {
   cat_comparison: 'Berhevdan',
   cat_scenario: 'Senaryo',
   cat_misconception: 'Têgeha Şaş',
+  cat_independent: 'Serbixwe',
+  cat_transfer: 'Derbazkirin',
+
+  diff_1: 'Vedîtin',
+  diff_2: 'Bi Rêber',
+  diff_3: 'Beralîkirî',
+  diff_4: 'Serbixwe',
+  diff_5: 'Derbazkirin',
+
+  act_misconception: 'Têgeha şaş a tê armanckirin',
+  act_source: 'Çavkanî',
 
   misconception_1: 'Texmîna şaş: neyînî × neyînî = neyînî',
   misconception_2: 'Şaşiya di mezinahiya hejmaran de',

@@ -39,8 +39,8 @@ const Factory = ({
         {[['\① Yükle', 0], ['\② Karıştır', 1], ['\③ Sonuç', 2]].map(([label, idx]) => (
           <div key={idx} style={{
             flex: 1, padding: '3px 0', borderRadius: 6, textAlign: 'center', fontSize: 8, fontWeight: 800,
-            background: step === idx ? 'rgba(245,158,11,.2)' : 'rgba(255,255,255,.05)',
-            color: step === idx ? '#fbbf24' : step > idx ? 'rgba(255,255,255,.4)' : 'rgba(255,255,255,.15)',
+            background: step === idx ? 'rgba(139,92,246,.2)' : 'rgba(255,255,255,.05)',
+            color: step === idx ? '#a78bfa' : step > idx ? 'rgba(255,255,255,.75)' : 'rgba(255,255,255,.55)',
             transition: 'all .3s',
           }}>{label}</div>
         ))}
@@ -61,7 +61,7 @@ const Factory = ({
                 ))}
               </div>
               <div style={{ display: 'flex', gap: 3, marginTop: 6 }}>
-                <button onClick={() => setPosCount((p) => Math.max(0, p - 1))} style={{ flex: 1, padding: '4px 0', borderRadius: 5, border: 'none', background: 'rgba(255,255,255,.06)', cursor: 'pointer', fontSize: 12, fontWeight: 900, color: 'rgba(255,255,255,.3)' }}>{'−'}</button>
+                <button onClick={() => setPosCount((p) => Math.max(0, p - 1))} style={{ flex: 1, padding: '4px 0', borderRadius: 5, border: 'none', background: 'rgba(255,255,255,.1)', cursor: 'pointer', fontSize: 13, fontWeight: 900, color: 'rgba(255,255,255,.75)' }}>{'−'}</button>
                 <div style={{ padding: '4px 10px', borderRadius: 5, background: 'rgba(34,197,94,.15)', fontSize: 14, fontWeight: 900, color: '#4ade80', textAlign: 'center', minWidth: 30 }}>{posCount}</div>
                 <button onClick={() => setPosCount((p) => Math.min(10, p + 1))} style={{ flex: 1, padding: '4px 0', borderRadius: 5, border: 'none', background: 'rgba(34,197,94,.15)', cursor: 'pointer', fontSize: 12, fontWeight: 900, color: '#4ade80' }}>+</button>
               </div>
@@ -77,7 +77,7 @@ const Factory = ({
                 ))}
               </div>
               <div style={{ display: 'flex', gap: 3, marginTop: 6 }}>
-                <button onClick={() => setNegCount((p) => Math.max(0, p - 1))} style={{ flex: 1, padding: '4px 0', borderRadius: 5, border: 'none', background: 'rgba(255,255,255,.06)', cursor: 'pointer', fontSize: 12, fontWeight: 900, color: 'rgba(255,255,255,.3)' }}>{'−'}</button>
+                <button onClick={() => setNegCount((p) => Math.max(0, p - 1))} style={{ flex: 1, padding: '4px 0', borderRadius: 5, border: 'none', background: 'rgba(255,255,255,.1)', cursor: 'pointer', fontSize: 13, fontWeight: 900, color: 'rgba(255,255,255,.75)' }}>{'−'}</button>
                 <div style={{ padding: '4px 10px', borderRadius: 5, background: 'rgba(239,68,68,.15)', fontSize: 14, fontWeight: 900, color: '#f87171', textAlign: 'center', minWidth: 30 }}>{negCount}</div>
                 <button onClick={() => setNegCount((p) => Math.min(10, p + 1))} style={{ flex: 1, padding: '4px 0', borderRadius: 5, border: 'none', background: 'rgba(239,68,68,.15)', cursor: 'pointer', fontSize: 12, fontWeight: 900, color: '#f87171' }}>+</button>
               </div>
@@ -90,7 +90,7 @@ const Factory = ({
           </div>
           <button onClick={mix} disabled={posCount === 0 && negCount === 0} style={{
             width: '100%', marginTop: 8, padding: '8px 0', borderRadius: 10, border: 'none',
-            background: (posCount === 0 && negCount === 0) ? 'rgba(255,255,255,.06)' : 'linear-gradient(135deg,#f59e0b,#d97706)',
+            background: (posCount === 0 && negCount === 0) ? 'rgba(255,255,255,.06)' : 'linear-gradient(135deg,#8b5cf6,#7c3aed)',
             color: (posCount === 0 && negCount === 0) ? 'rgba(255,255,255,.2)' : '#fff',
             fontSize: 12, fontWeight: 800, cursor: (posCount === 0 && negCount === 0) ? 'default' : 'pointer', fontFamily: 'inherit',
           }}>{'\⚙\️ Karıştır \→'}</button>
@@ -152,7 +152,7 @@ const Factory = ({
           <div style={{ display: 'flex', gap: 4 }}>
             <button onClick={solve} style={{
               flex: 1, padding: '7px 0', borderRadius: 8, border: 'none',
-              background: 'linear-gradient(135deg,#f59e0b,#d97706)', color: '#fff',
+              background: 'linear-gradient(135deg,#8b5cf6,#7c3aed)', color: '#fff',
               fontSize: 11, fontWeight: 800, cursor: 'pointer', fontFamily: 'inherit',
             }}>{'📥 Kanvasa Aktar'}</button>
             <button onClick={reset} style={{

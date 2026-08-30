@@ -97,7 +97,7 @@ export const CURCIO_LEVELS = [
       ku: [
         "Cudahî û rêjeya di navbera nirxan de dihesibîne",
         "Cudahiya di navbera herî mezin û herî kêm de dibîne",
-        "Kurtenîkên sade (kom, navînî) çêdike",
+        "Kurtenîkên sade (zêdok, navgîn) çêdike",
         "Çend grafîkan bi hev re berawird dike",
       ],
       en: [
@@ -120,9 +120,9 @@ export const CURCIO_LEVELS = [
         "İki grafik karşılaştırma",
       ],
       ku: [
-        "Hesabê cudahî, rêje û kom",
+        "Hesabê cudahî, rêje û zêdokê",
         "Têgîna berfirehiyê",
-        "Naskirina navînî / medyan / mod",
+        "Naskirina navgîn / medyan / mod",
         "Berawirdkirina du grafîkan",
       ],
       en: [
@@ -139,7 +139,7 @@ export const CURCIO_LEVELS = [
     },
     teacherAvoid: {
       tr: "Ortalamayı 'en sık' olarak tanıtma (Watson & Callingham yanılgısı). Mean/median/mode her biri FARKLI bir soruyu cevaplar.",
-      ku: "Navînî wek 'ya herî pir' nîşan mede. Mean/median/mod cuda ne.",
+      ku: "Navgîn wek 'ya herî pir' nîşan mede. Navgîn/medyan/mod cuda ne.",
       en: "Don't teach mean as 'most common' (Watson yanılgısı). Each measure answers a different question."
     },
     commonMisconceptions: ["watson_mean", "garfield_variability", "friel_axis"],
@@ -316,6 +316,17 @@ export const PPDAC_PHASES = [
             en: "What did I learn? Answer to original question?" } },
 ];
 
+// Kimlikten yanılgı kaydına çözümleme. ReadModule/DeceiveModule etiketi bunu kullanır;
+// eskiden ham kimlik ("watson_mean") çocuğun ekranına basılıyordu (2026-07-19 denetimi).
+export function findMisconception(id) {
+  if (!id) return null;
+  for (const list of Object.values(MISCONCEPTIONS)) {
+    const hit = list.find(m => m.id === id);
+    if (hit) return hit;
+  }
+  return null;
+}
+
 export const MISCONCEPTIONS = {
   graph_reading: [
     { id: "friel_axis", src: "Friel, Curcio & Bright 2001", level: 0,
@@ -326,16 +337,44 @@ export const MISCONCEPTIONS = {
       tr: "Resim grafiğinde bir ikon = kaç kişi olduğu unutulur (örn. 1 insan ikonu = 10 kişi).",
       ku: "Di grafîka wêneyî de yek îkon = çend kes ji bîr dibe.",
       en: "In pictographs, '1 icon = X people' is forgotten." },
+    // Uzunluk yargısı orana çevrilirken bozulur — Cleveland & McGill'in klasik
+    // grafiksel algı sıralaması (uzunluk > alan > açı) bu yanılgının kaynağıdır.
+    { id: "cleveland_height_ratio", src: "Cleveland & McGill 1984, JASA 79(387)", level: 1,
+      tr: "Çubuğun YÜKSEKLİĞİ ile ORAN karıştırılır: iki kat uzun çubuk 'iki kat fazla' sanılır, ama eksen 0'dan başlamıyorsa bu yanlıştır. Alan/açı ile kodlanan grafiklerde (pasta, balon) hata daha da büyür.",
+      ku: "Bilindahiya darikê bi rêjeyê tê tevlihevkirin: darika du qat dirêj 'du qat zêdetir' tê fikirîn — heke eksen ne ji 0 be ev xelet e.",
+      en: "Bar HEIGHT confused with RATIO: a twice-as-tall bar is read as 'twice as much', but that only holds if the axis starts at 0. Error grows for area/angle encodings (pie, bubble)." },
   ],
   central_tendency: [
     { id: "watson_mean", src: "Watson & Callingham 2003", level: 1,
       tr: "Ortalama 'en sık görülen' sanılır — aslında mod budur. Mean = toplam/sayı.",
-      ku: "Navînî wek 'ya herî pir' tê fikirîn — ev mod e, ne mean.",
+      ku: "Navgîn wek 'ya herî pir' tê fikirîn — ev mod e, ne navgîn.",
       en: "Mean confused with 'most common' — that's mode. Mean = sum/count." },
     { id: "garfield_variability", src: "Garfield & Ben-Zvi 2005", level: 1,
       tr: "'Ortalama her şeyi anlatır' sanılır — ama yayılım (varyans) da kritiktir. İki grubun ortalaması aynı olabilir ama biri çok çeşitli, diğeri homojendir.",
-      ku: "Tê fikirîn ku 'navînî her tiştî dibêje' — lê belavbûn jî giring e.",
+      ku: "Tê fikirîn ku 'navgîn her tiştî dibêje' — lê belavbûn jî giring e.",
       en: "'Mean tells everything' fallacy — but spread (variance) matters. Same mean, very different spreads." },
+    // Mokros & Russell: çocuklar ortalamayı ya salt algoritma ya da "tipik değer"
+    // sayar; ikisini bağdaştıramaz. Watson yanılgısının tamamlayıcısıdır.
+    { id: "mokros_typical", src: "Mokros & Russell 1995, JRME 26(1), 20-39", level: 1,
+      tr: "Ortalama 'tipik/ortadaki değer' sanılır, dolayısıyla veride GERÇEKTEN bulunması beklenir. Oysa 4 kişilik ailelerde ortalama 2.4 çocuk olabilir — hiçbir ailede 2.4 çocuk yoktur. Ortalama bir veri noktası değil, bir dengeleme noktasıdır.",
+      ku: "Navgîn wek 'nirxa tîpîk' tê fikirîn û tê hêvîkirin ku di daneyan de HEBE. Lê navgîna 2.4 zarok di tu malbatê de tune ye.",
+      en: "Mean read as the 'typical value', so students expect it to actually OCCUR in the data. But mean family size can be 2.4 children — no family has 2.4. The mean is a balance point, not a data point." },
+    // Pollatsek: ortalamaların ortalaması — ağırlık yok sayılır.
+    { id: "pollatsek_weighted", src: "Pollatsek, Lima & Well 1981, Educ. Studies in Math. 12, 191-204", level: 2,
+      tr: "İki grubun ortalaması yeniden ortalanır: 10 kişilik sınıf 90, 30 kişilik sınıf 50 aldıysa genel ortalama (90+50)/2 = 70 sanılır. Doğrusu ağırlıklıdır: (10·90 + 30·50)/40 = 60. Grup BÜYÜKLÜĞÜ yok sayılır.",
+      ku: "Navgîna du koman ji nû ve tê navgînkirin — mezinahiya komê nayê hesibandin. Rast: navgîna giranîdar.",
+      en: "Averaging the averages: class of 10 scores 90, class of 30 scores 50 → students say (90+50)/2 = 70. Correct is weighted: (10·90 + 30·50)/40 = 60. Group SIZE is ignored." },
+  ],
+  correlation: [
+    // Batanero ve ark.: ilişki kurma stratejileri — nedensel yorum baskındır.
+    { id: "batanero_causation", src: "Batanero, Estepa, Godino & Green 1996, JRME 27(2), 151-169", level: 2,
+      tr: "Birlikte değişen iki şey arasında NEDEN-SONUÇ kurulur. 'Dondurma satışı artınca boğulma artıyor, demek ki dondurma boğulmaya yol açıyor.' — İkisini de yaz sıcağı artırıyor (üçüncü değişken). İlişki nedensellik DEĞİLDİR.",
+      ku: "Di navbera du tiştên bi hev re diguherin de sedem-encam tê danîn. 'Firotina qeşayê zêde dibe, xeniqîn zêde dibe' — herduyan germahiya havînê zêde dike.",
+      en: "Two things that move together are read as cause and effect. 'Ice cream sales rise, so do drownings — ice cream causes drowning.' Summer heat drives both (third variable). Correlation is NOT causation." },
+    { id: "batanero_direction", src: "Batanero et al. 1996; Shaughnessy 2007, NCTM Second Handbook", level: 3,
+      tr: "Nedenin YÖNÜ keyfi seçilir. 'Çok kitap okuyanların notu yüksek' → kitap notu mu yükseltir, yoksa iyi öğrenci mi çok okur? Veri tek başına yönü söylemez; bunun için deney gerekir.",
+      ku: "Alîyê sedemê bi keyfî tê hilbijartin. Dane bi tenê alî nabêje — ceribandin lazim e.",
+      en: "The DIRECTION of causation is picked arbitrarily. 'Heavy readers get better grades' — does reading raise grades, or do strong students read more? Data alone cannot say; that needs an experiment." },
   ],
   prediction: [
     { id: "kahneman_small_sample", src: "Kahneman & Tversky (Law of Small Numbers)", level: 2,
@@ -362,6 +401,24 @@ export const MISCONCEPTIONS = {
       en: "Survey of only one group generalized. 'Our members are satisfied' → whole world?" },
   ],
 };
+
+// ═══════════════════════════════════════════════════════════════════
+// AŞAMALI ZORLUK (STANDARDS §1.6) — Curcio seviyesinden BAĞIMSIZ eksen.
+// Curcio L0-L3 "hangi okuma türü", diff 1-5 "ne kadar iskele" sorusunu yanıtlar.
+// Bir L3 etkinliği diff 2 (bol ipuçlu) da olabilir, diff 5 (transfer) de.
+// Gösterge 5 basamağı destekler: DIFF_LEVELS dizisinden veri sürümlü çizilir,
+// "★".repeat(n) gibi taşma/negatif riski taşıyan kalıp KULLANILMAZ.
+export const DIFF_LEVELS = [
+  { id: 1, color: "#10b981", name: { tr: "Keşif",        ku: "Vekolîn",     en: "Explore" } },
+  { id: 2, color: "#3b82f6", name: { tr: "Rehberli",     ku: "Bi rêber",    en: "Guided" } },
+  { id: 3, color: "#8b5cf6", name: { tr: "Yönlendirilmiş", ku: "Beralîkirî", en: "Directed" } },
+  { id: 4, color: "#f59e0b", name: { tr: "Bağımsız",     ku: "Serbixwe",    en: "Independent" } },
+  { id: 5, color: "#ef4444", name: { tr: "Transfer",     ku: "Veguhastin",  en: "Transfer" } },
+];
+
+export function diffMeta(d) {
+  return DIFF_LEVELS.find(x => x.id === d) || null;
+}
 
 export const LANGS = {
   tr: { code: "tr", name: "Türkçe", flag: "🇹🇷" },
