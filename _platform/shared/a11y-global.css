@@ -38,6 +38,46 @@ html[data-reduce-motion="on"] *::after {
    ETKİLEŞİM ve ANİMASYON zamanlamasına odaklanır.
    ========================================================== */
 
+/* ==========================================================
+   VARSAYILAN DOKUNMA HEDEFİ — her zaman açık
+   ==========================================================
+   STANDARDS.md §3.6 asgari hedefi 44×44 px olarak belirler ve bu
+   madde diskalkuli moduna bağlı DEĞİLDİR; her kullanıcı için geçerlidir.
+   Oysa kural yalnızca §1.3'ün diskalkuli modunda (48 px) uygulanıyordu.
+   Denetimde ölçüldü: mod kapalıyken DokunSayTam'daki 51 kontrolden yalnızca
+   1'i 44 px'i geçiyordu; mod açılınca 47'ye çıkıyordu. Yani kural zaten
+   yazılmış ve çalışıyordu, sadece varsayılanda devrede değildi.
+
+   Seçici listesi ve istisnaları aşağıdaki diskalkuli kuralıyla birebir
+   aynıdır (üst bar chrome'u kompakt kalır). Diskalkuli modu daha sonra
+   tanımlandığı için 48 px onu geçmeye devam eder.
+
+   `!important` şart: platform inline style kullanır (§2.2) ve inline style
+   normal stil kurallarını yener.
+   ---------------------------------------------------------- */
+button:not(.ds-lang-switcher__btn):not([class*="ds-a11y"]):not([class*="ds-appshell__back"]),
+a[href]:not(.ds-appshell__back):not([class*="ds-lang"]):not([class*="ds-a11y"]),
+[role="button"]:not([class*="ds-lang"]):not([class*="ds-a11y"]),
+input[type="button"],
+input[type="submit"],
+input[type="checkbox"],
+input[type="radio"] {
+  min-height: 44px !important;
+  min-width: 44px !important;
+}
+
+/* §3.6'nın düzeni hiç etkilemeyen iki maddesi: çift dokunma yakınlaştırmasını
+   kapatır ve mobil tarayıcının gri vurgusunu kaldırır. */
+button,
+a[href],
+[role="button"],
+input,
+select,
+summary {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
 /* Animasyonlar %50 YAVAŞLATILIR (öğrenci takip edebilsin) */
 html[data-dyscalculia="on"] *,
 html[data-dyscalculia="on"] *::before,

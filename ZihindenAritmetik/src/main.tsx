@@ -5,6 +5,7 @@ import { LangSwitcher } from '@shared/LangSwitcher.jsx';
 import { useSharedLang } from '@shared/useSharedLang.js';
 import './styles.css';
 import App from './App.tsx';
+import { A11yProvider } from './state/A11yContext.tsx';
 import { DILLER, dilYaz, type DilKodu } from './i18n';
 
 const DIL_KODLARI = DILLER.map((d) => d.kod);
@@ -47,7 +48,9 @@ function Kok() {
         </>
       }
     >
-      <App dil={dil} />
+      <A11yProvider dil={dil}>
+        <App dil={dil} />
+      </A11yProvider>
     </AppShell>
   );
 }
