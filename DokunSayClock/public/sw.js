@@ -3,7 +3,9 @@
 // v1 → v2 (2026-07-19): AR/FA dilleri seçiciden gizlendi; sürüm yükseltilmezse mevcut
 // kullanıcıların dil seçicisinde o iki dil durmaya devam ederdi. (Bu, denetim sırasında
 // dev sunucuda da beni yanılttı: değişiklik doğruydu, servis çalışanı bayat paket sunuyordu.)
-const CACHE_VERSION = "dokun-say-clock-v2";
+// v2 → v3 (2026-08-31): oturum kaydı eklendi (tahtadaki saat ve pullar artık saklanıyor).
+// Sürüm yükseltilmezse eski kullanıcılar kaydetmeyen paketi kullanmaya devam ederdi.
+const CACHE_VERSION = "dokun-say-clock-v3";
 const ASSETS_CACHE = `${CACHE_VERSION}-assets`;
 
 const PRECACHE_URLS = ["/DokunSayClock/"];

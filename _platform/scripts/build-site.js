@@ -17,9 +17,12 @@
  */
 
 import { execSync } from 'node:child_process';
-import { existsSync, mkdirSync, rmSync, cpSync } from 'node:fs';
+import { existsSync, mkdirSync, rmSync, cpSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+
+// Uygulama listesi tek yerde durur; katalog sınamaları da aynı dosyayı okur.
+import { APPS } from '../apps.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..', '..');
@@ -34,17 +37,6 @@ if (SITE_BASE.includes('Program Files') || /^[A-Za-z]:/.test(SITE_BASE)) {
   SITE_BASE = '/';
 }
 
-const APPS = [
-  { dir: '_platform/launcher', name: 'Launcher', folder: '' },
-  { dir: 'DokunSayBar',        name: 'Bar',      folder: 'DokunSayBar' },
-  { dir: 'DokunSayBasamak',    name: 'Basamak',  folder: 'DokunSayBasamak' },
-  { dir: 'DokunSayClock',      name: 'Clock',    folder: 'DokunSayClock' },
-  { dir: 'DokunSayKesir',      name: 'Kesir',    folder: 'DokunSayKesir' },
-  { dir: 'DokunSayTam',        name: 'Tam',      folder: 'DokunSayTam' },
-  { dir: 'Dokunsay-geo',       name: 'Geo',      folder: 'Dokunsay-geo' },
-  { dir: 'Dokunsay-veri-app',  name: 'Veri',     folder: 'Dokunsay-veri-app' },
-  { dir: 'ZihindenAritmetik',  name: 'Zihinden', folder: 'ZihindenAritmetik' },
-];
 
 const BOLD = '\x1b[1m';
 const DIM = '\x1b[2m';
@@ -117,6 +109,40 @@ try {
   // empty file
   execSync(process.platform === 'win32' ? `type nul > "${nojekyll}"` : `touch "${nojekyll}"`, { shell: true });
 } catch { /* ignore */ }
+
+// ── Site haritası ─────────────────────────────────────────────────────────────
+//    Elle bakılan bir sitemap.xml vardı ve listeden geri kalmıştı: ZihindenAritmetik
+//    eklendiğinde haritaya girmemişti. Artık aynı APPS listesinden üretiliyor, yani
+//    yeni bir uygulama derlendiği anda haritaya da girer.
+try {
+  const bugun = new Date().toISOString().slice(0, 10);
+  const satirlar = [
+    { yol: '', oncelik: '1.0' },
+    { yol: 'yorunge/', oncelik: '0.9' },
+    ...APPS.filter((a) => a.folder).map((a) => ({ yol: `${a.folder}/`, oncelik: '0.8' })),
+  ];
+  const govde = satirlar
+    .map(
+      (u) =>
+        `  <url><loc>https://dokunsay.com/${u.yol}</loc>` +
+        `<lastmod>${bugun}</lastmod>` +
+        `<changefreq>monthly</changefreq>` +
+        `<priority>${u.oncelik}</priority></url>`,
+    )
+    .join(String.fromCharCode(10));
+  const xml = [
+    '<?xml version="1.0" encoding="UTF-8"?>',
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+    govde,
+    '</urlset>',
+    '',
+  ].join(String.fromCharCode(10));
+  writeFileSync(path.join(OUT_DIR, 'sitemap.xml'), xml, 'utf-8');
+  console.log(`${OK}✓${RESET} sitemap.xml ${DIM}(${satirlar.length} adres)${RESET}`);
+} catch (e) {
+  console.error(`${FAIL}✗ sitemap üretilemedi: ${e.message}${RESET}`);
+  failed++;
+}
 
 // ── Giriş kapısı + yaş verisi (her TAM derlemede yeniden uygulanır; yoksa oyun ──
 //    index'leri sıfırlanır ve kapı kaybolurdu) ───────────────────────────────────

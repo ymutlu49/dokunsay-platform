@@ -1,8 +1,9 @@
 import { describe, it, expect } from 'vitest';
 import { TOOLS, TOOL_CATEGORIES } from './tools.js';
+import { APPS, KLASOR } from '../../apps.js';
 
 describe('TOOLS kataloğu', () => {
-  it('tam olarak 7 araç içerir', () => {
+  it('tam olarak 8 araç içerir', () => {
     expect(TOOLS).toHaveLength(8);
   });
 
@@ -32,7 +33,6 @@ describe('TOOLS kataloğu', () => {
       expect(tool.ageRange).toMatch(/^\d+-\d+$/);
       expect(tool.framework).toBeTruthy();
       expect(tool.devUrl).toMatch(/^http:\/\/localhost:\d+$/);
-      expect(tool.prodPath).toMatch(/^\/[A-Za-z-]+\/$/);
       expect(tool.folder).toBeTruthy();
       expect(tool.status).toMatch(/^(stable|beta|alpha|experimental)$/);
     }
@@ -51,6 +51,29 @@ describe('TOOLS kataloğu', () => {
   it('launcher ile port çakışması yoktur (3000 yalnızca launcher\u0027da)', () => {
     const ports = TOOLS.map((t) => parseInt(t.devUrl.split(':').pop(), 10));
     expect(ports).not.toContain(3000);
+  });
+
+  /*
+    Katalog ile site derleyicisi sessizce ayrisabiliyordu: katalogda `prodPath`
+    diye ikinci bir yol alani vardi ve Kesir, Tam ve Veri icin var olmayan
+    yollari gosteriyordu (/DokunSayFraction/, /DokunSayExact/, /dokunsay-veri/).
+    Firlatici `folder` alanini kullandigi icin doşemeler calismaya devam etti ve
+    hata gorunmedi. `prodPath` kaldirildi; asagidaki iki sinama yolun yeniden
+    ikiye ayrilmasini engeller.
+  */
+  it('her aracin klasoru site derleyicisinin listesiyle birebir aynidir', () => {
+    for (const tool of TOOLS) {
+      expect(KLASOR[tool.id], `${tool.id} derleyici listesinde yok`).toBeTruthy();
+      expect(tool.folder, `${tool.id}.folder`).toBe(KLASOR[tool.id]);
+    }
+  });
+
+  it('derleyicinin urettigi her uygulama katalogda vardir', () => {
+    const katalogIdleri = new Set(TOOLS.map((t) => t.id));
+    for (const app of APPS) {
+      if (!app.id) continue; // launcher'in katalog kaydi yoktur
+      expect(katalogIdleri.has(app.id), `${app.id} katalogda yok`).toBe(true);
+    }
   });
 });
 

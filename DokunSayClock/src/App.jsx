@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { AppTabs } from "@shared/AppTabs.jsx";
 import { IconButton } from "@shared/AppToolbar.jsx";
 import { speak as platformSpeak } from "@shared/tts.js";
+import { loadState, saveState } from "@shared/storage.js";
 import { ACTS, LESSONS, actName, actDesc } from "./constants/activities";
 var P={face:"#f5b731",border:"#1a1a1a",hourC:"#22c55e",hourB:"#15803d",minC:"#f97316",minB:"#c2410c",dot:"#1a1a1a",accent:"#22c55e",accentD:"#15803d",accentLight:"rgba(34,197,94,.14)",bg:"#f5f0e3",card:"#fffdf7",side:"#faf6ed",sideB:"#e5dcc8",red:"#ef4444",green:"#22c55e",blue:"#3b82f6",purple:"#8b5cf6"};
 var HW=["on iki","bir","iki","üç","dört","beş","altı","yedi","sekiz","dokuz","on","on bir","on iki"];
@@ -82,6 +83,47 @@ export default function App({ lang = 'tr' }){
   var _vTimer=useState(null),vTimer=_vTimer[0],setVTimer=_vTimer[1];
   var _dragH=useState(null),dragH=_dragH[0],setDragH=_dragH[1];
   var _sDr=useState(null),sDr=_sDr[0],setSDr=_sDr[1];
+
+  /* ---- oturum kaydı ---------------------------------------------------------
+     Tahtadaki çalışma cihazda saklanır. Öncesinde hiçbir şey kaydedilmiyordu:
+     sekmeyi yenileyen öğretmen kurduğu saati ve yerleştirdiği pulları
+     kaybediyordu. Ortak `shared/storage.js` kullanılır
+     (anahtar: dokunsay:clock:tahta).
+
+     Bilerek KAYDEDİLMEYENLER: öğrenci adı, sınıfı ve öğretmen notları. Bunlar
+     kişisel veridir; sınıfta elden ele dolaşan bir tablette oturumlar arasında
+     sessizce durmaları doğru olmaz. Ders içinde kullanılır, sekme kapanınca gider.
+
+     `kayitHazir` bayrağı şart: kaydetme etkisi ilk render'da da çalışır ve geri
+     yükleme henüz uygulanmamışken BOŞ durumu kaydedip kaydı silerdi.
+     --------------------------------------------------------------------- */
+  var _kh=useState(false),kayitHazir=_kh[0],setKayitHazir=_kh[1];
+
+  useEffect(function(){
+    var k=loadState("clock","tahta",null);
+    if(k&&typeof k==="object"){
+      if(typeof k.hour==="number")setHour(k.hour);
+      if(typeof k.min==="number")setMin(k.min);
+      if(Array.isArray(k.items))setItems(k.items);
+      if(typeof k.geared==="boolean")setGeared(k.geared);
+      if(typeof k.showMin60==="boolean")setShowMin60(k.showMin60);
+      if(typeof k.showSeg==="boolean")setShowSeg(k.showSeg);
+      if(typeof k.showFrac==="boolean")setShowFrac(k.showFrac);
+      if(k.bgT)setBgT(k.bgT);
+      if(k.bgC)setBgC(k.bgC);
+      if(k.comp&&typeof k.comp==="object")setComp(k.comp);
+    }
+    setKayitHazir(true);
+  },[]);
+
+  useEffect(function(){
+    if(!kayitHazir)return;
+    var z=setTimeout(function(){
+      saveState("clock","tahta",{hour:hour,min:min,items:items,geared:geared,
+        showMin60:showMin60,showSeg:showSeg,showFrac:showFrac,bgT:bgT,bgC:bgC,comp:comp});
+    },400);
+    return function(){clearTimeout(z);};
+  },[kayitHazir,hour,min,items,geared,showMin60,showSeg,showFrac,bgT,bgC,comp]);
   var _sDp=useState({x:0,y:0}),sDp=_sDp[0],setSDp=_sDp[1];
   var _iDrag=useState(null),iDrag=_iDrag[0],setIDrag=_iDrag[1];
   var _dropH=useState(false),dropH=_dropH[0],setDropH=_dropH[1];

@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { THEME } from './constants/theme';
+import { loadState, saveState } from '@shared/storage.js';
 import { useCanvasItems } from './hooks/useCanvasItems';
 import { useNumberLine } from './hooks/useNumberLine';
 import { useTray } from './hooks/useTray';
@@ -52,6 +53,16 @@ const App = ({ lang = 'tr' }) => {
   // Pages
   const pages = usePages(items, setItems, strokes, setStrokes);
 
+  /* ---- oturum kaydı ---------------------------------------------------------
+     Tahtadaki çalışma cihazda saklanır. Öncesinde hiçbir şey kaydedilmiyordu:
+     sekmeyi yenileyen öğretmen pulları, çizimleri ve sayfaları kaybediyordu.
+     Ortak `shared/storage.js` kullanılır (anahtar: dokunsay:tam:tahta).
+
+     `kayitHazir` bayrağı şart: kaydetme etkisi ilk render'da da çalışır ve geri
+     yükleme henüz uygulanmamışken BOŞ durumu kaydedip kaydı silerdi.
+     --------------------------------------------------------------------- */
+  const [kayitHazir, setKayitHazir] = useState(false);
+
   // Panel drag
   const panelDrag = usePanelDrag(cvRef, zoom);
   const { positions: panelPositions, startPanelDrag, resetPosition } = panelDrag;
@@ -75,6 +86,45 @@ const App = ({ lang = 'tr' }) => {
   const [showThermometer, setShowThermometer] = useState(false);
   const [temp, setTemp] = useState(0);
   const [elevator, setElevator] = useState(0);
+
+  // Oturum kaydı — açılışta geri yükle
+  useEffect(() => {
+    const k = loadState('tam', 'tahta', null);
+    if (k && typeof k === 'object') {
+      if (Array.isArray(k.items)) setItems(k.items);
+      if (Array.isArray(k.strokes)) setStrokes(k.strokes);
+      if (Array.isArray(k.pages) && k.pages.length) pages.setPages(k.pages);
+      if (k.currentPage != null) pages.setCurrentPage(k.currentPage);
+      if (k.pageData && typeof k.pageData === 'object') pages.pageData.current = k.pageData;
+      if (k.bgType) setBgType(k.bgType);
+      if (k.bgColor) setBgColor(k.bgColor);
+      if (typeof k.showNumberLine === 'boolean') setShowNumberLine(k.showNumberLine);
+    }
+    setKayitHazir(true);
+    // yalnızca açılışta çalışır
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Oturum kaydı — değiştikçe sakla (yazma sıklığı sınırlı)
+  useEffect(() => {
+    if (!kayitHazir) return undefined;
+    const z = setTimeout(() => {
+      saveState('tam', 'tahta', {
+        items,
+        strokes,
+        pages: pages.pages,
+        currentPage: pages.currentPage,
+        pageData: pages.pageData.current,
+        bgType,
+        bgColor,
+        showNumberLine,
+      });
+    }, 400);
+    return () => clearTimeout(z);
+    // `pages` nesnesi her render'da yeniden kurulduğu için bağımlılığa onun
+    // kendisi değil, gerçekten değişen alanları konur; yoksa zamanlayıcı her
+    // render'da sıfırlanır ve sürekli çizim sırasında kayıt hiç tetiklenmez.
+  }, [kayitHazir, items, strokes, pages.pages, pages.currentPage, bgType, bgColor, showNumberLine]);
 
   // Sidebar drag state
   const [sidebarDrag, setSidebarDrag] = useState(null);

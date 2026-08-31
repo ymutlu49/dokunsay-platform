@@ -26,9 +26,21 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
+        /*
+          three.js BİLEREK burada listelenmiyor.
+
+          `manualChunks`in nesne biçimi, adı geçen paketi başlangıç grafiğinin
+          parçası sayar ve Vite index.html'e `modulepreload` bağlantısı ekler.
+          Sonuç: ARCameraView `lazy()` ile yüklendiği hâlde three.js (968 KB)
+          her ziyarette, araç açılmadan önce iniyordu. Listeden çıkarılınca
+          Rollup onu AR bileşeninin kendi tembel parçasına koyar; yani yalnızca
+          kamera/AR görünümü gerçekten açıldığında inar.
+
+          firebase kalıyor: AuthContext uygulama kökünde bağlı, gerçekten
+          başlangıçta gerekiyor. Onu da ertelemek ayrı ve daha riskli bir iş.
+        */
         manualChunks: {
           firebase: ["firebase/app", "firebase/auth", "firebase/firestore"],
-          three: ["three", "@react-three/fiber", "@react-three/drei"],
         },
       },
     },

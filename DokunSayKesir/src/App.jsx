@@ -3,6 +3,7 @@ import { useI18n } from "./i18n/index.jsx";
 import { AppTabs } from "@shared/AppTabs.jsx";
 import { IconButton, ToolSep } from "@shared/AppToolbar.jsx";
 import { speak as platformSpeak, canSpeak } from "@shared/tts.js";
+import { loadState, saveState } from "@shared/storage.js";
 
 var FC=["#f59e0b","#3b82f6","#ef4444","#22c55e","#8b5cf6","#ec4899","#06b6d4","#f97316","#14b8a6"];
 var FB=["#b45309","#1d4ed8","#b91c1c","#15803d","#6d28d9","#be185d","#0891b2","#c2410c","#0d9488"];
@@ -488,6 +489,43 @@ export default function App() {
   function doUndo(){if(!pastRef.current.length)return;futRef.current.push(JSON.parse(JSON.stringify(irRef.current)));setItems(pastRef.current.pop());frc(function(v){return v+1;});}
   function doRedo(){if(!futRef.current.length)return;pastRef.current.push(JSON.parse(JSON.stringify(irRef.current)));setItems(futRef.current.pop());frc(function(v){return v+1;});}
   function bs(active,extra){var s={padding:"4px 8px",borderRadius:5,cursor:"pointer",fontFamily:"inherit",fontSize:9,fontWeight:700,background:active?"#ef4444":BB,border:active?"2px solid #7f1d1d":"1px solid "+PBD,color:active?"#fff":PT};if(extra)for(var k in extra)s[k]=extra[k];return s;}
+
+  /* ---- oturum kaydı ---------------------------------------------------------
+     Tahtadaki çalışma cihazda saklanır. Öncesinde hiçbir şey kaydedilmiyordu:
+     sekmeyi yenileyen ya da tableti uykuya alıp dönen öğretmen tahtada kurduğu
+     her şeyi kaybediyordu. Ortak `shared/storage.js` kullanılır
+     (anahtar: dokunsay:kesir:tahta). Veri cihazdan çıkmaz.
+
+     `hazir` bayrağı şart: kaydetme etkisi ilk render'da da çalışır ve geri
+     yükleme henüz uygulanmamışken BOŞ durumu kaydedip kaydı silerdi. Bayrak,
+     yüklenen değerlerle aynı render'da true olur.
+     --------------------------------------------------------------------- */
+  var _hazir=useState(false),kayitHazir=_hazir[0],setKayitHazir=_hazir[1];
+
+  useEffect(function(){
+    var k=loadState("kesir","tahta",null);
+    if(k&&typeof k==="object"){
+      if(Array.isArray(k.items))setItems(k.items);
+      if(k.ops&&typeof k.ops==="object")setOps(k.ops);
+      if(Array.isArray(k.lines))setDrawLines(k.lines);
+      if(Array.isArray(k.pages)&&k.pages.length)setPages(k.pages);
+      if(k.pageId!=null)setPageId(k.pageId);
+      if(k.pageData&&typeof k.pageData==="object")setPageData(k.pageData);
+      if(k.bgType)setBgType(k.bgType);
+      if(k.bgColor)setBgColor(k.bgColor);
+      if(typeof k.showLabels==="boolean")setLabels(k.showLabels);
+    }
+    setKayitHazir(true);
+  },[]);
+
+  useEffect(function(){
+    if(!kayitHazir)return;
+    var z=setTimeout(function(){
+      saveState("kesir","tahta",{items:items,ops:ops,lines:drawLines,pages:pages,
+        pageId:pageId,pageData:pageData,bgType:bgType,bgColor:bgColor,showLabels:showLabels});
+    },400);
+    return function(){clearTimeout(z);};
+  },[kayitHazir,items,ops,drawLines,pages,pageId,pageData,bgType,bgColor,showLabels]);
 
   function savePage(){var d=Object.assign({},pageData);d[pageId]={items:JSON.parse(JSON.stringify(items)),lines:drawLines.slice(),ops:Object.assign({},ops)};setPageData(d);}
   function switchPage(pid){savePage();var d=pageData[pid];if(d){setItems(d.items||[]);setDrawLines(d.lines||[]);setOps(d.ops||{});}else{setItems([]);setDrawLines([]);setOps({});}setPageId(pid);setSelTrack(null);setActiveTpl(null);}

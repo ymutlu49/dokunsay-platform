@@ -39,5 +39,10 @@ export const usePages = (items, setItems, strokes, setStrokes) => {
     }
   };
 
-  return { pages, currentPage, switchPage, addPage, deletePage };
+  /*
+    `pages`, `currentPage` ve `pageData` dışarı açılır: oturum kaydı (App.jsx)
+    yalnız açık sayfayı değil bütün sayfaları geri yükleyebilsin diye. Öncesinde
+    `pageData` yalnızca içeride tutulan bir ref'ti ve dışarıdan tohumlanamıyordu.
+  */
+  return { pages, setPages, currentPage, setCurrentPage, pageData, switchPage, addPage, deletePage };
 };
