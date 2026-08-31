@@ -393,6 +393,27 @@ export const tr = {
     'Kitabın sekiz şekil ailesi canlı ve dokunmatik; tahtaya tam ekran yansıtılır',
   girisOzellikForm: 'Gözlem formları',
   girisOzellikFormAlt: 'Ek D’nin dört formu; doldurulur, cihazda saklanır, yazdırılır',
+  // --- kitap tanıtımı (metin kitabın kendi arka kapağından alınmıştır)
+  kitapBaslik: 'Uygulamanın dayandığı kitap',
+  kitapVurgu: '48 + 26 sorulduğunda sınıfta beş ayrı şey olur.',
+  kitapGiris:
+    'Biri parmakla sayar. Biri kâğıdı zihninde canlandırır. Biri sayıları onluklarına ayırır. Biri 48’i 50’ye tamamlayıp fazlasını geri alır. Biri hiç düşünmeden cevabı söyler. Beşi de aynı dersteydi.',
+  kitapGiris2:
+    'Bu kitap, o beş çocuğun her biri için ne yapılacağını anlatıyor. Kuramsal temelden dört işlemin stratejilerine, oradan tahmine, ölçmeye ve diskalkuliye uzanıyor.',
+  kitapMadde1: 'Kanıtı olduğu gibi aktarır.',
+  kitapMadde1Alt: 'Bir yöntemin kanıtı zayıfsa kitap bunu söyler.',
+  kitapMadde2: 'Dört profili birlikte düşünür.',
+  kitapMadde2Alt: 'Diskalkuli, düşük, ortalama ve yüksek başarı.',
+  kitapMadde3: 'Türkçe alanyazını içerir.',
+  kitapMadde3Alt: 'Türkiye’de yapılan çalışmalar ve MEB programı.',
+  kitapMadde4: 'Uygulama cildi vardır.',
+  kitapMadde4Alt: '58 etkinlik kartı ayrı bir Etkinlik Kitabı’nda.',
+  kitapCiltAna: 'Ana cilt',
+  kitapCiltAnaAlt: 'Kuram, stratejiler, tahmin, ölçme ve diskalkuli',
+  kitapCiltEtkinlik: 'Etkinlik Kitabı',
+  kitapCiltEtkinlikAlt: 'Sınıfta uygulanacak 58 etkinlik, her biri tek sayfa',
+  kitapKapakAlt: '{ad} kapağı',
+
   girisNeDegil: 'Bu bir hız uygulaması değildir',
   girisNeDegilAciklama:
     'Zamanlı test, puan ve sıralama yoktur. Kitabın savı, zihinden aritmetiğin bir hız yarışı değil bir düşünme biçimi olduğudur; uygulama da buna göre kurulmuştur.',

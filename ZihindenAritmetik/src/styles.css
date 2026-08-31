@@ -118,6 +118,21 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
 
 /* ---------------------------------------------------------------- iskelet */
 
+/*
+  Kaydırma.
+
+  Ortak DokunSay kabuğu 100vh yüksekliğinde ve `overflow: hidden`'dır: diğer
+  sekiz araç ekranı dolduran birer tuvaldir, sayfa boyu uzamazlar. Bu uygulama
+  ise belge gibidir — etkinlik kartları, takvim, formlar ekranı kolayca aşar.
+  Kabuk olduğu gibi bırakılırsa ekranı aşan içerik kırpılır ve erişilemez olur.
+
+  Kaydırmayı `main`e veriyoruz. Paylaşılan dosyaya dokunulmuyor: bu kural
+  yalnızca bu uygulamanın yaprağında yüklüdür, öteki araçlar etkilenmez.
+  Kaydırma kabın kendi içinde olduğu için `.giris`/`.kilit` gibi `min-height:
+  100%` kullanan ekranlar da çalışmaya devam eder.
+*/
+.ds-appshell__main { overflow-y: auto; overscroll-behavior-y: contain; }
+
 .uygulama { min-height: 100%; display: flex; flex-direction: column; }
 
 .icerik {
@@ -776,6 +791,63 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
 @media (min-width: 860px) {
   .giris-eylem { grid-template-columns: 1.4fr 1fr; }
 }
+
+/* --- kitap tanıtımı */
+
+.kitap {
+  display: grid;
+  gap: 26px;
+  margin-top: 30px;
+  padding-top: 28px;
+  border-top: 1px solid var(--cizgi);
+}
+
+@media (min-width: 900px) {
+  /* Kapaklar solda sabit genişlikte, metin kalan yeri doldurur. */
+  .kitap { grid-template-columns: minmax(340px, 470px) 1fr; gap: 42px; align-items: start; }
+}
+
+.kitap-kapaklar {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  max-width: 470px;   /* telefonda tek sütuna düşünce kapaklar şişmesin */
+}
+
+.kitap-cilt { margin: 0; }
+
+.kitap-cilt img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  box-shadow: var(--golge-2);
+}
+
+.kitap-cilt figcaption { margin-top: 9px; }
+.kitap-cilt figcaption strong { display: block; color: var(--lacivert); font-size: 0.94rem; }
+.kitap-cilt figcaption .kucuk { display: block; margin-top: 1px; }
+
+.kitap-metin h2 { margin-bottom: 12px; }
+
+.kitap-vurgu {
+  font-size: clamp(1.14rem, 1.9vw, 1.4rem);
+  font-weight: 700;
+  color: var(--r5-koyu);
+  line-height: 1.35;
+  margin-bottom: 12px;
+}
+
+/* Arka kapaktaki dört savı, bölüm renkleriyle ayrılmış bir liste olarak. */
+.kitap-maddeler { list-style: none; margin: 18px 0 0; padding: 0; display: grid; gap: 12px; }
+
+@media (min-width: 640px) {
+  .kitap-maddeler { grid-template-columns: 1fr 1fr; gap: 14px 22px; }
+}
+
+.kitap-maddeler li { border-left: 3px solid var(--vurgu); padding-left: 12px; }
+.kitap-maddeler strong { display: block; color: var(--vurgu-koyu); }
+.kitap-maddeler .kucuk { display: block; }
 
 .giris-kurulum { margin: 0; }
 .giris-basla {

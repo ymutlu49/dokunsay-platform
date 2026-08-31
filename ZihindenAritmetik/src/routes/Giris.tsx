@@ -109,6 +109,57 @@ export default function Giris({ onBasla }: { onBasla: () => void }) {
           ))}
         </div>
 
+        {/*
+          Kitap tanıtımı.
+
+          Metin uydurulmadı: kitabın kendi arka kapağından alındı. Kapak
+          görselleri de basılacak kapakların küçültülmüşüdür, böylece kitabı
+          eline alan öğretmen aynı nesneyi görür.
+        */}
+        <section className="kitap">
+          <div className="kitap-kapaklar">
+            {[
+              { g: 'kapak/kitap.webp', ad: t('uygulamaAdi'), baslik: t('kitapCiltAna'), alt: t('kitapCiltAnaAlt') },
+              {
+                g: 'kapak/etkinlik.webp',
+                ad: t('kitapCiltEtkinlik'),
+                baslik: t('kitapCiltEtkinlik'),
+                alt: t('kitapCiltEtkinlikAlt'),
+              },
+            ].map((c) => (
+              <figure key={c.g} className="kitap-cilt">
+                <img
+                  src={c.g}
+                  alt={t('kitapKapakAlt', { ad: c.ad })}
+                  width={720}
+                  height={1006}
+                  loading="lazy"
+                />
+                <figcaption>
+                  <strong>{c.baslik}</strong>
+                  <span className="kucuk">{c.alt}</span>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+
+          <div className="kitap-metin">
+            <h2>{t('kitapBaslik')}</h2>
+            <p className="kitap-vurgu">{t('kitapVurgu')}</p>
+            <p>{t('kitapGiris')}</p>
+            <p>{t('kitapGiris2')}</p>
+
+            <ul className="kitap-maddeler">
+              {[1, 2, 3, 4].map((n) => (
+                <li key={n} className={`renk-${n === 1 ? 8 : n === 2 ? 5 : n === 3 ? 9 : 4}`}>
+                  <strong>{t(`kitapMadde${n}` as 'kitapMadde1')}</strong>
+                  <span className="kucuk">{t(`kitapMadde${n}Alt` as 'kitapMadde1Alt')}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
         <div className="uyari" style={{ margin: '26px 0 0' }}>
           <div>
             <strong>{t('girisNeDegil')}</strong>
