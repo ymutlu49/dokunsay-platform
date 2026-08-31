@@ -10,13 +10,13 @@ olduğundan hizalama kaymaz.
 
 Yerleşim her konuma göre ayrı hesaplanır:
 
-  ön kapak   67,3 pt tek satır ->  46 pt iki satır, sağa yaslı
+  ön kapak   67,3 pt tek satır ->  ene sığan puntoda tek satır, sağa yaslı
   arka kapak 44,3 pt tek satır ->  40 pt iki satır, sola yaslı
   sırt       44,3 pt dikey     ->  yalnızca soyadlar (üç tam ad sığmıyor:
                                    ~1100 pt gerekiyor, 505 pt yer var)
 
-Ön kapakta blok aşağıdan hizalanır: alt boşluk özgünüyle birebir aynı kalır,
-çünkü orası baskının kesim payıdır.
+Ön kapakta taban çizgisi ve sağ kenar korunur, punto ene göre küçültülür;
+böylece alt boşluk — baskının kesim payı — özgünüyle birebir aynı kalır.
 
 Kullanım:
     python scripts/kapak_yazar.py            # önizleme, dosyaya yazmaz
@@ -36,6 +36,14 @@ BOLD = Path('C:/Windows/Fonts/calibrib.ttf')
 REG = Path('C:/Windows/Fonts/calibri.ttf')
 
 ESKI = 'Prof. Dr. Yılmaz Mutlu'
+
+SOL_KENAR = 186.0   # kapağın kendi sol hizası
+GUVENLIK = 10.0     # metnin sol hizaya değmemesi için pay
+
+# Calibri/Carlito'nun hhea ölçüleri (em oranı). Taban çizgisini eski yazının
+# üst kenarından hesaplamak için gerekir.
+YUKSELTI = 0.952
+CIKINTI = 0.269
 
 
 def kapak_klasoru() -> Path:
@@ -105,31 +113,31 @@ def islem_planla(s, yon):
         }
 
     if kalin:
-        # Ön kapak: iki satır, sağ kenar korunur.
+        # Ön kapak: üç ad TEK satırda, sağa yaslı.
         #
-        # Blok yukarıdan değil AŞAĞIDAN hizalanır: son satırın alt kenarı eski
-        # tek satırın alt kenarıyla çakışır, böylece kapağın alt boşluğu (ve
-        # baskıdaki kesim payı) aynen korunur. 52 pt iki satır bu boşluğa
-        # sığmıyordu — üstteki renk şeridiyle alt kenar arasında 111 pt yer
-        # var, 46 pt/56 pt satır aralığı ile blok 101 pt tutuyor.
-        boyut = 46.0
-        satir_aralik = 56.0
-        cikinti = boyut * 0.25   # alt uzantı (descender)
-        yukselti = boyut * 0.75  # üst uzantı (ascender)
-        metinler = [ADLAR[0], AYRAC.join(ADLAR[1:])]
-        son_taban = y1 - cikinti
-        ilk_taban = son_taban - satir_aralik * (len(metinler) - 1)
-        satirlar = []
-        for i, m in enumerate(metinler):
-            g = f.text_length(m, boyut)
-            satirlar.append((fitz.Point(x1 - g, ilk_taban + i * satir_aralik), m))
+        # Punto ene göre hesaplanır: üç ad özgün 67,3 pt'de 1705 pt tutuyor,
+        # oysa sol kenar (186) ile sağ kenar arasında 1408 pt var. Metin sol
+        # kenar payına dokunmayacak biçimde küçültülür; böylece kapağın kendi
+        # hizası bozulmaz.
+        #
+        # Taban çizgisi özgünüyle aynı bırakılır (tek satır olduğu için
+        # bırakılabiliyor), dolayısıyla alt boşluk — yani baskının kesim payı —
+        # değişmez.
+        metin = AYRAC.join(ADLAR)
+        kullanilabilir = (x1 - SOL_KENAR) - GUVENLIK
+        boyut = s['size']
+        if f.text_length(metin, boyut) > kullanilabilir:
+            boyut = boyut * kullanilabilir / f.text_length(metin, boyut)
+            boyut = round(boyut, 1)
+        taban = y0 + YUKSELTI * s['size']
+        g = f.text_length(metin, boyut)
         return {
             'sil': fitz.Rect(x0 - 6, y0 - 6, x1 + 6, y1 + 6),
-            'satirlar': satirlar,
+            'satirlar': [(fitz.Point(x1 - g, taban), metin)],
             'boyut': boyut,
             'kalin': kalin,
             'dikey': False,
-            'ust_sinir': ilk_taban - yukselti,
+            'ust_sinir': taban - YUKSELTI * boyut,
         }
 
     # Arka kapak: iki satır, sol kenar korunur.
