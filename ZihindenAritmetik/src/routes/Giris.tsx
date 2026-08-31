@@ -79,61 +79,67 @@ export default function Giris({ onBasla }: { onBasla: () => void }) {
 
   return (
     <div className="giris">
-      <div className="giris-govde">
-        <header className="ortala giris-kapak">
-          <img src="simge-192.png" alt="" width={72} height={72} className="giris-simge" />
+      {/* Kapak sayfanın enini boydan boya kullanır; içerik ortada hizalanır. */}
+      <header className="giris-kapak">
+        <div className="giris-kapak-ic">
+          <img src="simge-192.png" alt="" width={84} height={84} className="giris-simge" />
           <h1>{t('uygulamaAdi')}</h1>
           <p className="giris-alt">{t('kitapAlt')}</p>
           <p className="kucuk giris-hedef">{t('girisHedefKitle')}</p>
-        </header>
+          <div className="giris-serit" aria-hidden="true">
+            {Array.from({ length: 9 }, (_, i) => (
+              <span key={i} />
+            ))}
+          </div>
+        </div>
+      </header>
 
+      <div className="giris-govde">
         <p className="giris-giris">{t('girisTanim')}</p>
 
         <div className="giris-ozellikler">
           {ozellikler.map((o) => (
-            <div key={o.ad} className={`kart kart-serit renk-${o.renk}`} style={{ padding: 14 }}>
-              <div className="satir" style={{ alignItems: 'flex-start' }}>
-                <span style={{ color: 'var(--vurgu)', flexShrink: 0 }}>{o.ikon}</span>
-                <span>
-                  <strong style={{ color: 'var(--vurgu-koyu)' }}>{o.ad}</strong>
-                  <span className="kucuk" style={{ display: 'block' }}>
-                    {o.alt}
-                  </span>
-                </span>
-              </div>
+            <div key={o.ad} className={`kart giris-ozellik renk-${o.renk}`}>
+              <span className="giris-ozellik-ikon">{o.ikon}</span>
+              <h3>{o.ad}</h3>
+              <p className="kucuk" style={{ margin: 0 }}>
+                {o.alt}
+              </p>
             </div>
           ))}
         </div>
 
-        <div className="uyari" style={{ margin: '22px 0' }}>
+        <div className="uyari" style={{ margin: '26px 0 0' }}>
           <div>
             <strong>{t('girisNeDegil')}</strong>
             <span>{t('girisNeDegilAciklama')}</span>
           </div>
         </div>
 
-        {/* --- kurulum */}
-        {!kurulu && (
-          <section className="kart giris-kurulum" style={{ padding: 18 }}>
-            <h2 style={{ fontSize: '1.02rem' }}>{t('girisKurBaslik')}</h2>
-            <p className="kucuk">{t('girisKurAciklama')}</p>
-            {yuklemeOlayi ? (
-              <button className="dugme" onClick={kur}>
-                <IkonIndir />
-                {t('girisKur')}
-              </button>
-            ) : (
-              <p className="kucuk" style={{ margin: 0 }}>
-                {iosMu() ? t('girisKurIos') : t('girisKurElle')}
-              </p>
-            )}
-          </section>
-        )}
+        <div className="giris-eylem">
+          {/* --- kurulum */}
+          {!kurulu && (
+            <section className="kart giris-kurulum" style={{ padding: 18 }}>
+              <h2 style={{ fontSize: '1.02rem' }}>{t('girisKurBaslik')}</h2>
+              <p className="kucuk">{t('girisKurAciklama')}</p>
+              {yuklemeOlayi ? (
+                <button className="dugme" onClick={kur}>
+                  <IkonIndir />
+                  {t('girisKur')}
+                </button>
+              ) : (
+                <p className="kucuk" style={{ margin: 0 }}>
+                  {iosMu() ? t('girisKurIos') : t('girisKurElle')}
+                </p>
+              )}
+            </section>
+          )}
 
-        <button className="dugme giris-basla" onClick={onBasla}>
-          {t('girisBasla')}
-          <IkonOk />
-        </button>
+          <button className="dugme giris-basla" onClick={onBasla}>
+            {t('girisBasla')}
+            <IkonOk />
+          </button>
+        </div>
 
         {/* --- künye: kitabın üç yazarı, uygulamanın bir yazarı */}
         <footer className="giris-kunye">

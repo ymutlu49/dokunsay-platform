@@ -123,7 +123,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
 .icerik {
   flex: 1;
   width: 100%;
-  max-width: 1120px;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 20px 18px calc(100px + var(--sa-b));
 }
@@ -666,45 +666,140 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
   .ds-appshell__topbar { display: none !important; }
 }
 
-/* -------------------------------------------------------------- giriş sayfası */
+/* -------------------------------------------------------------- giriş sayfası
+
+   Giriş sayfası kitabın kapağıdır: geniş durur, sayfanın enini kullanır.
+   Canlılık süsten değil uygulamanın kendi dokuz bölüm renginden gelir —
+   başlığın altındaki şerit o dokuz rengin ta kendisidir, yani okuyucu daha
+   ilk ekranda kütüphanenin renkle ayrıldığını görür. */
 
 .giris {
   min-height: 100%;
-  padding: 28px 20px calc(28px + var(--sa-b));
+  padding: 0 0 calc(28px + var(--sa-b));
   background: var(--sayfa);
 }
 
-.giris-govde { max-width: 660px; margin: 0 auto; }
-
+/* Kapak, sayfa enini boydan boya kullanan bir bant. */
 .giris-kapak {
-  padding-bottom: 20px;
-  border-bottom: 2px solid var(--lacivert);
-  margin-bottom: 20px;
+  padding: 40px 24px 0;
+  background:
+    radial-gradient(90% 120% at 4% 0%, rgba(44, 136, 232, 0.20) 0%, transparent 60%),
+    radial-gradient(85% 115% at 98% 4%, rgba(139, 92, 246, 0.18) 0%, transparent 58%),
+    radial-gradient(70% 100% at 50% 100%, rgba(21, 179, 106, 0.10) 0%, transparent 62%),
+    var(--kagit);
+  border-bottom: 1px solid var(--cizgi);
 }
 
-.giris-simge { border-radius: 18px; box-shadow: var(--golge-1); margin-bottom: 12px; }
-.giris-kapak h1 { font-size: clamp(1.7rem, 6vw, 2.3rem); margin-bottom: 6px; }
-.giris-alt { color: var(--gri); margin: 0 0 6px; font-size: 1.02rem; }
+.giris-kapak-ic { max-width: 1280px; margin: 0 auto; text-align: center; }
+
+.giris-simge { border-radius: 20px; box-shadow: var(--golge-2); margin-bottom: 14px; }
+.giris-kapak h1 {
+  font-size: clamp(1.9rem, 5.2vw, 3.1rem);
+  margin-bottom: 8px;
+  letter-spacing: -0.025em;
+}
+.giris-alt {
+  color: var(--gri);
+  margin: 0 auto 6px;
+  font-size: clamp(1.02rem, 1.6vw, 1.24rem);
+  max-width: 42em;
+}
 .giris-hedef { margin: 0; }
-.giris-giris { font-size: 1.02rem; line-height: 1.6; }
 
-.giris-ozellikler { display: grid; gap: 10px; margin-top: 18px; }
+/* Dokuz bölüm rengi. Kapağı kapatır, uygulamanın renk sistemini duyurur. */
+.giris-serit {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  height: 6px;
+  margin-top: 28px;
+  border-radius: 3px 3px 0 0;
+  overflow: hidden;
+}
+.giris-serit span:nth-child(1) { background: var(--r1); }
+.giris-serit span:nth-child(2) { background: var(--r2); }
+.giris-serit span:nth-child(3) { background: var(--r3); }
+.giris-serit span:nth-child(4) { background: var(--r4); }
+.giris-serit span:nth-child(5) { background: var(--r5); }
+.giris-serit span:nth-child(6) { background: var(--r6); }
+.giris-serit span:nth-child(7) { background: var(--r7); }
+.giris-serit span:nth-child(8) { background: var(--r8); }
+.giris-serit span:nth-child(9) { background: var(--r9); }
 
-@media (min-width: 620px) {
+.giris-govde { max-width: 1280px; margin: 0 auto; padding: 26px 24px 0; }
+
+.giris-giris {
+  font-size: clamp(1.04rem, 1.5vw, 1.2rem);
+  line-height: 1.6;
+  max-width: 62em;
+}
+
+.giris-ozellikler { display: grid; gap: 14px; margin-top: 22px; }
+
+@media (min-width: 640px) {
   .giris-ozellikler { grid-template-columns: 1fr 1fr; }
 }
+@media (min-width: 1040px) {
+  .giris-ozellikler { grid-template-columns: repeat(4, 1fr); gap: 18px; }
+}
 
-.giris-kurulum { margin-bottom: 18px; }
-.giris-basla { width: 100%; font-size: 1.05rem; padding: 15px 22px; }
+/* Kart: üstünde bölüm renginden bir çizgi, ikonu renkli bir kutucukta. */
+.giris-ozellik {
+  padding: 18px;
+  border-top: 3px solid var(--vurgu);
+  transition: transform 0.16s, box-shadow 0.16s;
+}
+@media (hover: hover) {
+  .giris-ozellik:hover { transform: translateY(-2px); box-shadow: var(--golge-2); }
+}
+
+.giris-ozellik-ikon {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  color: var(--vurgu-koyu);
+  background: var(--zemin-mavi);
+  background: color-mix(in srgb, var(--vurgu) 15%, #fff);
+}
+
+.giris-ozellik h3 { color: var(--vurgu-koyu); margin-bottom: 4px; }
+
+/* Kurulum ve başlama yan yana: geniş ekranda alt alta uzayıp durmasınlar. */
+.giris-eylem {
+  display: grid;
+  gap: 14px;
+  margin: 26px 0 0;
+  align-items: stretch;
+}
+@media (min-width: 860px) {
+  .giris-eylem { grid-template-columns: 1.4fr 1fr; }
+}
+
+.giris-kurulum { margin: 0; }
+.giris-basla {
+  width: 100%;
+  height: 100%;
+  font-size: 1.18rem;
+  padding: 20px 24px;
+  background: linear-gradient(135deg, var(--lacivert) 0%, var(--r9) 58%, var(--lacivert-acik) 100%);
+  box-shadow: var(--golge-2);
+}
+.giris-basla svg { width: 22px; height: 22px; }
 
 .giris-kunye {
   display: grid;
-  gap: 12px;
-  margin-top: 28px;
-  padding-top: 18px;
+  gap: 14px;
+  margin-top: 32px;
+  padding-top: 20px;
   border-top: 1px solid var(--cizgi);
   font-size: 0.9rem;
   color: var(--metin-2);
+}
+
+@media (min-width: 860px) {
+  .giris-kunye { grid-template-columns: 1.5fr 1fr 1.4fr; gap: 30px; align-items: start; }
 }
 
 .giris-kunye p { color: var(--metin); }
