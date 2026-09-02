@@ -634,34 +634,8 @@ button { font: inherit; color: inherit; cursor: pointer; border: none; backgroun
 
 .ayar-dugmesi:hover { color: var(--lacivert); }
 
-/* Kimlik yuvası — DokunSay giriş rozeti ortak üst bandın araç alanında durur.
-   Rozeti oraya taşıyan useKimlikYuvasi'dir; kapı betiği <head>'de çalıştığı
-   için yuvayı kendisi bulamaz. */
-.numap-yuvasi:empty { display: none; }
-
-.numap-yuvasi {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  font-size: 0.8rem;
-  font-weight: 700;
-  white-space: nowrap;
-  color: var(--appshell-accent-dark, var(--lacivert));
-}
-
-.numap-yuvasi .nm { color: var(--appshell-accent-dark, var(--lacivert)); }
-
-.numap-yuvasi button,
-.numap-yuvasi a {
-  cursor: pointer;
-  border: 0;
-  border-radius: 999px;
-  background: var(--appshell-accent, var(--lacivert));
-  color: #fff;
-  font: 700 11px inherit;
-  padding: 5px 10px;
-  text-decoration: none;
-}
+/* Kimlik yuvası (#numapAuth) artık ortak kabuğun parçası — yuvayı da
+   biçimlendirmesini de AppShell.css taşır, burada kopyası tutulmaz. */
 
 /* Ortak kabuk içinde: üst bant sabit değil, akışta. Tam ekran tahta ve sunum
    modları viewport'a sabitlendiği için bandı kasıtlı olarak örter. */

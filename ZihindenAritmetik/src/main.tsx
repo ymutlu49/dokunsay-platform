@@ -40,13 +40,8 @@ function Kok() {
       subtitle="Kitabın uygulama cildi"
       icon="📘"
       backLang={dil}
-      tools={
-        <>
-          {/* numap-gate.js giriş rozetini bu yuvaya taşır (bkz. useKimlikYuvasi) */}
-          <span id="numapAuth" className="numap-yuvasi" />
-          <LangSwitcher lang={dil} setLang={setPaylasilanDil} langs={DIL_KODLARI} />
-        </>
-      }
+      /* Kimlik yuvası AppShell'in kendisinde; burada yalnızca dil anahtarı. */
+      tools={<LangSwitcher lang={dil} setLang={setPaylasilanDil} langs={DIL_KODLARI} />}
     >
       <A11yProvider dil={dil}>
         <App dil={dil} />

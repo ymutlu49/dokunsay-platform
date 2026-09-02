@@ -3,7 +3,6 @@ import { HashRouter, NavLink, Navigate, Route, Routes } from 'react-router-dom';
 import { DilBaglami, useT, type DilKodu, type Sozluk } from './i18n';
 import { rolOku, rolYaz, type Rol } from './lib/rol';
 import { kilitAcikMi } from './lib/kilit';
-import { useKimlikYuvasi } from './lib/kimlikYuvasi';
 import Bugun from './routes/Bugun';
 import Diziler from './routes/Diziler';
 import DiziTahta from './routes/DiziTahta';
@@ -80,8 +79,6 @@ function AltBar({ rol }: { rol: Rol }) {
 const GIRIS_ANAHTARI = 'za.girisGoruldu';
 
 export default function App({ dil }: { dil: DilKodu }) {
-  useKimlikYuvasi();
-
   const [rol, setRol] = useState<Rol | null>(rolOku);
   // Giriş sayfası ilk açılışta bir kez görünür; sonra kilit ve rol gelir.
   const [girisGoruldu, setGirisGoruldu] = useState(

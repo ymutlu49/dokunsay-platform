@@ -21,6 +21,7 @@
  */
 
 import { APP_ACCENTS } from './palette.js';
+import { useAuthSlot } from './useAuthSlot.js';
 import './AppShell.css';
 
 function computeBackHref() {
@@ -70,6 +71,11 @@ export function AppShell({
   const resolvedBack = backHref || computeBackHref();
   const backText = BACK_LABEL[backLang] || BACK_LABEL.tr;
 
+  // NuMap giriş rozeti üst şeridin araç alanında, dil anahtarının solunda
+  // durur. Yuva olmadan kapı betiği rozeti sağ üste sabitler ve dil
+  // anahtarının üstüne biner (bkz. useAuthSlot).
+  useAuthSlot();
+
   const cssVars = {
     '--appshell-accent': accent.color,
     '--appshell-accent-dark': accent.dark,
@@ -104,7 +110,12 @@ export function AppShell({
               {subtitle && <p className="ds-appshell__subtitle">{subtitle}</p>}
             </div>
           </div>
-          {tools && <div className="ds-appshell__tools">{tools}</div>}
+          <div className="ds-appshell__tools">
+            {/* Kapı betiği rozeti buraya koyar; yuvayı ıskalarsa useAuthSlot
+                taşır. Rozet yokken `:empty` ile gizlenir. */}
+            <span id="numapAuth" className="numap-yuvasi" />
+            {tools}
+          </div>
         </header>
       )}
 
