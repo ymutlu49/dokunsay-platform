@@ -176,3 +176,97 @@
 @media (prefers-reduced-motion: reduce) {
   .ds-appshell { transition: none; }
 }
+
+/* ==========================================================
+   NuMap kimlik yuvası — giriş rozeti üst şeridin araç alanında,
+   dil anahtarının SOLUNDA durur (üstüne binmez).
+
+   Rozeti kapı betiği ya doğrudan buraya koyar ya da useAuthSlot
+   taşır; taşınan rozet bir <div id="numap-chip"> olarak gelir.
+   Kapının kendi koyu "yüzen pill" görünümü yerine burada üst
+   şeridin beyaz-kontrast dili kullanılır (bkz. LangSwitcher.css).
+   ========================================================== */
+
+.numap-yuvasi:empty { display: none; }
+
+.numap-yuvasi {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+  max-width: 38vw;
+  font-family: 'Nunito', system-ui, -apple-system, sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+  color: #fff;
+}
+
+/* useAuthSlot ile taşınan rozet kabı (#numap-chip / #numap-login) */
+.numap-yuvasi > div {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+}
+
+.numap-yuvasi span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.numap-yuvasi .nm { color: #fff; }
+
+.numap-yuvasi button,
+.numap-yuvasi a {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  font: 800 11px 'Nunito', system-ui, -apple-system, sans-serif;
+  letter-spacing: 0.2px;
+  padding: 3px 10px;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+
+/* a11y-global.css'in 44 px dokunma hedefi kuralı üst bant chrome'unu kasten
+   dışarıda bırakır (.ds-lang-switcher__btn, .ds-appshell__back). Çıkış/giriş
+   düğmesi de aynı banttaki chrome'dur; 44 px'e şişerse bant 44 → 56 px büyür
+   ve tuvalden yer çalar. O kural `!important` + üç `:not()` ile yazıldığı için
+   istisna kimlik seçicisiyle (kapının değişmeyen id'leri) yazılır. */
+.numap-yuvasi #numap-out,
+.numap-yuvasi #numap-in {
+  min-height: 24px !important;
+  min-width: 0 !important;
+}
+
+.numap-yuvasi button:hover,
+.numap-yuvasi a:hover { background: rgba(255, 255, 255, 0.26); }
+
+.numap-yuvasi button:focus-visible,
+.numap-yuvasi a:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+
+html[data-dyscalculia="on"] .numap-yuvasi { font-size: 12px; }
+html[data-dyscalculia="on"] .numap-yuvasi button,
+html[data-dyscalculia="on"] .numap-yuvasi a { font-size: 12px; }
+html[data-dyscalculia="on"] .numap-yuvasi #numap-out,
+html[data-dyscalculia="on"] .numap-yuvasi #numap-in { min-height: 32px !important; }
+
+html[data-contrast="high"] .numap-yuvasi button,
+html[data-contrast="high"] .numap-yuvasi a { background: #000; border-color: #fff; }
+
+/* Dar ekranda ad gizlenir, "Çıkış" kalır — başlık ve dil anahtarı sıkışmasın. */
+@media (max-width: 560px) {
+  .numap-yuvasi > span,
+  .numap-yuvasi > div > span { display: none; }
+}
+
+@media print { .numap-yuvasi { display: none !important; } }

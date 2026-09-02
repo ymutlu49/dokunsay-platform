@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
 /**
  * NuMap giriş rozetini üst şeritteki yuvaya (#numapAuth) taşır.
@@ -9,21 +9,23 @@ import { useEffect } from "react";
  * _platform/scripts/inject-gate.mjs) rozeti React kabuğu boyanmadan önce
  * çizebilir; o durumda yuvayı bulamaz ve rozet dil anahtarının üstüne biner.
  *
- * Paylaşılan kapı dosyası NuMap'ten birebir kopyalandığı için ona
- * dokunulmaz; bunun yerine rozet ortaya çıktığında yuvaya alınır ve sabit
- * konumlandırması bırakılır. Rozet giriş durumuna göre gecikmeli de gelebilir
- * (kullanıcı bilgisi ağdan çekilir), bu yüzden gözlemci kullanılır.
+ * Paylaşılan kapı dosyası NuMap'ten birebir kopyalandığı için ona dokunulmaz;
+ * bunun yerine rozet ortaya çıktığında yuvaya alınır ve sabit konumlandırması
+ * bırakılır. Rozet giriş durumuna göre gecikmeli de gelebilir (kullanıcı
+ * bilgisi ağdan çekilir), bu yüzden gözlemci kullanılır.
+ *
+ * AppShell bunu kendisi çağırır — uygulamaların ayrıca çağırmasına gerek yok.
  */
 export function useAuthSlot() {
   useEffect(() => {
-    const yuva = document.getElementById("numapAuth");
+    const yuva = document.getElementById('numapAuth');
     if (!yuva) return undefined;
 
     const tasi = () => {
       const rozet =
-        document.getElementById("numap-chip") || document.getElementById("numap-login");
+        document.getElementById('numap-chip') || document.getElementById('numap-login');
       if (!rozet || rozet.parentElement === yuva) return false;
-      rozet.removeAttribute("style"); // sabit konumlandırmayı bırak; yuva biçimlendirir
+      rozet.removeAttribute('style'); // sabit konumlandırmayı bırak; yuva biçimlendirir
       yuva.appendChild(rozet);
       return true;
     };
