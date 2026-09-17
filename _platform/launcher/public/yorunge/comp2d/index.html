@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Şekil Birleştirme (2B) — Öğrenme Yörüngesi · DokunSay</title>
-<meta name="description" content="Şekil Birleştirme (2B) öğrenme yörüngesi: 11 gelişim basamağı, her birinde DokunSay etkinliği ve gözlem ölçütü. Clements &amp; Sarama çerçevesi. Parçalardan şekil kurma, ayrıştırma.">
+<title>Şekil Birleştirme (İki Boyutlu) — Öğrenme Yörüngesi · DokunSay</title>
+<meta name="description" content="Şekil Birleştirme (İki Boyutlu) öğrenme yörüngesi: 11 gelişim basamağı, her birinde DokunSay etkinliği ve gözlem ölçütü. Clements &amp; Sarama çerçevesi. Parçalardan şekil kurma, ayrıştırma.">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,16 +40,14 @@
 .dsh-green{color:#d7f0d9;background:rgba(46,125,50,.22);border-color:rgba(46,125,50,.5)}
 .dsh-teal{color:#bfe8e4;background:rgba(13,148,136,.2);border-color:rgba(13,148,136,.5)}
 .dsh-pill.is-active{box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.45);filter:brightness(1.12)}
-.dsh .hcmo-auth{display:inline-flex;align-items:center;gap:6px}
-.dsh .hcmo-auth:empty{display:none}
-.dsh .hcmo-auth a{display:inline-flex;align-items:center;gap:5px;padding:8px 14px;border-radius:999px;font-weight:700;font-size:.86rem;text-decoration:none;white-space:nowrap;color:#fde6c0;background:rgba(245,158,11,.18);border:1px solid rgba(245,158,11,.45);transition:background .15s}
-.dsh .hcmo-auth a:hover{background:rgba(245,158,11,.3)}
-.dsh .hcmo-auth a#hcmo-stu{color:#cfe8ff;background:rgba(96,165,250,.16);border-color:rgba(96,165,250,.4)}
-.dsh .hcmo-auth a#hcmo-stu:hover{background:rgba(96,165,250,.28)}
-.dsh .hcmo-auth>span{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:.86rem;color:#e8eefc}
-.dsh .hcmo-auth .nm{color:#fde6c0}
-.dsh .hcmo-auth #hcmo-out{cursor:pointer;border:0;border-radius:999px;background:#f59e0b;color:#3a2606;font-weight:800;font-size:.8rem;padding:7px 13px;font-family:inherit}
-.dsh .hcmo-auth #hcmo-out:hover{filter:brightness(1.07)}
+.dsh .numap-auth{display:inline-flex;align-items:center;gap:6px}
+.dsh .numap-auth:empty{display:none}
+.dsh .numap-auth a{display:inline-flex;align-items:center;gap:5px;padding:8px 14px;border-radius:999px;font-weight:700;font-size:.86rem;text-decoration:none;white-space:nowrap;color:#d7f0d9;background:rgba(46,125,50,.22);border:1px solid rgba(46,125,50,.5);transition:background .15s;cursor:pointer}
+.dsh .numap-auth a:hover{background:rgba(46,125,50,.34)}
+.dsh .numap-auth>span{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:.86rem;color:#e8efe9}
+.dsh .numap-auth .nm{color:#d7f0d9}
+.dsh .numap-auth #numap-out{cursor:pointer;border:0;border-radius:999px;background:#2E7D32;color:#fff;font-weight:800;font-size:.8rem;padding:7px 13px;font-family:inherit}
+.dsh .numap-auth #numap-out:hover{filter:brightness(1.1)}
 @media (max-width:760px){.dsh{padding:10px 15px}.dsh-pill{padding:7px 11px;font-size:.8rem}.dsh-name{font-size:18px}}
 @media print{.dsh{display:none}}
 
@@ -181,7 +179,7 @@
 </style>
 </head>
 <body data-key="comp2d">
-<header class="dsh"><div class="dsh-row"><a class="dsh-brand" href="/" aria-label="DokunSay ana sayfa"><span class="dsh-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" aria-hidden="true"><line x1="28" y1="27" x2="72" y2="27" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="28" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="72" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><circle cx="28" cy="27" r="21" fill="#2E7D32"/><circle cx="20.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="28" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="35.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="72" cy="27" r="21" fill="#0d9488"/><text x="72" y="32" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="14" fill="#fff">üç</text><circle cx="50" cy="73" r="21" fill="#1B5E20"/><text x="50" y="82" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="27" fill="#fff">3</text></svg></span><span class="dsh-titles"><span class="dsh-name">DokunSay</span><span class="dsh-sub">Matematik Öğretim Araçları Platformu</span></span></a><nav class="dsh-nav" aria-label="Site gezinme"><a class="dsh-pill dsh-amber is-active" href="/yorunge/" aria-current="page">🧭 Öğrenme Yörüngeleri</a><a class="dsh-pill dsh-green" href="/rehber/">📘 Müdahale Rehberi</a><a class="dsh-pill dsh-teal" href="/#tools-section">🛠️ Araçlar</a><span id="hcmoAuth" class="hcmo-auth"></span></nav></div></header>
+<header class="dsh"><div class="dsh-row"><a class="dsh-brand" href="/" aria-label="DokunSay ana sayfa"><span class="dsh-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" aria-hidden="true"><line x1="28" y1="27" x2="72" y2="27" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="28" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="72" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><circle cx="28" cy="27" r="21" fill="#2E7D32"/><circle cx="20.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="28" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="35.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="72" cy="27" r="21" fill="#0d9488"/><text x="72" y="32" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="14" fill="#fff">üç</text><circle cx="50" cy="73" r="21" fill="#1B5E20"/><text x="50" y="82" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="27" fill="#fff">3</text></svg></span><span class="dsh-titles"><span class="dsh-name">DokunSay</span><span class="dsh-sub">Matematik Öğretim Araçları Platformu</span></span></a><nav class="dsh-nav" aria-label="Site gezinme"><a class="dsh-pill dsh-amber is-active" href="/yorunge/" aria-current="page">🧭 Öğrenme Yörüngeleri</a><a class="dsh-pill dsh-green" href="/rehber/">📘 Müdahale Rehberi</a><a class="dsh-pill dsh-teal" href="/#tools-section">🛠️ Araçlar</a><span id="numapAuth" class="numap-auth"></span></nav></div></header>
 
 <section class="hero">
   <div class="wrap">
@@ -190,11 +188,11 @@
       <div class="hero-ic">🧷</div>
       <div>
         <span class="eyebrow">Geometri ve Uzamsal</span>
-        <h1>Şekil Birleştirme (2B)</h1>
+        <h1>Şekil Birleştirme (İki Boyutlu)</h1>
         <p class="lede">Parçalardan şekil kurma, ayrıştırma. <span class="ltname">(Composing 2D Shapes)</span></p>
         <div class="hero-meta">
           <span class="hm">📊 11 basamak</span>
-          <span class="hm">🎂 0–10 yaş</span>
+          <span class="hm">🎂 1–8 yaş</span>
           <span class="hm">⚠ 1 darboğaz</span>
           <span class="hm">🎯 Profil alanı · gözlem</span>
         </div>
@@ -215,7 +213,7 @@
     <aside class="side">
     <div class="side-in">
       <div class="side-head">Düzeyler <span>11</span></div>
-      <ol class="side-list"><li><a href="#lv-0" data-i="0"><span class="s-num" style="--c:#7c3aed">1</span><span class="s-txt"><b>Şekillerle Tek Tek Oynayan: Temeller</b><small>0–3 yaş</small></span></a></li><li><a href="#lv-1" data-i="1"><span class="s-num" style="--c:#7c3aed">2</span><span class="s-txt"><b>Parçaları Bir Araya Getiren</b><small>3–4 yaş</small></span></a></li><li><a href="#lv-2" data-i="2"><span class="s-num" style="--c:#7c3aed">3</span><span class="s-txt"><b>Resim Yapan</b><small>4–5 yaş</small></span></a></li><li><a href="#lv-3" data-i="3"><span class="s-num" style="--c:#7c3aed">4</span><span class="s-txt"><b>Basit Şekilleri Parçalarına Ayıran</b><small>4–5 yaş</small></span></a></li><li><a href="#lv-4" data-i="4"><span class="s-num" style="--c:#7c3aed">5</span><span class="s-txt"><b>Şekil Oluşturan</b><small>4–5 yaş · ⚠ darboğaz</small></span></a></li><li><a href="#lv-5" data-i="5"><span class="s-num" style="--c:#7c3aed">6</span><span class="s-txt"><b>Parça Değiştirerek Oluşturan</b><small>5–6 yaş</small></span></a></li><li><a href="#lv-6" data-i="6"><span class="s-num" style="--c:#7c3aed">7</span><span class="s-txt"><b>Yardımla Şekli Parçalarına Ayıran</b><small>6–7 yaş</small></span></a></li><li><a href="#lv-7" data-i="7"><span class="s-num" style="--c:#7c3aed">8</span><span class="s-txt"><b>Kurduğu Birimi Tekrarlayan</b><small>6–8 yaş</small></span></a></li><li><a href="#lv-8" data-i="8"><span class="s-num" style="--c:#7c3aed">9</span><span class="s-txt"><b>İmgelemle Şekli Parçalarına Ayıran</b><small>6–8 yaş</small></span></a></li><li><a href="#lv-9" data-i="9"><span class="s-num" style="--c:#7c3aed">10</span><span class="s-txt"><b>Birimden Birim Kuran</b><small>8–9 yaş</small></span></a></li><li><a href="#lv-10" data-i="10"><span class="s-num" style="--c:#7c3aed">11</span><span class="s-txt"><b>Katman Katman Parçalara Ayıran</b><small>8–10 yaş</small></span></a></li></ol>
+      <ol class="side-list"><li><a href="#lv-0" data-i="0"><span class="s-num" style="--c:#7c3aed">1</span><span class="s-txt"><b>Şekillerle Tek Tek Oynayan: Temeller</b><small>1–2 yaş</small></span></a></li><li><a href="#lv-1" data-i="1"><span class="s-num" style="--c:#7c3aed">2</span><span class="s-txt"><b>Parçaları Bir Araya Getiren</b><small>3 yaş</small></span></a></li><li><a href="#lv-2" data-i="2"><span class="s-num" style="--c:#7c3aed">3</span><span class="s-txt"><b>Resim Yapan</b><small>4–5 yaş</small></span></a></li><li><a href="#lv-3" data-i="3"><span class="s-num" style="--c:#7c3aed">4</span><span class="s-txt"><b>Basit Şekilleri Parçalarına Ayıran</b><small>4–5 yaş</small></span></a></li><li><a href="#lv-4" data-i="4"><span class="s-num" style="--c:#7c3aed">5</span><span class="s-txt"><b>Şekil Oluşturan</b><small>4–5 yaş · ⚠ darboğaz</small></span></a></li><li><a href="#lv-5" data-i="5"><span class="s-num" style="--c:#7c3aed">6</span><span class="s-txt"><b>Parça Değiştirerek Oluşturan</b><small>5–6 yaş</small></span></a></li><li><a href="#lv-6" data-i="6"><span class="s-num" style="--c:#7c3aed">7</span><span class="s-txt"><b>Yardımla Şekli Parçalarına Ayıran</b><small>6 yaş</small></span></a></li><li><a href="#lv-7" data-i="7"><span class="s-num" style="--c:#7c3aed">8</span><span class="s-txt"><b>Kurduğu Birimi Tekrarlayan</b><small>6–7 yaş</small></span></a></li><li><a href="#lv-8" data-i="8"><span class="s-num" style="--c:#7c3aed">9</span><span class="s-txt"><b>İmgelemle Şekli Parçalarına Ayıran</b><small>6–7 yaş</small></span></a></li><li><a href="#lv-9" data-i="9"><span class="s-num" style="--c:#7c3aed">10</span><span class="s-txt"><b>Birimden Birim Kuran</b><small>8 yaş</small></span></a></li><li><a href="#lv-10" data-i="10"><span class="s-num" style="--c:#7c3aed">11</span><span class="s-txt"><b>Katman Katman Parçalara Ayıran</b><small>8 yaş</small></span></a></li></ol>
     </div>
   </aside>
     <div class="levels">
@@ -225,7 +223,7 @@
       <div class="lv-num" style="--c:#7c3aed">1</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#7c3aed">0–3 yaş</span>
+          <span class="age-pill" style="--c:#7c3aed">1–2 yaş</span>
           
         </div>
         <h3>Şekillerle Tek Tek Oynayan: Temeller</h3>
@@ -233,7 +231,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Şekilleri tek tek ele alır; daha büyük bir şekil oluşturmak için birleştirmez.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Bebekler ve küçük çocuklar şekilleri tek tek ele alır. Oyun içinde keşfederek ya da basit düzenleri (örn. bir yetişkinin dizdiği 2–3 şekli) kopyalayarak şekilleri bir araya getirebilirler.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk yapboz parçalarını ya da blokları eline alır, evirip çevirir, sıralar ya da üst üste yığar — ama onları BİRLEŞTİRİP yeni bir bütün yapmaz. Her şekil kendi başına bir oyuncaktır; iki parça yan yana gelse de aralarındaki ilişkiyi kurmaz.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, şekil oluşturmanın en erken zeminidir: çocuk şekilleri ayrı ayrı, bağımsız nesneler olarak yaşar. &quot;Birleştirme&quot; henüz yoktur ve bu yaşta beklenmez. Amaç saydırmak ya da birleştirmeye zorlamak değil; bol bol şekille serbest oynatarak biçim, kenar ve köşe duygusunu uyandırmaktır. Çocuğa şekilleri tutturun, döndürtün, kenarlarını parmakla izletin — bu duyusal-motor keşif sonraki tüm birleştirmenin tohumudur.</p></div>
         <div class="act">
@@ -262,7 +260,7 @@
       <div class="lv-num" style="--c:#7c3aed">2</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#7c3aed">3–4 yaş</span>
+          <span class="age-pill" style="--c:#7c3aed">3 yaş</span>
           
         </div>
         <h3>Parçaları Bir Araya Getiren</h3>
@@ -270,7 +268,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Her şeklin tek bir rol üstlendiği, şekillerin birbirine değdiği resimler yapar; TÜM parçaların tek tek çizgiyle gösterildiği basit yapbozları deneme-yanılmayla doldurur.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Her şeklin tek bir rol üstlendiği (örn. her vücut parçası için bir şekil) ve şekillerin birbirine değdiği resimler yapar. Tüm şekillerin çizgiyle gösterildiği basit yapbozları, çoğu kez deneme-yanılmayla doldurur.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk iki parçayı bilinçli olarak yan yana, kenar kenara koyar: bir üçgeni başka bir üçgene değdirir, &quot;baktım birbirine değdi&quot; der. Parçalar artık dokunarak BİRLEŞİR — ama henüz belirli bir resmi ya da hedefi yoktur; birleştirmenin kendisi keyiflidir.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Burada kritik sıçrama olur: çocuk şekilleri ayrı kullanmaktan, onları BİRLEŞTİRMEYE geçer. İlk kez iki parça arasında &quot;bunlar bir arada&quot; ilişkisi kurulur. Henüz kenarları tam hizalayamayabilir, aralarında boşluk kalabilir — bu normaldir. Parçaları kenar kenara değdirmeyi modelleyin; &quot;kenarları öpüşsün&quot; gibi somut bir dil, hizalamayı görünür kılar. Bu, ilerideki tüm birleştirmenin ilk adımıdır.</p></div>
         <div class="act">
@@ -307,7 +305,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Bir resim ögesini birkaç şekli birleştirerek yapar (iki şekil = bir kol); yeni geometrik şekli ÖNGÖRMEDEN, deneme-yanılmayla ve &quot;genel görünüşe&quot;/kenar uzunluğuna göre seçer; yerleşimi sezdiren &quot;kolay&quot; yapbozları doldurur.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Bir resmin tek bir parçasını yapmak için birkaç şekli bir araya getirir (örn. bir kol için iki şekil). Deneme-yanılma kullanır; ortaya çıkacak yeni geometrik şekli öngörmez. Şekilleri “genel görünüşe” ya da kenar uzunluğuna göre seçer. Her şeklin yerini sezdiren “kolay” örüntü bloğu yapbozlarını doldurur.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk birkaç şekilden tanınır bir resim kurar: bir kare gövde, üstüne üçgen çatı → &quot;ev&quot;; bir daire kafa, altına şekiller → &quot;insan&quot;. Her parça resimde TEK bir rol üstlenir (çatı, gövde, tekerlek). Resim, parçaların gelişigüzel toplamı değil; zihnindeki bir görüntünün karşılığıdır.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Birleştirme artık bir AMACA bağlanır: çocuk şekilleri bir resmi anlatmak için kullanır. Bu, uzamsal düşünmenin önemli bir adımıdır — parçayı işleviyle (&quot;bu çatı olacak&quot;) seçer. Ancak parçalar genelde yan yana dizilir; henüz birbirinin yerini doldurarak BİRLİKTE daha büyük tek bir şekil oluşturmazlar. &quot;Hangi parça çatı olur, neden?&quot; diye sorarak parça-rol ilişkisini güçlendirin. Çocuğun anlattığı hikâyeyi ciddiye alın; bu, biçim-işlev bağını besler.</p></div>
         <div class="act">
@@ -344,7 +342,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Ayrışımı açıkça belli olan (ipucu veren) basit şekilleri parçalarına ayırır.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Nasıl ayrılacağına ilişkin açık ipuçları taşıyan basit şekilleri parçalarına (daha küçük şekillere) ayırır.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Belirgin çizgileri olan basit bir şekli (ör. ortadan çizgiyle ikiye bölünmüş bir dikdörtgen) çocuk parçalarına ayırır: &quot;Burada iki tane var&quot; der ve çizgi boyunca böler. Ayrıştırma henüz görünür çizgiye bağlıdır; çizgi yoksa nereden böleceğini bilemeyebilir.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, birleştirmenin TERSİ olan ayrıştırmanın ilk hâlidir: bütünü parçalara çözme. Şu aşamada çocuk yalnız BELİRGİN, görünür çizgiler boyunca ayırabilir — bu yüzden ona çizgili, ipucu veren şekiller sunun. Ayrıştırma ileride alan, kesir ve esnek parçalama için kritiktir. &quot;Bu şekil hangi parçalardan yapılmış?&quot; sorusuyla bütün-parça ilişkisini iki yönlü düşündürün; birleştirip sonra ayrıştırarak tersinirliği gösterin.</p></div>
         <div class="act">
@@ -381,7 +379,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Şekilleri ÖNGÖRÜYLE birleştirir (&quot;Buraya ne oturur, biliyorum!&quot;); şekli açılarına VE kenar uzunluklarına göre seçer; döndürme ve çevirmeyi amaçlı kullanır.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Şekilleri öngörüyle birleştirir (“Ne oturacağını biliyorum!”). Şekilleri kenar uzunluklarının yanı sıra açılarına göre de seçer. Şekilleri seçip yerleştirmek için döndürme ve çevirmeyi bilinçli olarak kullanır. Örüntü bloğu yapbozlarında tüm açılar doğrudur ve örüntü kurma belirgindir.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk bir hedef şekli (ör. altıgen anahattı) parçalarla DOLDURUR ve en önemlisi, bir parçayı koymadan ÖNCE onun oraya sığıp sığmayacağını kestirir: &quot;İki üçgen koysam altıgen olur&quot; der ve doğru parçayı seçer. Henüz oturmamışsa rastgele parça dener, döndürmeyi unutur, sığmayınca şaşırır — öngörü yerine deneme-yanılmaya sıkışır.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, şekil oluşturma yörüngesinin gerçek DARBOĞAZIDIR. Asıl kazanım, parçayı yerleştirmeden önce &quot;ne sığacağını bilme&quot; — yani sonucu zihinde önceden görme (öngörüyle oluşturma). Bu, uzamsal-yapısal düşünmenin çekirdeğidir: çocuk parçanın biçimini, boyutunu ve döndürülmüş hâlini zihninde boşlukla eşler. Burada takılan çocuk her seferinde fiziksel deneme-yanılmaya başvurur; bu, ileri geometri ve alan akıl yürütmesi için bir uyarı işaretidir. &quot;Önce DÜŞÜN: hangisi sığar? Neden?&quot; diye sürekli sorun; parçayı koymadan önce çocuğa tahmin ettirin, sonra deneyerek doğrulatın. Döndürme/çevirme seçeneklerini hatırlatın — çoğu tıkanma, parçanın döndürülebileceğinin fark edilmemesinden kaynaklanır.</p></div>
         <div class="act">
@@ -418,7 +416,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Küçük şekillerden yeni şekiller kurar; AYNI şekli farklı şekil takımlarıyla (ikame ederek) farklı yollarla oluşturur.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Daha küçük şekillerden yeni şekiller yapar; yeni şekilleri farklı yollarla oluşturmak için deneme-yanılmayla şekil gruplarının yerine başka şekiller koyar.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk bir şekil grubunun yerine eşdeğer başka bir şekil koyabilir: &quot;İki üçgen yerine bir kare koyabilirim&quot; ya da &quot;İki yamuk yerine bir altıgen&quot; der ve değiştirir. Parçaların DENKLİĞİNİ (aynı yeri kaplama) kavrar; bir bütünü farklı parça takımlarıyla kurabileceğini bilir.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu düzeyde oluşturma esnekleşir: çocuk parçaların birbirinin YERİNE geçebileceğini (2 üçgen = 1 kare; 6 üçgen = 1 altıgen) keşfeder. Bu eşdeğerlik içgörüsü, ileride kesirlerin (yarım + yarım = bütün) ve ölçü-dönüşümlerinin doğrudan zeminidir. &quot;Bunun yerine başka ne koyabilirsin? Yine aynı yeri kaplar mı?&quot; diye değiş-tokuş düşündürün. Bir parçayı kaldırıp yerine eşdeğer takımı koydurarak korunan-alan duygusunu somutlaştırın.</p></div>
         <div class="act">
@@ -447,7 +445,7 @@
       <div class="lv-num" style="--c:#7c3aed">7</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#7c3aed">6–7 yaş</span>
+          <span class="age-pill" style="--c:#7c3aed">6 yaş</span>
           
         </div>
         <h3>Yardımla Şekli Parçalarına Ayıran</h3>
@@ -455,7 +453,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Görev ya da ortamın SUNDUĞU imgelem desteğiyle şekilleri parçalarına ayırır.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Görevin ya da ortamın sunduğu ve desteklediği imgelemi kullanarak şekilleri parçalarına ayırır.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk bir bileşik şekli (ör. birkaç parçadan oluşmuş bir figür) İPUCU ya da destekle parçalarına ayırır: siz &quot;Burada bir kare görebilir misin?&quot; diye yol gösterince doğru sınırı bulur. Tek başına tüm ayrıştırmayı henüz kuramaz ama yönlendirme ile bütünü anlamlı parçalara çözer.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Ayrıştırma burada görünür çizgilerin ötesine geçer: çocuk artık ÇİZGİSİZ bir bütünde gizli parçaları, ama henüz yalnız yardımla, görmeye başlar. İpucu (&quot;şurada hangi şekil saklı?&quot;) ona zihinsel bölme çizgileri çekmeyi öğretir. Bu, ileride bağımsız (imgelemle) ayrıştırmanın köprüsüdür. Desteği kademeli azaltın: önce parçayı gösterin, sonra yalnız işaret edin, en son yalnız sorun. &quot;Bu büyük şekil hangi tanıdık parçalardan oluşuyor?&quot; sorusu anahtardır.</p></div>
         <div class="act">
@@ -484,7 +482,7 @@
       <div class="lv-num" style="--c:#7c3aed">8</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#7c3aed">6–8 yaş</span>
+          <span class="age-pill" style="--c:#7c3aed">6–7 yaş</span>
           
         </div>
         <h3>Kurduğu Birimi Tekrarlayan</h3>
@@ -492,7 +490,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> &quot;Şekillerden yapılmış şekil&quot; birimlerini BİLEREK kurar ve çoğaltır; bunları hem birçok küçük şekil hem TEK büyük şekil olarak görür; deseni döşemeye (kaplamaya) doğru sürdürebilir.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Birimlerin birimlerini (başka şekillerden yapılmış şekilleri) bilinçli olarak kurar ve çoğaltır; her birini hem birçok küçük şekil hem de tek bir büyük şekil olarak anlar. Bir şekil örüntüsünü kaplamaya (döşemeye) götürecek biçimde sürdürebilir.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk birkaç şekilden yapılma bir BİRİMİ (ör. kare + üçgen = &quot;ok&quot;, ya da iki yamuktan bir altıgen) tek bir blok gibi alıp tekrar tekrar dizerek bir desen/döşeme kurar: &quot;Şunu bir daha, bir daha yapayım&quot; der. Bileşik şekli artık tek parça gibi düşünür ve onunla örüntü üretir.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu kritik bir soyutlamadır: çocuk birden çok parçadan oluşan bir bütünü TEK BİR BİRİM olarak görür ve onu yineler. Bu &quot;birimleme&quot;, sayıda onluk demetlerini (10'u bir birim sayma) ve ileride alan/çarpma örüntülerini düşünmenin geometrik karşılığıdır. Bileşik birimi önce birlikte kurun, sonra &quot;Aynısından bir tane daha&quot; diyerek kopyalatın; &quot;kaç tane bileşik kullandın?&quot; diye birim sayısını saydırın. Döşemede birimin yönünün korunmasına dikkat edin.</p></div>
         <div class="act">
@@ -521,7 +519,7 @@
       <div class="lv-num" style="--c:#7c3aed">9</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#7c3aed">6–8 yaş</span>
+          <span class="age-pill" style="--c:#7c3aed">6–7 yaş</span>
           
         </div>
         <h3>İmgelemle Şekli Parçalarına Ayıran</h3>
@@ -529,7 +527,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Şekilleri, KENDİ ürettiği imgelemle (çizgi desteği olmadan) esnek biçimde parçalarına ayırır.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Şekilleri, kendi ürettiği imgelemi kullanarak esnek biçimde parçalarına ayırır; yani ayırma biçimini bilinçli olarak çocuğun kendisi belirler.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk bir şekle bakarak, ELİYLE denemeden, onu zihninde parçalara ayırır: &quot;Bu altıgeni iki yamuğa, ya da altı üçgene bölebilirim&quot; diye birden çok ayrıştırmayı kafadan söyler. Model ya da çizgi olmadan, esnek biçimde &quot;içinde ne var&quot; görebilir.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Burada ayrıştırma tamamen ZİHİNSELLEŞİR: çocuk artık fiziksel destek olmadan, bir şekli içsel olarak çeşitli parça takımlarına çözebilir — üstelik tek bir yolla değil, ESNEK biçimde birden çok yolla. Bu zihinsel görüntüleme (imgelem), uzamsal akıl yürütmenin olgun bir göstergesidir ve alan/kesir/çarpma için güçlü bir araçtır. &quot;Gözünü kapat, bu şekli kafanda parçalara ayır — kaç farklı yol buldun?&quot; diye düşündürün; cevabını sonra parçalarla doğrulatın. Tek yol yetmez; çoklu ayrıştırmayı teşvik edin.</p></div>
         <div class="act">
@@ -558,7 +556,7 @@
       <div class="lv-num" style="--c:#7c3aed">10</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#7c3aed">8–9 yaş</span>
+          <span class="age-pill" style="--c:#7c3aed">8 yaş</span>
           
         </div>
         <h3>Birimden Birim Kuran</h3>
@@ -566,7 +564,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> BİLİNÇLE kurduğu &quot;birimlerin birimi&quot; yapılarını inşa eder ve uygular; örneğin bilinçli kurulmuş bileşik birimle döşeme (kaplama) oluşturur.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Birimlerin birimlerini (başka şekillerden yapılmış şekilleri) kurar ve uygular. Örneğin uzamsal örüntüler oluştururken örüntü etkinliğini, tanıdığı ve bilinçle kurduğu yeni bir birim şekille (birimlerin birimiyle) kaplama oluşturacak biçimde genişletir.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk birkaç şekilden yapılma bir birimi (ör. 6 üçgenden bir altıgen) kurup, sonra bu altıgenleri de bir araya getirerek daha büyük bir bütün (bir bal peteği döşemesi) oluşturur. Yani BİRİMİN BİRİMİYLE düşünür: küçük parçalar → birim → birimlerden oluşan üst-birim. Aynı anda iki düzeyde yapı kurar.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, şekil oluşturmanın en üst düzeyidir: birim-üstü birimlerle (&quot;birimlerin birimleri&quot;) oluşturma. Çocuk hiyerarşik bir yapı kurar — parça, parçalardan birim, birimlerden döşeme — ve bu düzeyler arasında esnekçe gezinir. Bu, basamak değerindeki &quot;on onluk = bir yüzlük&quot; yapısının ve çarpımsal alanın geometrik kardeşidir. &quot;Önce küçük birimini kur, sonra o birimlerden büyük deseni yap&quot; diye iki katmanı ayrı ayrı konuşturun; &quot;kaç üçgen bir altıgen, kaç altıgen bütün desen?&quot; diye katmanları ilişkilendirin.</p></div>
         <div class="act">
@@ -595,7 +593,7 @@
       <div class="lv-num" style="--c:#7c3aed">11</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#7c3aed">8–10 yaş</span>
+          <span class="age-pill" style="--c:#7c3aed">8 yaş</span>
           
         </div>
         <h3>Katman Katman Parçalara Ayıran</h3>
@@ -603,7 +601,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Kendileri de ayrışım olan şekilleri PLANLI ayrışımlarla esnekçe parçalara ayırır (parçaların parçaları).</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Şekilleri, kendi ürettiği imgelemi ve kendileri de birer ayrıştırma olan şekillerin planlı ayrıştırmalarını kullanarak esnek biçimde parçalarına ayırır.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk karmaşık bir döşemeye/desene bakıp onu ÜST düzeyde çözer: &quot;Bu desen altıgenlerden yapılmış; her altıgen de altı üçgenden&quot; diyerek hem büyük birimleri hem onların alt-parçalarını aynı anda görür. Bütünü, birimlerin birimi olarak ayrıştırır — iki katmanlı bir çözümleme yapar.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, ayrıştırmanın en olgun hâli ve yörüngenin doruğudur: çocuk karmaşık bir bütünü hiyerarşik olarak — önce büyük birimlere, sonra onları alt-parçalarına — çözer. Bu çift-katmanlı çözümleme, ileri uzamsal-yapısal düşünmenin, alan ölçmenin ve çarpımsal akıl yürütmenin geometrik zirvesidir. &quot;Önce büyük parçaları gör, sonra her birini kendi içinde parçala&quot; diye katmanlı düşündürün; &quot;toplam kaç küçük parça var?&quot; diye birim sayısını birim-başına alt-parça ile çarptırarak çarpımsal bağı kurun. Üst düzeyi atlayıp doğrudan en küçük parçaları sayarsa, hiyerarşiyi görmeye yönlendirin.</p></div>
         <div class="act">
@@ -632,7 +630,7 @@
 
 <footer>
   <div class="wrap">
-    <b style="color:#d8e6d8">Her Çocuk Matematik Öğrenebilir</b> · DokunSay — Şekil Birleştirme (2B) yörüngesi ·
+    <b style="color:#d8e6d8">Her Çocuk Matematik Öğrenebilir</b> · DokunSay — Şekil Birleştirme (İki Boyutlu) yörüngesi ·
     <a href="/yorunge/">Tüm yörüngeler</a> · <a href="/">Araçlar</a>
     <p class="foot-note">Düzey adları ve sıralaması Clements &amp; Sarama öğrenme yörüngeleri ([LT]², learningtrajectories.org) çerçevesinden uyarlanmıştır. Yaş bantları olasılıksal alt-sınır niteliğinde illüstratiftir; tanı eşiği değildir. Çocuğu sınıfına göre değil, bulunduğu basamağa göre destekleyin.</p>
   </div>

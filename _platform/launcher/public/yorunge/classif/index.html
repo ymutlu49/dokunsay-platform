@@ -40,16 +40,14 @@
 .dsh-green{color:#d7f0d9;background:rgba(46,125,50,.22);border-color:rgba(46,125,50,.5)}
 .dsh-teal{color:#bfe8e4;background:rgba(13,148,136,.2);border-color:rgba(13,148,136,.5)}
 .dsh-pill.is-active{box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.45);filter:brightness(1.12)}
-.dsh .hcmo-auth{display:inline-flex;align-items:center;gap:6px}
-.dsh .hcmo-auth:empty{display:none}
-.dsh .hcmo-auth a{display:inline-flex;align-items:center;gap:5px;padding:8px 14px;border-radius:999px;font-weight:700;font-size:.86rem;text-decoration:none;white-space:nowrap;color:#fde6c0;background:rgba(245,158,11,.18);border:1px solid rgba(245,158,11,.45);transition:background .15s}
-.dsh .hcmo-auth a:hover{background:rgba(245,158,11,.3)}
-.dsh .hcmo-auth a#hcmo-stu{color:#cfe8ff;background:rgba(96,165,250,.16);border-color:rgba(96,165,250,.4)}
-.dsh .hcmo-auth a#hcmo-stu:hover{background:rgba(96,165,250,.28)}
-.dsh .hcmo-auth>span{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:.86rem;color:#e8eefc}
-.dsh .hcmo-auth .nm{color:#fde6c0}
-.dsh .hcmo-auth #hcmo-out{cursor:pointer;border:0;border-radius:999px;background:#f59e0b;color:#3a2606;font-weight:800;font-size:.8rem;padding:7px 13px;font-family:inherit}
-.dsh .hcmo-auth #hcmo-out:hover{filter:brightness(1.07)}
+.dsh .numap-auth{display:inline-flex;align-items:center;gap:6px}
+.dsh .numap-auth:empty{display:none}
+.dsh .numap-auth a{display:inline-flex;align-items:center;gap:5px;padding:8px 14px;border-radius:999px;font-weight:700;font-size:.86rem;text-decoration:none;white-space:nowrap;color:#d7f0d9;background:rgba(46,125,50,.22);border:1px solid rgba(46,125,50,.5);transition:background .15s;cursor:pointer}
+.dsh .numap-auth a:hover{background:rgba(46,125,50,.34)}
+.dsh .numap-auth>span{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:.86rem;color:#e8efe9}
+.dsh .numap-auth .nm{color:#d7f0d9}
+.dsh .numap-auth #numap-out{cursor:pointer;border:0;border-radius:999px;background:#2E7D32;color:#fff;font-weight:800;font-size:.8rem;padding:7px 13px;font-family:inherit}
+.dsh .numap-auth #numap-out:hover{filter:brightness(1.1)}
 @media (max-width:760px){.dsh{padding:10px 15px}.dsh-pill{padding:7px 11px;font-size:.8rem}.dsh-name{font-size:18px}}
 @media print{.dsh{display:none}}
 
@@ -181,7 +179,7 @@
 </style>
 </head>
 <body data-key="classif">
-<header class="dsh"><div class="dsh-row"><a class="dsh-brand" href="/" aria-label="DokunSay ana sayfa"><span class="dsh-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" aria-hidden="true"><line x1="28" y1="27" x2="72" y2="27" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="28" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="72" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><circle cx="28" cy="27" r="21" fill="#2E7D32"/><circle cx="20.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="28" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="35.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="72" cy="27" r="21" fill="#0d9488"/><text x="72" y="32" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="14" fill="#fff">üç</text><circle cx="50" cy="73" r="21" fill="#1B5E20"/><text x="50" y="82" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="27" fill="#fff">3</text></svg></span><span class="dsh-titles"><span class="dsh-name">DokunSay</span><span class="dsh-sub">Matematik Öğretim Araçları Platformu</span></span></a><nav class="dsh-nav" aria-label="Site gezinme"><a class="dsh-pill dsh-amber is-active" href="/yorunge/" aria-current="page">🧭 Öğrenme Yörüngeleri</a><a class="dsh-pill dsh-green" href="/rehber/">📘 Müdahale Rehberi</a><a class="dsh-pill dsh-teal" href="/#tools-section">🛠️ Araçlar</a><span id="hcmoAuth" class="hcmo-auth"></span></nav></div></header>
+<header class="dsh"><div class="dsh-row"><a class="dsh-brand" href="/" aria-label="DokunSay ana sayfa"><span class="dsh-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" aria-hidden="true"><line x1="28" y1="27" x2="72" y2="27" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="28" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="72" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><circle cx="28" cy="27" r="21" fill="#2E7D32"/><circle cx="20.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="28" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="35.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="72" cy="27" r="21" fill="#0d9488"/><text x="72" y="32" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="14" fill="#fff">üç</text><circle cx="50" cy="73" r="21" fill="#1B5E20"/><text x="50" y="82" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="27" fill="#fff">3</text></svg></span><span class="dsh-titles"><span class="dsh-name">DokunSay</span><span class="dsh-sub">Matematik Öğretim Araçları Platformu</span></span></a><nav class="dsh-nav" aria-label="Site gezinme"><a class="dsh-pill dsh-amber is-active" href="/yorunge/" aria-current="page">🧭 Öğrenme Yörüngeleri</a><a class="dsh-pill dsh-green" href="/rehber/">📘 Müdahale Rehberi</a><a class="dsh-pill dsh-teal" href="/#tools-section">🛠️ Araçlar</a><span id="numapAuth" class="numap-auth"></span></nav></div></header>
 
 <section class="hero">
   <div class="wrap">
@@ -194,7 +192,7 @@
         <p class="lede">Gruplama, veri okuma, grafik. <span class="ltname">(Classification &amp; Data)</span></p>
         <div class="hero-meta">
           <span class="hm">📊 11 basamak</span>
-          <span class="hm">🎂 0–11 yaş</span>
+          <span class="hm">🎂 0–8 yaş</span>
           <span class="hm">⚠ 1 darboğaz</span>
           <span class="hm">🎯 Profil alanı · gözlem</span>
         </div>
@@ -215,7 +213,7 @@
     <aside class="side">
     <div class="side-in">
       <div class="side-head">Düzeyler <span>11</span></div>
-      <ol class="side-list"><li><a href="#lv-0" data-i="0"><span class="s-num" style="--c:#2563eb">1</span><span class="s-txt"><b>Benzerlik Sezgisi: Temeller</b><small>0–3 yaş</small></span></a></li><li><a href="#lv-1" data-i="1"><span class="s-num" style="--c:#2563eb">2</span><span class="s-txt"><b>Benzer/Farklı Grup Oluşturan</b><small>2–3 yaş</small></span></a></li><li><a href="#lv-2" data-i="2"><span class="s-num" style="--c:#2563eb">3</span><span class="s-txt"><b>Basit Gruplayan</b><small>3–4 yaş</small></span></a></li><li><a href="#lv-3" data-i="3"><span class="s-num" style="--c:#2563eb">4</span><span class="s-txt"><b>Benzer Özelliklere Göre Gruplayan</b><small>5–6 yaş · ⚠ darboğaz</small></span></a></li><li><a href="#lv-4" data-i="4"><span class="s-num" style="--c:#2563eb">5</span><span class="s-txt"><b>Tutarlı ve Esnek Sınıflayan</b><small>6–7 yaş</small></span></a></li><li><a href="#lv-5" data-i="5"><span class="s-num" style="--c:#2563eb">6</span><span class="s-txt"><b>Tek Tek Verileri Okuyan</b><small>7–8 yaş</small></span></a></li><li><a href="#lv-6" data-i="6"><span class="s-num" style="--c:#2563eb">7</span><span class="s-txt"><b>Veriyi Sınıflayan</b><small>8–9 yaş</small></span></a></li><li><a href="#lv-7" data-i="7"><span class="s-num" style="--c:#2563eb">8</span><span class="s-txt"><b>Çoklu Özelliğe Göre Sınıflayan</b><small>8–9 yaş</small></span></a></li><li><a href="#lv-8" data-i="8"><span class="s-num" style="--c:#2563eb">9</span><span class="s-txt"><b>Veriye Bütün Olarak Bakan</b><small>8–10 yaş</small></span></a></li><li><a href="#lv-9" data-i="9"><span class="s-num" style="--c:#2563eb">10</span><span class="s-txt"><b>Hiyerarşik Sınıflayan</b><small>8–10 yaş</small></span></a></li><li><a href="#lv-10" data-i="10"><span class="s-num" style="--c:#2563eb">11</span><span class="s-txt"><b>Veriyi Temsil Eden</b><small>8–11 yaş</small></span></a></li></ol>
+      <ol class="side-list"><li><a href="#lv-0" data-i="0"><span class="s-num" style="--c:#2563eb">1</span><span class="s-txt"><b>Benzerlik Sezgisi: Temeller</b><small>0–1 yaş</small></span></a></li><li><a href="#lv-1" data-i="1"><span class="s-num" style="--c:#2563eb">2</span><span class="s-txt"><b>Benzer/Farklı Grup Oluşturan</b><small>1–2 yaş</small></span></a></li><li><a href="#lv-2" data-i="2"><span class="s-num" style="--c:#2563eb">3</span><span class="s-txt"><b>Basit Gruplayan</b><small>3 yaş</small></span></a></li><li><a href="#lv-3" data-i="3"><span class="s-num" style="--c:#2563eb">4</span><span class="s-txt"><b>Benzer Özelliklere Göre Gruplayan</b><small>4 yaş · ⚠ darboğaz</small></span></a></li><li><a href="#lv-4" data-i="4"><span class="s-num" style="--c:#2563eb">5</span><span class="s-txt"><b>Tutarlı ve Esnek Sınıflayan</b><small>4 yaş</small></span></a></li><li><a href="#lv-5" data-i="5"><span class="s-num" style="--c:#2563eb">6</span><span class="s-txt"><b>Tek Tek Verileri Okuyan</b><small>4 yaş</small></span></a></li><li><a href="#lv-6" data-i="6"><span class="s-num" style="--c:#2563eb">7</span><span class="s-txt"><b>Veriyi Sınıflayan</b><small>4–6 yaş</small></span></a></li><li><a href="#lv-7" data-i="7"><span class="s-num" style="--c:#2563eb">8</span><span class="s-txt"><b>Çoklu Özelliğe Göre Sınıflayan</b><small>6 yaş</small></span></a></li><li><a href="#lv-8" data-i="8"><span class="s-num" style="--c:#2563eb">9</span><span class="s-txt"><b>Veriye Bütün Olarak Bakan</b><small>7–8 yaş</small></span></a></li><li><a href="#lv-9" data-i="9"><span class="s-num" style="--c:#2563eb">10</span><span class="s-txt"><b>Hiyerarşik Sınıflayan</b><small>8 yaş</small></span></a></li><li><a href="#lv-10" data-i="10"><span class="s-num" style="--c:#2563eb">11</span><span class="s-txt"><b>Veriyi Temsil Eden</b><small>8 yaş</small></span></a></li></ol>
     </div>
   </aside>
     <div class="levels">
@@ -225,7 +223,7 @@
       <div class="lv-num" style="--c:#2563eb">1</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2563eb">0–3 yaş</span>
+          <span class="age-pill" style="--c:#2563eb">0–1 yaş</span>
           
         </div>
         <h3>Benzerlik Sezgisi: Temeller</h3>
@@ -233,7 +231,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Nesne ve durumları sezgisel olarak &quot;benzer&quot; diye tanır (yaşamın ilk haftalarından itibaren). Yaklaşık 6 ayda farklı nesneleri, 12 ay civarında benzer nesneleri bir araya getirmeye başlar.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Nesneleri ya da durumları bir yönüyle benzer olarak sezgisel olarak tanır (emilecek olan ve olmayan nesneler, 2 hafta). Nesneleri önce farklı olanları (6 ay), sonra benzer olanları (12 ay) bir araya koyar.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk oyuncak kutusunu karıştırırken aynı renk ya da aynı biçimdeki nesnelere yönelir: iki özdeş arabayı yan yana getirir ya da bir bloğu eşine değdirir. Henüz &quot;benzer&quot; diye adlandıramaz ama benzeyenleri sezgisel olarak buluşturur; &quot;bu da onun gibi&quot; duygusunu yaşar.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, sınıflamanın dile dökülmemiş ilk tohumudur: çocuk henüz ölçüt seçemez ama benzerliği ve farklılığı &quot;hisseder&quot;. Amaç gruplamak değil, benzeyen-benzemeyen karşıtlığına dikkati uyandırmaktır. Özdeş nesne çiftlerini (iki aynı pul, iki aynı kaşık) yan yana göstererek &quot;bak, bunlar aynı!&quot; deyin; sonraki tüm sınıflama ve veri düşüncesi bu örtük benzerlik sezgisine yaslanır.</p></div>
         <div class="act">
@@ -262,7 +260,7 @@
       <div class="lv-num" style="--c:#2563eb">2</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2563eb">2–3 yaş</span>
+          <span class="age-pill" style="--c:#2563eb">1–2 yaş</span>
           
         </div>
         <h3>Benzer/Farklı Grup Oluşturan</h3>
@@ -270,7 +268,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Yaklaşık 18 ayda özdeş nesnelerden kümeler oluşturur (diğerleri farklıdır); 2 yaş civarında bazı özelliklere göre sezgisel benzerlik gruplaması yapar — gruplama karışık ve tutarsız olabilir.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> 18 aylıkken, her kümedeki nesnelerin özdeş, diğer kümelerdekilerin farklı olduğu kümeler oluşturur; 2 yaşında bazı niteliklerde benzer (karışık ve tutarsız olabilir) ama özdeş olmak zorunda olmayan nesnelerle sezgisel olarak gruplar oluşturur.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>&quot;Benzeyenleri bir araya koy&quot; dediğinizde çocuk karışık nesneleri kabaca ayırır: kırmızıları bir yana, mavileri bir yana ya da topları bir öbeğe toplar. Ölçütü kendisi seçer ve bu ölçüt oyun ortasında değişebilir (önce renge, sonra biçime kayabilir).</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Tanımaktan YAPMAYA geçiş: çocuk artık benzerliği yalnız sezmiyor, benzeyenleri elleriyle bir araya getiriyor. Bu düzeyde ölçütün tutarlı olması beklenmez — bugün renge, az sonra biçime göre öbekleyebilir; bu gelişimsel olarak normaldir. Çocuğun seçtiği ölçütü adlandırın (&quot;bunları renklerine göre topladın&quot;) ki ayrım bilinçli bir ada kavuşsun. Henüz &quot;verilen&quot; bir ölçüte uyması istenmez — kendi grubunu kendi mantığıyla kurar.</p></div>
         <div class="act">
@@ -299,7 +297,7 @@
       <div class="lv-num" style="--c:#2563eb">3</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2563eb">3–4 yaş</span>
+          <span class="age-pill" style="--c:#2563eb">3 yaş</span>
           
         </div>
         <h3>Basit Gruplayan</h3>
@@ -307,7 +305,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Yetişkin desteğiyle, sözel kurala göre gruplama yapar (&quot;Kırmızılar bu kutuya&quot; gibi yönergeleri izler). Hatalı yapılmış basit bir gruplamayı düzeltebilir.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Bir yetişkinin desteklediği sözel sınıflama kurallarını izler. (Bu sınıflamalar değişen ölçütlerle yapılabilir; yine de birimleştirme süreci yoluyla sayıda temel bir rol oynarlar.) Hatalı basit bir sınıflamayı “düzeltebilir”.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>&quot;Bunları renklerine göre ayır&quot; dediğinizde çocuk TEK bir özelliği (rengi) seçip tüm nesneleri ona göre öbekler: kırmızılar bir halkaya, maviler ötekine. Bir oyun boyunca aynı ölçüde tutarlı kalır; biçim ya da boy değişse bile rengi temel alır.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Burada sınıflama gerçek bir ölçüte oturur: çocuk artık tek bir özelliği bilinçle seçip onu tüm kümeye tutarlı uygular. Ölçütü genellikle KENDİSİ belirler — &quot;renge göre&quot; dediğinizde renge göre ayırır, ama hangi rengin hangi grup olacağına kendi karar verebilir. Bu, verilen bir kategoriye tutarlı uyma darboğazının (sonraki düzey) hazırlığıdır. Bir ölçütü bitirip ikinciye geçmek için &quot;şimdi de biçime göre dene&quot; diyerek esnekliği tohumlayın.</p></div>
         <div class="act">
@@ -336,7 +334,7 @@
       <div class="lv-num" style="--c:#2563eb">4</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2563eb">5–6 yaş</span>
+          <span class="age-pill" style="--c:#2563eb">4 yaş</span>
           <span class="bn-pill">⚠ Darboğaz · kritik geçiş</span>
         </div>
         <h3>Benzer Özelliklere Göre Gruplayan</h3>
@@ -344,7 +342,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Açık bir özelliğe göre gruplar; ancak gruplama sırasında özellik değiştirebilir (renkle başlayıp şekle kayma). Sonuç yetişkin gruplamasına benzeyebilir; dayanağı genel benzerlik olabilir.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Nesneleri açık bir niteliğe göre sınıflar (ancak sınıflama sırasında niteliği değiştirmeye karar verebilir). Sonuç yetişkin kategorilerini yansıtıyor gibi görünebilir; ancak çoğu zaman genel benzerlik gibi farklı bir temeli vardır.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>&quot;Hepsi kırmızı olanları bul&quot; gibi VERİLEN bir özelliğe göre, dikkatini dağıtan başka özellikler arasından (büyük-küçük, yuvarlak-köşeli) yalnız kırmızıları tutarlı seçer. Henüz oturmamışsa ölçüt ortada kayar: birkaç kırmızıyı alır, sonra hoşuna giden bir maviyi de katar ya da &quot;kırmızı&quot;yı bırakıp biçime göre toplamaya başlar.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu yörüngenin ilk gerçek darboğazıdır: çocuğun KENDİ seçtiği değil, DIŞARIDAN VERİLEN bir ölçüte tüm küme boyunca tutarlı bağlı kalması gerekir. En sık güçlük, dikkat dağıtıcı özelliklerin (boy, biçim) çocuğu ölçütten saptırması — yani &quot;kırmızı&quot; kuralını unutup başka bir benzerliğe kaymasıdır. Bu tutarlılıktaki süreğen güçlük, matematik öğrenme güçlüğü (diskalkuli) ve yürütücü-işlev açısından dikkat edilesi bir işaret olabilir; çünkü verilen bir kuralı bellekte tutup karışık girdiye uygulamak, hem veri analizinin hem kural-temelli akıl yürütmenin önkoşuludur. Ölçütü sürekli sesli hatırlatın (&quot;yalnız KIRMIZI; bu kırmızı mı?&quot;), seçim alanını bir sınıflama halkasıyla çevreleyin ki &quot;içeri giren&quot; ölçütü taşısın; her nesne için &quot;bu kurala uyuyor mu?&quot; diye tek tek denetletin.</p></div>
         <div class="act">
@@ -373,7 +371,7 @@
       <div class="lv-num" style="--c:#2563eb">5</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2563eb">6–7 yaş</span>
+          <span class="age-pill" style="--c:#2563eb">4 yaş</span>
           
         </div>
         <h3>Tutarlı ve Esnek Sınıflayan</h3>
@@ -381,7 +379,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Verilen ya da kendi belirlediği tek bir özelliğe göre tutarlı ve eksiksiz sınıflar; ardından aynı nesneleri farklı bir özelliğe göre yeniden sınıflayabilir. &quot;Bazı&quot; ve &quot;hepsi&quot; sözcüklerini kullanır.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Tek bir niteliğe göre tutarlı biçimde sınıflar ve farklı niteliklere göre yeniden sınıflar. Verilen ya da kendi bulduğu bir niteliğe göre tutarlı ve eksiksiz biçimde sınıflar; “bazı” ve “tüm” terimlerini kullanır.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Bir kümeyi renge göre ayırdıktan sonra &quot;şimdi de şekline göre ayır&quot; dediğinizde, çocuk önceki ölçütü bırakıp aynı nesneleri YENİ bir ölçüte göre baştan öbekler — üstelik bunu zorlanmadan, eski gruplamaya saplanmadan yapar. Aynı nesnelerin birden çok yolla sınıflanabileceğini kavrar: &quot;bunlar hem renkli hem yuvarlak, ikisinden de ayrılabilir.&quot;</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Esnek sınıflama, tutarlı sınıflamanın bir üst basamağıdır: çocuk yalnız bir ölçüde sadık kalmakla kalmaz, İSTENDİĞİNDE ölçütü değiştirip aynı kümeyi yeniden düzenleyebilir (zihinsel esneklik / yürütücü işlev). Sık görülen takılma, ilk gruplamaya &quot;yapışmak&quot; — yeni ölçüt verildiğinde eski öbekleri korumaya çalışmaktır. Aynı nesneleri önce renge, sonra biçime, sonra boya göre ayırtarak &quot;bir şey birden çok türlü gruplanabilir&quot; içgörüsünü pekiştirin; &quot;bu sefer neye göre ayırıyoruz?&quot; diye ölçüt geçişini her seferinde dile döktürün. Bu, çoklu özellik ve hiyerarşik sınıflamanın (ileri düzeyler) zeminidir.</p></div>
         <div class="act">
@@ -410,7 +408,7 @@
       <div class="lv-num" style="--c:#2563eb">6</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2563eb">7–8 yaş</span>
+          <span class="age-pill" style="--c:#2563eb">4 yaş</span>
           
         </div>
         <h3>Tek Tek Verileri Okuyan</h3>
@@ -418,7 +416,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Bir değeri tekil bir vakayla ilişkilendirir (&quot;Ali’nin kulesi 5 küp&quot;); sayısal veriyi en büyük/en küçük vakayı bulmak için kullanır. (Bu düzeyden önce veri, çocuk için yalnızca yaşantının &quot;hatırası&quot;dır.)</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Bir değeri tek bir durumla ilişkilendirir. En büyük ve en küçük durumları belirlemek için sayısal veri kullanır. Bu düzeyden önce çocuklar, veri kayıtlarının bütün olayı işaret ettiği “işaretçiler” olabilir (“En sevdiğimiz renkleri konuştuk”); veriyi, bir şey yaptıklarını hatırlamak için parmağa bağlanan ip gibi kullanırlar.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Halkalara ayrılmış bir nesne grubunu ya da basit bir resim grafiğini gösterip &quot;En çok hangisinden var?&quot; dediğinizde çocuk grupları karşılaştırıp doğru yanıtı verir: &quot;en çok mavi var, en az sarı.&quot; Hazır düzenlenmiş bir veri durumunu OKUR — gruplar arası çoklukları görüp &quot;daha çok / daha az / eşit&quot; diye yorumlar.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Burada sınıflama VERİ OKUMAYA bağlanır: çocuk artık yalnız öbek kurmuyor, kurulmuş öbekleri bir bilgi kaynağı gibi okuyor (&quot;hangisi daha çok?&quot;). Bu, veri analizinin ilk adımıdır — düzenlenmiş veriden anlam çıkarmak. Nesne öbeklerini tek tek saydırmak yerine, eşit aralıklı dizip uzunlukları karşılaştırtın (resim grafiği mantığı); böylece &quot;daha uzun sıra = daha çok&quot; görsel sezgisi yerleşir. &quot;En çok, en az, kaç fazla?&quot; sorularıyla veriyi konuşturun. Bu, verinin toplanması ve grafiklenmesine (ileri düzeyler) köprüdür.</p></div>
         <div class="act">
@@ -447,7 +445,7 @@
       <div class="lv-num" style="--c:#2563eb">7</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2563eb">8–9 yaş</span>
+          <span class="age-pill" style="--c:#2563eb">4–6 yaş</span>
           
         </div>
         <h3>Veriyi Sınıflayan</h3>
@@ -455,7 +453,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Benzer değerli vakaları aynı kategori olarak ele alır; kategori sıklıklarını karşılaştırır (en çok / en az tercih edilen vaka türü). İki basit grafiği görsel olarak karşılaştırabilir.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Benzer değerlere sahip durumları aynı sayar. Bunu kategori sıklıklarını karşılaştırmak için kullanır (en çok ve en az yaygın durum türleri). İki grafiği görsel olarak karşılaştırır.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk karışık nesneleri kendisi sınıflara ayırır VE her gruptaki sayıyı söyler: &quot;kırmızılardan 5, mavilerden 3, sarılardan 2 tane var.&quot; Yani sınıflamayı sayısal veriye dönüştürür — yalnız öbekleri kurmaz, her öbeği niceler ve &quot;hangi grup kaç&quot; tablosunu üretir.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu düzeyde sınıflama ile sayma birleşir: çocuk grupları kurup her birinin çokluğunu belirleyerek HAM VERİ üretir. Bu, betimsel veri analizinin çekirdeğidir — &quot;neye göre ayırdık&quot; (kategori) + &quot;her kategoride kaç var&quot; (frekans). Her grubu saydırıp sayısını bir etikete/çeteleye yazdırın ki kategori-sayı eşlemesi somutlaşsın. &quot;En kalabalık grup hangisi, neden?&quot; diye veriyi yorumlatın. Bu, veri toplama ve grafikleme düzeylerinin doğrudan temelidir; &quot;=&quot; değil ama &quot;kaç&quot; ilişkisini sınıf yapısına bağlar.</p></div>
         <div class="act">
@@ -484,7 +482,7 @@
       <div class="lv-num" style="--c:#2563eb">8</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2563eb">8–9 yaş</span>
+          <span class="age-pill" style="--c:#2563eb">6 yaş</span>
           
         </div>
         <h3>Çoklu Özelliğe Göre Sınıflayan</h3>
@@ -492,7 +490,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Nesneleri tek bir sınıflamada birden fazla özelliği birlikte gözeterek sınıflar (örn. hem renk hem boyut: &quot;büyük kırmızılar&quot;).</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Nesneleri tek bir sınıflamada birden çok niteliğe göre sınıflar.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>&quot;Hem kırmızı HEM yuvarlak olanları bul&quot; dediğinizde çocuk İKİ özelliği birden gözeterek seçer: yalnız kırmızı yuvarlakları alır, kırmızı ama köşeli ya da yuvarlak ama mavi olanları dışarıda bırakır. İki ölçütün KESİŞİMİNİ kurar; &quot;ikisi de doğru olmalı&quot; mantığını uygular.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Çoklu özellik sınıflaması, tek ölçütten iki ölçütün AYNI ANDA tutulmasına geçiştir — bu, mantıksal &quot;ve&quot; (kesişim) düşüncesidir ve yürütücü-işlev yükü yüksektir. Sık yanılgı, çocuğun tek ölçüde gevşemesi: &quot;kırmızı&quot; olan her şeyi (yuvarlak olmasa da) ya da &quot;yuvarlak&quot; olan her şeyi almasıdır. İki çemberli bir Venn düzeni bu kesişimi görselleştirir: bir çember &quot;kırmızılar&quot;, öteki &quot;yuvarlaklar&quot;, ortak alan &quot;hem-hem&quot;. Çocuğa her nesne için &quot;kırmızı MI? yuvarlak MI? ikisi de mi?&quot; diye iki ayrı denetim yaptırın. Bu, hiyerarşik sınıflama ve çok değişkenli veri okumanın hazırlığıdır.</p></div>
         <div class="act">
@@ -521,7 +519,7 @@
       <div class="lv-num" style="--c:#2563eb">9</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2563eb">8–10 yaş</span>
+          <span class="age-pill" style="--c:#2563eb">7–8 yaş</span>
           
         </div>
         <h3>Veriye Bütün Olarak Bakan</h3>
@@ -529,7 +527,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Soyut özelliklere göre (işlev/kavram) sınıflar; veri kümesine bütün olarak bakar: göreli sıklık, verinin &quot;biçimi&quot;, merkez. Beklenti (ortalama/olasılık) ve değişkenlik (&quot;yayılım&quot;) sezgisi başlar; modu (en sık değeri) ve aralıkları görür.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Algısal olarak farklı olabilen nesneleri işlev gibi daha soyut ya da kavramsal niteliklere göre sınıflar. Veri kümesinin bütününün özelliklerine odaklanır. Bunu göreli sıklığı ve yoğunluğu (dağılımın biçimini) ve konumu (merkezleri) betimlemek için kullanır. Beklenti (ortalamalar ve olasılıklar) ve değişkenlik (değerlerin “yayılımı”) kavramlarını anlamaya başlar. Verideki aralıkları ya da modu (en sık görülen sayı ya da sayı aralığı) görür. Sonunda göreli sıklıklar, yoğunluk (“biçim”) ve konum (ortalama gibi merkezler) dâhil veri kümesinin bütününün özelliklerine odaklanabilir.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk bir soruyu (ör. &quot;sınıfta en sevilen renk hangisi?&quot;) yanıtlamak için arkadaşlarından veri TOPLAR: herkese sorar, her yanıtı bir çeteleyle işaretler ve sonunda &quot;maviyi 6 kişi, kırmızıyı 4 kişi sevmiş&quot; diye özetler. Veriyi yalnız okumakla kalmaz, kendisi üretir, kaydeder ve toplar.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu düzeyde çocuk veri döngüsünün üretim ucuna geçer: bir soru belirleyip yanıtları sistemli toplamak ve çeteleyle kaydetmek (her yanıt = bir işaret, beşli demetlerle gruplama). Sık güçlük, kaydı kaçırmak ya da aynı yanıtı iki kez saymaktır — her yanıt verildiği anda işaretlenmelidir. Çeteleyi beşli demetler (üst-üste dört + çapraz) hâlinde tutturun ki sayım kolaylaşsın; topladıktan sonra &quot;toplam kaç kişiye sorduk?&quot; diye doğrulatın. Bu, anlamlı bir soruyu veriyle yanıtlamanın ilk tam deneyimidir ve grafiklemenin (sonraki düzey) hammaddesini kurar.</p></div>
         <div class="act">
@@ -558,7 +556,7 @@
       <div class="lv-num" style="--c:#2563eb">10</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2563eb">8–10 yaş</span>
+          <span class="age-pill" style="--c:#2563eb">8 yaş</span>
           
         </div>
         <h3>Hiyerarşik Sınıflayan</h3>
@@ -566,7 +564,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Kategorileri ve alt kategorileri hiyerarşik kapsayıcılıkla sınıflar (sınıf kapsayıcılığı); birden çok adlandırılmış/ilişkili özelliği kullanır ve bir nesnenin birden fazla gruba ait olabileceğini anlar.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Kategorileri ve alt kategorileri hiyerarşik kapsama ilişkisiyle sınıflar. Nitelikleri adlandırıp ilişkilendirerek ve nesnelerin birden çok gruba ait olabileceğini anlayarak birden çok niteliğe göre özenle sınıflar.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>&quot;Bütün kareler dikdörtgen midir?&quot; gibi bir kapsama sorusuna çocuk doğru yanıt verir ve gerekçelendirir: &quot;evet, çünkü karenin de dört dik açısı var, o da bir dikdörtgendir — ama her dikdörtgen kare değil.&quot; Bir sınıfın başka bir sınıfın İÇİNDE olabileceğini (alt-sınıf / üst-sınıf) kavrar; &quot;köpekler de hayvandır&quot; türü kapsama ilişkisini kurar.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Hiyerarşik sınıflama (sınıf-içinde-sınıf) bilişsel olarak zorlu bir adımdır: çocuğun bir nesneyi aynı anda hem dar bir sınıfın (kare) hem geniş bir sınıfın (dikdörtgen) üyesi olarak tutması gerekir — Piaget'nin klasik &quot;sınıf-kapsama&quot; görevi. Sık yanılgı, alt ve üst sınıfı karşıt sanmaktır: &quot;kare ayrı, dikdörtgen ayrı.&quot; İç içe sınıflama halkalarıyla (büyük halka = dikdörtgenler, içindeki küçük halka = kareler) kapsamayı görselleştirin; &quot;bütün kareler büyük halkanın da içinde mi?&quot; diye sordurun. &quot;Bütün A'lar B midir? Bütün B'ler A mıdır?&quot; çiftini ayrı ayrı yoklatın. Bu, mantıksal kapsama ve ileri geometrik sınıflamanın temelidir.</p></div>
         <div class="act">
@@ -595,7 +593,7 @@
       <div class="lv-num" style="--c:#2563eb">11</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2563eb">8–11 yaş</span>
+          <span class="age-pill" style="--c:#2563eb">8 yaş</span>
           
         </div>
         <h3>Veriyi Temsil Eden</h3>
@@ -603,7 +601,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Grafiklerin &quot;merkezini&quot; ve değişkenliğini/yayılımını gözetir; aynı büyüklükteki veri kümelerinin grafiklerini doğru karşılaştırır.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Grafiklerin “merkezini” ve değişkenliğini ya da yayılımını kavradığını gösterir. Aynı büyüklükteki veri kümelerinin grafiklerini doğru biçimde karşılaştırır.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk topladığı veriyi bir SÜTUN ya da RESİM grafiğine döker: her kategori için doğru yükseklikte sütun çizer/dizer, eksenleri etiketler ve grafiği okur (&quot;en uzun sütun mavi, demek en çok mavi seçilmiş&quot;). Ham çeteleyi görsel bir temsile çevirir ve temsilden geri anlam çıkarır.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu yörüngenin doruğudur: veri döngüsünün tamamlanması — soru → toplama → sınıflama → TEMSİL → yorum. Çocuk sayısal veriyi, çoklukları görsel uzunluğa eşleyen bir grafiğe (her birim = bir kutu/pul) çevirir. Kritik incelik, eşit aralık ve ortak taban çizgisidir: sütunlar aynı yerden başlamazsa karşılaştırma yanıltır. DokunSay Veri ızgarasında her yanıtı bir kutuya koydurarak &quot;birim = bir oy&quot; temsilini kurun; grafiği bitince mutlaka GERİ okutun (&quot;grafiğe bakınca en çok/en az ne, kaç fark var?&quot;). Burada sınıflama, sayma ve görsel temsil tam anlamıyla veri okuryazarlığında birleşir.</p></div>
         <div class="act">

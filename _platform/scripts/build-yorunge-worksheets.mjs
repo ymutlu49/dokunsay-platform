@@ -69,7 +69,8 @@ const STRAND_LABEL = Object.fromEntries(STRANDS.map((s) => [s.key, s.label]))
 const ICON = { sub: '👁️', count: '🔢', comp: '⚖️', add: '➕', compose: '🧩', multdiv: '✖️', frac: '🍕', pattern: '🔁', shape2d: '🔷', comp2d: '🧱', disembed: '🔍', shape3d: '🧊', comp3d: '📦', spviz: '🧠', sporient: '🧭', mlen: '📏', marea: '🟩', mvol: '🧴', mang: '📐', classif: '🗂️' }
 
 const ageBand = (lo, hi) => {
-  const a = Math.max(0, Math.round(lo / 12)), b = Math.round(hi / 12)
+  // LT_MASTER_TR: lo = yıl·12, hi = yıl·12+11 ("8 yaş" → 119 = 8+). Düzeyler kanonik etiketi (lv.a) taşır; bu yalnız yörünge aralığı/geri dönüş içindir.
+  const a = Math.max(0, Math.floor(lo / 12)), b = hi >= 119 ? 8 : Math.floor(hi / 12)
   return a === b ? `${b} yaş` : `${a}–${b} yaş`
 }
 
@@ -110,7 +111,7 @@ function sheetHTML(domain, i) {
     <div class="ws-eyebrow">${ICON[domain.key] || '•'} ${esc(STRAND_LABEL[domain.strand] || '')} · ${esc(domain.name)}</div>
     <h1 class="ws-title"><span class="ws-no">${i + 1}</span>${esc(lv.n)}</h1>
     <div class="ws-meta">
-      <span class="pill">${ageBand(lv.lo, lv.hi)}</span>
+      <span class="pill">${(lv.a || ageBand(lv.lo, lv.hi))}</span>
       <span class="pill">Düzey ${i + 1}/${domain.levels.length}</span>
       ${lv.b ? '<span class="pill warn">★ Kritik geçiş</span>' : ''}
       ${craBar(focus, color)}

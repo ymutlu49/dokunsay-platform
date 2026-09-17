@@ -77,7 +77,8 @@ const esc = (s) => String(s == null ? '' : s)
 
 // ── Yaş bandı (ay → "x–y yaş") ────────────────────────────────────────────
 const ageBand = (lo, hi) => {
-  const a = Math.max(0, Math.round(lo / 12)), b = Math.round(hi / 12)
+  // LT_MASTER_TR: lo = yıl·12, hi = yıl·12+11 ("8 yaş" → 119 = 8+). Düzeyler kanonik etiketi (lv.a) taşır; bu yalnız yörünge aralığı/geri dönüş içindir.
+  const a = Math.max(0, Math.floor(lo / 12)), b = hi >= 119 ? 8 : Math.floor(hi / 12)
   return a === b ? `${b} yaş` : `${a}–${b} yaş`
 }
 
@@ -305,7 +306,7 @@ function levelCard(domain, lv, i, color, levels) {
       <div class="lv-num" style="--c:${color}">${i + 1}</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:${color}">${esc(ageBand(lv.lo, lv.hi))}</span>
+          <span class="age-pill" style="--c:${color}">${esc((lv.a || ageBand(lv.lo, lv.hi)))}</span>
           ${isBn ? '<span class="bn-pill">⚠ Darboğaz · kritik geçiş</span>' : ''}
         </div>
         <h3>${esc(lv.n)}</h3>
@@ -329,7 +330,7 @@ function levelCard(domain, lv, i, color, levels) {
 
 function sidebar(domain, color, levels) {
   const items = levels.map((lv, i) =>
-    `<li><a href="#lv-${i}" data-i="${i}"><span class="s-num" style="--c:${color}">${i + 1}</span><span class="s-txt"><b>${esc(lv.n)}</b><small>${esc(ageBand(lv.lo, lv.hi))}${lv.b ? ' · ⚠ darboğaz' : ''}</small></span></a></li>`
+    `<li><a href="#lv-${i}" data-i="${i}"><span class="s-num" style="--c:${color}">${i + 1}</span><span class="s-txt"><b>${esc(lv.n)}</b><small>${esc((lv.a || ageBand(lv.lo, lv.hi)))}${lv.b ? ' · ⚠ darboğaz' : ''}</small></span></a></li>`
   ).join('')
   return `<aside class="side">
     <div class="side-in">

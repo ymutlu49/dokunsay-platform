@@ -45,7 +45,8 @@ const clean = (s) => String(s == null ? '' : s)
   .replace(/\s{2,}/g, ' ').trim()
 
 const ageBand = (lo, hi) => {
-  const a = Math.max(0, Math.round(lo / 12)), b = Math.round(hi / 12)
+  // LT_MASTER_TR: lo = yıl·12, hi = yıl·12+11 ("8 yaş" → 119 = 8+). Düzeyler kanonik etiketi (lv.a) taşır; bu yalnız yörünge aralığı/geri dönüş içindir.
+  const a = Math.max(0, Math.floor(lo / 12)), b = hi >= 119 ? 8 : Math.floor(hi / 12)
   return a === b ? `${b} yaş` : `${a}–${b} yaş`
 }
 
@@ -115,7 +116,7 @@ function levelPage(doc, domain, lv, i, ML, W, isFirst) {
     // Pills
     doc.moveDown(0.4)
     let px = ML, py = doc.y
-    px += pill(doc, px, py, ageBand(lv.lo, lv.hi), '#eef2f7', '#475569') + 5
+    px += pill(doc, px, py, (lv.a || ageBand(lv.lo, lv.hi)), '#eef2f7', '#475569') + 5
     px += pill(doc, px, py, `Düzey ${i + 1}/${domain.levels.length}`, '#eef2f7', '#475569') + 5
     if (lv.b) px += pill(doc, px, py, 'DARBOĞAZ - KRİTİK GEÇİŞ', '#fff3e2', '#9a3412') + 5
     doc.y = py + 22

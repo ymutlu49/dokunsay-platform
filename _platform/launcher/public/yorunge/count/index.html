@@ -40,16 +40,14 @@
 .dsh-green{color:#d7f0d9;background:rgba(46,125,50,.22);border-color:rgba(46,125,50,.5)}
 .dsh-teal{color:#bfe8e4;background:rgba(13,148,136,.2);border-color:rgba(13,148,136,.5)}
 .dsh-pill.is-active{box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.45);filter:brightness(1.12)}
-.dsh .hcmo-auth{display:inline-flex;align-items:center;gap:6px}
-.dsh .hcmo-auth:empty{display:none}
-.dsh .hcmo-auth a{display:inline-flex;align-items:center;gap:5px;padding:8px 14px;border-radius:999px;font-weight:700;font-size:.86rem;text-decoration:none;white-space:nowrap;color:#fde6c0;background:rgba(245,158,11,.18);border:1px solid rgba(245,158,11,.45);transition:background .15s}
-.dsh .hcmo-auth a:hover{background:rgba(245,158,11,.3)}
-.dsh .hcmo-auth a#hcmo-stu{color:#cfe8ff;background:rgba(96,165,250,.16);border-color:rgba(96,165,250,.4)}
-.dsh .hcmo-auth a#hcmo-stu:hover{background:rgba(96,165,250,.28)}
-.dsh .hcmo-auth>span{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:.86rem;color:#e8eefc}
-.dsh .hcmo-auth .nm{color:#fde6c0}
-.dsh .hcmo-auth #hcmo-out{cursor:pointer;border:0;border-radius:999px;background:#f59e0b;color:#3a2606;font-weight:800;font-size:.8rem;padding:7px 13px;font-family:inherit}
-.dsh .hcmo-auth #hcmo-out:hover{filter:brightness(1.07)}
+.dsh .numap-auth{display:inline-flex;align-items:center;gap:6px}
+.dsh .numap-auth:empty{display:none}
+.dsh .numap-auth a{display:inline-flex;align-items:center;gap:5px;padding:8px 14px;border-radius:999px;font-weight:700;font-size:.86rem;text-decoration:none;white-space:nowrap;color:#d7f0d9;background:rgba(46,125,50,.22);border:1px solid rgba(46,125,50,.5);transition:background .15s;cursor:pointer}
+.dsh .numap-auth a:hover{background:rgba(46,125,50,.34)}
+.dsh .numap-auth>span{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:.86rem;color:#e8efe9}
+.dsh .numap-auth .nm{color:#d7f0d9}
+.dsh .numap-auth #numap-out{cursor:pointer;border:0;border-radius:999px;background:#2E7D32;color:#fff;font-weight:800;font-size:.8rem;padding:7px 13px;font-family:inherit}
+.dsh .numap-auth #numap-out:hover{filter:brightness(1.1)}
 @media (max-width:760px){.dsh{padding:10px 15px}.dsh-pill{padding:7px 11px;font-size:.8rem}.dsh-name{font-size:18px}}
 @media print{.dsh{display:none}}
 
@@ -181,7 +179,7 @@
 </style>
 </head>
 <body data-key="count">
-<header class="dsh"><div class="dsh-row"><a class="dsh-brand" href="/" aria-label="DokunSay ana sayfa"><span class="dsh-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" aria-hidden="true"><line x1="28" y1="27" x2="72" y2="27" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="28" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="72" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><circle cx="28" cy="27" r="21" fill="#2E7D32"/><circle cx="20.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="28" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="35.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="72" cy="27" r="21" fill="#0d9488"/><text x="72" y="32" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="14" fill="#fff">üç</text><circle cx="50" cy="73" r="21" fill="#1B5E20"/><text x="50" y="82" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="27" fill="#fff">3</text></svg></span><span class="dsh-titles"><span class="dsh-name">DokunSay</span><span class="dsh-sub">Matematik Öğretim Araçları Platformu</span></span></a><nav class="dsh-nav" aria-label="Site gezinme"><a class="dsh-pill dsh-amber is-active" href="/yorunge/" aria-current="page">🧭 Öğrenme Yörüngeleri</a><a class="dsh-pill dsh-green" href="/rehber/">📘 Müdahale Rehberi</a><a class="dsh-pill dsh-teal" href="/#tools-section">🛠️ Araçlar</a><span id="hcmoAuth" class="hcmo-auth"></span></nav></div></header>
+<header class="dsh"><div class="dsh-row"><a class="dsh-brand" href="/" aria-label="DokunSay ana sayfa"><span class="dsh-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" aria-hidden="true"><line x1="28" y1="27" x2="72" y2="27" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="28" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="72" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><circle cx="28" cy="27" r="21" fill="#2E7D32"/><circle cx="20.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="28" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="35.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="72" cy="27" r="21" fill="#0d9488"/><text x="72" y="32" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="14" fill="#fff">üç</text><circle cx="50" cy="73" r="21" fill="#1B5E20"/><text x="50" y="82" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="27" fill="#fff">3</text></svg></span><span class="dsh-titles"><span class="dsh-name">DokunSay</span><span class="dsh-sub">Matematik Öğretim Araçları Platformu</span></span></a><nav class="dsh-nav" aria-label="Site gezinme"><a class="dsh-pill dsh-amber is-active" href="/yorunge/" aria-current="page">🧭 Öğrenme Yörüngeleri</a><a class="dsh-pill dsh-green" href="/rehber/">📘 Müdahale Rehberi</a><a class="dsh-pill dsh-teal" href="/#tools-section">🛠️ Araçlar</a><span id="numapAuth" class="numap-auth"></span></nav></div></header>
 
 <section class="hero">
   <div class="wrap">
@@ -194,7 +192,7 @@
         <p class="lede">Nesneleri birebir sayma; son söz = çokluk. <span class="ltname">(Counting)</span></p>
         <div class="hero-meta">
           <span class="hm">📊 19 basamak</span>
-          <span class="hm">🎂 0–11 yaş</span>
+          <span class="hm">🎂 0–8 yaş</span>
           <span class="hm">⚠ 3 darboğaz</span>
           <span class="hm">🎯 Çekirdek alan · tam etkileşimli</span>
         </div>
@@ -215,7 +213,7 @@
     <aside class="side">
     <div class="side-in">
       <div class="side-head">Düzeyler <span>19</span></div>
-      <ol class="side-list"><li><a href="#lv-0" data-i="0"><span class="s-num" style="--c:#2E7D32">1</span><span class="s-txt"><b>Sayı Sözcükleriyle Tanışan: Temeller</b><small>0–1 yaş</small></span></a></li><li><a href="#lv-1" data-i="1"><span class="s-num" style="--c:#2E7D32">2</span><span class="s-txt"><b>Ezbere Sayan</b><small>2–3 yaş</small></span></a></li><li><a href="#lv-2" data-i="2"><span class="s-num" style="--c:#2E7D32">3</span><span class="s-txt"><b>Ezbere Sayan (10’a kadar)</b><small>3–4 yaş</small></span></a></li><li><a href="#lv-3" data-i="3"><span class="s-num" style="--c:#2E7D32">4</span><span class="s-txt"><b>Birebir Eşleyerek Sayan</b><small>3–4 yaş · ⚠ darboğaz</small></span></a></li><li><a href="#lv-4" data-i="4"><span class="s-num" style="--c:#2E7D32">5</span><span class="s-txt"><b>Küçük Sayıları Sayan (Kardinal Değer)</b><small>4–5 yaş · ⚠ darboğaz</small></span></a></li><li><a href="#lv-5" data-i="5"><span class="s-num" style="--c:#2E7D32">6</span><span class="s-txt"><b>10’a Kadar Sayan</b><small>5 yaş</small></span></a></li><li><a href="#lv-6" data-i="6"><span class="s-num" style="--c:#2E7D32">7</span><span class="s-txt"><b>İstenen Sayıda Nesne Veren (Küçük Sayılar)</b><small>5 yaş</small></span></a></li><li><a href="#lv-7" data-i="7"><span class="s-num" style="--c:#2E7D32">8</span><span class="s-txt"><b>Sayıp Veren (10 ve ötesi)</b><small>5–6 yaş</small></span></a></li><li><a href="#lv-8" data-i="8"><span class="s-num" style="--c:#2E7D32">9</span><span class="s-txt"><b>10’dan Geriye Sayan</b><small>6 yaş · ⚠ darboğaz</small></span></a></li><li><a href="#lv-9" data-i="9"><span class="s-num" style="--c:#2E7D32">10</span><span class="s-txt"><b>İstenen Sayıdan Sayan (öncesi/sonrası)</b><small>6–7 yaş</small></span></a></li><li><a href="#lv-10" data-i="10"><span class="s-num" style="--c:#2E7D32">11</span><span class="s-txt"><b>Onar Ritmik Sayan (100’e kadar)</b><small>7 yaş</small></span></a></li><li><a href="#lv-11" data-i="11"><span class="s-num" style="--c:#2E7D32">12</span><span class="s-txt"><b>100’e Kadar Sayan</b><small>7–8 yaş</small></span></a></li><li><a href="#lv-12" data-i="12"><span class="s-num" style="--c:#2E7D32">13</span><span class="s-txt"><b>Ritim Tutarak Üzerine Sayan</b><small>7–8 yaş</small></span></a></li><li><a href="#lv-13" data-i="13"><span class="s-num" style="--c:#2E7D32">14</span><span class="s-txt"><b>Ritmik Sayan (Beşer/İkişer)</b><small>8–9 yaş</small></span></a></li><li><a href="#lv-14" data-i="14"><span class="s-num" style="--c:#2E7D32">15</span><span class="s-txt"><b>Saydığını Takip Ederek Sayan</b><small>8–9 yaş</small></span></a></li><li><a href="#lv-15" data-i="15"><span class="s-num" style="--c:#2E7D32">16</span><span class="s-txt"><b>Basamak Değerini Kavrayan</b><small>9–10 yaş</small></span></a></li><li><a href="#lv-16" data-i="16"><span class="s-num" style="--c:#2E7D32">17</span><span class="s-txt"><b>100’ün Ötesine Sayan</b><small>9–10 yaş</small></span></a></li><li><a href="#lv-17" data-i="17"><span class="s-num" style="--c:#2E7D32">18</span><span class="s-txt"><b>Sayının Korunduğunu Bilen</b><small>9–10 yaş</small></span></a></li><li><a href="#lv-18" data-i="18"><span class="s-num" style="--c:#2E7D32">19</span><span class="s-txt"><b>İleri-Geri Akıcı Sayan</b><small>10–11 yaş</small></span></a></li></ol>
+      <ol class="side-list"><li><a href="#lv-0" data-i="0"><span class="s-num" style="--c:#2E7D32">1</span><span class="s-txt"><b>Sayı Sözcükleriyle Tanışan: Temeller</b><small>0–1 yaş</small></span></a></li><li><a href="#lv-1" data-i="1"><span class="s-num" style="--c:#2E7D32">2</span><span class="s-txt"><b>Ezbere Sayan</b><small>2 yaş</small></span></a></li><li><a href="#lv-2" data-i="2"><span class="s-num" style="--c:#2E7D32">3</span><span class="s-txt"><b>Ezbere Sayan (10’a kadar)</b><small>3–4 yaş</small></span></a></li><li><a href="#lv-3" data-i="3"><span class="s-num" style="--c:#2E7D32">4</span><span class="s-txt"><b>Birebir Eşleyerek Sayan</b><small>3–4 yaş · ⚠ darboğaz</small></span></a></li><li><a href="#lv-4" data-i="4"><span class="s-num" style="--c:#2E7D32">5</span><span class="s-txt"><b>Küçük Sayıları Sayan (Kardinal Değer)</b><small>4 yaş · ⚠ darboğaz</small></span></a></li><li><a href="#lv-5" data-i="5"><span class="s-num" style="--c:#2E7D32">6</span><span class="s-txt"><b>10’a Kadar Sayan</b><small>4 yaş</small></span></a></li><li><a href="#lv-6" data-i="6"><span class="s-num" style="--c:#2E7D32">7</span><span class="s-txt"><b>İstenen Sayıda Nesne Veren (Küçük Sayılar)</b><small>4–5 yaş</small></span></a></li><li><a href="#lv-7" data-i="7"><span class="s-num" style="--c:#2E7D32">8</span><span class="s-txt"><b>Sayıp Veren (10 ve ötesi)</b><small>5–6 yaş</small></span></a></li><li><a href="#lv-8" data-i="8"><span class="s-num" style="--c:#2E7D32">9</span><span class="s-txt"><b>10’dan Geriye Sayan</b><small>5–6 yaş · ⚠ darboğaz</small></span></a></li><li><a href="#lv-9" data-i="9"><span class="s-num" style="--c:#2E7D32">10</span><span class="s-txt"><b>İstenen Sayıdan Sayan (öncesi/sonrası)</b><small>6–7 yaş</small></span></a></li><li><a href="#lv-10" data-i="10"><span class="s-num" style="--c:#2E7D32">11</span><span class="s-txt"><b>Onar Sayan (100’e kadar)</b><small>6–7 yaş</small></span></a></li><li><a href="#lv-11" data-i="11"><span class="s-num" style="--c:#2E7D32">12</span><span class="s-txt"><b>100’e Kadar Sayan</b><small>6–7 yaş</small></span></a></li><li><a href="#lv-12" data-i="12"><span class="s-num" style="--c:#2E7D32">13</span><span class="s-txt"><b>Ritim Tutarak Üzerine Sayan</b><small>6–7 yaş</small></span></a></li><li><a href="#lv-13" data-i="13"><span class="s-num" style="--c:#2E7D32">14</span><span class="s-txt"><b>Ritmik Sayan (beşer, ikişer)</b><small>6–7 yaş</small></span></a></li><li><a href="#lv-14" data-i="14"><span class="s-num" style="--c:#2E7D32">15</span><span class="s-txt"><b>Saydığını Takip Ederek Sayan</b><small>7 yaş</small></span></a></li><li><a href="#lv-15" data-i="15"><span class="s-num" style="--c:#2E7D32">16</span><span class="s-txt"><b>Basamak Değerini Kavrayan</b><small>7–8 yaş</small></span></a></li><li><a href="#lv-16" data-i="16"><span class="s-num" style="--c:#2E7D32">17</span><span class="s-txt"><b>100’ün Ötesine Sayan</b><small>7–8 yaş</small></span></a></li><li><a href="#lv-17" data-i="17"><span class="s-num" style="--c:#2E7D32">18</span><span class="s-txt"><b>Sayının Korunduğunu Bilen</b><small>7–8 yaş</small></span></a></li><li><a href="#lv-18" data-i="18"><span class="s-num" style="--c:#2E7D32">19</span><span class="s-txt"><b>İleri-Geri Akıcı Sayan</b><small>7–8 yaş</small></span></a></li></ol>
     </div>
   </aside>
     <div class="levels">
@@ -233,7 +231,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Henüz sözel sayma yoktur; bazı sayı sözcüklerini sırasız söyleyebilir.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Bazı sayı sözcüklerini söyler ama bunlar sırayla olmak zorunda değildir (kimi çocuklar sayı sözcüklerini işaretle ya da başka temsillerle söyler). Bu sözcüklerin sayıyla ilgili olduğuna ya da en azından “say” denildiğinde söylenecek uygun sözcükler olduğuna ilişkin bir sezgisi olabilir. Daha büyük bebekler nesnelerin farklı sayılarda olabildiğinin farkındadır; bu, sayıların “kaç tane”yi gösterdiğinin erken bir kavranışına götürür.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Bebek, ninniyle &quot;bir iki üç&quot; söylerken sesleri yakalar; kendi ezberlemesinden bağımsız sözcükleri mırıldanır ya da ritme katılır. Henüz sözcükler nesneye bağlı değildir; sesin ezgisini yaşar.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, sayı dilinin işitsel tohumudur: çocuk anlamı değil, sayı sözcüklerinin sesini ve sırasını içselleştirmeye başlar. Parmak oyunları, sayışmacalar ve günlük &quot;bir, iki, hop!&quot; gibi ritimler bu erken sesletimi besler. Amaç saymak değil, sayı sözcüklerini tanıdık kılmaktır.</p></div>
         <div class="act">
@@ -262,7 +260,7 @@
       <div class="lv-num" style="--c:#2E7D32">2</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2E7D32">2–3 yaş</span>
+          <span class="age-pill" style="--c:#2E7D32">2 yaş</span>
           
         </div>
         <h3>Ezbere Sayan</h3>
@@ -270,7 +268,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Sayı sözcüklerini ayrı ayrı, ezbere söyler; &quot;beş&quot;in üzerinde sıra her zaman doğru değildir (&quot;bir, iki, üç, dört, beş, yedi&quot;). Nesne sayarken fazladan sözcük söyleyebilir ya da nesneler sözcüklerden çoksa sözcükleri baştan kullanabilir.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Sayı sözcüklerini ayrı ayrı, sözel olarak söyler; “beş”ten sonrası her zaman doğru sırada değildir, fazladan sözcük ekleyebilir, bazen yineler. Bu düzey gelişirken sözcükleri birbirine bitiştirebilir (“birikiüç”). Sayarken nesneleri gösterebilir ama birebir eşleme kurmaz.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk &quot;bir iki üç beş altı…&quot; gibi sayı dizisini söyler ama bazı sayıları atlar ya da sırayı karıştırır. Sözcükler çoğu zaman akıcı bir şarkı gibi akar, henüz nesneleri saymaz.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, kararlı sıra ilkesinin filizlenmesidir: çocuk sayı sözcüklerini bir dizi olarak öğrenir, ama dizi henüz eksiksiz ve değişmez değildir. Atlanan/karışan sayılar normaldir; bol bol birlikte sayarak doğru sırayı modelleyin. Bu aşamada amaç ezber dizisini uzatmak ve sağlamlaştırmaktır.</p></div>
         <div class="act">
@@ -307,7 +305,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> 10’a kadar sözel sayar; nesnelerle bir miktar eşleşme vardır ama atlama, bir nesneyi iki kez sayma gibi uygulama hataları görülür.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> 10’a kadar sözel sayar; nesnelerle bir ölçüde eşleme kurar (atlayabilir, aynı nesneyi iki kez sayabilir) ve 10’un üzerine, hepsi sırayla olmasa da, birçok sayı sözcüğü ekleyebilir.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk &quot;bir, iki, üç… on&quot; diye 1'den 10'a kadar doğru sırayla, atlamadan sayar. Bu artık güvenilir bir ezber dizisidir; nesne olmadan da akıcıdır.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Kararlı sıra burada 10'a dek oturur — sonraki tüm sayma becerilerinin sözel iskeleti budur. Dizi sağlam olmadan birebir eşleme ve sayma kurulamaz. &quot;Ondan sonra ne gelir?&quot; gibi sorularla diziyi esnetin; geriye doğru değil, ileriye akıcılığı hedefleyin.</p></div>
         <div class="act">
@@ -344,7 +342,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> En azından tek sıraya dizilmiş küçük gruplar için sayı sözcükleriyle nesneler arasında birebir eşleme kurar; ancak &quot;kaç tane?&quot; sorusuna yeniden sayarak ya da rastgele bir sayıyla yanıt verebilir (kardinal değer henüz oturmamıştır).</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> En azından tek sıraya dizilmiş küçük nesne gruplarında sayı sözcükleriyle nesneler arasında birebir eşleme kurar (her nesneye bir sözcük).</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk her nesneye dokunurken tam bir sayı sözcüğü söyler: el ve dil aynı ritimde gider. Henüz oturmamışsa parmağı nesnelerden hızlı geçip sözcükler geride kalır ya da bir nesneye iki kez &quot;iki, üç&quot; der.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Birebir eşleme saymanın ilk gerçek darboğazıdır: çocuk sayı dizisini bilse bile her sözcüğü tam bir nesneye denk getiremezse sayım bozulur. Bu eşlemede süreğen güçlük, matematik öğrenme güçlüğü (diskalkuli) açısından erken bir uyarı işaretidir — tipik gelişende dokun-say senkronu bu yaşta kurulur. Çocuğun parmağını her pula bastırarak &quot;dokun-söyle&quot; ritmini birlikte kurun; hızı düşürün, nesneleri tek sıraya dizin ki atlama/tekrar görünür olsun.</p></div>
         <div class="act">
@@ -373,7 +371,7 @@
       <div class="lv-num" style="--c:#2E7D32">5</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2E7D32">4–5 yaş</span>
+          <span class="age-pill" style="--c:#2E7D32">4 yaş</span>
           <span class="bn-pill">⚠ Darboğaz · kritik geçiş</span>
         </div>
         <h3>Küçük Sayıları Sayan (Kardinal Değer)</h3>
@@ -381,7 +379,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Tek sıradaki 5’e kadar nesneyi doğru sayar ve &quot;Kaç tane?&quot; sorusuna en son söylediği sayıyla yanıt verir — kardinal değer ilkesi kazanılmıştır.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Tek sıradaki 5’e kadar nesneyi doğru sayar ve “Kaç tane?” sorusunu son söylediği sayıyla yanıtlar; bu sayının toplam nesne sayısını gösterdiğini anlar (kardinal değer ilkesi).</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk 4 pulu sayar ve &quot;Kaç tane?&quot; sorulduğunda saydığı SON sözcüğü (&quot;dört&quot;) yineleyerek bütünün çokluğunu söyler. Henüz oturmamışsa tüm diziyi baştan tekrar sayar (&quot;bir-iki-üç-dört&quot;) ama &quot;kaç&quot; sorusuna sayı vermez.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Burada kardinalite ilkesi devreye girer: saymanın amacı son sözcüğün TÜM kümeyi temsil ettiğini kavramaktır. Bu sıçramayı yapamamak — doğru sayıp da &quot;kaç?&quot; sorusuna yeniden saymakla yanıt vermek — matematik öğrenme güçlüğü (diskalkuli) için klasik bir erken belirtidir; çünkü sayı sözcüğü henüz &quot;miktar&quot; anlamına bağlanmamıştır. Saydırdıktan sonra kümeyi elinizle çevreleyip &quot;yani toplam DÖRT&quot; diyerek son sözcüğü bütünle özdeşleştirin; pulları sayıp avucunuza alın, &quot;hepsi kaç?&quot; deyin.</p></div>
         <div class="act">
@@ -410,7 +408,7 @@
       <div class="lv-num" style="--c:#2E7D32">6</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2E7D32">5 yaş</span>
+          <span class="age-pill" style="--c:#2E7D32">4 yaş</span>
           
         </div>
         <h3>10’a Kadar Sayan</h3>
@@ -418,7 +416,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> 10’a kadar düzenlenmiş nesne gruplarını sayar; 1–10 arası rakamları okumaya/yazmaya başlayabilir. Bir sayının hemen öncesini/sonrasını ancak 1’den itibaren sayarak bulur; 20’ye kadar sözel sayma gelişmektedir.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> 10’a kadar nesne düzenlerini kardinal değer ilkesini anlayarak sayar. 1–10’u göstermek için rakamları okuyup yazabilir. Bir sayının hemen sonrasını ya da öncesini söyleyebilir ama bunu yalnızca 1’den başlayarak sayarak yapar. 20’ye kadar sözel sayma gelişmektedir.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk 10'a kadar olan bir nesne kümesini tek tek dokunarak güvenle sayar ve son sayıyı çokluk olarak verir. Atlamadan, tekrarlamadan; daha büyük kümelerde bile sayım düzenlidir.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Birebir eşleme ve kardinalite artık 10'a dek bütünleşmiştir. Bu, sağlam bir sayma temelidir; çocuk artık dağınık dizilimlerde de sayımı yönetebilmelidir. Sayılanı sayılmayandan ayırma stratejisini (itme, sıraya dizme) pekiştirin ki büyük kümelerde hata azalsın.</p></div>
         <div class="act">
@@ -447,7 +445,7 @@
       <div class="lv-num" style="--c:#2E7D32">7</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2E7D32">5 yaş</span>
+          <span class="age-pill" style="--c:#2E7D32">4–5 yaş</span>
           
         </div>
         <h3>İstenen Sayıda Nesne Veren (Küçük Sayılar)</h3>
@@ -455,7 +453,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> İstendiğinde 5’e kadar nesneyi sayarak ayırıp verir (&quot;bana 4 blok ver&quot;); belirli sayıda nesne yerleştirilmesi gerektiğinde saymanın işe yaradığını bilir.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> 5’e kadar nesneyi sayarak ayırıp verir. Belirli sayıda nesne yerleştirilmesi gereken durumlarda saymanın işe yaradığını bilir. 4 nesnelik bir grup oluşturur.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>&quot;Bana 6 pul ver&quot; dediğinizde çocuk yığından sayarak tam 6 tane ayırır ve durur. Tanımanın ötesine geçip istenen çokluğu kendisi ÜRETİR; son pulu verince doğal olarak durması kardinaliteyi kullandığını gösterir.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, kardinalitenin tersine işlemesidir: çocuk artık yalnız sayıp çokluğu söylemekle kalmaz, verilen sayıya ulaşınca durmayı bilir (&quot;say-ve-dur&quot;). İstenen sayıya gelince durmuyor, yığının tamamını veriyorsa hedef sayıyı zihinde tutamıyordur — sayarken hedefi yüksek sesle hatırlatın. Bu beceri toplama-çıkarmanın ön koşuludur.</p></div>
         <div class="act">
@@ -492,7 +490,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> 10’a, sonra ~30’a kadar sayar ve istenen sayıda nesne verir; kardinal değeri açıkça kullanır; farklı dizilimlerde sayılanla sayılmayanın izini tutar; 1–10’u (sonra 20–30’u) yazarak/çizerek temsil etmeye başlar; sayma hatalarını fark eder.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> 10’a, sonra ötesine (yaklaşık 30’a) kadar nesneleri doğru sayar ve sayarak verir. Kardinal değeri açıkça anlar (sayıların “kaç tane”yi bildirdiğini). Farklı dizilimlerde bile sayılan ve sayılmayan nesnelerin izini tutar. 1–10’u (sonra 20’yi, 30’u) yazarak ya da çizerek gösterir. Bir sonraki sayıyı söyler (genellikle 20’ler ve 30’lara kadar). Sayı sözcüğünün onluk ve birlik parçalarını ayırır ve her parçayı gösterdiği miktarla ilişkilendirmeye başlar. Başkalarının sayma hatalarını fark eder; kendi saymasındaki hataların çoğunu, dikkat etmesi istenirse giderir.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk 10 ve üzerindeki kümeleri (12, 15) güvenle sayar ve &quot;bana 13 pul ver&quot; gibi istekleri sayarak karşılar. On sınırını aşan sayı sözcüklerini (on bir, on iki…) sayımına sorunsuz katar.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Sayma artık onluk eşiğini aşar; bu, 1'er 1'er 100'e giden yolun başıdır. Onlu sayı sözcüklerinin düzensizliği (on bir, on iki) takılmaya yol açabilir — bu geçişleri bol bol modelleyin. Hem sayma (oku) hem üretme (yap) yönünü birlikte çalıştırın ki beceri çift yönlü sağlamlaşsın.</p></div>
         <div class="act">
@@ -521,7 +519,7 @@
       <div class="lv-num" style="--c:#2E7D32">9</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2E7D32">6 yaş</span>
+          <span class="age-pill" style="--c:#2E7D32">5–6 yaş</span>
           <span class="bn-pill">⚠ Darboğaz · kritik geçiş</span>
         </div>
         <h3>10’dan Geriye Sayan</h3>
@@ -529,7 +527,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> 10’dan 1’e geriye doğru sayar — sözel olarak ya da nesneleri tek tek eksilterek.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> 10’dan 1’e geriye doğru sayar; sözel olarak ya da bir gruptan nesneleri çıkarırken. “10, 9, 8, 7, 6, 5, 4, 3, 2, 1!”</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk &quot;on, dokuz, sekiz… bir&quot; diye 10'dan geriye akıcı sayar. Henüz oturmamışsa her geri adımda durup ileriye sayarak hangi sayının geldiğini bulmaya çalışır ya da sırayı karıştırır.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Geriye sayma gerçek bir darboğazdır: ileri sayı dizisi ezberle gelir, ama geriye saymak diziyi zihinde TERS yönde işletmeyi gerektirir — bu, çıkarmanın ve &quot;geriye sayarak&quot; stratejisinin doğrudan zeminidir. Roket geri sayımı gibi anlamlı bir bağlam kullanın; her sayıda bir pulu sıradan geri alarak çokluğun azalışını görünür kılın. Akıcılık değil, önce doğru sıra hedeftir.</p></div>
         <div class="act">
@@ -566,7 +564,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> 1 yerine herhangi bir sayıdan başlayarak (sözel ya da nesneyle) sayar; bir sayının hemen sonrasını ve hemen öncesini saymadan, ANINDA söyler.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> 1 dışındaki sayılardan başlayarak sözel olarak ve nesnelerle sayar (ancak kaç adım saydığının izini henüz tutmaz). Bir sayının hemen sonrasını ve hemen öncesini anında belirler.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuğa &quot;yedi&quot; deyip &quot;bundan sonra say&quot; dediğinizde baştan başlamadan &quot;sekiz, dokuz, on…&quot; diye devam eder; &quot;bundan önce?&quot; deyince &quot;altı&quot; der. Sayma artık herhangi bir çıpadan başlayabilir.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, sıra-bağımsız sayma esnekliğidir: çocuk artık her sayışa 1'den başlamak zorunda değildir, herhangi bir sayıyı çıpa alıp ileri/geri gidebilir. Bu beceri &quot;sayarak ilerleme&quot; (counting on) stratejisinin kalbidir ve toplama-çıkarmayı verimli kılar. Verilen sayıyı tekrar saymadan hemen sonrakini söylemesi (&quot;yedi → sekiz&quot;) asıl kazanımdır.</p></div>
         <div class="act">
@@ -586,7 +584,7 @@
     </div>
     <div class="lv-foot">
       <button class="printcard" data-lv="9" type="button">🖨️ Bu kartı yazdır</button>
-      <a class="nextlv" href="#lv-10">Sıradaki düzey · <b>Onar Ritmik Sayan (100’e kadar)</b> →</a>
+      <a class="nextlv" href="#lv-10">Sıradaki düzey · <b>Onar Sayan (100’e kadar)</b> →</a>
     </div>
   </article>
 
@@ -595,15 +593,15 @@
       <div class="lv-num" style="--c:#2E7D32">11</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2E7D32">7 yaş</span>
+          <span class="age-pill" style="--c:#2E7D32">6–7 yaş</span>
           
         </div>
-        <h3>Onar Ritmik Sayan (100’e kadar)</h3>
+        <h3>Onar Sayan (100’e kadar)</h3>
       </div>
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Anlayarak onar onar 100’e (ve ötesine) sayar; bir miktarın içindeki 10’luk grupları &quot;görür&quot;.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Anlayarak onar onar 100’e ya da ötesine sayar; örneğin bir miktarın içindeki onluk grupları sayar ve bu grupları onar onar sayar (bu, çarpma ve cebirsel düşünmeyle ilişkilidir). “10, 20, 30 … 100.”</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk &quot;on, yirmi, otuz… yüz&quot; diye 10'ar 10'ar yüze sayar; onluk sözcüklerin ritmini bir tekerleme gibi akıtır. Onluk demetleri (10'luk çubuklar) sayarken bu ritim doğrudan işe yarar.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Onar sayma, basamak değerine ve çarpımsal düşünmeye açılan kapıdır: çocuk 10'u tek bir birim (&quot;bir onluk&quot;) gibi atlayarak sayar. Bunu somut onluk çubuklarla bağlayın — her &quot;on&quot; bir çubuğa denk gelsin — ki ritim anlamsız bir ezber kalmasın. Onar sayı dizisi, ileride çarpma tablolarının (özellikle 10'lar) temelini kurar.</p></div>
         <div class="act">
@@ -632,7 +630,7 @@
       <div class="lv-num" style="--c:#2E7D32">12</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2E7D32">7–8 yaş</span>
+          <span class="age-pill" style="--c:#2E7D32">6–7 yaş</span>
           
         </div>
         <h3>100’e Kadar Sayan</h3>
@@ -640,7 +638,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Herhangi bir sayıdan başlayarak 100’e kadar sayar; onluk geçişlerini (29→30) doğru yapar.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> 100’e kadar sayar. Herhangi bir sayıdan başlayarak onluk geçişlerini (örn. 29’dan 30’a) yapar. “… 78, 79 … 80, 81 …”</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk 1'er 1'er 100'e kadar sayar; en kritik yer onluk geçişlerdir: &quot;…yirmi sekiz, yirmi dokuz, OTUZ&quot;. Geçişte takılırsa &quot;yirmi on&quot; gibi yanlış üretir ya da bir sonraki onluğa atlayamaz.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>1'er 1'er 100'e saymanın asıl güçlüğü onluk dönüşlerdir (29→30, 39→40): çocuğun bir onluğun bittiğini ve yeni onluğun başladığını kavraması gerekir. Bu geçişleri özellikle çalıştırın; yüz tablosu (hundred chart) ile satır sonlarını görsel olarak işaretleyin. Onluk yapısını fark etmek, sonraki tüm basamak-değeri çalışmasının zeminidir.</p></div>
         <div class="act">
@@ -669,7 +667,7 @@
       <div class="lv-num" style="--c:#2E7D32">13</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2E7D32">7–8 yaş</span>
+          <span class="age-pill" style="--c:#2E7D32">6–7 yaş</span>
           
         </div>
         <h3>Ritim Tutarak Üzerine Sayan</h3>
@@ -677,7 +675,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Ritmik/işitsel/uzamsal örüntüler kullanarak sayma eylemlerinin izini tutar — bir sayının üzerine ~3’e kadar ekleme yapabilir (&quot;sekiz... dokuz-on-on bir&quot;).</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Verilen bir sayıdan 1 ya da 2, bazen 3 adım ileri sayar; bunu sezgisel bir örüntüyle (uzamsal, işitsel ya da ritmik; örneğin üç vuruş) yapar.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk her onluğun içindeki örüntüyü (…1, …2, …3) fark ederek sayar: &quot;kırk bir, kırk iki…&quot; derken birler basamağının 1–9 tekrarını kullanır. Yeni bir onluğa geçince doğru onluk adını söyleyip aynı birler örüntüsünü sürdürür.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu düzeyde sayma artık ezber değil, örüntü-temelli akıl yürütmedir: çocuk sayı sisteminin düzenli yapısını (her onlukta birler 1–9 tekrarlar) keşfeder. Bu içgörü, sayı doğrusu ve basamak değeri anlayışını güçlendirir. &quot;Elli üçten sonra ne gelir, neden?&quot; gibi sorularla örüntüyü dile döktürün; yüz tablosunun sütun/satır düzeni bu örüntüyü görünür kılar.</p></div>
         <div class="act">
@@ -697,7 +695,7 @@
     </div>
     <div class="lv-foot">
       <button class="printcard" data-lv="12" type="button">🖨️ Bu kartı yazdır</button>
-      <a class="nextlv" href="#lv-13">Sıradaki düzey · <b>Ritmik Sayan (Beşer/İkişer)</b> →</a>
+      <a class="nextlv" href="#lv-13">Sıradaki düzey · <b>Ritmik Sayan (beşer, ikişer)</b> →</a>
     </div>
   </article>
 
@@ -706,15 +704,15 @@
       <div class="lv-num" style="--c:#2E7D32">14</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2E7D32">8–9 yaş</span>
+          <span class="age-pill" style="--c:#2E7D32">6–7 yaş</span>
           
         </div>
-        <h3>Ritmik Sayan (Beşer/İkişer)</h3>
+        <h3>Ritmik Sayan (beşer, ikişer)</h3>
       </div>
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Anlayarak beşer ve ikişer sayar.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Beşer ve ikişer, anlayarak sayar.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk &quot;iki, dört, altı…&quot;, &quot;beş, on, on beş…&quot; ve &quot;on, yirmi, otuz…&quot; diye 2'şer, 5'er, 10'ar ritmik sayar; aradaki sayıları atlayıp yalnız basamak noktalarını söyler. Sayış bir ritim/şarkı düzeninde akar.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Ritmik (atlamalı) sayma, çarpmanın ve eşit gruplamanın algısal temelidir: 2'şer saymak 2'nin katlarını, 5'er saymak 5'in katlarını üretir. Bunu eşit gruplarla (2'li pul demetleri, bir el = 5) bağlayın ki çocuk &quot;kaç grup × kaç&quot; ilişkisini sezsin. Dizi (array) düzeni, atladığı sayıların nereye gittiğini görünür kılar.</p></div>
         <div class="act">
@@ -743,7 +741,7 @@
       <div class="lv-num" style="--c:#2E7D32">15</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2E7D32">8–9 yaş</span>
+          <span class="age-pill" style="--c:#2E7D32">7 yaş</span>
           
         </div>
         <h3>Saydığını Takip Ederek Sayan</h3>
@@ -751,7 +749,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Verilen bir sayıdan ileri ya da geri sayarken sayma eylemlerinin SAYISAL izini tutar — önce nesnelerle, sonra &quot;sayımları sayarak&quot; (parmak/zihinsel).</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Verilen bir sayıdan ileri ya da geri sayarken kaç adım saydığının izini bilinçli olarak tutar; bunun için parmak örüntüsü gibi nesneler kullanır (örn. 5 parmağını kaldırıp üzerine sayarken birer birer indirir) ya da “sayımları sayar” (“9 bir fazlası, 10 iki fazlası…”).</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk &quot;yediden başla, dört ileri say&quot; dediğinizde &quot;sekiz-dokuz-on-on bir&quot; derken aynı anda KAÇ adım saydığını parmaklarıyla takip eder ve dördüncü adımda durur. İki şeyi birden izler: hangi sayıdayım ve kaç saydım.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, çift sayma (double counting) becerisidir ve sayarak toplamanın (counting on) tam hâlidir: çocuk hem sayı dizisini hem adım sayısını eşzamanlı izler. Parmaklar burada &quot;kaç adım&quot; sayacı olarak güçlü bir destektir. Kaç adım gittiğini takip edemezse fazla/eksik sayar — adımları parmakla somutlaştırmasını teşvik edin. Bu beceri, bilinmeyen-değişim problemlerini (7'den kaça? +4) çözmenin anahtarıdır.</p></div>
         <div class="act">
@@ -780,7 +778,7 @@
       <div class="lv-num" style="--c:#2E7D32">16</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2E7D32">9–10 yaş</span>
+          <span class="age-pill" style="--c:#2E7D32">7–8 yaş</span>
           
         </div>
         <h3>Basamak Değerini Kavrayan</h3>
@@ -788,7 +786,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Onluk taban yazımını ve basamak değerini anlar (yüzlükler, onluklar, birlikler); gerektiğinde onlukları birliklere bozar; alışılmadık birimleri sayar.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Onluk sayı sistemini ve basamak değeri kavramlarını anlar; yüzlük, onluk ve birlik birimleriyle ve bunların katlarıyla sayar. Onluk grupları sayarken, işe yarayacaksa bir onluğu 10 birliğe ayırır. Bir rakamın değerinin sayıdaki yerine göre belirlendiğini anlar. Bütün ve parça bileşimleri gösterildiğinde “bütünler” gibi alışılmadık birimleri sayar.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk 34'ü sayarken &quot;otuz (üç onluk)… kırk, kırk bir, kırk iki&quot; gibi onluk ve birlik birimleri birlikte kullanır; onluk çubuklarla birlik küpleri bir arada sayıp &quot;üç onluk dört birlik, otuz dört&quot; der. Onluğu tek tek değil, demet olarak sayar.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, basamak değerinin sayma içine yerleşmesidir: çocuk artık onluğu bir birim (on'luk) olarak sayar, birlikleri ayrı izler. DokunSay Basamak aracı (onluk çubuk + birlik küp) bu düzeyi doğrudan besler. &quot;Üç onluk kaç eder?&quot; → &quot;otuz&quot; zincirini kurun; onlukları onar sayıp kalan birlikleri birer ekleyerek karışık birimle saymayı modelleyin. Bu, çok basamaklı sayma ve toplamanın kalbidir.</p></div>
         <div class="act">
@@ -817,7 +815,7 @@
       <div class="lv-num" style="--c:#2E7D32">17</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2E7D32">9–10 yaş</span>
+          <span class="age-pill" style="--c:#2E7D32">7–8 yaş</span>
           
         </div>
         <h3>100’ün Ötesine Sayan</h3>
@@ -825,7 +823,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> 100’ün ötesine, birlik/onluk/yüzlük örüntülerini tanıyarak doğru sayar.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> 100’ün ötesine, birlik, onluk ve yüzlük örüntülerini tanıyarak doğru sayar.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk &quot;…doksan sekiz, doksan dokuz, YÜZ, yüz bir, yüz iki…&quot; diye 100'ün ötesine geçer; en kritik yer yüzlük ve onluk geçişlerin üst üste bindiği yerlerdir (109→110, 199→200). Yüzler basamağını sayıma katarak akışı sürdürür.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>100'ü aşmak, sayı sisteminin örüntüsünün yüzler basamağında da tekrarladığını kavramayı gerektirir: 100'den sonra 1–99 örüntüsü baştan döner. Çoklu geçişler (199→200: hem onluk hem yüzlük döner) en zorlandığı yerlerdir; bunları özellikle çalıştırın. Bu beceri, büyük sayılarda basamak değeri yapısının genellenmesidir.</p></div>
         <div class="act">
@@ -854,7 +852,7 @@
       <div class="lv-num" style="--c:#2E7D32">18</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2E7D32">9–10 yaş</span>
+          <span class="age-pill" style="--c:#2E7D32">7–8 yaş</span>
           
         </div>
         <h3>Sayının Korunduğunu Bilen</h3>
@@ -862,7 +860,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Algısal çeldiricilere (nesnelerin aralıklarının açılması gibi) karşın sayının korunduğunu tutarlı biçimde bilir.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Nesnelerin aralıklarının açılması gibi algısal çeldiricilere karşın sayının değişmediğini tutarlı biçimde bilir (sayı korunumu).</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk 8 pulu sayar; pulları yayıp aralarını açtığınızda &quot;şimdi kaç?&quot; diye sorulduğunda yeniden saymadan &quot;yine sekiz&quot; der. Dizilim, aralık ya da düzen değişse de çokluğun değişmediğini bilir.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Sayı korunumu, miktarın görünüşten bağımsız olduğunu kavramaktır (Piaget'nin klasik korunum görevi): nesneler yayılınca &quot;daha çok&quot;, toplanınca &quot;daha az&quot; sanan çocuk henüz korunumu kuramamıştır. Saymadan &quot;aynı&quot; diyebilmesi asıl kazanımdır; birebir eşleme yapıp &quot;hiçbiri eklenmedi/çıkmadı&quot; mantığını dile döktürün. Bu, sağlam sayı kavramının ve toplama-çıkarmada miktarın izlenmesinin göstergesidir.</p></div>
         <div class="act">
@@ -891,7 +889,7 @@
       <div class="lv-num" style="--c:#2E7D32">19</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2E7D32">10–11 yaş</span>
+          <span class="age-pill" style="--c:#2E7D32">7–8 yaş</span>
           
         </div>
         <h3>İleri-Geri Akıcı Sayan</h3>
@@ -899,7 +897,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Sayı dizisini (birer ya da ritmik) her iki yönde akıcı sayar; onluk dizisinin birlik dizisini yansıttığını bilir; çok basamaklı sayıyı hem dizi hem bileşim (basamak) gözüyle görebilir.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Sayı sözcüklerini (birer birer ya da ritmik) her iki yönde sayar. Onluk dizisinin (10, 20, 30…) birlik dizisini yansıttığını fark eder. Çok basamaklı sayıları hem sayı dizisi hem basamak bileşimi olarak görmeye kolayca geçer.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk 47'den &quot;on ileri&quot; → 57, &quot;bir geri&quot; → 56 gibi onluk ve birlik adımlarla esnekçe gidip gelir; &quot;elli yediden üç onluk geri&quot; deyince doğrudan 27'ye iner. Onlar ve birler basamağında bağımsız ve esnek hareket eder.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu en üst sayma düzeyidir: çocuk sayı doğrusunda onluk ve birlik sıçramalarla iki yönde esnek gezinir — bu, zihinden çok basamaklı toplama-çıkarmanın (47+30, 56−9) doğrudan temelidir. Onluk atlarken birler basamağının değişmediğini fark etmesi kritiktir (47→57: birler hep 7). DokunSay Basamak bloklarıyla onluk ekleyip çıkararak bu sıçramaları somutlaştırın; &quot;hangi basamak değişti?&quot; diye sürekli sorgulayın.</p></div>
         <div class="act">

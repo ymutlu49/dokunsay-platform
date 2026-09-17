@@ -40,16 +40,14 @@
 .dsh-green{color:#d7f0d9;background:rgba(46,125,50,.22);border-color:rgba(46,125,50,.5)}
 .dsh-teal{color:#bfe8e4;background:rgba(13,148,136,.2);border-color:rgba(13,148,136,.5)}
 .dsh-pill.is-active{box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.45);filter:brightness(1.12)}
-.dsh .hcmo-auth{display:inline-flex;align-items:center;gap:6px}
-.dsh .hcmo-auth:empty{display:none}
-.dsh .hcmo-auth a{display:inline-flex;align-items:center;gap:5px;padding:8px 14px;border-radius:999px;font-weight:700;font-size:.86rem;text-decoration:none;white-space:nowrap;color:#fde6c0;background:rgba(245,158,11,.18);border:1px solid rgba(245,158,11,.45);transition:background .15s}
-.dsh .hcmo-auth a:hover{background:rgba(245,158,11,.3)}
-.dsh .hcmo-auth a#hcmo-stu{color:#cfe8ff;background:rgba(96,165,250,.16);border-color:rgba(96,165,250,.4)}
-.dsh .hcmo-auth a#hcmo-stu:hover{background:rgba(96,165,250,.28)}
-.dsh .hcmo-auth>span{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:.86rem;color:#e8eefc}
-.dsh .hcmo-auth .nm{color:#fde6c0}
-.dsh .hcmo-auth #hcmo-out{cursor:pointer;border:0;border-radius:999px;background:#f59e0b;color:#3a2606;font-weight:800;font-size:.8rem;padding:7px 13px;font-family:inherit}
-.dsh .hcmo-auth #hcmo-out:hover{filter:brightness(1.07)}
+.dsh .numap-auth{display:inline-flex;align-items:center;gap:6px}
+.dsh .numap-auth:empty{display:none}
+.dsh .numap-auth a{display:inline-flex;align-items:center;gap:5px;padding:8px 14px;border-radius:999px;font-weight:700;font-size:.86rem;text-decoration:none;white-space:nowrap;color:#d7f0d9;background:rgba(46,125,50,.22);border:1px solid rgba(46,125,50,.5);transition:background .15s;cursor:pointer}
+.dsh .numap-auth a:hover{background:rgba(46,125,50,.34)}
+.dsh .numap-auth>span{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:.86rem;color:#e8efe9}
+.dsh .numap-auth .nm{color:#d7f0d9}
+.dsh .numap-auth #numap-out{cursor:pointer;border:0;border-radius:999px;background:#2E7D32;color:#fff;font-weight:800;font-size:.8rem;padding:7px 13px;font-family:inherit}
+.dsh .numap-auth #numap-out:hover{filter:brightness(1.1)}
 @media (max-width:760px){.dsh{padding:10px 15px}.dsh-pill{padding:7px 11px;font-size:.8rem}.dsh-name{font-size:18px}}
 @media print{.dsh{display:none}}
 
@@ -181,7 +179,7 @@
 </style>
 </head>
 <body data-key="mlen">
-<header class="dsh"><div class="dsh-row"><a class="dsh-brand" href="/" aria-label="DokunSay ana sayfa"><span class="dsh-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" aria-hidden="true"><line x1="28" y1="27" x2="72" y2="27" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="28" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="72" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><circle cx="28" cy="27" r="21" fill="#2E7D32"/><circle cx="20.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="28" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="35.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="72" cy="27" r="21" fill="#0d9488"/><text x="72" y="32" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="14" fill="#fff">üç</text><circle cx="50" cy="73" r="21" fill="#1B5E20"/><text x="50" y="82" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="27" fill="#fff">3</text></svg></span><span class="dsh-titles"><span class="dsh-name">DokunSay</span><span class="dsh-sub">Matematik Öğretim Araçları Platformu</span></span></a><nav class="dsh-nav" aria-label="Site gezinme"><a class="dsh-pill dsh-amber is-active" href="/yorunge/" aria-current="page">🧭 Öğrenme Yörüngeleri</a><a class="dsh-pill dsh-green" href="/rehber/">📘 Müdahale Rehberi</a><a class="dsh-pill dsh-teal" href="/#tools-section">🛠️ Araçlar</a><span id="hcmoAuth" class="hcmo-auth"></span></nav></div></header>
+<header class="dsh"><div class="dsh-row"><a class="dsh-brand" href="/" aria-label="DokunSay ana sayfa"><span class="dsh-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" aria-hidden="true"><line x1="28" y1="27" x2="72" y2="27" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="28" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="72" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><circle cx="28" cy="27" r="21" fill="#2E7D32"/><circle cx="20.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="28" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="35.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="72" cy="27" r="21" fill="#0d9488"/><text x="72" y="32" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="14" fill="#fff">üç</text><circle cx="50" cy="73" r="21" fill="#1B5E20"/><text x="50" y="82" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="27" fill="#fff">3</text></svg></span><span class="dsh-titles"><span class="dsh-name">DokunSay</span><span class="dsh-sub">Matematik Öğretim Araçları Platformu</span></span></a><nav class="dsh-nav" aria-label="Site gezinme"><a class="dsh-pill dsh-amber is-active" href="/yorunge/" aria-current="page">🧭 Öğrenme Yörüngeleri</a><a class="dsh-pill dsh-green" href="/rehber/">📘 Müdahale Rehberi</a><a class="dsh-pill dsh-teal" href="/#tools-section">🛠️ Araçlar</a><span id="numapAuth" class="numap-auth"></span></nav></div></header>
 
 <section class="hero">
   <div class="wrap">
@@ -194,7 +192,7 @@
         <p class="lede">Karşılaştırma, birim, cetvel. <span class="ltname">(Length Measurement)</span></p>
         <div class="hero-meta">
           <span class="hm">📊 12 basamak</span>
-          <span class="hm">🎂 0–10 yaş</span>
+          <span class="hm">🎂 0–8 yaş</span>
           <span class="hm">⚠ 2 darboğaz</span>
           <span class="hm">🎯 Profil alanı · gözlem</span>
         </div>
@@ -215,7 +213,7 @@
     <aside class="side">
     <div class="side-in">
       <div class="side-head">Düzeyler <span>12</span></div>
-      <ol class="side-list"><li><a href="#lv-0" data-i="0"><span class="s-num" style="--c:#0d9488">1</span><span class="s-txt"><b>Uzunluk Duyarlılığı: Temeller</b><small>0–2 yaş</small></span></a></li><li><a href="#lv-1" data-i="1"><span class="s-num" style="--c:#0d9488">2</span><span class="s-txt"><b>Uzunluğu Fark Eden</b><small>1–3 yaş</small></span></a></li><li><a href="#lv-2" data-i="2"><span class="s-num" style="--c:#0d9488">3</span><span class="s-txt"><b>Uzunluğu Doğrudan Karşılaştıran</b><small>4–5 yaş</small></span></a></li><li><a href="#lv-3" data-i="3"><span class="s-num" style="--c:#0d9488">4</span><span class="s-txt"><b>Uzunluğu Dolaylı Karşılaştıran</b><small>4–5 yaş · ⚠ darboğaz</small></span></a></li><li><a href="#lv-4" data-i="4"><span class="s-num" style="--c:#0d9488">5</span><span class="s-txt"><b>Boy Sırasına Dizen (5’e kadar)</b><small>4–5 yaş</small></span></a></li><li><a href="#lv-5" data-i="5"><span class="s-num" style="--c:#0d9488">6</span><span class="s-txt"><b>Uç Uca Dizerek Ölçen</b><small>6–7 yaş · ⚠ darboğaz</small></span></a></li><li><a href="#lv-6" data-i="6"><span class="s-num" style="--c:#0d9488">7</span><span class="s-txt"><b>Boy Sırasına Dizen (6 ve üzeri)</b><small>6–7 yaş</small></span></a></li><li><a href="#lv-7" data-i="7"><span class="s-num" style="--c:#0d9488">8</span><span class="s-txt"><b>Tek Birimi Tekrarlayarak Ölçen</b><small>7–8 yaş</small></span></a></li><li><a href="#lv-8" data-i="8"><span class="s-num" style="--c:#0d9488">9</span><span class="s-txt"><b>Uzunluk Ölçen</b><small>7–8 yaş</small></span></a></li><li><a href="#lv-9" data-i="9"><span class="s-num" style="--c:#0d9488">10</span><span class="s-txt"><b>Kavramsal Cetvelle Ölçen</b><small>8–9 yaş</small></span></a></li><li><a href="#lv-10" data-i="10"><span class="s-num" style="--c:#0d9488">11</span><span class="s-txt"><b>Çevre Uzunluğunu Hesaplayan</b><small>8–9 yaş</small></span></a></li><li><a href="#lv-11" data-i="11"><span class="s-num" style="--c:#0d9488">12</span><span class="s-txt"><b>Türetilmiş Birimlerle Ölçen</b><small>8–10 yaş</small></span></a></li></ol>
+      <ol class="side-list"><li><a href="#lv-0" data-i="0"><span class="s-num" style="--c:#0d9488">1</span><span class="s-txt"><b>Uzunluk Duyarlılığı: Temeller</b><small>0–2 yaş</small></span></a></li><li><a href="#lv-1" data-i="1"><span class="s-num" style="--c:#0d9488">2</span><span class="s-txt"><b>Uzunluğu Fark Eden</b><small>1–3 yaş</small></span></a></li><li><a href="#lv-2" data-i="2"><span class="s-num" style="--c:#0d9488">3</span><span class="s-txt"><b>Uzunluğu Doğrudan Karşılaştıran</b><small>4 yaş</small></span></a></li><li><a href="#lv-3" data-i="3"><span class="s-num" style="--c:#0d9488">4</span><span class="s-txt"><b>Uzunluğu Dolaylı Karşılaştıran</b><small>4–5 yaş · ⚠ darboğaz</small></span></a></li><li><a href="#lv-4" data-i="4"><span class="s-num" style="--c:#0d9488">5</span><span class="s-txt"><b>Boy Sırasına Dizen (5’e kadar)</b><small>4–5 yaş</small></span></a></li><li><a href="#lv-5" data-i="5"><span class="s-num" style="--c:#0d9488">6</span><span class="s-txt"><b>Uç Uca Dizerek Ölçen</b><small>6 yaş · ⚠ darboğaz</small></span></a></li><li><a href="#lv-6" data-i="6"><span class="s-num" style="--c:#0d9488">7</span><span class="s-txt"><b>Boy Sırasına Dizen (6 ve üzeri)</b><small>6 yaş</small></span></a></li><li><a href="#lv-7" data-i="7"><span class="s-num" style="--c:#0d9488">8</span><span class="s-txt"><b>Tek Birimi Tekrarlayarak Ölçen</b><small>7 yaş</small></span></a></li><li><a href="#lv-8" data-i="8"><span class="s-num" style="--c:#0d9488">9</span><span class="s-txt"><b>Uzunluk Ölçen</b><small>7–8 yaş</small></span></a></li><li><a href="#lv-9" data-i="9"><span class="s-num" style="--c:#0d9488">10</span><span class="s-txt"><b>Kavramsal Cetvelle Ölçen</b><small>8 yaş</small></span></a></li><li><a href="#lv-10" data-i="10"><span class="s-num" style="--c:#0d9488">11</span><span class="s-txt"><b>Çevre Uzunluğunu Hesaplayan</b><small>8 yaş</small></span></a></li><li><a href="#lv-11" data-i="11"><span class="s-num" style="--c:#0d9488">12</span><span class="s-txt"><b>Türetilmiş Birimlerle Ölçen</b><small>8 yaş</small></span></a></li></ol>
     </div>
   </aside>
     <div class="levels">
@@ -233,7 +231,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Doğuştan gelen, örtük uzunluk duyarlılığı: yaklaşık 6 aydan itibaren basit uzunluk farklarını sezgisel olarak ayırt eder; ancak uzunluğu ayrı bir nitelik olarak henüz tanımayabilir.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Altı aylıkken bile uzunlukları sezgisel olarak basitçe karşılaştırır (sanbilde gördüğümüze benzer biçimde). Ancak uzunluğu, “küçük” ve “büyük” gibi genel boyuttan ayrı, kendine özgü bir nitelik olarak tanımayabilir.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Bebek, uzun bir kaşıkla kısa bir kaşığı gördüğünde uzun olana uzanır ya da iki çubuktan büyüğünü ağzına götürmeye çalışır. Henüz &quot;uzun&quot; demez; ama bir şeyin &quot;daha çok yer kapladığını&quot; eliyle, bakışıyla sezer.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, uzunluğun en erken sezgisidir: nicelik henüz dile dökülmez, bedenle yaşanır. Amaç ölçmek değil, &quot;uzun-kısa&quot; farkına dikkat uyandırmaktır. Günlük dilde &quot;koca bir&quot;, &quot;minik bir&quot;, &quot;uzuuun&quot; gibi sözcükleri abartılı tonla kullanın; çocuk uzunluğu bir özellik olarak fark etmeye başlasın. Sonraki tüm ölçme öğrenmesi bu çıplak sezgiye yaslanır.</p></div>
         <div class="act">
@@ -270,7 +268,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Uzunluğu/uzaklığı bir nitelik olarak ayırt etmeye başlar; &quot;uzun&quot;, &quot;kısa&quot; sözcüklerini kullanır. Uzunluğu karşılaştırmalı değil mutlak değerlendirebilir (tüm yetişkinler &quot;uzun&quot;dur) ve karşılaştırmada birbirine karşılık gelmeyen parçalara bakabilir.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Uzunluğu ve uzaklığı bir nitelik olarak ayırt eder. Uzunluğu karşılaştırmalı (biri diğerinden daha uzun) değil, mutlak bir betimleyici (örn. tüm yetişkinler uzundur) olarak anlayabilir. Kenar uzunluğunu belirlerken şeklin birbirine karşılık gelmeyen parçalarını karşılaştırabilir.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>&quot;Hangisi uzun?&quot; diye iki çubuk gösterdiğinizde çocuk çoğu zaman uzun olanı işaret eder ya da &quot;bu uzun&quot; der. Uzunluğu artık ad olarak tanır; ama henüz uçları hizalayıp ölçmez, bakışına güvenir.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Burada uzunluk bir NİCELİK olarak dile değer: &quot;uzun, kısa, daha uzun&quot; sözcükleri nesneye bağlanır. Bu sözcük dağarcığı sonraki karşılaştırmanın temelidir. Dikkat: bu yaşta çocuk &quot;büyük&quot; ile &quot;uzun&quot;u karıştırabilir (kalın/hacimli olanı &quot;uzun&quot; sanabilir). Yalnız tek boyuta (boy) odaklanan örnekler seçin; iki çubuğu kalınlık/renk olarak özdeş tutup yalnız boyca farklı yapın.</p></div>
         <div class="act">
@@ -299,7 +297,7 @@
       <div class="lv-num" style="--c:#0d9488">3</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#0d9488">4–5 yaş</span>
+          <span class="age-pill" style="--c:#0d9488">4 yaş</span>
           
         </div>
         <h3>Uzunluğu Doğrudan Karşılaştıran</h3>
@@ -307,7 +305,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> İki nesnenin hangisinin daha uzun (ya da eşit) olduğunu anlamak için nesneleri fiziksel olarak yan yana getirip uçlarını hizalar; &quot;uzun&quot;, &quot;daha uzun&quot;, &quot;en uzun&quot; ifadelerini kullanır.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Hangisinin daha uzun ya da aynı uzunlukta olduğunu belirlemek için iki nesneyi fiziksel olarak hizalar. “Uzun, daha uzun, en uzun” terimlerini kullanır.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>İki kalem verince çocuk onları yan yana getirir, BİR uçlarını aynı çizgiye hizalar ve diğer uçtan taşan kalemi &quot;bu uzun&quot; diye gösterir. Hizalamayı kendiliğinden yapması asıl kazanımdır.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Doğrudan karşılaştırma, ölçmenin ilk gerçek mantığıdır: adil karşılaştırma için nesnelerin AYNI başlangıçtan hizalanması gerekir. Klasik yanılgı: çocuk uçları hizalamadan, yalnız bir kalemin üst ucu daha yukarıda diye onu &quot;uzun&quot; sanar. &quot;Yarış çizgisi&quot; benzetmesi güçlüdür: &quot;İkisi de aynı çizgiden başlasın, sonra kim daha ileri gidiyor bakalım.&quot; Hizalamayı her seferinde birlikte kontrol edin.</p></div>
         <div class="act">
@@ -344,7 +342,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Yan yana getirilemeyen iki nesnenin uzunluğunu üçüncü bir nesneyle (ip, şerit) temsil ederek karşılaştırır (geçişlilik). Bu düzeyde &quot;ölçüyormuş gibi&quot; davranışlar görülebilir: eşit birim olmadan sayarak ilerleme, cetveli başlangıç noktasına dikkat etmeden kullanma.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> İki nesnenin uzunluğunu üçüncü bir nesneyle temsil ederek karşılaştırır. “Uzun, daha uzun, en uzun, kısa, daha kısa, en kısa” terimlerini kullanır. Ölçmesi istendiğinde tahminle ya da (eşit uzunlukta birimler olmadan) uzunluk boyunca ilerleyip sayarak bir değer verebilir. Cetvelle ölçebilir ama anlayış ya da beceri çoğu zaman eksiktir (örn. başlangıç noktasını dikkate almaz).</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Odanın iki ucundaki, birbirine getirilemeyen iki nesneyi (kapı ile pencere genişliği) karşılaştırmak için çocuk araya bir ip/çubuk koyar: önce birine göre işaretler, sonra ötekiyle kıyaslar. &quot;Aracıyı&quot; kullanmayı kendisi düşünmesi kritiktir.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, yörüngenin ilk büyük darboğazıdır: nesneler yan yana getirilemiyorsa, ARACI bir nesneyle (geçişlilik) dolaylı karşılaştırma gerekir — &quot;A, ipten uzun; ip, B'den uzun; öyleyse A, B'den uzun.&quot; Çoğu çocuk bunu kendiliğinden yapmaz; &quot;hatırlayamıyorsak, taşıyabileceğimiz bir şey kullanalım&quot; fikrini açıkça öğretin. Aracının karşılaştırma boyunca DEĞİŞMEMESİ (esnememesi, kısalmaması) şarttır — bu yüzden ip yerine sert bir çubuk daha güvenlidir. Dolaylı karşılaştırma, cetvelin de mantıksal atasıdır.</p></div>
         <div class="act">
@@ -381,7 +379,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> 1–5 birim işaretli uzunlukları sıraya dizer; belirgin farklı 3–5 işaretsiz uzunluğu deneme-yanılmayla kısadan uzuna sıralar. &quot;Azar azar artan&quot; diziye ilişkin zihinsel imge kurulmaktadır.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> 1–5 birim olarak işaretlenmiş uzunlukları sıralar. Açıkça farklı, işaretsiz uzunlukları da geniş kategorilerle (“büyük”, “küçük”) karşılaştırabilir ve böyle 3–5 nesneyi ancak deneme-yanılmayla sıralar. Çalışma belleği geliştikçe, uzunlukların her seferinde en küçük artışla “azar azar” büyüdüğü son sıralamanın zihinsel imgesini kurmaya başlar; bu, daha doğru ve biraz daha verimli sıralamaya götürür. (Bu düzey “Uç Uca Dizerek Ölçen” ile koşut gelişir.)</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Boyları farklı 5 çubuğu çocuk kısadan uzuna dizer: en kısayı bulur, sonra kalanlardan en kısayı… Basamak gibi düzgün bir merdiven çıkar. Henüz oturmamışsa ikişer ikişer doğru kıyaslar ama tüm seriyi tutarlı sıralayamaz.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Sıralama (seriasyon), doğrudan karşılaştırmayı bir diziye genişletir ve gizli bir geçişlilik içerir: ortadaki çubuk solundakinden uzun, sağındakinden kısadır. Strateji öğretin: &quot;Her seferinde kalanların EN kısasını seç.&quot; Çocuklar sık sık yalnız komşu çiftlere bakıp toptan sırayı bozar; tüm dizinin uçlarını ortak bir çizgiye hizalayarak &quot;merdiven&quot; görünümünü kontrol ettirin. Bu, sayı sıralamasıyla da (artan büyüklük) aynı mantıktır.</p></div>
         <div class="act">
@@ -410,7 +408,7 @@
       <div class="lv-num" style="--c:#0d9488">6</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#0d9488">6–7 yaş</span>
+          <span class="age-pill" style="--c:#0d9488">6 yaş</span>
           <span class="bn-pill">⚠ Darboğaz · kritik geçiş</span>
         </div>
         <h3>Uç Uca Dizerek Ölçen</h3>
@@ -418,7 +416,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Bir uzunluğu ölçmek için birden çok birimi (küp, ataş) uç uca dizer ve sayar. Birimlerin eşit uzunlukta olması gerektiğini ya da birimler yetmediğinde ne yapılacağını henüz tam kavramayabilir; ölçüleri karşılaştırmalarda kullanma daha sonra gelişir.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Bir nesneyi ya da uzaklığı ölçmek için birimleri uç uca dizer. Eşit uzunlukta birimlere gerek olduğunu fark etmeyebilir ya da birimler gerekenden azsa ölçemeyebilir. Elde edilen ölçüleri karşılaştırma durumlarında kullanma becerisi bu düzeyin ilerleyen aşamasında gelişir. (Bu düzey “Boy Sırasına Dizen (5’e kadar)” ile koşut gelişir.)</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Bir kalemin boyunu ölçmek için çocuk ataçları uç uca, BOŞLUKSUZ ve üst üste binmeden dizer, sonra ataçları sayar: &quot;yedi ataç uzunluğunda.&quot; Henüz oturmamışsa ataçların arasında boşluk bırakır, kimini üst üste koyar ya da eğri dizip yanlış sayar.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, ölçmenin kalbindeki ikinci büyük darboğazdır: bir uzunluk, boşluksuz ve örtüşmesiz döşenen EŞİT birimlerle kaplanır, sonra birimler sayılır. İki klasik yanılgı: (1) birimler arasında boşluk bırakmak (uzunluğu eksik sayar), (2) birimleri üst üste bindirmek (fazla sayar). Üçüncüsü: farklı boyda birimler karıştırmak. &quot;Birimler el ele tutuşsun, ne aralarında boşluk kalsın ne de birbirine binsin&quot; deyin. Başlangıcı kalemin tam ucuyla hizalayın — bu, cetvelin sıfır noktasının habercisidir.</p></div>
         <div class="act">
@@ -447,7 +445,7 @@
       <div class="lv-num" style="--c:#0d9488">7</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#0d9488">6–7 yaş</span>
+          <span class="age-pill" style="--c:#0d9488">6 yaş</span>
           
         </div>
         <h3>Boy Sırasına Dizen (6 ve üzeri)</h3>
@@ -455,7 +453,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> 1–6+ birim işaretli uzunlukları sıralar; işaretsiz uzunlukları az hatayla, kendiliğinden seri biçimde dizer (önce en kısayı, sonra kalanların en kısasını seçerek).</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> 1–6 birim olarak işaretlenmiş uzunlukları sıralar. Farklı uzunluktaki herhangi bir nesne kümesinin, uzunluğu sürekli artan (ya da azalan) bir diziye yerleştirilebileceğini en azından sezgisel olarak anlar; bu yüzden en kısa (ya da en uzun) nesneyi, sonra bir sonraki en kısayı (“en küçük fark”ı olanı) seçerek az hatayla kendiliğinden sıralar.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk 6, 7 ya da daha çok çubuğu kısadan uzuna güvenle sıralar; araya yeni bir çubuk verseniz doğru yere yerleştirir. Diziyi tek tek değil, &quot;buradan büyük ama şundan küçük&quot; diye ilişkisel düşünerek kurar.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Seri uzadıkça geçişlilik görünür hâle gelir: bir çubuğu yerleştirmek için hem solundakinden uzun hem sağındakinden kısa olmasını aynı anda sağlamak gerekir. &quot;En kısayı seç&quot; stratejisi hâlâ işe yarar; ek olarak &quot;araya ekleme&quot; görevleriyle ilişkisel düşünmeyi zorlayın (bir çubuk verip &quot;bu nereye girer?&quot;). Bu beceri, sayı doğrusunda bir sayının yerini bulmakla aynı mantıksal yapıdır.</p></div>
         <div class="act">
@@ -484,7 +482,7 @@
       <div class="lv-num" style="--c:#0d9488">8</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#0d9488">7–8 yaş</span>
+          <span class="age-pill" style="--c:#0d9488">7 yaş</span>
           
         </div>
         <h3>Tek Birimi Tekrarlayarak Ölçen</h3>
@@ -492,7 +490,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Tek bir birimi kaydırarak yineleyip (birim yineleme) uzunluğu ölçer; birimlerin eşit olması gerektiğini bilir; birim büyüklüğü ile birim sayısı arasındaki ters ilişkiyi kavrar (büyük birim → küçük sayı); iki uzunluğu toplar; cetveli az yardımla kullanır.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Tek bir birimi yineleyerek ölçer ve eşit uzunlukta birime gerek olduğunu anlar. Birimin büyüklüğü ile sayısını ilişkilendirir (ters ilişki). Bir bütünün uzunluğunu bulmak için iki uzunluğu toplayabilir. Basit durumlarda cetveli çoğu zaman çok az yönlendirmeyle kullanabilir.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk elinde TEK bir birim çubuk olsa bile masayı ölçebilir: çubuğu koyar, bittiği yeri parmağıyla/işaretle tutar, çubuğu oraya KAYDIRIR ve bunu tekrarlar; kaç kez koyduğunu sayar. Her adımda başladığı yeri tam bittiği yere getirmesi kritiktir.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Birim tekrarı (unit iteration), uç uca döşemenin zihinsel sıçramasıdır: artık yüzlerce ataça gerek yok; tek bir birimi sistematik tekrarlayarak ölçer. Asıl güçlük, çubuğun bir önceki bittiği noktadan TAM başlatılmasıdır — çocuk boşluk bırakır ya da örtüştürürse sayım bozulur. Bittiği yeri her seferinde işaretletin (&quot;parmağını burada tut, çubuğu oraya getir&quot;). Bu beceri doğrudan cetvele köprüdür: cetvel, aynı birimin önceden tekrarlanmış hâlidir.</p></div>
         <div class="act">
@@ -529,7 +527,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Kırık (bükülmüş) bir yolun uzunluğunu parçalarının toplamı olarak düşünür; özdeş birim, birimler arası ilişkiler, birimin bölümlenmesi, sıfır noktası ve mesafe birikimi kavramlarını kullanır; tahmin etmeye başlar.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Kırık bir yolun uzunluğunu (uç noktalar arasındaki uzaklığı değil) parçalarının toplamı olarak düşünür. Özdeş birim gereğini, farklı birimler arasındaki ilişkiyi, birimin bölünmesini, cetveldeki sıfır noktasını ve uzaklığın birikimini bilerek ölçer. Tahmin etmeye başlar.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk cetveli kalemin altına koyar, kalemin bir ucunu cetvelin SIFIR çizgisine hizalar ve öteki ucun denk geldiği sayıyı okur: &quot;on iki santimetre.&quot; Cetveldeki çizgileri (cm) tekrarlanmış birimler olarak görür.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Cetvel, birim tekrarının standartlaşmış hâlidir; ama en yaygın ölçme yanılgısı tam buradadır: çocuk cetveli SIFIR yerine 1 çizgisinden başlatıp bir cm fazla/eksik okur. &quot;Sayılar çizgilerin değil, ARALIKLARIN adıdır; başlangıç sıfırdır&quot; deyin. İkinci yanılgı: kalemi cetvelin kenarına değil ortasına koyup kaydırma. Cetveli her seferinde sıfırdan hizalattırın; istenirse cetveli kaydırıp &quot;3'ten başlasaydık nasıl düzeltirdik?&quot; diye birimleri saydırarak okumayı pekiştirin.</p></div>
         <div class="act">
@@ -558,7 +556,7 @@
       <div class="lv-num" style="--c:#0d9488">10</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#0d9488">8–9 yaş</span>
+          <span class="age-pill" style="--c:#0d9488">8 yaş</span>
           
         </div>
         <h3>Kavramsal Cetvelle Ölçen</h3>
@@ -566,7 +564,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> &quot;İçsel&quot; bir ölçme aracı kullanır: nesneyi zihinsel olarak bölümleyip bölümleri sayar; ölçüler üzerinde aritmetik işlemler yapar; birimi alt bölümlere (yarımlara) ayırır; isabetli tahminlerde bulunur.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> “İçsel” bir ölçme aracına sahiptir. Bir nesne boyunca zihinsel olarak ilerler, onu parçalara böler ve parçaları sayar. Ölçüler üzerinde aritmetik işlem yapar (“birleştirilmiş uzunluklar”). Birimi en azından yarımlara böler. Doğru tahminlerde bulunur.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Cetvel olmadan çocuk &quot;bu kalem yaklaşık 15 santim&quot; diye kestirir; sonra ölçtüğünde tahmini gerçeğe yakın çıkar. Bir cm'nin ne kadar olduğunu zihninde TAŞIR ve uzunluğu o birimle imgeler.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, ölçmenin içselleşmesidir: çocuk artık cetvele bakmadan da birimi (cm) zihinsel bir ölçü olarak kullanır — uzunluğu &quot;yaklaşık kaç birim sığar&quot; diye imgeler. Referans noktaları kurun (&quot;baş parmağın ucu ≈ 1 cm&quot;, &quot;bir karış ≈ 20 cm&quot;). Önce tahmin, sonra ölçüm sırası kritiktir: tahmin sayı duygusunu, ölçüm geri bildirimi kalibrasyonu sağlar. Hep önce kestirtin, sonra doğrulatın; &quot;tahminin neye dayandı?&quot; diye gerekçe isteyin.</p></div>
         <div class="act">
@@ -595,7 +593,7 @@
       <div class="lv-num" style="--c:#0d9488">11</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#0d9488">8–9 yaş</span>
+          <span class="age-pill" style="--c:#0d9488">8 yaş</span>
           
         </div>
         <h3>Çevre Uzunluğunu Hesaplayan</h3>
@@ -603,7 +601,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Çokgenlerin çevre uzunluğunu (karmaşık durumlar dâhil) hesaplar; çevresi aynı/alanı aynı durumları ilişkilendirir; uzunluğu 2B ve 3B bağlamlarda çözümler; kesinlik/doğruluk fikirleri gelişir.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Karmaşık durumlar dâhil bir çokgenin çevresini hesaplar. Aynı çevreye ya da aynı alana sahip çokgenlerle ilgili birkaç durum bulabilir ve bu durumları, altta yatan bir örüntüye kanıt sağlamak üzere mantıksal karşılaştırmayla birbirine bağlar. Karmaşık yol kümeleri hakkında çevre ve nesnelerin diğer doğrusal yönlerine dayanan savlar ileri sürer. Uzunluğu iki ve üç boyutlu bağlamlarda çözümleyebilir. Birim seçiminde iyi gelişmiş kesinlik ve doğruluk fikirleri gösterir.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk düz olmayan bir yolu (köşeli bir labirent, dikdörtgenin çevresi) ölçerken onu düz parçalara böler, her parçayı ayrı ölçer ve toplamı alır: &quot;üç artı dört artı üç... on santim.&quot; Bükük uzunluğu, düz parçaların toplamı olarak görür.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu düzeyde uzunluk EKLEMELİ bir niceliğe dönüşür: bir yol/çevre, parçalarının uzunluklarının toplamıdır (parça-bütün). Klasik yanılgı: köşeli yolu uçtan uca tek düz çizgiyle ölçmeye çalışmak (köşeleri &quot;kestirmek&quot;). Yolu kırıklarından parçalara böldürün, her parçayı ölçtürün, sonra toplattırın. Çevre kavramı (dikdörtgenin dört kenarının toplamı) bu becerinin doğrudan uygulamasıdır; bu, ileride alan ve uzunluk akıl yürütmesinin zeminidir.</p></div>
         <div class="act">
@@ -632,7 +630,7 @@
       <div class="lv-num" style="--c:#0d9488">12</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#0d9488">8–10 yaş</span>
+          <span class="age-pill" style="--c:#0d9488">8 yaş</span>
           
         </div>
         <h3>Türetilmiş Birimlerle Ölçen</h3>
@@ -640,7 +638,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Nesne kümelerini çevre/yol uzunluğuna göre sentezleyip gerekçeli karşılaştırmalar yapar; türetilmiş birimleri (saatte kilometre) ve birim dönüşümlerini kullanır; tam sayı olmayan ölçülerle çalışır; en küçük bölmenin kesirlerine kadar tahmin eder.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Geçerli bir sav oluşturup gerekçelendirmek için nesne kümelerini çevreye göre ya da karmaşık kırık yol topluluklarını toplam uzunluğa göre iki ya da üç boyutlu bağlamlarda düzenler ve bir araya getirir. Saatte kilometre gibi doğrusal ölçülerle türetilmiş birimler kurar ve türetilmiş ölçülerle uygun birim dönüşümleri yapar. Çevreyi ya da yol uzunluğunu, birimler ve birimlerin bölümleri (tam sayı olmayan değerler dâhil) ile hesaplar. Bu bölme sürecinin potansiyel olarak sınırsız olduğunu açıklayabilir. Çokgenlerdeki geometrik tutarsızlıkları fark eder ve bunlardan rahatsız olur. Aracın izin verdiği kesinlik düzeyinde, aletteki en küçük bölme çizgisinin kesrine kadar tahmin ederek ölçer.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk standart olmayan bir birimle (ör. bir ataç boyu) ölçtüğü uzunluğu başka bir birime çevirebilir: &quot;masa 20 ataç; bir ataç 3 cm ise, masa 60 cm.&quot; Birimi soyut bir çarpan gibi kullanır; birim küçülünce sayının büyüdüğünü bilir.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, uzunluk yörüngesinin doruğudur: ölçü artık &quot;birim sayısı × birim büyüklüğü&quot; olarak SOYUTLANIR. Çocuk ters orantıyı kavrar — aynı uzunluk küçük birimle daha çok, büyük birimle daha az sayı verir (&quot;birim küçükse sayı büyür&quot;). Birim dönüşümünü (ataç↔cm, adım↔metre) çarpma/bölme ile ilişkilendirin. &quot;Hangi birimle ölçtüğünü söylemeden sayı tek başına anlam taşımaz&quot; ilkesini vurgulayın; bu, ölçü birimlerinin ve oranların kapısıdır.</p></div>
         <div class="act">

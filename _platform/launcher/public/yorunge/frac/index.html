@@ -40,16 +40,14 @@
 .dsh-green{color:#d7f0d9;background:rgba(46,125,50,.22);border-color:rgba(46,125,50,.5)}
 .dsh-teal{color:#bfe8e4;background:rgba(13,148,136,.2);border-color:rgba(13,148,136,.5)}
 .dsh-pill.is-active{box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.45);filter:brightness(1.12)}
-.dsh .hcmo-auth{display:inline-flex;align-items:center;gap:6px}
-.dsh .hcmo-auth:empty{display:none}
-.dsh .hcmo-auth a{display:inline-flex;align-items:center;gap:5px;padding:8px 14px;border-radius:999px;font-weight:700;font-size:.86rem;text-decoration:none;white-space:nowrap;color:#fde6c0;background:rgba(245,158,11,.18);border:1px solid rgba(245,158,11,.45);transition:background .15s}
-.dsh .hcmo-auth a:hover{background:rgba(245,158,11,.3)}
-.dsh .hcmo-auth a#hcmo-stu{color:#cfe8ff;background:rgba(96,165,250,.16);border-color:rgba(96,165,250,.4)}
-.dsh .hcmo-auth a#hcmo-stu:hover{background:rgba(96,165,250,.28)}
-.dsh .hcmo-auth>span{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:.86rem;color:#e8eefc}
-.dsh .hcmo-auth .nm{color:#fde6c0}
-.dsh .hcmo-auth #hcmo-out{cursor:pointer;border:0;border-radius:999px;background:#f59e0b;color:#3a2606;font-weight:800;font-size:.8rem;padding:7px 13px;font-family:inherit}
-.dsh .hcmo-auth #hcmo-out:hover{filter:brightness(1.07)}
+.dsh .numap-auth{display:inline-flex;align-items:center;gap:6px}
+.dsh .numap-auth:empty{display:none}
+.dsh .numap-auth a{display:inline-flex;align-items:center;gap:5px;padding:8px 14px;border-radius:999px;font-weight:700;font-size:.86rem;text-decoration:none;white-space:nowrap;color:#d7f0d9;background:rgba(46,125,50,.22);border:1px solid rgba(46,125,50,.5);transition:background .15s;cursor:pointer}
+.dsh .numap-auth a:hover{background:rgba(46,125,50,.34)}
+.dsh .numap-auth>span{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:.86rem;color:#e8efe9}
+.dsh .numap-auth .nm{color:#d7f0d9}
+.dsh .numap-auth #numap-out{cursor:pointer;border:0;border-radius:999px;background:#2E7D32;color:#fff;font-weight:800;font-size:.8rem;padding:7px 13px;font-family:inherit}
+.dsh .numap-auth #numap-out:hover{filter:brightness(1.1)}
 @media (max-width:760px){.dsh{padding:10px 15px}.dsh-pill{padding:7px 11px;font-size:.8rem}.dsh-name{font-size:18px}}
 @media print{.dsh{display:none}}
 
@@ -181,7 +179,7 @@
 </style>
 </head>
 <body data-key="frac">
-<header class="dsh"><div class="dsh-row"><a class="dsh-brand" href="/" aria-label="DokunSay ana sayfa"><span class="dsh-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" aria-hidden="true"><line x1="28" y1="27" x2="72" y2="27" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="28" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="72" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><circle cx="28" cy="27" r="21" fill="#2E7D32"/><circle cx="20.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="28" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="35.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="72" cy="27" r="21" fill="#0d9488"/><text x="72" y="32" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="14" fill="#fff">üç</text><circle cx="50" cy="73" r="21" fill="#1B5E20"/><text x="50" y="82" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="27" fill="#fff">3</text></svg></span><span class="dsh-titles"><span class="dsh-name">DokunSay</span><span class="dsh-sub">Matematik Öğretim Araçları Platformu</span></span></a><nav class="dsh-nav" aria-label="Site gezinme"><a class="dsh-pill dsh-amber is-active" href="/yorunge/" aria-current="page">🧭 Öğrenme Yörüngeleri</a><a class="dsh-pill dsh-green" href="/rehber/">📘 Müdahale Rehberi</a><a class="dsh-pill dsh-teal" href="/#tools-section">🛠️ Araçlar</a><span id="hcmoAuth" class="hcmo-auth"></span></nav></div></header>
+<header class="dsh"><div class="dsh-row"><a class="dsh-brand" href="/" aria-label="DokunSay ana sayfa"><span class="dsh-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" aria-hidden="true"><line x1="28" y1="27" x2="72" y2="27" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="28" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="72" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><circle cx="28" cy="27" r="21" fill="#2E7D32"/><circle cx="20.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="28" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="35.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="72" cy="27" r="21" fill="#0d9488"/><text x="72" y="32" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="14" fill="#fff">üç</text><circle cx="50" cy="73" r="21" fill="#1B5E20"/><text x="50" y="82" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="27" fill="#fff">3</text></svg></span><span class="dsh-titles"><span class="dsh-name">DokunSay</span><span class="dsh-sub">Matematik Öğretim Araçları Platformu</span></span></a><nav class="dsh-nav" aria-label="Site gezinme"><a class="dsh-pill dsh-amber is-active" href="/yorunge/" aria-current="page">🧭 Öğrenme Yörüngeleri</a><a class="dsh-pill dsh-green" href="/rehber/">📘 Müdahale Rehberi</a><a class="dsh-pill dsh-teal" href="/#tools-section">🛠️ Araçlar</a><span id="numapAuth" class="numap-auth"></span></nav></div></header>
 
 <section class="hero">
   <div class="wrap">
@@ -194,7 +192,7 @@
         <p class="lede">Eş paylaşım, birim kesir, kesir işlemleri. <span class="ltname">(Fractions)</span></p>
         <div class="hero-meta">
           <span class="hm">📊 11 basamak</span>
-          <span class="hm">🎂 0–12 yaş</span>
+          <span class="hm">🎂 0–8 yaş</span>
           <span class="hm">⚠ 2 darboğaz</span>
           <span class="hm">🎯 Tamamlayıcı alan · gözlem + etkinlik</span>
         </div>
@@ -215,7 +213,7 @@
     <aside class="side">
     <div class="side-in">
       <div class="side-head">Düzeyler <span>11</span></div>
-      <ol class="side-list"><li><a href="#lv-0" data-i="0"><span class="s-num" style="--c:#2E7D32">1</span><span class="s-txt"><b>Oranı Sezen: Temeller</b><small>0–4 yaş</small></span></a></li><li><a href="#lv-1" data-i="1"><span class="s-num" style="--c:#2E7D32">2</span><span class="s-txt"><b>Şekli Eş Parçalara Bölen</b><small>4–6 yaş · ⚠ darboğaz</small></span></a></li><li><a href="#lv-2" data-i="2"><span class="s-num" style="--c:#2E7D32">3</span><span class="s-txt"><b>Yarımı Tanıyan</b><small>5–7 yaş</small></span></a></li><li><a href="#lv-3" data-i="3"><span class="s-num" style="--c:#2E7D32">4</span><span class="s-txt"><b>Birim Kesri Tanıyan</b><small>8–9 yaş · ⚠ darboğaz</small></span></a></li><li><a href="#lv-4" data-i="4"><span class="s-num" style="--c:#2E7D32">5</span><span class="s-txt"><b>Kesri Tanıyan</b><small>8–9 yaş</small></span></a></li><li><a href="#lv-5" data-i="5"><span class="s-num" style="--c:#2E7D32">6</span><span class="s-txt"><b>Birim Kesirlerden Kesir Oluşturan</b><small>9–10 yaş</small></span></a></li><li><a href="#lv-6" data-i="6"><span class="s-num" style="--c:#2E7D32">7</span><span class="s-txt"><b>Kesir Oluşturan</b><small>9–10 yaş</small></span></a></li><li><a href="#lv-7" data-i="7"><span class="s-num" style="--c:#2E7D32">8</span><span class="s-txt"><b>Kesri Tekrarlayıp Bütünü Aşan</b><small>10–11 yaş</small></span></a></li><li><a href="#lv-8" data-i="8"><span class="s-num" style="--c:#2E7D32">9</span><span class="s-txt"><b>Kesirlerle Toplama–Çıkarma Yapan</b><small>10–11 yaş</small></span></a></li><li><a href="#lv-9" data-i="9"><span class="s-num" style="--c:#2E7D32">10</span><span class="s-txt"><b>Kesirlerle Çarpma–Bölme Yapan</b><small>11–12 yaş</small></span></a></li><li><a href="#lv-10" data-i="10"><span class="s-num" style="--c:#2E7D32">11</span><span class="s-txt"><b>Kesir ve Tam Sayıları Sıralayan</b><small>11–12 yaş</small></span></a></li></ol>
+      <ol class="side-list"><li><a href="#lv-0" data-i="0"><span class="s-num" style="--c:#2E7D32">1</span><span class="s-txt"><b>Oranı Sezen: Temeller</b><small>0–3 yaş</small></span></a></li><li><a href="#lv-1" data-i="1"><span class="s-num" style="--c:#2E7D32">2</span><span class="s-txt"><b>Şekli Eş Parçalara Bölen</b><small>3 yaş · ⚠ darboğaz</small></span></a></li><li><a href="#lv-2" data-i="2"><span class="s-num" style="--c:#2E7D32">3</span><span class="s-txt"><b>Yarımı Tanıyan</b><small>4–5 yaş</small></span></a></li><li><a href="#lv-3" data-i="3"><span class="s-num" style="--c:#2E7D32">4</span><span class="s-txt"><b>Birim Kesri Tanıyan</b><small>4–5 yaş · ⚠ darboğaz</small></span></a></li><li><a href="#lv-4" data-i="4"><span class="s-num" style="--c:#2E7D32">5</span><span class="s-txt"><b>Kesri Tanıyan</b><small>5–6 yaş</small></span></a></li><li><a href="#lv-5" data-i="5"><span class="s-num" style="--c:#2E7D32">6</span><span class="s-txt"><b>Birim Kesirlerden Kesir Oluşturan</b><small>6–7 yaş</small></span></a></li><li><a href="#lv-6" data-i="6"><span class="s-num" style="--c:#2E7D32">7</span><span class="s-txt"><b>Kesir Oluşturan</b><small>7–8 yaş</small></span></a></li><li><a href="#lv-7" data-i="7"><span class="s-num" style="--c:#2E7D32">8</span><span class="s-txt"><b>Kesri Yineleyip Bütünü Aşan</b><small>7–8 yaş</small></span></a></li><li><a href="#lv-8" data-i="8"><span class="s-num" style="--c:#2E7D32">9</span><span class="s-txt"><b>Kesirlerle Toplama-Çıkarma Yapan</b><small>8 yaş</small></span></a></li><li><a href="#lv-9" data-i="9"><span class="s-num" style="--c:#2E7D32">10</span><span class="s-txt"><b>Kesirlerle Çarpma-Bölme Yapan</b><small>8 yaş</small></span></a></li><li><a href="#lv-10" data-i="10"><span class="s-num" style="--c:#2E7D32">11</span><span class="s-txt"><b>Kesir ve Tam Sayıları Sıralayan</b><small>8 yaş</small></span></a></li></ol>
     </div>
   </aside>
     <div class="levels">
@@ -225,7 +223,7 @@
       <div class="lv-num" style="--c:#2E7D32">1</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2E7D32">0–4 yaş</span>
+          <span class="age-pill" style="--c:#2E7D32">0–3 yaş</span>
           
         </div>
         <h3>Oranı Sezen: Temeller</h3>
@@ -233,7 +231,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Oranlara ilişkin sezgisel bir duyarlılık vardır: miktarların göreli büyüklüğünü (az–çok, yarısı–tamamı) açık bilgi olmadan ayırt eder. Henüz kesir bilgisi yoktur; paylaşma oyunlarında &quot;herkese biraz&quot; düzeyinde bölüştürme görülebilir.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Oranlara ilişkin bir sezgisi vardır.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk bir kurabiyeyi arkadaşıyla bölüşürken &quot;sana bir, bana bir&quot; diye eşit dağıtmaya çabalar; biri daha büyük pay alınca &quot;haksızlık!&quot; diye itiraz eder. Henüz &quot;yarım&quot; demese de &quot;aynı kadar olsun&quot; sezgisi vardır.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, kesirlerden çok önce gelen orantısal/adil-pay sezgisidir: çocuk miktarları eşitleme ve &quot;aynı kadar&quot; ilişkisini gündelik paylaşımda yaşar. Henüz hiçbir kesir sözcüğü ya da eşit-parçalama tekniği beklemeyin; amaç, paylaşma anlarını fark edip &quot;herkese eşit&quot; düşüncesini sözle beslemektir. Bu sezgi, ileride eş-parçalamanın anlamlı zeminidir — &quot;adil&quot; duygusu &quot;eşit parça&quot;ya köprü olur.</p></div>
         <div class="act">
@@ -262,7 +260,7 @@
       <div class="lv-num" style="--c:#2E7D32">2</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2E7D32">4–6 yaş</span>
+          <span class="age-pill" style="--c:#2E7D32">3 yaş</span>
           <span class="bn-pill">⚠ Darboğaz · kritik geçiş</span>
         </div>
         <h3>Şekli Eş Parçalara Bölen</h3>
@@ -270,7 +268,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Daire ya da dikdörtgen gibi bir bütün şekli eş parçalara böler; paylaşım bağlamında parçaların &quot;aynı büyüklükte&quot; olması gerektiğini gözetmeye başlar.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Daire ya da dikdörtgen gibi bir bütün şekli eş parçalara bölebilir.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk kâğıt bir pizzayı &quot;iki kişiye böl&quot; deyince ortadan bir çizgi çeker; oturmuşsa iki parça denk (üst üste konunca çakışır) çıkar. Henüz oturmamışsa &quot;ikiye böldüm&quot; der ama parçalar gözle görülür biçimde eşitsizdir (biri büyük, biri küçük) — ona göre &quot;böldüm&quot; yeterlidir, eşitlik umurunda değildir.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Eş-parçalama (equipartitioning) kesirlerin ilk ve en kritik darboğazıdır: çocuk şekli yalnız PARÇALARA değil, EŞİT (denk) parçalara bölmeyi öğrenmelidir. Yaygın yanılgı tam buradadır — &quot;kesir, parçalara bölmektir&quot; sanmak; oysa kesrin kalbi parçaların eş büyüklükte olmasıdır. Bu eşitlik fikrini kuramayan çocukta sonraki tüm kesir kavramı çöker; süreğen güçlük matematik öğrenme güçlüğü (diskalkuli) açısından erken bir uyarı işaretidir. Kâğıt katlamayı kullanın: katlayıp üst üste getirince parçaların çakışması &quot;eşit&quot;i somut kanıtlar; &quot;parçalar üst üste tam oturuyor mu?&quot; sorusunu her seferinde sordurun.</p></div>
         <div class="act">
@@ -299,7 +297,7 @@
       <div class="lv-num" style="--c:#2E7D32">3</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2E7D32">5–7 yaş</span>
+          <span class="age-pill" style="--c:#2E7D32">4–5 yaş</span>
           
         </div>
         <h3>Yarımı Tanıyan</h3>
@@ -307,7 +305,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> En azından sürekli (alan) gösterimlerde, özellikle adil paylaşım bağlamında &quot;yarım&quot;ı tanır. Tek sayıda nesne paylaşılırken yarıma ihtiyaç duyulduğunu fark eder; bütünün parçası olan bölgeleri sezgisel olarak birleştirir.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> En azından sürekli (örn. alan) gösterimlerde, özellikle adil paylaşım bağlamında “yarım”ı tanır. Tek sayıda nesne paylaşılırken yarıma gerek duyulduğunu fark eder. Bir bütünün parçası olan bölgeleri sezgisel ve görsel olarak birleştirir; bu, toplamanın ilk temellerini gösterir.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk bir çikolatayı ikiye böldüğünde her parçaya &quot;yarım&quot; der; &quot;bütünün yarısını ver&quot; deyince iki denk parçadan birini uzatır. &quot;İki yarım birleşince ne olur?&quot; sorusuna &quot;bütün/tam&quot; diye yanıtlayabilir.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Yarım, çocuğun adlandırdığı İLK kesirdir ve özeldir: günlük dilde sık geçtiği için kesir kavramına en doğal giriştir. Burada iki şeyi pekiştirin — (1) yarım demek iki EŞİT parçadan biri (eşitsiz bölünmüş büyük parça &quot;yarım&quot; değildir), (2) iki yarım bir bütün eder. &quot;Yarım&quot; sözcüğünü bol bol bağlama oturtun (yarım elma, yarım bardak); eşit olmayan bir bölmeyi gösterip &quot;bu yarım mı?&quot; diye sorgulatın ki eşitlik koşulu yarımda da yerleşsin.</p></div>
         <div class="act">
@@ -336,7 +334,7 @@
       <div class="lv-num" style="--c:#2E7D32">4</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2E7D32">8–9 yaş</span>
+          <span class="age-pill" style="--c:#2E7D32">4–5 yaş</span>
           <span class="bn-pill">⚠ Darboğaz · kritik geçiş</span>
         </div>
         <h3>Birim Kesri Tanıyan</h3>
@@ -344,7 +342,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Basit ayrık (nesne grubu) ve kimi sürekli (alan) gösterimlerde birim kesirleri (1/2, 1/3, 1/4) tanır. Bunların bütünün eş parçalara bölünmesiyle oluştuğunu anlar ve payları adlandırır (&quot;üçte bir&quot;).</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Basit ayrık (sayılabilir) ve belki sürekli (örn. alan) gösterimlerde 1/2, 1/3 ve 1/4 birim kesirlerini tanır; bunların bir bütünün eş parçalara bölünmesiyle oluştuğunu sezgisel olarak anlar. Bu payları adlandırır.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk bir daireyi 4 eşit parçaya böldükten sonra bir parçayı gösterip &quot;bu dörtte bir&quot; (1/4) der ve neden 4 yazdığını açıklar: &quot;bütün dört eşit parçaya bölündü, ben birini aldım&quot;. Henüz oturmamışsa parça sayısını saymakla yetinip &quot;bir parça&quot; der ama paydanın (4) bütünün kaça bölündüğünü gösterdiğini kavrayamaz; ya da eşitsiz parçalardan birine de &quot;dörtte bir&quot; der.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Birim kesir (1/n) kesirlerin ikinci büyük darboğazıdır: çocuk paydanın &quot;bütün kaç eşit parçaya bölündü&quot; anlamını ve payın (1) &quot;bunlardan birini aldım&quot; anlamını birlikte kavramalıdır. Burada iki yanılgı kritiktir — (1) parçaların eşit olması koşulunu unutmak (&quot;kesir sadece bölmektir&quot;), (2) paydanın büyümesi parçayı KÜÇÜLTÜR ilişkisini ters anlamak (&quot;1/4 &gt; 1/2 çünkü 4 &gt; 2&quot;). Bu ilişkileri kuramama, matematik öğrenme güçlüğü (diskalkuli) için bilinen bir erken belirtidir. Bar modeli ve pasta grafikle aynı bütünü farklı paydalara böldürüp &quot;hangi parça daha büyük, 1/2 mi 1/4 mü?&quot; diye karşılaştırtın; payda büyüdükçe dilimin küçüldüğünü gözle gösterin.</p></div>
         <div class="act">
@@ -373,7 +371,7 @@
       <div class="lv-num" style="--c:#2E7D32">5</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2E7D32">8–9 yaş</span>
+          <span class="age-pill" style="--c:#2E7D32">5–6 yaş</span>
           
         </div>
         <h3>Kesri Tanıyan</h3>
@@ -381,7 +379,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Paydası küçük basit kesirleri (örn. 2/3, 3/4) tanıdık sürekli (alan) ve ayrık (nesne grubu) bağlamlarda tanır.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Tanıdık sürekli ve ayrık bağlamlarda basit (paydası küçük) kesirleri tanır.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk kesir çubuklarında üç tane 1/4'lük parçayı (toplam dört eşit parçadan üçü dolu) görüp &quot;bu dörtte üç, 3/4&quot; der; payın (3) kaç parça alındığını, paydanın (4) bütünün kaça bölündüğünü gösterdiğini ayırt eder. Bütünün ne kadarının dolu olduğunu okuyabilir.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Birim kesirden &quot;pay &gt; 1&quot; olan kesirlere (3/4, 2/3) geçiş budur: çocuk artık &quot;birim kesrin kaç tanesi&quot; mantığıyla okur — 3/4 = üç tane 1/4. Burada pay ile paydanın rollerini netleştirin: payda = bütün kaça bölündü (alt sayı), pay = kaç parça aldık (üst sayı). Yaygın karışıklık ikisini ters okumaktır (3/4 yerine 4/3). Bar modelinde dolu/boş parçaları saydırıp &quot;kaç parçadan kaçı dolu?&quot; diye yapıyı okutun; aynı şekli hem kesir çubuğu hem pasta grafikle gösterip temsiller arası bağ kurun.</p></div>
         <div class="act">
@@ -410,7 +408,7 @@
       <div class="lv-num" style="--c:#2E7D32">6</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2E7D32">9–10 yaş</span>
+          <span class="age-pill" style="--c:#2E7D32">6–7 yaş</span>
           
         </div>
         <h3>Birim Kesirlerden Kesir Oluşturan</h3>
@@ -418,7 +416,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Eş parçalar ve birim kesrin doğru sayıda yinelenmesiyle bir kesir gösterimi oluşturur; kesri yazılı gösterimle (pay/payda) etiketler. Kesir gösterimlerini karşılaştırıp hangisinin büyük olduğunu söyler.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Eş parçalarla ve bir birim kesrin doğru sayıda yinelenmesiyle bir kesir gösterimi oluşturur. Bu kesri yazılı kesir gösterimiyle etiketler. Kesir gösterimlerini karşılaştırır ve hangisinin daha büyük sayı olduğunu söyler.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuğa 1/4'lük parçalardan &quot;3/4 oluştur&quot; dediğinizde üç tane 1/4'ü yan yana getirip &quot;işte 3/4, üç tane dörtte bir&quot; der. Birim kesri tekrarlayarak hedef kesri KENDİSİ kurar; kaç birim kesir gerektiğini paydan okur.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, bir önceki düzeyin tersine işlemesidir: tanımaktan ÜRETMEYE geçiş. Çocuk artık kesri &quot;birim kesirlerin toplamı&quot; olarak inşa eder (3/4 = 1/4 + 1/4 + 1/4). Asıl içgörü, payın &quot;kaç tane birim kesir koyacağımı&quot; söylemesidir. Hedef kesre ulaşınca durmuyor ya da farklı paydalı parçalar karıştırıyorsa, &quot;hepsi aynı büyüklükte (1/4) mi?&quot; ve &quot;kaç tane lazımdı?&quot; diye yönlendirin. Kesir çubuklarıyla aynı boy birim parçaları arka arkaya dizdirin; bu, ileride kesir toplamasının somut zeminidir.</p></div>
         <div class="act">
@@ -447,7 +445,7 @@
       <div class="lv-num" style="--c:#2E7D32">7</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2E7D32">9–10 yaş</span>
+          <span class="age-pill" style="--c:#2E7D32">7–8 yaş</span>
           
         </div>
         <h3>Kesir Oluşturan</h3>
@@ -455,7 +453,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Birim ya da birim olmayan kesirlerin yinelenmesiyle, bütünü aşmayan (&quot;bütünün parçası&quot;) kesir gösterimleri oluşturur. Basit yaygın kesirleri somut modellerle karşılaştırır.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Eş parçalarla ve bir birim ya da birim olmayan kesrin doğru sayıda yinelenmesiyle bir kesir gösterimi oluşturur (bütünü aşmadığı sürece; kesir yalnızca “bütünün bir parçası” olabilir). Basit yaygın kesirleri somut modellerle karşılaştırır.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuğa &quot;5/6'yı bu parçalarla yap&quot; dediğinizde önce bütünü 6 eşit parçaya kurar (ya da 1/6'lık parçalar seçer), beş tanesini alır ve &quot;5/6, bir parça eksik bütüne&quot; der. Hangi paydayı, kaç payı kullanacağını isteğe göre esnekçe ayarlar.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, kesir oluşturmanın tam (genel) hâlidir: çocuk artık yalnız önceden verilen birim parçalarla değil, herhangi bir istenen kesri sıfırdan kurar — doğru paydayı seçip (bütünü kaça böleceğini) doğru payı (kaç parça alacağını) belirler. Önceki düzeyden farkı, paydanın da çocuk tarafından kurulmasıdır. Yaygın hata yanlış payda seçmektir (5/6 için bütünü 5'e bölmek); &quot;alttaki sayı bütünü kaça böler?&quot; diye sürekli sorgulayın. Bar modelinde önce bütünü doğru bölmesini, sonra saymasını sağlayın; &quot;bütüne kaç eksik?&quot; sorusu tümleyen kesri de pekiştirir.</p></div>
         <div class="act">
@@ -475,7 +473,7 @@
     </div>
     <div class="lv-foot">
       <button class="printcard" data-lv="6" type="button">🖨️ Bu kartı yazdır</button>
-      <a class="nextlv" href="#lv-7">Sıradaki düzey · <b>Kesri Tekrarlayıp Bütünü Aşan</b> →</a>
+      <a class="nextlv" href="#lv-7">Sıradaki düzey · <b>Kesri Yineleyip Bütünü Aşan</b> →</a>
     </div>
   </article>
 
@@ -484,15 +482,15 @@
       <div class="lv-num" style="--c:#2E7D32">8</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2E7D32">10–11 yaş</span>
+          <span class="age-pill" style="--c:#2E7D32">7–8 yaş</span>
           
         </div>
-        <h3>Kesri Tekrarlayıp Bütünü Aşan</h3>
+        <h3>Kesri Yineleyip Bütünü Aşan</h3>
       </div>
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Kesir birimini yineleyerek bütünden büyük sonuçlar dahil gösterimler oluşturur (örn. 5/4); kesri referans bütüne bağlı bir sayı olarak anlar. Eş paydalı kesirlerde birim kesir adımlarıyla toplama–çıkarma yapar; kesirleri sayı doğrusu modeliyle karşılaştırır, eşitliği aynı porsiyon/uzunluk olarak görür.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Birim ve birim olmayan kesirlerin yinelenmesiyle, bütünden büyük sonuçlar dâhil kesir gösterimleri oluşturur. Kesri “bütünün bir parçası” olarak görmenin ötesine geçip referans bütünle ilişkili bir sayı olarak anlar. Aynı paydalı kesirlerin birim kesrin birimleri kullanılarak toplanıp çıkarılabildiğini anlar. Basit yaygın kesirleri sayı doğrusu gibi modellerle karşılaştırır; iki kesrin, bütünün aynı bölümünü gösterdiklerinde ya da sayı doğrusunda aynı uzunluğa sahip olduklarında eşit olduğunu anlar.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuğa bir 1/4'lük parça verip &quot;kaç tane 1/4 bir bütün eder?&quot; deyince parçayı arka arkaya dört kez kopyalayıp &quot;dört tane — 4/4, yani bir bütün&quot; der. Birim kesri tekrar tekrar yerleştirerek bütüne (ya da verilen herhangi bir miktara) ulaşır.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Kesir tekrarlama (iterating), kesrin ölçü olarak anlaşılmasının temelidir: birim kesir bir &quot;ölçü birimi&quot;dir ve onu tekrarlayarak büyüklük inşa edilir (dört kez 1/4 = 1 bütün; üç kez 1/4 = 3/4). Bu içgörü, n/n = 1 eşitliğini ve kesirleri sayı doğrusuna yerleştirmeyi hazırlar. Çocuk kaç tane gerektiğini paydadan okuyabilmeli (paydası 4 → dört tane bütün eder). &quot;Beş tane 1/4 koysak ne olur?&quot; diye bütünü aşan durumu da yoklayın — bu, tam-sayılı kesirlere (5/4 = 1 tam 1/4) köprüdür. Kesir çubuğunu/şeridini birim olarak arka arkaya dizdirin.</p></div>
         <div class="act">
@@ -512,7 +510,7 @@
     </div>
     <div class="lv-foot">
       <button class="printcard" data-lv="7" type="button">🖨️ Bu kartı yazdır</button>
-      <a class="nextlv" href="#lv-8">Sıradaki düzey · <b>Kesirlerle Toplama–Çıkarma Yapan</b> →</a>
+      <a class="nextlv" href="#lv-8">Sıradaki düzey · <b>Kesirlerle Toplama-Çıkarma Yapan</b> →</a>
     </div>
   </article>
 
@@ -521,10 +519,10 @@
       <div class="lv-num" style="--c:#2E7D32">9</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2E7D32">10–11 yaş</span>
+          <span class="age-pill" style="--c:#2E7D32">8 yaş</span>
           
         </div>
-        <h3>Kesirlerle Toplama–Çıkarma Yapan</h3>
+        <h3>Kesirlerle Toplama-Çıkarma Yapan</h3>
       </div>
     </div>
     <div class="lv-body">
@@ -549,7 +547,7 @@
     </div>
     <div class="lv-foot">
       <button class="printcard" data-lv="8" type="button">🖨️ Bu kartı yazdır</button>
-      <a class="nextlv" href="#lv-9">Sıradaki düzey · <b>Kesirlerle Çarpma–Bölme Yapan</b> →</a>
+      <a class="nextlv" href="#lv-9">Sıradaki düzey · <b>Kesirlerle Çarpma-Bölme Yapan</b> →</a>
     </div>
   </article>
 
@@ -558,15 +556,15 @@
       <div class="lv-num" style="--c:#2E7D32">10</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2E7D32">11–12 yaş</span>
+          <span class="age-pill" style="--c:#2E7D32">8 yaş</span>
           
         </div>
-        <h3>Kesirlerle Çarpma–Bölme Yapan</h3>
+        <h3>Kesirlerle Çarpma-Bölme Yapan</h3>
       </div>
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Basit yaygın kesirleri dikdörtgen alan (dizilim) modeli kullanarak çarpar.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Basit yaygın kesirleri dikdörtgen (satır-sütun) alan modeli kullanarak çarpar.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk &quot;1/2'nin 1/3'ü kaçtır?&quot; sorusunu bir bütünü önce ikiye böler, o yarımı sonra üçe bölerek modelleyip oluşan minik parçanın bütünün altıda biri olduğunu görür: &quot;1/6&quot;. &quot;Bir kesrin bir kesri&quot; işlemini parçanın parçası olarak somut kurar.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Kesir çarpma/bölme en soyut basamaktır; anlamı kurallaştırmadan ÖNCE modelle oturtmak şarttır. &quot;1/2'nin 1/3'ü&quot; = yarımı üçe bölmek → bütünün 1/6'sı; bu, &quot;bir kesrin kesrini almak&quot; demektir ve sonucun küçülmesi (çarpınca büyür yanılgısının tersi) en önemli içgörüdür — &quot;çarpma her zaman büyütür&quot; beklentisini kesir bağlamında yık. Alan/bar modelinde önce bir yöne böl, sonra diğer yöne bölerek kesişen parçayı saydır; &quot;kaç eşit parça oluştu, bizimki kaçı?&quot; diye paydayı (6) ürettir. Bölme için &quot;bir bütünde kaç tane 1/4 var?&quot; gibi ölçme-bölme bağlamı kullanın.</p></div>
         <div class="act">
@@ -595,7 +593,7 @@
       <div class="lv-num" style="--c:#2E7D32">11</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2E7D32">11–12 yaş</span>
+          <span class="age-pill" style="--c:#2E7D32">8 yaş</span>
           
         </div>
         <h3>Kesir ve Tam Sayıları Sıralayan</h3>
@@ -603,7 +601,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Basit oranları yüzde, kesir ve ondalık gösterimle ifade eder; tam sayıları, pozitif kesirleri ve ondalıkları sıralar.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Basit oranları yüzde, kesir ve ondalık olarak gösterir. Tam sayıları, pozitif kesirleri ve ondalıkları sıralar.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk sayı doğrusuna 1/2, 3/4 ve 1'i yerleştirirken &quot;1/2 ortada, 3/4 ondan sağda ama 1'den solda, 1 en sağda&quot; diye sıralar; &quot;3/4, yarımdan büyük çünkü dörtte üç, ikide birden fazla&quot; gibi gerekçe verir. Kesirlerle tam sayıları aynı doğruda büyüklüğe göre düzenler.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu yörüngenin doruğudur: kesir artık yalnız &quot;parça&quot; değil, sayı doğrusu üzerinde bir SAYI/büyüklüktür. Çocuk kesirleri birbirleriyle ve tam sayılarla karşılaştırıp sıralayabilmelidir. İki güçlü dayanak verin — (1) çıpa olarak 1/2 ve 1 (&quot;yarımdan büyük mü küçük mü?&quot;), (2) ortak temsil: tüm kesirleri aynı uzunlukta bara/doğruya oturtmak. Yaygın yanılgı &quot;payda büyükse kesir büyüktür&quot; (1/8 &gt; 1/2) ve &quot;pay büyükse kesir büyüktür&quot; sanmaktır; bunları sayı doğrusunda gözle çürütün. &quot;1/2 ile 3/4'ten hangisi 1'e daha yakın?&quot; gibi sorularla büyüklük muhakemesini derinleştirin.</p></div>
         <div class="act">

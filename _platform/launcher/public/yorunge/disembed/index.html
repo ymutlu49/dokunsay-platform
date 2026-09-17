@@ -40,16 +40,14 @@
 .dsh-green{color:#d7f0d9;background:rgba(46,125,50,.22);border-color:rgba(46,125,50,.5)}
 .dsh-teal{color:#bfe8e4;background:rgba(13,148,136,.2);border-color:rgba(13,148,136,.5)}
 .dsh-pill.is-active{box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.45);filter:brightness(1.12)}
-.dsh .hcmo-auth{display:inline-flex;align-items:center;gap:6px}
-.dsh .hcmo-auth:empty{display:none}
-.dsh .hcmo-auth a{display:inline-flex;align-items:center;gap:5px;padding:8px 14px;border-radius:999px;font-weight:700;font-size:.86rem;text-decoration:none;white-space:nowrap;color:#fde6c0;background:rgba(245,158,11,.18);border:1px solid rgba(245,158,11,.45);transition:background .15s}
-.dsh .hcmo-auth a:hover{background:rgba(245,158,11,.3)}
-.dsh .hcmo-auth a#hcmo-stu{color:#cfe8ff;background:rgba(96,165,250,.16);border-color:rgba(96,165,250,.4)}
-.dsh .hcmo-auth a#hcmo-stu:hover{background:rgba(96,165,250,.28)}
-.dsh .hcmo-auth>span{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:.86rem;color:#e8eefc}
-.dsh .hcmo-auth .nm{color:#fde6c0}
-.dsh .hcmo-auth #hcmo-out{cursor:pointer;border:0;border-radius:999px;background:#f59e0b;color:#3a2606;font-weight:800;font-size:.8rem;padding:7px 13px;font-family:inherit}
-.dsh .hcmo-auth #hcmo-out:hover{filter:brightness(1.07)}
+.dsh .numap-auth{display:inline-flex;align-items:center;gap:6px}
+.dsh .numap-auth:empty{display:none}
+.dsh .numap-auth a{display:inline-flex;align-items:center;gap:5px;padding:8px 14px;border-radius:999px;font-weight:700;font-size:.86rem;text-decoration:none;white-space:nowrap;color:#d7f0d9;background:rgba(46,125,50,.22);border:1px solid rgba(46,125,50,.5);transition:background .15s;cursor:pointer}
+.dsh .numap-auth a:hover{background:rgba(46,125,50,.34)}
+.dsh .numap-auth>span{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:.86rem;color:#e8efe9}
+.dsh .numap-auth .nm{color:#d7f0d9}
+.dsh .numap-auth #numap-out{cursor:pointer;border:0;border-radius:999px;background:#2E7D32;color:#fff;font-weight:800;font-size:.8rem;padding:7px 13px;font-family:inherit}
+.dsh .numap-auth #numap-out:hover{filter:brightness(1.1)}
 @media (max-width:760px){.dsh{padding:10px 15px}.dsh-pill{padding:7px 11px;font-size:.8rem}.dsh-name{font-size:18px}}
 @media print{.dsh{display:none}}
 
@@ -181,7 +179,7 @@
 </style>
 </head>
 <body data-key="disembed">
-<header class="dsh"><div class="dsh-row"><a class="dsh-brand" href="/" aria-label="DokunSay ana sayfa"><span class="dsh-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" aria-hidden="true"><line x1="28" y1="27" x2="72" y2="27" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="28" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="72" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><circle cx="28" cy="27" r="21" fill="#2E7D32"/><circle cx="20.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="28" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="35.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="72" cy="27" r="21" fill="#0d9488"/><text x="72" y="32" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="14" fill="#fff">üç</text><circle cx="50" cy="73" r="21" fill="#1B5E20"/><text x="50" y="82" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="27" fill="#fff">3</text></svg></span><span class="dsh-titles"><span class="dsh-name">DokunSay</span><span class="dsh-sub">Matematik Öğretim Araçları Platformu</span></span></a><nav class="dsh-nav" aria-label="Site gezinme"><a class="dsh-pill dsh-amber is-active" href="/yorunge/" aria-current="page">🧭 Öğrenme Yörüngeleri</a><a class="dsh-pill dsh-green" href="/rehber/">📘 Müdahale Rehberi</a><a class="dsh-pill dsh-teal" href="/#tools-section">🛠️ Araçlar</a><span id="hcmoAuth" class="hcmo-auth"></span></nav></div></header>
+<header class="dsh"><div class="dsh-row"><a class="dsh-brand" href="/" aria-label="DokunSay ana sayfa"><span class="dsh-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" aria-hidden="true"><line x1="28" y1="27" x2="72" y2="27" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="28" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="72" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><circle cx="28" cy="27" r="21" fill="#2E7D32"/><circle cx="20.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="28" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="35.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="72" cy="27" r="21" fill="#0d9488"/><text x="72" y="32" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="14" fill="#fff">üç</text><circle cx="50" cy="73" r="21" fill="#1B5E20"/><text x="50" y="82" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="27" fill="#fff">3</text></svg></span><span class="dsh-titles"><span class="dsh-name">DokunSay</span><span class="dsh-sub">Matematik Öğretim Araçları Platformu</span></span></a><nav class="dsh-nav" aria-label="Site gezinme"><a class="dsh-pill dsh-amber is-active" href="/yorunge/" aria-current="page">🧭 Öğrenme Yörüngeleri</a><a class="dsh-pill dsh-green" href="/rehber/">📘 Müdahale Rehberi</a><a class="dsh-pill dsh-teal" href="/#tools-section">🛠️ Araçlar</a><span id="numapAuth" class="numap-auth"></span></nav></div></header>
 
 <section class="hero">
   <div class="wrap">
@@ -194,7 +192,7 @@
         <p class="lede">Karmaşık resimde gizli şekli ayırma. <span class="ltname">(Disembedding Shapes)</span></p>
         <div class="hero-meta">
           <span class="hm">📊 5 basamak</span>
-          <span class="hm">🎂 0–8 yaş</span>
+          <span class="hm">🎂 3–8 yaş</span>
           <span class="hm">⚠ 1 darboğaz</span>
           <span class="hm">🎯 Profil alanı · gözlem</span>
         </div>
@@ -215,7 +213,7 @@
     <aside class="side">
     <div class="side-in">
       <div class="side-head">Düzeyler <span>5</span></div>
-      <ol class="side-list"><li><a href="#lv-0" data-i="0"><span class="s-num" style="--c:#7c3aed">1</span><span class="s-txt"><b>Saklı Şekli Sezen: Temeller</b><small>0–4 yaş</small></span></a></li><li><a href="#lv-1" data-i="1"><span class="s-num" style="--c:#7c3aed">2</span><span class="s-txt"><b>Üst Üste Şekilleri Ayırt Eden</b><small>4–5 yaş</small></span></a></li><li><a href="#lv-2" data-i="2"><span class="s-num" style="--c:#7c3aed">3</span><span class="s-txt"><b>Şekil İçinde Şekil Bulan</b><small>5–6 yaş · ⚠ darboğaz</small></span></a></li><li><a href="#lv-3" data-i="3"><span class="s-num" style="--c:#7c3aed">4</span><span class="s-txt"><b>Gizlenmiş Düzenleri Bulan</b><small>6–7 yaş</small></span></a></li><li><a href="#lv-4" data-i="4"><span class="s-num" style="--c:#7c3aed">5</span><span class="s-txt"><b>Tüm Saklı Şekilleri Bulan</b><small>7–8 yaş</small></span></a></li></ol>
+      <ol class="side-list"><li><a href="#lv-0" data-i="0"><span class="s-num" style="--c:#7c3aed">1</span><span class="s-txt"><b>Saklı Şekli Sezen: Temeller</b><small>3 yaş</small></span></a></li><li><a href="#lv-1" data-i="1"><span class="s-num" style="--c:#7c3aed">2</span><span class="s-txt"><b>Üst Üste Şekilleri Ayırt Eden</b><small>4 yaş</small></span></a></li><li><a href="#lv-2" data-i="2"><span class="s-num" style="--c:#7c3aed">3</span><span class="s-txt"><b>Şekil İçinde Şekil Bulan</b><small>5–6 yaş · ⚠ darboğaz</small></span></a></li><li><a href="#lv-3" data-i="3"><span class="s-num" style="--c:#7c3aed">4</span><span class="s-txt"><b>Gizlenmiş Düzenleri Bulan</b><small>6–7 yaş</small></span></a></li><li><a href="#lv-4" data-i="4"><span class="s-num" style="--c:#7c3aed">5</span><span class="s-txt"><b>Tüm Saklı Şekilleri Bulan</b><small>7–8 yaş</small></span></a></li></ol>
     </div>
   </aside>
     <div class="levels">
@@ -225,7 +223,7 @@
       <div class="lv-num" style="--c:#7c3aed">1</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#7c3aed">0–4 yaş</span>
+          <span class="age-pill" style="--c:#7c3aed">3 yaş</span>
           
         </div>
         <h3>Saklı Şekli Sezen: Temeller</h3>
@@ -233,7 +231,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Yalnızca ÜST ÜSTE BİNMEYEN (ayrık) şekilleri ya da küçük şekil topluluklarını hatırlayıp yeniden üretebilir.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Yalnızca tek bir şekli ya da üst üste binmeyen (ayrık) küçük bir şekil topluluğunu hatırlayıp yeniden üretebilir.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuğa içinde bir ev, ağaç ve güneşin iç içe geçtiği renkli bir resim gösterdiğinizde &quot;resimde ne var?&quot; diye sorarsanız &quot;hepsi&quot; der gibi bütüne bakar; tek bir şekli (&quot;daireyi göster&quot;) parmağıyla ayırıp gösteremez. Şekiller onun gözünde henüz birbirinden kopmamış, tek bir görsel bütündür.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu en erken görsel düzeydir: çocuk sahneyi bütün (gestalt) olarak algılar, henüz figür-zemin ayrımı yapıp tek bir şekli &quot;öne çıkaramaz&quot;. Bu doğaldır — şekilleri ayırma, geometrinin ileride okuma, yap-boz ve diyagram çözmeyi besleyen görsel-uzamsal bir becerisidir. Amaç &quot;doğru&quot;yu zorlamak değil; net, yalın, tek tek şekillerle dikkatini bir nesneye demirlemektir. Kalabalık değil, sade başlayın.</p></div>
         <div class="act">
@@ -262,7 +260,7 @@
       <div class="lv-num" style="--c:#7c3aed">2</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#7c3aed">4–5 yaş</span>
+          <span class="age-pill" style="--c:#7c3aed">4 yaş</span>
           
         </div>
         <h3>Üst Üste Şekilleri Ayırt Eden</h3>
@@ -270,7 +268,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Karmaşık bir çizimin DIŞ ÇERÇEVESİNİ belirler; üst üste binen düzenlemelerde bazı şekilleri bulur, ancak başka şeklin İÇİNE gömülü şekilleri henüz bulamaz.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Karmaşık bir çizimin dış çerçevesini belirler. Şekillerin üst üste bindiği düzenlemelerde bazı şekilleri bulur; ancak bir şeklin başka şeklin içine gömülü olduğu düzenlemelerde bulamaz.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Birbiriyle bir köşesinden örtüşen (üst üste binen) iki şekil — örneğin kesişen bir kare ile bir daire — gösterip &quot;kaç şekil var, göster&quot; dediğinizde çocuk her ikisini de parmağıyla ayrı ayrı gezebilir: &quot;burada kare, burada daire&quot;. Örtüşme bölgesi onu artık şaşırtmaz; iki ayrı şekli birbirinden koparabilir.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Burada figür-zemin ayrımı başlar: çocuk üst üste binen iki biçimi iki AYRI şekil olarak okur, kesişimdeki ortak alana takılmaz. Bu, bütünden ayırmaya geçişin ilk adımıdır — ama henüz biri ötekinin İÇİNE tam gömülü değildir; yalnız kenarları çakışır. Çakışan kısmı &quot;her ikisine de ait&quot; diye konuşturun; her şeklin kenarını ayrı renkle parmakla gezdirmek, hangi çizginin hangi şekle ait olduğunu görünür kılar.</p></div>
         <div class="act">
@@ -307,7 +305,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Başka şekillerin İÇİNE gömülü şekilleri belirler (iç içe daireler, kare içinde daire); karmaşık çizimlerdeki BİRİNCİL yapıları bulur.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> İç içe daireler ya da kare içindeki daire gibi, başka şekillerin içine gömülü şekilleri belirler. Karmaşık çizimlerdeki birincil yapıları belirler.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Bir karenin TAM İÇİNE çizilmiş bir daireyi gösterip &quot;içinde gizli bir şekil var, onu bul&quot; dediğinizde çocuk daireyi parmağıyla ayrı bir biçim olarak izleyip &quot;daire!&quot; der — kareyi yok saymadan ikisini birbirinden ayırır. Henüz oturmamışsa yalnız dış şekli (kareyi) görür, içteki daireyi &quot;ayrı bir şekil&quot; olarak fark edemez; &quot;sadece kare&quot; der.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu yörüngenin asıl DARBOĞAZIDIR: basit gömülü (bir şeklin tam içinde duran başka bir şekil) yapıyı ayırmak. Örtüşmede şekiller yan yanaydı; burada biri ötekinin içine sığmıştır ve dış şeklin çizgileri içtekini görsel olarak &quot;yutar&quot;. Çocuğun, baskın bütünü (dış şekli) zihinsel olarak bastırıp içteki figürü öne çıkarması gerekir — bu, dikkatin seçici yönetimidir ve görsel-uzamsal güçlükte sık takılan yerdir. İçteki şeklin yalnızca onun kenarını parmakla gezdirin (&quot;şimdi yalnız gizli şekli izle&quot;); dış şekli saydam katmanla kaldırıp içtekini tek başına gösterin, sonra geri koyup &quot;hâlâ orada&quot; deyin. Acele ettirmeyin; gömülü şekli izleme alışkanlığı hedeftir.</p></div>
         <div class="act">
@@ -344,7 +342,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Karmaşık çizimin BİRİNCİL yapılarıyla örtüşmeyen gömülü şekilleri de belirler (parçaları birden çok ana şekle dağılmış hedefler).</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Karmaşık çizimin birincil yapılarından hiçbiriyle örtüşmeyen gömülü şekilleri de belirler.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Birkaç çizginin kesiştiği daha karmaşık bir desende (örneğin bir dikdörtgenin köşegenleriyle oluşan üçgenler, ya da çatı + duvar çizgilerinin içine gizlenmiş bir üçgen) &quot;buradaki üçgeni bul&quot; dediğinizde çocuk, şeklin kenarlarının bir kısmı başka çizgilerle PAYLAŞILSA bile gizli şekli seçip gösterir. Tek bir net kenarı değil, birkaç çizginin birlikte oluşturduğu ikincil bir şekli görebilir.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Darboğazı aşan çocuk şimdi ikincil yapıları ayırır: gizli şekil artık tek parça bir nesnenin içinde değil, birkaç çizginin kesişiminden DOLAYLI olarak doğar (paylaşılan kenarlar). Bu, gömülü-figür becerisinin geometriye asıl katkısının başladığı yerdir — diyagram okuma, açı/üçgen görme, ileride alan ve kanıt çalışmalarının görsel zemini. Çocuğun, bir çizginin aynı anda birden çok şekle ait olabileceğini fark etmesi kritiktir. Gizli şeklin kenarlarını tek tek parmakla gezdirip &quot;bu çizgi hem buranın hem şuranın&quot; diyerek paylaşımı dile döktürün; saydam katmanla yalnız o şekli vurgulayın.</p></div>
         <div class="act">
@@ -381,7 +379,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Her türden karmaşık düzenlemede gömülü şekillerin TÜMÜNÜ başarıyla belirler.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Her türden karmaşık düzenlemedeki gömülü şekilleri başarıyla belirler.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Birçok şeklin üst üste, iç içe ve kenar paylaşarak karıştığı karmaşık bir figürde (klasik bir gömülü-figür bulmacası gibi) &quot;içindeki bütün üçgenleri bul&quot; ya da &quot;şu yıldızı bul&quot; dediğinizde çocuk, oyalayıcı çizgilere aldırmadan her gizli şekli tek tek seçip gösterir. Çok katmanlı bir görselde aradığı biçimi sistemli biçimde tarayıp ayıklar.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>En üst düzey: çok katmanlı, çok şekilli bir bütünden gizli şekilleri tam olarak ayırma. Çocuk artık seçici dikkatini esnek yönetir — baskın bütünü bastırır, oyalayıcı çizgileri eler, aradığı biçimi farklı yön ve büyüklüklerde tanır. Bu olgun figür-zemin becerisi geometride harita/diyagram okuma, karmaşık şekilleri parçalara ayırarak alan bulma ve görsel akıl yürütmenin temelidir. Sistemli tarama stratejisini pekiştirin (&quot;bir köşeden başla, hepsini sırayla yokla&quot;); bulduğu her şekli saydam katmanla işaretleyip &quot;kaç tane var?&quot; diye saydırın. Çözümü ezberlemesin — yeni figürlerle genelleştirin.</p></div>
         <div class="act">

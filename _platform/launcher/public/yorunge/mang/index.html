@@ -40,16 +40,14 @@
 .dsh-green{color:#d7f0d9;background:rgba(46,125,50,.22);border-color:rgba(46,125,50,.5)}
 .dsh-teal{color:#bfe8e4;background:rgba(13,148,136,.2);border-color:rgba(13,148,136,.5)}
 .dsh-pill.is-active{box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.45);filter:brightness(1.12)}
-.dsh .hcmo-auth{display:inline-flex;align-items:center;gap:6px}
-.dsh .hcmo-auth:empty{display:none}
-.dsh .hcmo-auth a{display:inline-flex;align-items:center;gap:5px;padding:8px 14px;border-radius:999px;font-weight:700;font-size:.86rem;text-decoration:none;white-space:nowrap;color:#fde6c0;background:rgba(245,158,11,.18);border:1px solid rgba(245,158,11,.45);transition:background .15s}
-.dsh .hcmo-auth a:hover{background:rgba(245,158,11,.3)}
-.dsh .hcmo-auth a#hcmo-stu{color:#cfe8ff;background:rgba(96,165,250,.16);border-color:rgba(96,165,250,.4)}
-.dsh .hcmo-auth a#hcmo-stu:hover{background:rgba(96,165,250,.28)}
-.dsh .hcmo-auth>span{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:.86rem;color:#e8eefc}
-.dsh .hcmo-auth .nm{color:#fde6c0}
-.dsh .hcmo-auth #hcmo-out{cursor:pointer;border:0;border-radius:999px;background:#f59e0b;color:#3a2606;font-weight:800;font-size:.8rem;padding:7px 13px;font-family:inherit}
-.dsh .hcmo-auth #hcmo-out:hover{filter:brightness(1.07)}
+.dsh .numap-auth{display:inline-flex;align-items:center;gap:6px}
+.dsh .numap-auth:empty{display:none}
+.dsh .numap-auth a{display:inline-flex;align-items:center;gap:5px;padding:8px 14px;border-radius:999px;font-weight:700;font-size:.86rem;text-decoration:none;white-space:nowrap;color:#d7f0d9;background:rgba(46,125,50,.22);border:1px solid rgba(46,125,50,.5);transition:background .15s;cursor:pointer}
+.dsh .numap-auth a:hover{background:rgba(46,125,50,.34)}
+.dsh .numap-auth>span{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:.86rem;color:#e8efe9}
+.dsh .numap-auth .nm{color:#d7f0d9}
+.dsh .numap-auth #numap-out{cursor:pointer;border:0;border-radius:999px;background:#2E7D32;color:#fff;font-weight:800;font-size:.8rem;padding:7px 13px;font-family:inherit}
+.dsh .numap-auth #numap-out:hover{filter:brightness(1.1)}
 @media (max-width:760px){.dsh{padding:10px 15px}.dsh-pill{padding:7px 11px;font-size:.8rem}.dsh-name{font-size:18px}}
 @media print{.dsh{display:none}}
 
@@ -181,7 +179,7 @@
 </style>
 </head>
 <body data-key="mang">
-<header class="dsh"><div class="dsh-row"><a class="dsh-brand" href="/" aria-label="DokunSay ana sayfa"><span class="dsh-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" aria-hidden="true"><line x1="28" y1="27" x2="72" y2="27" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="28" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="72" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><circle cx="28" cy="27" r="21" fill="#2E7D32"/><circle cx="20.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="28" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="35.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="72" cy="27" r="21" fill="#0d9488"/><text x="72" y="32" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="14" fill="#fff">üç</text><circle cx="50" cy="73" r="21" fill="#1B5E20"/><text x="50" y="82" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="27" fill="#fff">3</text></svg></span><span class="dsh-titles"><span class="dsh-name">DokunSay</span><span class="dsh-sub">Matematik Öğretim Araçları Platformu</span></span></a><nav class="dsh-nav" aria-label="Site gezinme"><a class="dsh-pill dsh-amber is-active" href="/yorunge/" aria-current="page">🧭 Öğrenme Yörüngeleri</a><a class="dsh-pill dsh-green" href="/rehber/">📘 Müdahale Rehberi</a><a class="dsh-pill dsh-teal" href="/#tools-section">🛠️ Araçlar</a><span id="hcmoAuth" class="hcmo-auth"></span></nav></div></header>
+<header class="dsh"><div class="dsh-row"><a class="dsh-brand" href="/" aria-label="DokunSay ana sayfa"><span class="dsh-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" aria-hidden="true"><line x1="28" y1="27" x2="72" y2="27" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="28" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="72" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><circle cx="28" cy="27" r="21" fill="#2E7D32"/><circle cx="20.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="28" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="35.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="72" cy="27" r="21" fill="#0d9488"/><text x="72" y="32" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="14" fill="#fff">üç</text><circle cx="50" cy="73" r="21" fill="#1B5E20"/><text x="50" y="82" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="27" fill="#fff">3</text></svg></span><span class="dsh-titles"><span class="dsh-name">DokunSay</span><span class="dsh-sub">Matematik Öğretim Araçları Platformu</span></span></a><nav class="dsh-nav" aria-label="Site gezinme"><a class="dsh-pill dsh-amber is-active" href="/yorunge/" aria-current="page">🧭 Öğrenme Yörüngeleri</a><a class="dsh-pill dsh-green" href="/rehber/">📘 Müdahale Rehberi</a><a class="dsh-pill dsh-teal" href="/#tools-section">🛠️ Araçlar</a><span id="numapAuth" class="numap-auth"></span></nav></div></header>
 
 <section class="hero">
   <div class="wrap">
@@ -194,7 +192,7 @@
         <p class="lede">Açı karşılaştırma ve ölçme. <span class="ltname">(Angle and Turn Measurement)</span></p>
         <div class="hero-meta">
           <span class="hm">📊 6 basamak</span>
-          <span class="hm">🎂 0–9 yaş</span>
+          <span class="hm">🎂 0–8 yaş</span>
           <span class="hm">⚠ 1 darboğaz</span>
           <span class="hm">🎯 Profil alanı · gözlem</span>
         </div>
@@ -215,7 +213,7 @@
     <aside class="side">
     <div class="side-in">
       <div class="side-head">Düzeyler <span>6</span></div>
-      <ol class="side-list"><li><a href="#lv-0" data-i="0"><span class="s-num" style="--c:#0d9488">1</span><span class="s-txt"><b>Açı ve Dönme Duyarlılığı: Temeller</b><small>0–2 yaş</small></span></a></li><li><a href="#lv-1" data-i="1"><span class="s-num" style="--c:#0d9488">2</span><span class="s-txt"><b>Açıyı Oyunda Sezen</b><small>2–4 yaş</small></span></a></li><li><a href="#lv-2" data-i="2"><span class="s-num" style="--c:#0d9488">3</span><span class="s-txt"><b>Açıyı Farkında Olmadan Kullanan</b><small>4–5 yaş</small></span></a></li><li><a href="#lv-3" data-i="3"><span class="s-num" style="--c:#0d9488">4</span><span class="s-txt"><b>Açı Eşleyen</b><small>6–7 yaş · ⚠ darboğaz</small></span></a></li><li><a href="#lv-4" data-i="4"><span class="s-num" style="--c:#0d9488">5</span><span class="s-txt"><b>Açı Büyüklüklerini Karşılaştıran</b><small>7–8 yaş</small></span></a></li><li><a href="#lv-5" data-i="5"><span class="s-num" style="--c:#0d9488">6</span><span class="s-txt"><b>Açı Ölçen</b><small>8–9 yaş</small></span></a></li></ol>
+      <ol class="side-list"><li><a href="#lv-0" data-i="0"><span class="s-num" style="--c:#0d9488">1</span><span class="s-txt"><b>Açı ve Dönme Duyarlılığı: Temeller</b><small>0–2 yaş</small></span></a></li><li><a href="#lv-1" data-i="1"><span class="s-num" style="--c:#0d9488">2</span><span class="s-txt"><b>Açıyı Oyunda Sezen</b><small>2–3 yaş</small></span></a></li><li><a href="#lv-2" data-i="2"><span class="s-num" style="--c:#0d9488">3</span><span class="s-txt"><b>Açıyı Farkında Olmadan Kullanan</b><small>4–5 yaş</small></span></a></li><li><a href="#lv-3" data-i="3"><span class="s-num" style="--c:#0d9488">4</span><span class="s-txt"><b>Açı Eşleyen</b><small>6 yaş · ⚠ darboğaz</small></span></a></li><li><a href="#lv-4" data-i="4"><span class="s-num" style="--c:#0d9488">5</span><span class="s-txt"><b>Açı Büyüklüklerini Karşılaştıran</b><small>7 yaş</small></span></a></li><li><a href="#lv-5" data-i="5"><span class="s-num" style="--c:#0d9488">6</span><span class="s-txt"><b>Açı Ölçen</b><small>8 yaş</small></span></a></li></ol>
     </div>
   </aside>
     <div class="levels">
@@ -233,7 +231,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Bebekler, hem nesnelerin hem de kendi bedenlerinin dönmesi biçimindeki açılara duyarlıdır.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Bebekler dönme olarak açıya duyarlıdır; hem nesneleri hem kendi bedenlerini döndürürler. Ayrıntı için Uzamsal Yönelim’in ilk üç düzeyine ve Uzamsal Görselleştirme’nin ilk düzeyine bakınız.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Bebek/küçük çocuk, kapı yavaşça açılırken ya da makas kapanırken &quot;bir şeyin açıldığını/kapandığını&quot; sezer: açılan boşluğa bakar, kapağı iter, makası açıp kapatmaya çalışır. Açıyı adlandıramaz; ama &quot;daha açık&quot; ile &quot;daha kapalı&quot; arasındaki farkı bedeniyle yaşar.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, açı ve dönüş kavramının dile dökülmemiş ilk tohumudur: çocuk açıyı bir SAYI ya da köşe olarak değil, bir DÖNME/AÇIKLIK hareketi olarak duyumsar. Henüz ölçme yoktur; amaç &quot;açılıyor / kapanıyor&quot;, &quot;çok açık / az açık&quot; gibi dönme duygusuna dikkat çekmektir. Günlük menteşeli nesneleri (kapı, kitap, makas, dirsek) açıp kapatarak bu sezgiyi besleyin — sonraki tüm açı öğrenmesi bu hareket duygusuna yaslanır.</p></div>
         <div class="act">
@@ -262,7 +260,7 @@
       <div class="lv-num" style="--c:#0d9488">2</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#0d9488">2–4 yaş</span>
+          <span class="age-pill" style="--c:#0d9488">2–3 yaş</span>
           
         </div>
         <h3>Açıyı Oyunda Sezen</h3>
@@ -270,7 +268,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Günlük ortamlarda açı ölçüsüne ilişkin sezgisel fikirleri kullanır: blok inşası, yapboz yerleştirme, yürürken dönme.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Bloklarla kurma, yapboz çözme ve yürüme gibi gündelik ortamlarda bazı açı ölçüsü fikirlerini sezgisel olarak kullanır.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk iki çubuğu ya da iki blok kenarını bir uçtan birleştirip bir &quot;köşe&quot; oluşturur; &quot;V&quot; gibi açık bir biçim ya da bir çatı/dağ yapar. Açıklığı bilerek azaltıp çoğaltabilir ama henüz ne &quot;açı&quot; der ne de ölçer — sezgisel olarak bir dönme/açıklık kurar.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Tanımaktan KURMAYA geçilir: çocuk artık açıyı yalnız fark etmez, iki kolu birleştirip kendisi bir açıklık üretir. &quot;Köşe&quot;, &quot;sivri&quot;, &quot;geniş açık&quot; gibi günlük sözcükler kullanın; açının iki kolu olduğunu (ortak bir noktadan çıkan iki kenar) elle gösterin. Bu düzeyde sayı/derece hiç gerekmez — amaç açının iki-kollu, döndürülebilir yapısını sezgisel kurabilmektir. Bu, ileride açıyı bir nesne gibi düşünmenin zeminidir.</p></div>
         <div class="act">
@@ -307,7 +305,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Hizalama görevlerinde, blok yapılarında ve günlük bağlamlarda açıları ve örtük açı kavramlarını (paralellik, diklik) kullanır; eş üçgenlerin karşılık gelen açılarını somut modellerle eşleyebilir; &quot;açı/köşe&quot; sözcüğünü betimleyici biçimde kullanır.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Fiziksel hizalama görevlerinde, bloklarla kurmada ya da diğer gündelik bağlamlarda açıları ve en azından örtük olarak paralellik ve diklik gibi bazı açı ölçüsü kavramlarını kullanır. Somut modellerle eş iki üçgenin karşılıklı açılarını belirleyebilir. Bu durumların bazılarını betimlemek için “açı” sözcüğünü ya da başka betimleyici sözcükler kullanır.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk bir yapı ya da yapboz yaparken açıyı adlandırmadan KULLANIR: kareyi tamamlarken köşeleri dik tutar, blokları kenarları paralel gidecek şekilde hizalar, bir parçayı boşluğa oturmazsa çevirip doğru köşeyle yerleştirir. &quot;Dik&quot;, &quot;paralel&quot;, &quot;açı&quot; demez ama davranışında bunları gözetir.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Açı burada örtük (üstü kapalı) bir araçtır: çocuk diklik ve paralelliği sezgisel kullanarak yapı kurar, henüz açıyı bilinçli bir nicelik olarak düşünmez. Bu doğal kullanımı dile dökmeye başlayın — &quot;köşeyi tam dik yaptın&quot;, &quot;bu iki kenar yan yana, paralel gidiyor&quot; diye adlandırın. Yapboz/inşa görevleri bu düzeyin can damarıdır: parça oturmazsa çocuk parçayı DÖNDÜRÜR — bu döndürme, açının dönme anlamına giden köprüdür. Amaç bilinçli ölçme değil, diklik/paralelliği işlevsel kullanmaktır.</p></div>
         <div class="act">
@@ -336,7 +334,7 @@
       <div class="lv-num" style="--c:#0d9488">4</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#0d9488">6–7 yaş</span>
+          <span class="age-pill" style="--c:#0d9488">6 yaş</span>
           <span class="bn-pill">⚠ Darboğaz · kritik geçiş</span>
         </div>
         <h3>Açı Eşleyen</h3>
@@ -344,7 +342,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Açıları somut olarak eşler (birini diğerinin üzerine koyarak); belirli bağlamlarda paralel olanı olmayandan açıkça ayırt eder; açıları &quot;küçük/büyük&quot; diye ayırır ancak kol (kenar) uzunluğuna aldanabilir.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Açıları somut olarak eşler. Belirli bağlamlarda paralel olanları olmayanlardan açıkça ayırt eder. Açıları “daha küçük” ya da “daha büyük” olarak sınıflar (ancak doğru parçalarının uzunluğu gibi ilgisiz özelliklerden yanılabilir).</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuğa kenar uzunlukları FARKLI ama açıklığı AYNI iki açı modeli verirsiniz; &quot;Bunlar aynı açıda mı?&quot; dersiniz. Eşleyebilen çocuk modelleri üst üste getirip kolları çakıştırarak &quot;evet, aynı&quot; der. Henüz oturmamışsa uzun kenarlı olana &quot;bu daha büyük&quot; der — açıyı kenar uzunluğuyla karıştırır.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, açı yörüngesinin GERÇEK darboğazıdır ve en yaygın yanılgının düğüm noktasıdır: çocuk açının büyüklüğünü kenarların uzunluğu sanır (&quot;kolları uzun olan daha büyük açı&quot;). Oysa açı, kenar uzunluğundan bağımsızdır — yalnızca kolların arasındaki DÖNME/AÇIKLIK önemlidir. Bu kavramı kurmanın yolu üst üste bindirerek eşlemektir: iki açıyı tepe noktasından ve bir kolundan çakıştırın; öteki kollar da çakışıyorsa açılar aynıdır, kenar uzunlukları farklı olsa bile. Burada takılma ciddiye alınmalı — açıyı kenardan ayıramamak sonraki tüm açı/geometri ölçmesini tıkar. Kolları kâğıt şerit gibi UZATIP KISALTARAK &quot;açı değişmedi&quot; deneyimini yaşatın.</p></div>
         <div class="act">
@@ -373,7 +371,7 @@
       <div class="lv-num" style="--c:#0d9488">5</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#0d9488">7–8 yaş</span>
+          <span class="age-pill" style="--c:#0d9488">7 yaş</span>
           
         </div>
         <h3>Açı Büyüklüklerini Karşılaştıran</h3>
@@ -381,7 +379,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Açıyı ve açı büyüklüğünü içinde bulunduğu şekilden/bağlamdan ayırt eder; açı büyüklüklerini karşılaştırır; önce dik açıları, sonra diğer eş açıları farklı yönelimlerde tanır; basit dönmeleri karşılaştırır. (Öğretim olmadan bu ve üstü düzeylere ilkokul sonunda bile ulaşılamayabilir.)</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Açıyı ve açı büyüklüğünü şekillerden ve bağlamlardan ayırt eder; açı büyüklüklerini karşılaştırır. Farklı yönelimlerde dik açıları, sonra başka ölçülerdeki eş açıları tanır. Basit dönmeleri karşılaştırır. (Öğretim olmadan bu ve daha üst düzeylere ilkokulun sonunda bile ulaşılamayabilir.)</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk kenar uzunlukları farklı iki açıyı görüp &quot;hangisi daha geniş?&quot; sorusuna doğru yanıt verir: açıklığı (kolların ne kadar açıldığını) ölçüt alır, kenarların uzunluğunu değil. Birden çok açıyı en sivriden en genişe sıralayabilir; &quot;bu daha çok dönmüş, o yüzden daha geniş&quot; gibi gerekçeler kurar.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Eşlemeden KARŞILAŞTIRMAYA geçilir: artık &quot;aynı mı?&quot; değil, &quot;hangisi daha büyük?&quot; sorulur. Darboğaz yanılgısı (açı = kenar uzunluğu) burada tam olarak sınanır — bu yüzden kasıtlı olarak uzun kenarlı DAR açı ile kısa kenarlı GENİŞ açı gösterin; çocuk kenara aldanmadan geniş olanı seçebilmeli. Açıyı &quot;ne kadar dönüldüğü&quot; olarak konuşturun: bir kolu sabit tutup öteki kolu çevirmek açıyı büyütür. Üst üste bindirme stratejisini karşılaştırmaya taşıyın: hangi açının öteki kolu daha dışarıdaysa o daha geniştir. Sıralama (3+ açıyı diziye koyma) bu düzeyi sağlamlaştırır.</p></div>
         <div class="act">
@@ -410,7 +408,7 @@
       <div class="lv-num" style="--c:#0d9488">6</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#0d9488">8–9 yaş</span>
+          <span class="age-pill" style="--c:#0d9488">8 yaş</span>
           
         </div>
         <h3>Açı Ölçen</h3>
@@ -418,7 +416,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Açıyı ve açı ölçüsünü iki temel yönüyle kavrar: ortak başlangıç noktalı iki ışın VE bir ışının diğerine dönmesi (dönme miktarı); birden çok bağlamı standart kavram ve işlemlerle temsil eder.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Açıyı ve açı ölçüsünü her iki temel yönüyle anlar; çeşitli bağlamları açının ve açı ölçüsünün standart, genellenebilir kavram ve işlemleriyle (iki ışın, ortak uç nokta, bir ışının bu uç nokta çevresinde diğerine dönmesi ve bu dönmenin ölçüsü) temsil edebilir.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk bir açıyı bir BİRİMLE ölçer: gönyeyle &quot;bu dik açıdan küçük&quot; der, açıölçeri tepe noktasına ve bir kola düzgün yerleştirip &quot;bu açı yaklaşık 50 derece&quot; gibi sayısal bir değer okur. Açıyı artık yalnız karşılaştırmaz; tekrarlanan bir birim (derece / çeyrek dönüş) cinsinden niceler.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Açı ölçmenin doruğu: karşılaştırmadan BİRİMLE ÖLÇMEYE geçiş. Açı, dönme miktarının tekrarlanan birimlerle (derece) sayılmasıdır — tam dönüş 360°, çeyrek dönüş (dik açı) 90°. En sık iki hata: (1) açıölçerin merkezini tepe noktasına oturtmamak, (2) yanlış ölçeği (iç/dış sayılar) okumak. Bu yüzden önce &quot;çeyrek dönüş = dik açı = 90°&quot; çıpasını kurun, açıölçeri her seferinde merkez tepe noktasında / sıfır çizgisi bir kolda olacak şekilde yerleştirtin. Açının kenar uzunluğunun ölçülen dereceyi DEĞİŞTİRMEDİĞİNİ son kez vurgulayın (kolları uzatıp kısaltıp tekrar ölçtürün). Bu beceri, açıyı sayısal bir nicelik olarak tam kavramanın göstergesidir.</p></div>
         <div class="act">

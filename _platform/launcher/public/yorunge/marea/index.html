@@ -40,16 +40,14 @@
 .dsh-green{color:#d7f0d9;background:rgba(46,125,50,.22);border-color:rgba(46,125,50,.5)}
 .dsh-teal{color:#bfe8e4;background:rgba(13,148,136,.2);border-color:rgba(13,148,136,.5)}
 .dsh-pill.is-active{box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.45);filter:brightness(1.12)}
-.dsh .hcmo-auth{display:inline-flex;align-items:center;gap:6px}
-.dsh .hcmo-auth:empty{display:none}
-.dsh .hcmo-auth a{display:inline-flex;align-items:center;gap:5px;padding:8px 14px;border-radius:999px;font-weight:700;font-size:.86rem;text-decoration:none;white-space:nowrap;color:#fde6c0;background:rgba(245,158,11,.18);border:1px solid rgba(245,158,11,.45);transition:background .15s}
-.dsh .hcmo-auth a:hover{background:rgba(245,158,11,.3)}
-.dsh .hcmo-auth a#hcmo-stu{color:#cfe8ff;background:rgba(96,165,250,.16);border-color:rgba(96,165,250,.4)}
-.dsh .hcmo-auth a#hcmo-stu:hover{background:rgba(96,165,250,.28)}
-.dsh .hcmo-auth>span{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:.86rem;color:#e8eefc}
-.dsh .hcmo-auth .nm{color:#fde6c0}
-.dsh .hcmo-auth #hcmo-out{cursor:pointer;border:0;border-radius:999px;background:#f59e0b;color:#3a2606;font-weight:800;font-size:.8rem;padding:7px 13px;font-family:inherit}
-.dsh .hcmo-auth #hcmo-out:hover{filter:brightness(1.07)}
+.dsh .numap-auth{display:inline-flex;align-items:center;gap:6px}
+.dsh .numap-auth:empty{display:none}
+.dsh .numap-auth a{display:inline-flex;align-items:center;gap:5px;padding:8px 14px;border-radius:999px;font-weight:700;font-size:.86rem;text-decoration:none;white-space:nowrap;color:#d7f0d9;background:rgba(46,125,50,.22);border:1px solid rgba(46,125,50,.5);transition:background .15s;cursor:pointer}
+.dsh .numap-auth a:hover{background:rgba(46,125,50,.34)}
+.dsh .numap-auth>span{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:.86rem;color:#e8efe9}
+.dsh .numap-auth .nm{color:#d7f0d9}
+.dsh .numap-auth #numap-out{cursor:pointer;border:0;border-radius:999px;background:#2E7D32;color:#fff;font-weight:800;font-size:.8rem;padding:7px 13px;font-family:inherit}
+.dsh .numap-auth #numap-out:hover{filter:brightness(1.1)}
 @media (max-width:760px){.dsh{padding:10px 15px}.dsh-pill{padding:7px 11px;font-size:.8rem}.dsh-name{font-size:18px}}
 @media print{.dsh{display:none}}
 
@@ -181,7 +179,7 @@
 </style>
 </head>
 <body data-key="marea">
-<header class="dsh"><div class="dsh-row"><a class="dsh-brand" href="/" aria-label="DokunSay ana sayfa"><span class="dsh-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" aria-hidden="true"><line x1="28" y1="27" x2="72" y2="27" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="28" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="72" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><circle cx="28" cy="27" r="21" fill="#2E7D32"/><circle cx="20.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="28" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="35.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="72" cy="27" r="21" fill="#0d9488"/><text x="72" y="32" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="14" fill="#fff">üç</text><circle cx="50" cy="73" r="21" fill="#1B5E20"/><text x="50" y="82" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="27" fill="#fff">3</text></svg></span><span class="dsh-titles"><span class="dsh-name">DokunSay</span><span class="dsh-sub">Matematik Öğretim Araçları Platformu</span></span></a><nav class="dsh-nav" aria-label="Site gezinme"><a class="dsh-pill dsh-amber is-active" href="/yorunge/" aria-current="page">🧭 Öğrenme Yörüngeleri</a><a class="dsh-pill dsh-green" href="/rehber/">📘 Müdahale Rehberi</a><a class="dsh-pill dsh-teal" href="/#tools-section">🛠️ Araçlar</a><span id="hcmoAuth" class="hcmo-auth"></span></nav></div></header>
+<header class="dsh"><div class="dsh-row"><a class="dsh-brand" href="/" aria-label="DokunSay ana sayfa"><span class="dsh-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" aria-hidden="true"><line x1="28" y1="27" x2="72" y2="27" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="28" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="72" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><circle cx="28" cy="27" r="21" fill="#2E7D32"/><circle cx="20.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="28" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="35.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="72" cy="27" r="21" fill="#0d9488"/><text x="72" y="32" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="14" fill="#fff">üç</text><circle cx="50" cy="73" r="21" fill="#1B5E20"/><text x="50" y="82" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="27" fill="#fff">3</text></svg></span><span class="dsh-titles"><span class="dsh-name">DokunSay</span><span class="dsh-sub">Matematik Öğretim Araçları Platformu</span></span></a><nav class="dsh-nav" aria-label="Site gezinme"><a class="dsh-pill dsh-amber is-active" href="/yorunge/" aria-current="page">🧭 Öğrenme Yörüngeleri</a><a class="dsh-pill dsh-green" href="/rehber/">📘 Müdahale Rehberi</a><a class="dsh-pill dsh-teal" href="/#tools-section">🛠️ Araçlar</a><span id="numapAuth" class="numap-auth"></span></nav></div></header>
 
 <section class="hero">
   <div class="wrap">
@@ -194,7 +192,7 @@
         <p class="lede">Yüzey kaplama, satır-sütun. <span class="ltname">(Area Measurement)</span></p>
         <div class="hero-meta">
           <span class="hm">📊 8 basamak</span>
-          <span class="hm">🎂 0–10 yaş</span>
+          <span class="hm">🎂 0–8 yaş</span>
           <span class="hm">⚠ 2 darboğaz</span>
           <span class="hm">🎯 Profil alanı · gözlem</span>
         </div>
@@ -215,7 +213,7 @@
     <aside class="side">
     <div class="side-in">
       <div class="side-head">Düzeyler <span>8</span></div>
-      <ol class="side-list"><li><a href="#lv-0" data-i="0"><span class="s-num" style="--c:#0d9488">1</span><span class="s-txt"><b>Alan Duyarlılığı: Temeller</b><small>0–3 yaş</small></span></a></li><li><a href="#lv-1" data-i="1"><span class="s-num" style="--c:#0d9488">2</span><span class="s-txt"><b>Alanı Fark Eden</b><small>3–4 yaş</small></span></a></li><li><a href="#lv-2" data-i="2"><span class="s-num" style="--c:#0d9488">3</span><span class="s-txt"><b>Karolarla Kaplayıp Sayan</b><small>4–5 yaş</small></span></a></li><li><a href="#lv-3" data-i="3"><span class="s-num" style="--c:#0d9488">4</span><span class="s-txt"><b>Boşluksuz Kaplayıp Sayan</b><small>5–6 yaş · ⚠ darboğaz</small></span></a></li><li><a href="#lv-4" data-i="4"><span class="s-num" style="--c:#0d9488">5</span><span class="s-txt"><b>Birim Karoyu Tekrarlayarak Ölçen</b><small>5–6 yaş</small></span></a></li><li><a href="#lv-5" data-i="5"><span class="s-num" style="--c:#0d9488">6</span><span class="s-txt"><b>Satırları Birim Görmeye Başlayan</b><small>6–7 yaş</small></span></a></li><li><a href="#lv-6" data-i="6"><span class="s-num" style="--c:#0d9488">7</span><span class="s-txt"><b>Satır-Sütun Düzenini Kuran</b><small>8–9 yaş · ⚠ darboğaz</small></span></a></li><li><a href="#lv-7" data-i="7"><span class="s-num" style="--c:#0d9488">8</span><span class="s-txt"><b>Alanı Çarparak Bulan</b><small>8–10 yaş</small></span></a></li></ol>
+      <ol class="side-list"><li><a href="#lv-0" data-i="0"><span class="s-num" style="--c:#0d9488">1</span><span class="s-txt"><b>Alan Duyarlılığı: Temeller</b><small>0–3 yaş</small></span></a></li><li><a href="#lv-1" data-i="1"><span class="s-num" style="--c:#0d9488">2</span><span class="s-txt"><b>Alanı Fark Eden</b><small>3–4 yaş</small></span></a></li><li><a href="#lv-2" data-i="2"><span class="s-num" style="--c:#0d9488">3</span><span class="s-txt"><b>Kaplayıp Sayan</b><small>4–5 yaş</small></span></a></li><li><a href="#lv-3" data-i="3"><span class="s-num" style="--c:#0d9488">4</span><span class="s-txt"><b>Tam Kaplayıp Sayan</b><small>5 yaş · ⚠ darboğaz</small></span></a></li><li><a href="#lv-4" data-i="4"><span class="s-num" style="--c:#0d9488">5</span><span class="s-txt"><b>Alan Birimini Tekrarlayarak Ölçen</b><small>5–6 yaş</small></span></a></li><li><a href="#lv-5" data-i="5"><span class="s-num" style="--c:#0d9488">6</span><span class="s-txt"><b>Satırları Birim Olarak Görmeye Başlayan</b><small>6–7 yaş</small></span></a></li><li><a href="#lv-6" data-i="6"><span class="s-num" style="--c:#0d9488">7</span><span class="s-txt"><b>Satır ve Sütunlarla Yapılandıran</b><small>8 yaş · ⚠ darboğaz</small></span></a></li><li><a href="#lv-7" data-i="7"><span class="s-num" style="--c:#0d9488">8</span><span class="s-txt"><b>Satır-Sütun Düzenini Kavrayan</b><small>8 yaş</small></span></a></li></ol>
     </div>
   </aside>
     <div class="levels">
@@ -233,7 +231,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> İlk yıldan itibaren yüzey büyüklüğüne duyarlıdır; ancak alanı ayrı bir nitelik olarak tanımayabilir. Karşılaştırmada kenar eşleştirme stratejileri kullanabilir.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> İlk yaşındaki çocuklar bile alana duyarlıdır. Ancak alanı, “küçük” ve “büyük” gibi genel boyuttan ayrı bir nitelik olarak bir süre açıkça tanımayabilirler. Bir dikdörtgeni doldurması istenen okul öncesi çocuklar yalnızca daireye benzer şekiller çizebilir. Alanları karşılaştırırken kenar eşleme stratejileri kullanır.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk büyük bir battaniyeye serilip küçük bir paspasa sığmaya çalışırken yüzeyin &quot;büyüklüğünü&quot; bedeniyle sezer; koca bir kâğıdı boyarken küçük bir karta göre daha çok yer olduğunu fark eder ama bunu adlandıramaz. &quot;Burası daha geniş&quot; duygusu sözcükten önce gelir.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, alanın dile dökülmemiş ilk sezgisidir: çocuk henüz ölçmez ya da saymaz, yüzeyin kapladığı yeri yaşar. Amaç nicelik vermek değil, &quot;geniş-dar&quot;, &quot;koca-minik yüzey&quot; duygusunu uyandırmaktır. Battaniye, halı, masa örtüsü gibi düz yüzeylerle &quot;buraya sığar mı?&quot; oyunları bu çekirdeği besler. Sonraki tüm alan öğrenmesi bu örtük &quot;kapladığı yer&quot; sezgisine yaslanır.</p></div>
         <div class="act">
@@ -270,7 +268,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> 2B yüzey miktarını algılar, sezgisel karşılaştırmalar yapar; ancak alan yerine uzunluklara bakabilir (&quot;boy artı en&quot; sezgisi). Üst üste koyma önerildiğinde doğru karşılaştırır; &quot;kaplanmış&quot; dikdörtgen çizimleri henüz yapılandırılmamıştır.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> İki boyutlu yer miktarını algılar ve sezgisel karşılaştırmalar yapabilir. Ancak karşılaştırması istendiğinde, uzunluklar daha belirgin ve tanıdık olduğu için alandan çok uzunlukları karşılaştırabilir (örn. bir kâğıdın bir kenarını diğerinin kenarıyla) ya da “uzunluk artı (çarpı değil) genişlik” sezgisine dayalı tahminler yapabilir. Görev üst üste koymayı çağrıştırıyorsa alanları doğru karşılaştırabilir. Bir alanı karelere bölmesi ya da satır ve sütunlara bölünmüş bir dikdörtgen resmini kopyalaması istendiğinde dikdörtgenin içine (genellikle!) yalnızca kareler ya da başka türde şekiller, ya da dikdörtgenin üstüne veya çevresine kısa çizgiler çizebilir.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>İki kâğıt ya da masa gösterip &quot;Hangisi daha geniş?&quot; dediğinizde çocuk büyük yüzeyi seçer; &quot;daha geniş&quot;, &quot;daha çok yer&quot; sözcüklerini doğru kullanır. Yüzeyi artık yalnız sezmiyor, bir &quot;çoğu-azı olan&quot; nicelik olarak konuşuyor.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Burada alan sezgisi dile bağlanır: çocuk yüzeyin büyüklüğünü karşılaştırılabilir bir nicelik olarak tanır. Bu düzeyde sık yanılgı, alanı kenar uzunluğu ya da çevreyle karıştırmaktır — &quot;daha uzun olan daha geniştir&quot; sanabilir. Yüzeyi avuçla tarayarak (&quot;şu kadar yer kaplıyor&quot;) gösterin, uzun-ince bir şeritle geniş-kısa bir dikdörtgeni kıyaslayıp &quot;geniş&quot;in çevreyle aynı olmadığını sezdirin. Doğrudan üst üste koyma (örtme) en güçlü karşılaştırmadır.</p></div>
         <div class="act">
@@ -290,7 +288,7 @@
     </div>
     <div class="lv-foot">
       <button class="printcard" data-lv="1" type="button">🖨️ Bu kartı yazdır</button>
-      <a class="nextlv" href="#lv-2">Sıradaki düzey · <b>Karolarla Kaplayıp Sayan</b> →</a>
+      <a class="nextlv" href="#lv-2">Sıradaki düzey · <b>Kaplayıp Sayan</b> →</a>
     </div>
   </article>
 
@@ -302,12 +300,12 @@
           <span class="age-pill" style="--c:#0d9488">4–5 yaş</span>
           
         </div>
-        <h3>Karolarla Kaplayıp Sayan</h3>
+        <h3>Kaplayıp Sayan</h3>
       </div>
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> İstendiğinde dikdörtgen bir yüzeyi somut karolarla kaplar; ancak algısal destek (ızgara) olmadan 2B uzayı satır-sütun biçiminde örgütleyemez. İki yüzeyi üst üste koyarak doğrudan karşılaştırır.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Ölçmesi istendiğinde dikdörtgen bir alanı fiziksel karolarla kaplamaya çalışır. Ancak her birimi tek tek gösteren bir ızgara gibi önemli bir algısal destek olmadan iki boyutlu alanı düzenleyemez ve yapılandıramaz. Çizerken (ya da kareleri alan birimi olarak sayarken zihninde canlandırıp işaret ederken) bu yapının yalnızca bazı yönlerini, örneğin yan yana duran yaklaşık dikdörtgen şekilleri temsil eder. Alanları basit, doğrudan karşılaştırmalarla karşılaştırır (örn. daha çok yer kaplayanı seçmek için bir kâğıdı diğerinin üstüne koyar).</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Bir dikdörtgeni birim karelerle kaplamasını isteyince çocuk kareleri yüzeye yerleştirip sayar — ama kareler arasında boşluk bırakabilir, üst üste bindirebilir ya da kenardan taşırabilir. &quot;Kaç kare?&quot; diye sorduğunuzda yine de bir sayı söyler; kaplama düzensiz olsa da &quot;kareyle ölçme&quot; fikrini kullanır.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, alanı birimlerle kaplama fikrinin ilk hâlidir: çocuk yüzeyi karelerle doldurup sayabileceğini kavrar — ama henüz boşluksuz/örtüşmesiz kaplama disiplini yoktur. Boşluk ve örtüşme bu düzeyde DOĞALDIR; acele &quot;yanlış&quot; demeyin, önce kaplama-ve-sayma alışkanlığını kurun. Sayarken kareleri tek tek dokundurarak birebir saymasını destekleyin. Bir sonraki düzeyin darboğazına (tam kaplama) zemin hazırlamak için &quot;araları açık kalmış, sığ daha var mı?&quot; diye nazikçe dikkat çekin.</p></div>
         <div class="act">
@@ -327,7 +325,7 @@
     </div>
     <div class="lv-foot">
       <button class="printcard" data-lv="2" type="button">🖨️ Bu kartı yazdır</button>
-      <a class="nextlv" href="#lv-3">Sıradaki düzey · <b>Boşluksuz Kaplayıp Sayan</b> →</a>
+      <a class="nextlv" href="#lv-3">Sıradaki düzey · <b>Tam Kaplayıp Sayan</b> →</a>
     </div>
   </article>
 
@@ -336,15 +334,15 @@
       <div class="lv-num" style="--c:#0d9488">4</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#0d9488">5–6 yaş</span>
+          <span class="age-pill" style="--c:#0d9488">5 yaş</span>
           <span class="bn-pill">⚠ Darboğaz · kritik geçiş</span>
         </div>
-        <h3>Boşluksuz Kaplayıp Sayan</h3>
+        <h3>Tam Kaplayıp Sayan</h3>
       </div>
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Bir bölgeyi boşluksuz ve bindirmesiz, yaklaşık sıralar hâlinde tam kaplar (çizimle de); fazladan karo verildiğinde belirtilen alanda bölge oluşturur (20 karodan 12 karoluk dikdörtgen gibi).</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Belirli bir bölgeyi boşluk ve üst üste binme olmadan, yaklaşık sıralar hâlinde tam olarak kaplayan bir çizim yapar. Gerekenden daha çok fiziksel karo verildiğinde belirli bir alana sahip bir bölge kurabilir (örn. 20 karoluk yığından alanı 12 olan bir dikdörtgen).</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk dikdörtgeni birim karelerle BOŞLUKSUZ ve ÖRTÜŞMESİZ kaplar: kareleri kenara hizalar, yan yana sıkıca dizer, hiçbir yeri açık ya da çift bırakmaz; sonra doğru sayar. Henüz oturmamışsa kareler arasında boşluk/örtüşme kalır ve sayım da bu yüzden hatalı çıkar.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Tam kaplama alan ölçmenin ilk gerçek darboğazıdır: alanı doğru ölçmek, yüzeyi BOŞLUKSUZ ve ÖRTÜŞMESİZ döşemeyi gerektirir — aksi hâlde sayı yanıltır. Bu düzeyde takılan çocuk genellikle kareleri gelişigüzel atıp boşluk/örtüşme bırakır; &quot;araları kapat, üst üste binmesin&quot; disiplinini açıkça öğretin. Bir köşeden başlayıp kenara yaslayarak, satır satır döşemeyi modelleyin. Aynı yüzeyi farklı dizilişlerle kaplatıp &quot;yine aynı sayıda kare&quot; (alanın korunumu) vurgulayın. Bu, sonraki satır-sütun yapısının ön koşuludur.</p></div>
         <div class="act">
@@ -364,7 +362,7 @@
     </div>
     <div class="lv-foot">
       <button class="printcard" data-lv="3" type="button">🖨️ Bu kartı yazdır</button>
-      <a class="nextlv" href="#lv-4">Sıradaki düzey · <b>Birim Karoyu Tekrarlayarak Ölçen</b> →</a>
+      <a class="nextlv" href="#lv-4">Sıradaki düzey · <b>Alan Birimini Tekrarlayarak Ölçen</b> →</a>
     </div>
   </article>
 
@@ -376,12 +374,12 @@
           <span class="age-pill" style="--c:#0d9488">5–6 yaş</span>
           
         </div>
-        <h3>Birim Karoyu Tekrarlayarak Ölçen</h3>
+        <h3>Alan Birimini Tekrarlayarak Ölçen</h3>
       </div>
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Birimleri çoğu kez sıralar kullanarak tek tek sayar; bir birimi yineleyerek yüzeyi kaplar; kabaca eşit birimleri hizalı çizer; birim büyüklüğü ile sayısı arasındaki ters ilişkiyi kurar; alanları birim sayarak karşılaştırır.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Birimleri tek tek sayar; çoğu zaman sıra yapısını kullanmaya çalışır. Bir bölgeyi fiziksel birimlerle kaplamak için tek bir birimi yineler. Sezgisel bir satır-sütun fikrine dayanarak eşit büyüklükte birimlerle tam bir kaplama çizer; ancak birimleri çoğu zaman tek tek çizer. Yani hizalı, çoğunlukla eşit büyüklükte tek tek birimler çizer; ancak birim gruplarının satır ya da sütunları oluşturduğunu görmeyebilir. Bir bölgeyi kaplamak için birimin büyüklüğü ile sayısını ilişkilendirir; farklı büyüklükteki birimlerin farklı ölçüler vereceğini ve birim büyüdükçe daha az birim gerekeceğini bilir. Alanları, her birindeki birimleri doğru sayıp ölçüleri karşılaştırarak karşılaştırır.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuğun elinde tek bir kare vardır; o kareyi tekrar tekrar kaydırıp her konuşunu işaretleyerek (ya da iz bırakarak) tüm yüzeyi ölçer ve kaç kez sığdığını sayar. &quot;Üç kare aşağı, dört kare yana&quot; demese de tek birimi yineleyerek alanı bir sayıya çevirir.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, birim tekrarı (iteration) içgörüsüdür: yüzeyi kaplamak için bir sürü özdeş kareye gerek yok; TEK bir birimi sistematik tekrarlayarak da alan ölçülür. Sık yanılgı, kareyi taşırken boşluk bırakmak ya da bir yeri iki kez saymaktır — her konuşu işaretleterek (parmak izi, kalem çentiği) bunu önleyin. İki farklı yüzeyi AYNI birimle ölçtürüp &quot;hangisi daha çok kare tuttu?&quot; diye alanları sayıyla karşılaştırın; aynı birim olmadan karşılaştırmanın haksız olduğunu sezdirin. Bu, ölçü biriminin değişmez (özdeş) olması gerektiğini kurar.</p></div>
         <div class="act">
@@ -401,7 +399,7 @@
     </div>
     <div class="lv-foot">
       <button class="printcard" data-lv="4" type="button">🖨️ Bu kartı yazdır</button>
-      <a class="nextlv" href="#lv-5">Sıradaki düzey · <b>Satırları Birim Görmeye Başlayan</b> →</a>
+      <a class="nextlv" href="#lv-5">Sıradaki düzey · <b>Satırları Birim Olarak Görmeye Başlayan</b> →</a>
     </div>
   </article>
 
@@ -413,12 +411,12 @@
           <span class="age-pill" style="--c:#0d9488">6–7 yaş</span>
           
         </div>
-        <h3>Satırları Birim Görmeye Başlayan</h3>
+        <h3>Satırları Birim Olarak Görmeye Başlayan</h3>
       </div>
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Kare birimi hem birim hem de bir satırın/sütunun parçası (bileşik birim) olarak görmeye başlar; görsel destek varken saymada ve çizimde satır/sütun bileşiklerini kullanır; eni ile boyu henüz eşgüdümleyemez; makul tahminler yapar.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Bir kare birimi hem birim hem de daha büyük bir birimler biriminin (satır, sütun ya da grup) bileşeni olarak tanır ve bu yapıları sayarken ya da çizerken kullanır. Ancak alanı kendisi yapılandırmak için şekilsel desteğe gereksinim duyar (bazı karoları fiziksel olarak hareket ettirmek ya da boyutları kullanmak yerine birim gruplarının bir kısmını çizmek gibi). Bu düzeyde genellikle en ile boyu eşgüdümlemez ve ölçerken dikdörtgenin boyutlarını birim büyüklüğünü sınırlamak için kullanmayabilir. Alanlar için makul tahminler yapar.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Karelerle kaplı bir dikdörtgende &quot;bir sırada kaç kare var?&quot; diye sorduğunuzda çocuk bir satırı bütün olarak görüp sayar (&quot;dört&quot;); sıraların hepsinde aynı sayıda kare olduğunu sezmeye başlar. Henüz &quot;4 çarpı 3&quot; demez ama kareleri tek tek değil, satırlar/sütunlar hâlinde okumaya yönelir.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Burada dizinin satır-sütun yapısı SEZİLMEYE başlar: çocuk kaplı alanı dağınık kareler değil, eşit satırların (ya da sütunların) üst üste binmesi olarak görmeye yönelir. Bu, çarpımsal alan anlayışının habercisidir. Sık takıntı, hâlâ her kareyi baştan tek tek saymaktır — &quot;bu sırada kaç var? Peki bir alttaki sırada?&quot; diye satırların eşitliğine dikkat çekin. Satırları farklı renklerle ayırmak (bir sıra mavi, bir sıra sarı) yapıyı görünür kılar. Henüz darboğaz değil; satır-sütunu YAPILANDIRMA (bir sonraki düzey) asıl zorluktur.</p></div>
         <div class="act">
@@ -438,7 +436,7 @@
     </div>
     <div class="lv-foot">
       <button class="printcard" data-lv="5" type="button">🖨️ Bu kartı yazdır</button>
-      <a class="nextlv" href="#lv-6">Sıradaki düzey · <b>Satır-Sütun Düzenini Kuran</b> →</a>
+      <a class="nextlv" href="#lv-6">Sıradaki düzey · <b>Satır ve Sütunlarla Yapılandıran</b> →</a>
     </div>
   </article>
 
@@ -447,15 +445,15 @@
       <div class="lv-num" style="--c:#0d9488">7</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#0d9488">8–9 yaş</span>
+          <span class="age-pill" style="--c:#0d9488">8 yaş</span>
           <span class="bn-pill">⚠ Darboğaz · kritik geçiş</span>
         </div>
-        <h3>Satır-Sütun Düzenini Kuran</h3>
+        <h3>Satır ve Sütunlarla Yapılandıran</h3>
       </div>
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Kısmi birimleri ayrıştırıp birleştirir; satırları satır olarak çizer; alan korunumu gelişmeye başlar; farklı görünen bölgelerin eşit alanlı olabileceğini parçaların toplamıyla gerekçelendirir; boşluksuz kaplama gerekliliğini açıkça bilir.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Bütün birimler oluşturmak için kısmi birimleri ayrıştırır ve yeniden birleştirir. Örneğin satırları, paralel yatay çizgiler çizerek satır olarak çizer. Alanı korumaya ve alanların toplamsal bileşimi hakkında akıl yürütmeye başlar (örn. farklı görünen bölgelerin aynı alan ölçüsüne sahip olabilmesi); çoğu bağlamda alanın boşluksuz doldurulması gerektiğini fark eder.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk 3×4 bir dizilimi &quot;her sırada 4 kare, 3 sıra var&quot; diye yapılandırır: yüzeyi satır × sütun ızgarası olarak görüp &quot;4'er 4'er, üç kez&quot; sayarak ya da 4+4+4 ile toplamı bulur. Henüz oturmamışsa diziyi ızgara olarak göremez, kareleri yine teker teker sayar ya da satır sayısıyla sütun sayısını karıştırır.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Satır-sütun YAPILANDIRMA alan ölçmenin asıl darboğazıdır: çocuğun yüzeyi, kesişen satır ve sütunların oluşturduğu bir ızgara olarak ZİHİNDE kurması gerekir — her satır eşit, her sütun eşit. Bu yapıyı kuramayan çocuk diziyi dağınık birimler gibi tek tek sayar ve büyük yüzeylerde tıkanır. &quot;Kaç sıra? Her sırada kaç? Öyleyse toplam?&quot; zincirini ısrarla kurun; satırları renklendirip, bir satırı şablon alıp &quot;aynısından üç tane&quot; dedirtin. Eksik bir ızgaranın (bazı kareleri boş) satır-sütununu tamamlatmak yapıyı sağlamlaştırır. Bu, alanın çarpımsal (satır × sütun) doğasına açılan kapıdır.</p></div>
         <div class="act">
@@ -475,7 +473,7 @@
     </div>
     <div class="lv-foot">
       <button class="printcard" data-lv="6" type="button">🖨️ Bu kartı yazdır</button>
-      <a class="nextlv" href="#lv-7">Sıradaki düzey · <b>Alanı Çarparak Bulan</b> →</a>
+      <a class="nextlv" href="#lv-7">Sıradaki düzey · <b>Satır-Sütun Düzenini Kavrayan</b> →</a>
     </div>
   </article>
 
@@ -484,15 +482,15 @@
       <div class="lv-num" style="--c:#0d9488">8</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#0d9488">8–10 yaş</span>
+          <span class="age-pill" style="--c:#0d9488">8 yaş</span>
           
         </div>
-        <h3>Alanı Çarparak Bulan</h3>
+        <h3>Satır-Sütun Düzenini Kavrayan</h3>
       </div>
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Yalnızca doğrusal ölçülerden, satır ve sütunları çarpımsal olarak yineleyip alanı çizim yapmadan hesaplar; dikdörtgen alan formülünü soyut düzeyde kavrar; geçişli karşılaştırmalar yapar.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> İki boyutun doğrusal ölçüleri ya da benzer göstergeleriyle, alanı belirlemek için satırları ya da sütunları çarpımsal olarak yineler. Bunun için dizilimi çizmesi gerekmez. Dikdörtgenin alan formülünü soyut düzeyde anlar. Farklı biçimdeki bölgelerin aynı alana sahip olabileceğini anlar ve gerekçelendirir. Bölgeleri geçişli akıl yürütmeyle karşılaştırır (örn. A, B’den büyük; B, C’den büyük; öyleyse A, C’den büyüktür).</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuğa kareleri çizdirmeden yalnız &quot;5 sıra, her sırada 6 kare&quot; deyince alanı doğrudan &quot;beş çarpı altı, otuz&quot; diye çarpımsal bulur. Diziyi görmeden zihninde satır × sütun olarak kurar; alanın bir çarpma işlemi olduğunu bilir.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, alan anlayışının doruğudur: çocuk artık fiziksel kareye ihtiyaç duymadan, satır ve sütun sayısından alanı ÇARPIMSAL hesaplar (alan = satır × sütun). Dizi modeli ile çarpma burada birleşir. Değişme özelliğini (5×6 = 6×5, dizi döndürülünce alan değişmez) ve dağılmayı (bir kenarı 5+2 diye bölünce alanın 5 sıralık ve 2 sıralık parçaların toplamı olduğunu) somut ızgarayla gerekçelendirin. Alanı çevreyle karıştırma yanılgısına karşı, aynı çevreli farklı alanları (ör. 2×6 ile 3×5) kıyaslatın. Bu içgörü, çarpma, alan formülü ve ileride alanların orantısal akıl yürütmesinin temelidir.</p></div>
         <div class="act">

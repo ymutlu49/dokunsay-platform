@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>3B Şekiller — Öğrenme Yörüngesi · DokunSay</title>
-<meta name="description" content="3B Şekiller öğrenme yörüngesi: 7 gelişim basamağı, her birinde DokunSay etkinliği ve gözlem ölçütü. Clements &amp; Sarama çerçevesi. Küp/koni/silindir; yüz–köşe.">
+<title>Üç Boyutlu Şekiller — Öğrenme Yörüngesi · DokunSay</title>
+<meta name="description" content="Üç Boyutlu Şekiller öğrenme yörüngesi: 7 gelişim basamağı, her birinde DokunSay etkinliği ve gözlem ölçütü. Clements &amp; Sarama çerçevesi. Küp/koni/silindir; yüz–köşe.">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,16 +40,14 @@
 .dsh-green{color:#d7f0d9;background:rgba(46,125,50,.22);border-color:rgba(46,125,50,.5)}
 .dsh-teal{color:#bfe8e4;background:rgba(13,148,136,.2);border-color:rgba(13,148,136,.5)}
 .dsh-pill.is-active{box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.45);filter:brightness(1.12)}
-.dsh .hcmo-auth{display:inline-flex;align-items:center;gap:6px}
-.dsh .hcmo-auth:empty{display:none}
-.dsh .hcmo-auth a{display:inline-flex;align-items:center;gap:5px;padding:8px 14px;border-radius:999px;font-weight:700;font-size:.86rem;text-decoration:none;white-space:nowrap;color:#fde6c0;background:rgba(245,158,11,.18);border:1px solid rgba(245,158,11,.45);transition:background .15s}
-.dsh .hcmo-auth a:hover{background:rgba(245,158,11,.3)}
-.dsh .hcmo-auth a#hcmo-stu{color:#cfe8ff;background:rgba(96,165,250,.16);border-color:rgba(96,165,250,.4)}
-.dsh .hcmo-auth a#hcmo-stu:hover{background:rgba(96,165,250,.28)}
-.dsh .hcmo-auth>span{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:.86rem;color:#e8eefc}
-.dsh .hcmo-auth .nm{color:#fde6c0}
-.dsh .hcmo-auth #hcmo-out{cursor:pointer;border:0;border-radius:999px;background:#f59e0b;color:#3a2606;font-weight:800;font-size:.8rem;padding:7px 13px;font-family:inherit}
-.dsh .hcmo-auth #hcmo-out:hover{filter:brightness(1.07)}
+.dsh .numap-auth{display:inline-flex;align-items:center;gap:6px}
+.dsh .numap-auth:empty{display:none}
+.dsh .numap-auth a{display:inline-flex;align-items:center;gap:5px;padding:8px 14px;border-radius:999px;font-weight:700;font-size:.86rem;text-decoration:none;white-space:nowrap;color:#d7f0d9;background:rgba(46,125,50,.22);border:1px solid rgba(46,125,50,.5);transition:background .15s;cursor:pointer}
+.dsh .numap-auth a:hover{background:rgba(46,125,50,.34)}
+.dsh .numap-auth>span{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:.86rem;color:#e8efe9}
+.dsh .numap-auth .nm{color:#d7f0d9}
+.dsh .numap-auth #numap-out{cursor:pointer;border:0;border-radius:999px;background:#2E7D32;color:#fff;font-weight:800;font-size:.8rem;padding:7px 13px;font-family:inherit}
+.dsh .numap-auth #numap-out:hover{filter:brightness(1.1)}
 @media (max-width:760px){.dsh{padding:10px 15px}.dsh-pill{padding:7px 11px;font-size:.8rem}.dsh-name{font-size:18px}}
 @media print{.dsh{display:none}}
 
@@ -181,7 +179,7 @@
 </style>
 </head>
 <body data-key="shape3d">
-<header class="dsh"><div class="dsh-row"><a class="dsh-brand" href="/" aria-label="DokunSay ana sayfa"><span class="dsh-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" aria-hidden="true"><line x1="28" y1="27" x2="72" y2="27" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="28" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="72" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><circle cx="28" cy="27" r="21" fill="#2E7D32"/><circle cx="20.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="28" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="35.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="72" cy="27" r="21" fill="#0d9488"/><text x="72" y="32" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="14" fill="#fff">üç</text><circle cx="50" cy="73" r="21" fill="#1B5E20"/><text x="50" y="82" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="27" fill="#fff">3</text></svg></span><span class="dsh-titles"><span class="dsh-name">DokunSay</span><span class="dsh-sub">Matematik Öğretim Araçları Platformu</span></span></a><nav class="dsh-nav" aria-label="Site gezinme"><a class="dsh-pill dsh-amber is-active" href="/yorunge/" aria-current="page">🧭 Öğrenme Yörüngeleri</a><a class="dsh-pill dsh-green" href="/rehber/">📘 Müdahale Rehberi</a><a class="dsh-pill dsh-teal" href="/#tools-section">🛠️ Araçlar</a><span id="hcmoAuth" class="hcmo-auth"></span></nav></div></header>
+<header class="dsh"><div class="dsh-row"><a class="dsh-brand" href="/" aria-label="DokunSay ana sayfa"><span class="dsh-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" aria-hidden="true"><line x1="28" y1="27" x2="72" y2="27" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="28" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="72" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><circle cx="28" cy="27" r="21" fill="#2E7D32"/><circle cx="20.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="28" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="35.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="72" cy="27" r="21" fill="#0d9488"/><text x="72" y="32" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="14" fill="#fff">üç</text><circle cx="50" cy="73" r="21" fill="#1B5E20"/><text x="50" y="82" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="27" fill="#fff">3</text></svg></span><span class="dsh-titles"><span class="dsh-name">DokunSay</span><span class="dsh-sub">Matematik Öğretim Araçları Platformu</span></span></a><nav class="dsh-nav" aria-label="Site gezinme"><a class="dsh-pill dsh-amber is-active" href="/yorunge/" aria-current="page">🧭 Öğrenme Yörüngeleri</a><a class="dsh-pill dsh-green" href="/rehber/">📘 Müdahale Rehberi</a><a class="dsh-pill dsh-teal" href="/#tools-section">🛠️ Araçlar</a><span id="numapAuth" class="numap-auth"></span></nav></div></header>
 
 <section class="hero">
   <div class="wrap">
@@ -190,11 +188,11 @@
       <div class="hero-ic">🧊</div>
       <div>
         <span class="eyebrow">Geometri ve Uzamsal</span>
-        <h1>3B Şekiller</h1>
+        <h1>Üç Boyutlu Şekiller</h1>
         <p class="lede">Küp/koni/silindir; yüz–köşe. <span class="ltname">(3D Shapes)</span></p>
         <div class="hero-meta">
           <span class="hm">📊 7 basamak</span>
-          <span class="hm">🎂 0–10 yaş</span>
+          <span class="hm">🎂 0–8 yaş</span>
           <span class="hm">⚠ 2 darboğaz</span>
           <span class="hm">🎯 Profil alanı · gözlem</span>
         </div>
@@ -215,7 +213,7 @@
     <aside class="side">
     <div class="side-in">
       <div class="side-head">Düzeyler <span>7</span></div>
-      <ol class="side-list"><li><a href="#lv-0" data-i="0"><span class="s-num" style="--c:#7c3aed">1</span><span class="s-txt"><b>Cisimleri Algılayan: Temeller</b><small>0–3 yaş</small></span></a></li><li><a href="#lv-1" data-i="1"><span class="s-num" style="--c:#7c3aed">2</span><span class="s-txt"><b>Tanıdık Cisimleri Tanıyan (Top, Kutu)</b><small>3–5 yaş</small></span></a></li><li><a href="#lv-2" data-i="2"><span class="s-num" style="--c:#7c3aed">3</span><span class="s-txt"><b>3B Cisimleri Tanıyan</b><small>5–7 yaş · ⚠ darboğaz</small></span></a></li><li><a href="#lv-3" data-i="3"><span class="s-num" style="--c:#7c3aed">4</span><span class="s-txt"><b>Cisimlerin Yüzlerini Sayan</b><small>7–8 yaş · ⚠ darboğaz</small></span></a></li><li><a href="#lv-4" data-i="4"><span class="s-num" style="--c:#7c3aed">5</span><span class="s-txt"><b>Parçalardan 3B Şekil Kuran</b><small>7–9 yaş</small></span></a></li><li><a href="#lv-5" data-i="5"><span class="s-num" style="--c:#7c3aed">6</span><span class="s-txt"><b>Cisimleri Adlandırıp Tanımlayan</b><small>8–10 yaş</small></span></a></li><li><a href="#lv-6" data-i="6"><span class="s-num" style="--c:#7c3aed">7</span><span class="s-txt"><b>Cisim Ailelerini Ayırt Eden</b><small>8–10 yaş</small></span></a></li></ol>
+      <ol class="side-list"><li><a href="#lv-0" data-i="0"><span class="s-num" style="--c:#7c3aed">1</span><span class="s-txt"><b>Cisimleri Algılayan: Temeller</b><small>0–2 yaş</small></span></a></li><li><a href="#lv-1" data-i="1"><span class="s-num" style="--c:#7c3aed">2</span><span class="s-txt"><b>Tanıdık Cisimleri Tanıyan</b><small>3–4 yaş</small></span></a></li><li><a href="#lv-2" data-i="2"><span class="s-num" style="--c:#7c3aed">3</span><span class="s-txt"><b>Üç Boyutlu Cisimleri Tanıyan</b><small>5–6 yaş · ⚠ darboğaz</small></span></a></li><li><a href="#lv-3" data-i="3"><span class="s-num" style="--c:#7c3aed">4</span><span class="s-txt"><b>Cisimlerin Yüzlerini Sayan</b><small>7 yaş · ⚠ darboğaz</small></span></a></li><li><a href="#lv-4" data-i="4"><span class="s-num" style="--c:#7c3aed">5</span><span class="s-txt"><b>Parçalardan Üç Boyutlu Şekil Kuran</b><small>7–8 yaş</small></span></a></li><li><a href="#lv-5" data-i="5"><span class="s-num" style="--c:#7c3aed">6</span><span class="s-txt"><b>Cisimleri Adlandırıp Tanımlayan</b><small>8 yaş</small></span></a></li><li><a href="#lv-6" data-i="6"><span class="s-num" style="--c:#7c3aed">7</span><span class="s-txt"><b>Cisim Ailelerini Ayırt Eden</b><small>8 yaş</small></span></a></li></ol>
     </div>
   </aside>
     <div class="levels">
@@ -225,7 +223,7 @@
       <div class="lv-num" style="--c:#7c3aed">1</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#7c3aed">0–3 yaş</span>
+          <span class="age-pill" style="--c:#7c3aed">0–2 yaş</span>
           
         </div>
         <h3>Cisimleri Algılayan: Temeller</h3>
@@ -233,7 +231,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Bebeklikten itibaren 3B şekilleri doğru algılar; ancak bu algı, durağan görünümlerden çok sürekli hareket hâlindeki nesnelerle sınırlıdır.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Bebeklikten itibaren üç boyutlu şekilleri doğru algılayabilir; ancak bu yeterlik, aynı nesnenin tek ya da birden çok durağan görünümünden çok, sürekli hareket eden nesnelerle sınırlıdır.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Bebek bir kutuyu, topu ya da koniyi eline alıp evirip çevirir; topu yuvarlar, kutuyu üst üste koymaya çalışır, koninin sivri ucunu parmağıyla yoklar. Önünde yavaşça döndürülen cismi gözleriyle izler. Henüz &quot;küp&quot;, &quot;küre&quot; diyemez ama her cismin nasıl davrandığını (yuvarlanır mı, durur mu) hareketle ve dokunarak keşfeder.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, 3B biçim sezgisinin en erken tohumudur: çocuk şekli adlandırmadan, DOKUNARAK ve hareketle tanır; üstelik bu algı durağan görüntülerden çok sürekli hareket hâlindeki nesnelerle desteklenir. Sık bir yetişkin alışkanlığı bu yaşı &quot;henüz geometri değil&quot; diye geçiştirmektir — oysa cismi elde çevirme, yüzleri ve köşeleri yoklama, sonraki tüm 3B tanımanın somut zeminidir. Adlandırmaya değil, bol bol elle keşfe ve hareketli sunuma alan açın; siz &quot;yuvarlanıyor!&quot;, &quot;köşesi var&quot; gibi sözlerle deneyimi besleyin.</p></div>
         <div class="act">
@@ -253,7 +251,7 @@
     </div>
     <div class="lv-foot">
       <button class="printcard" data-lv="0" type="button">🖨️ Bu kartı yazdır</button>
-      <a class="nextlv" href="#lv-1">Sıradaki düzey · <b>Tanıdık Cisimleri Tanıyan (Top, Kutu)</b> →</a>
+      <a class="nextlv" href="#lv-1">Sıradaki düzey · <b>Tanıdık Cisimleri Tanıyan</b> →</a>
     </div>
   </article>
 
@@ -262,15 +260,15 @@
       <div class="lv-num" style="--c:#7c3aed">2</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#7c3aed">3–5 yaş</span>
+          <span class="age-pill" style="--c:#7c3aed">3–4 yaş</span>
           
         </div>
-        <h3>Tanıdık Cisimleri Tanıyan (Top, Kutu)</h3>
+        <h3>Tanıdık Cisimleri Tanıyan</h3>
       </div>
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Bazı prototip 3B şekilleri (küre, küp) günlük ya da matematiksel adlarıyla tanır; 2B sözcükleri (&quot;yuvarlak&quot;, &quot;kare&quot;) kullanabilir. Cisimleri &quot;sivrilik&quot;, &quot;incelik-uzunluk&quot; gibi günlük niteliklerle betimler.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Küre ve küp gibi bazı tipik üç boyutlu şekilleri matematiksel ya da gündelik adlarıyla tanıyabilir. Ancak bazı üç boyutlu şekilleri adlandırmak için iki boyutlu sözcükler kullanabilir ve cisimleri “sivrilik” ya da “incelik” gibi çeşitli gündelik niteliklerle betimler.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Bir küp ile top yan yana dururken &quot;Topu göster&quot; dediğinizde doğru olanı seçer; küreye &quot;top&quot;, küpe &quot;kutu&quot; der. Koniyi anlatırken &quot;ucu sivri&quot; gibi günlük niteliklerle betimler. Tipik, okul-kitabı görünümlü örnekleri tanır ama alışılmadık örneklerde (yamuk bir kutu, küçük bir misket) duraksayabilir.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu düzeyde tanıma PROTOTİPe dayanır: çocuk en tipik örneği (kusursuz top, düzgün küp) bir bütün olarak, görünüşünden tanır — henüz yüz/köşe saymaz. Günlük adlar (top, kutu) bu düzeyde DOĞRU sayılır; yanına matematiksel adı (küre, küp) ekleyin ama dayatmayın. Sık bir kısıt, hep aynı ideal modeli göstermektir; o zaman çocuk yalnız o tek görüntüyü ezberler. Aynı şekli farklı boy, renk ve duruşlarda gösterin (büyük top–misket, tahta küp–zar) ki tanıma görünüşe değil gerçek biçime bağlansın. Cisimleri &quot;sivri&quot;, &quot;yuvarlanıyor&quot; gibi günlük niteliklerle betimletin.</p></div>
         <div class="act">
@@ -290,7 +288,7 @@
     </div>
     <div class="lv-foot">
       <button class="printcard" data-lv="1" type="button">🖨️ Bu kartı yazdır</button>
-      <a class="nextlv" href="#lv-2">Sıradaki düzey · <b>3B Cisimleri Tanıyan</b> →</a>
+      <a class="nextlv" href="#lv-2">Sıradaki düzey · <b>Üç Boyutlu Cisimleri Tanıyan</b> →</a>
     </div>
   </article>
 
@@ -299,15 +297,15 @@
       <div class="lv-num" style="--c:#7c3aed">3</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#7c3aed">5–7 yaş</span>
+          <span class="age-pill" style="--c:#7c3aed">5–6 yaş</span>
           <span class="bn-pill">⚠ Darboğaz · kritik geçiş</span>
         </div>
-        <h3>3B Cisimleri Tanıyan</h3>
+        <h3>Üç Boyutlu Cisimleri Tanıyan</h3>
       </div>
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Daha çok cismi günlük adların yanında bazı matematiksel adlarla da tanır; cisimlerin yüzlerini 2B şekiller olarak fark eder.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Daha çok üç boyutlu şekli (cismi) gündelik adların yanında bazı matematiksel adlarla da tanır. Yüzleri iki boyutlu şekiller olarak tanır.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Silindir, koni ve küpü gösterip &quot;Bunun adı ne?&quot; dediğinizde en az birini matematiksel adıyla söyler (&quot;silindir&quot;). Üstelik küpün bir yüzünü parmağıyla gösterip &quot;bu kare&quot; der — yani cismin YÜZÜNÜ 2B bir şekil olarak fark eder. Birden çok cismi günlük ya da matematiksel adla doğru ayırt eder.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Burada iki ilerleme birleşir: tanınan cisim sayısı artar (küre/küpün ötesine silindir, koni, prizma) VE çocuk bir cismin yüzlerini 2B şekiller olarak görmeye başlar (küpün yüzü → kare, silindirin tabanı → daire). Bu yüz-fark etme, ileride yüz sayma ve açınım (net) fikrinin tohumudur. Sık ve inatçı yanılgı, 3B cismi 2B yüzüyle KARIŞTIRMAKtır — silindire bütünüyle &quot;daire&quot; demek. Cismi mutlaka elde döndürten ve &quot;silindir bir cisim; yüzlerinden biri daire&quot; diye düz şekil ile cisim ayrımını her seferinde dile getirin.</p></div>
         <div class="act">
@@ -336,7 +334,7 @@
       <div class="lv-num" style="--c:#7c3aed">4</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#7c3aed">7–8 yaş</span>
+          <span class="age-pill" style="--c:#7c3aed">7 yaş</span>
           <span class="bn-pill">⚠ Darboğaz · kritik geçiş</span>
         </div>
         <h3>Cisimlerin Yüzlerini Sayan</h3>
@@ -344,7 +342,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Bir cismin TÜM yüzlerini 2B şekiller olarak tanır; yüzleri atlamadan ve yinelemeden doğru sayar.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Bir cismin tüm yüzlerini iki boyutlu şekiller olarak tanır ve yüzleri doğru sayar.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Eline verilen dikdörtgenler prizmasını evirip çevirip &quot;altı yüzü var, hepsi dikdörtgen&quot; der; küpün de altı yüzünü doğru sayar. Cismin TÜM yüzlerini, görünmeyenler dahil, atlamadan ve yinelemeden sayar. Henüz oturmamışsa aynı yüzü iki kez sayar, arkadaki yüzleri unutur ya da 5/7 gibi yanlış bir sayı verir.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, kritik bir darboğazdır; özünde yüz–katı ilişkisi ile birebir-sayma sorunudur: çocuk her yüzü YALNIZ BİR KEZ saymalı, görünmeyenleri de hesaba katmalıdır. En sık yanılgı yüzleri tekrar saymak ya da arka yüzleri atlamaktır — çünkü cisim sabit dururken hangi yüzün sayıldığı görünmez. Çözüm, cismi sistemli çevirmek ve sayılan yüzü işaretlemektir: bir yüze etiket/nokta yapıştırın, cismi döndürerek &quot;üst–alt, ön–arka, sağ–sol&quot; diye eşli sayın. Ayrıca her yüzün 2B şeklini adlandırtın (dikdörtgen/kare). Hıza değil, her yüzü bir kez saymanın disiplinine odaklanın.</p></div>
         <div class="act">
@@ -364,7 +362,7 @@
     </div>
     <div class="lv-foot">
       <button class="printcard" data-lv="3" type="button">🖨️ Bu kartı yazdır</button>
-      <a class="nextlv" href="#lv-4">Sıradaki düzey · <b>Parçalardan 3B Şekil Kuran</b> →</a>
+      <a class="nextlv" href="#lv-4">Sıradaki düzey · <b>Parçalardan Üç Boyutlu Şekil Kuran</b> →</a>
     </div>
   </article>
 
@@ -373,15 +371,15 @@
       <div class="lv-num" style="--c:#7c3aed">5</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#7c3aed">7–9 yaş</span>
+          <span class="age-pill" style="--c:#7c3aed">7–8 yaş</span>
           
         </div>
-        <h3>Parçalardan 3B Şekil Kuran</h3>
+        <h3>Parçalardan Üç Boyutlu Şekil Kuran</h3>
       </div>
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> 3B şekillerin parçalarını (yüzler, köşe bağlantıları) temsil eden materyalle, bileşen ve ilişki bilgisini kullanarak tümüyle doğru bir 3B şekil kurar — dik açılar, küpün altı yüze gereksindiği gibi.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Üç boyutlu şekillerin yüzler (iki boyutlu şekil olan “yanlar”) ve açı “bağlantıları” gibi parçalarını temsil eden malzemelerle, bileşenler ve ilişkiler (dik açılar gibi) bilgisine dayanarak tümüyle doğru bir üç boyutlu şekil (“cisim”) kurar. Kürdan gibi malzemelerle önce bir ya da birkaç iki boyutlu şekil kurup sonra bunları birleştirebilir; iki boyutlu şekillerin kendisi olan (örn. mıknatısla birleşen) malzemelerle üç boyutlu şekilleri doğrudan kurabilir.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Geçmeli kare yüzlerden küp kurarken, başlamadan önce &quot;altı tane gerekir&quot; der ve parçaları ayrıtlarda tam buluşturarak kapalı, eksiksiz bir küp tamamlar. Yüzlerin dik açılarda birleşmesi gerektiğini bilir; bir yüz eksik ya da yamuk kalırsa fark edip düzeltir.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu düzey, cismi TANIMAKTAN onu PARÇALARINDAN KURMAYA geçiştir — geometride bileşim (composition) düşüncesinin 3B'deki karşılığı. Çocuk artık cismi bir bütün-görüntü olarak değil, belli sayıda yüzün belli ilişkilerle (dik açı, ayrıt boyunca buluşma) birleşmesi olarak kavrar. Asıl kazanım iki yönlüdür: (1) gereken parça sayısını ÖNCEDEN kestirmek (küp = 6 kare yüz) — bu, yüz sayma bilgisinin kurmaya aktarılmasıdır; (2) yüzleri ayrıtları tam çakışacak ve dik açılar korunacak biçimde birleştirmek. Sık güçlük, yüzleri gelişigüzel ekleyip sayıyı/kapanışı denetlememektir. Önce bir model küp gösterip &quot;kaç yüz, nasıl birleşmiş?&quot; diye inceletin; sonra modelsiz kurdurup parça sayısını ve kapanışı çocuğa doğrulattırın. Açınımı (yüzlerin düz açılımını) katlatmak bu beceriyi güçlendirir ve bir sonraki düzeydeki açınım-okumaya köprü kurar.</p></div>
         <div class="act">
@@ -410,7 +408,7 @@
       <div class="lv-num" style="--c:#7c3aed">6</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#7c3aed">8–10 yaş</span>
+          <span class="age-pill" style="--c:#7c3aed">8 yaş</span>
           
         </div>
         <h3>Cisimleri Adlandırıp Tanımlayan</h3>
@@ -418,7 +416,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Cisimlerin çoğunu tanımlar ve birden çok özelliğini (yüz, ayrıt, köşe sayısı gibi) söyler; verilen bir açınımın katlanınca hangi cismi oluşturacağını belirler.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Cisimlerin çoğunu tanımlar ve birkaç niteliğini söyler. Belirli bir açınımın hangi yaygın cismi oluşturacağını belirleyebilir.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Bir katı verip &quot;Bu hangi cisim, kaç yüzü, kaç köşesi var?&quot; dediğinizde çoğunu adlandırır ve birden çok özelliğini sayar: &quot;Küp — altı yüzü, sekiz köşesi var.&quot; Üstelik bir açınım kartına bakıp &quot;bu katlanınca küp olur; altı kare yüzü var&quot; diyerek açınımın hangi cismi oluşturacağını belirler.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Burada tanıma görünüşten ÖZELLİĞE geçer: çocuk yüz, ayrıt (kenar) ve köşe (tepe) sayısını ölçüt olarak kullanır — geometride biçimsel akıl yürütmenin (Van Hiele) başlangıcı. Bir önceki düzeyde parçalardan kurma deneyimi, açınım okumayı doğrudan besler: çocuk &quot;bu düz açılım katlanınca hangi kapalı cisim olur?&quot; sorusunu yanıtlayabilir. Sık bir kısıt yalnız yüze bakıp ayrıt/köşeyi atlamaktır; oysa bu üç özellik birlikte cismi tanımlar. &quot;Yüz–ayrıt–köşe&quot; üçlüsünü her cisimde sistemli saydırın (yüz: düz yüzey; ayrıt: iki yüzün çizgisi; köşe: ayrıtların buluştuğu sivri nokta) ve açınımla cisim arasında gidip gelin.</p></div>
         <div class="act">
@@ -447,7 +445,7 @@
       <div class="lv-num" style="--c:#7c3aed">7</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#7c3aed">8–10 yaş</span>
+          <span class="age-pill" style="--c:#7c3aed">8 yaş</span>
           
         </div>
         <h3>Cisim Ailelerini Ayırt Eden</h3>
@@ -455,7 +453,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Cisimlerin çoğunu prototip görünüme değil, özelliklerine dayanarak tanımlar ve sınıflar (örn. iki özdeş paralel yüzü ve dikdörtgen yan yüzleri olanlar prizmadır).</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Cisimlerin çoğunu özelliklerine dayanarak tanımlar.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Önüne karışık katılar koyup &quot;Bütün yüzleri kare olan hangisi?&quot; dediğinizde &quot;küp&quot; der; &quot;hiç düz yüzü olmayan hangisi?&quot; → &quot;küre&quot;. &quot;Prizma olanları bir kenara ayır, neden prizma?&quot; dediğinizde &quot;iki ucu aynı, yanları dikdörtgen&quot; diye ÖZELLİĞE dayanarak bir SINIF tanımlar — tek cismi değil, aileyi ayırt eder.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu en üst düzeydir: çocuk artık tek tek cisimleri değil, ortak özelliği paylaşan SINIFLARI (prizmalar, piramitler, eğri/düz yüzlü cisimler) prototip görünüme değil, ÖZELLİĞE dayanarak belirler. Bu, sınıflandırma ve hiyerarşi düşüncesinin temelidir (&quot;küp özel bir kare prizmadır&quot;, &quot;küp aynı zamanda prizma mıdır?&quot;). Sınıflama ölçütünü çocuğun kendisinin bulması ve gerekçelendirmesi değerlidir — &quot;neye göre ayırdın?&quot; diye söyletin. Aynı cisimleri farklı ölçütlere göre (eğri/düz yüzlü; taban biçimine göre; prizma/piramit) yeniden gruplatın ki sınıflamanın tek doğrusu olmadığını ve sınıfların iç içe geçebileceğini kavrasın.</p></div>
         <div class="act">
@@ -484,7 +482,7 @@
 
 <footer>
   <div class="wrap">
-    <b style="color:#d8e6d8">Her Çocuk Matematik Öğrenebilir</b> · DokunSay — 3B Şekiller yörüngesi ·
+    <b style="color:#d8e6d8">Her Çocuk Matematik Öğrenebilir</b> · DokunSay — Üç Boyutlu Şekiller yörüngesi ·
     <a href="/yorunge/">Tüm yörüngeler</a> · <a href="/">Araçlar</a>
     <p class="foot-note">Düzey adları ve sıralaması Clements &amp; Sarama öğrenme yörüngeleri ([LT]², learningtrajectories.org) çerçevesinden uyarlanmıştır. Yaş bantları olasılıksal alt-sınır niteliğinde illüstratiftir; tanı eşiği değildir. Çocuğu sınıfına göre değil, bulunduğu basamağa göre destekleyin.</p>
   </div>

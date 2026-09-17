@@ -40,16 +40,14 @@
 .dsh-green{color:#d7f0d9;background:rgba(46,125,50,.22);border-color:rgba(46,125,50,.5)}
 .dsh-teal{color:#bfe8e4;background:rgba(13,148,136,.2);border-color:rgba(13,148,136,.5)}
 .dsh-pill.is-active{box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.45);filter:brightness(1.12)}
-.dsh .hcmo-auth{display:inline-flex;align-items:center;gap:6px}
-.dsh .hcmo-auth:empty{display:none}
-.dsh .hcmo-auth a{display:inline-flex;align-items:center;gap:5px;padding:8px 14px;border-radius:999px;font-weight:700;font-size:.86rem;text-decoration:none;white-space:nowrap;color:#fde6c0;background:rgba(245,158,11,.18);border:1px solid rgba(245,158,11,.45);transition:background .15s}
-.dsh .hcmo-auth a:hover{background:rgba(245,158,11,.3)}
-.dsh .hcmo-auth a#hcmo-stu{color:#cfe8ff;background:rgba(96,165,250,.16);border-color:rgba(96,165,250,.4)}
-.dsh .hcmo-auth a#hcmo-stu:hover{background:rgba(96,165,250,.28)}
-.dsh .hcmo-auth>span{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:.86rem;color:#e8eefc}
-.dsh .hcmo-auth .nm{color:#fde6c0}
-.dsh .hcmo-auth #hcmo-out{cursor:pointer;border:0;border-radius:999px;background:#f59e0b;color:#3a2606;font-weight:800;font-size:.8rem;padding:7px 13px;font-family:inherit}
-.dsh .hcmo-auth #hcmo-out:hover{filter:brightness(1.07)}
+.dsh .numap-auth{display:inline-flex;align-items:center;gap:6px}
+.dsh .numap-auth:empty{display:none}
+.dsh .numap-auth a{display:inline-flex;align-items:center;gap:5px;padding:8px 14px;border-radius:999px;font-weight:700;font-size:.86rem;text-decoration:none;white-space:nowrap;color:#d7f0d9;background:rgba(46,125,50,.22);border:1px solid rgba(46,125,50,.5);transition:background .15s;cursor:pointer}
+.dsh .numap-auth a:hover{background:rgba(46,125,50,.34)}
+.dsh .numap-auth>span{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:.86rem;color:#e8efe9}
+.dsh .numap-auth .nm{color:#d7f0d9}
+.dsh .numap-auth #numap-out{cursor:pointer;border:0;border-radius:999px;background:#2E7D32;color:#fff;font-weight:800;font-size:.8rem;padding:7px 13px;font-family:inherit}
+.dsh .numap-auth #numap-out:hover{filter:brightness(1.1)}
 @media (max-width:760px){.dsh{padding:10px 15px}.dsh-pill{padding:7px 11px;font-size:.8rem}.dsh-name{font-size:18px}}
 @media print{.dsh{display:none}}
 
@@ -181,7 +179,7 @@
 </style>
 </head>
 <body data-key="sub">
-<header class="dsh"><div class="dsh-row"><a class="dsh-brand" href="/" aria-label="DokunSay ana sayfa"><span class="dsh-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" aria-hidden="true"><line x1="28" y1="27" x2="72" y2="27" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="28" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="72" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><circle cx="28" cy="27" r="21" fill="#2E7D32"/><circle cx="20.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="28" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="35.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="72" cy="27" r="21" fill="#0d9488"/><text x="72" y="32" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="14" fill="#fff">üç</text><circle cx="50" cy="73" r="21" fill="#1B5E20"/><text x="50" y="82" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="27" fill="#fff">3</text></svg></span><span class="dsh-titles"><span class="dsh-name">DokunSay</span><span class="dsh-sub">Matematik Öğretim Araçları Platformu</span></span></a><nav class="dsh-nav" aria-label="Site gezinme"><a class="dsh-pill dsh-amber is-active" href="/yorunge/" aria-current="page">🧭 Öğrenme Yörüngeleri</a><a class="dsh-pill dsh-green" href="/rehber/">📘 Müdahale Rehberi</a><a class="dsh-pill dsh-teal" href="/#tools-section">🛠️ Araçlar</a><span id="hcmoAuth" class="hcmo-auth"></span></nav></div></header>
+<header class="dsh"><div class="dsh-row"><a class="dsh-brand" href="/" aria-label="DokunSay ana sayfa"><span class="dsh-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" aria-hidden="true"><line x1="28" y1="27" x2="72" y2="27" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="28" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="72" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><circle cx="28" cy="27" r="21" fill="#2E7D32"/><circle cx="20.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="28" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="35.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="72" cy="27" r="21" fill="#0d9488"/><text x="72" y="32" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="14" fill="#fff">üç</text><circle cx="50" cy="73" r="21" fill="#1B5E20"/><text x="50" y="82" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="27" fill="#fff">3</text></svg></span><span class="dsh-titles"><span class="dsh-name">DokunSay</span><span class="dsh-sub">Matematik Öğretim Araçları Platformu</span></span></a><nav class="dsh-nav" aria-label="Site gezinme"><a class="dsh-pill dsh-amber is-active" href="/yorunge/" aria-current="page">🧭 Öğrenme Yörüngeleri</a><a class="dsh-pill dsh-green" href="/rehber/">📘 Müdahale Rehberi</a><a class="dsh-pill dsh-teal" href="/#tools-section">🛠️ Araçlar</a><span id="numapAuth" class="numap-auth"></span></nav></div></header>
 
 <section class="hero">
   <div class="wrap">
@@ -194,7 +192,7 @@
         <p class="lede">Saymadan anlık bilme. Saymadan, bir bakışta miktarı bilme. <span class="ltname">(Subitizing)</span></p>
         <div class="hero-meta">
           <span class="hm">📊 12 basamak</span>
-          <span class="hm">🎂 0–9 yaş</span>
+          <span class="hm">🎂 0–8 yaş</span>
           <span class="hm">⚠ 1 darboğaz</span>
           <span class="hm">🎯 Çekirdek alan · tam etkileşimli</span>
         </div>
@@ -215,7 +213,7 @@
     <aside class="side">
     <div class="side-in">
       <div class="side-head">Düzeyler <span>12</span></div>
-      <ol class="side-list"><li><a href="#lv-0" data-i="0"><span class="s-num" style="--c:#2E7D32">1</span><span class="s-txt"><b>Sayı Duyarlılığı: Temeller</b><small>0–1 yaş</small></span></a></li><li><a href="#lv-1" data-i="1"><span class="s-num" style="--c:#2E7D32">2</span><span class="s-txt"><b>Çok Küçük Sayıları Tanıyan</b><small>1–2 yaş</small></span></a></li><li><a href="#lv-2" data-i="2"><span class="s-num" style="--c:#2E7D32">3</span><span class="s-txt"><b>Küçük Grupların Aynısını Oluşturan</b><small>2–3 yaş</small></span></a></li><li><a href="#lv-3" data-i="3"><span class="s-num" style="--c:#2E7D32">4</span><span class="s-txt"><b>Küçük Grupları Adlandıran</b><small>3–4 yaş</small></span></a></li><li><a href="#lv-4" data-i="4"><span class="s-num" style="--c:#2E7D32">5</span><span class="s-txt"><b>Algısal Sanbil (4’e kadar)</b><small>3–4 yaş · ⚠ darboğaz</small></span></a></li><li><a href="#lv-5" data-i="5"><span class="s-num" style="--c:#2E7D32">6</span><span class="s-txt"><b>Algısal Sanbil (5’e kadar)</b><small>4–5 yaş</small></span></a></li><li><a href="#lv-6" data-i="6"><span class="s-num" style="--c:#2E7D32">7</span><span class="s-txt"><b>Kavramsal Sanbil (5’e kadar)</b><small>5 yaş</small></span></a></li><li><a href="#lv-7" data-i="7"><span class="s-num" style="--c:#2E7D32">8</span><span class="s-txt"><b>Kavramsal Sanbil (7’ye kadar)</b><small>5–6 yaş</small></span></a></li><li><a href="#lv-8" data-i="8"><span class="s-num" style="--c:#2E7D32">9</span><span class="s-txt"><b>Kavramsal Sanbil (10’a kadar)</b><small>6 yaş</small></span></a></li><li><a href="#lv-9" data-i="9"><span class="s-num" style="--c:#2E7D32">10</span><span class="s-txt"><b>Kavramsal Sanbil (20’ye kadar)</b><small>6–7 yaş</small></span></a></li><li><a href="#lv-10" data-i="10"><span class="s-num" style="--c:#2E7D32">11</span><span class="s-txt"><b>Basamak Değeriyle Sanbil</b><small>7–8 yaş</small></span></a></li><li><a href="#lv-11" data-i="11"><span class="s-num" style="--c:#2E7D32">12</span><span class="s-txt"><b>Çarpımsal Düşünmeyle Sanbil</b><small>8–9 yaş</small></span></a></li></ol>
+      <ol class="side-list"><li><a href="#lv-0" data-i="0"><span class="s-num" style="--c:#2E7D32">1</span><span class="s-txt"><b>Sayı Duyarlılığı: Temeller</b><small>0–1 yaş</small></span></a></li><li><a href="#lv-1" data-i="1"><span class="s-num" style="--c:#2E7D32">2</span><span class="s-txt"><b>Çok Küçük Sayıları Tanıyan</b><small>1–2 yaş</small></span></a></li><li><a href="#lv-2" data-i="2"><span class="s-num" style="--c:#2E7D32">3</span><span class="s-txt"><b>Küçük Grupların Aynısını Oluşturan</b><small>2–3 yaş</small></span></a></li><li><a href="#lv-3" data-i="3"><span class="s-num" style="--c:#2E7D32">4</span><span class="s-txt"><b>Küçük Grupları Adlandıran</b><small>2–3 yaş</small></span></a></li><li><a href="#lv-4" data-i="4"><span class="s-num" style="--c:#2E7D32">5</span><span class="s-txt"><b>Algısal Sanbil (4’e kadar)</b><small>3–4 yaş · ⚠ darboğaz</small></span></a></li><li><a href="#lv-5" data-i="5"><span class="s-num" style="--c:#2E7D32">6</span><span class="s-txt"><b>Algısal Sanbil (5’e kadar)</b><small>4 yaş</small></span></a></li><li><a href="#lv-6" data-i="6"><span class="s-num" style="--c:#2E7D32">7</span><span class="s-txt"><b>Kavramsal Sanbil (5’e kadar)</b><small>4 yaş</small></span></a></li><li><a href="#lv-7" data-i="7"><span class="s-num" style="--c:#2E7D32">8</span><span class="s-txt"><b>Kavramsal Sanbil (7’ye kadar)</b><small>4–6 yaş</small></span></a></li><li><a href="#lv-8" data-i="8"><span class="s-num" style="--c:#2E7D32">9</span><span class="s-txt"><b>Kavramsal Sanbil (10’a kadar)</b><small>5–6 yaş</small></span></a></li><li><a href="#lv-9" data-i="9"><span class="s-num" style="--c:#2E7D32">10</span><span class="s-txt"><b>Kavramsal Sanbil (20’ye kadar)</b><small>6–7 yaş</small></span></a></li><li><a href="#lv-10" data-i="10"><span class="s-num" style="--c:#2E7D32">11</span><span class="s-txt"><b>Basamak Değeriyle Sanbil</b><small>7 yaş</small></span></a></li><li><a href="#lv-11" data-i="11"><span class="s-num" style="--c:#2E7D32">12</span><span class="s-txt"><b>Çarpımsal Düşünmeyle Sanbil</b><small>8 yaş</small></span></a></li></ol>
     </div>
   </aside>
     <div class="levels">
@@ -233,7 +231,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Doğuştan gelen, açık bilgi içermeyen sayı duyarlılığı: 1 ile 2 nesnelik grupları (bazen 2 ile 3’ü) sezgisel olarak ayırt eder; büyük gruplar arasında oran farkı belirginse (yaklaşık sayı sistemi) duyarlılık gösterir.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Yaşamın ilk aylarından itibaren, sayıya ilişkin açık bir bilgisi olmaksızın doğuştan gelen sayı “duyargalarına” sahiptir. 1 ile 2 nesnelik grupları (bazen 2 ile 3’ü) sezgisel olarak ayırt eder. Oldukça büyük sayılar arasındaki oran farklarına da duyarlıdır (yaklaşık sayı sistemi). Bunlar matematik öncesi, temel yeterliklerdir.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Bebek, önündeki iki nesne üçe çıkınca daha uzun bakar; sayıyı adlandıramaz ama &quot;bir şey değişti&quot; diye sezer. Bu, dile dökülmemiş bir miktar duygusudur.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu en erken sayı sezgisidir (yaklaşık sayı sistemi, ANS). Henüz sayı sözcüğü yoktur; amaç saymak değil, miktar değişimine dikkati uyandırmaktır. Sonraki tüm sayı öğrenmesi bu çekirdek sezgiye yaslanır.</p></div>
         <div class="act">
@@ -270,7 +268,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Küçük miktarları sayı sözcükleriyle eşleştirmeye başlar (&quot;bir&quot;, &quot;iki&quot;); kardinal değere ilişkin ilk açık fikir oluşur. &quot;Daha çok / daha az&quot; sözcükleri bunu izler.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Küçük miktarları sayı sözcükleriyle ilişkilendirmeye başlar; böylece kardinal değere, yani “kaç tane”liğe ilişkin açık bir fikir oluşur. Bir yaşından sonra çoğu çocuk “bir” ve “iki” sözcüklerini öğrenir; “daha çok”, “daha az” gibi genel terimler bunu izler. Aynı sayı sözcüğüyle adlandırılan bütün grupların aynı miktarda olduğunu ancak zamanla anlar.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>&quot;Bir&quot; ve &quot;iki&quot; arasını ayırır: bir el kurabiye ile iki el kurabiyeyi gördüğünde, çoğu tutarlı biçimde seçer ya da &quot;iki&quot; der.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Burada miktar sezgisi dile değmeye başlar. &quot;İki&quot; sözcüğü çoğu çocukta ilk kararlı sayı etiketidir. Tekrar tekrar adlandırarak (parmak, nesne) bu eşlemeyi besleyin.</p></div>
         <div class="act">
@@ -307,7 +305,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Model bir koleksiyonla aynı sayıda (genellikle 1–2, bazen 3) nesneden oluşan bir grup oluşturur; bunu zihinsel modelle yapar (birebir eşleme zorunlu değildir), çoğu kez sözel olmayan biçimde.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Küçük bir grubun (1–2, bazen 3 nesne) aynı sayıda bir kopyasını oluşturur; bunu çoğu kez basit düzeni olduğu gibi kopyalayarak yapar (örn. 3’ü “iki göz ve bir ağız” gibi).</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>&quot;Bana iki tane ver&quot; dediğinizde, bir yığından tam iki nesne çekip uzatır — tek tek saymadan, isteneni &quot;yapar&quot;.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Tanımaktan ÜRETMEYE geçiş kritik: çocuk artık miktarı yalnız görmüyor, talep üzerine oluşturuyor. &quot;Bir&quot; ve &quot;iki&quot; için sağlamsa, üçe geçmeden bunları pekiştirin.</p></div>
         <div class="act">
@@ -336,7 +334,7 @@
       <div class="lv-num" style="--c:#2E7D32">4</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2E7D32">3–4 yaş</span>
+          <span class="age-pill" style="--c:#2E7D32">2–3 yaş</span>
           
         </div>
         <h3>Küçük Grupları Adlandıran</h3>
@@ -344,7 +342,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Model ya da eşleme stratejisi gerekmeden 1, 2 ve 3 nesnelik grupları artan doğrulukla adlandırır (çoğu çocukta ~34–39 ay); 4’lük gruplar yaklaşık 6 ay sonra eklenir.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> 1, 2 ve 3 nesnelik (bazen daha büyük) grupları giderek artan doğrulukla adlandırır. 34–39 aylık çocukların çoğu 1, 2 ve 3’lük grupları doğru adlandırır; birçok çocuk 4’lük grupları yaklaşık altı ay sonra tanıyıp adlandırmayı öğrenir.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Kart üzerinde 3 noktayı bir bakışta &quot;üç&quot; diye söyler. 4 nesne çoğu çocukta birkaç ay sonra gelir; başta &quot;üç… dört?&quot; diye duraksayabilir.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, gerçek ALGISAL SANBİL’in eşiğidir: 1–3 saymadan adlandırılıyor. 3’ten 4’e geçiş yörüngenin ilk gerçek darboğazına hazırlıktır — acele saydırmayın, örüntüyü gösterin.</p></div>
         <div class="act">
@@ -381,7 +379,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Kısa süre gösterilen 4’e kadar nesneli grupları anında tanır ve sayıyı sözel olarak adlandırır — saymaya gerek duymadan.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Kısa süre gösterilen 4’e kadar nesneli grupları anında tanır ve sayısını söyler. Bir dizi sesteki “vuruş” sayısını da (3–4’e kadar) tanıyıp adlandırır (ritmik sanbil).</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>4 noktayı (kare düzende) saymadan &quot;dört&quot; der. Ama dağınık 4’te yine tek tek saymaya kayabilir: &quot;bir-iki-üç-dört&quot;. 3 ile 4 arasındaki bu eşik yörüngenin ilk kritik geçişidir.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu düzeyde takılma, matematik öğrenme güçlüğü (diskalkuli) açısından erken bir uyarı işaretidir: tipik gelişende 4’e dek sanbil otomatikleşir. Çocuk hâlâ her şeyi tek tek sayıyorsa, ÖRÜNTÜ (zar/parmak düzeni) öğretin — düzenli yerleşim bakışta tanımayı kolaylaştırır. Hız değil, &quot;bakıp bilme&quot; alışkanlığı hedeftir.</p></div>
         <div class="act">
@@ -410,7 +408,7 @@
       <div class="lv-num" style="--c:#2E7D32">6</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2E7D32">4–5 yaş</span>
+          <span class="age-pill" style="--c:#2E7D32">4 yaş</span>
           
         </div>
         <h3>Algısal Sanbil (5’e kadar)</h3>
@@ -418,7 +416,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Kısa süre gösterilen 5’e kadar grupları anında tanıyıp adlandırır; tanıdık düzenlerin ötesinde uzamsal/sayısal yapıları kullanmaya başlar.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Kısa süre gösterilen 5’e kadar grupları anında tanır ve sayısını söyler. Uzamsal ve sayısal yapıları, ilk öğrendiği durumların ötesindeki yeni durumlarda da tanır ve kullanır.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Zar beşini (dört köşe + orta) ya da bir eli bir bakışta &quot;beş&quot; diye bilir. El parmakları onun için güçlü, taşınabilir bir beş-örüntüsüdür.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>5, sonraki kavramsal sanbilin demir atağıdır (&quot;beşli yapı&quot;). Parmakları ve beşli çerçeveyi sık kullanın; çocuk 5’i bir bütün olarak &quot;görsün&quot; ki 6–10’u &quot;5 ve biraz daha&quot; diye çözebilsin.</p></div>
         <div class="act">
@@ -447,7 +445,7 @@
       <div class="lv-num" style="--c:#2E7D32">7</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2E7D32">5 yaş</span>
+          <span class="age-pill" style="--c:#2E7D32">4 yaş</span>
           
         </div>
         <h3>Kavramsal Sanbil (5’e kadar)</h3>
@@ -455,7 +453,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> 5’e kadar TÜM düzenlemeleri, kısa gösterimde parçaları görüp bütünü hızla bilerek adlandırır (&quot;3 ile 2 gördüm — beş!&quot;).</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Kısa süre gösterilen, yaklaşık 5’e kadar tüm düzenleri parçaları görüp bütünü hemen bilerek sözel olarak adlandırır. Kavramsal sanbil, bütünü oluşturan daha küçük miktarları (algısal sanbille tanınan parçaları) birleştirerek bütün miktarı belirleme becerisidir.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>5 noktayı görüp &quot;iki ve üç, beş&quot; der — yani bütünü parçalarıyla görür. &quot;Nasıl bildin?&quot; diye sorduğunuzda &quot;üçü gördüm, ikiyi gördüm&quot; diye açıklayabilir.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Algısaldan KAVRAMSAL sanbile geçiş budur: artık miktarı parça-bütün olarak çözümlüyor. Bu, toplama-çıkarmanın ve &quot;10 dostları&quot;nın temelidir. Çocuğun gördüğü parçalanışı sözle adlandırması çok değerli — onu konuşturun.</p></div>
         <div class="act">
@@ -484,7 +482,7 @@
       <div class="lv-num" style="--c:#2E7D32">8</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2E7D32">5–6 yaş</span>
+          <span class="age-pill" style="--c:#2E7D32">4–6 yaş</span>
           
         </div>
         <h3>Kavramsal Sanbil (7’ye kadar)</h3>
@@ -492,7 +490,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Kısa süre gösterilen 6, sonra 7 nesnelik tüm düzenlemeleri parçalardan bütüne giderek adlandırır.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Kısa süre gösterilen 6, ardından 7 nesnelik tüm düzenleri sözel olarak adlandırır.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>7 nesneyi &quot;beş ve iki&quot; ya da &quot;dört ve üç&quot; diye, beşli yapıyı çıpa alarak bakışta çözer. Tek tek saymaya artık ihtiyaç duymaz.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Beşli yapı burada işbaşında: 6 = 5+1, 7 = 5+2. Çocuk bunu kurabiliyorsa onluk dünyaya hazır demektir. Beşli çerçeveyi ikiye genişletin (5+çerçeve dışı), &quot;beşten kaç fazla?&quot; sorusunu yerleştirin.</p></div>
         <div class="act">
@@ -521,7 +519,7 @@
       <div class="lv-num" style="--c:#2E7D32">9</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2E7D32">6 yaş</span>
+          <span class="age-pill" style="--c:#2E7D32">5–6 yaş</span>
           
         </div>
         <h3>Kavramsal Sanbil (10’a kadar)</h3>
@@ -529,7 +527,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> 2–10 arası sayıların kısa gösterilen çoğu düzenlemesini adlandırır (örn. 7 ile 2’yi 9 olarak görür); onluk çerçeve gibi yapıları kullanır.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Kısa süre gösterilen 2–10 arası sayıların çoğu düzenini adlandırır. Bazı tanıdık bileşimleri (“5 ile 5, 10 eder”) erken bilebilir; ancak bu düzeye, 10’a kadar sayıların hemen tüm bileşimleri tanındığında ulaşılır (örn. 7 ile 2’yi 9, 5 ile 3’ü 8 olarak görür). Daha büyük miktarları tanımak için onluk çerçeve gibi yapılardan yararlanır.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Onluk çerçevedeki 8’i &quot;beş ve üç&quot; ya da &quot;ikisi eksik on&quot; diye bir bakışta bilir. Dolu/boş kutuları okuyarak miktarı hızla çözer.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Onluk çerçeve (10’lu kutu) bu düzeyin can damarıdır: 10’a tümleyeni &quot;görünür&quot; kılar (8 → 2 boş kutu → &quot;10’a 2 lazım&quot;). Bu, zihinden toplama-çıkarmanın ve basamak değerinin doğrudan zeminidir. Çocuğu &quot;kaç boş?&quot; diye düşündürün.</p></div>
         <div class="act">
@@ -566,7 +564,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Kısa gösterilen, yapılandırılmış 10–20 arası düzenlemeleri parçadan bütüne stratejiyle adlandırır (örn. 7 ile 9’u 16 olarak görür).</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Kısa süre gösterilen, yapılandırılmış 10–20 arası düzenleri parçaları görüp bütünü hemen bilerek adlandırır. Büyük miktarları sanbille bilmek için kendiliğinden yukarıdan aşağıya (bütünden parçaya) bir strateji kullanır. Bazı tanıdık bileşimleri (“10 ile 10, 20 eder”) erken bilebilir; bu düzeye, 1–10 arası sayıların hemen tüm bileşimleri tanındığında ulaşılır (örn. 7 ile 9’u 16 olarak görür).</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>İki onluk çerçeveyle 14’ü &quot;bir dolu on ve dört&quot; diye okur. 10’u bir BİRİM gibi görür: &quot;on ve dört, on dört&quot;.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>10’un tek bir birim olarak görülmesi (birimleme) basamak değerinin kalbidir. Çift çerçeve &quot;bir onluk + birlikler&quot; yapısını somutlar. Çocuk &quot;on dört = bir on ve dört&quot; diyebiliyorsa, yazılı basamak değerine köprü kuruludur.</p></div>
         <div class="act">
@@ -595,7 +593,7 @@
       <div class="lv-num" style="--c:#2E7D32">11</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2E7D32">7–8 yaş</span>
+          <span class="age-pill" style="--c:#2E7D32">7 yaş</span>
           
         </div>
         <h3>Basamak Değeriyle Sanbil</h3>
@@ -603,7 +601,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Kısa gösterilen yapılandırılmış düzenlemeleri grupları, ritmik saymayı ve basamak değerini kullanarak adlandırır (&quot;üç onluk ve dört — otuz dört&quot;).</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Kısa süre gösterilen yapılandırılmış düzenleri onluk ve birlik birimlerini ve basamak değerini kullanarak adlandırır.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Onluk bloklarla gösterilen 34’ü saymadan &quot;üç onluk ve dört, otuz dört&quot; diye çözer. Onlukları tek tek değil, demet olarak okur.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Artık sanbil basamak değerine ölçeklenir: onluk demetleri çarpımsal okur (3 demet = otuz). DokunSay Basamak aracı (birlik-onluk-yüzlük blokları) bu düzeyi doğrudan besler. &quot;Kaç onluk?&quot; → &quot;kaç eder?&quot; zincirini kurun.</p></div>
         <div class="act">
@@ -632,7 +630,7 @@
       <div class="lv-num" style="--c:#2E7D32">12</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2E7D32">8–9 yaş</span>
+          <span class="age-pill" style="--c:#2E7D32">8 yaş</span>
           
         </div>
         <h3>Çarpımsal Düşünmeyle Sanbil</h3>
@@ -640,7 +638,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Kısa gösterilen yapılandırılmış düzenlemeleri grupları, çarpımsal düşünmeyi ve onluk tabanı kullanarak adlandırır; kaç onluk gördüğünü sözel olarak ifade eder.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Kısa süre gösterilen yapılandırılmış düzenleri grupları ve çarpımsal düşünmeyi kullanarak adlandırır. Her kümedeki eşit miktarı ve küme sayısını belirleyerek toplamı hızla bulur (örn. 4’erli 3 grup 12’dir).</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>3×4 nokta dizilimini tek tek saymadan &quot;üç sıra, her birinde dört — on iki&quot; diye çözer. Diziyi satır × sütun birimiyle okur.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Sanbilin doruğu: miktarı çarpımsal birimlerle görme. Bu, çarpma ve alanın algısal temelidir. Dizi (array) modeliyle çalışın; çocuk &quot;tekrarlı toplama&quot;dan &quot;satır × sütun&quot;a geçsin. DokunSay Bar’ın dizi düzeni ya da Basamak’ın ızgarası uygundur.</p></div>
         <div class="act">

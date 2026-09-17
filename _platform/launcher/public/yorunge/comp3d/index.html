@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Yapı Kurma (3B) — Öğrenme Yörüngesi · DokunSay</title>
-<meta name="description" content="Yapı Kurma (3B) öğrenme yörüngesi: 9 gelişim basamağı, her birinde DokunSay etkinliği ve gözlem ölçütü. Clements &amp; Sarama çerçevesi. Bloklarla yapı kurma.">
+<title>Yapı Kurma (Üç Boyutlu) — Öğrenme Yörüngesi · DokunSay</title>
+<meta name="description" content="Yapı Kurma (Üç Boyutlu) öğrenme yörüngesi: 9 gelişim basamağı, her birinde DokunSay etkinliği ve gözlem ölçütü. Clements &amp; Sarama çerçevesi. Bloklarla yapı kurma.">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,16 +40,14 @@
 .dsh-green{color:#d7f0d9;background:rgba(46,125,50,.22);border-color:rgba(46,125,50,.5)}
 .dsh-teal{color:#bfe8e4;background:rgba(13,148,136,.2);border-color:rgba(13,148,136,.5)}
 .dsh-pill.is-active{box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.45);filter:brightness(1.12)}
-.dsh .hcmo-auth{display:inline-flex;align-items:center;gap:6px}
-.dsh .hcmo-auth:empty{display:none}
-.dsh .hcmo-auth a{display:inline-flex;align-items:center;gap:5px;padding:8px 14px;border-radius:999px;font-weight:700;font-size:.86rem;text-decoration:none;white-space:nowrap;color:#fde6c0;background:rgba(245,158,11,.18);border:1px solid rgba(245,158,11,.45);transition:background .15s}
-.dsh .hcmo-auth a:hover{background:rgba(245,158,11,.3)}
-.dsh .hcmo-auth a#hcmo-stu{color:#cfe8ff;background:rgba(96,165,250,.16);border-color:rgba(96,165,250,.4)}
-.dsh .hcmo-auth a#hcmo-stu:hover{background:rgba(96,165,250,.28)}
-.dsh .hcmo-auth>span{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:.86rem;color:#e8eefc}
-.dsh .hcmo-auth .nm{color:#fde6c0}
-.dsh .hcmo-auth #hcmo-out{cursor:pointer;border:0;border-radius:999px;background:#f59e0b;color:#3a2606;font-weight:800;font-size:.8rem;padding:7px 13px;font-family:inherit}
-.dsh .hcmo-auth #hcmo-out:hover{filter:brightness(1.07)}
+.dsh .numap-auth{display:inline-flex;align-items:center;gap:6px}
+.dsh .numap-auth:empty{display:none}
+.dsh .numap-auth a{display:inline-flex;align-items:center;gap:5px;padding:8px 14px;border-radius:999px;font-weight:700;font-size:.86rem;text-decoration:none;white-space:nowrap;color:#d7f0d9;background:rgba(46,125,50,.22);border:1px solid rgba(46,125,50,.5);transition:background .15s;cursor:pointer}
+.dsh .numap-auth a:hover{background:rgba(46,125,50,.34)}
+.dsh .numap-auth>span{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:.86rem;color:#e8efe9}
+.dsh .numap-auth .nm{color:#d7f0d9}
+.dsh .numap-auth #numap-out{cursor:pointer;border:0;border-radius:999px;background:#2E7D32;color:#fff;font-weight:800;font-size:.8rem;padding:7px 13px;font-family:inherit}
+.dsh .numap-auth #numap-out:hover{filter:brightness(1.1)}
 @media (max-width:760px){.dsh{padding:10px 15px}.dsh-pill{padding:7px 11px;font-size:.8rem}.dsh-name{font-size:18px}}
 @media print{.dsh{display:none}}
 
@@ -181,7 +179,7 @@
 </style>
 </head>
 <body data-key="comp3d">
-<header class="dsh"><div class="dsh-row"><a class="dsh-brand" href="/" aria-label="DokunSay ana sayfa"><span class="dsh-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" aria-hidden="true"><line x1="28" y1="27" x2="72" y2="27" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="28" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="72" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><circle cx="28" cy="27" r="21" fill="#2E7D32"/><circle cx="20.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="28" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="35.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="72" cy="27" r="21" fill="#0d9488"/><text x="72" y="32" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="14" fill="#fff">üç</text><circle cx="50" cy="73" r="21" fill="#1B5E20"/><text x="50" y="82" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="27" fill="#fff">3</text></svg></span><span class="dsh-titles"><span class="dsh-name">DokunSay</span><span class="dsh-sub">Matematik Öğretim Araçları Platformu</span></span></a><nav class="dsh-nav" aria-label="Site gezinme"><a class="dsh-pill dsh-amber is-active" href="/yorunge/" aria-current="page">🧭 Öğrenme Yörüngeleri</a><a class="dsh-pill dsh-green" href="/rehber/">📘 Müdahale Rehberi</a><a class="dsh-pill dsh-teal" href="/#tools-section">🛠️ Araçlar</a><span id="hcmoAuth" class="hcmo-auth"></span></nav></div></header>
+<header class="dsh"><div class="dsh-row"><a class="dsh-brand" href="/" aria-label="DokunSay ana sayfa"><span class="dsh-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" aria-hidden="true"><line x1="28" y1="27" x2="72" y2="27" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="28" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="72" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><circle cx="28" cy="27" r="21" fill="#2E7D32"/><circle cx="20.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="28" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="35.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="72" cy="27" r="21" fill="#0d9488"/><text x="72" y="32" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="14" fill="#fff">üç</text><circle cx="50" cy="73" r="21" fill="#1B5E20"/><text x="50" y="82" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="27" fill="#fff">3</text></svg></span><span class="dsh-titles"><span class="dsh-name">DokunSay</span><span class="dsh-sub">Matematik Öğretim Araçları Platformu</span></span></a><nav class="dsh-nav" aria-label="Site gezinme"><a class="dsh-pill dsh-amber is-active" href="/yorunge/" aria-current="page">🧭 Öğrenme Yörüngeleri</a><a class="dsh-pill dsh-green" href="/rehber/">📘 Müdahale Rehberi</a><a class="dsh-pill dsh-teal" href="/#tools-section">🛠️ Araçlar</a><span id="numapAuth" class="numap-auth"></span></nav></div></header>
 
 <section class="hero">
   <div class="wrap">
@@ -190,11 +188,11 @@
       <div class="hero-ic">🏗️</div>
       <div>
         <span class="eyebrow">Geometri ve Uzamsal</span>
-        <h1>Yapı Kurma (3B)</h1>
+        <h1>Yapı Kurma (Üç Boyutlu)</h1>
         <p class="lede">Bloklarla yapı kurma. <span class="ltname">(Composing 3D Shapes)</span></p>
         <div class="hero-meta">
           <span class="hm">📊 9 basamak</span>
-          <span class="hm">🎂 0–7 yaş</span>
+          <span class="hm">🎂 0–6 yaş</span>
           <span class="hm">⚠ 1 darboğaz</span>
           <span class="hm">🎯 Profil alanı · gözlem</span>
         </div>
@@ -215,7 +213,7 @@
     <aside class="side">
     <div class="side-in">
       <div class="side-head">Düzeyler <span>9</span></div>
-      <ol class="side-list"><li><a href="#lv-0" data-i="0"><span class="s-num" style="--c:#7c3aed">1</span><span class="s-txt"><b>Blokları Tek Tek Kullanan: Temeller</b><small>0–2 yaş</small></span></a></li><li><a href="#lv-1" data-i="1"><span class="s-num" style="--c:#7c3aed">2</span><span class="s-txt"><b>Üst Üste Dizen</b><small>0–2 yaş</small></span></a></li><li><a href="#lv-2" data-i="2"><span class="s-num" style="--c:#7c3aed">3</span><span class="s-txt"><b>Sıra Yapan</b><small>1–2 yaş</small></span></a></li><li><a href="#lv-3" data-i="3"><span class="s-num" style="--c:#7c3aed">4</span><span class="s-txt"><b>Aynı Şekli Üst Üste Dizen</b><small>2–3 yaş</small></span></a></li><li><a href="#lv-4" data-i="4"><span class="s-num" style="--c:#7c3aed">5</span><span class="s-txt"><b>Zemin ve Duvar Yapan</b><small>2–3 yaş</small></span></a></li><li><a href="#lv-5" data-i="5"><span class="s-num" style="--c:#7c3aed">6</span><span class="s-txt"><b>Kemer ve Köşeleri Deneyerek Kuran</b><small>3–4 yaş</small></span></a></li><li><a href="#lv-6" data-i="6"><span class="s-num" style="--c:#7c3aed">7</span><span class="s-txt"><b>Yapıyı Planlayarak Kuran</b><small>4–5 yaş · ⚠ darboğaz</small></span></a></li><li><a href="#lv-7" data-i="7"><span class="s-num" style="--c:#7c3aed">8</span><span class="s-txt"><b>Parça Değiştirip Karmaşık Yapılar Kuran</b><small>5–6 yaş</small></span></a></li><li><a href="#lv-8" data-i="8"><span class="s-num" style="--c:#7c3aed">9</span><span class="s-txt"><b>Katlı ve Çatılı Yapılar Kuran</b><small>6–7 yaş</small></span></a></li></ol>
+      <ol class="side-list"><li><a href="#lv-0" data-i="0"><span class="s-num" style="--c:#7c3aed">1</span><span class="s-txt"><b>Blokları Tek Tek Kullanan: Temeller</b><small>0–2 yaş</small></span></a></li><li><a href="#lv-1" data-i="1"><span class="s-num" style="--c:#7c3aed">2</span><span class="s-txt"><b>Üst Üste Dizen</b><small>0–2 yaş</small></span></a></li><li><a href="#lv-2" data-i="2"><span class="s-num" style="--c:#7c3aed">3</span><span class="s-txt"><b>Sıra Yapan</b><small>1–2 yaş</small></span></a></li><li><a href="#lv-3" data-i="3"><span class="s-num" style="--c:#7c3aed">4</span><span class="s-txt"><b>Aynı Şekli Üst Üste Dizen</b><small>2 yaş</small></span></a></li><li><a href="#lv-4" data-i="4"><span class="s-num" style="--c:#7c3aed">5</span><span class="s-txt"><b>Zemin ve Duvar Yapan</b><small>2–3 yaş</small></span></a></li><li><a href="#lv-5" data-i="5"><span class="s-num" style="--c:#7c3aed">6</span><span class="s-txt"><b>Kemer ve Köşeleri Deneyerek Kuran</b><small>3–4 yaş</small></span></a></li><li><a href="#lv-6" data-i="6"><span class="s-num" style="--c:#7c3aed">7</span><span class="s-txt"><b>Yapıyı Planlayarak Kuran</b><small>4–5 yaş · ⚠ darboğaz</small></span></a></li><li><a href="#lv-7" data-i="7"><span class="s-num" style="--c:#7c3aed">8</span><span class="s-txt"><b>Parça Değiştirip Karmaşık Yapılar Kuran</b><small>5–6 yaş</small></span></a></li><li><a href="#lv-8" data-i="8"><span class="s-num" style="--c:#7c3aed">9</span><span class="s-txt"><b>Katlı ve Çatılı Yapılar Kuran</b><small>6 yaş</small></span></a></li></ol>
     </div>
   </aside>
     <div class="levels">
@@ -233,7 +231,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Blokları rastgele yerleştirir ya da tek tek kullanır; bloklara vurabilir, onları birbirine çarpabilir ya da kaydırabilir; tek bir bloğu başka bir nesneyi temsil etmek için kullanabilir.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Blokları rastgele yerleştirir ya da şekilleri tek tek ele alır; ancak daha büyük bir şekil oluşturmak için birleştirmez. Bloklara vurabilir, onları birbirine çarpabilir ya da kaydırabilir; tek bir bloğu ev ya da kamyon gibi bir nesneyi temsil etmek için kullanabilir.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk küp blokları eline alır, vurur, ağzına götürür, bir yerden başka yere taşır — ama onları birbirine bağlamaz. İki blok yan yana gelse bile her biri ayrı bir nesnedir; &quot;birlikte bir şey&quot; kurma niyeti henüz yoktur.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, 3B oluşturmanın en erken zeminidir: çocuk blokların tek tek varlığını, ağırlığını ve dokusunu keşfeder. Henüz parçaları bir bütüne dönüştürmez; amaç istiflemek değil, blokları tanıdık birer &quot;nesne&quot; kılmaktır. Bol serbest keşif (tutma, bırakma, çarpma) sonraki tüm yapı kurma becerisinin duyusal tohumudur. Acele istifletmeyin; önce bloklarla rahat bir ilişki kursun.</p></div>
         <div class="act">
@@ -270,7 +268,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> &quot;Üstüne koyma&quot; uzamsal ilişkisini kullanarak blokları üst üste dizer; hangi bloğu seçeceği henüz sistemli değildir.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> “Üstüne” uzamsal ilişkisini kullanarak blokları üst üste dizer; ancak blok seçimi sistemsiz olabilir.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk bir bloğu bir diğerinin ÜSTÜNE koyar — iki, üç katlı küçük bir kule yapar. Çoğu zaman kule yıkılır, gülerek yeniden başlar. &quot;Üstüne&quot; ilişkisini ilk kez bir eyleme döker: dikey yönde yapı kurar.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>İstifleme, 3B oluşturmadaki ilk gerçek uzamsal ilişkidir: &quot;üstüne&quot; (dikey birleştirme). Çocuk artık blokları yalnız taşımıyor, bir bütün kurma niyetiyle üst üste diziyor. Yıkmak da öğrenmenin parçasıdır — denge, ağırlık ve dengesizlik deneyimi verir. &quot;Üstüne koy, bir daha üstüne&quot; diyerek ilişkiyi adlandırın; kaç kat olduğunu birlikte sayarak dikey yapıyı dile döktürün.</p></div>
         <div class="act">
@@ -307,7 +305,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> &quot;Yanına koyma&quot; ilişkisini kullanarak bloklardan (tek boyutlu) bir sıra yapar.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> “Yanına” ilişkisini kullanarak bloklardan (tek boyutlu) bir sıra yapar.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk blokları bu kez üst üste değil, YAN YANA dizer: bir tren, bir yol, bir duvar gibi yatay bir sıra yapar. &quot;Üstüne&quot;nin yanına artık &quot;yanına&quot; ilişkisi eklenir; yapı dikeyden yatay düzleme genişler.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Sıra yapmak, ikinci temel uzamsal ilişkiyi (&quot;yanına&quot; — yatay bitiştirme) getirir. Çocuk artık iki yönde düşünebiliyor: yukarı (istif) ve yana (sıra). Bu, ileride zemin/duvar gibi düzlemsel yapıların ön koşuludur. &quot;Yanına koy, bir tane daha yanına&quot; diyerek ilişkiyi adlandırın; &quot;tren&quot; ya da &quot;yol&quot; gibi anlamlı bir bağlam sırayı amaçlı kılar. İstif ile sırayı yan yana göstererek iki ilişkiyi ayırt ettirin.</p></div>
         <div class="act">
@@ -336,7 +334,7 @@
       <div class="lv-num" style="--c:#7c3aed">4</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#7c3aed">2–3 yaş</span>
+          <span class="age-pill" style="--c:#7c3aed">2 yaş</span>
           
         </div>
         <h3>Aynı Şekli Üst Üste Dizen</h3>
@@ -344,7 +342,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Eş blokları (ya da benzer biçimde işine yarayan ilişkilere sahip blokları) seçerek üst üste ya da sıra hâlinde dizer; blok seçimi sistemlileşmiştir.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> “Üstüne” ilişkisini kullanarak eş blokları ya da benzer biçimde işe yarayan bir ilişki gösteren blokları üst üste ya da sıra hâlinde dizer.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk artık AYNI bloklardan düzenli bir kule kurar: eş küpleri seçip üst üste hizalı istifler, gelişigüzel değil. &quot;Hepsi aynı olsun&quot; diye benzer parçaları gruplar ve dengeli, daha yüksek bir yapı yapar.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu düzeyde istifleme bilinçli ve seçicidir: çocuk eş birimleri (aynı küpleri) seçip düzenli bir bütün kurar. Aynı şekli üst üste koymak, hizalama ve denge duygusunu güçlendirir — kule daha yüksek ve sağlam olur. &quot;Aynısından bir tane daha&quot; diyerek benzerlik seçimini destekleyin; kuleyi sayarak (&quot;üç kat, dört kat&quot;) yapının düzenini vurgulayın. Eş parçalarla çalışmak, ileride &quot;birim&quot; fikrinin ilk tohumudur.</p></div>
         <div class="act">
@@ -381,7 +379,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Bir yapı içinde dikey ve yatay bileşenler kurar; ancak dağarcığı sınırlıdır — bir &quot;zemin&quot; ya da basit bir &quot;duvar&quot; gibi (2B/düzlemsel) yapılar.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Bir yapı içinde dikey ve yatay bileşenler kurar; ancak bu, bir “zemin” ya da basit bir “duvar” yapmak gibi sınırlı bir dağarcıkla olur. Dolayısıyla bunlar iki boyutlu yapılardır.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk istif ve sırayı BİRLEŞTİRİR: birkaç bloğu bir araya getirip basit bir 3B yapı (bir zemin, bir duvar, bir oturak) kurar. &quot;Üstüne&quot; ve &quot;yanına&quot; ilişkilerini aynı yapıda kullanır; parçalar artık birbirini tamamlayan bir bütün oluşturur.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Burada gerçek 3B parça birleştirme başlar: çocuk iki ilişkiyi (dikey + yatay) tek bir yapıda eşgüdümler. Bir &quot;zemin&quot; (yan yana sıra) üstüne bir &quot;duvar&quot; (istif) gelir. Bu, yapının parçalardan kurulduğunu ilk kez deneyimlemesidir. &quot;Önce tabanı yap, sonra üstüne koy&quot; diyerek sırayı yönlendirin; çocuğun &quot;bu ne oldu?&quot; sorusuna ad vermesini (&quot;masa&quot;, &quot;duvar&quot;) teşvik edin. Henüz öngörü değil, eyleyerek keşif çağıdır.</p></div>
         <div class="act">
@@ -418,7 +416,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Birden çok uzamsal ilişkiyi, birden çok yönde ve temas noktasında kullanır; deneme-yanılma ile de olsa kemerler, kapalı alanlar, köşeler ve çapraz (artı) biçimler üretir.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Birden çok uzamsal ilişkiyi, birden çok yöne uzanan ve bileşenler arasında birden çok temas noktası olan biçimde kullanır; yapının parçalarını bütünleştirmede esneklik gösterir. Kemerler, kapalı alanlar, köşeler ve çaprazlar üretir; ancak sistemsiz deneme-yanılma ve parçaları yalnızca ekleme yoluyla yapabilir.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk birden çok uzamsal ilişkiyi (üstüne, yanına, içine, arasına) bir arada kullanarak ÇOKLU İLİŞKİLİ bir yapı kurar: köşeli bir ev, bir kemer/köprü, içi boş bir kapalı alan (garaj, kale). Yapı artık &quot;bir şeyi temsil eder&quot; — bir resim/model gibi.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu düzeyde oluşturma çoklu ilişkiyle zenginleşir: çocuk yalnız üst üste/yan yana değil, &quot;köşe yapma&quot;, &quot;üstünü kapatma&quot; (kemer), &quot;içini boşaltma&quot; (kapalı alan) gibi ilişkileri birleştirir. Kemer kurmak özellikle önemlidir: iki dik desteğin üstüne yatay bir blok koymak, denge ve boşluk-doldurma sezgisi gerektirir. &quot;İçine / üstüne / arasına&quot; ilişkilerini bol bol adlandırın. Henüz tam öngörü yoktur; yapı çoğu kez kurarken &quot;ortaya çıkar&quot; — bu yaratıcılığı kutlayın.</p></div>
         <div class="act">
@@ -455,7 +453,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Ortaya çıkacak 3B şekli önceden öngörerek kurar; kemer, kapalı alan, köşe ve çaprazları sistemli üretir; birkaç blok yüksekliğinde kurar, giderek derinlik ve çatı ekler.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Şekilleri öngörüyle birleştirir; iki ya da daha çok (basit, tanıdık) üç boyutlu şeklin birleşiminden hangi üç boyutlu şeklin çıkacağını anlar. Kemerleri (dikey iç boşluklu), kapalı alanları (yatay iç boşluklu), köşeleri ve çaprazları sistemli biçimde üretir. Birkaç blok yüksekliğinde kapalı alanlar ve kemerler kurar. Bu düzeyin ilerleyen aşamasında yapılara derinlik ekler ve birkaç blok yüksekliğindeki yapıların üzerine çatı koyar (iç boşluk olmayabilir).</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuğa bir model (resim ya da hazır bir yapı) gösterip &quot;Aynısını yap&quot; dediğinizde, kurmaya başlamadan ÖNCE zihninde tasarlar: &quot;Önce iki kule, üstüne bir köprü.&quot; Yapıyı öngörüyle, hedefe yönelik kurar — deneme-yanılmayla rastlamaz, plana göre ilerler.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu yörüngenin gerçek darboğazıdır. Önceki düzeylerde yapı &quot;kurarken ortaya çıkardı&quot;; burada çocuk hedef 3B şekli ZİHNİNDE ÖNGÖRÜP ona göre parça seçer ve birleştirir. Bu öngörülü oluşturma — bir model imgesini tutup onu adım adım gerçek bloklara çevirmek — güçlü uzamsal-yapısal akıl yürütme gerektirir ve birçok çocukta gözle görülür bir eşiktir. Çocuk yalnız deneme-yanılmayla, modele bakmadan rastgele kuruyorsa, ona &quot;önce nereye ne koyacaksın?&quot; diye PLAN sordurun; modeli parçalara böldürüp (&quot;kaç kule var? üstünde ne var?&quot;) öngörüyü dile döktürün. DokunSay Geo'da hedef yapıyı gösterip kopyalatmak bu öngörüyü doğrudan çalıştırır.</p></div>
         <div class="act">
@@ -492,7 +490,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Eş bir bütünün yerine bileşik bir parça koyabilir (örn. bir uzun blok yerine iki kısa blok); birden çok kemerli karmaşık köprüler, rampalar ve merdivenler; çatılı ve birden çok iç mekânlı 3B yapılar kurar.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Eş bir bütünün yerine bileşik bir parça koyar. Uçlarında rampalar ve merdivenler olan, birden çok kemerli karmaşık köprüler kurar. Yapılar üç boyutludur; çoğu zaman çatılar ve birden çok iç boşluk içerir.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk bir blok grubunu, ona eşdeğer tek bir bütünle DEĞİŞTİREBİLİR: &quot;İki küçük blok yerine bir uzun blok koyabilirim.&quot; Ayrıca bir yapı birimini (bir sütun, bir kemer) defalarca TEKRARLAYARAK daha büyük bir bütün kurar (sıra sütun, art arda kemerler).</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu düzeyde iki güçlü fikir belirir: yerine koyma (substitution — bir parçalar kümesi, eşdeğer başka bir bütünle değiştirilebilir) ve tekrarlama (bir birimi çoğaltarak yapı kurma). Çocuk &quot;iki birim = bir büyük birim&quot; denkliğini görür ve aynı yapı parçasını kalıp gibi yineler. Bu, ölçme, eşdeğerlik ve örüntülü yapıların 3B zeminidir. &quot;Bunun yerine ne koyabilirsin, aynı yeri doldurur?&quot; ve &quot;aynı kemerden bir tane daha yap&quot; diyerek iki beceriyi de besleyin. Yerine konan parçanın aynı boşluğu doldurduğunu (denklik) birlikte doğrulayın.</p></div>
         <div class="act">
@@ -521,7 +519,7 @@
       <div class="lv-num" style="--c:#7c3aed">9</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#7c3aed">6–7 yaş</span>
+          <span class="age-pill" style="--c:#7c3aed">6 yaş</span>
           
         </div>
         <h3>Katlı ve Çatılı Yapılar Kuran</h3>
@@ -529,7 +527,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Birden çok katlı, her katın tavanı tam oturtulmuş karmaşık kuleler/yapılar kurar; kemerleri ve alt yapıları olan, yetişkin yapılarına benzer blok yapıları üretir (birimlerin birimleri).</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Tavanları (tam oturan) birden çok kat içeren karmaşık kuleler ya da başka yapılar kurar; bloklarla, kemerler ve diğer alt yapılar dâhil, yetişkin yapılarına benzer yapılar yapar.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk önce küçük birimleri (bir blok grubuyla bir &quot;oda&quot;, bir &quot;kat&quot;) kurar, sonra bu birimleri BİRİM olarak kullanıp daha büyük bir bütün (çok katlı bir bina, kanatlı bir kale) oluşturur. &quot;Bir kat&quot; artık tek bir parça gibi düşünülür; katları üst üste koyarak yapıyı ölçekler.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, 3B oluşturmanın doruğudur: birimlerin birimleri (units of units). Çocuk küçük bir yapıyı (örneğin bir kat) zihinde tek bir birim olarak kavrar ve onu daha büyük bir yapının parçası yapar — yapı hiyerarşik hâle gelir. Bu çarpımsal/hiyerarşik yapı düşüncesi, ileride alan-hacim, çok basamaklı sayılar ve ölçme birimlerinin (birimin birimi) güçlü zeminidir. &quot;Bir kat kaç bloktan? Üç kat yaparsan toplam yapı nasıl?&quot; diye birim-üstü-birim ilişkisini sesli kurdurun; bir katı kalıp alıp tekrarlatarak hiyerarşiyi görünür kılın.</p></div>
         <div class="act">
@@ -558,7 +556,7 @@
 
 <footer>
   <div class="wrap">
-    <b style="color:#d8e6d8">Her Çocuk Matematik Öğrenebilir</b> · DokunSay — Yapı Kurma (3B) yörüngesi ·
+    <b style="color:#d8e6d8">Her Çocuk Matematik Öğrenebilir</b> · DokunSay — Yapı Kurma (Üç Boyutlu) yörüngesi ·
     <a href="/yorunge/">Tüm yörüngeler</a> · <a href="/">Araçlar</a>
     <p class="foot-note">Düzey adları ve sıralaması Clements &amp; Sarama öğrenme yörüngeleri ([LT]², learningtrajectories.org) çerçevesinden uyarlanmıştır. Yaş bantları olasılıksal alt-sınır niteliğinde illüstratiftir; tanı eşiği değildir. Çocuğu sınıfına göre değil, bulunduğu basamağa göre destekleyin.</p>
   </div>

@@ -40,16 +40,14 @@
 .dsh-green{color:#d7f0d9;background:rgba(46,125,50,.22);border-color:rgba(46,125,50,.5)}
 .dsh-teal{color:#bfe8e4;background:rgba(13,148,136,.2);border-color:rgba(13,148,136,.5)}
 .dsh-pill.is-active{box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.45);filter:brightness(1.12)}
-.dsh .hcmo-auth{display:inline-flex;align-items:center;gap:6px}
-.dsh .hcmo-auth:empty{display:none}
-.dsh .hcmo-auth a{display:inline-flex;align-items:center;gap:5px;padding:8px 14px;border-radius:999px;font-weight:700;font-size:.86rem;text-decoration:none;white-space:nowrap;color:#fde6c0;background:rgba(245,158,11,.18);border:1px solid rgba(245,158,11,.45);transition:background .15s}
-.dsh .hcmo-auth a:hover{background:rgba(245,158,11,.3)}
-.dsh .hcmo-auth a#hcmo-stu{color:#cfe8ff;background:rgba(96,165,250,.16);border-color:rgba(96,165,250,.4)}
-.dsh .hcmo-auth a#hcmo-stu:hover{background:rgba(96,165,250,.28)}
-.dsh .hcmo-auth>span{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:.86rem;color:#e8eefc}
-.dsh .hcmo-auth .nm{color:#fde6c0}
-.dsh .hcmo-auth #hcmo-out{cursor:pointer;border:0;border-radius:999px;background:#f59e0b;color:#3a2606;font-weight:800;font-size:.8rem;padding:7px 13px;font-family:inherit}
-.dsh .hcmo-auth #hcmo-out:hover{filter:brightness(1.07)}
+.dsh .numap-auth{display:inline-flex;align-items:center;gap:6px}
+.dsh .numap-auth:empty{display:none}
+.dsh .numap-auth a{display:inline-flex;align-items:center;gap:5px;padding:8px 14px;border-radius:999px;font-weight:700;font-size:.86rem;text-decoration:none;white-space:nowrap;color:#d7f0d9;background:rgba(46,125,50,.22);border:1px solid rgba(46,125,50,.5);transition:background .15s;cursor:pointer}
+.dsh .numap-auth a:hover{background:rgba(46,125,50,.34)}
+.dsh .numap-auth>span{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:.86rem;color:#e8efe9}
+.dsh .numap-auth .nm{color:#d7f0d9}
+.dsh .numap-auth #numap-out{cursor:pointer;border:0;border-radius:999px;background:#2E7D32;color:#fff;font-weight:800;font-size:.8rem;padding:7px 13px;font-family:inherit}
+.dsh .numap-auth #numap-out:hover{filter:brightness(1.1)}
 @media (max-width:760px){.dsh{padding:10px 15px}.dsh-pill{padding:7px 11px;font-size:.8rem}.dsh-name{font-size:18px}}
 @media print{.dsh{display:none}}
 
@@ -181,7 +179,7 @@
 </style>
 </head>
 <body data-key="multdiv">
-<header class="dsh"><div class="dsh-row"><a class="dsh-brand" href="/" aria-label="DokunSay ana sayfa"><span class="dsh-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" aria-hidden="true"><line x1="28" y1="27" x2="72" y2="27" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="28" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="72" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><circle cx="28" cy="27" r="21" fill="#2E7D32"/><circle cx="20.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="28" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="35.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="72" cy="27" r="21" fill="#0d9488"/><text x="72" y="32" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="14" fill="#fff">üç</text><circle cx="50" cy="73" r="21" fill="#1B5E20"/><text x="50" y="82" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="27" fill="#fff">3</text></svg></span><span class="dsh-titles"><span class="dsh-name">DokunSay</span><span class="dsh-sub">Matematik Öğretim Araçları Platformu</span></span></a><nav class="dsh-nav" aria-label="Site gezinme"><a class="dsh-pill dsh-amber is-active" href="/yorunge/" aria-current="page">🧭 Öğrenme Yörüngeleri</a><a class="dsh-pill dsh-green" href="/rehber/">📘 Müdahale Rehberi</a><a class="dsh-pill dsh-teal" href="/#tools-section">🛠️ Araçlar</a><span id="hcmoAuth" class="hcmo-auth"></span></nav></div></header>
+<header class="dsh"><div class="dsh-row"><a class="dsh-brand" href="/" aria-label="DokunSay ana sayfa"><span class="dsh-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" aria-hidden="true"><line x1="28" y1="27" x2="72" y2="27" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="28" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="72" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><circle cx="28" cy="27" r="21" fill="#2E7D32"/><circle cx="20.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="28" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="35.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="72" cy="27" r="21" fill="#0d9488"/><text x="72" y="32" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="14" fill="#fff">üç</text><circle cx="50" cy="73" r="21" fill="#1B5E20"/><text x="50" y="82" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="27" fill="#fff">3</text></svg></span><span class="dsh-titles"><span class="dsh-name">DokunSay</span><span class="dsh-sub">Matematik Öğretim Araçları Platformu</span></span></a><nav class="dsh-nav" aria-label="Site gezinme"><a class="dsh-pill dsh-amber is-active" href="/yorunge/" aria-current="page">🧭 Öğrenme Yörüngeleri</a><a class="dsh-pill dsh-green" href="/rehber/">📘 Müdahale Rehberi</a><a class="dsh-pill dsh-teal" href="/#tools-section">🛠️ Araçlar</a><span id="numapAuth" class="numap-auth"></span></nav></div></header>
 
 <section class="hero">
   <div class="wrap">
@@ -194,7 +192,7 @@
         <p class="lede">Eşit gruplar, paylaştırma, diziler. <span class="ltname">(Multiplying/Dividing)</span></p>
         <div class="hero-meta">
           <span class="hm">📊 9 basamak</span>
-          <span class="hm">🎂 0–11 yaş</span>
+          <span class="hm">🎂 0–8 yaş</span>
           <span class="hm">⚠ 2 darboğaz</span>
           <span class="hm">🎯 Tamamlayıcı alan · gözlem + etkinlik</span>
         </div>
@@ -215,7 +213,7 @@
     <aside class="side">
     <div class="side-in">
       <div class="side-head">Düzeyler <span>9</span></div>
-      <ol class="side-list"><li><a href="#lv-0" data-i="0"><span class="s-num" style="--c:#2E7D32">1</span><span class="s-txt"><b>Eşitliği Gözetmeden Paylaştıran: Temeller</b><small>0–3 yaş</small></span></a></li><li><a href="#lv-1" data-i="1"><span class="s-num" style="--c:#2E7D32">2</span><span class="s-txt"><b>Teker Teker Dağıtmaya Başlayan</b><small>4–6 yaş</small></span></a></li><li><a href="#lv-2" data-i="2"><span class="s-num" style="--c:#2E7D32">3</span><span class="s-txt"><b>Eşit Dağıtan ve Küçük Gruplar Kuran</b><small>5–6 yaş</small></span></a></li><li><a href="#lv-3" data-i="3"><span class="s-num" style="--c:#2E7D32">4</span><span class="s-txt"><b>Somut Modelleyen (×/÷)</b><small>6–7 yaş · ⚠ darboğaz</small></span></a></li><li><a href="#lv-4" data-i="4"><span class="s-num" style="--c:#2E7D32">5</span><span class="s-txt"><b>Kişi Artarsa Payın Azalacağını Bilen</b><small>8–9 yaş · ⚠ darboğaz</small></span></a></li><li><a href="#lv-5" data-i="5"><span class="s-num" style="--c:#2E7D32">6</span><span class="s-txt"><b>Ritmik Sayarak Çözen (×/÷)</b><small>9–10 yaş</small></span></a></li><li><a href="#lv-6" data-i="6"><span class="s-num" style="--c:#2E7D32">7</span><span class="s-txt"><b>Bildiklerinden Türeten (×/÷)</b><small>9–10 yaş</small></span></a></li><li><a href="#lv-7" data-i="7"><span class="s-num" style="--c:#2E7D32">8</span><span class="s-txt"><b>Satır-Sütun Düzeniyle Çözen (×/÷)</b><small>9–10 yaş</small></span></a></li><li><a href="#lv-8" data-i="8"><span class="s-num" style="--c:#2E7D32">9</span><span class="s-txt"><b>Paylaştırarak Bölen</b><small>10–11 yaş</small></span></a></li></ol>
+      <ol class="side-list"><li><a href="#lv-0" data-i="0"><span class="s-num" style="--c:#2E7D32">1</span><span class="s-txt"><b>Eşitliği Gözetmeden Paylaştıran: Temeller</b><small>0–2 yaş</small></span></a></li><li><a href="#lv-1" data-i="1"><span class="s-num" style="--c:#2E7D32">2</span><span class="s-txt"><b>Teker Teker Dağıtmaya Başlayan</b><small>3 yaş</small></span></a></li><li><a href="#lv-2" data-i="2"><span class="s-num" style="--c:#2E7D32">3</span><span class="s-txt"><b>Eşit Dağıtan ve Küçük Gruplar Kuran</b><small>4–5 yaş</small></span></a></li><li><a href="#lv-3" data-i="3"><span class="s-num" style="--c:#2E7D32">4</span><span class="s-txt"><b>Somut Modelleyen (×/÷)</b><small>5 yaş · ⚠ darboğaz</small></span></a></li><li><a href="#lv-4" data-i="4"><span class="s-num" style="--c:#2E7D32">5</span><span class="s-txt"><b>Kişi Artarsa Payın Azalacağını Bilen</b><small>6 yaş · ⚠ darboğaz</small></span></a></li><li><a href="#lv-5" data-i="5"><span class="s-num" style="--c:#2E7D32">6</span><span class="s-txt"><b>Ritmik Sayarak Çözen (×/÷)</b><small>6–7 yaş</small></span></a></li><li><a href="#lv-6" data-i="6"><span class="s-num" style="--c:#2E7D32">7</span><span class="s-txt"><b>Bildiklerinden Türeten (×/÷)</b><small>7–8 yaş</small></span></a></li><li><a href="#lv-7" data-i="7"><span class="s-num" style="--c:#2E7D32">8</span><span class="s-txt"><b>Her Tür Problemi Çözen (×/÷)</b><small>8 yaş</small></span></a></li><li><a href="#lv-8" data-i="8"><span class="s-num" style="--c:#2E7D32">9</span><span class="s-txt"><b>Paylaştırarak Bölen</b><small>8 yaş</small></span></a></li></ol>
     </div>
   </aside>
     <div class="levels">
@@ -225,7 +223,7 @@
       <div class="lv-num" style="--c:#2E7D32">1</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2E7D32">0–3 yaş</span>
+          <span class="age-pill" style="--c:#2E7D32">0–2 yaş</span>
           
         </div>
         <h3>Eşitliği Gözetmeden Paylaştıran: Temeller</h3>
@@ -233,7 +231,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Herkese BİR ŞEYLER verir; ancak verilenlerin eşit sayıda olması gerekmez.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Herkese bir şeyler verir; ancak verdikleri eşit sayıda olmak zorunda değildir.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk bir avuç şekeri arkadaşlarına &quot;sana, sana, bana&quot; diyerek dağıtır; tam eşit olmasa da herkese bir şeyler düşsün ister. Henüz &quot;kaç tane&quot; diye saymaz, ama paylaşımın &quot;adil&quot; olması gerektiğini sezer.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, bölmenin sözel-öncesi çekirdeğidir: çocuk miktarı saymadan, sezgisel bir &quot;eşitlik/adalet&quot; duygusuyla paylaştırır. Henüz nicelik yoktur; amaç &quot;herkese eşit&quot; fikrini canlı tutmaktır. Çocuk birine çok birine az verirse cezalandırmayın — &quot;acaba herkese aynı mı oldu?&quot; diye merak uyandırın. Tüm sonraki bölme ve eşit gruplama bu adalet sezgisine yaslanır.</p></div>
         <div class="act">
@@ -262,7 +260,7 @@
       <div class="lv-num" style="--c:#2E7D32">2</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2E7D32">4–6 yaş</span>
+          <span class="age-pill" style="--c:#2E7D32">3 yaş</span>
           
         </div>
         <h3>Teker Teker Dağıtmaya Başlayan</h3>
@@ -270,7 +268,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Küçük gruplar (5’ten az) oluşturur; &quot;birer birer dağıtarak&quot; paylaştırır ama genellikle yalnız 2 kişi arasında; sonucun sayısal anlamını kavramayabilir.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Küçük gruplar (5’ten az) kurar. “Birer birer dağıtarak” paylaştırır; ancak genellikle yalnızca 2 kişi arasında. Sonucun sayısal anlamını kavramayabilir.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>&quot;Bu 6 şekeri iki tabağa dağıt&quot; dediğinizde çocuk teker teker, sırayla koyar: bir buraya, bir oraya, bir buraya… Tabaklara dönüşümlü dağıtarak (&quot;deal&quot; gibi) paylaştırır, ama henüz &quot;her tabağa kaçar olsun&quot; diye önceden planlamaz.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Birer birer dağıtma (dealing) bölmenin ilk somut stratejisidir: çocuk toplamı bilmeden, her seferinde bir nesneyi bir gruba vererek eşit paylaşımı GARANTİLER. Sık yanılgı: bir tabağa üst üste koyup ötekini unutmak — &quot;sırayla, herkese birer&quot; ritmini hatırlatın. Bu dönüşümlü dağıtım, ileride &quot;paylaştırma bölmesi&quot;nin (her gruba kaç düşer) doğrudan temelidir.</p></div>
         <div class="act">
@@ -299,7 +297,7 @@
       <div class="lv-num" style="--c:#2E7D32">3</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2E7D32">5–6 yaş</span>
+          <span class="age-pill" style="--c:#2E7D32">4–5 yaş</span>
           
         </div>
         <h3>Eşit Dağıtan ve Küçük Gruplar Kuran</h3>
@@ -307,7 +305,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Küçük EŞİT gruplar (6’dan az) oluşturur; 2’den çok alıcıya birer birer eşit dağıtır; ancak sonuçta eşit miktarlar oluştuğunu kavramayabilir.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Küçük eşit gruplar (6’dan az) kurar. İki ya da daha çok kişiye eşit biçimde birer birer dağıtır; ancak eşit miktarlar oluştuğunu anlamayabilir.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>&quot;8 şekeri iki tepsiye eşit dağıt&quot; dediğinizde çocuk artık &quot;her tepsiye dört&quot; diye eşit gruplar oluşturur; dağıtırken ya da sonunda sayıp ikisinin de eşit olduğunu denetler. Eşitliği yalnız sezmez, kontrol eder.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Burada paylaştırma niceliksel olur: çocuk eşitliği &quot;hissetmekten&quot; sayıp DOĞRULAMAYA geçer — &quot;dört ve dört, eşit&quot;. Bu, bölme sonucunu (her grupta kaç) bilinçli üretmenin başlangıcıdır. Bir tepside fazla olursa &quot;birini öbürüne aktaralım, eşitleyelim&quot; diyerek dengelemeyi modelleyin. Eşit grup kavramı, çarpmanın da (&quot;kaç grup, her grupta eşit kaç&quot;) ön koşuludur.</p></div>
         <div class="act">
@@ -336,7 +334,7 @@
       <div class="lv-num" style="--c:#2E7D32">4</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2E7D32">6–7 yaş</span>
+          <span class="age-pill" style="--c:#2E7D32">5 yaş</span>
           <span class="bn-pill">⚠ Darboğaz · kritik geçiş</span>
         </div>
         <h3>Somut Modelleyen (×/÷)</h3>
@@ -344,7 +342,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Küçük sayılı çarpma problemlerini her grubu kurup TÜMÜNÜ sayarak çözer; paylaşım/bölme problemlerini somut, informal stratejilerle (≤20 nesne, 2–5 kişi) çözer; grupların eşitliğinin sonucu nasıl etkilediğini henüz kavramayabilir.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Küçük sayılı çarpma problemlerini gruplayarak çözer: her grubu kurar ve tümünü sayar. Bölme ve paylaştırma problemlerini somut nesnelerle, informel stratejilerle çözer; 30 nesneye ve 2–5 kişiye kadar. Sonucu sayma, satır-sütun düzenleri ya da örüntülerle eş bölme yaparak gerekçelendirebilir. Bire-çok eşlemeler kurar (örn. bir grup çocukta her çocuğa 3 elma); bu, orantısal akıl yürütmeye giden kritik bir adımdır.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>&quot;3 tabakta 2'şer şeker var, toplam kaç?&quot; sorusunda çocuk önce 3 grubu pullarla TEK TEK kurar (her tepsiye 2 pul), sonra hepsini baştan &quot;bir-iki-üç-dört-beş-altı&quot; diye sayar. Grupları gerçekten dizmeden, yalnız zihinden işleme henüz geçemez.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, çarpma/bölmenin ilk gerçek darboğazıdır: çocuk &quot;kaç grup × her grupta kaç&quot; yapısını ancak SOMUT kurup hepsini sayarak çözer. Bu düzeyde takılma — eşit grupları diziyip toplamı bulamamak, ya da grupları kurmadan rastgele sayı söylemek — matematik öğrenme güçlüğü (diskalkuli) açısından erken bir uyarı işaretidir; çünkü &quot;tekrarlı eşit grup&quot; fikri henüz oturmamıştır. Acele ettirmeyin: önce her grubu ayrı tepsiye kurmayı, sonra &quot;hepsini birlikte saymayı&quot; bolca somutlaştırın. Bölmeyi de aynı modelle yapın — toplamı verip eşit gruplara dağıttırın.</p></div>
         <div class="act">
@@ -373,7 +371,7 @@
       <div class="lv-num" style="--c:#2E7D32">5</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2E7D32">8–9 yaş</span>
+          <span class="age-pill" style="--c:#2E7D32">6 yaş</span>
           <span class="bn-pill">⚠ Darboğaz · kritik geçiş</span>
         </div>
         <h3>Kişi Artarsa Payın Azalacağını Bilen</h3>
@@ -381,23 +379,23 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Basit somut durumlarda bölen ile bölüm arasındaki TERS ilişkiyi kavrar: paylaşan kişi sayısı artarsa her birine düşen azalır.</p>
-        <div class="note how"><h5>Nasıl görünür</h5><p>&quot;4'er 4'er sayarak 3 grupta kaç şeker var?&quot; sorusunda çocuk her tek pulu saymak yerine grupları atlayarak sayar: &quot;dört… sekiz… on iki&quot; — ve üçüncü adımda durur. Her &quot;sıçrama&quot; bir grubu, kaç sıçrama yaptığı ise grup sayısını temsil eder.</p></div>
-        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Ritmik (atlamalı) sayarak çarpma ikinci büyük darboğazdır ve çarpmaya geçişin tam kalbidir: çocuk &quot;hepsini tek tek saymayı&quot; bırakıp grup büyüklüğüyle atlayarak sayar (4, 8, 12) ve aynı anda KAÇ grup saydığını izler — bu bir çift-sayma işidir. Bu sıçramayı yapamamak, hâlâ her grubu tek tek saymaya geri dönmek, matematik öğrenme güçlüğü (diskalkuli) için belirgin bir işarettir; çünkü ritmik sayı dizisi ile grup sayısını eşzamanlı tutmak çalışan belleğe yüklenir. Parmakları &quot;kaç grup&quot; sayacı yapın: her sıçramada bir parmak. Bölmeyi de ritmik sayıyla kurun — &quot;on ikiye kaç dörtte ulaşırız?&quot; (12'ye 4,8,12 → üç adım).</p></div>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Basit, somut durumlarda bölen ile bölüm arasındaki ters ilişkiyi nitel olarak öngörür. Eşit grupları ya da parçaları yeniden birleştirerek tüm koleksiyonu ya da tek bütünü “n katı kadar” olarak kurabilir; bunu ayrık, bazen de sürekli miktarlarla bire-çok eşlemeler kullanarak yapar.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>12 şekeri 2 kişiye, sonra aynı 12'yi 4 kişiye paylaştırınca çocuk &quot;kişi çoğaldı, herkese daha az düştü&quot; der. Bütün sabitken bölen büyüyünce payın küçüleceğini — saymadan önce — öngörmeye başlar.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu düzeyin özü ters-orantı SEZGİSİdir: bölünen sabitken bölen (kişi sayısı) artarsa bölüm (pay) azalır. Çocuk bunu iki paylaştırmayı YAN YANA görerek kavrar; tek paylaştırma yetmez. &quot;Kişi arttı — pay ne oldu, neden?&quot; sorusunu her denemede yineleyin. Sık yanılgı: 'daha çok kişi → daha çok şeker' (toplama sezgisinin taşması); iki tepsi grubunu karşılaştırtarak çürütün. Bu sezgi, ileride bölme, kesir (paydanın anlamı) ve oran akıl yürütmesinin temelidir.</p></div>
         <div class="act">
     <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
     
-      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay pulları (eşit gruplara dizili)</li><li>3–4 gruplama tepsisi</li><li>kaç grup saydığını izlemek için parmaklar</li></ul></div>
-      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Her tepsiye 4 pul koyup grupları görünür dizin.</li><li>Tepsilere dokunarak atlayarak saydırın: &quot;dört (bir grup), sekiz (iki), on iki (üç)&quot; — her grupta bir parmak açtırın.</li><li>&quot;Kaç grup saydık, sonuç kaç?&quot; diye çift-sayıyı söyletin (3 grup, 12).</li><li>Bölmeye çevirin: &quot;12 pulu 4'erli grupla — kaç grup olur?&quot; (4, 8, 12 → 3 grup) diye ritmik saydırın.</li></ol></div>
-      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Grup büyüklüğüyle atlayarak (4,8,12) sayıp grup sayısını izleyerek çarpımı/bölümü bulursa ✓</p>
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay pulları (12 pul)</li><li>2 + 4 gruplama tepsisi (iki ayrı paylaştırma)</li><li>iki paylaştırmayı yan yana koyacak karşılaştırma alanı</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>12 pulu 2 tepsiye paylaştırtın: &quot;Herkese kaç düştü?&quot; (6).</li><li>Aynı 12 pulu bu kez 4 tepsiye paylaştırtın: &quot;Şimdi kaç düştü?&quot; (3).</li><li>İki sonucu yan yana koydurup &quot;Kişi arttı, pay ne oldu?&quot; diye söyletin.</li><li>Paylaştırmadan ÖNCE sordurun: &quot;6 kişiye dağıtsak daha mı çok, daha mı az düşer?&quot;</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Bütün sabitken kişi (grup) sayısı artınca payın azalacağını önceden söyler ve paylaştırarak doğrularsa ✓</p>
       <div class="scaf">
-        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Tanıdık ritimlerle (2'şer, 5'er, 10'ar) ve az grupla başlayın; sıçramaları birlikte söyleyin.</p></div>
-        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Daha az tanıdık adımlar (3'er, 4'er) ya da &quot;kalanlı&quot; bölme (13'ü 4'erle: 3 grup, 1 artar).</p></div>
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>2 kişi ↔ 4 kişi gibi ikiye katlanan karşıtlıklarla çalışın; iki paylaştırmayı yan yana görünür tutun.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Üç durumu sıralatın (2-3-6 kişi) ya da &quot;pay 2 olsun istersek kaç kişi olmalı?&quot; diye tersinden sordurun.</p></div>
       </div>
     <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><a class="chip chip-gs" href="https://galaksay.com/oyna/" title="Ritmik sayma (2-5-10) hız oyunu"><b>GalakSay</b><span>Ritmik sayma (2-5-10) hız oyunu</span></a><a class="chip chip-ds" href="/DokunSayBar/" title="Sayı doğrusunda atlamalı sayma"><b>DokunSay Bar</b><span>Sayı doğrusunda atlamalı sayma</span></a><span class="chip chip-adim" title="Ritmik sayarak çarpma"><b>ADIM</b><span>Ritmik sayarak çarpma</span></span></div></div>
   </div>
       </div>
-      <div class="lv-viz" aria-hidden="true"><svg viewBox="0 0 393 120" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="23" cy="60" r="11" fill="#f59e0b"/><circle cx="52" cy="60" r="11" fill="#f59e0b"/><circle cx="81" cy="60" r="11" fill="#f59e0b"/><circle cx="110" cy="60" r="11" fill="#f59e0b"/><circle cx="153" cy="60" r="11" fill="#0d9488"/><circle cx="182" cy="60" r="11" fill="#0d9488"/><circle cx="211" cy="60" r="11" fill="#0d9488"/><circle cx="240" cy="60" r="11" fill="#0d9488"/><circle cx="283" cy="60" r="11" fill="#7c3aed"/><circle cx="312" cy="60" r="11" fill="#7c3aed"/><circle cx="341" cy="60" r="11" fill="#7c3aed"/><circle cx="370" cy="60" r="11" fill="#7c3aed"/></svg><span class="viz-cap">bir bakışta</span></div>
+      <div class="lv-viz" aria-hidden="true"><svg viewBox="0 0 379 120" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="23" cy="60" r="11" fill="#f59e0b"/><circle cx="52" cy="60" r="11" fill="#f59e0b"/><circle cx="81" cy="60" r="11" fill="#f59e0b"/><circle cx="110" cy="60" r="11" fill="#f59e0b"/><circle cx="139" cy="60" r="11" fill="#f59e0b"/><circle cx="168" cy="60" r="11" fill="#f59e0b"/><circle cx="211" cy="60" r="11" fill="#0d9488"/><circle cx="240" cy="60" r="11" fill="#0d9488"/><circle cx="269" cy="60" r="11" fill="#0d9488"/><circle cx="298" cy="60" r="11" fill="#0d9488"/><circle cx="327" cy="60" r="11" fill="#0d9488"/><circle cx="356" cy="60" r="11" fill="#0d9488"/></svg><span class="viz-cap">bir bakışta</span></div>
     </div>
     <div class="lv-foot">
       <button class="printcard" data-lv="4" type="button">🖨️ Bu kartı yazdır</button>
@@ -410,7 +408,7 @@
       <div class="lv-num" style="--c:#2E7D32">6</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2E7D32">9–10 yaş</span>
+          <span class="age-pill" style="--c:#2E7D32">6–7 yaş</span>
           
         </div>
         <h3>Ritmik Sayarak Çözen (×/÷)</h3>
@@ -418,7 +416,44 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Çarpma ve ölçme bölmesi (&quot;kaç grup?&quot;) için tekrarlı toplama, ikiye katlama ya da ritmik sayma kullanır; paylaştırma bölmesinde deneme-yanılmaya başvurabilir.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Çarpma ve gruplama bölmesi (“kaç grup?”) problemlerini tekrarlı toplama, toplamayla ikiye katlama ya da ritmik sayma kullanarak çözer. Ayrık ve sürekli miktarlarla bire-çok eşlemeler kurar. Paylaştırma bölmesinde (“her gruba kaç düşer?”) deneme-yanılma kullanır. Bir koleksiyonu eş parçalara bölmenin sonuçlarını öngörür, gösterir ve gerekçelendirir.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>&quot;4'er 4'er sayarak 3 grupta kaç şeker var?&quot; sorusunda çocuk her tek pulu saymak yerine grupları atlayarak sayar: &quot;dört… sekiz… on iki&quot; — ve üçüncü adımda durur. Her &quot;sıçrama&quot; bir grubu, kaç sıçrama yaptığı ise grup sayısını temsil eder.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Ritmik (atlamalı) sayarak çarpma ikinci büyük darboğazdır ve çarpmaya geçişin tam kalbidir: çocuk &quot;hepsini tek tek saymayı&quot; bırakıp grup büyüklüğüyle atlayarak sayar (4, 8, 12) ve aynı anda KAÇ grup saydığını izler — bu bir çift-sayma işidir. Bu sıçramayı yapamamak, hâlâ her grubu tek tek saymaya geri dönmek, matematik öğrenme güçlüğü (diskalkuli) için belirgin bir işarettir; çünkü ritmik sayı dizisi ile grup sayısını eşzamanlı tutmak çalışan belleğe yüklenir. Parmakları &quot;kaç grup&quot; sayacı yapın: her sıçramada bir parmak. Bölmeyi de ritmik sayıyla kurun — &quot;on ikiye kaç dörtte ulaşırız?&quot; (12'ye 4,8,12 → üç adım).</p></div>
+        <div class="act">
+    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
+    
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay pulları (eşit gruplara dizili)</li><li>3–4 gruplama tepsisi</li><li>kaç grup saydığını izlemek için parmaklar</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>Her tepsiye 4 pul koyup grupları görünür dizin.</li><li>Tepsilere dokunarak atlayarak saydırın: &quot;dört (bir grup), sekiz (iki), on iki (üç)&quot; — her grupta bir parmak açtırın.</li><li>&quot;Kaç grup saydık, sonuç kaç?&quot; diye çift-sayıyı söyletin (3 grup, 12).</li><li>Bölmeye çevirin: &quot;12 pulu 4'erli grupla — kaç grup olur?&quot; (4, 8, 12 → 3 grup) diye ritmik saydırın.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Grup büyüklüğüyle atlayarak (4,8,12) sayıp grup sayısını izleyerek çarpımı/bölümü bulursa ✓</p>
+      <div class="scaf">
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Tanıdık ritimlerle (2'şer, 5'er, 10'ar) ve az grupla başlayın; sıçramaları birlikte söyleyin.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Daha az tanıdık adımlar (3'er, 4'er) ya da &quot;kalanlı&quot; bölme (13'ü 4'erle: 3 grup, 1 artar).</p></div>
+      </div>
+    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey için ADIM etkinliği"><b>ADIM</b><span>İlgili düzey için ADIM etkinliği</span></span></div></div>
+  </div>
+      </div>
+      <div class="lv-viz" aria-hidden="true"><svg viewBox="0 0 393 120" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="23" cy="60" r="11" fill="#f59e0b"/><circle cx="52" cy="60" r="11" fill="#f59e0b"/><circle cx="81" cy="60" r="11" fill="#f59e0b"/><circle cx="110" cy="60" r="11" fill="#f59e0b"/><circle cx="153" cy="60" r="11" fill="#0d9488"/><circle cx="182" cy="60" r="11" fill="#0d9488"/><circle cx="211" cy="60" r="11" fill="#0d9488"/><circle cx="240" cy="60" r="11" fill="#0d9488"/><circle cx="283" cy="60" r="11" fill="#7c3aed"/><circle cx="312" cy="60" r="11" fill="#7c3aed"/><circle cx="341" cy="60" r="11" fill="#7c3aed"/><circle cx="370" cy="60" r="11" fill="#7c3aed"/></svg><span class="viz-cap">bir bakışta</span></div>
+    </div>
+    <div class="lv-foot">
+      <button class="printcard" data-lv="5" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-6">Sıradaki düzey · <b>Bildiklerinden Türeten (×/÷)</b> →</a>
+    </div>
+  </article>
+
+  <article class="level" id="lv-6">
+    <div class="lv-top">
+      <div class="lv-num" style="--c:#2E7D32">7</div>
+      <div class="lv-id">
+        <div class="lv-badges">
+          <span class="age-pill" style="--c:#2E7D32">7–8 yaş</span>
+          
+        </div>
+        <h3>Bildiklerinden Türeten (×/÷)</h3>
+      </div>
+    </div>
+    <div class="lv-body">
+      <div class="lv-main">
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Stratejileri, örüntüleri, ayrıştırma ve birleştirmeyi (12 × 2 = 10 × 2 + 2 + 2) ve türetilmiş çarpımları kullanır; örneğin ×9’u “×10, eksi bir” olarak, 7 × 8’i 7 × 7 + 7’den bulur. Çoğa-çok eşlemeler kurar. Çok basamaklı problemleri onluklar ve birlikler üzerinde ayrı ayrı işlem yaparak çözer. Paylaşan kişi sayısındaki değişimin payların büyüklüğüne etkisini nicel olarak öngörür (ters orantı).</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>&quot;5×4'ü biliyorsan 6×4 kaç?&quot; sorusunda çocuk baştan saymaz: &quot;5×4 yirmi, bir grup 4 daha, yirmi dört&quot; der. Bilinen bir çarpımdan, bir grup ekleyip/çıkararak komşusunu türetir.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, ezber ve sayımdan AKIL YÜRÜTMEYE geçiştir: çocuk çarpımları birbirinden türetir (n×4 biliniyorsa (n+1)×4 = n×4 + 4). Bu strateji çarpım tablosunu &quot;ezberlenecek 100 olgu&quot; olmaktan çıkarıp ilişkili bir ağ yapar. Çocuğa demir-atma çarpımlarını (×2, ×5, ×10) sağlamlaştırın ki komşularını türetebilsin; &quot;bir grup daha eklersek ne kadar artar?&quot; sorusunu yerleştirin. Dizi modeli türetmeyi görünür kılar: 5×4 dizisine bir satır eklemek 6×4'tür.</p></div>
         <div class="act">
@@ -437,45 +472,8 @@
       <div class="lv-viz" aria-hidden="true"><svg viewBox="0 0 170 120" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="44.5" cy="-7.5" r="9" fill="#2E7D32"/><circle cx="71.5" cy="-7.5" r="9" fill="#2E7D32"/><circle cx="98.5" cy="-7.5" r="9" fill="#2E7D32"/><circle cx="125.5" cy="-7.5" r="9" fill="#2E7D32"/><circle cx="44.5" cy="19.5" r="9" fill="#2E7D32"/><circle cx="71.5" cy="19.5" r="9" fill="#2E7D32"/><circle cx="98.5" cy="19.5" r="9" fill="#2E7D32"/><circle cx="125.5" cy="19.5" r="9" fill="#2E7D32"/><circle cx="44.5" cy="46.5" r="9" fill="#2E7D32"/><circle cx="71.5" cy="46.5" r="9" fill="#2E7D32"/><circle cx="98.5" cy="46.5" r="9" fill="#2E7D32"/><circle cx="125.5" cy="46.5" r="9" fill="#2E7D32"/><circle cx="44.5" cy="73.5" r="9" fill="#2E7D32"/><circle cx="71.5" cy="73.5" r="9" fill="#2E7D32"/><circle cx="98.5" cy="73.5" r="9" fill="#2E7D32"/><circle cx="125.5" cy="73.5" r="9" fill="#2E7D32"/><circle cx="44.5" cy="100.5" r="9" fill="#2E7D32"/><circle cx="71.5" cy="100.5" r="9" fill="#2E7D32"/><circle cx="98.5" cy="100.5" r="9" fill="#2E7D32"/><circle cx="125.5" cy="100.5" r="9" fill="#2E7D32"/><circle cx="44.5" cy="127.5" r="9" fill="#2E7D32"/><circle cx="71.5" cy="127.5" r="9" fill="#2E7D32"/><circle cx="98.5" cy="127.5" r="9" fill="#2E7D32"/><circle cx="125.5" cy="127.5" r="9" fill="#2E7D32"/></svg><span class="viz-cap">bir bakışta</span></div>
     </div>
     <div class="lv-foot">
-      <button class="printcard" data-lv="5" type="button">🖨️ Bu kartı yazdır</button>
-      <a class="nextlv" href="#lv-6">Sıradaki düzey · <b>Bildiklerinden Türeten (×/÷)</b> →</a>
-    </div>
-  </article>
-
-  <article class="level" id="lv-6">
-    <div class="lv-top">
-      <div class="lv-num" style="--c:#2E7D32">7</div>
-      <div class="lv-id">
-        <div class="lv-badges">
-          <span class="age-pill" style="--c:#2E7D32">9–10 yaş</span>
-          
-        </div>
-        <h3>Bildiklerinden Türeten (×/÷)</h3>
-      </div>
-    </div>
-    <div class="lv-body">
-      <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Stratejileri, örüntüleri, ayrıştırma-birleştirmeyi (12×2 = 10×2+2+2) ve türetilmiş kombinasyonları (×9 = ×10−1; 7×8 = 7×7+7) kullanır; çok basamaklıda onluk ve birliklere ayrı işlem yapar.</p>
-        <div class="note how"><h5>Nasıl görünür</h5><p>12 şekeri verince çocuk iki farklı bölme sorusunu ayırt eder: &quot;3 kişiye paylaştır&quot; deyince her kişiye dağıtıp &quot;herkese dört&quot; (paylaştırma); &quot;3'erli grupla&quot; deyince üçerli demetler yapıp &quot;dört grup oldu&quot; (gruplama). Aynı 12 ve 3'ün iki ayrı soruya iki ayrı yoldan yanıt verdiğini görür.</p></div>
-        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bölmenin iki anlamını ayırmak bu düzeyin özüdür: PAYLAŞTIRMA (bölen = grup sayısı, sonuç = her grupta kaç) ile GRUPLAMA/ölçme (bölen = grup büyüklüğü, sonuç = kaç grup). Çocuklar çoğu zaman ikisini karıştırır; aynı 12÷3 işleminin iki hikâyesini somut tepsilerle yan yana kurdurun. &quot;Burada 3 ne demek — 3 kişi mi, 3'erli grup mu?&quot; diye anlamı sorgulayın. Bu ayrımı kurmak, kalanlı bölme ve ileride kesir/oran anlayışının zeminidir.</p></div>
-        <div class="act">
-    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
-    
-      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay pulları (12 pul)</li><li>gruplama tepsileri</li><li>iki bölme hikâyesini ayırmak için iki çalışma alanı</li></ul></div>
-      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>12 pulu verip &quot;3 KİŞİYE paylaştır&quot; deyin — 3 tepsiye dağıtıp &quot;herkese dört&quot; desin (paylaştırma).</li><li>Aynı 12 pulu verip &quot;3'ERLİ grupla&quot; deyin — üçerli demetler yapıp &quot;dört grup&quot; desin (gruplama).</li><li>İki sonucu (4 ve 4) yan yana koyup &quot;3 burada ne anlama geldi?&quot; diye farkı söyletin.</li><li>Sayıyı değiştirip (15÷3, 15÷5) iki türü de yineletin.</li></ol></div>
-      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Paylaştırma (her grupta kaç) ve gruplama (kaç grup) bölmelerini ayırt edip ikisini de doğru çözerse ✓</p>
-      <div class="scaf">
-        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Önce yalnız paylaştırmayı sağlamlaştırın; sonra gruplamayı ayrı bir hikâyeyle ekleyin.</p></div>
-        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Kalanlı durumlar (13÷3) ya da &quot;hangi soru paylaştırma, hangisi gruplama?&quot; diye sözlü problemlerle ayırttırın.</p></div>
-      </div>
-    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey için ADIM etkinliği"><b>ADIM</b><span>İlgili düzey için ADIM etkinliği</span></span></div></div>
-  </div>
-      </div>
-      <div class="lv-viz" aria-hidden="true"><svg viewBox="0 0 393 120" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="23" cy="60" r="11" fill="#f59e0b"/><circle cx="52" cy="60" r="11" fill="#f59e0b"/><circle cx="81" cy="60" r="11" fill="#f59e0b"/><circle cx="110" cy="60" r="11" fill="#f59e0b"/><circle cx="153" cy="60" r="11" fill="#0d9488"/><circle cx="182" cy="60" r="11" fill="#0d9488"/><circle cx="211" cy="60" r="11" fill="#0d9488"/><circle cx="240" cy="60" r="11" fill="#0d9488"/><circle cx="283" cy="60" r="11" fill="#7c3aed"/><circle cx="312" cy="60" r="11" fill="#7c3aed"/><circle cx="341" cy="60" r="11" fill="#7c3aed"/><circle cx="370" cy="60" r="11" fill="#7c3aed"/></svg><span class="viz-cap">bir bakışta</span></div>
-    </div>
-    <div class="lv-foot">
       <button class="printcard" data-lv="6" type="button">🖨️ Bu kartı yazdır</button>
-      <a class="nextlv" href="#lv-7">Sıradaki düzey · <b>Satır-Sütun Düzeniyle Çözen (×/÷)</b> →</a>
+      <a class="nextlv" href="#lv-7">Sıradaki düzey · <b>Her Tür Problemi Çözen (×/÷)</b> →</a>
     </div>
   </article>
 
@@ -484,15 +482,15 @@
       <div class="lv-num" style="--c:#2E7D32">8</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2E7D32">9–10 yaş</span>
+          <span class="age-pill" style="--c:#2E7D32">8 yaş</span>
           
         </div>
-        <h3>Satır-Sütun Düzeniyle Çözen (×/÷)</h3>
+        <h3>Her Tür Problemi Çözen (×/÷)</h3>
       </div>
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Çok türde çarpımsal problemi esnek stratejiler ve bilinen kombinasyonlarla çözer; satır-sütun dizilerini (array) niceler; çok basamaklıda onluk ve birliklere ayrı kombinasyon uygular.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Pek çok türde çarpımsal problemi esnek stratejiler ve bilinen çarpımlarla çözer. Çok basamaklı problemleri birlikler ve onluklar üzerinde ayrı ayrı bilinen çarpımları kullanarak çözebilir.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Şekerleri 3 sıra × 4 sütun dikdörtgen düzende görünce çocuk tek tek saymaz: &quot;üç sıra, her sırada dört — on iki&quot; der. Diziyi satır × sütun çarpımsal birimiyle okur ve &quot;5 kutuda 6'şar kalem&quot; gibi sözlü problemleri bu yapıyla kurar.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Dizi (array) modeli çarpmanın olgunlaşmış temsilidir: tekrarlı toplamadan &quot;satır × sütun&quot;a geçer ve değişme özelliğini (3×4 = 4×3, diziyi döndür) görünür kılar. Çocuk artık çarpımsal problemleri (eşit grup, dizi, alan) tanıyıp doğru işlemle eşleştirmelidir. Diziyi döndürerek &quot;yine on iki&quot; dedirtin; sözlü problemde &quot;kaç grup, her grupta kaç&quot; yapısını çıkarttırın. Bu, alan, çarpan çiftleri ve ileride çarpanlara ayırmanın zeminidir.</p></div>
         <div class="act">
@@ -521,7 +519,7 @@
       <div class="lv-num" style="--c:#2E7D32">9</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2E7D32">10–11 yaş</span>
+          <span class="age-pill" style="--c:#2E7D32">8 yaş</span>
           
         </div>
         <h3>Paylaştırarak Bölen</h3>
@@ -529,23 +527,23 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Her gruba KAÇ düştüğünü (paylaştırma bölmesi) belirler; başlangıçta böleni bölünene ulaşana dek tekrar tekrar toplayabilir.</p>
-        <div class="note how"><h5>Nasıl görünür</h5><p>&quot;12÷3 = 4 ise 12÷4 kaç?&quot; sorusunda çocuk yeniden bölmeye girişmeden &quot;12, üçerli dört gruptu; dörderli olsa üç grup olur — 3&quot; der. Çarpan, bölen ve bölümü esnek, tersinir bir parça-bütün ailesi olarak görür: 3×4=12, 12÷3=4, 12÷4=3 hepsi aynı ilişkidir.</p></div>
-        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu en üst düzeydir: çarpma ve bölme artık ayrı işlemler değil, tek bir çarpımsal parça-bütün ilişkisinin yüzleridir (bölüm × bölen = bölünen). Çocuk bir olgu ailesini (3, 4, 12) esnekçe çevirir ve bilinen bir gerçekten bilinmeyeni türetir — bu, denklem (3×?=12) ve oransal akıl yürütmenin zeminidir. &quot;Böleni büyütürsek bölüm ne olur, neden?&quot; gibi ters-orantı sezgisini yerleştirin. Çocuğun aynı üçlüyü hem çarpım hem iki bölme olarak yazabilmesi asıl kazanımdır. (Soyut ilişki düzeyi olduğundan tek bir somut görsel yetmez; olgu ailesini sözle ve simgeyle çevirmeye odaklanın.)</p></div>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Her grupta kaç tane olduğunu bulur. Başlangıçta böleni, bölünene ulaşana kadar tekrar tekrar toplayabilir.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>12 şekeri verince çocuk iki farklı bölme sorusunu ayırt eder: &quot;3 kişiye paylaştır&quot; deyince her kişiye dağıtıp &quot;herkese dört&quot; (paylaştırma); &quot;3'erli grupla&quot; deyince üçerli demetler yapıp &quot;dört grup oldu&quot; (gruplama). Aynı 12 ve 3'ün iki ayrı soruya iki ayrı yoldan yanıt verdiğini görür.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bölmenin iki anlamını ayırmak bu düzeyin özüdür: PAYLAŞTIRMA (bölen = grup sayısı, sonuç = her grupta kaç) ile GRUPLAMA/ölçme (bölen = grup büyüklüğü, sonuç = kaç grup). Çocuklar çoğu zaman ikisini karıştırır; aynı 12÷3 işleminin iki hikâyesini somut tepsilerle yan yana kurdurun. &quot;Burada 3 ne demek — 3 kişi mi, 3'erli grup mu?&quot; diye anlamı sorgulayın. Bu ayrımı kurmak, kalanlı bölme ve ileride kesir/oran anlayışının zeminidir.</p></div>
         <div class="act">
     <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
     
-      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay pulları (gerektiğinde doğrulamak için)</li><li>gruplama tepsileri</li><li>olgu-ailesi kartları (3 · 4 · 12)</li></ul></div>
-      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>12'yi 3 grupta 4'er kurun: &quot;3×4=12&quot; yazdırın.</li><li>Aynı pullarla &quot;12÷3=4&quot; ve &quot;12÷4=3&quot; olduğunu gösterdirin (grupları yeniden okutarak).</li><li>&quot;12÷3'ü biliyorsan 12÷4'ü saymadan söyle&quot; deyin; ilişkiyle türetsin.</li><li>&quot;Böleni büyütünce bölüm büyür mü küçülür mü?&quot; diye ters-orantıyı sorgulayın.</li></ol></div>
-      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Bir çarpımsal üçlüyü (ör. 3·4·12) çarpma ve iki bölme olarak esnek çevirip bilinenden bilinmeyeni türetirse ✓</p>
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay pulları (12 pul)</li><li>gruplama tepsileri</li><li>iki bölme hikâyesini ayırmak için iki çalışma alanı</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>12 pulu verip &quot;3 KİŞİYE paylaştır&quot; deyin — 3 tepsiye dağıtıp &quot;herkese dört&quot; desin (paylaştırma).</li><li>Aynı 12 pulu verip &quot;3'ERLİ grupla&quot; deyin — üçerli demetler yapıp &quot;dört grup&quot; desin (gruplama).</li><li>İki sonucu (4 ve 4) yan yana koyup &quot;3 burada ne anlama geldi?&quot; diye farkı söyletin.</li><li>Sayıyı değiştirip (15÷3, 15÷5) iki türü de yineletin.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> Paylaştırma (her grupta kaç) ve gruplama (kaç grup) bölmelerini ayırt edip ikisini de doğru çözerse ✓</p>
       <div class="scaf">
-        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Tanıdık ailelerle (2·5·10, 3·4·12) çalışın; her adımı pullarla doğrulatın.</p></div>
-        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Bilinmeyenli denklem (?×6=24, 24÷?=6) ya da kalanlı ailelerle ilişkiyi sınayın.</p></div>
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Önce yalnız paylaştırmayı sağlamlaştırın; sonra gruplamayı ayrı bir hikâyeyle ekleyin.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Kalanlı durumlar (13÷3) ya da &quot;hangi soru paylaştırma, hangisi gruplama?&quot; diye sözlü problemlerle ayırttırın.</p></div>
       </div>
     <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey için ADIM etkinliği"><b>ADIM</b><span>İlgili düzey için ADIM etkinliği</span></span></div></div>
   </div>
       </div>
-      <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#2E7D32">✖️</span></div>
+      <div class="lv-viz" aria-hidden="true"><svg viewBox="0 0 393 120" xmlns="http://www.w3.org/2000/svg" role="img"><circle cx="23" cy="60" r="11" fill="#f59e0b"/><circle cx="52" cy="60" r="11" fill="#f59e0b"/><circle cx="81" cy="60" r="11" fill="#f59e0b"/><circle cx="110" cy="60" r="11" fill="#f59e0b"/><circle cx="153" cy="60" r="11" fill="#0d9488"/><circle cx="182" cy="60" r="11" fill="#0d9488"/><circle cx="211" cy="60" r="11" fill="#0d9488"/><circle cx="240" cy="60" r="11" fill="#0d9488"/><circle cx="283" cy="60" r="11" fill="#7c3aed"/><circle cx="312" cy="60" r="11" fill="#7c3aed"/><circle cx="341" cy="60" r="11" fill="#7c3aed"/><circle cx="370" cy="60" r="11" fill="#7c3aed"/></svg><span class="viz-cap">bir bakışta</span></div>
     </div>
     <div class="lv-foot">
       <button class="printcard" data-lv="8" type="button">🖨️ Bu kartı yazdır</button>

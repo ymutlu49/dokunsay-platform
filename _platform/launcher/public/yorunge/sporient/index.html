@@ -40,16 +40,14 @@
 .dsh-green{color:#d7f0d9;background:rgba(46,125,50,.22);border-color:rgba(46,125,50,.5)}
 .dsh-teal{color:#bfe8e4;background:rgba(13,148,136,.2);border-color:rgba(13,148,136,.5)}
 .dsh-pill.is-active{box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.45);filter:brightness(1.12)}
-.dsh .hcmo-auth{display:inline-flex;align-items:center;gap:6px}
-.dsh .hcmo-auth:empty{display:none}
-.dsh .hcmo-auth a{display:inline-flex;align-items:center;gap:5px;padding:8px 14px;border-radius:999px;font-weight:700;font-size:.86rem;text-decoration:none;white-space:nowrap;color:#fde6c0;background:rgba(245,158,11,.18);border:1px solid rgba(245,158,11,.45);transition:background .15s}
-.dsh .hcmo-auth a:hover{background:rgba(245,158,11,.3)}
-.dsh .hcmo-auth a#hcmo-stu{color:#cfe8ff;background:rgba(96,165,250,.16);border-color:rgba(96,165,250,.4)}
-.dsh .hcmo-auth a#hcmo-stu:hover{background:rgba(96,165,250,.28)}
-.dsh .hcmo-auth>span{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:.86rem;color:#e8eefc}
-.dsh .hcmo-auth .nm{color:#fde6c0}
-.dsh .hcmo-auth #hcmo-out{cursor:pointer;border:0;border-radius:999px;background:#f59e0b;color:#3a2606;font-weight:800;font-size:.8rem;padding:7px 13px;font-family:inherit}
-.dsh .hcmo-auth #hcmo-out:hover{filter:brightness(1.07)}
+.dsh .numap-auth{display:inline-flex;align-items:center;gap:6px}
+.dsh .numap-auth:empty{display:none}
+.dsh .numap-auth a{display:inline-flex;align-items:center;gap:5px;padding:8px 14px;border-radius:999px;font-weight:700;font-size:.86rem;text-decoration:none;white-space:nowrap;color:#d7f0d9;background:rgba(46,125,50,.22);border:1px solid rgba(46,125,50,.5);transition:background .15s;cursor:pointer}
+.dsh .numap-auth a:hover{background:rgba(46,125,50,.34)}
+.dsh .numap-auth>span{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:.86rem;color:#e8efe9}
+.dsh .numap-auth .nm{color:#d7f0d9}
+.dsh .numap-auth #numap-out{cursor:pointer;border:0;border-radius:999px;background:#2E7D32;color:#fff;font-weight:800;font-size:.8rem;padding:7px 13px;font-family:inherit}
+.dsh .numap-auth #numap-out:hover{filter:brightness(1.1)}
 @media (max-width:760px){.dsh{padding:10px 15px}.dsh-pill{padding:7px 11px;font-size:.8rem}.dsh-name{font-size:18px}}
 @media print{.dsh{display:none}}
 
@@ -181,7 +179,7 @@
 </style>
 </head>
 <body data-key="sporient">
-<header class="dsh"><div class="dsh-row"><a class="dsh-brand" href="/" aria-label="DokunSay ana sayfa"><span class="dsh-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" aria-hidden="true"><line x1="28" y1="27" x2="72" y2="27" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="28" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="72" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><circle cx="28" cy="27" r="21" fill="#2E7D32"/><circle cx="20.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="28" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="35.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="72" cy="27" r="21" fill="#0d9488"/><text x="72" y="32" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="14" fill="#fff">üç</text><circle cx="50" cy="73" r="21" fill="#1B5E20"/><text x="50" y="82" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="27" fill="#fff">3</text></svg></span><span class="dsh-titles"><span class="dsh-name">DokunSay</span><span class="dsh-sub">Matematik Öğretim Araçları Platformu</span></span></a><nav class="dsh-nav" aria-label="Site gezinme"><a class="dsh-pill dsh-amber is-active" href="/yorunge/" aria-current="page">🧭 Öğrenme Yörüngeleri</a><a class="dsh-pill dsh-green" href="/rehber/">📘 Müdahale Rehberi</a><a class="dsh-pill dsh-teal" href="/#tools-section">🛠️ Araçlar</a><span id="hcmoAuth" class="hcmo-auth"></span></nav></div></header>
+<header class="dsh"><div class="dsh-row"><a class="dsh-brand" href="/" aria-label="DokunSay ana sayfa"><span class="dsh-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" aria-hidden="true"><line x1="28" y1="27" x2="72" y2="27" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="28" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="72" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><circle cx="28" cy="27" r="21" fill="#2E7D32"/><circle cx="20.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="28" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="35.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="72" cy="27" r="21" fill="#0d9488"/><text x="72" y="32" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="14" fill="#fff">üç</text><circle cx="50" cy="73" r="21" fill="#1B5E20"/><text x="50" y="82" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="27" fill="#fff">3</text></svg></span><span class="dsh-titles"><span class="dsh-name">DokunSay</span><span class="dsh-sub">Matematik Öğretim Araçları Platformu</span></span></a><nav class="dsh-nav" aria-label="Site gezinme"><a class="dsh-pill dsh-amber is-active" href="/yorunge/" aria-current="page">🧭 Öğrenme Yörüngeleri</a><a class="dsh-pill dsh-green" href="/rehber/">📘 Müdahale Rehberi</a><a class="dsh-pill dsh-teal" href="/#tools-section">🛠️ Araçlar</a><span id="numapAuth" class="numap-auth"></span></nav></div></header>
 
 <section class="hero">
   <div class="wrap">
@@ -194,7 +192,7 @@
         <p class="lede">Yön bulma, harita, koordinat. <span class="ltname">(Spatial Orientation)</span></p>
         <div class="hero-meta">
           <span class="hm">📊 10 basamak</span>
-          <span class="hm">🎂 0–10 yaş</span>
+          <span class="hm">🎂 0–8 yaş</span>
           <span class="hm">⚠ 1 darboğaz</span>
           <span class="hm">🎯 Profil alanı · gözlem</span>
         </div>
@@ -215,7 +213,7 @@
     <aside class="side">
     <div class="side-in">
       <div class="side-head">Düzeyler <span>10</span></div>
-      <ol class="side-list"><li><a href="#lv-0" data-i="0"><span class="s-num" style="--c:#7c3aed">1</span><span class="s-txt"><b>Uzamsal Yönelim: Temeller</b><small>0–1 yaş</small></span></a></li><li><a href="#lv-1" data-i="1"><span class="s-num" style="--c:#7c3aed">2</span><span class="s-txt"><b>Kendi Yolunu Hatırlayan</b><small>1–2 yaş</small></span></a></li><li><a href="#lv-2" data-i="2"><span class="s-num" style="--c:#7c3aed">3</span><span class="s-txt"><b>Yerleri Aklında Tutan</b><small>1–3 yaş</small></span></a></li><li><a href="#lv-3" data-i="3"><span class="s-num" style="--c:#7c3aed">4</span><span class="s-txt"><b>Uzak İpuçlarını Kullanmaya Başlayan</b><small>2–4 yaş</small></span></a></li><li><a href="#lv-4" data-i="4"><span class="s-num" style="--c:#7c3aed">5</span><span class="s-txt"><b>Yakın Çevresinde Yön Bulan</b><small>4–5 yaş · ⚠ darboğaz</small></span></a></li><li><a href="#lv-5" data-i="5"><span class="s-num" style="--c:#7c3aed">6</span><span class="s-txt"><b>Tanıdık Mekânda Yön Bulan</b><small>5–6 yaş</small></span></a></li><li><a href="#lv-6" data-i="6"><span class="s-num" style="--c:#7c3aed">7</span><span class="s-txt"><b>Harita Kullanan</b><small>6–7 yaş</small></span></a></li><li><a href="#lv-7" data-i="7"><span class="s-num" style="--c:#7c3aed">8</span><span class="s-txt"><b>Koordinat Okuyup İşaretleyen</b><small>7–8 yaş</small></span></a></li><li><a href="#lv-8" data-i="8"><span class="s-num" style="--c:#7c3aed">9</span><span class="s-txt"><b>Rota Haritasını İzleyen</b><small>8–9 yaş</small></span></a></li><li><a href="#lv-9" data-i="9"><span class="s-num" style="--c:#7c3aed">10</span><span class="s-txt"><b>Haritayı Her Durumda Kullanan</b><small>8–10 yaş</small></span></a></li></ol>
+      <ol class="side-list"><li><a href="#lv-0" data-i="0"><span class="s-num" style="--c:#7c3aed">1</span><span class="s-txt"><b>Uzamsal Yönelim: Temeller</b><small>0–1 yaş</small></span></a></li><li><a href="#lv-1" data-i="1"><span class="s-num" style="--c:#7c3aed">2</span><span class="s-txt"><b>Kendi Yolunu Hatırlayan</b><small>0–2 yaş</small></span></a></li><li><a href="#lv-2" data-i="2"><span class="s-num" style="--c:#7c3aed">3</span><span class="s-txt"><b>Yerleri Aklında Tutan</b><small>1–2 yaş</small></span></a></li><li><a href="#lv-3" data-i="3"><span class="s-num" style="--c:#7c3aed">4</span><span class="s-txt"><b>Yer İmlerini Kullanmaya Başlayan</b><small>2–3 yaş</small></span></a></li><li><a href="#lv-4" data-i="4"><span class="s-num" style="--c:#7c3aed">5</span><span class="s-txt"><b>Yakın Çevresinde Yön Bulan</b><small>4 yaş · ⚠ darboğaz</small></span></a></li><li><a href="#lv-5" data-i="5"><span class="s-num" style="--c:#7c3aed">6</span><span class="s-txt"><b>Tanıdık Mekânda Yön Bulan</b><small>5 yaş</small></span></a></li><li><a href="#lv-6" data-i="6"><span class="s-num" style="--c:#7c3aed">7</span><span class="s-txt"><b>Harita Kullanan</b><small>6 yaş</small></span></a></li><li><a href="#lv-7" data-i="7"><span class="s-num" style="--c:#7c3aed">8</span><span class="s-txt"><b>Koordinat Okuyup İşaretleyen</b><small>7 yaş</small></span></a></li><li><a href="#lv-8" data-i="8"><span class="s-num" style="--c:#7c3aed">9</span><span class="s-txt"><b>Rota Haritasını İzleyen</b><small>8 yaş</small></span></a></li><li><a href="#lv-9" data-i="9"><span class="s-num" style="--c:#7c3aed">10</span><span class="s-txt"><b>Haritayı Her Durumda Kullanan</b><small>8 yaş</small></span></a></li></ol>
     </div>
   </aside>
     <div class="levels">
@@ -233,7 +231,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> En erken yönelim sistemlerini kullanır: tepki öğrenmesi (kendine dayalı — hedefle ilişkilenen kendi hareket örüntüsü) ve ipucu öğrenmesi (dışsal — tanıdık yer imleri).</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Uzamsal yönelim (nerede olduğunu bilme ve çevrede yolunu bulma) için iki bilişsel sistemin en erken olanlarını kullanır. 1. Tepki öğrenmesi: Bebek kendi konumuna dayalı bir hareket örüntüsü kurar (örn. mama sandalyesinde otururken başını, yemeğinin hazırlandığı sola çevirir ya da o yöne bakar). 2. İpucu öğrenmesi: Önemli nesneleri hatırlamak için çevresindeki şeyleri yer imi olarak kullanır (örn. oyuncak kutusunu görünce oyuncakla oynayacağı için heyecanlanır). Çevresini keşfettikçe daha geniş alanlarda yolunu bulmasına yardımcı olan yeni yer imleri öğrenir.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Bebek, tanıdık bir odada annesinin sesi sağdan gelince başını sağa çevirir; oyuncağı en son nereye koyduğunuza doğru uzanır. Konumu adlandıramaz ama &quot;buradan oraya&quot; duygusunu bedeniyle yaşar — yöne döner, tanıdık köşeye bakar.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, uzamsal yönelimin en erken sezgisidir: çocuk dünyayı kendi bedenine göre örtük olarak haritalar. Henüz &quot;sağ-sol&quot; ya da &quot;yakın-uzak&quot; sözcükleri yoktur; amaç yön ve konuma DİKKAT uyandırmaktır. Saklambaç (ce-ee), &quot;oyuncak nerede?&quot; arama oyunları ve aynı yerden seslenmek bu çekirdek konum duygusunu besler. Sonraki tüm yön, harita ve koordinat öğrenmesi bu sezgiye yaslanır.</p></div>
         <div class="act">
@@ -262,7 +260,7 @@
       <div class="lv-num" style="--c:#7c3aed">2</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#7c3aed">1–2 yaş</span>
+          <span class="age-pill" style="--c:#7c3aed">0–2 yaş</span>
           
         </div>
         <h3>Kendi Yolunu Hatırlayan</h3>
@@ -270,7 +268,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Kendi hareketlerini — yaklaşık uzaklık ve yönleriyle birlikte — hatırlar ve yineleyebilir (yol bütünleme, &quot;dead reckoning&quot;).</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Yolları hatırlar (örn. beşikten oyun matına emekleyerek ya da kucakta giderken izlenen yolu). Yaptığı hareketleri, yaklaşık ne kadar gittiği ve hangi yöne döneceği dâhil yineleyebilir (örn. parkta köşeyi dönünce olsa bile salıncağı gösterir, sonra engellerin etrafından dolaşarak oraya gider; ya da işaret ederek, eğilerek veya başka jestlerle nasıl gidileceğini belirtir).</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk odadan mutfağa gidip geri döndüğünde, geldiği yolu — döndüğü köşeyi, geçtiği kapıyı — yeniden bulur. Kısa bir yolu yürüdükten sonra başlangıca dönmesini istediğinizde, gittiği yönü ve aşağı yukarı mesafeyi tutturarak geri izler.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, yol bütünleştirmedir (path integration): çocuk hareket ederken yönü ve kat ettiği mesafeyi zihinde toplayıp nereden geldiğini kestirir — bir tür içsel &quot;pusula+adımsayar&quot;. Henüz dış yer imlerine değil, kendi hareket duygusuna dayanır. Birlikte kısa yollar yürüyüp &quot;şimdi nereden geldik?&quot; diye geri izletin; köşeleri ve dönüşleri sesli adlandırın (&quot;sağa döndük, şimdi düz&quot;). Bu beceri, ileride harita üzerinde rota izlemenin bedensel tohumudur.</p></div>
         <div class="act">
@@ -299,7 +297,7 @@
       <div class="lv-num" style="--c:#7c3aed">3</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#7c3aed">1–3 yaş</span>
+          <span class="age-pill" style="--c:#7c3aed">1–2 yaş</span>
           
         </div>
         <h3>Yerleri Aklında Tutan</h3>
@@ -307,7 +305,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Konumları, uzaklıkları ve yönleri yer imlerine göre saklayan &quot;zihinsel haritalar&quot; oluşturur; oda duvarlarını referans çerçevesi olarak kullanır. &quot;İçinde/üstünde/altında, yukarı/aşağı&quot; gibi uzamsal sözcükler gelişir.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Tanıdık alanların “zihinsel haritasını” kurar; yer imlerini ve bu yer imlerine göre uzaklık ve yönleri tanır (örn. otobüs durağı gibi yakın bir yer iminin yanından geçerken parka gittiğini anladığını göstermek için “park” der ya da işaret eder). “İçinde”, “üstünde”, “altında” gibi uzamsal sözcükleri ve “yukarı”, “aşağı” gibi dikey yön terimlerini kullanır.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Bir oyuncağı odadaki belli bir yere (kitaplığın altına, kapının yanına) sakladığınızda çocuk, oraya götüren YER İMLERİNİ kullanarak yeri yeniden bulur. &quot;Top nerede?&quot; deyince yalnız rastgele aramaz; &quot;hani kanepenin yanındaydı&quot; diye o noktaya gider.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Burada çocuk artık yalnız kendi hareketine değil, DIŞ yer imlerine (kanepe, kapı, halı) göre konum öğrenir — bu, dünyayı kendinden bağımsız işaretlerle haritalamanın başlangıcıdır. Saklama-bulma oyunlarında yer imini sözle vurgulayın (&quot;yastığın ARKASINA koyuyorum&quot;). Konumu sabit bir nesneye bağlamak, ileride harita-gerçeklik eşlemesinin ve mekânsal belleğin temelini atar.</p></div>
         <div class="act">
@@ -327,7 +325,7 @@
     </div>
     <div class="lv-foot">
       <button class="printcard" data-lv="2" type="button">🖨️ Bu kartı yazdır</button>
-      <a class="nextlv" href="#lv-3">Sıradaki düzey · <b>Uzak İpuçlarını Kullanmaya Başlayan</b> →</a>
+      <a class="nextlv" href="#lv-3">Sıradaki düzey · <b>Yer İmlerini Kullanmaya Başlayan</b> →</a>
     </div>
   </article>
 
@@ -336,15 +334,15 @@
       <div class="lv-num" style="--c:#7c3aed">4</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#7c3aed">2–4 yaş</span>
+          <span class="age-pill" style="--c:#7c3aed">2–3 yaş</span>
           
         </div>
-        <h3>Uzak İpuçlarını Kullanmaya Başlayan</h3>
+        <h3>Yer İmlerini Kullanmaya Başlayan</h3>
       </div>
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Hedef önceden belirtilmişse, kendisi yer değiştirdikten sonra bile yakınındaki nesneleri uzak yer imlerinden yararlanarak bulur. Yatay/dikey doğrultuları fark eder; &quot;yanında, arasında&quot; sözcükleri gelişir.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Sevdiği yerleri bulmak için binalar, tabelalar ya da nesneler gibi yer imlerini kullanır (örn. büyük bir oyun alanına yeni bir girişten girdiğinde önce tırmanma yapısının bir yanındaki salıncakları fark eder ve bunu, yapının diğer yanındaki kaydırağı bulmak için referans noktası olarak kullanır). Yukarı-aşağı ya da yana doğru giden çizgiler çizer; “L” ya da “T” yapmak gibi.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>&quot;Senin sağında ne var? Önünde ne var?&quot; diye sorduğunuzda çocuk KENDİNE göre yön bulur: sağındaki rafı, önündeki masayı gösterir. Yönü dünyaya değil, kendi bedenine (&quot;benim sağım&quot;) demirleyerek konumlar.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, benlik (egosentrik) çerçevesidir: çocuk uzamı kendi bedenini merkez alarak düzenler — ön/arka/sağ/sol &quot;bana göre&quot; anlam taşır. Bu doğal ve gerekli bir basamaktır; sol-sağ başta karışabilir (önce ön/arka oturur). Bedensel yön sözcüklerini günlük yaşamda bol kullanın (&quot;arkana bak&quot;, &quot;sol elinle tut&quot;). Önemli: bu çerçeve çocuk dönünce DEĞİŞİR — bu sınırlılık, sonraki düzeylerde dışsal/sabit çerçeveye geçiş ihtiyacını doğurur.</p></div>
         <div class="act">
@@ -373,7 +371,7 @@
       <div class="lv-num" style="--c:#7c3aed">5</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#7c3aed">4–5 yaş</span>
+          <span class="age-pill" style="--c:#7c3aed">4 yaş</span>
           <span class="bn-pill">⚠ Darboğaz · kritik geçiş</span>
         </div>
         <h3>Yakın Çevresinde Yön Bulan</h3>
@@ -381,7 +379,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Hedef önceden belirtilmemiş olsa bile, yer değiştirdikten sonra nesnelerin yerini bulur; küçük bir alanı kapsamlı biçimde (dolanan bir örüntüyle) arar. &quot;Önünde/arkasında, sağ/sol&quot; gelişir; grafik bağlamında her iki eksenden doğru uzatır.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Nesnelerin nereye konduğunu hatırlar (örn. özel bir oyuncağı bir kutuya saklar ve ertesi sabah oyuncağın nerede olduğu sorulduğunda oyuncak kutusunu gösterir). “Önünde”, “arkasında” gibi yön sözcüklerini anlar; sağ elini sol elinden ayırt eder. Oyun alanında kaybolan bir oyuncağı olası bir noktadan başlayıp önce dar, sonra giderek genişleyen daireler çizerek arar. Harita kullanmayı anlamaya başlar (örn. bir odanın haritası verildiğinde üzerindeki simge ya da şekillerin gerçek nesneleri temsil ettiğini anlar).</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Küçük bir masa-ızgarada (ör. 3×3 hücre) bir nesneyi, hedef önceden söylenmeden, BAŞKA nesnelere göre buldurursunuz: &quot;ağacın yanındaki, evin üstündeki kareye bak.&quot; Çocuk artık konumu yalnız kendine göre değil, nesneler-arası ilişkiyle (yanında/üstünde/arasında) çözer. Henüz oturmamışsa yine kendi bedenine kayar (&quot;benim sağımdaki&quot;) ya da rastgele dener.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, yörüngenin ilk kritik darboğazıdır: çocuk benlik-merkezli yönden (&quot;benim sağım&quot;) çıkıp nesneyi DIŞSAL bir yerel çerçevede — başka nesnelere göre — konumlamalıdır. Küçük, sınırlı bir alan (masa ızgarası) bu geçişi kolaylaştırır; çünkü tüm yer imleri bir bakışta görünür. Bu eşikte takılma, uzamsal akıl yürütmede erken bir uyarı olabilir. &quot;Bana göre değil, NEYE göre?&quot; sorusunu yerleştirin; konumu hep iki yer imiyle çapraz tanımlatın (&quot;ağacın sağında VE göletin üstünde&quot;). Bu beceri, harita ve koordinatın doğrudan ön koşuludur.</p></div>
         <div class="act">
@@ -410,7 +408,7 @@
       <div class="lv-num" style="--c:#7c3aed">6</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#7c3aed">5–6 yaş</span>
+          <span class="age-pill" style="--c:#7c3aed">5 yaş</span>
           
         </div>
         <h3>Tanıdık Mekânda Yön Bulan</h3>
@@ -418,7 +416,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Yer değiştirdikten sonra nesneleri, yerleşim düzeninin genel biçimini koruyarak bulur; konumları yer imlerine göre temsil eder (&quot;ikisinin tam ortasında&quot;); açık alanlarda/labirentlerde kendi konumunu izler; basit oyunlarda koordinat etiketleri kullanır.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Hareket ettikten sonra bile yerleşim düzenini hatırlayarak nesneleri bulur (örn. okulun farklı girişlerinden sınıfına nasıl gideceğini bilir). Bu, açık alanlarda nesnelerin yerini izlemesine ve bulmasına yardımcı olur. Nesnelerin, haritada gösterilen yer imlerine göre nerede olduğunu anlar; örneğin parkın ev ile okulun yaklaşık ortasında olduğunu bilir. Nesnelerin yerini betimlemek için “yanında” ve “arasında” gibi zor sözcükler dâhil uzamsal sözcükler kullanır.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk odanın düzenini (masa şurada, dolap burada) zihninde tutar; siz onu döndürseniz ya da o yer değiştirse bile bir yeri doğru bulur. &quot;Kapıya göre çantam nerede?&quot; sorusuna, kendisi nereye baksa da odanın SABİT düzenine göre yanıt verir.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Burada çerçeve artık küçük masadan TÜM ODAYA ölçeklenir ve gözlemciden bağımsızlaşır: çocuk mekânın düzenini sabit bir bütün olarak koruyabilir (&quot;oda dönmedi, ben döndüm&quot;). Bu, kararlı bir uzamsal (allosentrik) çerçevenin kurulduğunun işaretidir. Çocuğu odada döndürdükten sonra yer buldurun; &quot;sen döndün ama dolap yerinde&quot; mantığını söyletin. Bu sağlam yerel çerçeve, harita kullanmanın hemen altındaki basamaktır.</p></div>
         <div class="act">
@@ -447,7 +445,7 @@
       <div class="lv-num" style="--c:#7c3aed">7</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#7c3aed">6–7 yaş</span>
+          <span class="age-pill" style="--c:#7c3aed">6 yaş</span>
           
         </div>
         <h3>Harita Kullanan</h3>
@@ -455,7 +453,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Resimli ipuçları içeren basit haritalarla nesnelerin yerini bulur; iki doğrultuyu uzatıp tek bir konumda birleştirir.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Harita gerçek dünyayla kolayca eşleşiyorsa, gerçek nesneleri temsil eden simgeler içeren haritalarla nesnelerin yerini bulur. Basit ve destekli bir görevde (örn. “Amiral Battı” oyununda) belirli bir noktayı bulmak için iki koordinatı da kullanabilir.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Resimli basit bir haritayı (sınıfın kuş-bakışı çizimi) eline aldığında, haritadaki bir işareti gerçek mekândaki yere eşleyip nesneyi bulur. &quot;Haritada X kapının yanında — demek gerçekte de kapının yanında&quot; diyerek iki ipucunu (haritadaki konum + gerçek yer imi) birleştirir.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, harita-gerçeklik eşlemesidir: çocuk küçük, kuş-bakışı bir temsili büyük gerçek uzama bağlar — temsilin gerçeği &quot;gösterdiğini&quot; kavrar. Başta haritayı gerçekle aynı yöne çevirmek (oryantasyon) gerekir; haritayı döndürüp hizalamayı birlikte yapın. Haritadaki sembolleri gerçek nesnelerle tek tek eşleştirin (&quot;bu kare = şu masa&quot;). Bu beceri, soyut uzamsal temsil ve koordinat sisteminin kapısıdır.</p></div>
         <div class="act">
@@ -484,7 +482,7 @@
       <div class="lv-num" style="--c:#7c3aed">8</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#7c3aed">7–8 yaş</span>
+          <span class="age-pill" style="--c:#7c3aed">7 yaş</span>
           
         </div>
         <h3>Koordinat Okuyup İşaretleyen</h3>
@@ -492,7 +490,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Haritalar üzerinde koordinatları okur ve işaretler.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Haritalarda sayısal koordinatları (x, y gibi) okur ve işaretler. Örneğin bir şekil çizmek ya da haritada farklı konumları birleştirip yol bulmaya yardımcı olmak için [2, 4]’ten [5, 10]’a gibi noktalar arasında çizgiler çizer.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Bir ızgarada bir noktayı koordinatla buldurursunuz: &quot;2. sütun, 3. sıra.&quot; Çocuk önce sütunu (sağa doğru) sayar, sonra sırayı (yukarı/aşağı) sayıp tam kesişimi işaretler. Tersine, gösterdiğiniz bir hücrenin koordinatını (&quot;3. sütun, 1. sıra&quot;) söyler.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, koordinat sisteminin temelidir: konum artık iki sayıyla (sütun, sıra) tam belirlenir — uzamsal düşünme sayısallaşır. En sık yanılgı sütun-sıra sırasını karıştırmak ya da çizgileri/boşlukları yanlış saymaktır; &quot;önce yan (sütun), sonra yukarı (sıra)&quot; kuralını sabitleyin. Sütunları ve sıraları kenarda numaralandırın. Bu beceri, kartezyen düzlemin, grafik okumanın ve cebirsel koordinatların doğrudan tohumudur — &quot;sıralı ikili&quot; (ordered pair) fikrini erken kurar.</p></div>
         <div class="act">
@@ -521,7 +519,7 @@
       <div class="lv-num" style="--c:#7c3aed">9</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#7c3aed">8–9 yaş</span>
+          <span class="age-pill" style="--c:#7c3aed">8 yaş</span>
           
         </div>
         <h3>Rota Haritasını İzleyen</h3>
@@ -529,7 +527,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Basit bir rota haritasını, giderek daha doğru yön ve uzaklıklarla izler.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Açık yönler ve uzaklıklar veren basit bir rota haritasını izler (örn. oyun alanından kütüphaneye nasıl gidileceğini gösteren bir haritayı okur; hangi yöne gideceğini ve yolun yaklaşık ne kadar olduğunu anlar).</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Bir rota haritası (başlangıçtan hedefe çizgiyle gösterilmiş yol) verdiğinizde, çocuk haritadaki rotayı adım adım gerçek harekete çevirir: &quot;düz git, ikinci köşeden sola dön, üçüncü kapıda dur.&quot; Haritadaki dönüşleri ve sıraları gerçek yönlere doğru aktarır.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, statik bir konumdan ROTAYA (sıralı yönler dizisi) geçiştir: çocuk harita üzerindeki bir yolu izleyip eylem dizisine dönüştürür — yön + sıra + dönüş bilgisini bir arada yönetir. Haritayı kendi gidiş yönüne göre sürekli yeniden hizalamak (özellikle dönüşlerde harita döner) en zorlandığı yerdir. Rotayı önce parmakla &quot;yürütün&quot;, sonra gerçekte adımlatın. Bu beceri, gerçek navigasyonun ve algoritmik sıralı düşünmenin (adım-adım yönerge) zeminidir.</p></div>
         <div class="act">
@@ -558,7 +556,7 @@
       <div class="lv-num" style="--c:#7c3aed">10</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#7c3aed">8–10 yaş</span>
+          <span class="age-pill" style="--c:#7c3aed">8 yaş</span>
           
         </div>
         <h3>Haritayı Her Durumda Kullanan</h3>
@@ -566,7 +564,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Gözlemciyi ve yer imlerini içeren genel çerçeveler kullanır; uzamsal ilişkiler dönüştürülmüş olsa bile (örn. harita döndürülmüş) haritaları izler ve kendisi harita oluşturur.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Harita gerçek dünyayla tam örtüşmese bile, kendisini ve yer imlerini içeren haritaları izler ve kendisi harita oluşturur. Yönlendirilmedikçe kesin ölçüler (örn. “20 adım at”) kullanmayabilir. Haritalara ilişkin dört önemli kavramı anlamaya başladığını gösterir: tanıma (haritadaki nesnelerin ne olduğunu bilme), konum (bu nesnelerin nerede olduğunu anlama), yön (hangi yöne gidileceğini bulma) ve uzaklık (oraya varmak için ne kadar yol olduğunu bilme).</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Dönüştürülmüş ya da döndürülmüş bir haritayla (kuzeyi size ters bakan, çevrili bir kroki) yön buldurursunuz. Çocuk, haritanın kendi bakışına göre döndüğünü hesaba katarak yine doğru yönü bulur: &quot;harita ters dönmüş; bende sağ olan, haritada sol.&quot; Gözlemci konumunu ve yer imlerini birlikte düşünür.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, yörüngenin doruğu: SOYUT, gözlemciden bağımsız uzamsal çerçeve. Çocuk artık çerçeveyi kendi bedeninden tümüyle koparabilir — haritayı zihinde döndürüp gözlemci konumuyla yer imlerini eşgüdümler (zihinsel döndürme). Döndürülmüş/farklı bakış açılı haritalarla bilerek çalışın; &quot;sen nerede duruyorsun, harita nasıl dönmüş?&quot; diye iki bilgiyi birlikte sorgulatın. Bu soyut çerçeve, ileri geometri, harita/grafik okuma ve perspektif alma (başkasının bakışından görme) için kritik zemindir.</p></div>
         <div class="act">

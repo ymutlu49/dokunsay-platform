@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sayı Birleştirme (Parça-Bütün) — Öğrenme Yörüngesi · DokunSay</title>
-<meta name="description" content="Sayı Birleştirme (Parça-Bütün) öğrenme yörüngesi: 11 gelişim basamağı, her birinde DokunSay etkinliği ve gözlem ölçütü. Clements &amp; Sarama çerçevesi. Parça-bütün; 10’u bileşenlerine ayırma.">
+<meta name="description" content="Sayı Birleştirme (Parça-Bütün) öğrenme yörüngesi: 10 gelişim basamağı, her birinde DokunSay etkinliği ve gözlem ölçütü. Clements &amp; Sarama çerçevesi. Parça-bütün; 10’u bileşenlerine ayırma.">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,16 +40,14 @@
 .dsh-green{color:#d7f0d9;background:rgba(46,125,50,.22);border-color:rgba(46,125,50,.5)}
 .dsh-teal{color:#bfe8e4;background:rgba(13,148,136,.2);border-color:rgba(13,148,136,.5)}
 .dsh-pill.is-active{box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.45);filter:brightness(1.12)}
-.dsh .hcmo-auth{display:inline-flex;align-items:center;gap:6px}
-.dsh .hcmo-auth:empty{display:none}
-.dsh .hcmo-auth a{display:inline-flex;align-items:center;gap:5px;padding:8px 14px;border-radius:999px;font-weight:700;font-size:.86rem;text-decoration:none;white-space:nowrap;color:#fde6c0;background:rgba(245,158,11,.18);border:1px solid rgba(245,158,11,.45);transition:background .15s}
-.dsh .hcmo-auth a:hover{background:rgba(245,158,11,.3)}
-.dsh .hcmo-auth a#hcmo-stu{color:#cfe8ff;background:rgba(96,165,250,.16);border-color:rgba(96,165,250,.4)}
-.dsh .hcmo-auth a#hcmo-stu:hover{background:rgba(96,165,250,.28)}
-.dsh .hcmo-auth>span{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:.86rem;color:#e8eefc}
-.dsh .hcmo-auth .nm{color:#fde6c0}
-.dsh .hcmo-auth #hcmo-out{cursor:pointer;border:0;border-radius:999px;background:#f59e0b;color:#3a2606;font-weight:800;font-size:.8rem;padding:7px 13px;font-family:inherit}
-.dsh .hcmo-auth #hcmo-out:hover{filter:brightness(1.07)}
+.dsh .numap-auth{display:inline-flex;align-items:center;gap:6px}
+.dsh .numap-auth:empty{display:none}
+.dsh .numap-auth a{display:inline-flex;align-items:center;gap:5px;padding:8px 14px;border-radius:999px;font-weight:700;font-size:.86rem;text-decoration:none;white-space:nowrap;color:#d7f0d9;background:rgba(46,125,50,.22);border:1px solid rgba(46,125,50,.5);transition:background .15s;cursor:pointer}
+.dsh .numap-auth a:hover{background:rgba(46,125,50,.34)}
+.dsh .numap-auth>span{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:.86rem;color:#e8efe9}
+.dsh .numap-auth .nm{color:#d7f0d9}
+.dsh .numap-auth #numap-out{cursor:pointer;border:0;border-radius:999px;background:#2E7D32;color:#fff;font-weight:800;font-size:.8rem;padding:7px 13px;font-family:inherit}
+.dsh .numap-auth #numap-out:hover{filter:brightness(1.1)}
 @media (max-width:760px){.dsh{padding:10px 15px}.dsh-pill{padding:7px 11px;font-size:.8rem}.dsh-name{font-size:18px}}
 @media print{.dsh{display:none}}
 
@@ -181,7 +179,7 @@
 </style>
 </head>
 <body data-key="compose">
-<header class="dsh"><div class="dsh-row"><a class="dsh-brand" href="/" aria-label="DokunSay ana sayfa"><span class="dsh-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" aria-hidden="true"><line x1="28" y1="27" x2="72" y2="27" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="28" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="72" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><circle cx="28" cy="27" r="21" fill="#2E7D32"/><circle cx="20.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="28" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="35.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="72" cy="27" r="21" fill="#0d9488"/><text x="72" y="32" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="14" fill="#fff">üç</text><circle cx="50" cy="73" r="21" fill="#1B5E20"/><text x="50" y="82" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="27" fill="#fff">3</text></svg></span><span class="dsh-titles"><span class="dsh-name">DokunSay</span><span class="dsh-sub">Matematik Öğretim Araçları Platformu</span></span></a><nav class="dsh-nav" aria-label="Site gezinme"><a class="dsh-pill dsh-amber is-active" href="/yorunge/" aria-current="page">🧭 Öğrenme Yörüngeleri</a><a class="dsh-pill dsh-green" href="/rehber/">📘 Müdahale Rehberi</a><a class="dsh-pill dsh-teal" href="/#tools-section">🛠️ Araçlar</a><span id="hcmoAuth" class="hcmo-auth"></span></nav></div></header>
+<header class="dsh"><div class="dsh-row"><a class="dsh-brand" href="/" aria-label="DokunSay ana sayfa"><span class="dsh-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" aria-hidden="true"><line x1="28" y1="27" x2="72" y2="27" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="28" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><line x1="72" y1="27" x2="50" y2="73" stroke="#94a3b8" stroke-width="2.5" opacity="0.5"/><circle cx="28" cy="27" r="21" fill="#2E7D32"/><circle cx="20.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="28" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="35.5" cy="26" r="3.2" fill="#fff" opacity="0.95"/><circle cx="72" cy="27" r="21" fill="#0d9488"/><text x="72" y="32" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="14" fill="#fff">üç</text><circle cx="50" cy="73" r="21" fill="#1B5E20"/><text x="50" y="82" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="27" fill="#fff">3</text></svg></span><span class="dsh-titles"><span class="dsh-name">DokunSay</span><span class="dsh-sub">Matematik Öğretim Araçları Platformu</span></span></a><nav class="dsh-nav" aria-label="Site gezinme"><a class="dsh-pill dsh-amber is-active" href="/yorunge/" aria-current="page">🧭 Öğrenme Yörüngeleri</a><a class="dsh-pill dsh-green" href="/rehber/">📘 Müdahale Rehberi</a><a class="dsh-pill dsh-teal" href="/#tools-section">🛠️ Araçlar</a><span id="numapAuth" class="numap-auth"></span></nav></div></header>
 
 <section class="hero">
   <div class="wrap">
@@ -193,9 +191,9 @@
         <h1>Sayı Birleştirme (Parça-Bütün)</h1>
         <p class="lede">Parça-bütün; 10’u bileşenlerine ayırma. <span class="ltname">(Composing Numbers)</span></p>
         <div class="hero-meta">
-          <span class="hm">📊 11 basamak</span>
-          <span class="hm">🎂 0–10 yaş</span>
-          <span class="hm">⚠ 3 darboğaz</span>
+          <span class="hm">📊 10 basamak</span>
+          <span class="hm">🎂 0–8 yaş</span>
+          
           <span class="hm">🎯 Tamamlayıcı alan · gözlem + etkinlik</span>
         </div>
         <div class="hero-cta">
@@ -214,8 +212,8 @@
   <div class="layout">
     <aside class="side">
     <div class="side-in">
-      <div class="side-head">Düzeyler <span>11</span></div>
-      <ol class="side-list"><li><a href="#lv-0" data-i="0"><span class="s-num" style="--c:#2E7D32">1</span><span class="s-txt"><b>Parçalarla Oynayan: Temeller</b><small>0–2 yaş</small></span></a></li><li><a href="#lv-1" data-i="1"><span class="s-num" style="--c:#2E7D32">2</span><span class="s-txt"><b>Parçaları Birleştiren</b><small>2–3 yaş</small></span></a></li><li><a href="#lv-2" data-i="2"><span class="s-num" style="--c:#2E7D32">3</span><span class="s-txt"><b>Parça-Bütünü Kabaca Kavrayan</b><small>3–4 yaş</small></span></a></li><li><a href="#lv-3" data-i="3"><span class="s-num" style="--c:#2E7D32">4</span><span class="s-txt"><b>Sayı Kuran (önce 4, sonra 5)</b><small>4–5 yaş · ⚠ darboğaz</small></span></a></li><li><a href="#lv-4" data-i="4"><span class="s-num" style="--c:#2E7D32">5</span><span class="s-txt"><b>Sayı Kuran (7’ye kadar)</b><small>5–6 yaş</small></span></a></li><li><a href="#lv-5" data-i="5"><span class="s-num" style="--c:#2E7D32">6</span><span class="s-txt"><b>Sayı Kuran (10’a kadar)</b><small>5–6 yaş · ⚠ darboğaz</small></span></a></li><li><a href="#lv-6" data-i="6"><span class="s-num" style="--c:#2E7D32">7</span><span class="s-txt"><b>Onluk ve Birliklerle Sayı Kuran</b><small>6–7 yaş</small></span></a></li><li><a href="#lv-7" data-i="7"><span class="s-num" style="--c:#2E7D32">8</span><span class="s-txt"><b>Sayı Kuran (20 ve ötesi)</b><small>7–8 yaş · ⚠ darboğaz</small></span></a></li><li><a href="#lv-8" data-i="8"><span class="s-num" style="--c:#2E7D32">9</span><span class="s-txt"><b>Bildiklerinden Türeten (parça-bütün)</b><small>7–8 yaş</small></span></a></li><li><a href="#lv-9" data-i="9"><span class="s-num" style="--c:#2E7D32">10</span><span class="s-txt"><b>Her Tür Problemi Çözen (parça-bütün)</b><small>8–9 yaş</small></span></a></li><li><a href="#lv-10" data-i="10"><span class="s-num" style="--c:#2E7D32">11</span><span class="s-txt"><b>Çok Basamaklı Çözen (parça-bütün)</b><small>9–10 yaş</small></span></a></li></ol>
+      <div class="side-head">Düzeyler <span>10</span></div>
+      <ol class="side-list"><li><a href="#lv-0" data-i="0"><span class="s-num" style="--c:#2E7D32">1</span><span class="s-txt"><b>Parçalarla Oynayan: Temeller</b><small>0–1 yaş</small></span></a></li><li><a href="#lv-1" data-i="1"><span class="s-num" style="--c:#2E7D32">2</span><span class="s-txt"><b>Parçaları Birleştiren</b><small>1–2 yaş</small></span></a></li><li><a href="#lv-2" data-i="2"><span class="s-num" style="--c:#2E7D32">3</span><span class="s-txt"><b>Parça-Bütünü Kabaca Kavrayan</b><small>3 yaş</small></span></a></li><li><a href="#lv-3" data-i="3"><span class="s-num" style="--c:#2E7D32">4</span><span class="s-txt"><b>Sayı Kuran (önce 4, sonra 5)</b><small>4–5 yaş</small></span></a></li><li><a href="#lv-4" data-i="4"><span class="s-num" style="--c:#2E7D32">5</span><span class="s-txt"><b>Sayı Kuran (7’ye kadar)</b><small>6 yaş</small></span></a></li><li><a href="#lv-5" data-i="5"><span class="s-num" style="--c:#2E7D32">6</span><span class="s-txt"><b>Sayı Kuran (10’a kadar)</b><small>6–7 yaş</small></span></a></li><li><a href="#lv-6" data-i="6"><span class="s-num" style="--c:#2E7D32">7</span><span class="s-txt"><b>Sayı Kuran (20 ve ötesi); Onluk ve Birliklerle Sayı Kuran</b><small>6–7 yaş</small></span></a></li><li><a href="#lv-7" data-i="7"><span class="s-num" style="--c:#2E7D32">8</span><span class="s-txt"><b>Bildiklerinden Türeten (parça-bütün)</b><small>6–7 yaş</small></span></a></li><li><a href="#lv-8" data-i="8"><span class="s-num" style="--c:#2E7D32">9</span><span class="s-txt"><b>Her Tür Problemi Çözen (parça-bütün)</b><small>7 yaş</small></span></a></li><li><a href="#lv-9" data-i="9"><span class="s-num" style="--c:#2E7D32">10</span><span class="s-txt"><b>Çok Basamaklı Toplayıp Çıkaran (parça-bütün)</b><small>7–8 yaş</small></span></a></li></ol>
     </div>
   </aside>
     <div class="levels">
@@ -225,7 +223,7 @@
       <div class="lv-num" style="--c:#2E7D32">1</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2E7D32">0–2 yaş</span>
+          <span class="age-pill" style="--c:#2E7D32">0–1 yaş</span>
           
         </div>
         <h3>Parçalarla Oynayan: Temeller</h3>
@@ -233,7 +231,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Parçalar ve bütünler üzerinde sezgisel eylemler (nesneleri bir araya toplama); parça ve bütünlerin sözel olmayan tanınması.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Nesneleri bir araya toplama gibi, parçalara ve bütünlere örtük bir duyarlılık gösteren eylemler sergiler.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Bebek/küçük çocuk bir küme oyuncağı kendiliğinden iki kaba boşaltıp yeniden bir araya toplar; bir kule yıkılınca parçaları tekrar yığar. Henüz sayı yoktur, ama &quot;bütün parçalara ayrılır, parçalar birleşir&quot; eylemini elleriyle yaşar.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, parça-bütün düşüncesinin bedensel tohumudur: dökmek, ayırmak, toplamak, birleştirmek — sayı oluşturmanın bütün temeli bu somut eylemlerdir. Henüz &quot;kaç&quot; sorusu yoktur; amaç bölme/birleştirme deneyimini bolca yaşatmaktır. Kaplara boşaltma, kaşıkla aktarma gibi günlük oyunlar bu sezgiyi besler.</p></div>
         <div class="act">
@@ -262,7 +260,7 @@
       <div class="lv-num" style="--c:#2E7D32">2</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2E7D32">2–3 yaş</span>
+          <span class="age-pill" style="--c:#2E7D32">1–2 yaş</span>
           
         </div>
         <h3>Parçaları Birleştiren</h3>
@@ -270,7 +268,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Kümelerin farklı sıralarla birleştirilebildiğini fark eder; bütünü oluşturan parçaları sözel olmayan biçimde temsil eder; sezgisel-algısal parça-bütün ilişkileri kurar.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Parçaların bir bütün oluşturduğunu önce sözsüz biçimde göstererek, parça-bütün ilişkilerini nesnelerle ortaya koyar. Kümelerin farklı sıralarla birleştirilebildiğini fark eder; ancak birleştirmenin aynı toplam nesne sayısını vereceğini açıkça fark etmeyebilir.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Bir elinde 2 pul, öbür elinde 1 pul varken &quot;Hepsi kaç oldu?&quot; deyince ikisini bir avuçta toplar ve tek bir küme gibi gösterir. İki ayrı küçük parçayı zihninde tek bütün olarak görmeye başlar.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, bileşimin (composing) ilk gerçek adımıdır: iki ayrı parça, birleşince tek bir bütün olur. Çocuk henüz toplamı saymadan söyleyemeyebilir; önemli olan iki parçayı fiziksel olarak birleştirip &quot;hepsi&quot; diye bir bütün kabul etmesidir. Parçaları iki ayrı renkte tutmak bütünün içindeki iki parçayı görünür kılar.</p></div>
         <div class="act">
@@ -299,7 +297,7 @@
       <div class="lv-num" style="--c:#2E7D32">3</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2E7D32">3–4 yaş</span>
+          <span class="age-pill" style="--c:#2E7D32">3 yaş</span>
           
         </div>
         <h3>Parça-Bütünü Kabaca Kavrayan</h3>
@@ -307,7 +305,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Bütünün parçalarından BÜYÜK olduğunu bilir ama nicel olarak doğru belirlemeyebilir; sezgisel değişme özelliği (sonra birleşme) gelişmektedir.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Bütünün parçalardan büyük olduğunu bilir; ancak bunu doğru biçimde nicelendiremeyebilir (sayılarla adlandıramayabilir). Değişme özelliğine, daha sonra birleşme özelliğine ilişkin sezgisel bilgi gösterebilir; önce fiziksel gruplarla, daha sonra sayılar dâhil daha soyut bağlamlarda.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>4 pulu gösterip 2'sini elinizle örttüğünüzde çocuk, örtülenlerin de bütünün bir parçası olduğunu bilir: &quot;Onlar da var, hepsi dört.&quot; Görünmeyen parçanın yok olmadığını, bütüne ait kaldığını kavrar.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Burada parça-bütün ilişkisi bir kavrama dönüşür: bir bütün, içinde gizlenmiş parçalardan oluşur ve parça örtülse de bütüne aittir. Bu, &quot;ört ve sor&quot; (örtülen kaç?) etkinliklerinin ve ileride bilinmeyen-parça problemlerinin (4'ün 2'si burada, kaçı saklı?) zeminidir. Çocuğa parçayı örtüp &quot;kaçı saklı?&quot; diye sorun; gizli parçayı düşünmesini sağlayın.</p></div>
         <div class="act">
@@ -331,20 +329,20 @@
     </div>
   </article>
 
-  <article class="level bn" id="lv-3">
+  <article class="level" id="lv-3">
     <div class="lv-top">
       <div class="lv-num" style="--c:#2E7D32">4</div>
       <div class="lv-id">
         <div class="lv-badges">
           <span class="age-pill" style="--c:#2E7D32">4–5 yaş</span>
-          <span class="bn-pill">⚠ Darboğaz · kritik geçiş</span>
+          
         </div>
         <h3>Sayı Kuran (önce 4, sonra 5)</h3>
       </div>
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> 4’e, sonra 5’e kadar sayı kombinasyonlarını bilir; bütün verildiğinde parçaları, parçalar verildiğinde bütünü hızla adlandırır.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Sayı bileşimlerini bilir. Herhangi bir bütünün parçalarını ya da parçaları verilen bütünü hızla adlandırır.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Çocuk 4 pulu iki kutuya farklı şekillerde dağıtır (3 ve 1, 2 ve 2) ve her seferinde toplamın yine 4 olduğunu bilir; sonra aynısını 5 ile yapar. Henüz oturmamışsa her dağıtımdan sonra toplamı baştan saymak zorunda kalır ya da parçaları değişince &quot;daha çok/az oldu&quot; sanır.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Burası ilk gerçek darboğazdır: küçük bir sayıyı (4–5) esnekçe parçalara ayırıp yeniden bütünleyebilmek, tüm toplama-çıkarmanın çekirdeğidir. Parçalar değişse de bütünün korunduğunu (4 = 3+1 = 2+2) kavrayamamak — her dağıtımı yeniden saymak ya da &quot;şimdi daha çok&quot; sanmak — matematik öğrenme güçlüğü (diskalkuli) açısından erken bir uyarı işaretidir; çünkü sayı henüz esnek bir bütün olarak içselleşmemiştir. İki renkli pullarla farklı kırılımları yan yana gösterin (&quot;yine dört, sadece başka türlü ayrıldı&quot;); önce 4'ü, sağlamlaşınca 5'i çalışın.</p></div>
         <div class="act">
@@ -373,7 +371,7 @@
       <div class="lv-num" style="--c:#2E7D32">5</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2E7D32">5–6 yaş</span>
+          <span class="age-pill" style="--c:#2E7D32">6 yaş</span>
           
         </div>
         <h3>Sayı Kuran (7’ye kadar)</h3>
@@ -381,7 +379,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Toplamı 7’ye kadar sayı kombinasyonlarını bilir; parça/bütünü hızla adlandırır; 10’a kadar çiftleri (5+5) bilir.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Toplamı 7’ye kadar sayı bileşimlerini bilir. Herhangi bir bütünün parçalarını ya da parçaları verilen bütünü hızla adlandırır. 10’a kadar çiftleri bilir.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>7 pulu iki kutuya bölüp &quot;3 burada, kaç tane orada?&quot; diye sorduğunuzda saymadan &quot;dört&quot; der. Beşli yapıyı çıpa alarak (5 ve 2, 4 ve 3) 7'yi ikili parçalara ayırır ve eksik parçayı bulur.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Burada bileşim 5'in ötesine geçer ve beşli yapı işbaşındadır: 6 = 5+1, 7 = 5+2. Çocuk bir parçayı görüp diğerini saymadan söyleyebiliyorsa, parça-bütün ilişkisini gerçekten içselleştirmiş demektir. Bu, ileride &quot;eksik toplananı bulma&quot; (3 + ? = 7) becerisinin doğrudan temelidir. Bir parçayı sabit tutup öbürünü değiştirerek bileşim ailesini (6+1, 5+2, 4+3) birlikte keşfedin.</p></div>
         <div class="act">
@@ -405,20 +403,20 @@
     </div>
   </article>
 
-  <article class="level bn" id="lv-5">
+  <article class="level" id="lv-5">
     <div class="lv-top">
       <div class="lv-num" style="--c:#2E7D32">6</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2E7D32">5–6 yaş</span>
-          <span class="bn-pill">⚠ Darboğaz · kritik geçiş</span>
+          <span class="age-pill" style="--c:#2E7D32">6–7 yaş</span>
+          
         </div>
         <h3>Sayı Kuran (10’a kadar)</h3>
       </div>
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Toplamı 10’a kadar kombinasyonları bilir; parça/bütünü hızla adlandırır; 20’ye kadar çiftleri (10+10) bilir.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Toplamı 10’a kadar sayı bileşimlerini bilir. Herhangi bir bütünün parçalarını ya da parçaları verilen bütünü hızla adlandırır. 20’ye kadar çiftleri bilir.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>&quot;10'u iki kutuya kaç farklı şekilde ayırabilirsin?&quot; dediğinizde çocuk 6+4, 7+3, 8+2… diye akıcı üretir; &quot;7 varsa ona kaç lazım?&quot; sorusuna saymadan &quot;üç&quot; der. 10'a tamamlayan ikilileri (&quot;10 dostları&quot;) ezbere yakın bilir.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu yörüngenin en kritik darboğazıdır: 10'un bileşenlerini (&quot;10 dostları&quot;: 9+1, 8+2, 7+3, 6+4, 5+5) akıcı bilmek, zihinden toplama-çıkarmanın ve onluğa köprüleme stratejisinin (8+5 → 8+2+3) bel kemiğidir. 10'a tamamlamada süreğen güçlük — her seferinde parmakla baştan saymak, tümleyeni getirememek — matematik öğrenme güçlüğü (diskalkuli) için güçlü bir erken belirtidir. Onluk çerçeveyi kullanın: dolu kutular bir parçayı, boş kutular tümleyeni &quot;görünür&quot; kılar (7 dolu → 3 boş → &quot;ona 3 lazım&quot;). &quot;Kaç boş?&quot; sorusunu sürekli sorun.</p></div>
         <div class="act">
@@ -438,7 +436,7 @@
     </div>
     <div class="lv-foot">
       <button class="printcard" data-lv="5" type="button">🖨️ Bu kartı yazdır</button>
-      <a class="nextlv" href="#lv-6">Sıradaki düzey · <b>Onluk ve Birliklerle Sayı Kuran</b> →</a>
+      <a class="nextlv" href="#lv-6">Sıradaki düzey · <b>Sayı Kuran (20 ve ötesi); Onluk ve Birliklerle Sayı Kuran</b> →</a>
     </div>
   </article>
 
@@ -450,60 +448,23 @@
           <span class="age-pill" style="--c:#2E7D32">6–7 yaş</span>
           
         </div>
-        <h3>Onluk ve Birliklerle Sayı Kuran</h3>
+        <h3>Sayı Kuran (20 ve ötesi); Onluk ve Birliklerle Sayı Kuran</h3>
       </div>
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Tek basamaklı sayıların 10 ile tüm kombinasyonlarını bilir (&quot;10 ve 7 — on yedi&quot;); 10’un katını hızla ikiye katlar (10+10=20).</p>
-        <div class="note how"><h5>Nasıl görünür</h5><p>12–15 pulu iki kutuya paylaştırıp &quot;Toplam kaç?&quot; diye sorduğunuzda çocuk parçaları (ör. 10 ve 4) birleştirip saymadan ya da onluğu çıpa alarak 14 der; 20'ye dek bileşim/ayrışımı doğru yapar. Onluk yapıyı kullanarak büyük sayıyı parçalar.</p></div>
-        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bileşim artık 10'u aşar ve onluk yapı bir araç hâline gelir: 14 = 10+4, 18 = 10+8. Çocuk bir onluğu tek bir parça gibi kullanıp kalan birlikleri ekleyebiliyorsa, basamak değerine geçişe hazırdır. 10'a köprüleme stratejisini (&quot;önce 10'a tamamla, sonra kalanı ekle&quot;) bu aralıkta bilinçli kullanmaya başlar. Bir parçayı 10 olarak sabitleyip öbürünü değiştirerek onluk yapının kolaylığını gösterin.</p></div>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> İki basamaklı sayıları onluklar ve birlikler olarak anlar; onluk ve birlik paralarla sayar; iki basamaklı toplamayı gruplama (elde) ile yapar. 17 ile 36, önce 17 ile 3, yani 20; sonra 33 ile birlikte 53 eder.</p>
+        <div class="note how"><h5>Nasıl görünür</h5><p>12–15 pulu iki kutuya paylaştırıp &quot;Toplam kaç?&quot; diye sorduğunuzda çocuk parçaları (ör. 10 ve 4) birleştirip saymadan ya da onluğu çıpa alarak 14 der; 20'ye dek bileşim/ayrışımı doğru yapar. 17 pulu &quot;bir onluk ve birlikler&quot; diye gruplattığınızda 10'luk bir çubukla 7 birliği bir araya getirip &quot;bir onluk, yedi birlik — on yedi&quot; der; yazılı &quot;17&quot;deki 1'in &quot;bir onluk&quot; olduğunu kavrar. İki basamaklı sayıları onluklar ve birlikler olarak anlar; onluk ve birlik paralarla sayar; iki basamaklı toplamayı gruplayarak (elde) yapar: 17 ile 36 için önce 17 ile 3, yani 20; sonra 33 ile birlikte 53.</p></div>
+        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bileşim artık 10'u aşar ve onluk yapı bir araç hâline gelir: 14 = 10+4, 18 = 10+8. Bu, basamak değerine açılan köprü düzeyidir ve bir darboğazdır: 11–19'un her birini &quot;bir onluk + birlikler&quot; olarak görmek (17 = 1 onluk + 7 birlik), iki basamaklı sayı sisteminin temelidir. 10'u tek tek değil, tek bir BİRİM (&quot;bir onluk&quot;) olarak görememek — 17'yi hâlâ on yedi ayrı pul sayan, yazılı 1'i &quot;bir&quot; sanan çocuk — matematik öğrenme güçlüğü (diskalkuli) açısından kritik bir uyarıdır; çünkü birimleme (10'u demet sayma) kurulamamıştır. 10'a köprüleme stratejisini (&quot;önce 10'a tamamla, sonra kalanı ekle&quot;) bu aralıkta bilinçli kullanmaya başlar; iki basamaklı toplamada (17 + 36) onluğa tamamlayıp kalanı ekleme aynı stratejinin devamıdır. DokunSay Basamak aracında onluk çubuğu birlik küplerle eşleştirin; &quot;yazılı 17'deki 1 ne demek?&quot; diye yapıyı söyletin.</p></div>
         <div class="act">
     <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
     
-      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay pulları/çubukları (iki renk, 20'ye dek)</li><li>iki onluk çerçeve ya da iki kutu</li></ul></div>
-      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>14 pulu bir onluk çerçeveyi tam doldurarak (10) ve yanına 4 koyarak gösterin: &quot;On ve dört — on dört.&quot;</li><li>Pulları iki kutuya başka türlü paylaştırın (8 ve 6): &quot;Toplam kaç?&quot;; onluğa köprüleyerek (8+2+4) buldurun.</li><li>&quot;15'i 10 ve kaç diye ayırırsın?&quot; gibi onluk-temelli ayrışım sorun.</li><li>16–20 arası farklı sayılarla bileşim ve ayrışım turları yapın.</li></ol></div>
-      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> 20'ye dek bir sayıyı (onluk yapıyı kullanarak) iki parçaya bileştirip ayrıştırmayı doğru yaparsa ✓</p>
+      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay Basamak blokları (onluk çubuk + birlik küp)</li><li>DokunSay pulları/çubukları (iki renk, 20'ye dek)</li><li>iki onluk çerçeve ya da iki kutu</li><li>11–19 sayı kartları</li><li>onluk ve birlik paralar (oyun parası)</li></ul></div>
+      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>14 pulu bir onluk çerçeveyi tam doldurarak (10) ve yanına 4 koyarak gösterin: &quot;On ve dört — on dört.&quot;</li><li>Pulları iki kutuya başka türlü paylaştırın (8 ve 6): &quot;Toplam kaç?&quot;; onluğa köprüleyerek (8+2+4) buldurun.</li><li>17 pulu önce dağınık koyun; &quot;Bunları saymak yerine onar gruplayalım&quot; deyip bir onluk çubuk yapın; kalan 7'yi birlik küp olarak dizin: &quot;Bir onluk, yedi birlik — kaç eder?&quot;</li><li>Yazılı 17 kartını gösterip &quot;buradaki 1 ne, 7 ne?&quot; diye yapıyı söyletin; farklı sayılarla (13, 18, 24) &quot;onluklar + birlikler&quot; kurdurun.</li><li>Onluk ve birlik paralarla 17 ile 36'yı yan yana koyun: önce 17'yi 3 ile 20'ye tamamlatın, sonra kalan 33'ü ekletin (53); elde/gruplama adımını sesli söyletin.</li></ol></div>
+      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> 20'ye dek bir sayıyı onluk yapıyı kullanarak iki parçaya bileştirip ayrıştırır; iki basamaklı bir sayıyı &quot;onluklar + birlikler&quot; olarak (ör. 1 onluk + 7 birlik = 17) kurar ve iki basamaklı bir toplamayı gruplayarak (17 + 36 = 53) yaparsa ✓</p>
       <div class="scaf">
-        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Bir parçayı hep 10 (tam çerçeve) tutun; öbür parçayı ≤5 yapın.</p></div>
-        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>İki parçanın da onluğu aşmadığı kırılımlar (9+8) ya da &quot;17, ona kaç kalır yirmiye?&quot; gibi çift adım.</p></div>
-      </div>
-    <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey için ADIM etkinliği"><b>ADIM</b><span>İlgili düzey için ADIM etkinliği</span></span></div></div>
-  </div>
-      </div>
-      <div class="lv-viz" aria-hidden="true"><svg viewBox="0 0 250 110" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="10" y="32.5" width="108" height="45" rx="6" fill="none" stroke="#cbd5e1" stroke-width="1.5"/><circle cx="22" cy="44.5" r="6.4799999999999995" fill="#2E7D32" stroke="#2E7D32" stroke-width="1.5"/><circle cx="43" cy="44.5" r="6.4799999999999995" fill="#2E7D32" stroke="#2E7D32" stroke-width="1.5"/><circle cx="64" cy="44.5" r="6.4799999999999995" fill="#2E7D32" stroke="#2E7D32" stroke-width="1.5"/><circle cx="85" cy="44.5" r="6.4799999999999995" fill="#2E7D32" stroke="#2E7D32" stroke-width="1.5"/><circle cx="106" cy="44.5" r="6.4799999999999995" fill="#2E7D32" stroke="#2E7D32" stroke-width="1.5"/><circle cx="22" cy="65.5" r="6.4799999999999995" fill="#2E7D32" stroke="#2E7D32" stroke-width="1.5"/><circle cx="43" cy="65.5" r="6.4799999999999995" fill="#2E7D32" stroke="#2E7D32" stroke-width="1.5"/><circle cx="64" cy="65.5" r="6.4799999999999995" fill="#2E7D32" stroke="#2E7D32" stroke-width="1.5"/><circle cx="85" cy="65.5" r="6.4799999999999995" fill="#2E7D32" stroke="#2E7D32" stroke-width="1.5"/><circle cx="106" cy="65.5" r="6.4799999999999995" fill="#2E7D32" stroke="#2E7D32" stroke-width="1.5"/><rect x="132" y="32.5" width="108" height="45" rx="6" fill="none" stroke="#cbd5e1" stroke-width="1.5"/><circle cx="144" cy="44.5" r="6.4799999999999995" fill="#2E7D32" stroke="#2E7D32" stroke-width="1.5"/><circle cx="165" cy="44.5" r="6.4799999999999995" fill="#2E7D32" stroke="#2E7D32" stroke-width="1.5"/><circle cx="186" cy="44.5" r="6.4799999999999995" fill="#2E7D32" stroke="#2E7D32" stroke-width="1.5"/><circle cx="207" cy="44.5" r="6.4799999999999995" fill="#2E7D32" stroke="#2E7D32" stroke-width="1.5"/><circle cx="228" cy="44.5" r="6.4799999999999995" fill="#fff" stroke="#e2e8f0" stroke-width="1.5"/><circle cx="144" cy="65.5" r="6.4799999999999995" fill="#fff" stroke="#e2e8f0" stroke-width="1.5"/><circle cx="165" cy="65.5" r="6.4799999999999995" fill="#fff" stroke="#e2e8f0" stroke-width="1.5"/><circle cx="186" cy="65.5" r="6.4799999999999995" fill="#fff" stroke="#e2e8f0" stroke-width="1.5"/><circle cx="207" cy="65.5" r="6.4799999999999995" fill="#fff" stroke="#e2e8f0" stroke-width="1.5"/><circle cx="228" cy="65.5" r="6.4799999999999995" fill="#fff" stroke="#e2e8f0" stroke-width="1.5"/></svg><span class="viz-cap">bir bakışta</span></div>
-    </div>
-    <div class="lv-foot">
-      <button class="printcard" data-lv="6" type="button">🖨️ Bu kartı yazdır</button>
-      <a class="nextlv" href="#lv-7">Sıradaki düzey · <b>Sayı Kuran (20 ve ötesi)</b> →</a>
-    </div>
-  </article>
-
-  <article class="level bn" id="lv-7">
-    <div class="lv-top">
-      <div class="lv-num" style="--c:#2E7D32">8</div>
-      <div class="lv-id">
-        <div class="lv-badges">
-          <span class="age-pill" style="--c:#2E7D32">7–8 yaş</span>
-          <span class="bn-pill">⚠ Darboğaz · kritik geçiş</span>
-        </div>
-        <h3>Sayı Kuran (20 ve ötesi)</h3>
-      </div>
-    </div>
-    <div class="lv-body">
-      <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Toplamı 18’e kadar tüm tek basamaklı kombinasyonları bilir (6+6…9+9 çiftleri ve yakın-çiftler dâhil); iki basamaklı sayıları onluklar ve birlikler olarak anlamaya başlar.</p>
-        <div class="note how"><h5>Nasıl görünür</h5><p>17 pulu &quot;bir onluk ve birlikler&quot; diye gruplattığınızda çocuk 10'luk bir çubukla (ya da tam dolu onluk çerçeveyle) 7 birliği bir araya getirip &quot;bir onluk, yedi birlik — on yedi&quot; der. 11–19 sayılarını onluk+birlik yapısıyla kurar; yazılı &quot;17&quot;deki 1'in &quot;bir onluk&quot; olduğunu kavrar.</p></div>
-        <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, basamak değerine açılan köprü düzeyidir ve bir darboğazdır: 11–19'un her birini &quot;bir onluk + birlikler&quot; olarak görmek (17 = 1 onluk + 7 birlik), iki basamaklı sayı sisteminin temelidir. 10'u tek tek değil, tek bir BİRİM (&quot;bir onluk&quot;) olarak görememek — 17'yi hâlâ on yedi ayrı pul sayan, yazılı 1'i &quot;bir&quot; sanan çocuk — matematik öğrenme güçlüğü (diskalkuli) açısından kritik bir uyarıdır; çünkü birimleme (10'u demet sayma) kurulamamıştır. DokunSay Basamak aracında onluk çubuğu birlik küplerle eşleştirin; &quot;yazılı 17'deki 1 ne demek?&quot; diye yapıyı söyletin.</p></div>
-        <div class="act">
-    <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
-    
-      <div class="act-sub"><h5>Malzeme</h5><ul class="mats"><li>DokunSay Basamak blokları (onluk çubuk + birlik küp)</li><li>11–19 sayı kartları</li><li>boş onluk çerçeve (yedek)</li></ul></div>
-      <div class="act-sub"><h5>Adımlar</h5><ol class="steps"><li>17 pulu önce dağınık koyun; &quot;Bunları saymak yerine onar gruplayalım&quot; deyip bir onluk çubuk yapın.</li><li>Kalan 7'yi birlik küp olarak yanına dizin: &quot;Bir onluk, yedi birlik — kaç eder?&quot;</li><li>Çocuk &quot;on yedi&quot; desin; yazılı 17 kartını gösterip &quot;buradaki 1 ne, 7 ne?&quot; diye yapıyı söyletin.</li><li>Farklı sayılarla (13, 18) &quot;bir onluk + birlikler&quot; kurdurun; bir birlik ekleyip &quot;şimdi kaç?&quot; deyin.</li></ol></div>
-      <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> 11–19 arası bir sayıyı &quot;bir onluk + birlikler&quot; olarak (ör. 1 onluk + 7 birlik = 17) doğru kurar ve yazılı sayıdaki basamak değerini söylerse ✓</p>
-      <div class="scaf">
-        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Önce hep tam bir onluk + az birlik (1 onluk + 2 = 12) ile çalışın; onluğu birlikte sayıp demetleyin.</p></div>
-        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>İki onluğa geçin (20–24) ya da onluğu bozarak (bir onluk = on birlik) yeniden saydırın.</p></div>
+        <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Bir parçayı hep 10 (tam çerçeve) tutun; öbür parçayı ≤5 yapın. Önce hep tam bir onluk + az birlik (1 onluk + 2 = 12) ile çalışın; onluğu birlikte sayıp demetleyin.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>İki parçanın da onluğu aşmadığı kırılımlar (9+8); iki onluğa geçin (20–24), onluğu bozarak (bir onluk = on birlik) yeniden saydırın ya da eldeli iki basamaklı toplama (28 + 15) verin.</p></div>
       </div>
     <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><a class="chip chip-ds" href="/DokunSayBasamak/" title="Onluk demet + birlik pullarla 11-19 kurma"><b>DokunSay Basamak</b><span>Onluk demet + birlik pullarla 11-19 kurma</span></a><a class="chip chip-ab" href="https://abmato.com/" title="Basamak değeri köprüsü (onluk-birlik) çalışması"><b>ABMATO</b><span>Basamak değeri köprüsü (onluk-birlik) çalışması</span></a><span class="chip chip-adim" title="Onluk ve birlikle oluşturma"><b>ADIM</b><span>Onluk ve birlikle oluşturma</span></span></div></div>
   </div>
@@ -511,17 +472,17 @@
       <div class="lv-viz" aria-hidden="true"><svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="16" y="18" width="12" height="84" rx="3" fill="#2E7D32"/><line x1="16" y1="26.4" x2="28" y2="26.4" stroke="#fff" stroke-width="0.8" opacity=".55"/><line x1="16" y1="34.8" x2="28" y2="34.8" stroke="#fff" stroke-width="0.8" opacity=".55"/><line x1="16" y1="43.2" x2="28" y2="43.2" stroke="#fff" stroke-width="0.8" opacity=".55"/><line x1="16" y1="51.6" x2="28" y2="51.6" stroke="#fff" stroke-width="0.8" opacity=".55"/><line x1="16" y1="60" x2="28" y2="60" stroke="#fff" stroke-width="0.8" opacity=".55"/><line x1="16" y1="68.4" x2="28" y2="68.4" stroke="#fff" stroke-width="0.8" opacity=".55"/><line x1="16" y1="76.8" x2="28" y2="76.8" stroke="#fff" stroke-width="0.8" opacity=".55"/><line x1="16" y1="85.2" x2="28" y2="85.2" stroke="#fff" stroke-width="0.8" opacity=".55"/><line x1="16" y1="93.6" x2="28" y2="93.6" stroke="#fff" stroke-width="0.8" opacity=".55"/><rect x="42" y="28" width="13" height="13" rx="2.5" fill="#f59e0b"/><rect x="59" y="28" width="13" height="13" rx="2.5" fill="#f59e0b"/><rect x="42" y="45" width="13" height="13" rx="2.5" fill="#f59e0b"/><rect x="59" y="45" width="13" height="13" rx="2.5" fill="#f59e0b"/><rect x="42" y="62" width="13" height="13" rx="2.5" fill="#f59e0b"/><rect x="59" y="62" width="13" height="13" rx="2.5" fill="#f59e0b"/><rect x="42" y="79" width="13" height="13" rx="2.5" fill="#f59e0b"/></svg><span class="viz-cap">bir bakışta</span></div>
     </div>
     <div class="lv-foot">
-      <button class="printcard" data-lv="7" type="button">🖨️ Bu kartı yazdır</button>
-      <a class="nextlv" href="#lv-8">Sıradaki düzey · <b>Bildiklerinden Türeten (parça-bütün)</b> →</a>
+      <button class="printcard" data-lv="6" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-7">Sıradaki düzey · <b>Bildiklerinden Türeten (parça-bütün)</b> →</a>
     </div>
   </article>
 
-  <article class="level" id="lv-8">
+  <article class="level" id="lv-7">
     <div class="lv-top">
-      <div class="lv-num" style="--c:#2E7D32">9</div>
+      <div class="lv-num" style="--c:#2E7D32">8</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2E7D32">7–8 yaş</span>
+          <span class="age-pill" style="--c:#2E7D32">6–7 yaş</span>
           
         </div>
         <h3>Bildiklerinden Türeten (parça-bütün)</h3>
@@ -529,7 +490,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Türetilmiş kombinasyonları ve 10’a Tamamlayıp Bozma stratejisini parça-bütün ilişkileri üzerinden kullanır; onluk-birlik artırarak çok basamaklıya geçer.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Her tür problemi esnek stratejiler ve türetilmiş toplamlarla (örn. “7 + 7 = 14, öyleyse 7 + 8 = 15”) çözer. “10’a Tamamlamak İçin Ayırma” stratejisini kullanır. Bir toplamda üç sayıyı aynı anda düşünebilir; birinin arttığının, diğerinin azaldığının farkında olarak bir sayının bir parçasını diğerine aktarabilir. Basit çok basamaklı toplamaları (ve çoğu zaman çıkarmaları) onlukları ve/veya birlikleri artırarak çözer.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>&quot;6+4=10 biliyorsan 6+5 kaçtır?&quot; dediğinizde çocuk baştan saymadan &quot;on bir&quot; der; bilinen bir bileşimden komşu sonucu türetir (&quot;bir fazla, demek 11&quot;). Bir olguyu çıpa alıp +1/−1 ya da ikili-üzerinden akıl yürütür.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu, ezberden akıl yürütmeye geçiştir: çocuk her sonucu yeniden hesaplamak yerine bildiği bir bileşimi (&quot;demir atmış olgu&quot;) kullanıp komşu olguyu türetir. 10 dostları, ikilemeler (5+5) ve &quot;bir fazla/bir az&quot; ilişkileri bu türetmenin çıpalarıdır. &quot;6+4'ü biliyoruz; 6+5 bir fazla&quot; gibi ilişkiyi sözle kurdurmak kazanımdır — sonucu değil, yolu konuşturun.</p></div>
         <div class="act">
@@ -548,17 +509,17 @@
       <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#2E7D32">🧩</span></div>
     </div>
     <div class="lv-foot">
-      <button class="printcard" data-lv="8" type="button">🖨️ Bu kartı yazdır</button>
-      <a class="nextlv" href="#lv-9">Sıradaki düzey · <b>Her Tür Problemi Çözen (parça-bütün)</b> →</a>
+      <button class="printcard" data-lv="7" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-8">Sıradaki düzey · <b>Her Tür Problemi Çözen (parça-bütün)</b> →</a>
     </div>
   </article>
 
-  <article class="level" id="lv-9">
+  <article class="level" id="lv-8">
     <div class="lv-top">
-      <div class="lv-num" style="--c:#2E7D32">10</div>
+      <div class="lv-num" style="--c:#2E7D32">9</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2E7D32">8–9 yaş</span>
+          <span class="age-pill" style="--c:#2E7D32">7 yaş</span>
           
         </div>
         <h3>Her Tür Problemi Çözen (parça-bütün)</h3>
@@ -566,7 +527,7 @@
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Tüm problem türlerini esnek stratejiler ve bilinen kombinasyonlarla, parça-bütün anlayışı üzerinden çözer.</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Her tür problemi esnek stratejiler ve bilinen toplamlarla çözer. Çok basamaklı işlemleri onlukları ve birlikleri artırarak ya da birleştirerek çözebilir (ikincisi, değişimi bilinmeyen birleştirme problemlerinde kullanılmaz).</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>İki kutudaki pullarla anlatılan çok adımlı bir hikâye problemini (&quot;Kutuda 8 vardı, 5 ekledim, sonra 4 verdim — şimdi kaç?&quot;) çocuk bileşim/ayrışımla esnek çözer; kolayına gelen yolu (önce 10'a tamamla ya da geriye say) seçer. Stratejisini değiştirebilir.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Burada bileşim becerisi gerçek problemlere taşınır: çocuk parça-bütün ilişkisini kullanarak değişim (ekleme/çıkarma), birleştirme ve karşılaştırma problemlerini çözer. Önemli olan tek bir yönteme saplanmak değil, sayılara göre en uygun stratejiyi (10'a köprüleme, türetilmiş olgu, geriye sayma) esnek seçebilmesidir. Çözdükten sonra &quot;başka nasıl yapardın?&quot; diye alternatif yolu da konuşturun.</p></div>
         <div class="act">
@@ -585,25 +546,25 @@
       <div class="lv-viz emblem" aria-hidden="true"><span style="--c:#2E7D32">🧩</span></div>
     </div>
     <div class="lv-foot">
-      <button class="printcard" data-lv="9" type="button">🖨️ Bu kartı yazdır</button>
-      <a class="nextlv" href="#lv-10">Sıradaki düzey · <b>Çok Basamaklı Çözen (parça-bütün)</b> →</a>
+      <button class="printcard" data-lv="8" type="button">🖨️ Bu kartı yazdır</button>
+      <a class="nextlv" href="#lv-9">Sıradaki düzey · <b>Çok Basamaklı Toplayıp Çıkaran (parça-bütün)</b> →</a>
     </div>
   </article>
 
-  <article class="level" id="lv-10">
+  <article class="level" id="lv-9">
     <div class="lv-top">
-      <div class="lv-num" style="--c:#2E7D32">11</div>
+      <div class="lv-num" style="--c:#2E7D32">10</div>
       <div class="lv-id">
         <div class="lv-badges">
-          <span class="age-pill" style="--c:#2E7D32">9–10 yaş</span>
+          <span class="age-pill" style="--c:#2E7D32">7–8 yaş</span>
           
         </div>
-        <h3>Çok Basamaklı Çözen (parça-bütün)</h3>
+        <h3>Çok Basamaklı Toplayıp Çıkaran (parça-bütün)</h3>
       </div>
     </div>
     <div class="lv-body">
       <div class="lv-main">
-        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Onlukların bileşimini ve tüm önceki stratejileri kullanarak çok basamaklı toplama-çıkarma problemlerini parça-bütün gözüyle çözer (&quot;38’i 30 ve 8 olarak böl&quot;).</p>
+        <p class="lv-desc"><b>Bu düzeyde çocuk:</b> Onlukların bileşimini ve önceki tüm stratejileri kullanarak çok basamaklı toplama ve çıkarma problemlerini çözer.</p>
         <div class="note how"><h5>Nasıl görünür</h5><p>Onluk-birlik bloklarıyla &quot;23'ü ayır&quot; dediğinizde çocuk 23'ü 2 onluk + 3 birlik diye kurar, sonra istenirse onluğu bozup (1 onluk + 13 birlik) yeniden düzenler; iki basamaklı bir bileşimi/ayrışımı (ör. 23 = 20+3 = 10+13) doğru yapar. Onlukları ve birlikleri ayrı birimler olarak esnekçe oluşturup bozar.</p></div>
         <div class="note teach"><h5>👩‍🏫 Öğretmen notu</h5><p>Bu en üst oluşturma düzeyidir: çocuk çok basamaklı sayıları onluk ve birlik birimleriyle esnekçe kurar, ayrıştırır ve gerektiğinde bir onluğu on birliğe bozar (regrouping/elden). Bu beceri, yazılı çok basamaklı toplama-çıkarmanın (&quot;elde var bir&quot;, &quot;ödünç alma&quot;) kavramsal temelidir — kuralı ezberlemeden ÖNCE bloklarla yaşanması gerekir. DokunSay Basamak aracıyla &quot;bir onluğu on birliğe çevir&quot; hamlesini somutlaştırın; &quot;hangi basamağı bozduk, neden?&quot; diye sürekli sordurun.</p></div>
         <div class="act">
@@ -614,7 +575,7 @@
       <p class="crit"><span class="tick">✓</span> <b>Gözlem ölçütü:</b> İki basamaklı bir sayıyı onluk-birlik birimleriyle doğru kurup ayrıştırır ve gerektiğinde onluğu bozarak (ör. 23 = 10+13) yeniden düzenlerse ✓</p>
       <div class="scaf">
         <div class="scaf-c easy"><h6>↓ Kolaylaştır</h6><p>Onluk bozmadan, yalnız 23 = 20+3 gibi düz ayrışımlarla başlayın.</p></div>
-        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Yüzlük levha ekleyip üç basamağa geçin ya da iki onluk bozma gerektiren çıkarma (32−15) kurun.</p></div>
+        <div class="scaf-c hard"><h6>↑ Zorlaştır</h6><p>Yüzlük levha ekleyip üç basamağa geçin ya da onluk bozma gerektiren iki basamaklı çıkarma (32−15) kurun.</p></div>
       </div>
     <div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row"><span class="chip chip-adim" title="İlgili düzey için ADIM etkinliği"><b>ADIM</b><span>İlgili düzey için ADIM etkinliği</span></span></div></div>
   </div>
@@ -622,7 +583,7 @@
       <div class="lv-viz" aria-hidden="true"><svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="16" y="18" width="12" height="84" rx="3" fill="#2E7D32"/><line x1="16" y1="26.4" x2="28" y2="26.4" stroke="#fff" stroke-width="0.8" opacity=".55"/><line x1="16" y1="34.8" x2="28" y2="34.8" stroke="#fff" stroke-width="0.8" opacity=".55"/><line x1="16" y1="43.2" x2="28" y2="43.2" stroke="#fff" stroke-width="0.8" opacity=".55"/><line x1="16" y1="51.6" x2="28" y2="51.6" stroke="#fff" stroke-width="0.8" opacity=".55"/><line x1="16" y1="60" x2="28" y2="60" stroke="#fff" stroke-width="0.8" opacity=".55"/><line x1="16" y1="68.4" x2="28" y2="68.4" stroke="#fff" stroke-width="0.8" opacity=".55"/><line x1="16" y1="76.8" x2="28" y2="76.8" stroke="#fff" stroke-width="0.8" opacity=".55"/><line x1="16" y1="85.2" x2="28" y2="85.2" stroke="#fff" stroke-width="0.8" opacity=".55"/><line x1="16" y1="93.6" x2="28" y2="93.6" stroke="#fff" stroke-width="0.8" opacity=".55"/><rect x="34" y="18" width="12" height="84" rx="3" fill="#2E7D32"/><line x1="34" y1="26.4" x2="46" y2="26.4" stroke="#fff" stroke-width="0.8" opacity=".55"/><line x1="34" y1="34.8" x2="46" y2="34.8" stroke="#fff" stroke-width="0.8" opacity=".55"/><line x1="34" y1="43.2" x2="46" y2="43.2" stroke="#fff" stroke-width="0.8" opacity=".55"/><line x1="34" y1="51.6" x2="46" y2="51.6" stroke="#fff" stroke-width="0.8" opacity=".55"/><line x1="34" y1="60" x2="46" y2="60" stroke="#fff" stroke-width="0.8" opacity=".55"/><line x1="34" y1="68.4" x2="46" y2="68.4" stroke="#fff" stroke-width="0.8" opacity=".55"/><line x1="34" y1="76.8" x2="46" y2="76.8" stroke="#fff" stroke-width="0.8" opacity=".55"/><line x1="34" y1="85.2" x2="46" y2="85.2" stroke="#fff" stroke-width="0.8" opacity=".55"/><line x1="34" y1="93.6" x2="46" y2="93.6" stroke="#fff" stroke-width="0.8" opacity=".55"/><rect x="60" y="28" width="13" height="13" rx="2.5" fill="#f59e0b"/><rect x="77" y="28" width="13" height="13" rx="2.5" fill="#f59e0b"/><rect x="60" y="45" width="13" height="13" rx="2.5" fill="#f59e0b"/></svg><span class="viz-cap">bir bakışta</span></div>
     </div>
     <div class="lv-foot">
-      <button class="printcard" data-lv="10" type="button">🖨️ Bu kartı yazdır</button>
+      <button class="printcard" data-lv="9" type="button">🖨️ Bu kartı yazdır</button>
       <div class="nextlv done">Bu, yörüngenin son düzeyi 🎒</div>
     </div>
   </article>

@@ -1,12 +1,12 @@
 // Sayı Oluşturma (Composing Numbers) — düzey zenginleştirmesi (Clements & Sarama)
 // ────────────────────────────────────────────────────────────────────────
-// trajectories.data.js içindeki CORE `compose` dizisiyle AYNI sırada 11 nesne.
+// trajectories.data.js içindeki EXT `compose` dizisiyle AYNI sırada 10 nesne (LT_MASTER_TR 17 Eyl 2026: "Composer to 20+; Composer with Tens and Ones" tek düzey).
 // Her düzey: how (nasıl görünür) · teacher (öğretmen notu) · act (etkinlik) · viz/tool (ops.)
 // Çekirdek fikir: PARÇA-BÜTÜN — bir bütün, iki (ya da daha çok) parçaya ayrılır ve
 // yeniden birleşir. DokunSay Bar (iki renkli pul) bu ayrışım/bileşimi görünür kılar;
 // "10 dostları" (10'a tamamlayan ikililer) ve onluk+birlik köprüsü (11–19) vurguludur.
 // Çok basamaklıda DokunSay Basamak aracı devreye girer.
-// Darboğazlar: düzey 3 (4–5'e oluşturma), 5 (10'a oluşturma), 7 (onluk-birlikle oluşturma).
+// Darboğazlar: düzey 3 (4–5’e oluşturma), 5 (10’a oluşturma), 6 (20 ve ötesi; onluk-birlikle kurma).
 export default [
   { // 0 — Parçalar Üzerinde Eyleyen: Temeller (0–18 ay)
     how: "Bebek/küçük çocuk bir küme oyuncağı kendiliğinden iki kaba boşaltıp yeniden bir araya toplar; bir kule yıkılınca parçaları tekrar yığar. Henüz sayı yoktur, ama \"bütün parçalara ayrılır, parçalar birleşir\" eylemini elleriyle yaşar.",
@@ -114,43 +114,26 @@ export default [
     viz: { t: "tenframe", n: 10, frames: 1 },
     tool: "bar",
   },
-  { // 6 — 20+ Oluşturucu (72–84 ay)
-    how: "12–15 pulu iki kutuya paylaştırıp \"Toplam kaç?\" diye sorduğunuzda çocuk parçaları (ör. 10 ve 4) birleştirip saymadan ya da onluğu çıpa alarak 14 der; 20'ye dek bileşim/ayrışımı doğru yapar. Onluk yapıyı kullanarak büyük sayıyı parçalar.",
-    teacher: "Bileşim artık 10'u aşar ve onluk yapı bir araç hâline gelir: 14 = 10+4, 18 = 10+8. Çocuk bir onluğu tek bir parça gibi kullanıp kalan birlikleri ekleyebiliyorsa, basamak değerine geçişe hazırdır. 10'a köprüleme stratejisini (\"önce 10'a tamamla, sonra kalanı ekle\") bu aralıkta bilinçli kullanmaya başlar. Bir parçayı 10 olarak sabitleyip öbürünü değiştirerek onluk yapının kolaylığını gösterin.",
+  { // 6 — Sayı Kuran (20 ve ötesi); Onluk ve Birliklerle Sayı Kuran (6–7 yaş) ★ DARBOĞAZ — LT_MASTER_TR 17 Eyl 2026: sitede tek düzey
+    how: "12–15 pulu iki kutuya paylaştırıp \"Toplam kaç?\" diye sorduğunuzda çocuk parçaları (ör. 10 ve 4) birleştirip saymadan ya da onluğu çıpa alarak 14 der; 20'ye dek bileşim/ayrışımı doğru yapar. 17 pulu \"bir onluk ve birlikler\" diye gruplattığınızda 10'luk bir çubukla 7 birliği bir araya getirip \"bir onluk, yedi birlik — on yedi\" der; yazılı \"17\"deki 1'in \"bir onluk\" olduğunu kavrar. İki basamaklı sayıları onluklar ve birlikler olarak anlar; onluk ve birlik paralarla sayar; iki basamaklı toplamayı gruplayarak (elde) yapar: 17 ile 36 için önce 17 ile 3, yani 20; sonra 33 ile birlikte 53.",
+    teacher: "Bileşim artık 10'u aşar ve onluk yapı bir araç hâline gelir: 14 = 10+4, 18 = 10+8. Bu, basamak değerine açılan köprü düzeyidir ve bir darboğazdır: 11–19'un her birini \"bir onluk + birlikler\" olarak görmek (17 = 1 onluk + 7 birlik), iki basamaklı sayı sisteminin temelidir. 10'u tek tek değil, tek bir BİRİM (\"bir onluk\") olarak görememek — 17'yi hâlâ on yedi ayrı pul sayan, yazılı 1'i \"bir\" sanan çocuk — matematik öğrenme güçlüğü (diskalkuli) açısından kritik bir uyarıdır; çünkü birimleme (10'u demet sayma) kurulamamıştır. 10'a köprüleme stratejisini (\"önce 10'a tamamla, sonra kalanı ekle\") bu aralıkta bilinçli kullanmaya başlar; iki basamaklı toplamada (17 + 36) onluğa tamamlayıp kalanı ekleme aynı stratejinin devamıdır. DokunSay Basamak aracında onluk çubuğu birlik küplerle eşleştirin; \"yazılı 17'deki 1 ne demek?\" diye yapıyı söyletin.",
     act: {
-      materials: ["DokunSay pulları/çubukları (iki renk, 20'ye dek)", "iki onluk çerçeve ya da iki kutu"],
+      materials: ["DokunSay Basamak blokları (onluk çubuk + birlik küp)", "DokunSay pulları/çubukları (iki renk, 20'ye dek)", "iki onluk çerçeve ya da iki kutu", "11–19 sayı kartları", "onluk ve birlik paralar (oyun parası)"],
       steps: [
         "14 pulu bir onluk çerçeveyi tam doldurarak (10) ve yanına 4 koyarak gösterin: \"On ve dört — on dört.\"",
         "Pulları iki kutuya başka türlü paylaştırın (8 ve 6): \"Toplam kaç?\"; onluğa köprüleyerek (8+2+4) buldurun.",
-        "\"15'i 10 ve kaç diye ayırırsın?\" gibi onluk-temelli ayrışım sorun.",
-        "16–20 arası farklı sayılarla bileşim ve ayrışım turları yapın.",
+        "17 pulu önce dağınık koyun; \"Bunları saymak yerine onar gruplayalım\" deyip bir onluk çubuk yapın; kalan 7'yi birlik küp olarak dizin: \"Bir onluk, yedi birlik — kaç eder?\"",
+        "Yazılı 17 kartını gösterip \"buradaki 1 ne, 7 ne?\" diye yapıyı söyletin; farklı sayılarla (13, 18, 24) \"onluklar + birlikler\" kurdurun.",
+        "Onluk ve birlik paralarla 17 ile 36'yı yan yana koyun: önce 17'yi 3 ile 20'ye tamamlatın, sonra kalan 33'ü ekletin (53); elde/gruplama adımını sesli söyletin.",
       ],
-      criterion: "20'ye dek bir sayıyı (onluk yapıyı kullanarak) iki parçaya bileştirip ayrıştırmayı doğru yaparsa ✓",
-      easy: "Bir parçayı hep 10 (tam çerçeve) tutun; öbür parçayı ≤5 yapın.",
-      hard: "İki parçanın da onluğu aşmadığı kırılımlar (9+8) ya da \"17, ona kaç kalır yirmiye?\" gibi çift adım.",
-    },
-    viz: { t: "tenframe", n: 14, frames: 2 },
-    tool: "bar",
-  },
-  { // 7 — Onluk ve Birlikle Oluşturucu (78–90 ay) ★ DARBOĞAZ
-    how: "17 pulu \"bir onluk ve birlikler\" diye gruplattığınızda çocuk 10'luk bir çubukla (ya da tam dolu onluk çerçeveyle) 7 birliği bir araya getirip \"bir onluk, yedi birlik — on yedi\" der. 11–19 sayılarını onluk+birlik yapısıyla kurar; yazılı \"17\"deki 1'in \"bir onluk\" olduğunu kavrar.",
-    teacher: "Bu, basamak değerine açılan köprü düzeyidir ve bir darboğazdır: 11–19'un her birini \"bir onluk + birlikler\" olarak görmek (17 = 1 onluk + 7 birlik), iki basamaklı sayı sisteminin temelidir. 10'u tek tek değil, tek bir BİRİM (\"bir onluk\") olarak görememek — 17'yi hâlâ on yedi ayrı pul sayan, yazılı 1'i \"bir\" sanan çocuk — matematik öğrenme güçlüğü (diskalkuli) açısından kritik bir uyarıdır; çünkü birimleme (10'u demet sayma) kurulamamıştır. DokunSay Basamak aracında onluk çubuğu birlik küplerle eşleştirin; \"yazılı 17'deki 1 ne demek?\" diye yapıyı söyletin.",
-    act: {
-      materials: ["DokunSay Basamak blokları (onluk çubuk + birlik küp)", "11–19 sayı kartları", "boş onluk çerçeve (yedek)"],
-      steps: [
-        "17 pulu önce dağınık koyun; \"Bunları saymak yerine onar gruplayalım\" deyip bir onluk çubuk yapın.",
-        "Kalan 7'yi birlik küp olarak yanına dizin: \"Bir onluk, yedi birlik — kaç eder?\"",
-        "Çocuk \"on yedi\" desin; yazılı 17 kartını gösterip \"buradaki 1 ne, 7 ne?\" diye yapıyı söyletin.",
-        "Farklı sayılarla (13, 18) \"bir onluk + birlikler\" kurdurun; bir birlik ekleyip \"şimdi kaç?\" deyin.",
-      ],
-      criterion: "Toplamı 18'e dek çift/yakın-çift kombinasyonlarını bilir; 11–19 arası bir sayıyı \"bir onluk + birlikler\" olarak (ör. 1 onluk + 7 birlik = 17) kurar ve yazılı sayıdaki basamak değerini söylerse ✓",
-      easy: "Önce hep tam bir onluk + az birlik (1 onluk + 2 = 12) ile çalışın; onluğu birlikte sayıp demetleyin.",
-      hard: "İki onluğa geçin (20–24) ya da onluğu bozarak (bir onluk = on birlik) yeniden saydırın.",
+      criterion: "20'ye dek bir sayıyı onluk yapıyı kullanarak iki parçaya bileştirip ayrıştırır; iki basamaklı bir sayıyı \"onluklar + birlikler\" olarak (ör. 1 onluk + 7 birlik = 17) kurar ve iki basamaklı bir toplamayı gruplayarak (17 + 36 = 53) yaparsa ✓",
+      easy: "Bir parçayı hep 10 (tam çerçeve) tutun; öbür parçayı ≤5 yapın. Önce hep tam bir onluk + az birlik (1 onluk + 2 = 12) ile çalışın; onluğu birlikte sayıp demetleyin.",
+      hard: "İki parçanın da onluğu aşmadığı kırılımlar (9+8); iki onluğa geçin (20–24), onluğu bozarak (bir onluk = on birlik) yeniden saydırın ya da eldeli iki basamaklı toplama (28 + 15) verin.",
     },
     viz: { t: "baseten", tens: 1, ones: 7 },
     tool: "basamak",
   },
-  { // 8 — Türeten +/− (Oluşturma) (84–96 ay)
+  { // 7 — Bildiklerinden Türeten (parça-bütün) (6–7 yaş)
     how: "\"6+4=10 biliyorsan 6+5 kaçtır?\" dediğinizde çocuk baştan saymadan \"on bir\" der; bilinen bir bileşimden komşu sonucu türetir (\"bir fazla, demek 11\"). Bir olguyu çıpa alıp +1/−1 ya da ikili-üzerinden akıl yürütür.",
     teacher: "Bu, ezberden akıl yürütmeye geçiştir: çocuk her sonucu yeniden hesaplamak yerine bildiği bir bileşimi (\"demir atmış olgu\") kullanıp komşu olguyu türetir. 10 dostları, ikilemeler (5+5) ve \"bir fazla/bir az\" ilişkileri bu türetmenin çıpalarıdır. \"6+4'ü biliyoruz; 6+5 bir fazla\" gibi ilişkiyi sözle kurdurmak kazanımdır — sonucu değil, yolu konuşturun.",
     act: {
@@ -167,7 +150,7 @@ export default [
     },
     tool: "bar",
   },
-  { // 9 — Problem Çözen +/− (Oluşturma) (96–108 ay)
+  { // 8 — Her Tür Problemi Çözen (parça-bütün) (7 yaş)
     how: "İki kutudaki pullarla anlatılan çok adımlı bir hikâye problemini (\"Kutuda 8 vardı, 5 ekledim, sonra 4 verdim — şimdi kaç?\") çocuk bileşim/ayrışımla esnek çözer; kolayına gelen yolu (önce 10'a tamamla ya da geriye say) seçer. Stratejisini değiştirebilir.",
     teacher: "Burada bileşim becerisi gerçek problemlere taşınır: çocuk parça-bütün ilişkisini kullanarak değişim (ekleme/çıkarma), birleştirme ve karşılaştırma problemlerini çözer. Önemli olan tek bir yönteme saplanmak değil, sayılara göre en uygun stratejiyi (10'a köprüleme, türetilmiş olgu, geriye sayma) esnek seçebilmesidir. Çözdükten sonra \"başka nasıl yapardın?\" diye alternatif yolu da konuşturun.",
     act: {
@@ -184,7 +167,7 @@ export default [
     },
     tool: "bar",
   },
-  { // 10 — Çok Basamaklı +/− (Oluşturma) (102–120 ay)
+  { // 9 — Çok Basamaklı Toplayıp Çıkaran (parça-bütün) (7–8 yaş)
     how: "Onluk-birlik bloklarıyla \"23'ü ayır\" dediğinizde çocuk 23'ü 2 onluk + 3 birlik diye kurar, sonra istenirse onluğu bozup (1 onluk + 13 birlik) yeniden düzenler; iki basamaklı bir bileşimi/ayrışımı (ör. 23 = 20+3 = 10+13) doğru yapar. Onlukları ve birlikleri ayrı birimler olarak esnekçe oluşturup bozar.",
     teacher: "Bu en üst oluşturma düzeyidir: çocuk çok basamaklı sayıları onluk ve birlik birimleriyle esnekçe kurar, ayrıştırır ve gerektiğinde bir onluğu on birliğe bozar (regrouping/elden). Bu beceri, yazılı çok basamaklı toplama-çıkarmanın (\"elde var bir\", \"ödünç alma\") kavramsal temelidir — kuralı ezberlemeden ÖNCE bloklarla yaşanması gerekir. DokunSay Basamak aracıyla \"bir onluğu on birliğe çevir\" hamlesini somutlaştırın; \"hangi basamağı bozduk, neden?\" diye sürekli sordurun.",
     act: {

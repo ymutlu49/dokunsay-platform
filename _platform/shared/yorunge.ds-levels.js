@@ -489,10 +489,10 @@ DS_EG.add = (i) => {
 }
 
 // ────────────────────────────────────────────────────────────────────────
-// compose — OLUŞTURMA/AYRIŞTIRMA · 11 düzey
+// compose — OLUŞTURMA/AYRIŞTIRMA · 10 düzey (LT_MASTER_TR 17 Eyl 2026: 20+ ve onluk-birlik tek düzey)
 // Ayrım ekseni: dök-topla eylemi → iki parçayı birleştir → örtüleni koru →
 // tüm ayrımları üret → eksik parçayı 5 çıpasıyla söyle → 10 dostları →
-// onluğu çıpa yap → sembolde onluk → komşu türetme → problem → onluğu boz.
+// onluğu çıpa yap + sembolde onluk (tek düzey) → komşu türetme → problem → onluğu boz.
 // ────────────────────────────────────────────────────────────────────────
 DS_EX.compose = (i) => {
   if (i === 0) return [ // EYLEM — sayı yok: ayır ve topla
@@ -525,22 +525,17 @@ DS_EX.compose = (i) => {
     item('7 varsa dostu kim? Bir bakışta söyle.', dsFrame(2, 5, 7), eqRow(`7 ve ${wbox()}`)),
     item('Sana 4 diyorum, sen ne dersin?', '', hint('altı — dostunu hemen söyle')),
   ]
-  if (i === 6) return [ // ONLUK ÇIPASI — 14 = 10 ve 4
+  if (i === 6) return [ // ONLUK ÇIPASI + SEMBOLDE ONLUK — 14 = 10 ve 4; yazılı 17'deki 1 bir ONLUK'tur; iki basamaklı toplama gruplayarak
     item('Bir çerçeve TAM dolu, ötekinde 4. Toplam kaç?', dsFrame(2, 5, 10) + dsFrame(2, 5, 4), eqRow(`10 ve 4 → ${wboxBig()}`)),
-    item("18'i ikiye ayır: biri tam onluk olsun.", dsBaseten(1, 8), eqRow(`18 = 10 + ${wbox()}`)),
-    item('12 ve 15 için onluğu çıpa al, kalanı söyle.', '', hint('10 ve 2 · 10 ve 5')),
-  ]
-  if (i === 7) return [ // SEMBOL + ÇİFTLER — yazılı 17'deki 1 bir ONLUK'tur; çiftler 18'e dek
     item('"17" yazıyor. Buradaki 1 kaç tane demek?', dsBaseten(1, 7), hint('bir ONLUK — bir tane değil')),
-    item('Bu bloklarla hangi sayı yazılır?', dsBaseten(2, 3), wboxBig()),
-    item('Çiftleri biliyorsun: 8 + 8 = 16. Yakın çift 8 + 9 kaç?', '', eqRow(`8 + 9 = ${wboxBig()}`)),
+    item("17 ile 36'yı topla: önce 17'yi 20'ye tamamla, sonra kalanı ekle.", dsBaseten(2, 3), eqRow(`17 + 36 = ${wboxBig()}`)),
   ]
-  if (i === 8) return [ // KOMŞU TÜRETME — bilinen bileşimden
+  if (i === 7) return [ // KOMŞU TÜRETME — bilinen bileşimden
     item('6 + 4 = 10 biliyorsun. 6 + 5 kaç? Sayma.', '', eqRow(`6 + 5 = ${wboxBig()}`)),
     item('8 + 2 = 10 ise 8 + 3 kaç? Neyi çıpa aldın?', dsFrame(2, 5, 8), eqRow(`8 + 3 = ${wboxBig()}`)),
     item('Hangi bileşimi çıpa olarak kullandın? Anlat.', '', hint("10 dostunu çıpa aldım")),
   ]
-  if (i === 9) return [ // PROBLEM — çok adım, strateji seçimi
+  if (i === 8) return [ // PROBLEM — çok adım, strateji seçimi
     item('Kutuda 8 vardı, 5 ekledim, 4 verdim. Şimdi kaç?', '', eqRow(`${wbox()} → ${wbox()} → ${wboxBig()}`)),
     item("Önce 10'a mı tamamladın, yoksa geri mi saydın?", '', hint('kolayına geleni seç')),
     item('İki kutuda toplam 13 var, birinde 8. Ötekinde?', dsFrame(2, 5, 8), eqRow(`8 + ${wbox()} = 13`)),
@@ -559,10 +554,9 @@ DS_EG.compose = (i) => {
   if (i === 3) return item("4'ü üç farklı yoldan ayırdım; bütün hep 4 kaldı.", dsChipsTwo(1, 3), shown('3-1 · 2-2 · 1-3'))
   if (i === 4) return item('3 buradaysa öteki 4 — saymadım, 7 = 3 ve 4.', dsChipsTwo(3, 4), shown('7 = 3 ve 4'))
   if (i === 5) return item("7 dolu, dostu 3 — 10 dostlarını ezbere biliyorum.", dsFrame(2, 5, 7), shown('7 ve 3 → 10'))
-  if (i === 6) return item('Bir çerçeve tam, ötekinde 4: on ve dört → 14.', dsFrame(2, 5, 10) + dsFrame(2, 5, 4), shown('10 + 4 = 14'))
-  if (i === 7) return item('"17"deki 1, bir ONLUK demek: 1 onluk 7 birlik.', dsBaseten(1, 7), shown('17 = 1 onluk 7 birlik'))
-  if (i === 8) return item('6+4=10 biliyordum; 6+5 bir fazla → 11.', '', shown('6 + 5 = 11'))
-  if (i === 9) return item("8+5=13, sonra 13−4=9. Önce 10'a tamamladım.", '', shown('9'))
+  if (i === 6) return item('"17"deki 1, bir ONLUK demek: 1 onluk 7 birlik; on ve dört → 14.', dsBaseten(1, 7), shown('17 = 1 onluk 7 birlik'))
+  if (i === 7) return item('6+4=10 biliyordum; 6+5 bir fazla → 11.', '', shown('6 + 5 = 11'))
+  if (i === 8) return item("8+5=13, sonra 13−4=9. Önce 10'a tamamladım.", '', shown('9'))
   return item("23'ü bozdum: 1 onluk 13 birlik — sayı yine 23.", dsBaseten(1, 13), shown('23 = 10 + 13'))
 }
 
