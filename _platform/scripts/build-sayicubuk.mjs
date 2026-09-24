@@ -127,7 +127,7 @@ const html = `<!doctype html>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>DokunSay Noktalı Sayı Çubukları — Somut Matematik Seti</title>
 <meta name="description" content="DokunSay Noktalı Sayı Çubukları: sayıları hem görerek hem dokunarak öğreten somut matematik seti. Yeşil Düzey etkinlik kitabıyla erken matematik için.">
-<link rel="icon" href="/icon.svg">
+<link rel="icon" href="/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>

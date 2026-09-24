@@ -110,6 +110,23 @@ try {
   execSync(process.platform === 'win32' ? `type nul > "${nojekyll}"` : `touch "${nojekyll}"`, { shell: true });
 } catch { /* ignore */ }
 
+// ── Statik içerik sayfaları: /rehber/ ve /sayi-cubuklari/ ───────────────────────
+//    Üreteçler vardı ama derlemeden çağrılmıyordu: site başlığındaki "📘 Müdahale
+//    Rehberi" bağlantısı canlıda 404'e düşüyordu. Her tam derlemede yeniden üretilir.
+const ICERIK_SAYFALARI = [
+  { ad: 'rehber', script: 'build-rehber.mjs', args: `"${path.join(__dirname, 'rehber-sections.json')}"` },
+  { ad: 'sayi-cubuklari', script: 'build-sayicubuk.mjs', args: '' },
+];
+for (const sayfa of ICERIK_SAYFALARI) {
+  try {
+    console.log(`\n${BOLD}📄 /${sayfa.ad}/ üretiliyor${RESET}`);
+    execSync(`node "${path.join(__dirname, sayfa.script)}" ${sayfa.args}`, { stdio: 'inherit', shell: true });
+  } catch (e) {
+    console.error(`${FAIL}✗ /${sayfa.ad}/ üretilemedi: ${e.message}${RESET}`);
+    failed++;
+  }
+}
+
 // ── Site haritası ─────────────────────────────────────────────────────────────
 //    Elle bakılan bir sitemap.xml vardı ve listeden geri kalmıştı: ZihindenAritmetik
 //    eklendiğinde haritaya girmemişti. Artık aynı APPS listesinden üretiliyor, yani
@@ -119,6 +136,8 @@ try {
   const satirlar = [
     { yol: '', oncelik: '1.0' },
     { yol: 'yorunge/', oncelik: '0.9' },
+    { yol: 'rehber/', oncelik: '0.8' },
+    { yol: 'sayi-cubuklari/', oncelik: '0.7' },
     ...APPS.filter((a) => a.folder).map((a) => ({ yol: `${a.folder}/`, oncelik: '0.8' })),
   ];
   const govde = satirlar
