@@ -1,0 +1,50 @@
+name: Deploy to Cloudflare Pages (dokunsay.com)
+
+# main'e her push'ta dokunsay.com (Cloudflare Pages projesi: dokunsay) güncellenir.
+# Mevcut deploy.yml GitHub Pages aynasını üretmeye devam eder; bu iş akışı aynı derlemeyi
+# SITE_BASE=/ ile alıp Cloudflare'a yükler. Gerekli depo sırları: CLOUDFLARE_API_TOKEN
+# ("Cloudflare Pages: Edit"), CLOUDFLARE_ACCOUNT_ID. Sırlar yoksa dağıtım uyarıyla atlanır.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: cloudflare-pages
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install dependencies (all 9 projects)
+        run: |
+          for dir in _platform/launcher DokunSayBar DokunSayBasamak DokunSayClock DokunSayKesir DokunSayTam Dokunsay-geo Dokunsay-veri-app ZihindenAritmetik; do
+            echo "📦 Installing $dir"
+            cd "$dir"
+            npm ci --no-audit --no-fund || npm install --no-audit --no-fund
+            cd -
+          done
+      - name: Build unified site (kök yol, rehber + sayı çubukları dahil)
+        env:
+          SITE_BASE: /
+        run: node _platform/scripts/build-site.js
+      - run: node _platform/scripts/verify.js
+      - id: cf
+        run: echo "enabled=${{ secrets.CLOUDFLARE_API_TOKEN != '' && secrets.CLOUDFLARE_ACCOUNT_ID != '' }}" >> "$GITHUB_OUTPUT"
+      - if: steps.cf.outputs.enabled != 'true'
+        run: echo "::warning::CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID tanımlı değil — dokunsay.com dağıtımı atlandı."
+      - if: steps.cf.outputs.enabled == 'true'
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist-site --project-name dokunsay --branch main
