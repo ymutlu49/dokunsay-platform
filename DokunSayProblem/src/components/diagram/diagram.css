@@ -1,0 +1,97 @@
+/* Şema diyagramları: şerit (görsel div) + rol kutusu (hedef). Orantı flex-grow ile. */
+.diagram { margin: 12px 0 0; padding: 12px; border-radius: 16px; background: color-mix(in srgb, var(--schema, var(--acc)) 5%, #fff); border: 2px solid color-mix(in srgb, var(--schema, var(--acc)) 25%, #fff); }
+.dg { display: flex; flex-direction: column; gap: 8px; }
+.dg-row { display: flex; gap: 8px; align-items: flex-start; }
+.dg-col { flex: 1 1 0; min-width: 40px; display: flex; flex-direction: column; gap: 6px; transition: flex-grow 0.4s ease; }
+.dg-spacer { visibility: hidden; }
+.dg-gutter { flex: 0 0 96px; display: flex; }
+.dg-gutter:empty { visibility: hidden; }
+.dg-bracket { width: 100%; height: 14px; color: var(--ink-soft); }
+.strip { position: relative; height: 34px; border-radius: 8px; background-color: color-mix(in srgb, var(--tc) 30%, #fff); border: 2px solid var(--tc); overflow: hidden; display: grid; place-items: center; transition: width 0.4s ease; }
+.strip.is-dashed { border-style: dashed; background-color: color-mix(in srgb, var(--tc) 12%, #fff); }
+.strip.is-linked, .rolebox.is-linked, .eqslot.is-linked, .eqline__t.is-linked { box-shadow: 0 0 0 4px #fde047; }
+.strip__val { position: relative; z-index: 1; font-weight: 900; background: rgba(255, 255, 255, 0.85); border-radius: 6px; padding: 0 5px; font-size: 0.9em; }
+.tone-1 { --tc: var(--t1); }
+.tone-2 { --tc: var(--t2); }
+.tone-3 { --tc: var(--t3); }
+.tone-4 { --tc: var(--t4); }
+/* Desenler: her tonun kendi dokusu (renk körü modunda belirgin) */
+.pat-1 { background-image: repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.07) 0 3px, transparent 3px 9px); }
+.pat-2 { background-image: radial-gradient(rgba(0, 0, 0, 0.12) 1.3px, transparent 1.6px); background-size: 8px 8px; }
+.pat-3 { background-image: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.07) 0 2px, transparent 2px 8px); }
+.pat-4 { background-image: repeating-linear-gradient(-45deg, rgba(0, 0, 0, 0.08) 0 2px, transparent 2px 7px), repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.08) 0 2px, transparent 2px 7px); }
+html[data-colorblind="on"] .pat-1 { background-image: repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.3) 0 3px, transparent 3px 9px); }
+html[data-colorblind="on"] .pat-2 { background-image: radial-gradient(rgba(0, 0, 0, 0.4) 1.6px, transparent 2px); }
+html[data-colorblind="on"] .pat-3 { background-image: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.3) 0 2px, transparent 2px 8px); }
+html[data-colorblind="on"] .pat-4 { background-image: repeating-linear-gradient(-45deg, rgba(0, 0, 0, 0.3) 0 2px, transparent 2px 7px), repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.3) 0 2px, transparent 2px 7px); }
+.strip.has-units { background-image: repeating-linear-gradient(to right, transparent 0 calc(100% / var(--n) - 2px), rgba(255, 255, 255, 0.95) calc(100% / var(--n) - 2px) calc(100% / var(--n))); }
+.rolebox { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 64px; width: 100%; padding: 6px; border-radius: 12px; border: 2px dashed color-mix(in srgb, var(--tc) 60%, #fff); background: #fff; color: var(--ink); font-weight: 800; text-align: center; overflow: hidden; font-size: 1em; }
+button.rolebox:hover { border-style: solid; }
+.rolebox.is-filled { border-style: solid; }
+.rolebox.is-ok { border-color: var(--ok); background: var(--ok-soft); }
+.rolebox.is-bad { border-color: var(--bad); background: var(--bad-soft); animation: shake 0.4s; }
+.rolebox__role { font-size: 0.7em; font-weight: 900; text-transform: uppercase; letter-spacing: 0.03em; color: color-mix(in srgb, var(--tc) 70%, #000); }
+.rolebox__label { font-size: 0.85em; line-height: 1.15; max-width: 100%; overflow: hidden; text-overflow: ellipsis; }
+.rolebox__label.is-empty { min-width: 60%; border-bottom: 2px dotted var(--line); }
+.rolebox__value { display: inline-flex; align-items: center; gap: 4px; font-size: 1.3em; font-weight: 900; min-height: 30px; }
+.rolebox__slot { display: inline-block; width: 30px; height: 26px; border-radius: 6px; border: 2px dashed var(--line); }
+.rolebox__mark { position: absolute; top: 4px; right: 4px; width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center; color: #fff; background: var(--ok); }
+.rolebox.is-bad .rolebox__mark { background: var(--bad); }
+.rolebox--ghost { border-style: dotted; opacity: 0.6; min-height: 40px; }
+.dg-sign { font-size: 0.9em; color: var(--ink-soft); }
+.dg-ref { display: inline-grid; place-items: center; color: var(--t4); }
+.mode-scaled .rolebox { min-height: 48px; }
+.mode-scaled .rolebox__label { white-space: nowrap; }
+.qtoken { display: inline-grid; place-items: center; min-width: 32px; height: 30px; padding: 0 6px; border-radius: 8px; background: var(--q); border: 2px dashed #a16207; color: #422006; font-weight: 900; }
+.qtoken--sm { min-width: 22px; height: 22px; font-size: 0.85em; }
+.dg-change__row { align-items: center; }
+.dg-change__arrow { width: 100%; height: 20px; color: var(--ink-soft); }
+.dg-change__stripwrap { display: flex; justify-content: center; }
+.dg-eg__cells { flex: 1; display: flex; gap: 4px; min-width: 0; }
+.dg-eg__cell { min-width: 28px; }
+.dg-eg__more { flex: 0 0 24px; min-width: 24px; display: grid; place-items: center; font-weight: 900; color: var(--ink-soft); height: 34px; }
+.dg-mc__segs { display: flex; gap: 3px; }
+.dg-mc__segs .strip { flex: 1; }
+.dots { display: flex; flex-wrap: wrap; gap: 2px; justify-content: center; padding: 2px; }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--tc); animation: dotIn 0.3s both; animation-delay: var(--d); }
+.dg-eg .strip { height: auto; min-height: 34px; }
+@keyframes dotIn { from { transform: scale(0); opacity: 0; } to { transform: none; opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .dg-col, .strip { transition: none; }
+  .dot { animation: none; }
+}
+.dg.is-compact .rolebox { min-height: 40px; }
+.dg.is-compact .rolebox__label { display: none; }
+.dg.is-compact .strip { height: 26px; }
+.viewtoggle { display: flex; gap: 6px; flex-wrap: wrap; }
+html[data-contrast="high"] .strip { border-width: 3px; border-color: #000; }
+html[data-contrast="high"] .rolebox, html[data-contrast="high"] .chip { border-color: #000; }
+
+/* Duyarlı düzen (çözüm ekranı) */
+@media (max-width: 899px) {
+  .solve-body { grid-template-columns: 1fr; }
+  .story { padding: 10px 12px; }
+  .story__toggle { display: inline-block; }
+  .story:not(.is-expanded) .story__sent:not(.is-question):not(.is-reading) { display: none; }
+  .story:not(.is-expanded) .story__words { display: none; }
+  .story__text { margin: 6px 0; font-size: 1.02em; }
+}
+@media (max-width: 560px) {
+  .app__panel { padding: 8px 10px 96px; }
+  :root { --fs: 16px; }
+  .steprail__icon { width: 34px; height: 34px; }
+  .solve-top { position: relative; padding-right: 96px; }
+  .solve-top__tools { position: absolute; right: 0; top: 4px; }
+  .solve-work { padding: 12px; }
+  .dg-gutter { flex-basis: 72px; }
+  .rolebox__value { font-size: 1.1em; }
+  .reflect { grid-template-columns: repeat(3, 1fr); }
+  .bins { grid-template-columns: 1fr; }
+  .step-head { flex-direction: column; }
+  .eqslot { width: 60px; height: 56px; }
+}
+@media (min-width: 1600px) {
+  :root { --fs: 20px; }
+  .app__panel { max-width: 1760px; }
+  .strip { height: 44px; }
+}

@@ -1,5 +1,13 @@
 # DokunSay Platform — Değişiklik Kaydı
 
+## [1.3.0] — 2026-09-27 — Yeni araç: DokunSay Problem
+
+- `DokunSayProblem/` (id `problem`, port 3009, yayın `/DokunSayProblem/`, accent çivit `#4f46e5`) platforma kaydedildi: `apps.js`, launcher `tools.js` (5 dil, beta, Sayı & İşlem), `tools.test.js`, `palette.js`/`palette.d.ts`/`appIcon.js`, CI kurulum döngüleri, `run-all.js`/`dev-all.js`/`verify.js`, kök `dev:problem`.
+- ZihindenAritmetik eksik olduğu elle yazılmış listelere eklendi (`run-all.js`, `dev-all.js`, `verify.js` — verify'da `legacy`: bulgular uyarı sayılır).
+- Launcher istatistik kartı araç sayısını `TOOLS.length`'ten okur.
+- Yörünge: `build-yorunge.mjs` isteğe bağlı `extra` rozet alanı (düzeyin `tool`'unu değiştirmeden ek araç bağlantısı); add 3/5/6/7/8/10, compose 8, multdiv 3/5/7 düzeylerine DokunSay Problem rozeti.
+- Müdahale Rehberi: `rehber-sections.json` bölümlerine isteğe bağlı `arac` butonu; "Şema temelli" bölümü DokunSay Problem'e bağlandı.
+
 ## [1.2.0] — 2026-04-20 — Bar Pilot: shared/ Entegrasyonu
 
 ### Faz 1: Servis Köprüleri

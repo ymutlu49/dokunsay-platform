@@ -57,6 +57,8 @@ DokunSay/
 | **Tam** | Tam sayılar, negatif | 10-13 | Sıfır Çifti + Senaryo | ✅ Stabil |
 | **Geo** | Geometri 2B/3B | 5-14 | Van Hiele + Crowley | ✅ Stabil |
 | **Veri** | İstatistik okuryazarlığı | 7-15 | Curcio + GAISE + PPDAC | ✅ Stabil |
+| **Zihinden** | Zihinden aritmetik, sayı konuşmaları | 6-11 | Parrish + PEI + CRA | ✅ Stabil |
+| **Problem** | Şemayla sözel problem çözme | 6-11 | SBI + Polya/Montague + CRA | 🧪 Beta |
 
 ---
 
@@ -128,6 +130,8 @@ Her aracın portu STANDARDS.md'de listelenmiştir:
 | Tam | 3005 |
 | Geo | 3006 |
 | Veri | 3007 |
+| Zihinden | 3008 |
+| Problem | 3009 |
 
 ---
 

@@ -8,7 +8,7 @@
 
 ---
 
-**DokunSay**, 5-15 yaş arası her seviyedeki öğrenciye yönelik kapsamlı bir dijital matematik öğretim araçları ailesidir. Diskalkuli (matematik öğrenme güçlüğü) olan çocuklar için de özel erişilebilirlik desteği içerir. 7 uygulama — aynı pedagojik felsefe, aynı tasarım dili, aynı erişilebilirlik standartları, her biri kendi kimlik rengine sahip.
+**DokunSay**, 5-15 yaş arası her seviyedeki öğrenciye yönelik kapsamlı bir dijital matematik öğretim araçları ailesidir. Diskalkuli (matematik öğrenme güçlüğü) olan çocuklar için de özel erişilebilirlik desteği içerir. 9 uygulama — aynı pedagojik felsefe, aynı tasarım dili, aynı erişilebilirlik standartları, her biri kendi kimlik rengine sahip.
 
 ## 🎯 Araçlar
 
@@ -21,6 +21,8 @@
 | [**Tam**](./DokunSayTam/) | ➕➖ | Tam Sayılar | 10-13 | Sıfır Çifti |
 | [**Geo**](./Dokunsay-geo/) | 🔺 | Geometri | 5-14 | Van Hiele |
 | [**Veri**](./Dokunsay-veri-app/) | 📊 | İstatistik | 7-15 | Curcio + GAISE |
+| [**Zihinden**](./ZihindenAritmetik/) | 📘 | Zihinden Aritmetik (kitabın uygulama cildi) | 6-11 | Parrish + PEI + CRA |
+| [**Problem**](./DokunSayProblem/) | 🧩 | Şemayla sözel problem çözme | 6-11 | SBI + Polya/Montague + CRA |
 
 ## 🌐 GitHub Pages Dağıtımı
 

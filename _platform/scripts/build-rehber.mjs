@@ -93,6 +93,10 @@ function comparisonTable(secs) {
 function renderSection(s, i) {
   const list = (arr, cls) => '<ol class="' + cls + '">' + (arr || []).map((x) => '<li>' + bold(esc(x)) + '</li>').join('') + '</ol>';
   const ul = (arr) => '<ul class="hatalar">' + (arr || []).map((x) => '<li>' + bold(esc(x)) + '</li>').join('') + '</ul>';
+  // İsteğe bağlı araç butonu: { "arac": { "href": "/DokunSayProblem/", "label": "DokunSay Problem ile uygula" } }.
+  // dokunsay_bagi HTML kaçışlı basıldığı için bağlantı ayrı alandan gelir.
+  const aracCta = (s.arac && s.arac.href) ? '<p class="arac-cta"><a class="btn-arac" href="' + esc(s.arac.href) + '">🧩 ' + esc(s.arac.label || 'Araçla uygula') + ' →</a></p>' : '';
+  const hasBag = !!(s.dokunsay_bagi && s.dokunsay_bagi.trim());
   return '<section class="method" id="' + slug(s.key) + '">' +
     '<div class="m-head"><span class="m-num">' + (i + 1) + '</span><div><h2>' + esc(s.title) + '</h2>' +
       '<div class="m-meta">' + badge(s.kanit_gucu) + '<span class="m-ozet">' + bold(esc(s.ozet || '')) + '</span></div></div></div>' +
@@ -103,7 +107,7 @@ function renderSection(s, i) {
       '<div class="block"><h3>Sınıfta nasıl uygulanır?</h3>' + list(s.nasil, 'nasil') + '</div>' +
       '<div class="block ornek"><h3>🧩 Sınıf örneği</h3>' + (s.exampleSvg ? '<div class="ex-visual">' + s.exampleSvg + (s.exampleCaption ? '<p class="cap">' + esc(s.exampleCaption) + '</p>' : '') + '</div>' : '') + para(s.ornek) + '</div>' +
       '<div class="block"><h3>⚠️ Sık yapılan hatalar</h3>' + ul(s.hatalar) + '</div>' +
-      (s.dokunsay_bagi && s.dokunsay_bagi.trim() ? '<div class="block dbag"><h3>🛠️ DokunSay / Numap bağı</h3>' + para(s.dokunsay_bagi) + '</div>' : '') +
+      (hasBag || aracCta ? '<div class="block dbag"><h3>🛠️ DokunSay / Numap bağı</h3>' + (hasBag ? para(s.dokunsay_bagi) : '') + aracCta + '</div>' : '') +
     '</div></section>';
 }
 
@@ -226,6 +230,11 @@ ul.hatalar li{position:relative;padding:5px 0 5px 26px;font-size:.96rem}
 ul.hatalar li::before{content:"⚠";position:absolute;left:0;top:5px;color:#c2410c;font-size:.9rem}
 .block.dbag{background:#eef6ff;border:1px solid #bcd9f5;border-radius:12px;padding:13px 16px}
 .block.dbag h3{color:#0d5a8a}
+.arac-cta{margin:12px 0 2px}
+a.btn-arac{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:10px 18px;border-radius:12px;background:var(--green);color:#fff;font-family:Poppins;font-weight:700;text-decoration:none;box-shadow:0 8px 18px -12px rgba(27,94,32,.8)}
+a.btn-arac:hover,a.btn-arac:focus-visible{background:var(--deep)}
+a.btn-arac:focus-visible{outline:3px solid #f59e0b;outline-offset:2px}
+@media print{.arac-cta{display:none}}
 .cc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:14px}
 .cc{background:#f6faf5;border:1px solid var(--line);border-radius:14px;padding:15px 17px}
 .cc h3{font-size:1rem;color:var(--deep);margin-bottom:5px}

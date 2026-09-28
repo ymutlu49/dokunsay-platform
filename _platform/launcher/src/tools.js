@@ -312,35 +312,76 @@ export const TOOLS = [
     folder: 'ZihindenAritmetik',
     status: 'stable',
   },
+  {
+    id: 'problem',
+    // KU-DENETİM: pirsgirêk / çareserî / berhevdan FerMat'tan (th_problem, th_solution,
+    // th_comparison). "kargeh" (atölye), "şema", "pirsgirêka bi gotinan" (sözel problem)
+    // ve "zanîna li ser zanînê" (üstbiliş) sözlükte yok — ana dil denetimi bekler.
+    name: {
+      tr: 'DokunSay Problem',
+      ku: 'DokunSay Problem',
+      en: 'DokunSay Problem',
+      ar: 'دكن‑ساي المسائل',
+      fa: 'دکن‑سای مسئله',
+    },
+    subtitle: {
+      tr: 'Problem Çözme Atölyesi',
+      ku: 'Kargeha Çareseriya Pirsgirêkan',
+      en: 'Problem Solving Workshop',
+      ar: 'ورشة حلّ المسائل',
+      fa: 'کارگاه حلّ مسئله',
+    },
+    description: {
+      tr: 'Hikâyeyi anla, yapısını şema ile göster, tahmin et, çöz ve kontrol et. Beş şema, azalan destek, sesli okuma ve öğretmen araçları.',
+      ku: 'Çîrokê fêm bike, avahiya wê bi şemayê nîşan bide, texmîn bike, çareser bike û kontrol bike. Pênc şema, piştgiriya kêmbûyî, xwendina bi deng û amûrên mamoste.',
+      en: 'Understand the story, show its structure with a schema, estimate, solve and check. Five schemas, fading support, read-aloud and teacher tools.',
+      ar: 'افهم القصة، وأظهر بنيتها بمخطّط، وقدّر، وحُلّ، وتحقّق. خمسة مخطّطات، ودعم متناقص، وقراءة صوتية، وأدوات للمعلّم.',
+      fa: 'داستان را بفهم، ساختارش را با طرح‌واره نشان بده، تخمین بزن، حل کن و بررسی کن. پنج طرح‌واره، پشتیبانی کاهنده، خوانش صوتی و ابزارهای معلم.',
+    },
+    icon: '🧩',
+    color: '#4f46e5',
+    ageRange: '6-11',
+    topics: {
+      tr: ['Sözel Problem', 'Şema', 'Bar Model', 'Üstbiliş'],
+      ku: ['Pirsgirêka bi Gotinan', 'Şema', 'Modela Çovikê', 'Zanîna li ser Zanînê'],
+      en: ['Word Problems', 'Schema', 'Bar Model', 'Metacognition'],
+      ar: ['المسائل اللفظية', 'المخطّط', 'نموذج الشريط', 'ما وراء المعرفة'],
+      fa: ['مسئلهٔ کلامی', 'طرح‌واره', 'مدل نواری', 'فراشناخت'],
+    },
+    framework: 'SBI + Polya/Montague + CRA',
+    devUrl: 'http://localhost:3009',
+    folder: 'DokunSayProblem',
+    status: 'beta',
+  },
 ];
 
 export const TOOL_CATEGORIES = {
   tr: [
-    { id: 'number', label: 'Sayı & İşlem', tools: ['bar', 'basamak', 'tam', 'kesir', 'zihinden'] },
+    { id: 'number', label: 'Sayı & İşlem', tools: ['bar', 'basamak', 'tam', 'kesir', 'zihinden', 'problem'] },
     { id: 'measure', label: 'Ölçme', tools: ['clock'] },
     { id: 'geometry', label: 'Geometri', tools: ['geo'] },
     { id: 'data', label: 'Veri', tools: ['veri'] },
   ],
   ku: [
-    { id: 'number', label: 'Hejmar û Kirarî', tools: ['bar', 'basamak', 'tam', 'kesir', 'zihinden'] },
+    { id: 'number', label: 'Hejmar û Kirarî', tools: ['bar', 'basamak', 'tam', 'kesir', 'zihinden', 'problem'] },
     { id: 'measure', label: 'Pîvandin', tools: ['clock'] },
     { id: 'geometry', label: 'Cîyometrî', tools: ['geo'] },
     { id: 'data', label: 'Dane', tools: ['veri'] },
   ],
   en: [
-    { id: 'number', label: 'Number & Operation', tools: ['bar', 'basamak', 'tam', 'kesir', 'zihinden'] },
+    { id: 'number', label: 'Number & Operation', tools: ['bar', 'basamak', 'tam', 'kesir', 'zihinden', 'problem'] },
     { id: 'measure', label: 'Measurement', tools: ['clock'] },
     { id: 'geometry', label: 'Geometry', tools: ['geo'] },
     { id: 'data', label: 'Data', tools: ['veri'] },
   ],
   ar: [
-    { id: 'number', label: 'العدد والعملية', tools: ['bar', 'basamak', 'tam', 'kesir', 'zihinden'] },
+    { id: 'number', label: 'العدد والعملية', tools: ['bar', 'basamak', 'tam', 'kesir', 'zihinden', 'problem'] },
     { id: 'measure', label: 'القياس', tools: ['clock'] },
     { id: 'geometry', label: 'الهندسة', tools: ['geo'] },
     { id: 'data', label: 'البيانات', tools: ['veri'] },
   ],
   fa: [
-    { id: 'number', label: 'عدد و عملیات', tools: ['bar', 'basamak', 'tam', 'kesir', 'zihinden'] },
+    { id: 'number', label: 'عدد و عملیات', tools: ['bar', 'basamak', 'tam', 'kesir', 'zihinden', 'problem'] },
     { id: 'measure', label: 'اندازه‌گیری', tools: ['clock'] },
     { id: 'geometry', label: 'هندسه', tools: ['geo'] },
     { id: 'data', label: 'داده', tools: ['veri'] },

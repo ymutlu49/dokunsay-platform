@@ -25,6 +25,7 @@ export const APPS = [
   { dir: 'Dokunsay-geo',       name: 'Geo',      folder: 'Dokunsay-geo',       id: 'geo' },
   { dir: 'Dokunsay-veri-app',  name: 'Veri',     folder: 'Dokunsay-veri-app',  id: 'veri' },
   { dir: 'ZihindenAritmetik',  name: 'Zihinden', folder: 'ZihindenAritmetik',  id: 'zihinden' },
+  { dir: 'DokunSayProblem',    name: 'Problem',  folder: 'DokunSayProblem',    id: 'problem' },
 ];
 
 /** Katalogdaki araç id'sinden derlenen klasöre eşleme. */

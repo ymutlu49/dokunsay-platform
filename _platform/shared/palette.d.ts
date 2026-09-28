@@ -42,7 +42,7 @@ export interface AppAccent {
   name: string;
 }
 
-export type AppId ="bar" | "basamak" | "clock" | "kesir" | "tam" | "geo" | "veri" | "zihinden";
+export type AppId ="bar" | "basamak" | "clock" | "kesir" | "tam" | "geo" | "veri" | "zihinden" | "problem";
 
 export const APP_ACCENTS: Record<AppId, AppAccent>;
 

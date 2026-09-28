@@ -10,7 +10,10 @@ import { readdirSync, readFileSync, statSync } from 'node:fs';
 import { join, posix } from 'node:path';
 import { request } from 'node:https';
 
-const SECRET = 'dk-update-2026-05-02-yilmaz-mutlu-sayfa-guncelleme';
+// Güvenlik (2026-09-27): sır artık kodda DEĞİL — eski değer git geçmişinde kaldığı için sunucuda (_dk_recv.php) değiştirilmelidir.
+// Kullanım: DK_DEPLOY_SECRET=... node _platform/scripts/deploy-dist.mjs
+const SECRET = process.env.DK_DEPLOY_SECRET;
+if (!SECRET) { console.error('DK_DEPLOY_SECRET ortam değişkeni tanımlı değil; yükleme yapılmadı.'); process.exit(1); }
 // Umbrella host onaylanınca hercocukmatematikogrenebilir.com'a çevir.
 const ENDPOINT = new URL('https://diskalkuli.com/_dk_recv.php');
 const ROOT = new URL('../../dist-site/', import.meta.url).pathname;

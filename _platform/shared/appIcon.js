@@ -23,6 +23,7 @@ const APP_EMOJI = {
   tam:      '±',
   geo:      '🔺',
   veri:     '📊',
+  problem:  '🧩',
 };
 
 const SLUG_TO_APPID = {
@@ -33,6 +34,7 @@ const SLUG_TO_APPID = {
   DokunSayTam: 'tam',
   'Dokunsay-geo': 'geo',
   'Dokunsay-veri-app': 'veri',
+  DokunSayProblem: 'problem',
 };
 
 export function appIdFromPath() {

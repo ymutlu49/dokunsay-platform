@@ -65,6 +65,7 @@ export default [
     viz: { t: "dots", group: [4, 4] },
   },
   { // 3 — Somut Modelleyici ×/÷ (72–84 ay) ★ DARBOĞAZ
+    extra: [{ tool: 'problem', a: "Eşit gruplar · çarpma ve paylaştırma problemleri", hash: "sema=equalGroups" }], // DokunSay Problem rozeti (sözel problem düzeyi)
     how: "\"3 tabakta 2'şer şeker var, toplam kaç?\" sorusunda çocuk önce 3 grubu pullarla TEK TEK kurar (her tepsiye 2 pul), sonra hepsini baştan \"bir-iki-üç-dört-beş-altı\" diye sayar. Grupları gerçekten dizmeden, yalnız zihinden işleme henüz geçemez.",
     teacher: "Bu, çarpma/bölmenin ilk gerçek darboğazıdır: çocuk \"kaç grup × her grupta kaç\" yapısını ancak SOMUT kurup hepsini sayarak çözer. Bu düzeyde takılma — eşit grupları diziyip toplamı bulamamak, ya da grupları kurmadan rastgele sayı söylemek — matematik öğrenme güçlüğü (diskalkuli) açısından erken bir uyarı işaretidir; çünkü \"tekrarlı eşit grup\" fikri henüz oturmamıştır. Acele ettirmeyin: önce her grubu ayrı tepsiye kurmayı, sonra \"hepsini birlikte saymayı\" bolca somutlaştırın. Bölmeyi de aynı modelle yapın — toplamı verip eşit gruplara dağıttırın.",
     act: {
@@ -101,6 +102,7 @@ export default [
     viz: { t: "dots", group: [6, 6] },
   },
   { // 5 — Ritmik Sayarak ×/÷ (90–102 ay) ★ DARBOĞAZ
+    extra: [{ tool: 'problem', a: "Eşit gruplar · gruplama bölmesi (kaç grup?)", hash: "sema=equalGroups&bilinmeyen=groups" }], // DokunSay Problem rozeti (sözel problem düzeyi)
     how: "\"4'er 4'er sayarak 3 grupta kaç şeker var?\" sorusunda çocuk her tek pulu saymak yerine grupları atlayarak sayar: \"dört… sekiz… on iki\" — ve üçüncü adımda durur. Her \"sıçrama\" bir grubu, kaç sıçrama yaptığı ise grup sayısını temsil eder.",
     teacher: "Ritmik (atlamalı) sayarak çarpma ikinci büyük darboğazdır ve çarpmaya geçişin tam kalbidir: çocuk \"hepsini tek tek saymayı\" bırakıp grup büyüklüğüyle atlayarak sayar (4, 8, 12) ve aynı anda KAÇ grup saydığını izler — bu bir çift-sayma işidir. Bu sıçramayı yapamamak, hâlâ her grubu tek tek saymaya geri dönmek, matematik öğrenme güçlüğü (diskalkuli) için belirgin bir işarettir; çünkü ritmik sayı dizisi ile grup sayısını eşzamanlı tutmak çalışan belleğe yüklenir. Parmakları \"kaç grup\" sayacı yapın: her sıçramada bir parmak. Bölmeyi de ritmik sayıyla kurun — \"on ikiye kaç dörtte ulaşırız?\" (12'ye 4,8,12 → üç adım).",
     act: {
@@ -136,6 +138,7 @@ export default [
     viz: { t: "array", r: 6, c: 4 },
   },
   { // 7 — Dizi Niceleyici / Problem Çözen ×/÷ (108–120 ay)
+    extra: [{ tool: 'problem', a: "Eşit gruplar ve kat karşılaştırması", hash: "sema=equalGroups" }], // DokunSay Problem rozeti (sözel problem düzeyi)
     how: "Şekerleri 3 sıra × 4 sütun dikdörtgen düzende görünce çocuk tek tek saymaz: \"üç sıra, her sırada dört — on iki\" der. Diziyi satır × sütun çarpımsal birimiyle okur ve \"5 kutuda 6'şar kalem\" gibi sözlü problemleri bu yapıyla kurar.",
     teacher: "Dizi (array) modeli çarpmanın olgunlaşmış temsilidir: tekrarlı toplamadan \"satır × sütun\"a geçer ve değişme özelliğini (3×4 = 4×3, diziyi döndür) görünür kılar. Çocuk artık çarpımsal problemleri (eşit grup, dizi, alan) tanıyıp doğru işlemle eşleştirmelidir. Diziyi döndürerek \"yine on iki\" dedirtin; sözlü problemde \"kaç grup, her grupta kaç\" yapısını çıkarttırın. Bu, alan, çarpan çiftleri ve ileride çarpanlara ayırmanın zeminidir.",
     act: {

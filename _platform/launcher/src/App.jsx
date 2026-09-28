@@ -73,7 +73,7 @@ function toolMatchesAgeFilter(tool, filterKey) {
 }
 
 /**
- * Aracın URL'sini çöz: dev modda kendi portu (3001-3007),
+ * Aracın URL'sini çöz: dev modda kendi portu (3001-3009),
  * prod modda göreceli alt yol (GitHub Pages uyumlu).
  */
 function resolveToolUrl(tool) {
@@ -84,7 +84,7 @@ function resolveToolUrl(tool) {
 }
 
 const STATS = [
-  { key: 'tools',      icon: '🎯', value: 8 },
+  { key: 'tools',      icon: '🎯', value: TOOLS.length },
   { key: 'languages',  icon: '🌐', value: 5 },
   { key: 'activities', icon: '✨', value: '200+' },
   { key: 'frameworks', icon: '📚', value: 5 },

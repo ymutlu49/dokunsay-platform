@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- DokunSay Problem: appIcon.js biçimi (yuvarlatılmış kare + accent → dark dikey gradyan),
+       emoji yerine parça-bütün şeridi: üstte bütün, altta iki parça. -->
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4f46e5"/>
+      <stop offset="1" stop-color="#3730a3"/>
+    </linearGradient>
+  </defs>
+  <rect width="100" height="100" rx="22" fill="url(#g)"/>
+  <rect x="16" y="24" width="68" height="20" rx="5" fill="#ffffff"/>
+  <rect x="16" y="56" width="40" height="20" rx="5" fill="#e0e7ff"/>
+  <rect x="60" y="56" width="24" height="20" rx="5" fill="none" stroke="#ffffff" stroke-width="4" stroke-dasharray="5 4"/>
+</svg>

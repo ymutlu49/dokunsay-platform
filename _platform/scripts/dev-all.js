@@ -2,7 +2,7 @@
 /**
  * DokunSay Platform — Tüm Uygulamaları Aynı Anda Başlat
  *
- * Launcher + 7 araç dev sunucusunu paralel olarak çalıştırır.
+ * Launcher + 9 araç dev sunucusunu paralel olarak çalıştırır.
  * Her çıktı aracın rengi ile etiketlenir.
  *
  * Kullanım:
@@ -29,6 +29,8 @@ const SERVICES = [
   { dir: 'DokunSayTam',        name: 'Tam',      port: 3005, color: '\x1b[35m' },
   { dir: 'Dokunsay-geo',       name: 'Geo',      port: 3006, color: '\x1b[36m' },
   { dir: 'Dokunsay-veri-app',  name: 'Veri',     port: 3007, color: '\x1b[91m' },
+  { dir: 'ZihindenAritmetik',  name: 'Zihinden', port: 3008, color: '\x1b[96m' },
+  { dir: 'DokunSayProblem',    name: 'Problem',  port: 3009, color: '\x1b[94m' },
 ];
 
 const RESET = '\x1b[0m';

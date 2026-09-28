@@ -3,13 +3,13 @@ import { TOOLS, TOOL_CATEGORIES } from './tools.js';
 import { APPS, KLASOR } from '../../apps.js';
 
 describe('TOOLS kataloğu', () => {
-  it('tam olarak 8 araç içerir', () => {
-    expect(TOOLS).toHaveLength(8);
+  it('tam olarak 9 araç içerir', () => {
+    expect(TOOLS).toHaveLength(9);
   });
 
   it('beklenen tüm araçları kapsar', () => {
     const ids = TOOLS.map((t) => t.id).sort();
-    expect(ids).toEqual(['bar', 'basamak', 'clock', 'geo', 'kesir', 'tam', 'veri', 'zihinden']);
+    expect(ids).toEqual(['bar', 'basamak', 'clock', 'geo', 'kesir', 'problem', 'tam', 'veri', 'zihinden']);
   });
 
   it('her araç 5 dili sağlar (tr, ku, en, ar, fa)', () => {
@@ -38,13 +38,13 @@ describe('TOOLS kataloğu', () => {
     }
   });
 
-  it('dev portları benzersizdir ve 3001-3008 aralığında', () => {
+  it('dev portları benzersizdir ve 3001-3009 aralığında', () => {
     const ports = TOOLS.map((t) => parseInt(t.devUrl.split(':').pop(), 10));
     const unique = new Set(ports);
     expect(unique.size).toBe(ports.length);
     for (const p of ports) {
       expect(p).toBeGreaterThanOrEqual(3001);
-      expect(p).toBeLessThanOrEqual(3008);
+      expect(p).toBeLessThanOrEqual(3009);
     }
   });
 

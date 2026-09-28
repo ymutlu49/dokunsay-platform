@@ -111,6 +111,9 @@ export const APP_ACCENTS = {
   veri:    { color: '#ec4899', dark: '#be185d', soft: '#fce7f3', softer: '#fdf2f8', name: 'Pembe' },
   // Zihinden Aritmetik kitabının kendi rengi (kitabın SVG şekillerinden).
   zihinden: { color: '#1B4965', dark: '#0F2E42', soft: '#DCE9F2', softer: '#F4F8FB', name: 'Lacivert' },
+  // DokunSay Problem — çivit; diğer accent'lerden ayrışır. Beyaz metin kontrastı
+  // #4f46e5 üzerinde ≈6.3:1, #3730a3 üzerinde ≈10:1 (gradyanın iki ucu da WCAG AA).
+  problem:  { color: '#4f46e5', dark: '#3730a3', soft: '#e0e7ff', softer: '#eef2ff', name: 'Çivit' },
 };
 
 /**

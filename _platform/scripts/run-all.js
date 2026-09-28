@@ -27,6 +27,8 @@ const APPS = [
   { dir: 'DokunSayTam',        name: 'Tam' },
   { dir: 'Dokunsay-geo',       name: 'Geo' },
   { dir: 'Dokunsay-veri-app',  name: 'Veri' },
+  { dir: 'ZihindenAritmetik',  name: 'Zihinden' },
+  { dir: 'DokunSayProblem',    name: 'Problem' },
 ];
 
 const cmd = process.argv[2];

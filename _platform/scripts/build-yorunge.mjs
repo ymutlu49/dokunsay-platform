@@ -58,10 +58,12 @@ const META = {
 const TOOL_PATH = {
   bar: '/DokunSayBar/', basamak: '/DokunSayBasamak/', clock: '/DokunSayClock/',
   kesir: '/DokunSayKesir/', tam: '/DokunSayTam/', geo: '/Dokunsay-geo/', veri: '/Dokunsay-veri-app/',
+  problem: '/DokunSayProblem/',
 }
 const TOOL_NAME = {
   bar: 'DokunSay Bar', basamak: 'DokunSay Basamak', clock: 'DokunSay Clock',
   kesir: 'DokunSay Kesir', tam: 'DokunSay Tam', geo: 'DokunSay Geo', veri: 'DokunSay Veri',
+  problem: 'DokunSay Problem',
 }
 const DOMAIN_TOOL = {
   sub: 'bar', count: 'bar', comp: 'bar', add: 'bar', compose: 'bar', multdiv: 'bar', frac: 'kesir',
@@ -249,9 +251,22 @@ function levelGlyph(key, i, color, en) {
 // ════════════════════════════════════════════════════════════════════════
 // Parçacık üreticileri
 // ════════════════════════════════════════════════════════════════════════
-function ivChips(iv, levelTool) {
-  if (!iv || !iv.length) return ''
-  const chips = iv.map((m) => {
+// extra: zenginleştirmedeki isteğe bağlı ek araç rozetleri
+//   [{ tool: 'problem', a: 'kısa açıklama', hash: 'sema=change&bilinmeyen=result' }]
+// Düzeyin ana aracını (en.tool) DEĞİŞTİRMEDEN ikinci bir DokunSay aracına derin bağlantı verir.
+// en.tool'u değiştirmek çalışma yapraklarının (yorunge.worksheet.js toolOf) materyal
+// vaadini ve çizimlerini de değiştirirdi — bu yüzden ayrı alan.
+function extraChip(x) {
+  if (!x || !TOOL_PATH[x.tool]) return ''
+  const a = esc(x.a)
+  const href = TOOL_PATH[x.tool] + (x.hash ? '#' + x.hash : '')
+  return `<a class="chip chip-ds chip-pr" href="${esc(href)}" title="${a}"><b>${esc(TOOL_NAME[x.tool])}</b><span>${a}</span></a>`
+}
+
+function ivChips(iv, levelTool, extra = []) {
+  const extras = (extra || []).map(extraChip).join('')
+  if ((!iv || !iv.length) && !extras) return ''
+  const chips = (iv || []).map((m) => {
     const a = esc(m.a)
     if (m.k === 'DokunSay') {
       const tool = levelTool || 'bar'
@@ -261,7 +276,7 @@ function ivChips(iv, levelTool) {
     if (m.k === 'ABMATO') return `<a class="chip chip-ab" href="${APP_URL.ABMATO}" title="${a}"><b>ABMATO</b><span>${a}</span></a>`
     // ADIM — öğretmen yönergeli (İZ/Altı Adım); açık genel-erişim bağlantısı yok
     return `<span class="chip chip-adim" title="${a}"><b>ADIM</b><span>${a}</span></span>`
-  }).join('')
+  }).join('') + extras
   return `<div class="chips"><span class="chips-lab">Bu düzeyi besleyen araçlar</span><div class="chips-row">${chips}</div></div>`
 }
 
@@ -283,11 +298,12 @@ function activityBlock(lv, en, levelTool) {
   } else if (lv.task) {
     inner = `<p class="obs"><b>Gözlem görevi.</b> ${esc(lv.task)}</p>`
   }
-  if (!inner) return ivChips(lv.iv, levelTool) // hiç içerik yoksa yalnız rozetler
+  const extra = en && en.extra
+  if (!inner) return ivChips(lv.iv, levelTool, extra) // hiç içerik yoksa yalnız rozetler
   return `<div class="act">
     <div class="act-head"><span class="act-ic">✏️</span><h4>Çalakî · Etkinlik</h4></div>
     ${inner}
-    ${ivChips(lv.iv, levelTool)}
+    ${ivChips(lv.iv, levelTool, extra)}
   </div>`
 }
 

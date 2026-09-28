@@ -55,6 +55,7 @@ export default [
     },
   },
   { // 3 — Sonucu Bulan +/− (42–54 ay) ★ DARBOĞAZ
+    extra: [{ tool: 'problem', a: "Değişim · sonucu bilinmeyen sözel problem", hash: "sema=change&bilinmeyen=result" }], // DokunSay Problem rozeti (sözel problem düzeyi)
     how: "\"3 elma ve 2 elma kaç eder?\" sorusunda çocuk 3 pulu sayar, 2 pulu sayar, sonra hepsini en baştan \"bir-iki-üç-dört-beş\" diye yeniden sayar (\"count all\"). İki kümeyi de görmeden, dokunmadan işlem yapamaz.",
     teacher: "Bu, yörüngenin ilk büyük darboğazıdır: çocuk artık iki çokluğu birleştirip TÜMÜNÜ sayarak doğru sonuca ulaşır — ama her seferinde sıfırdan. Sık yanılgı: birleştirmeyi unutup yalnız bir kümeyi saymak ya da nesneler kapalıyken tıkanmak. Bu düzey kritik çünkü buradan \"baştan saymadan, devam ederek sayma\"ya (count-on) geçiş matematik gelişiminin dönüm noktasıdır. Acele ettirmeyin; önce \"hepsini sayma\"yı somut pullarla sağlamlaştırın.",
     act: {
@@ -91,6 +92,7 @@ export default [
     viz: { t: "tenframe", n: 7, frames: 1 },
   },
   { // 5 — Değişimi Bulan +/− (60–66 ay)
+    extra: [{ tool: 'problem', a: "Değişim · değişimi bilinmeyen sözel problem", hash: "sema=change&bilinmeyen=change" }], // DokunSay Problem rozeti (sözel problem düzeyi)
     how: "\"5 pulun vardı, biraz ekledim, şimdi 8 oldu — kaç ekledim?\" gibi BİLİNMEYEN-DEĞİŞİMLİ problemi çözer. Başlangıç ve sonucu bilip aradaki değişimi bulur.",
     teacher: "Burada problem yapısı zorlaşır: bilinmeyen artık sonuç değil, değişimin kendisidir (5+_=8). Çocuk genelde 5'ten 8'e \"sayarak\" ya da 8'den 5'i \"ayırarak\" çözer — bu, toplama-çıkarmanın ters işlem olduğunu sezdirir. Hikâyeyi pullarla canlandırmak, hangi parçanın bilinmediğini netleştirir.",
     act: {
@@ -108,6 +110,7 @@ export default [
     },
   },
   { // 6 — Sayma Stratejileri +/− (66–72 ay) ★ DARBOĞAZ
+    extra: [{ tool: 'problem', a: "Parça-bütün · bütünü bilinmeyen sözel problem", hash: "sema=combine&bilinmeyen=whole" }], // DokunSay Problem rozeti (sözel problem düzeyi)
     how: "\"5 ve 3\" sorusunda artık baştan saymaz; \"beeeş…\" deyip sayı doğrusunda devam eder: \"altı, yedi, sekiz\" (count-on). Çıkarmada da büyükten geri sayar: \"8… yedi, altı, beş\". Parmakları çoğu kez sayacı gibi kullanır.",
     teacher: "Bu, yörüngenin ikinci ve en kritik darboğazıdır: \"hepsini sayma\"dan \"devam ederek/geri sayma\"ya (count-on / count-back) geçiş. Bu sıçrama, ilk toplananı bir bütün olarak tutup üstüne saymayı gerektirir — büyük bir bilişsel adımdır. Buraya geçememek, yani 1. sınıfta hâlâ her toplamı sıfırdan parmakla saymak, matematik öğrenme güçlüğü (diskalkuli) açısından en güçlü erken işaretlerden biridir. Çocuğu \"büyük sayıyı kafanda tut, küçüğü üstüne say\" diye yönlendirin; sayı doğrusu ve parmak bu geçişi somutlaştırır.",
     act: {
@@ -126,6 +129,7 @@ export default [
     viz: { t: "numline", max: 12, at: [5, 6, 7, 8], hi: 8 },
   },
   { // 7 — Parça-Bütün +/− (72–84 ay)
+    extra: [{ tool: 'problem', a: "Parça-bütün · parçası bilinmeyen sözel problem", hash: "sema=combine&bilinmeyen=part2" }], // DokunSay Problem rozeti (sözel problem düzeyi)
     how: "8+5'i \"sekizden ikiyi al, on yap; üç kaldı — on üç\" diye, sayıyı parçalayarak çözer. Bir sayının başka sayıların bütünü olduğunu (8 = 5+3) esnekçe kullanır.",
     teacher: "Sayma stratejilerinden ESNEK PARÇA-BÜTÜN düşünmeye geçiştir; aritmetiğin kalbi burasıdır. \"10 köprüsü\" temel araçtır: 8+5 → 8+2+3 → 10+3. Çocuk bir toplananı bölüp 10'a tamamlayabiliyorsa, zihinden toplama gerçekten başlamıştır. İki renkli pul ve onluk çerçeve, kırılımı görünür kılar.",
     act: {
@@ -144,6 +148,7 @@ export default [
     viz: { t: "tenframe", n: 8, frames: 1 },
   },
   { // 8 — Sayı-İçinde-Sayı +/− (84–90 ay)
+    extra: [{ tool: 'problem', a: "Değişim · başlangıcı bilinmeyen sözel problem", hash: "sema=change&bilinmeyen=start" }], // DokunSay Problem rozeti (sözel problem düzeyi)
     how: "6+8'i çözerken \"6 zaten 8'in içinde var, 8'e daha 2 lazımdı; öyleyse 6 ve 8, 14\" gibi gömülü ilişkileri görür. Bir işlemin içinde tanıdık küçük olguları fark eder.",
     teacher: "Bu düzeyde çocuk sayıları artık iç içe geçmiş ilişkiler ağı olarak görür: 8'in içinde 5+3, 6'nın içinde 5+1 saklıdır. Bilinen olguları gömülü olarak kullanmak, bir sonraki \"türetme\" düzeyinin habercisidir. Çocuğun \"şunu zaten biliyorum\" dediği parçaları sözle açığa çıkarın.",
     act: {
@@ -180,6 +185,7 @@ export default [
     viz: { t: "combine", a: 6, b: 7 },
   },
   { // 10 — Problem Çözen +/− (96–102 ay)
+    extra: [{ tool: 'problem', a: "Karışık şemalar: değişim, parça-bütün, karşılaştırma", hash: "mod=karisik" }], // DokunSay Problem rozeti (sözel problem düzeyi)
     how: "\"12 bilyem vardı, 5'ini verdim, sonra 4 buldum — kaç oldu?\" gibi çok adımlı problemi planlayıp çözer; toplama mı çıkarma mı gerektiğine kendi karar verir ve stratejisini esnek seçer.",
     teacher: "Burada beceri tek işlemden PROBLEM ÇÖZMEYE genişler: çocuk metni modeller, adımları sıralar, uygun işlemi ve stratejiyi (sayma / parça-bütün / türetme) duruma göre seçer. En sık güçlük işlemin yönünü belirlemektir (\"verince azalır, bulunca artar\"). Problemi pullarla ya da boş sayı doğrusuyla sahnelemek, adımları görünür kılar.",
     act: {

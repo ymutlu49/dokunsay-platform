@@ -273,6 +273,8 @@ Port atamaları:
 | Tam | 3005 |
 | Geo | 3006 |
 | Veri | 3007 |
+| Zihinden | 3008 |
+| Problem | 3009 |
 
 ### 2.10 Kod Kalite Araçları
 - **ESLint:** Paylaşılan config `_platform/shared/eslint.config.js`

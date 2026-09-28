@@ -151,6 +151,7 @@ export default [
     tool: "bar",
   },
   { // 8 — Her Tür Problemi Çözen (parça-bütün) (7 yaş)
+    extra: [{ tool: 'problem', a: "Parça-bütün şeması · her bilinmeyen konumu", hash: "sema=combine" }], // DokunSay Problem rozeti (sözel problem düzeyi)
     how: "İki kutudaki pullarla anlatılan çok adımlı bir hikâye problemini (\"Kutuda 8 vardı, 5 ekledim, sonra 4 verdim — şimdi kaç?\") çocuk bileşim/ayrışımla esnek çözer; kolayına gelen yolu (önce 10'a tamamla ya da geriye say) seçer. Stratejisini değiştirebilir.",
     teacher: "Burada bileşim becerisi gerçek problemlere taşınır: çocuk parça-bütün ilişkisini kullanarak değişim (ekleme/çıkarma), birleştirme ve karşılaştırma problemlerini çözer. Önemli olan tek bir yönteme saplanmak değil, sayılara göre en uygun stratejiyi (10'a köprüleme, türetilmiş olgu, geriye sayma) esnek seçebilmesidir. Çözdükten sonra \"başka nasıl yapardın?\" diye alternatif yolu da konuşturun.",
     act: {
