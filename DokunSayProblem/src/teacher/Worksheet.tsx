@@ -1,7 +1,7 @@
 /**
  * Yazdırılabilir A4 çalışma kâğıdı: her problemde hikâye + boş şema diyagramı (ya da karışık
  * sette "Hangi tür?" kutucukları + serbest çizim alanı) + denklem satırı (☐ ☐ ☐ = ☐) +
- * cevap cümlesi kalıbı. Ayrı sayfada cevap anahtarı. Baskı: body'ye portal; yazdırma
+ * cevap cümlesi kalıbı; isteğe bağlı canlandırma kutuları (WorksheetAct). Ayrı sayfada cevap anahtarı. Baskı: body'ye portal; yazdırma
  * sırasında yalnız bu kök görünür (teacher.css @media print).
  */
 import { useEffect, useRef, type ReactNode } from 'react';
@@ -11,10 +11,11 @@ import { pick } from '../i18n';
 import { answerText, equationFor, schemaMeta, sentenceString } from '../lib/contentAdapter';
 import { tokensText } from '../lib/problemUtil';
 import { BlankDiagram } from './BlankDiagram';
+import { ActBoxes } from './WorksheetAct';
 import { SCHEMA_LIST } from './data';
 import type { TT } from './i18n';
 
-export function WorksheetPages({ problems, lang, t, showSchema }: { problems: Problem[]; lang: Lang; t: TT; showSchema: boolean }) {
+export function WorksheetPages({ problems, lang, t, showSchema, actBoxes }: { problems: Problem[]; lang: Lang; t: TT; showSchema: boolean; actBoxes?: boolean }) {
   return (
     <div className="ws" lang={lang}>
       <header className="ws__head">
@@ -39,6 +40,7 @@ export function WorksheetPages({ problems, lang, t, showSchema }: { problems: Pr
               ))}
             </p>
           )}
+          {actBoxes && <ActBoxes problem={p} lang={lang} t={t} />}
           {(showSchema ? p.steps : [p.steps[0]]).map((st, k) => (
             <BlankDiagram key={k} schema={showSchema ? st.schema : null} lang={lang} label={t('ws_draw')} />
           ))}

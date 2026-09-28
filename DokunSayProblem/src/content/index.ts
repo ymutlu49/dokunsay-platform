@@ -10,6 +10,8 @@ export type { SchemaMeta } from './meta';
 export { equationOf, checkSchema, checkModel, checkEquation, checkAnswer, classifyWrongAnswer } from './evaluate';
 export type { EqToken } from './evaluate';
 export { hintFor, feedbackFor, selfTalk } from './hints';
+export { actScriptFor, checkActState, expectedAfter, expectedGroupsAfter, askValue, beatPrompt, inferStrategy } from './act';
+export type { ActEvent } from './act';
 export { renderAnswer, sentenceText, sentenceSpeech } from './text';
 export {
   paraphraseFor, erroneousSolutionFor, unsolvableFor, reasonableItemsFor, remainderSetFor, wordTrapPairFor,

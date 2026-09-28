@@ -215,4 +215,57 @@ export const ku: Record<Key, string> = {
   slot_soon: 'Di demeke nêzîk de',
   slot_train: 'Rawestgehên rahênanê (Çîrokê Vebêje, Nêçîrvanê Curê, Atolyeya Şerîdê…) dê di demeke nêzîk de li vir bin.', // KU-DENETİM
   slot_teacher: 'Panela mamoste (pêşketin, tabloya çewtiyan, pirsgirêka xwe binivîse) dê di demeke nêzîk de li vir be.', // KU-DENETİM
+  // ── Canlandır (DESIGN §12) + MatBoard — KU-DENETİM (tümü ana dil denetimi bekler)
+  m_act: 'Zindî bike', // KU-DENETİM: öneri "Lîstin" / "Zindî bike"
+  p_act: 'Çîrokê bi tiştan zindî bike.', // KU-DENETİM
+  guide_act: 'Ez çîrokê bi tiştan zindî dikim. Di her hevokê de çi dibe, li ser matê nîşan didim.', // KU-DENETİM
+  act_ok: 'Erê, wek çîrokê!',
+  act_done: 'Temam',
+  act_next_beat: 'Hevoka din',
+  act_to_strip: 'Niha em wan bikin şerîd', // KU-DENETİM
+  act_strip_done: 'Her rêz bû şerîdek. Şerîd çiqas dirêj be, mîqdar ew qas zêde ye.', // KU-DENETİM
+  act_ask_label: 'Çend heb?',
+  act_open_box: 'Qutiyê veke',
+  act_box_first: 'Pêşî qutiyê dagire, paşê bibêje Temam.', // KU-DENETİM
+  act_match_first: 'Pêşî li bişkoka «Bide ber hev» bitikîne.', // KU-DENETİM
+  act_try: '🧮 Bi tiştan biceribîne',
+  act_try_title: 'Bi tiştan biceribîne',
+  act_try_note: 'Ev ceribandinek e. Nayê puankirin.',
+  act_replay: 'Çîrok li ser matê dilîze…', // KU-DENETİM
+  act_replay_done: 'Çîrok bi bersivê re temam bû.', // KU-DENETİM
+  act_sentence: 'Hevok',
+  act_watch: 'Temaşe bike',
+  calc_objects: 'Tişt',
+  mat_one: 'yekek',
+  mat_ten: 'dehek',
+  mat_hundred: 'sedek', // KU-DENETİM
+  mat_add: '{n} zêde bike',
+  mat_remove: '{n} jê bibe', // KU-DENETİM
+  mat_break: 'Veqetîne', // KU-DENETİM
+  mat_break_ten: '1 dehekê bike 10 yekek', // KU-DENETİM
+  mat_break_hundred: '1 sedekê bike 10 dehek', // KU-DENETİM
+  mat_make_ten: '10 yekek → 1 dehek',
+  mat_make_hundred: '10 dehek → 1 sedek', // KU-DENETİM
+  mat_deal: 'Yek bi yek belav bike',
+  mat_add_each: 'Têxe her firaxê 1', // KU-DENETİM
+  mat_make_group: 'Komeke {k} hebî çêke', // KU-DENETİM
+  mat_copy: 'Careke din deyne', // KU-DENETİM
+  mat_gather: 'Hemûyan li vir kom bike', // KU-DENETİM
+  mat_match: 'Bide ber hev', // KU-DENETİM
+  mat_unmatch: 'Berhevkirinê rake', // KU-DENETİM
+  mat_unmatched: 'yê bê hevber', // KU-DENETİM
+  mat_plate: 'Firaxa {n}.', // KU-DENETİM
+  mat_new_plate: 'Firaxa nû', // KU-DENETİM
+  mat_pick_plate: 'Têxe firaxekê.', // KU-DENETİM
+  mat_box_closed: 'Qutiya girtî',
+  mat_target: 'Armanc: {n}',
+  mat_rest: 'Mayî: {n}', // KU-DENETİM
+  mat_diff: 'Ferq: {n}', // KU-DENETİM
+  mat_target_full: 'Te gihîşt armancê',
+  mat_target_over: 'Ji armancê derbas bû', // KU-DENETİM
+  mat_supply: 'Yedek', // KU-DENETİM
+  mat_trash: 'Zibil', // KU-DENETİM
+  mat_changed: 'guherî',
+  mat_need_break: 'Pêşî dehekekê veqetîne.', // KU-DENETİM
+  mat_kbd: 'Tiştekî bikişîne an lê bitikîne û paşê li herêmekê bitikîne. Klavye: Tab herêm; + zêde dike, − jê dibe; Enter Temam.', // KU-DENETİM
 };

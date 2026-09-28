@@ -9,6 +9,7 @@
 import { useMemo, useState, type ComponentType, type ReactNode } from 'react';
 import type { Grade, Lang } from '../content/types';
 import { LangContext } from '../i18n';
+import { ActStation } from './ActStation';
 import { has } from './api';
 import type { ModuleProps } from './common';
 import { DetectiveQuestions } from './DetectiveQuestions';
@@ -38,6 +39,7 @@ interface CardDef {
 }
 
 const CARDS: CardDef[] = [
+  { id: 'act', icon: '🧮', title: 'm_act', desc: 'm_act_d', items: 5, minGrade: 1, needs: 'actScriptFor', comp: ActStation },
   { id: 'retell', icon: '👂', title: 'm_retell', desc: 'm_retell_d', items: 5, minGrade: 1, needs: 'paraphraseFor', comp: StoryRetell },
   { id: 'typeHunter', icon: '🧭', title: 'm_type', desc: 'm_type_d', items: 6, minGrade: 1, needs: 'generateProblem', comp: TypeHunter },
   { id: 'strip', icon: '🧩', title: 'm_strip', desc: 'm_strip_d', items: 5, minGrade: 1, needs: 'checkModel', comp: StripWorkshop },
@@ -113,7 +115,15 @@ export default function ModulesTab({ lang, grade: gradeProp, teacherUnlock }: { 
             const preparing = !!c.needs && !has(c.needs);
             const locked = c.id === 'errorDetective' && detLocked;
             const off = tooLow || preparing;
-            const status = tooLow ? t('card_grade_from', { g: c.minGrade }) : preparing ? t('card_preparing') : locked ? `🔒 ${t('card_locked')}` : t('card_items', { n: c.items });
+            const status = tooLow
+              ? t('card_grade_from', { g: c.minGrade })
+              : preparing
+                ? t('card_preparing')
+                : locked
+                  ? `🔒 ${t('card_locked')}`
+                  : c.id === 'act'
+                    ? `${t('card_items', { n: c.items })} · ${t('card_free_note')}`
+                    : t('card_items', { n: c.items });
             const desc = c.id === 'poser' && grade < 3 ? t('m_pose_d_simple') : t(c.desc);
             return (
               <li key={c.id}>

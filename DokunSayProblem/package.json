@@ -1,7 +1,7 @@
 {
   "name": "dokunsay-problem",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
   "description": "DokunSay Problem — şema temelli sözel problem çözme atölyesi (anla, göster, tahmin et, çöz, kontrol et).",
   "author": "Prof. Dr. Yılmaz Mutlu",

@@ -148,3 +148,29 @@ Her biri tam akışın bir adımını yoğun çalıştırır (2–4 dk, 4–6 ma
 - Ustalık eşikleri ve zorluk puanları sezgisel başlangıç değerleridir.
 - Türkçe "-den fazla" yapısının zorluk etkisi ve Kurmancî ana dilli çocuklarda etkililik ampirik olarak sınanmamıştır.
 - Kurmancî metinler ana dil denetimi bekler.
+
+---
+
+## 12. Canlandır — sanal manipülatiflerle etkin katılım (v0.2)
+
+**Amaç:** Çocuk hikâyeyi dinleyip okumakla kalmaz, nesneleri koyar, ekler, çıkarır, birleştirir, bire bir eşler, paylaştırır, gruplar. Böylece problemin yapısını **eylemle** kurar. Ardından sayaçlar şeride, şerit denkleme dönüşür: somuttan soyuta aşamalı geçiş.
+
+**Dayanak:** Carbonneau, Marley & Selig 2013 (manipülatif meta-analizi d≈0.37; rehberlikle güçlenir, algısal zenginlik zayıflatır) · Moyer-Packenham & Westenskow 2013 (sanal manipülatif meta-analizi, orta etki) · Fyfe, McNeil, Son & Goldstone 2014 (concreteness fading) · McNeil, Uttal, Jarvin & Sternberg 2009 ve Kaminski, Sloutsky & Heckler 2008 (sade/genel temsil aktarımı artırır) · Witzel, Mercer & Miller 2003 (CRA) · Bouck, Satsangi & Park 2018 (VRA: sanal–temsili–soyut, özel gereksinimli öğrenciler) · Carpenter, Fennema vd. 1999 (CGI: doğrudan modelleme → sayma → türetilmiş bilgi) · Sarama & Clements 2009 (bilgisayarda "somut" manipülatif).
+
+### 12.1 İlkeler
+1. **Sade sayaçlar:** resimli nesne yok. Düz yuvarlak sayaçlar kullanılır, altlarında hikâyedeki nesnenin adı yazılı etiket bulunur. Bölgeler kişi adıyla etiketlenir ve Okabe-Ito rengi + desenle ayrılır.
+2. **Sayılmadan görülebilir yapı:** yığınlar onluk çerçeve düzeninde dizilir (5'li satırlar, 10'lu çerçeveler). ≤20: tek sayaç. ≤100: onluk çubuk + sayaç. ≤1000: yüzlük kare + onluk + sayaç. 100'ün üstünde ya da kesirde `feasible=false` → adım atlanır.
+3. **Hikâyeyle cümle cümle:** her vuruş bir cümleye bağlıdır. O cümle vurgulanır ve seslendirilir, çocuk eylemi yapar. Doğru miktara ulaşınca "Tamam" etkinleşir.
+4. **Sayı canlı görünür ama öğretilebilir biçimde:** her bölgenin sayısı büyük yazıyla gösterilir. S1/S0'da "sayıyı gizle" açılır (üstüne sayma stratejisini zorlar).
+5. **Bilinmeyen = gizli kutu:** başlangıç ya da değişim bilinmiyorsa miktar bir "?" kutusuna konur. Çocuk hedef çizgisine göre kutuya sayaç ekleyerek (üstüne sayma) ya da hedefi kurup bilineni çıkararak kutuyu açar.
+6. **Eylem çeşitleri** (ActBeat): place, add, remove, combine, match (bire bir eşle → eşleşmeyenler = fark), deal (paylaştırma: birer birer dağıt), makeGroups (gruplama: k'lı gruplar), copy (kat: referansı k kez kopyala), mystery, ask.
+7. **Etkileşim:** sürükle (pointer) + dokun ("+1", "+5", "+10" düğmeleri, sayaca dokun = seç, "çıkar" düğmesi) + klavye (Tab bölge, +/− ile ekle/çıkar, Enter). ≥44px. Onluk bozma ("1 onluk → 10 birlik") ve 10 birliği gruplama önerisi.
+8. **Somuttan temsile geçiş:** canlandırma bitince "Şimdi şeride dönüştürelim" → sayaç satırları 600 ms'de şerit kutularına akar (prefers-reduced-motion: anında). Model adımı etiketleri önceden yerleşmiş ama sayıları boş başlar; çocuk sayıları kendisi taşır. Geçiş sezgisel olur, ama model adımı atlanmaz.
+9. **Soluklaştırma:** S3/S2 → Canlandır adımı planda (S3'te Rehber gösterir, S2'de çocuk yapar). S1/S0 → planda yok, ama her adımda "🧮 Nesnelerle dene" düğmesiyle açılır. Hesap çekmecesinde serbest mat; Kontrol et'te "Cevabı hikâyeye koy" matta yeniden oynatılır.
+10. **Strateji gözlemi (ActStrategy):** sayaçları tek tek mi eklediği (countAll), mevcudun üstüne mi saydığı (countOn), onluk mu kullandığı (useTens), birer birer mi yoksa grup grup mu dağıttığı kaydedilir. Öğretmen panelinde şema bazında strateji ilerlemesi görünür. Değerlendirme dili "doğru/yanlış" değil, "gelişim" olur.
+11. **Hata:** hikâyeden farklı miktar ya da eylem → `actMismatch`. Geri bildirim nazik ve cümleye döner ("Cümleyi bir daha dinleyelim: kaç kuş kondu?"). Cevap verilmez.
+
+### 12.2 Sözleşme
+`types.ts`: `FlowStepId` += `'act'` (show: act → schema → model → checkModel), `ErrorClass` += `'actMismatch'`, `ActUnit`, `ActZone`, `ActBeat`, `ActScript`, `ActStrategy`. İçerik: `actScriptFor(problem: Problem, lang?: Lang): ActScript` (src/content/act.ts) + `hintFor/feedbackFor/selfTalk` 'act' girdileri. Arayüz: `src/components/mat/**` (MatBoard motoru), `src/flow/steps/ActStep.tsx`.
+
+**Sözleşme notu (içerik, 2026-09-28) — yalnız isteğe bağlı alanlar:** `ActBeat` mystery += `target?` (hikâyedeki hedef sayı; bağıntısı types.ts yorumunda), `from?` (kutu bu bölgeden taşınarak dolar: "kaç tane gitti?"), `amount?` (kutunun gerçek içeriği — yalnız denetim için, arayüzde gösterilmez). `ActBeat.sentence` `actScriptFor(problem, lang)` çağrısındaki dilin cümle dizisine göredir (bazı çerçevelerde dillerin cümle sayısı farklı). İçerik API'si: `actScriptFor(problem, lang?, stepIndex?)`, `expectedAfter`, `expectedGroupsAfter`, `askValue`, `checkActState`, `beatPrompt`, `inferStrategy` (src/content/act.ts, actState.ts, actPrompt.ts). Bölge kimlikleri: change `main`/`box`/`out` · combine `p1`/`p2`/`whole` · compare `larger`/`smaller` (bilinmeyen satır `box` türünde) · equalGroups `supply`/`groups` · multCompare `ref`/`compared`/`groups`. Gizli kutu `mystery` vuruşunda kapalı açılır, `ask` (read 'box') vuruşunda doldurulur.

@@ -2,15 +2,19 @@
  * Hesap çekmecesi (DESIGN §2 ilke 6: hesap yapıdan ayrılır). İki basit görsel araç:
  *  - Sayı doğrusu: işaretçi konur (dokun) — sıçramaları çocuk kendi sayar.
  *  - Onluk çerçeve(ler): hücreye dokun → dolar/boşalır (≤ 40 için).
+ *  - Nesneler: serbest MatBoard (tek bölge + çöp; birimler sayı büyüklüğüne göre) — çocuk
+ *    hesabı sayaç/onluk/yüzlükle yapar (DESIGN §12.1 ilke 9).
  * Puanlanmaz, kayıt tutmaz.
  */
 import { useState } from 'react';
 import { useT } from '../i18n';
+import { MatBoard } from './mat/MatBoard';
+import { unitsFor, type MatState } from './mat/matState';
 
 export function CalcDrawer({ max }: { max: number }) {
   const t = useT();
   const [open, setOpen] = useState(false);
-  const [tab, setTab] = useState<'line' | 'frame'>('line');
+  const [tab, setTab] = useState<'line' | 'frame' | 'objects'>('line');
   return (
     <div className={`calc${open ? ' is-open' : ''}`}>
       <button type="button" className="calc__toggle" aria-expanded={open} onClick={() => setOpen((o) => !o)}>
@@ -27,8 +31,19 @@ export function CalcDrawer({ max }: { max: number }) {
                 {t('calc_tenframe')}
               </button>
             )}
+            {max <= 1000 && (
+              <button type="button" className={`pill${tab === 'objects' ? ' is-on' : ''}`} aria-pressed={tab === 'objects'} onClick={() => setTab('objects')}>
+                {t('calc_objects')}
+              </button>
+            )}
           </div>
-          {tab === 'line' || max > 40 ? <NumberLine max={max} /> : <TenFrames max={max} />}
+          {tab === 'objects' && max <= 1000 ? (
+            <FreeMat max={max} />
+          ) : tab === 'line' || max > 40 ? (
+            <NumberLine max={max} />
+          ) : (
+            <TenFrames max={max} />
+          )}
         </div>
       )}
     </div>
@@ -99,5 +114,18 @@ function TenFrames({ max }: { max: number }) {
         {on.size}
       </span>
     </div>
+  );
+}
+
+function FreeMat({ max }: { max: number }) {
+  const t = useT();
+  const [state, setState] = useState<MatState>({ free: { h: 0, t: 0, o: 0 } });
+  return (
+    <MatBoard
+      zones={[{ id: 'free', label: t('calc_objects'), kind: 'pile', tone: 1 }]}
+      state={state}
+      onChange={setState}
+      units={unitsFor(max)}
+    />
   );
 }

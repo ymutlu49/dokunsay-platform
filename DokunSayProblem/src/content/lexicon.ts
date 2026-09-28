@@ -76,7 +76,7 @@ export const NOUNS = {
   top: N('top', { w: 'top' }, K('top'), { sg: 'ball', pl: 'balls' }),
   ceviz: N('ceviz', { w: 'ceviz' }, K('gûz'), { sg: 'walnut', pl: 'walnuts' }),
   elma: N('elma', { w: 'elma' }, K('sêv'), { sg: 'apple', pl: 'apples' }),
-  armut: N('armut', { w: 'armut' }, K('hirmî', 'hirmiyên', 'hirmiyan', 'hirmiyê'), { sg: 'pear', pl: 'pears' }),
+  armut: N('armut', { w: 'armut', soft: 'armud' }, K('hirmî', 'hirmiyên', 'hirmiyan', 'hirmiyê'), { sg: 'pear', pl: 'pears' }),
   meyve: N('meyve', { w: 'meyve' }, K('fêkî', 'fêkiyên', 'fêkiyan', 'fêkiyê'), { sg: 'piece of fruit', pl: 'pieces of fruit' }),
   cicek: N('cicek', { w: 'çiçek', soft: 'çiçeğ' }, K('kulîlk'), { sg: 'flower', pl: 'flowers' }),
   lale: N('lale', { w: 'lale' }, K('lale', 'laleyên', 'laleyan', 'laleyê'), { sg: 'tulip', pl: 'tulips' }),

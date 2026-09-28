@@ -7,7 +7,7 @@
  * Oturumda en fazla 1 yeni şema (S3). S1'e ulaşan şema karışık sete girer.
  * Eşikler TASARIM TERCİHİDİR, kalibre edilmemiştir (DESIGN §5, §11).
  */
-import type { ErrorClass, FlowStepId, Grade, MainStep, ScaffoldLevel, SchemaId } from '../content/types';
+import type { ActStrategy, ErrorClass, FlowStepId, Grade, MainStep, ScaffoldLevel, SchemaId } from '../content/types';
 import { load, save } from './storage';
 
 export interface AttemptSummary {
@@ -49,6 +49,10 @@ export interface AttemptRecord {
   modelFirstTry: boolean;
   stepTimes: Partial<Record<FlowStepId, number>>;
   reflect?: MainStep;
+  /** Canlandırmada gözlenen stratejiler (DESIGN §12.1 ilke 10). */
+  actStrategies?: ActStrategy[];
+  /** S1/S0'da "Nesnelerle dene" kullanıldı mı? */
+  actUsed?: boolean;
   ts: number;
 }
 

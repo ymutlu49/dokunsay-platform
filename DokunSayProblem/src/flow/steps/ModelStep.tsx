@@ -29,7 +29,11 @@ export function ModelStep({ s, dispatch, link, lang, next, ok, wrong, guided, hi
   const roles = step.quantities.map((q) => q.role);
   const solvedSlots = (): Record<string, Slot> =>
     Object.fromEntries(step.quantities.map((q) => [q.role, { label: q.role, value: q.role === step.unknown ? '?' : q.value, chip: 'g' }]));
-  const [slots, setSlots] = useState<Record<string, Slot>>(() => (guided ? solvedSlots() : {}));
+  // Canlandırmadan gelindiyse (DESIGN §12.1 ilke 8) etiketler yerleşik, sayılar boş başlar.
+  const fromAct = !guided && !!s.actDone?.[link];
+  const [slots, setSlots] = useState<Record<string, Slot>>(() =>
+    guided ? solvedSlots() : fromAct ? Object.fromEntries(roles.map((r) => [r, { label: r }])) : {},
+  );
   const [marks, setMarks] = useState<Partial<Record<Role, Mark>>>({});
   const [passed, setPassed] = useState(guided);
   const [view, setView] = useState<'arrow' | 'bar'>('arrow');

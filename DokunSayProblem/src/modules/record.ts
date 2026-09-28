@@ -4,7 +4,7 @@
  * modül maddeleri onu kirletmesin diye ayrı konu: `dokunsay:problem:<profil>.modules`
  * (lib/storage.ts → @shared/storage.js). Öğretmen paneli ikisini birlikte okur.
  */
-import type { ErrorClass, Grade, SchemaId } from '../content/types';
+import type { ActStrategy, ErrorClass, Grade, SchemaId } from '../content/types';
 import { load, save, loadDevice } from '../lib/storage';
 import { loadProgress } from '../lib/progress';
 
@@ -19,7 +19,8 @@ export type ModuleId =
   | 'errorDetective'
   | 'detective'
   | 'remainder'
-  | 'poser';
+  | 'poser'
+  | 'act';
 
 export interface ModuleRecord {
   module: ModuleId;
@@ -30,6 +31,8 @@ export interface ModuleRecord {
   correct: boolean;
   error?: ErrorClass;
   problemId?: string;
+  /** Canlandırma Durağı: maddede gözlenen stratejiler (inferStrategy; DESIGN §12.1 ilke 10). */
+  strategies?: ActStrategy[];
   ts: number;
 }
 

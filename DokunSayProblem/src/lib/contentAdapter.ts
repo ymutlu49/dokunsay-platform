@@ -9,6 +9,9 @@
  */
 import * as C from './content';
 import type {
+  ActBeat,
+  ActScript,
+  ActStrategy,
   ErrorClass,
   ExtraQuantity,
   FlowStepId,
@@ -294,6 +297,97 @@ export function makeProblem(spec: ProblemSpec): Problem | null {
     return p && Array.isArray(p.steps) && p.steps.length ? (p as Problem) : null;
   } catch (e) {
     console.warn('[problem] generateProblem hata', e);
+    return null;
+  }
+}
+
+// ─── Canlandır (DESIGN §12) ────────────────────────────────────────────────
+// İçerik: src/content/act.ts (actScriptFor, checkActState, expectedAfter, expectedGroupsAfter,
+// askValue, beatPrompt, inferStrategy). İşlev yoksa ya da hata verirse canlandırma adımı
+// plandan düşer (actFeasible → false); arayüz hiçbir zaman çökmez.
+
+export function actScript(problem: Problem, lang: Lang = 'tr', stepIndex = 0): ActScript | null {
+  try {
+    const r = API.actScriptFor?.(problem, lang, stepIndex);
+    if (!r || !Array.isArray(r.beats) || !Array.isArray(r.zones)) return null;
+    return r as ActScript;
+  } catch (e) {
+    console.warn('[problem] actScriptFor hata', e);
+    return null;
+  }
+}
+
+export function actFeasible(problem: Problem, stepIndex = 0): boolean {
+  const s = actScript(problem, 'tr', stepIndex);
+  return !!s && s.feasible && s.beats.length > 0 && !!API.checkActState && !!API.expectedAfter;
+}
+
+export function actCheck(
+  script: ActScript,
+  beat: number,
+  counts: Record<string, number>,
+  groups?: number[],
+): { ok: boolean; hint?: L10n } {
+  try {
+    const r = API.checkActState?.(script, beat, counts, groups ? { groups } : undefined);
+    return { ok: Boolean(r?.ok), hint: r?.hint ? asL10n(r.hint) : undefined };
+  } catch {
+    return { ok: false };
+  }
+}
+
+export function actExpected(script: ActScript, beat: number): Record<string, number> {
+  try {
+    return { ...(API.expectedAfter?.(script, beat) ?? {}) };
+  } catch {
+    return {};
+  }
+}
+
+export function actExpectedGroups(script: ActScript, beat: number): Record<string, number[]> {
+  try {
+    return { ...(API.expectedGroupsAfter?.(script, beat) ?? {}) };
+  } catch {
+    return {};
+  }
+}
+
+/** ask vuruşunda matta okunacak değer (içerik yoksa rolün değeri). */
+export function actAskValue(script: ActScript, beat: number, problem: Problem): number | null {
+  try {
+    const v = API.askValue?.(script, beat);
+    if (typeof v === 'number') return v;
+  } catch {
+    /* düş */
+  }
+  const b = script.beats[beat];
+  if (!b || b.kind !== 'ask') return null;
+  const st = problem.steps[script.step];
+  if (b.read === 'leftover') return st.remainder?.value ?? 0;
+  return st.quantities.find((q) => q.role === b.role)?.value ?? null;
+}
+
+export function actPrompt(script: ActScript, beat: ActBeat, problem: Problem, lang: Lang): L10n {
+  try {
+    const r = asL10n(API.beatPrompt?.(script, beat, problem, lang));
+    if (r.tr) return r;
+  } catch {
+    /* düş */
+  }
+  return EMPTY;
+}
+
+/** Strateji çıkarımı; olay türleri içeriğin bildiği kümeye süzülür. */
+export function actInfer(
+  events: { kind: string; amount: number; unit: string; zone: string; t: number }[],
+  script: ActScript,
+  beat: number,
+): ActStrategy | null {
+  const KNOWN = new Set(['add', 'remove', 'move', 'deal', 'group', 'break']);
+  try {
+    const r = API.inferStrategy?.(events.filter((e) => KNOWN.has(e.kind)), script, beat);
+    return typeof r === 'string' ? (r as ActStrategy) : null;
+  } catch {
     return null;
   }
 }

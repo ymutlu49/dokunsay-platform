@@ -1,6 +1,6 @@
 /**
  * Özet: şema bazında iskele düzeyi (S3→S0 merdiveni), ipucu kullanımı (H0–H4 dağılımı),
- * adım bazlı ortalama süre, Hata Dedektifi kilidi. Kütüphanesiz HTML çubuklar; tek seri →
+ * adım bazlı ortalama süre, Hata Dedektifi kilidi, canlandırma stratejileri (Strategies). Kütüphanesiz HTML çubuklar; tek seri →
  * açıklama kutusu yok, başlık adlandırır; her çubukta sayı metin olarak (renk tek başına
  * anlam taşımaz). Boş durumda nazik açıklama.
  */
@@ -12,6 +12,7 @@ import { saveDevice } from '../lib/storage';
 import { teacherUnlocked } from '../modules/record';
 import type { TeacherSummary } from './data';
 import { Heatmap, Confusion } from './Heatmap';
+import { Strategies } from './Strategies';
 import type { TKey, TT } from './i18n';
 
 export function Summary({ s, t, lang }: { s: TeacherSummary; t: TT; lang: Lang }) {
@@ -66,6 +67,7 @@ export function Summary({ s, t, lang }: { s: TeacherSummary; t: TT; lang: Lang }
         <p className="tc-note">{t('unlock_note')}</p>
       </section>
 
+      <Strategies s={s} t={t} lang={lang} />
       <Heatmap s={s} t={t} lang={lang} />
       <Confusion s={s} t={t} lang={lang} />
 

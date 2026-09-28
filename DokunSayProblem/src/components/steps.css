@@ -128,3 +128,20 @@
 .help__levels dd { margin: 0; }
 .help__evidence { margin-top: 20px; background: #fffbeb; border: 2px solid #fde68a; border-radius: 14px; padding: 4px 16px 12px; }
 .help__privacy { font-size: 0.9em; color: var(--ink-soft); }
+
+/* ── Canlandır (DESIGN §12) */
+.act { display: grid; gap: 8px; }
+.act__beat { display: grid; gap: 6px; }
+.act__sentence { margin: 0; padding: 8px 12px; border-radius: 12px; background: #fef9c3; box-shadow: inset 4px 0 0 var(--q); font-weight: 700; font-size: 1.05em; line-height: 1.5; }
+.act__sentno { display: inline-block; margin-right: 6px; font-size: 0.75em; font-weight: 900; color: #713f12; }
+/* Geniş ekranda hikâye paneli cümleyi zaten vurgular — adımda tekrar etme (sade UI) */
+@media (min-width: 900px) { .step-act .act__sentence { display: none; } }
+.act__prompt { margin: 0; display: flex; align-items: center; gap: 4px; flex-wrap: wrap; font-weight: 800; font-size: 1.05em; }
+.act__readout { margin: 0; text-align: center; font-weight: 900; font-size: 1.2em; }
+.act__readout b { font-size: 1.6em; color: var(--acc-dark); margin-left: 6px; }
+.act-try-row { display: flex; justify-content: flex-end; margin-top: 8px; }
+.act-try { min-height: 44px; }
+.modal--act { max-width: 980px; max-height: calc(100dvh - 32px); overflow: auto; }
+.modal--act__head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.modal--act__title { margin: 0; font-size: 1.2em; font-weight: 900; }
+.reason .act { margin-top: 4px; }

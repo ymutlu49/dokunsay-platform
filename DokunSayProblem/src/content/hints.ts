@@ -8,6 +8,8 @@ import { SCHEMA_META, ROLE_LABEL } from './meta';
 import { sentenceText } from './text';
 import { stepFamily, templateTokens } from './relations';
 import { fmtNum } from './text';
+import { actScriptFor, beatPrompt } from './act';
+import type { SchemaStep } from './types';
 
 const T = (tr: string, ku: string, en: string): L10n => ({ tr, ku, en });
 const each = (f: (lang: 'tr' | 'ku' | 'en') => string): L10n => ({ tr: f('tr'), ku: f('ku'), en: f('en') });
@@ -28,8 +30,44 @@ function otherSchema(s: SchemaId): SchemaId {
   return order.find((x) => x !== s)!;
 }
 
+/** Canlandır: bu hikâyede hangi tür eylem var (anahtar sözcük → işlem eşlemesi YOK; yalnız olayın türü). */
+function actionKind(st: SchemaStep): L10n {
+  if (st.schema === 'change') return st.variant === 'separate'
+    ? T('Bu hikâyede bir şey gidiyor.', 'Di vê çîrokê de tiştek diçe.', 'In this story, something goes away.')
+    : T('Bu hikâyede bir şey geliyor ya da ekleniyor.', 'Di vê çîrokê de tiştek tê an lê zêde dibe.', 'In this story, something comes or is added.');
+  if (st.schema === 'combine') return T('Bu hikâyede iki grup var; birlikte bir bütün oluyorlar.', 'Di vê çîrokê de du kom hene; bi hev re dibin yek.', 'This story has two groups; together they make a whole.'); // KU-DENETİM
+  if (st.schema === 'compare') return T('Bu hikâyede iki miktar karşılaştırılıyor. Sayaçları bire bir eşleyebilirsin.', 'Di vê çîrokê de du mîqdar tên berhevdan. Tu dikarî tiştan yek bi yek bidî ber hev.', 'This story compares two amounts. You can match counters one to one.');
+  if (st.schema === 'equalGroups') {
+    if (st.unknown === 'perGroup') return T('Bu hikâyede nesneler gruplara eşit paylaştırılıyor.', 'Di vê çîrokê de tişt bi wekhevî li koman tên parkirin.', 'In this story, things are shared equally among groups.'); // KU-DENETİM
+    if (st.unknown === 'groups') return T('Bu hikâyede nesneler eşit gruplara ayrılıyor; bir grubun büyüklüğü belli.', 'Di vê çîrokê de tişt dibin komên wekhev; mezinahiya komekê diyar e.', 'In this story, things are put into equal groups; the size of one group is known.'); // KU-DENETİM
+    return T('Bu hikâyede eşit gruplar var; her grupta aynı sayıda nesne var.', 'Di vê çîrokê de komên wekhev hene; di her komê de heman hejmar heye.', 'This story has equal groups; each group has the same number of things.');
+  }
+  return T('Bu hikâyede bir miktar birkaç kez tekrarlanıyor.', 'Di vê çîrokê de mîqdarek çend caran dubare dibe.', 'In this story, one amount is repeated several times.');
+}
+
+/** Canlandır ipuçları: H1 cümleyi yeniden dinlet · H2 eylem türü · H3 ilk adımı daralt · H4 sesli düşünerek eylemleri göster (cevapsız). */
+function actHint(problem: Problem, level: 1 | 2 | 3 | 4): L10n {
+  const script = actScriptFor(problem);
+  const st = problem.steps[script.step];
+  if (level === 1) return T('Cümleyi bir daha dinleyelim. Bu cümlede ne oluyor?', 'Em hevokê careke din guhdarî bikin. Di vê hevokê de çi diqewime?', 'Let’s listen to the sentence again. What happens in this sentence?');
+  if (level === 2) return actionKind(st);
+  const acts = script.beats.filter((b) => b.kind !== 'ask');
+  if (!script.feasible || !acts.length) return T('Hikâyedeki sayılara tek tek bak: her biri kime ait?', 'Li hejmarên çîrokê yek bi yek binêre: her yek ya kê ye?', 'Look at each number in the story: whose is it?');
+  if (level === 3) {
+    const bp = beatPrompt(script, acts[0], problem);
+    return each((l) => ({ tr: `İlk adım: ${bp.tr}`, ku: `Gava yekem: ${bp.ku}`, en: `First step: ${bp.en}` })[l]);
+  }
+  const all = acts.map((b) => beatPrompt(script, b, problem));
+  return each((l) => ({
+    tr: `Şöyle düşünüyorum: Hikâyeyi cümle cümle canlandırıyorum. Kendime şöyle diyorum: «${all.map((x) => x.tr).join(' ')}» Sonra sayıp hikâyeyle karşılaştıracağım.`,
+    ku: `Ez wiha difikirim: Ez çîrokê hevok bi hevok zindî dikim. Ez ji xwe re dibêjim: «${all.map((x) => x.ku).join(' ')}» Paşê ez ê bijmêrim û bi çîrokê re bidim ber hev.`,
+    en: `I think like this: I act out the story sentence by sentence. I tell myself: «${all.map((x) => x.en).join(' ')}» Then I will count and compare with the story.`,
+  })[l]);
+}
+
 /** Adım × kademe ipucu (1 genel üstbilişsel · 2 şema kuralı · 3 daraltma · 4 sesli düşünerek gösterim). */
 export function hintFor(problem: Problem, step: FlowStepId, level: 1 | 2 | 3 | 4): L10n {
+  if (step === 'act') return actHint(problem, level);
   const s = lastStep(problem);
   const meta = SCHEMA_META[s.schema];
   const fam = stepFamily(s);
@@ -141,6 +179,7 @@ export function feedbackFor(kind: 'correct' | ErrorClass, problem: Problem, step
   const q = (l: 'tr' | 'ku' | 'en') => question(problem, l);
   if (kind === 'correct') {
     if (problem.unsolvable) return T('Harika fark ettin! Bu soruyu çözmek için bilgi yetmiyor. Hangi bilgi olsaydı çözerdik?', 'Te baş ferq kir! Ji bo çareserkirina vê pirsê agahî têr nake. Kîjan agahî hebûya, me ê çareser bikira?', 'Great noticing! There is not enough information to solve this. What information would we need?');
+    if (step === 'act') return T('Hikâyeyi nesnelerle tam canlandırdın! Şimdi bu yapıya bir ad verelim.', 'Te çîrok bi tiştan bi tevahî zindî kir! Niha em navekî bidin vê avahiyê.', 'You acted out the whole story with objects! Now let’s give this structure a name.'); // KU-DENETİM
     if (step === 'schema') return each((l) => ({ tr: `Evet! Bu bir ${meta.name.tr} problemi: ${meta.short.tr}`, ku: `Erê! Ev pirsgirêkeke ${meta.name.ku} ye: ${meta.short.ku}`, en: `Yes! This is a ${meta.name.en} problem: ${meta.short.en}` })[l]);
     if (step === 'model' || step === 'checkModel') return T('Modelin hikâyeyi tam anlatıyor.', 'Modela te çîrokê bi tevahî dibêje.', 'Your model tells the whole story.');
     if (step === 'equation') return T('Denklemin modelinle aynı. Güzel bir çeviri!', 'Hevkêşeya te wek modela te ye. Wergereke xweş!', 'Your equation matches your model. Nice translation!');
@@ -170,7 +209,10 @@ export function feedbackFor(kind: 'correct' | ErrorClass, problem: Problem, step
         : each((l) => ({ tr: `Sayın doğru; cevabın ne cinsinden? Birimi ekle: ${problem.answerUnit.tr}.`, ku: `Hejmara te rast e; bersiva te bi çi ye? Yekeyê lê zêde bike: ${problem.answerUnit.ku}.`, en: `Your number is right; what is it measured in? Add the unit: ${problem.answerUnit.en}.` })[l]);
     case 'unsolvableMissed':
       return T('Bu soruyu çözmek için bilgi yeterli mi? Bir daha dinleyelim; her sayı nereden geliyor?', 'Ji bo çareserkirina vê pirsê agahî têr dike? Em dîsa guhdarî bikin; her hejmar ji ku tê?', 'Is there enough information to solve this? Let’s listen again; where does each number come from?');
+    case 'actMismatch':
+      return T('Cümleyi bir daha dinleyelim. Masadaki nesneler hikâyedeki gibi mi? Kaç tane olmalı?', 'Em hevokê careke din guhdarî bikin. Tiştên li ser masê wek çîrokê ne? Divê çend heb hebin?', 'Let’s listen to the sentence again. Are the objects on the mat like the story? How many should there be?');
   }
+  return T('Bir daha bakalım.', 'Em careke din binêrin.', 'Let’s look again.');
 }
 
 type Talk = { say: L10n; ask: L10n; check: L10n };
@@ -182,6 +224,7 @@ export const selfTalk: Record<FlowStepId, Talk> = {
   retell: st(['Hikâyeyi kendi sözlerimle anlatıyorum.', 'Ez çîrokê bi gotinên xwe vedibêjim.', 'I tell the story in my own words.'], ['Kim var? Ne oldu? Ne değişti?', 'Kî heye? Çi qewimî? Çi guherî?', 'Who is there? What happened? What changed?'], ['Anlattığım hikâye problemle aynı mı?', 'Çîroka ku min got wek pirsgirêkê ye?', 'Is my story the same as the problem?']),
   question: st(['Ne bulmam gerekiyor?', 'Divê ez çi bibînim?', 'What do I need to find?'], ['Cevabım ne cinsinden olacak?', 'Bersiva min dê bi çi be?', 'What will my answer be measured in?'], ['Soruyu doğru buldum mu?', 'Min pirs rast dît?', 'Did I find the question correctly?']),
   known: st(['Hangi bilgiler işime yarar, ayırıyorum.', 'Ez agahiyên ku bi kêrî min tên vediqetînim.', 'I sort out which information is useful.'], ['Bu sayı soruyla ilgili mi?', 'Ev hejmar bi pirsê re têkildar e?', 'Is this number about the question?'], ['Gereksiz bir sayı kullandım mı?', 'Min hejmareke ne pêwîst bi kar anî?', 'Did I use a number I don’t need?']),
+  act: st(['Hikâyeyi nesnelerle canlandırıyorum.', 'Ez çîrokê bi tiştan zindî dikim.', 'I act out the story with objects.'], ['Bu cümlede ne oldu: geldi mi, gitti mi, birleşti mi, karşılaştırıldı mı?', 'Di vê hevokê de çi qewimî: tiştek hat, çû, gihîşt hev, an hate berhevdan?', 'What happened in this sentence: did something come, go, join together, or get compared?'], ['Masadaki nesneler hikâyedeki gibi mi?', 'Tiştên li ser masê wek çîrokê ne?', 'Are the objects on the mat like the story?']), // KU-DENETİM: "zindî kirin" (canlandırmak)
   schema: st(['Bu problem hangi türe benziyor, düşünüyorum.', 'Ez difikirim ka ev pirsgirêk dişibe kîjan cureyî.', 'I think about which type this problem is like.'], ['Daha önce çözdüğüm hangi probleme benziyor?', 'Ew dişibe kîjan pirsgirêka ku min berê çareser kiribû?', 'Which problem I solved before is it like?'], ['Bir şey mi değişti, yoksa iki şey mi karşılaştırılıyor?', 'Tiştek guherî, an du tişt tên berhevdan?', 'Did something change, or are two things compared?']),
   model: st(['Bildiklerimi modele yerleştiriyorum.', 'Ez tiştên ku dizanim dixim nav modelê.', 'I put what I know into the model.'], ['Bütün hangisi? Parçalar hangileri? ? nerede?', 'Gişt kîjan e? Parçe kîjan in? ? li ku ye?', 'Which is the whole? Which are the parts? Where is the ?'], ['Modelim hikâyeyi anlatıyor mu?', 'Modela min çîrokê dibêje?', 'Does my model tell the story?']),
   checkModel: st(['Modelimi hikâyeyle karşılaştırıyorum.', 'Ez modela xwe bi çîrokê re didim ber hev.', 'I compare my model with the story.'], ['Her kutu hikâyede neyi anlatıyor?', 'Her qutî di çîrokê de çi dibêje?', 'What does each box mean in the story?'], ['Bütün, parçalardan büyük mü?', 'Gişt ji parçeyan mezintir e?', 'Is the whole bigger than the parts?']),

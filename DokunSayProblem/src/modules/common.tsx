@@ -6,7 +6,7 @@
  */
 import { useCallback, useRef, useState, type ReactNode } from 'react';
 import { SpeakButton } from '@shared/SpeakButton.jsx';
-import type { ErrorClass, Grade, Lang, Problem, SchemaId, Sentence } from '../content/types';
+import type { ActStrategy, ErrorClass, Grade, Lang, Problem, SchemaId, Sentence } from '../content/types';
 import { sentenceSpoken } from '../lib/contentAdapter';
 import type { MT } from './i18n';
 import { recordItem, type ModuleId } from './record';
@@ -34,7 +34,7 @@ export interface RoundApi {
   answer: (ok: boolean, text: string, rec?: { schema?: SchemaId; chosen?: SchemaId; error?: ErrorClass; problemId?: string }) => AnswerResult;
   info: (text: string, tone?: Tone) => void;
   /** Çok aşamalı maddeyi tek seferde kapatır (aşamaları modül yönetir): kayıt + sayım + çözüldü. */
-  finish: (ok: boolean, text: string, rec?: { schema?: SchemaId; error?: ErrorClass; problemId?: string }) => void;
+  finish: (ok: boolean, text: string, rec?: { schema?: SchemaId; error?: ErrorClass; problemId?: string; strategies?: ActStrategy[] }) => void;
   next: () => void;
 }
 
@@ -152,7 +152,7 @@ export function FeedbackLine({ fb, lang }: { fb: RoundApi['fb']; lang: Lang }) {
 }
 
 /** Hikâye: cümleler + tüm hikâyeyi okuyan tek 🔊 (her cümlede ayrı düğme sade UI'yı bozardı). */
-export function StoryBlock({ problem, lang, t, label, compact }: { problem: Problem; lang: Lang; t: MT; label?: string; compact?: boolean }) {
+export function StoryBlock({ problem, lang, t, label, compact, reading }: { problem: Problem; lang: Lang; t: MT; label?: string; compact?: boolean; reading?: number | null }) {
   const sentences = problem.text[lang]?.length ? problem.text[lang] : problem.text.tr;
   const spoken = () => sentences.map((s) => sentenceSpoken(s, lang)).join(' ');
   return (
@@ -163,7 +163,7 @@ export function StoryBlock({ problem, lang, t, label, compact }: { problem: Prob
       </div>
       <p className="md-story__text">
         {sentences.map((s, i) => (
-          <span key={i} className={s.isQuestion ? 'md-story__q' : undefined}>
+          <span key={i} className={[s.isQuestion ? 'md-story__q' : '', reading === i ? 'is-reading' : ''].filter(Boolean).join(' ') || undefined}>
             <SentenceLine s={s} />{' '}
           </span>
         ))}

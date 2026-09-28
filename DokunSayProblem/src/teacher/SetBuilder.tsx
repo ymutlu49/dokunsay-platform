@@ -22,6 +22,7 @@ export function SetBuilder({ t, lang, grade0, onProject }: { t: TT; lang: Lang; 
   const [spec, setSpec] = useState<SetSpec | null>(null);
   const [probs, setProbs] = useState<Problem[]>([]);
   const [showSchema, setShowSchema] = useState(true);
+  const [actBoxes, setActBoxes] = useState(false);
   const [printing, setPrinting] = useState(false);
   const [msg, setMsg] = useState('');
 
@@ -109,6 +110,10 @@ export function SetBuilder({ t, lang, grade0, onProject }: { t: TT; lang: Lang; 
             <input type="checkbox" checked={showSchema} onChange={(e) => setShowSchema(e.target.checked)} />
             <span>{t('ws_show_schema')}</span>
           </label>
+          <label className="tc-check">
+            <input type="checkbox" checked={actBoxes} onChange={(e) => setActBoxes(e.target.checked)} />
+            <span>{t('ws_act')}</span>
+          </label>
           <div className="tc-actions">
             <button type="button" className="tc-btn" onClick={async () => setMsg((await copyText(setUrl(spec))) ? t('copied') : t('copy_fail'))}>
               {t('btn_copy_link')}
@@ -124,7 +129,7 @@ export function SetBuilder({ t, lang, grade0, onProject }: { t: TT; lang: Lang; 
       )}
       {printing && (
         <PrintJob onDone={() => setPrinting(false)}>
-          <WorksheetPages problems={probs} lang={lang} t={t} showSchema={showSchema} />
+          <WorksheetPages problems={probs} lang={lang} t={t} showSchema={showSchema} actBoxes={actBoxes} />
         </PrintJob>
       )}
     </div>

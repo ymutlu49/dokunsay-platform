@@ -247,7 +247,7 @@ export interface ErroneousSolution {
  */
 export type FlowStepId =
   | 'read' | 'retell' | 'question' | 'known'          // 1 ANLA
-  | 'schema' | 'model' | 'checkModel'                 // 2 GÖSTER (tanı + modelle)
+  | 'act' | 'schema' | 'model' | 'checkModel'         // 2 GÖSTER (canlandır + tanı + modelle)
   | 'estimate'                                        // 3 TAHMİN ET
   | 'equation' | 'compute'                            // 4 ÇÖZ
   | 'answer' | 'reasonable' | 'reflect';              // 5 KONTROL ET
@@ -256,7 +256,7 @@ export type MainStep = 'understand' | 'show' | 'estimate' | 'solve' | 'check';
 
 export const MAIN_STEPS: readonly { id: MainStep; micro: readonly FlowStepId[] }[] = [
   { id: 'understand', micro: ['read', 'retell', 'question', 'known'] },
-  { id: 'show', micro: ['schema', 'model', 'checkModel'] },
+  { id: 'show', micro: ['act', 'schema', 'model', 'checkModel'] },
   { id: 'estimate', micro: ['estimate'] },
   { id: 'solve', micro: ['equation', 'compute'] },
   { id: 'check', micro: ['answer', 'reasonable', 'reflect'] },
@@ -282,4 +282,69 @@ export type ErrorClass =
   | 'operation'       // modele uymayan işlem
   | 'computation'     // model ve işlem doğru, hesap yanlış
   | 'unitOrRemainder' // birim eksik / kalan yanlış yorumlandı
-  | 'unsolvableMissed';// çözülemez problemi çözmeye çalışma
+  | 'unsolvableMissed'// çözülemez problemi çözmeye çalışma
+  | 'actMismatch';    // canlandırmada hikâyeden farklı miktar/eylem
+
+
+// ─── CANLANDIR (sanal manipülatif) — DESIGN §12 ──────────────────────────────
+
+/** Manipülatif birimi: tek sayaç, onluk çubuk, yüzlük kare. */
+export type ActUnit = 'one' | 'ten' | 'hundred';
+
+/**
+ * Canlandırma alanı (tepsi/bölge). `owner` hikâyedeki kişi/yer adıdır (L10n).
+ * kind: pile = serbest yığın (onluk çerçeve düzeninde dizilir), box = "?" gizli kutu,
+ * row = bire bir eşleme satırı (karşılaştırma), group = eşit grup kabı (tabak/torba).
+ */
+export interface ActZone {
+  id: string;
+  label: L10n;
+  kind: 'pile' | 'box' | 'row' | 'group';
+  role?: Role;
+  /** group kind için kaç kap (eşit gruplar); diğerlerinde yok. */
+  count?: number;
+}
+
+/**
+ * Hikâye cümlesine bağlı canlandırma vuruşu. `sentence` = Problem.text[lang] indeksi — `actScriptFor`
+ * hangi dil için çağrıldıysa o dilin cümle dizisine göre (bazı çerçevelerde dillerin cümle sayısı
+ * farklıdır; dil değişince betik yeniden istenir). `amount` her zaman pozitif tamsayı.
+ * `place` bir `group` bölgesine yapılırsa `amount` HER GRUBA konan miktardır (çarpma).
+ * `remove` kapalı bir gizli kutudan yapılırsa kutu kapalı kalır, yalnız `to` bölgesi artar.
+ */
+export type ActBeat =
+  | { kind: 'place'; sentence: number; zone: string; amount: number; role: Role }
+  | { kind: 'add'; sentence: number; zone: string; amount: number; role: Role }
+  | { kind: 'remove'; sentence: number; zone: string; amount: number; role: Role; to?: string }
+  | { kind: 'combine'; sentence: number; from: string[]; to: string }
+  | { kind: 'match'; sentence: number; zones: [string, string] }
+  | { kind: 'deal'; sentence: number; from: string; to: string; groups: number }
+  | { kind: 'makeGroups'; sentence: number; from: string; to: string; size: number }
+  | { kind: 'copy'; sentence: number; from: string; to: string; times: number }
+  | {
+      kind: 'mystery'; sentence: number; zone: string; role: Role;
+      /** (İsteğe bağlı) Hikâyedeki hedef sayı — kutu açılınca (ask 'box') sağlanması gereken bağıntı:
+       *  change/join: kutu + main = target · change/separate (değişim bilinmiyor): main'de target kalana
+       *  kadar `from`'dan kutuya taşı · change/separate (başlangıç bilinmiyor): kutu − out = target ·
+       *  compare: kutu ile diğer satır arasındaki fark = target. */
+      target?: number;
+      /** (İsteğe bağlı) Kutu, bu bölgeden sayaç taşınarak doldurulur (ör. "kaç tane gitti?"). */
+      from?: string;
+      /** (İsteğe bağlı) Kutunun gerçek içeriği — yalnız denetim için (expectedAfter/checkActState); ARAYÜZDE GÖSTERİLMEZ. */
+      amount?: number;
+    }
+  | { kind: 'ask'; sentence: number; zone: string | null; role: Role; read: 'count' | 'difference' | 'groupSize' | 'groupCount' | 'box' | 'leftover' };
+
+export interface ActScript {
+  /** false → sayılar canlandırmaya uygun değil (ör. >1000, iki adımlı karmaşık, kesir); adım atlanır. */
+  feasible: boolean;
+  zones: ActZone[];
+  beats: ActBeat[];
+  /** Büyüklüğe göre sunulacak birimler: ≤20 ['one']; ≤100 ['ten','one']; ≤1000 ['hundred','ten','one']. */
+  units: ActUnit[];
+  /** Hangi şema adımı (Problem.steps indeksi) canlandırılıyor. */
+  step: number;
+}
+
+/** Canlandırmada gözlenen strateji (CGI; Carpenter vd. 1999) — öğretmen paneli için. */
+export type ActStrategy = 'countAll' | 'countOn' | 'useTens' | 'dealOneByOne' | 'groupAtOnce' | 'guessCheck';

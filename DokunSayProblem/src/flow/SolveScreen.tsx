@@ -7,7 +7,7 @@ import { useCallback, useEffect, useReducer, useRef, useState } from 'react';
 import { sfx } from '@shared/audio.js';
 import type { ErrorClass, FlowStepId, L10n, Problem, ScaffoldLevel } from '../content/types';
 import { pick, useLang, useT, type Key } from '../i18n';
-import { feedbackText, hintText, schemaMeta, selfTalkFor, answerText } from '../lib/contentAdapter';
+import { actFeasible, feedbackText, hintText, schemaMeta, selfTalkFor, answerText } from '../lib/contentAdapter';
 import { knownMax } from '../lib/problemUtil';
 import { speak, voiceOn } from '../lib/speech';
 import { initSolve, isGuided, MAIN_OF, solveReducer, type SolveState } from '../state/solveReducer';
@@ -20,6 +20,7 @@ import { HomeIcon, ShareIcon } from '../components/icons';
 import { ReadStep, RetellStep, QuestionStep } from './steps/UnderstandSteps';
 import { KnownStep, SchemaStep } from './steps/KnownSchemaSteps';
 import { ModelStep } from './steps/ModelStep';
+import { ActStep, ActTryButton } from './steps/ActStep';
 import { CheckModelStep, EstimateStep } from './steps/ShowEstimateSteps';
 import { ComputeStep, EquationStep } from './steps/SolveSteps';
 import { AnswerStep, ReasonableStep, ReflectStep } from './steps/CheckSteps';
@@ -28,12 +29,12 @@ import { equationFor } from '../lib/contentAdapter';
 import { tokensText, unknownValue } from '../lib/problemUtil';
 
 const TITLE: Record<FlowStepId, Key> = {
-  read: 'm_read', retell: 'm_retell', question: 'm_question', known: 'm_known', schema: 'm_schema', model: 'm_model',
+  act: 'm_act', read: 'm_read', retell: 'm_retell', question: 'm_question', known: 'm_known', schema: 'm_schema', model: 'm_model',
   checkModel: 'm_checkModel', estimate: 'm_estimate', equation: 'm_equation', compute: 'm_compute', answer: 'm_answer',
   reasonable: 'm_reasonable', reflect: 'm_reflect',
 };
 const PROMPT: Partial<Record<FlowStepId, Key>> = {
-  retell: 'p_retell', question: 'p_question', known: 'p_known', schema: 'p_schema', checkModel: 'p_checkModel',
+  act: 'p_act', retell: 'p_retell', question: 'p_question', known: 'p_known', schema: 'p_schema', checkModel: 'p_checkModel',
   equation: 'p_equation', compute: 'p_compute', answer: 'p_answer', reasonable: 'p_reasonable', reflect: 'p_reflect',
 };
 
@@ -166,6 +167,7 @@ export function SolveScreen({
       retell: t('guide_retell'),
       question: t('guide_question'),
       known: t('guide_known'),
+      act: t('guide_act'),
       schema: t('guide_schema', { name: pick(m.name, lang), rule: pick(m.rule, lang) }),
       model: t('guide_model'),
       checkModel: t('guide_checkModel'),
@@ -178,6 +180,8 @@ export function SolveScreen({
     const h4 = s.guided.includes(s.idx) ? `${t('guide_showing')} ` : '';
     return h4 + (lines[stepId] ?? '');
   })();
+  // S1/S0: canlandırma planda yok ama model/denklem/hesapta isteğe bağlı (DESIGN §12.1 ilke 9).
+  const tryObjects = level <= 1 && !guided && ['model', 'equation', 'compute'].includes(stepId) && actFeasible(problem, link);
   const yourTurn = level === 3 && s.idx === s.guideUntil && s.guideUntil > 0 && !guided;
 
   const props: StepProps = { s, dispatch, link, guided, lang, next, ok, wrong, hint: s.hintLevel };
@@ -188,6 +192,7 @@ export function SolveScreen({
       case 'retell': return <RetellStep key={key} {...props} />;
       case 'question': return <QuestionStep key={key} {...props} />;
       case 'known': return <KnownStep key={key} {...props} />;
+      case 'act': return <ActStep key={key} {...props} setReading={setReading} />;
       case 'schema': return <SchemaStep key={key} {...props} level={level} />;
       case 'model': return <ModelStep key={key} {...props} level={level} />;
       case 'checkModel': return <CheckModelStep key={key} {...props} />;
@@ -239,6 +244,11 @@ export function SolveScreen({
           {yourTurn && <GuideBalloon text={t('guide_your_turn')} />}
           {!guided && <SelfTalkCard talk={selfTalkFor(stepId)} open={level >= 2} glow={s.glow} />}
           <HintBubble level={s.hintLevel} text={s.hintLevel < 4 ? s.hintText : null} />
+          {tryObjects && (
+            <div className="act-try-row">
+              <ActTryButton problem={problem} lang={lang} stepIndex={link} dispatch={dispatch} />
+            </div>
+          )}
           <div className={`step-wrap${shake ? ' shake' : ''}`}>
             {body}
           </div>

@@ -116,6 +116,27 @@ export const tr = {
   gd_5: 'H3–H4 ipucuna ulaşan ya da iki kez üst üste yanlış yapan çocukla küçük grupta yeniden "Birlikte" çalışın.',
   gd_6: 'Dil desteği ile matematik güçlüğünü ayırın: çocuk Kürtçe sunumda belirgin daha başarılıysa bu dil desteği ihtiyacına işaret edebilir (tanı değildir).',
   gd_7: 'Veriler bireyselleştirilmiş destek planlamak içindir; çocukları sıralamak için değil.',
+  // Canlandırma stratejileri (DESIGN §12.1 ilke 10; CGI)
+  st_title: 'Canlandırma stratejileri',
+  st_desc: 'Çocuk nesnelerle nasıl sayıyor? Kaynak: Çöz akışındaki Canlandır adımı ve Canlandırma Durağı. Sayılar gözlem (madde) sayısıdır; bir maddede birden çok strateji görülebilir. Altı çizili basamak: son gözlemlerde en sık görülen.',
+  st_empty: "Henüz canlandırma gözlemi yok. Çocuk Çöz akışında Canlandır adımını ya da Antrenman Durakları'nda Canlandırma Durağı'nı yaptıkça burada strateji gelişimi görünür.",
+  st_countAll: 'Hepsini sayıyor', st_countOn: 'Üstüne sayıyor', st_useTens: 'Onluk kullanıyor',
+  st_dealOneByOne: 'Birer birer dağıtıyor', st_groupAtOnce: 'Grup grup koyuyor', st_guessCheck: 'Tahmin edip deniyor',
+  st_path_aria: '{schema} strateji yolu', st_obs: '{n} gözlem',
+  st_trend_up: '↑ İlerliyor (son 10 gözlem)', st_trend_down: '↓ Geriye döndü: yeniden modelleyin', st_trend_flat: '→ Durağan',
+  st_trend_none: 'Eğilim için en az 4 gözlem gerekir.',
+  st_support: '🧮 Destek gereksinimi: S1–S0 çözümlerinin {m} tanesinin {n} tanesinde "Nesnelerle dene" açıldı.',
+  st_support_all: '🧮 Destek gereksinimi (tüm şemalar): S1–S0 çözümlerinde "Nesnelerle dene" {m} çözümün {n} tanesinde açıldı. Sık açılıyorsa o şemada somut desteği sürdürün, soluklaştırmayı acele etmeyin.',
+  st_note_countall: 'Çocuk hâlâ hepsini sayıyorsa: bilinen miktarı gizli kutuya koyup üstüne saymayı modelleyin (Carpenter vd. 1999).',
+  st_note_deal: `Hâlâ birer birer dağıtıyorsa: "Her tabağa 3'er koyalım" diye grup grup koymayı gösterin, sonra kaç kez koyduğunuzu birlikte sayın.`,
+  st_now: 'Bu cihazda şu an: {list}',
+  st_dev_note: 'Bu bir gelişim görünümüdür, doğru/yanlış ölçüsü değildir: doğrudan modelleme → sayma → türetilmiş bilgi (CGI). Veriler bireyselleştirilmiş destek planlamak içindir.',
+  // Projeksiyon: canlandır
+  pj_act: '🧮 Canlandır', pj_act_do: 'Birlikte yap', pj_act_watch: 'Rehber oynatsın', pj_act_back: 'Adımlara dön',
+  pj_act_done: 'Hikâyeyi birlikte canlandırdık. Şimdi modeli kuralım.', pj_act_desc: 'Sınıfça canlandırma: bir öğrenci tahtada yapar, sınıf cümleyi dinler ve izler.',
+  // Çalışma kâğıdı: canlandırma kutuları
+  ws_act: 'Canlandırma kutuları (uygun problemlerde basılı onluk çerçeve boşlukları)',
+  ws_act_title: 'Canlandır: sayaçları çiz ya da üstüne koy.', ws_act_tens: 'Onluk', ws_act_ones: 'Birlik', ws_act_plate: '{n}. kap',
 };
 
 export type TKey = keyof typeof tr;

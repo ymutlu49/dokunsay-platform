@@ -24,7 +24,11 @@ const LANGS: Lang[] = ['tr', 'ku', 'en'];
 
 function compose(fi: FrameInput, spec: ChangeSpec, changeLabel: L10n, unit: L10n): FrameOut {
   const h = helpers(fi);
-  const vagueBefore = fi.rng.chance(0.4);
+  // Başlangıç bilinmeyende açılış cümlesi ("Ağaçta bir miktar kuş vardı.") HER ZAMAN yazılır:
+  // "Sonra…" ile başlayan hikâye bağlamsız kalıyor ve Canlandır'da gizli kutunun cümlesi olmuyordu.
+  // rng çağrısı, aynı tohumun sonraki çekilişlerini korumak için bırakıldı.
+  fi.rng.chance(0.4);
+  const vagueBefore = true;
   const vagueEvent = true;
   const text = {} as Record<Lang, Sentence[]>;
   const answer = {} as L10n;

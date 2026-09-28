@@ -6,7 +6,8 @@
 import { useEffect, useMemo, useState } from 'react';
 import { MAIN_STEPS, type MainStep } from '../../content/types';
 import { useT, type Key } from '../../i18n';
-import { answerText, equationFor, sentenceSpoken } from '../../lib/contentAdapter';
+import { actFeasible, answerText, equationFor, sentenceSpoken } from '../../lib/contentAdapter';
+import { ActRunner } from './ActRunner';
 import { fillUnknown, inverseOf, knownMax, shuffleSeeded, tokensSpeech, unknownValue } from '../../lib/problemUtil';
 import { speak, voiceOn } from '../../lib/speech';
 import { StepIcon } from '../../components/icons';
@@ -106,6 +107,9 @@ export function ReasonableStep({ s, lang, next, link, dispatch }: StepProps) {
   const sentences = s.problem.text[lang]?.length ? s.problem.text[lang] : s.problem.text.tr;
   const storyWithAnswer = () =>
     [...sentences.filter((x) => !x.isQuestion).map((x) => sentenceSpoken(x, lang)), answerText(s.problem, lang, answer)].join(' ');
+  // "Cevabı hikâyeye koy": uygunsa hikâye matta cevapla birlikte kendiliğinden oynar (salt izleme).
+  const canAct = useMemo(() => actFeasible(s.problem, link), [s.problem, link]);
+  const [replay, setReplay] = useState(0);
   return (
     <div className="step">
       <div className="reason">
@@ -116,10 +120,20 @@ export function ReasonableStep({ s, lang, next, link, dispatch }: StepProps) {
         ) : (
           <p className="reason__est">{t('answer_is', { x: answer })}</p>
         )}
-        {voiceOn(lang) && (
-          <button type="button" className="btn btn--big" onClick={() => speak(storyWithAnswer(), lang)}>
+        {(voiceOn(lang) || canAct) && (
+          <button
+            type="button"
+            className="btn btn--big"
+            onClick={() => {
+              if (voiceOn(lang)) speak(storyWithAnswer(), lang);
+              if (canAct) setReplay((k) => k + 1);
+            }}
+          >
             {t('btn_story_answer')}
           </button>
+        )}
+        {canAct && replay > 0 && (
+          <ActRunner key={replay} problem={s.problem} lang={lang} stepIndex={link} mode="replay" showCounts onFinish={() => undefined} />
         )}
         {inv && (
           <div className="reason__inv">

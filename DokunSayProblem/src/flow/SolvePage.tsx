@@ -165,6 +165,8 @@ export function SolvePage({ initial }: { initial: HashRoute }) {
         modelFirstTry: st.modelFirstTry,
         stepTimes: st.stepTimes,
         reflect: st.reflect ?? undefined,
+        actStrategies: st.actStrategies.length ? st.actStrategies : undefined,
+        actUsed: st.actUsed || undefined,
         ts: Date.now(),
       });
       setResult({ change, mustRepeat: st.usedH4 });

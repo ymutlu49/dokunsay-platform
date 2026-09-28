@@ -6,9 +6,10 @@
  * kartları "Nasıl yapıyordum?" ile isteğe bağlı); S0 tahmin ve denklem gizli.
  * İki adımlı problemlerde "Göster" ve "Çöz" her halka (link) için tekrarlanır.
  * S3'te `guideUntil`'dan önceki adımları Rehber yapar (geriye doğru soluklaştırma).
+ * Canlandır (DESIGN §12): yalnız S2/S3'te, yalnız ilk halkada ve betik uygunsa, şemadan ÖNCE.
  */
-import { MAIN_STEPS, type ErrorClass, type FlowStepId, type L10n, type MainStep, type Problem, type Role, type ScaffoldLevel, type SchemaId } from '../content/types';
-import type { EqToken, Placements } from '../lib/contentAdapter';
+import { MAIN_STEPS, type ActStrategy, type ErrorClass, type FlowStepId, type L10n, type MainStep, type Problem, type Role, type ScaffoldLevel, type SchemaId } from '../content/types';
+import { actFeasible, type EqToken, type Placements } from '../lib/contentAdapter';
 
 export interface PlanStep {
   id: FlowStepId;
@@ -26,6 +27,7 @@ export function buildPlan(problem: Problem, level: ScaffoldLevel, withReflect: b
   if (level >= 2) plan.push({ id: 'retell', link: 0 }, { id: 'question', link: 0 });
   if (problem.extras.length > 0 && level >= 1) plan.push({ id: 'known', link: 0 });
   problem.steps.forEach((_, link) => {
+    if (link === 0 && level >= 2 && actFeasible(problem, 0)) plan.push({ id: 'act', link: 0 });
     plan.push({ id: 'schema', link }, { id: 'model', link }, { id: 'checkModel', link });
     if (link === 0 && level >= 1) plan.push({ id: 'estimate', link: 0 });
     if (level >= 1) plan.push({ id: 'equation', link });
@@ -87,6 +89,12 @@ export interface SolveState {
   computeWrong: number;
   finalAnswer: number | null;
   reflect: MainStep | null;
+  /** Canlandırmada gözlenen stratejiler (öğretmen paneli; DESIGN §12.1 ilke 10). */
+  actStrategies: ActStrategy[];
+  /** S1/S0'da "Nesnelerle dene" açıldı mı? (puanlanmaz) */
+  actUsed: boolean;
+  /** Canlandırması tamamlanan halkalar (model adımı etiketleri hazır başlar). */
+  actDone: Record<number, boolean>;
   done: boolean;
 }
 
@@ -107,7 +115,9 @@ export type SolveAction =
   | { type: 'compute'; link: number; value: number }
   | { type: 'computeWrong' }
   | { type: 'answer'; value: number }
-  | { type: 'reflect'; step: MainStep };
+  | { type: 'reflect'; step: MainStep }
+  | { type: 'act'; link: number; strategies: ActStrategy[] }
+  | { type: 'actUsed' };
 
 export function initSolve(problem: Problem, level: ScaffoldLevel, examples: number, withReflect: boolean): SolveState {
   const plan = buildPlan(problem, level, withReflect);
@@ -141,6 +151,9 @@ export function initSolve(problem: Problem, level: ScaffoldLevel, examples: numb
     computeWrong: 0,
     finalAnswer: null,
     reflect: null,
+    actStrategies: [],
+    actUsed: false,
+    actDone: {},
     done: false,
   };
 }
@@ -223,6 +236,14 @@ export function solveReducer(s: SolveState, a: SolveAction): SolveState {
       return { ...s, finalAnswer: a.value };
     case 'reflect':
       return { ...s, reflect: a.step };
+    case 'act':
+      return {
+        ...s,
+        actDone: { ...s.actDone, [a.link]: true },
+        actStrategies: Array.from(new Set([...s.actStrategies, ...a.strategies])),
+      };
+    case 'actUsed':
+      return { ...s, actUsed: true };
     default:
       return s;
   }

@@ -188,7 +188,7 @@ export function checkAnswer(problem: Problem, value: number): { ok: boolean; err
 type Group = 'understand' | 'show' | 'estimate' | 'solve' | 'check';
 const GROUP: Record<FlowStepId, Group> = {
   read: 'understand', retell: 'understand', question: 'understand', known: 'understand',
-  schema: 'show', model: 'show', checkModel: 'show',
+  act: 'show', schema: 'show', model: 'show', checkModel: 'show',
   estimate: 'estimate',
   equation: 'solve', compute: 'solve',
   answer: 'check', reasonable: 'check', reflect: 'check',
@@ -252,6 +252,7 @@ const FB: Record<FeedbackKind, L10n> = {
   computation: L('Modelin ve işlemin doğru! Sadece hesapta bir kayma var. Hesap araçlarıyla bir daha dene.', 'Model û kirariya te rast in! Tenê di hesabê de şaşiyek heye. Bi amûrên hesabê dîsa biceribîne.', 'Your model and operation are right! Just a slip in the calculation. Try again with the tools.'),
   unitOrRemainder: L('Kalanı ne yapmalıyız? Hikâyeyi düşün.', 'Divê em bi jêmayê çi bikin? Li çîrokê bifikire.', 'What should we do with the remainder? Think about the story.'),
   unsolvableMissed: L('Bu soruyu çözmek için bir bilgi eksik olabilir mi?', 'Dibe ku ji bo çareserkirinê agahiyek kêm be?', 'Could some information be missing?'),
+  actMismatch: L('Cümleyi bir daha dinleyelim. Kaç tane olmalı?', 'Em careke din guhdarî hevokê bikin. Divê çend hebin?', "Let's listen to the sentence again. How many should there be?"),
 };
 
 export function feedbackFor(kind: FeedbackKind, problem: Problem, stepId: FlowStepId): L10n {
@@ -270,6 +271,7 @@ export const selfTalk: Record<FlowStepId, { say: L10n; ask: L10n; check: L10n }>
   retell: { say: L('Hikâyeyi kendi sözlerimle anlatıyorum.', 'Ez çîrokê bi gotinên xwe vedibêjim.', 'I tell the story in my own words.'), ask: L('Kim var? Ne oldu? Ne değişti?', 'Kî heye? Çi bû? Çi guherî?', 'Who is there? What happened? What changed?'), check: L('Anlattığım hikâye problemle aynı mı?', 'Çîroka min bi pirsgirêkê re yek e?', 'Is my story the same as the problem?') },
   question: { say: L('Ne bulmam gerekiyor?', 'Divê ez çi bibînim?', 'What do I need to find?'), ask: L('Cevabım ne cinsinden olacak?', 'Bersiva min dê bi çi be?', 'What will my answer be counted in?'), check: L('Soruyu doğru buldum mu?', 'Min pirs rast dît?', 'Did I find the question?') },
   known: { say: L('Hangi bilgiler işime yarar?', 'Kîjan agahî bi kêrî min tên?', 'Which facts are useful?'), ask: L('Bu sayı soruyla ilgili mi?', 'Ev hejmar bi pirsê re têkildar e?', 'Is this number about the question?'), check: L('Gereksiz bir sayı kullandım mı?', 'Min hejmareke nepêwîst bikar anî?', 'Did I use a number I do not need?') },
+  act: { say: L('Hikâyeyi nesnelerle canlandırıyorum.', 'Ez çîrokê bi tiştan zindî dikim.', 'I act out the story with objects.'), ask: L('Bu cümlede ne oldu? Kaç tane?', 'Di vê hevokê de çi bû? Çend heb?', 'What happened in this sentence? How many?'), check: L('Matım hikâyeyle aynı mı?', 'Mata min bi çîrokê re yek e?', 'Does my mat match the story?') }, // KU-DENETİM
   schema: { say: L('Bu problem hangi türe benziyor?', 'Ev pirsgirêk dişibe kîjan curî?', 'Which type does this look like?'), ask: L('Daha önce çözdüğüm hangi probleme benziyor?', 'Dişibe kîjan pirsgirêka ku min berê çareser kir?', 'Which problem I solved before is it like?'), check: L('Bir şey değişti mi, yoksa iki şey mi karşılaştırılıyor?', 'Tiştek guherî an du tişt têne berhevkirin?', 'Did something change, or are two things compared?') },
   model: { say: L('Bildiklerimi modele yerleştiriyorum.', 'Ez tiştên ku dizanim dixim modelê.', 'I put what I know into the model.'), ask: L('Bütün hangisi? Parçalar hangileri? ? nerede?', 'Gişt kîjan e? Par kîjan in? ? li ku ye?', 'Which is the whole? Which are the parts? Where is ?'), check: L('Modelim hikâyeyi anlatıyor mu?', 'Modela min çîrokê vedibêje?', 'Does my model tell the story?') },
   checkModel: { say: L('Modelimi hikâyeyle karşılaştırıyorum.', 'Ez modela xwe bi çîrokê re berhev dikim.', 'I compare my model with the story.'), ask: L('Bütün, parçalardan büyük mü?', 'Gişt ji paran mezintir e?', 'Is the whole bigger than the parts?'), check: L('Model ile hikâye aynı mı?', 'Model û çîrok yek in?', 'Are the model and the story the same?') },
