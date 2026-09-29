@@ -60,3 +60,6 @@ ios/DerivedData/
 tmp/
 temp/
 *.tmp
+
+# Güvenlik (2026-09-29): diskalkuli.com WordPress yönetici betikleri ve sırları — ASLA depoya girmez
+_platform/wp-pages/
